@@ -68,6 +68,14 @@ type ListSystemAPIsParams struct {
 	*/
 	DataClassification []string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* WithoutDataClassifications.
 
 	   List apis that have no data classifications
@@ -138,6 +146,17 @@ func (o *ListSystemAPIsParams) SetDataClassification(dataClassification []string
 	o.DataClassification = dataClassification
 }
 
+// WithIfMatch adds the ifMatch to the list system a p is params
+func (o *ListSystemAPIsParams) WithIfMatch(ifMatch *string) *ListSystemAPIsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list system a p is params
+func (o *ListSystemAPIsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWithoutDataClassifications adds the withoutDataClassifications to the list system a p is params
 func (o *ListSystemAPIsParams) WithWithoutDataClassifications(withoutDataClassifications *bool) *ListSystemAPIsParams {
 	o.SetWithoutDataClassifications(withoutDataClassifications)
@@ -164,6 +183,14 @@ func (o *ListSystemAPIsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// query array param data_classification
 		if err := r.SetQueryParam("data_classification", joinedDataClassification...); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

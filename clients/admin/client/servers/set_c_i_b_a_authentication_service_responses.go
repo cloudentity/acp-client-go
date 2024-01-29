@@ -54,7 +54,7 @@ func (o *SetCIBAAuthenticationServiceReader) ReadResponse(response runtime.Clien
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/ciba-authentication-service] setCIBAAuthenticationService", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ SetCIBAAuthenticationServiceOK describes a response with status code 200, with d
 CIBA authentication service
 */
 type SetCIBAAuthenticationServiceOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.CIBAAuthenticationService
 }
 
@@ -97,6 +106,11 @@ func (o *SetCIBAAuthenticationServiceOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the set c i b a authentication service o k response
+func (o *SetCIBAAuthenticationServiceOK) Code() int {
+	return 200
+}
+
 func (o *SetCIBAAuthenticationServiceOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *SetCIBAAuthenticationServiceOK) GetPayload() *models.CIBAAuthentication
 }
 
 func (o *SetCIBAAuthenticationServiceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.CIBAAuthenticationService)
 
@@ -129,7 +150,7 @@ func NewSetCIBAAuthenticationServiceUnauthorized() *SetCIBAAuthenticationService
 /*
 SetCIBAAuthenticationServiceUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetCIBAAuthenticationServiceUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *SetCIBAAuthenticationServiceUnauthorized) IsServerError() bool {
 // IsCode returns true when this set c i b a authentication service unauthorized response a status code equal to that given
 func (o *SetCIBAAuthenticationServiceUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set c i b a authentication service unauthorized response
+func (o *SetCIBAAuthenticationServiceUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetCIBAAuthenticationServiceUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewSetCIBAAuthenticationServiceForbidden() *SetCIBAAuthenticationServiceFor
 /*
 SetCIBAAuthenticationServiceForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetCIBAAuthenticationServiceForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *SetCIBAAuthenticationServiceForbidden) IsServerError() bool {
 // IsCode returns true when this set c i b a authentication service forbidden response a status code equal to that given
 func (o *SetCIBAAuthenticationServiceForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set c i b a authentication service forbidden response
+func (o *SetCIBAAuthenticationServiceForbidden) Code() int {
+	return 403
 }
 
 func (o *SetCIBAAuthenticationServiceForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewSetCIBAAuthenticationServiceNotFound() *SetCIBAAuthenticationServiceNotF
 /*
 SetCIBAAuthenticationServiceNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetCIBAAuthenticationServiceNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *SetCIBAAuthenticationServiceNotFound) IsServerError() bool {
 // IsCode returns true when this set c i b a authentication service not found response a status code equal to that given
 func (o *SetCIBAAuthenticationServiceNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set c i b a authentication service not found response
+func (o *SetCIBAAuthenticationServiceNotFound) Code() int {
+	return 404
 }
 
 func (o *SetCIBAAuthenticationServiceNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewSetCIBAAuthenticationServiceTooManyRequests() *SetCIBAAuthenticationServ
 /*
 SetCIBAAuthenticationServiceTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetCIBAAuthenticationServiceTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *SetCIBAAuthenticationServiceTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set c i b a authentication service too many requests response a status code equal to that given
 func (o *SetCIBAAuthenticationServiceTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set c i b a authentication service too many requests response
+func (o *SetCIBAAuthenticationServiceTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetCIBAAuthenticationServiceTooManyRequests) Error() string {

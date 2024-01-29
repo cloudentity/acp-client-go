@@ -22,78 +22,78 @@ import (
 type OBWriteInternationalScheduledConsentResponse6Data struct {
 
 	// authorisation
-	Authorisation *OBWriteInternationalScheduledConsentResponse6DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteInternationalScheduledConsentResponse6DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// charges
-	Charges []*OBWriteInternationalScheduledConsentResponse6DataChargesItems0 `json:"Charges"`
+	Charges []*OBWriteInternationalScheduledConsentResponse6DataChargesItems0 `json:"Charges" yaml:"Charges"`
 
 	// OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.
 	// Required: true
 	// Max Length: 128
 	// Min Length: 1
-	ConsentID string `json:"ConsentId"`
+	ConsentID string `json:"ConsentId" yaml:"ConsentId"`
 
 	// Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"CreationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"CreationDateTime" yaml:"CreationDateTime"`
 
 	// Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty"`
+	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty" yaml:"CutOffDateTime,omitempty"`
 
 	// debtor
-	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty"`
+	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty" yaml:"Debtor,omitempty"`
 
 	// exchange rate information
-	ExchangeRateInformation *OBWriteInternationalScheduledConsentResponse6DataExchangeRateInformation `json:"ExchangeRateInformation,omitempty"`
+	ExchangeRateInformation *OBWriteInternationalScheduledConsentResponse6DataExchangeRateInformation `json:"ExchangeRateInformation,omitempty" yaml:"ExchangeRateInformation,omitempty"`
 
 	// Expected execution date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpectedExecutionDateTime strfmt.DateTime `json:"ExpectedExecutionDateTime,omitempty"`
+	ExpectedExecutionDateTime strfmt.DateTime `json:"ExpectedExecutionDateTime,omitempty" yaml:"ExpectedExecutionDateTime,omitempty"`
 
 	// Expected settlement date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpectedSettlementDateTime strfmt.DateTime `json:"ExpectedSettlementDateTime,omitempty"`
+	ExpectedSettlementDateTime strfmt.DateTime `json:"ExpectedSettlementDateTime,omitempty" yaml:"ExpectedSettlementDateTime,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteInternationalScheduledConsentResponse6DataInitiation `json:"Initiation"`
+	Initiation *OBWriteInternationalScheduledConsentResponse6DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteInternationalScheduledConsentResponse6DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteInternationalScheduledConsentResponse6DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
 	// Enum: [Authorised AwaitingAuthorisation Consumed Rejected]
-	Status string `json:"Status"`
+	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime" yaml:"StatusUpdateDateTime"`
 }
 
 // Validate validates this o b write international scheduled consent response6 data
@@ -535,6 +535,11 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) ContextValidate(ctx 
 func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -553,6 +558,11 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateCharg
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Charges" + "." + strconv.Itoa(i))
@@ -571,6 +581,11 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateCharg
 func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Debtor")
@@ -587,6 +602,11 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateDebto
 func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateExchangeRateInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ExchangeRateInformation != nil {
+
+		if swag.IsZero(m.ExchangeRateInformation) { // not required
+			return nil
+		}
+
 		if err := m.ExchangeRateInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ExchangeRateInformation")
@@ -603,6 +623,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateExcha
 func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -619,6 +640,11 @@ func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateIniti
 func (m *OBWriteInternationalScheduledConsentResponse6Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

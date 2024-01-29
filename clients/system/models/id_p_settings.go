@@ -19,43 +19,43 @@ import (
 type IDPSettings struct {
 
 	// auth0
-	Auth0 *Auth0Settings `json:"auth0,omitempty"`
+	Auth0 *Auth0Settings `json:"auth0,omitempty" yaml:"auth0,omitempty"`
 
 	// azure
-	Azure *AzureSettings `json:"azure,omitempty"`
+	Azure *AzureSettings `json:"azure,omitempty" yaml:"azure,omitempty"`
 
 	// azureb2c
-	Azureb2c *AzureB2CSettings `json:"azureb2c,omitempty"`
+	Azureb2c *AzureB2CSettings `json:"azureb2c,omitempty" yaml:"azureb2c,omitempty"`
 
 	// cognito
-	Cognito *CognitoSettings `json:"cognito,omitempty"`
+	Cognito *CognitoSettings `json:"cognito,omitempty" yaml:"cognito,omitempty"`
 
 	// custom
-	Custom *CustomSettings `json:"custom,omitempty"`
+	Custom *CustomSettings `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// external
-	External *ExternalSettings `json:"external,omitempty"`
+	External *ExternalSettings `json:"external,omitempty" yaml:"external,omitempty"`
 
 	// github
-	Github *GithubSettings `json:"github,omitempty"`
+	Github *GithubSettings `json:"github,omitempty" yaml:"github,omitempty"`
 
 	// google
-	Google *GoogleSettings `json:"google,omitempty"`
+	Google *GoogleSettings `json:"google,omitempty" yaml:"google,omitempty"`
 
 	// intelli trust
-	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty"`
+	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
 
 	// oidc
-	Oidc *OIDCSettings `json:"oidc,omitempty"`
+	Oidc *OIDCSettings `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// okta
-	Okta *OktaSettings `json:"okta,omitempty"`
+	Okta *OktaSettings `json:"okta,omitempty" yaml:"okta,omitempty"`
 
 	// saml
-	Saml *SAMLSettings `json:"saml,omitempty"`
+	Saml *SAMLSettings `json:"saml,omitempty" yaml:"saml,omitempty"`
 
 	// static
-	Static *StaticSettings `json:"static,omitempty"`
+	Static *StaticSettings `json:"static,omitempty" yaml:"static,omitempty"`
 }
 
 // Validate validates this ID p settings
@@ -432,6 +432,11 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *IDPSettings) contextValidateAuth0(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth0 != nil {
+
+		if swag.IsZero(m.Auth0) { // not required
+			return nil
+		}
+
 		if err := m.Auth0.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth0")
@@ -448,6 +453,11 @@ func (m *IDPSettings) contextValidateAuth0(ctx context.Context, formats strfmt.R
 func (m *IDPSettings) contextValidateAzure(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Azure != nil {
+
+		if swag.IsZero(m.Azure) { // not required
+			return nil
+		}
+
 		if err := m.Azure.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azure")
@@ -464,6 +474,11 @@ func (m *IDPSettings) contextValidateAzure(ctx context.Context, formats strfmt.R
 func (m *IDPSettings) contextValidateAzureb2c(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Azureb2c != nil {
+
+		if swag.IsZero(m.Azureb2c) { // not required
+			return nil
+		}
+
 		if err := m.Azureb2c.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azureb2c")
@@ -480,6 +495,11 @@ func (m *IDPSettings) contextValidateAzureb2c(ctx context.Context, formats strfm
 func (m *IDPSettings) contextValidateCognito(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cognito != nil {
+
+		if swag.IsZero(m.Cognito) { // not required
+			return nil
+		}
+
 		if err := m.Cognito.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cognito")
@@ -496,6 +516,11 @@ func (m *IDPSettings) contextValidateCognito(ctx context.Context, formats strfmt
 func (m *IDPSettings) contextValidateCustom(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Custom != nil {
+
+		if swag.IsZero(m.Custom) { // not required
+			return nil
+		}
+
 		if err := m.Custom.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
@@ -512,6 +537,11 @@ func (m *IDPSettings) contextValidateCustom(ctx context.Context, formats strfmt.
 func (m *IDPSettings) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.External != nil {
+
+		if swag.IsZero(m.External) { // not required
+			return nil
+		}
+
 		if err := m.External.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("external")
@@ -528,6 +558,11 @@ func (m *IDPSettings) contextValidateExternal(ctx context.Context, formats strfm
 func (m *IDPSettings) contextValidateGithub(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Github != nil {
+
+		if swag.IsZero(m.Github) { // not required
+			return nil
+		}
+
 		if err := m.Github.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("github")
@@ -544,6 +579,11 @@ func (m *IDPSettings) contextValidateGithub(ctx context.Context, formats strfmt.
 func (m *IDPSettings) contextValidateGoogle(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Google != nil {
+
+		if swag.IsZero(m.Google) { // not required
+			return nil
+		}
+
 		if err := m.Google.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("google")
@@ -560,6 +600,11 @@ func (m *IDPSettings) contextValidateGoogle(ctx context.Context, formats strfmt.
 func (m *IDPSettings) contextValidateIntelliTrust(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IntelliTrust != nil {
+
+		if swag.IsZero(m.IntelliTrust) { // not required
+			return nil
+		}
+
 		if err := m.IntelliTrust.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("intelli_trust")
@@ -576,6 +621,11 @@ func (m *IDPSettings) contextValidateIntelliTrust(ctx context.Context, formats s
 func (m *IDPSettings) contextValidateOidc(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Oidc != nil {
+
+		if swag.IsZero(m.Oidc) { // not required
+			return nil
+		}
+
 		if err := m.Oidc.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("oidc")
@@ -592,6 +642,11 @@ func (m *IDPSettings) contextValidateOidc(ctx context.Context, formats strfmt.Re
 func (m *IDPSettings) contextValidateOkta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Okta != nil {
+
+		if swag.IsZero(m.Okta) { // not required
+			return nil
+		}
+
 		if err := m.Okta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("okta")
@@ -608,6 +663,11 @@ func (m *IDPSettings) contextValidateOkta(ctx context.Context, formats strfmt.Re
 func (m *IDPSettings) contextValidateSaml(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Saml != nil {
+
+		if swag.IsZero(m.Saml) { // not required
+			return nil
+		}
+
 		if err := m.Saml.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("saml")
@@ -624,6 +684,11 @@ func (m *IDPSettings) contextValidateSaml(ctx context.Context, formats strfmt.Re
 func (m *IDPSettings) contextValidateStatic(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Static != nil {
+
+		if swag.IsZero(m.Static) { // not required
+			return nil
+		}
+
 		if err := m.Static.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("static")

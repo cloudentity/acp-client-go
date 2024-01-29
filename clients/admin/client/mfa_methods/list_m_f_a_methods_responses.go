@@ -48,7 +48,7 @@ func (o *ListMFAMethodsReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /mfa-methods] listMFAMethods", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListMFAMethodsOK describes a response with status code 200, with default header 
 MFA methods
 */
 type ListMFAMethodsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.MFAMethods
 }
 
@@ -91,6 +100,11 @@ func (o *ListMFAMethodsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list m f a methods o k response
+func (o *ListMFAMethodsOK) Code() int {
+	return 200
+}
+
 func (o *ListMFAMethodsOK) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListMFAMethodsOK) GetPayload() *models.MFAMethods {
 }
 
 func (o *ListMFAMethodsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.MFAMethods)
 
@@ -123,7 +144,7 @@ func NewListMFAMethodsUnauthorized() *ListMFAMethodsUnauthorized {
 /*
 ListMFAMethodsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListMFAMethodsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListMFAMethodsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list m f a methods unauthorized response a status code equal to that given
 func (o *ListMFAMethodsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list m f a methods unauthorized response
+func (o *ListMFAMethodsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListMFAMethodsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListMFAMethodsForbidden() *ListMFAMethodsForbidden {
 /*
 ListMFAMethodsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListMFAMethodsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListMFAMethodsForbidden) IsServerError() bool {
 // IsCode returns true when this list m f a methods forbidden response a status code equal to that given
 func (o *ListMFAMethodsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list m f a methods forbidden response
+func (o *ListMFAMethodsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListMFAMethodsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListMFAMethodsTooManyRequests() *ListMFAMethodsTooManyRequests {
 /*
 ListMFAMethodsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListMFAMethodsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListMFAMethodsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list m f a methods too many requests response a status code equal to that given
 func (o *ListMFAMethodsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list m f a methods too many requests response
+func (o *ListMFAMethodsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListMFAMethodsTooManyRequests) Error() string {

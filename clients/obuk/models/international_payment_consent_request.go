@@ -21,11 +21,11 @@ type InternationalPaymentConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteInternationalConsent5Data `json:"Data"`
+	Data *OBWriteInternationalConsent5Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this international payment consent request
@@ -107,6 +107,7 @@ func (m *InternationalPaymentConsentRequest) ContextValidate(ctx context.Context
 func (m *InternationalPaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")
@@ -123,6 +124,7 @@ func (m *InternationalPaymentConsentRequest) contextValidateData(ctx context.Con
 func (m *InternationalPaymentConsentRequest) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")

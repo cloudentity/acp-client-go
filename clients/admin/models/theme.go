@@ -20,16 +20,19 @@ import (
 type Theme struct {
 
 	// theme unique identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
+
+	// theme logo url
+	LogoURL string `json:"logo_url,omitempty" yaml:"logo_url,omitempty"`
 
 	// Display name of the theme
 	// Example: acme
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// ID of the tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this theme

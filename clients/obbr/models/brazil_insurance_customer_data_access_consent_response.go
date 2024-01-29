@@ -21,13 +21,13 @@ type BrazilInsuranceCustomerDataAccessConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OPINData1 `json:"data"`
+	Data *OPINData1 `json:"data" yaml:"data"`
 
 	// links
-	Links *OPINLinks `json:"links,omitempty"`
+	Links *OPINLinks `json:"links,omitempty" yaml:"links,omitempty"`
 
 	// meta
-	Meta *OPINMeta `json:"meta,omitempty"`
+	Meta *OPINMeta `json:"meta,omitempty" yaml:"meta,omitempty"`
 }
 
 // Validate validates this brazil insurance customer data access consent response

@@ -23,34 +23,37 @@ type GetServerDeveloperResponse struct {
 
 	// Color
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// supported grant types
 	// Example: ["implicit","authorization_code","refresh_token"]
-	GrantTypes []string `json:"grant_types"`
+	GrantTypes []string `json:"grant_types" yaml:"grant_types"`
 
 	// authorization server id
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// issuer URL
 	// Example: https://example.com/default/default
-	IssuerURL string `json:"issuer_url,omitempty"`
+	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
 
 	// mtls issuer url
-	MtlsIssuerURL string `json:"mtls_issuer_url,omitempty"`
+	MtlsIssuerURL string `json:"mtls_issuer_url,omitempty" yaml:"mtls_issuer_url,omitempty"`
 
 	// authorizations server name
 	// Example: ACP
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty" yaml:"response_types,omitempty"`
 
 	// supported subject identifier types
 	// Example: ["public","pairwise"]
-	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
+	SubjectIdentifierTypes []string `json:"subject_identifier_types" yaml:"subject_identifier_types"`
 
 	// supported application purposes
 	// Example: ["single_page","server_web","mobile_desktop","service","legacy"]
-	SupportedApplicationPurposes []string `json:"supported_application_purposes"`
+	SupportedApplicationPurposes []string `json:"supported_application_purposes" yaml:"supported_application_purposes"`
 }
 
 // Validate validates this get server developer response
@@ -58,6 +61,10 @@ func (m *GetServerDeveloperResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateGrantTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResponseTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +113,23 @@ func (m *GetServerDeveloperResponse) validateGrantTypes(formats strfmt.Registry)
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetServerDeveloperResponse) validateResponseTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResponseTypes) { // not required
+		return nil
+	}
+
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
 	}
 
 	return nil
@@ -183,8 +207,31 @@ func (m *GetServerDeveloperResponse) validateSupportedApplicationPurposes(format
 	return nil
 }
 
-// ContextValidate validates this get server developer response based on context it is used
+// ContextValidate validate this get server developer response based on the context it is used
 func (m *GetServerDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetServerDeveloperResponse) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
 	return nil
 }
 

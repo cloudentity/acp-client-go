@@ -18,13 +18,13 @@ import (
 type PolicyValidationFailure struct {
 
 	// Details on the failed validation for a policy
-	Details string `json:"details,omitempty"`
+	Details string `json:"details,omitempty" yaml:"details,omitempty"`
 
 	// Message displayed for failed validation
-	Message string `json:"message,omitempty"`
+	Message string `json:"message,omitempty" yaml:"message,omitempty"`
 
 	// String representation of the validator for which the policy failed validation
-	Validator string `json:"validator,omitempty"`
+	Validator string `json:"validator,omitempty" yaml:"validator,omitempty"`
 }
 
 // Validate validates this policy validation failure

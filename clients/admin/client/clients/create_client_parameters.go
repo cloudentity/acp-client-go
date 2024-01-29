@@ -69,6 +69,14 @@ type CreateClientParams struct {
 	// ApplicationPurpose.
 	ApplicationPurpose *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -144,6 +152,17 @@ func (o *CreateClientParams) SetApplicationPurpose(applicationPurpose *string) {
 	o.ApplicationPurpose = applicationPurpose
 }
 
+// WithIfMatch adds the ifMatch to the create client params
+func (o *CreateClientParams) WithIfMatch(ifMatch *string) *CreateClientParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create client params
+func (o *CreateClientParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateClientParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -171,6 +190,14 @@ func (o *CreateClientParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 			if err := r.SetQueryParam("application_purpose", qApplicationPurpose); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 

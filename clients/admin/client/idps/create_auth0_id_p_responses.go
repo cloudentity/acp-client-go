@@ -66,7 +66,7 @@ func (o *CreateAuth0IDPReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/auth0] createAuth0IDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateAuth0IDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create auth0 Id p created response
+func (o *CreateAuth0IDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateAuth0IDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateAuth0IDPBadRequest() *CreateAuth0IDPBadRequest {
 /*
 CreateAuth0IDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateAuth0IDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateAuth0IDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p bad request response a status code equal to that given
 func (o *CreateAuth0IDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create auth0 Id p bad request response
+func (o *CreateAuth0IDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateAuth0IDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateAuth0IDPUnauthorized() *CreateAuth0IDPUnauthorized {
 /*
 CreateAuth0IDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateAuth0IDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateAuth0IDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p unauthorized response a status code equal to that given
 func (o *CreateAuth0IDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create auth0 Id p unauthorized response
+func (o *CreateAuth0IDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateAuth0IDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateAuth0IDPForbidden() *CreateAuth0IDPForbidden {
 /*
 CreateAuth0IDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateAuth0IDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateAuth0IDPForbidden) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p forbidden response a status code equal to that given
 func (o *CreateAuth0IDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create auth0 Id p forbidden response
+func (o *CreateAuth0IDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateAuth0IDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateAuth0IDPNotFound() *CreateAuth0IDPNotFound {
 /*
 CreateAuth0IDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateAuth0IDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateAuth0IDPNotFound) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p not found response a status code equal to that given
 func (o *CreateAuth0IDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create auth0 Id p not found response
+func (o *CreateAuth0IDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateAuth0IDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateAuth0IDPUnprocessableEntity() *CreateAuth0IDPUnprocessableEntity {
 /*
 CreateAuth0IDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateAuth0IDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateAuth0IDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p unprocessable entity response a status code equal to that given
 func (o *CreateAuth0IDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create auth0 Id p unprocessable entity response
+func (o *CreateAuth0IDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateAuth0IDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateAuth0IDPTooManyRequests() *CreateAuth0IDPTooManyRequests {
 /*
 CreateAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateAuth0IDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateAuth0IDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create auth0 Id p too many requests response a status code equal to that given
 func (o *CreateAuth0IDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create auth0 Id p too many requests response
+func (o *CreateAuth0IDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateAuth0IDPTooManyRequests) Error() string {

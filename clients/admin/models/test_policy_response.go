@@ -20,19 +20,19 @@ import (
 type TestPolicyResponse struct {
 
 	// failures
-	Failures []*ValidateResponseValidatorFailure `json:"failures"`
+	Failures []*ValidateResponseValidatorFailure `json:"failures" yaml:"failures"`
 
 	// output
-	Output map[string]interface{} `json:"output,omitempty"`
+	Output map[string]interface{} `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// recovery
-	Recovery []interface{} `json:"recovery"`
+	Recovery []interface{} `json:"recovery" yaml:"recovery"`
 
 	// result
-	Result string `json:"result,omitempty"`
+	Result string `json:"result,omitempty" yaml:"result,omitempty"`
 
 	// status
-	Status bool `json:"status,omitempty"`
+	Status bool `json:"status,omitempty" yaml:"status,omitempty"`
 }
 
 // Validate validates this test policy response
@@ -94,6 +94,11 @@ func (m *TestPolicyResponse) contextValidateFailures(ctx context.Context, format
 	for i := 0; i < len(m.Failures); i++ {
 
 		if m.Failures[i] != nil {
+
+			if swag.IsZero(m.Failures[i]) { // not required
+				return nil
+			}
+
 			if err := m.Failures[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("failures" + "." + strconv.Itoa(i))

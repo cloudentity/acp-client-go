@@ -23,11 +23,11 @@ type OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount str
 
 	// amount
 	// Required: true
-	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount"`
+	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount" yaml:"Amount"`
 
 	// currency
 	// Required: true
-	Currency *ActiveOrHistoricCurrencyCode `json:"Currency"`
+	Currency *ActiveOrHistoricCurrencyCode `json:"Currency" yaml:"Currency"`
 }
 
 // Validate validates this o b write international standing order consent6 data initiation instructed amount
@@ -117,6 +117,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -133,6 +134,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

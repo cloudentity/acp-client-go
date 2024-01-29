@@ -60,7 +60,7 @@ func (o *TestAPIReader) ReadResponse(response runtime.ClientResponse, consumer r
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /apis/test] testAPI", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ TestAPIOK describes a response with status code 200, with default header values.
 API test result
 */
 type TestAPIOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.TestAPIResult
 }
 
@@ -103,6 +112,11 @@ func (o *TestAPIOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the test Api o k response
+func (o *TestAPIOK) Code() int {
+	return 200
+}
+
 func (o *TestAPIOK) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *TestAPIOK) GetPayload() *models.TestAPIResult {
 }
 
 func (o *TestAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.TestAPIResult)
 
@@ -135,7 +156,7 @@ func NewTestAPIUnauthorized() *TestAPIUnauthorized {
 /*
 TestAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type TestAPIUnauthorized struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *TestAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this test Api unauthorized response a status code equal to that given
 func (o *TestAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the test Api unauthorized response
+func (o *TestAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *TestAPIUnauthorized) Error() string {
@@ -198,7 +224,7 @@ func NewTestAPIForbidden() *TestAPIForbidden {
 /*
 TestAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type TestAPIForbidden struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *TestAPIForbidden) IsServerError() bool {
 // IsCode returns true when this test Api forbidden response a status code equal to that given
 func (o *TestAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the test Api forbidden response
+func (o *TestAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *TestAPIForbidden) Error() string {
@@ -261,7 +292,7 @@ func NewTestAPINotFound() *TestAPINotFound {
 /*
 TestAPINotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type TestAPINotFound struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *TestAPINotFound) IsServerError() bool {
 // IsCode returns true when this test Api not found response a status code equal to that given
 func (o *TestAPINotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the test Api not found response
+func (o *TestAPINotFound) Code() int {
+	return 404
 }
 
 func (o *TestAPINotFound) Error() string {
@@ -324,7 +360,7 @@ func NewTestAPIUnprocessableEntity() *TestAPIUnprocessableEntity {
 /*
 TestAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type TestAPIUnprocessableEntity struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *TestAPIUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this test Api unprocessable entity response a status code equal to that given
 func (o *TestAPIUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the test Api unprocessable entity response
+func (o *TestAPIUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *TestAPIUnprocessableEntity) Error() string {
@@ -387,7 +428,7 @@ func NewTestAPITooManyRequests() *TestAPITooManyRequests {
 /*
 TestAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type TestAPITooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *TestAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this test Api too many requests response a status code equal to that given
 func (o *TestAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the test Api too many requests response
+func (o *TestAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *TestAPITooManyRequests) Error() string {

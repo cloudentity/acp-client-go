@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DynamicClientRegistrationSettings dynamic client registration settings
@@ -19,29 +20,42 @@ import (
 type DynamicClientRegistrationSettings struct {
 
 	// Binds registration token to the certificate used to register client
-	CertBoundRegistrationToken bool `json:"cert_bound_registration_token,omitempty"`
+	CertBoundRegistrationToken bool `json:"cert_bound_registration_token,omitempty" yaml:"cert_bound_registration_token,omitempty"`
 
 	// An optional list of scopes to be granted to a client when no scopes are provided in the DCR registration request
 	//
 	// If not provided, the following default scopes are granted for the client application: openid, address, email, phone, profile.
-	DefaultScopes []string `json:"default_scopes"`
+	DefaultScopes []string `json:"default_scopes" yaml:"default_scopes"`
+
+	// Disable registration access token expiry
+	//
+	// If is flag is on, the registration access token will never expire.
+	DisableRegistrationAccessTokenExpiry bool `json:"disable_registration_access_token_expiry,omitempty" yaml:"disable_registration_access_token_expiry,omitempty"`
 
 	// Disables client management using registration token
 	//
 	// If disabled, client can manage itself using access token issued by client credentials flow.
-	DisableRegistrationTokenManagement bool `json:"disable_registration_token_management,omitempty"`
+	DisableRegistrationTokenManagement bool `json:"disable_registration_token_management,omitempty" yaml:"disable_registration_token_management,omitempty"`
 
 	// Disables registration token rotation
-	DisableRegistrationTokenRotation bool `json:"disable_registration_token_rotation,omitempty"`
+	DisableRegistrationTokenRotation bool `json:"disable_registration_token_rotation,omitempty" yaml:"disable_registration_token_rotation,omitempty"`
 
 	// Enables dynamic client registration
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// initial access token
-	InitialAccessToken *InitialAccessTokenSettings `json:"initial_access_token,omitempty"`
+	InitialAccessToken *InitialAccessTokenSettings `json:"initial_access_token,omitempty" yaml:"initial_access_token,omitempty"`
 
 	// payload
-	Payload *PayloadSettings `json:"payload,omitempty"`
+	Payload *PayloadSettings `json:"payload,omitempty" yaml:"payload,omitempty"`
+
+	// Registration access token TTL
+	//
+	// Time to live of the registration access token (default 30 days).
+	// The minimum value is 24 hours.
+	// Example: 720h0m0s
+	// Format: duration
+	RegistrationAccessTokenTTL strfmt.Duration `json:"registration_access_token_ttl,omitempty" yaml:"registration_access_token_ttl,omitempty"`
 }
 
 // Validate validates this dynamic client registration settings
@@ -53,6 +67,10 @@ func (m *DynamicClientRegistrationSettings) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validatePayload(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegistrationAccessTokenTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -100,6 +118,18 @@ func (m *DynamicClientRegistrationSettings) validatePayload(formats strfmt.Regis
 	return nil
 }
 
+func (m *DynamicClientRegistrationSettings) validateRegistrationAccessTokenTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.RegistrationAccessTokenTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("registration_access_token_ttl", "body", "duration", m.RegistrationAccessTokenTTL.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this dynamic client registration settings based on the context it is used
 func (m *DynamicClientRegistrationSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -121,6 +151,11 @@ func (m *DynamicClientRegistrationSettings) ContextValidate(ctx context.Context,
 func (m *DynamicClientRegistrationSettings) contextValidateInitialAccessToken(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InitialAccessToken != nil {
+
+		if swag.IsZero(m.InitialAccessToken) { // not required
+			return nil
+		}
+
 		if err := m.InitialAccessToken.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("initial_access_token")
@@ -137,6 +172,11 @@ func (m *DynamicClientRegistrationSettings) contextValidateInitialAccessToken(ct
 func (m *DynamicClientRegistrationSettings) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payload != nil {
+
+		if swag.IsZero(m.Payload) { // not required
+			return nil
+		}
+
 		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payload")

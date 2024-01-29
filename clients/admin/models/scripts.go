@@ -20,7 +20,7 @@ import (
 type Scripts struct {
 
 	// list of scripts
-	Scripts []*Script `json:"scripts"`
+	Scripts []*Script `json:"scripts" yaml:"scripts"`
 }
 
 // Validate validates this scripts
@@ -82,6 +82,11 @@ func (m *Scripts) contextValidateScripts(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Scripts); i++ {
 
 		if m.Scripts[i] != nil {
+
+			if swag.IsZero(m.Scripts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scripts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scripts" + "." + strconv.Itoa(i))

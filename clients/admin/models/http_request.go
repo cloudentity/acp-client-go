@@ -21,19 +21,19 @@ import (
 type HTTPRequest struct {
 
 	// request body
-	Body string `json:"body,omitempty"`
+	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
 	// http method
 	// Example: GET
 	// Required: true
-	Method string `json:"method"`
+	Method string `json:"method" yaml:"method"`
 
 	// url path
 	// Required: true
-	Path string `json:"path"`
+	Path string `json:"path" yaml:"path"`
 
 	// url query params
-	Query []*HTTPRequestParam `json:"query"`
+	Query []*HTTPRequestParam `json:"query" yaml:"query"`
 }
 
 // Validate validates this HTTP request
@@ -121,6 +121,11 @@ func (m *HTTPRequest) contextValidateQuery(ctx context.Context, formats strfmt.R
 	for i := 0; i < len(m.Query); i++ {
 
 		if m.Query[i] != nil {
+
+			if swag.IsZero(m.Query[i]) { // not required
+				return nil
+			}
+
 			if err := m.Query[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("query" + "." + strconv.Itoa(i))

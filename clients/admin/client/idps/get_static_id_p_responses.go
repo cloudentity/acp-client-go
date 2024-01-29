@@ -54,7 +54,7 @@ func (o *GetStaticIDPReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/static/{iid}] getStaticIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetStaticIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get static Id p o k response
+func (o *GetStaticIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetStaticIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetStaticIDPUnauthorized() *GetStaticIDPUnauthorized {
 /*
 GetStaticIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetStaticIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetStaticIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get static Id p unauthorized response a status code equal to that given
 func (o *GetStaticIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get static Id p unauthorized response
+func (o *GetStaticIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetStaticIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetStaticIDPForbidden() *GetStaticIDPForbidden {
 /*
 GetStaticIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetStaticIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetStaticIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get static Id p forbidden response a status code equal to that given
 func (o *GetStaticIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get static Id p forbidden response
+func (o *GetStaticIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetStaticIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetStaticIDPNotFound() *GetStaticIDPNotFound {
 /*
 GetStaticIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetStaticIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetStaticIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get static Id p not found response a status code equal to that given
 func (o *GetStaticIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get static Id p not found response
+func (o *GetStaticIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetStaticIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetStaticIDPTooManyRequests() *GetStaticIDPTooManyRequests {
 /*
 GetStaticIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetStaticIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetStaticIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get static Id p too many requests response a status code equal to that given
 func (o *GetStaticIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get static Id p too many requests response
+func (o *GetStaticIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetStaticIDPTooManyRequests) Error() string {

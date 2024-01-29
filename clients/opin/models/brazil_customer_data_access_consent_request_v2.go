@@ -21,7 +21,7 @@ type BrazilCustomerDataAccessConsentRequestV2 struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilConsentV2Data `json:"data"`
+	Data *OpenbankingBrasilConsentV2Data `json:"data" yaml:"data"`
 }
 
 // Validate validates this brazil customer data access consent request v2

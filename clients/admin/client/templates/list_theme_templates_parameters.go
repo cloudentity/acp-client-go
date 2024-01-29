@@ -61,6 +61,14 @@ ListThemeTemplatesParams contains all the parameters to send to the API endpoint
 */
 type ListThemeTemplatesParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -120,6 +128,17 @@ func (o *ListThemeTemplatesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list theme templates params
+func (o *ListThemeTemplatesParams) WithIfMatch(ifMatch *string) *ListThemeTemplatesParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list theme templates params
+func (o *ListThemeTemplatesParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the list theme templates params
 func (o *ListThemeTemplatesParams) WithThemeID(themeID string) *ListThemeTemplatesParams {
 	o.SetThemeID(themeID)
@@ -138,6 +157,14 @@ func (o *ListThemeTemplatesParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param themeID
 	if err := r.SetPathParam("themeID", o.ThemeID); err != nil {

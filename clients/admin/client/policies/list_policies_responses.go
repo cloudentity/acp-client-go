@@ -54,7 +54,7 @@ func (o *ListPoliciesReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/policies] listPolicies", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ ListPoliciesOK describes a response with status code 200, with default header va
 Policies
 */
 type ListPoliciesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Policies
 }
 
@@ -97,6 +106,11 @@ func (o *ListPoliciesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list policies o k response
+func (o *ListPoliciesOK) Code() int {
+	return 200
+}
+
 func (o *ListPoliciesOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *ListPoliciesOK) GetPayload() *models.Policies {
 }
 
 func (o *ListPoliciesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Policies)
 
@@ -129,7 +150,7 @@ func NewListPoliciesBadRequest() *ListPoliciesBadRequest {
 /*
 ListPoliciesBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListPoliciesBadRequest struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *ListPoliciesBadRequest) IsServerError() bool {
 // IsCode returns true when this list policies bad request response a status code equal to that given
 func (o *ListPoliciesBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list policies bad request response
+func (o *ListPoliciesBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListPoliciesBadRequest) Error() string {
@@ -192,7 +218,7 @@ func NewListPoliciesUnauthorized() *ListPoliciesUnauthorized {
 /*
 ListPoliciesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListPoliciesUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *ListPoliciesUnauthorized) IsServerError() bool {
 // IsCode returns true when this list policies unauthorized response a status code equal to that given
 func (o *ListPoliciesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list policies unauthorized response
+func (o *ListPoliciesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListPoliciesUnauthorized) Error() string {
@@ -255,7 +286,7 @@ func NewListPoliciesForbidden() *ListPoliciesForbidden {
 /*
 ListPoliciesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListPoliciesForbidden struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *ListPoliciesForbidden) IsServerError() bool {
 // IsCode returns true when this list policies forbidden response a status code equal to that given
 func (o *ListPoliciesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list policies forbidden response
+func (o *ListPoliciesForbidden) Code() int {
+	return 403
 }
 
 func (o *ListPoliciesForbidden) Error() string {
@@ -318,7 +354,7 @@ func NewListPoliciesTooManyRequests() *ListPoliciesTooManyRequests {
 /*
 ListPoliciesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListPoliciesTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *ListPoliciesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list policies too many requests response a status code equal to that given
 func (o *ListPoliciesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list policies too many requests response
+func (o *ListPoliciesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListPoliciesTooManyRequests) Error() string {

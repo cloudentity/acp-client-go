@@ -21,31 +21,31 @@ type OBWriteDomesticStandingOrderConsent5DataInitiation struct {
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteDomesticStandingOrderConsent5DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteDomesticStandingOrderConsent5DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// debtor account
-	DebtorAccount *OBWriteDomesticStandingOrderConsent5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteDomesticStandingOrderConsent5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// final payment amount
-	FinalPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationFinalPaymentAmount `json:"FinalPaymentAmount,omitempty"`
+	FinalPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationFinalPaymentAmount `json:"FinalPaymentAmount,omitempty" yaml:"FinalPaymentAmount,omitempty"`
 
 	// The date on which the final payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	FinalPaymentDateTime strfmt.DateTime `json:"FinalPaymentDateTime,omitempty"`
+	FinalPaymentDateTime strfmt.DateTime `json:"FinalPaymentDateTime,omitempty" yaml:"FinalPaymentDateTime,omitempty"`
 
 	// first payment amount
 	// Required: true
-	FirstPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationFirstPaymentAmount `json:"FirstPaymentAmount"`
+	FirstPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationFirstPaymentAmount `json:"FirstPaymentAmount" yaml:"FirstPaymentAmount"`
 
 	// The date on which the first payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	FirstPaymentDateTime strfmt.DateTime `json:"FirstPaymentDateTime"`
+	FirstPaymentDateTime strfmt.DateTime `json:"FirstPaymentDateTime" yaml:"FirstPaymentDateTime"`
 
 	// Individual Definitions:
 	// EvryDay - Every day
@@ -75,15 +75,15 @@ type OBWriteDomesticStandingOrderConsent5DataInitiation struct {
 	// ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
 	// Required: true
 	// Pattern: ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
-	Frequency string `json:"Frequency"`
+	Frequency string `json:"Frequency" yaml:"Frequency"`
 
 	// Number of the payments that will be made in completing this frequency sequence including any executed since the sequence start date.
 	// Max Length: 35
 	// Min Length: 1
-	NumberOfPayments string `json:"NumberOfPayments,omitempty"`
+	NumberOfPayments string `json:"NumberOfPayments,omitempty" yaml:"NumberOfPayments,omitempty"`
 
 	// recurring payment amount
-	RecurringPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationRecurringPaymentAmount `json:"RecurringPaymentAmount,omitempty"`
+	RecurringPaymentAmount *OBWriteDomesticStandingOrderConsent5DataInitiationRecurringPaymentAmount `json:"RecurringPaymentAmount,omitempty" yaml:"RecurringPaymentAmount,omitempty"`
 
 	// The date on which the first recurring payment for a Standing Order schedule will be made.
 	// Usage: This must be populated only if the first recurring date is different to the first payment date.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -91,17 +91,17 @@ type OBWriteDomesticStandingOrderConsent5DataInitiation struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	RecurringPaymentDateTime strfmt.DateTime `json:"RecurringPaymentDateTime,omitempty"`
+	RecurringPaymentDateTime strfmt.DateTime `json:"RecurringPaymentDateTime,omitempty" yaml:"RecurringPaymentDateTime,omitempty"`
 
 	// Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
 	// Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
 	// If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.
 	// Max Length: 35
 	// Min Length: 1
-	Reference string `json:"Reference,omitempty"`
+	Reference string `json:"Reference,omitempty" yaml:"Reference,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write domestic standing order consent5 data initiation
@@ -370,6 +370,7 @@ func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) ContextValidate(ctx
 func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -386,6 +387,11 @@ func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateCred
 func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -402,6 +408,11 @@ func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateDebt
 func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateFinalPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FinalPaymentAmount != nil {
+
+		if swag.IsZero(m.FinalPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.FinalPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FinalPaymentAmount")
@@ -418,6 +429,7 @@ func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateFina
 func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateFirstPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FirstPaymentAmount != nil {
+
 		if err := m.FirstPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FirstPaymentAmount")
@@ -434,6 +446,11 @@ func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateFirs
 func (m *OBWriteDomesticStandingOrderConsent5DataInitiation) contextValidateRecurringPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RecurringPaymentAmount != nil {
+
+		if swag.IsZero(m.RecurringPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.RecurringPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RecurringPaymentAmount")

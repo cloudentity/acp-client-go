@@ -20,27 +20,28 @@ import (
 type AcceptSession struct {
 
 	// authentication context class reference
-	Acr string `json:"acr,omitempty"`
+	Acr string `json:"acr,omitempty" yaml:"acr,omitempty"`
 
 	// authentication methods references
-	Amr []string `json:"amr"`
+	Amr []string `json:"amr" yaml:"amr"`
 
 	// time when user authenticated
 	// Format: date-time
-	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
+	AuthTime strfmt.DateTime `json:"auth_time,omitempty" yaml:"auth_time,omitempty"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// login identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 
 	// user identifier
 	// Example: user
-	Subject string `json:"subject,omitempty"`
+	// Required: true
+	Subject string `json:"subject" yaml:"subject"`
 }
 
 // Validate validates this accept session
@@ -52,6 +53,10 @@ func (m *AcceptSession) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubject(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,6 +97,15 @@ func (m *AcceptSession) validateAuthenticationContext(formats strfmt.Registry) e
 	return nil
 }
 
+func (m *AcceptSession) validateSubject(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("subject", "body", m.Subject); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this accept session based on the context it is used
 func (m *AcceptSession) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -107,6 +121,10 @@ func (m *AcceptSession) ContextValidate(ctx context.Context, formats strfmt.Regi
 }
 
 func (m *AcceptSession) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
 
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

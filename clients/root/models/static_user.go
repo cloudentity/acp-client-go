@@ -19,30 +19,30 @@ import (
 type StaticUser struct {
 
 	// additional attributes
-	AdditionalAttributes AuthenticationContext `json:"additional_attributes,omitempty"`
+	AdditionalAttributes AuthenticationContext `json:"additional_attributes,omitempty" yaml:"additional_attributes,omitempty"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// User's preferred email.
-	Email string `json:"email,omitempty"`
+	Email string `json:"email,omitempty" yaml:"email,omitempty"`
 
 	// If set to true, indicates that the user's email was verified.
-	EmailVerified bool `json:"email_verified,omitempty"`
+	EmailVerified bool `json:"email_verified,omitempty" yaml:"email_verified,omitempty"`
 
 	// User password.
 	// Example: secret
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
 	// User's preferred phone number
-	PhoneNumber string `json:"phone_number,omitempty"`
+	PhoneNumber string `json:"phone_number,omitempty" yaml:"phone_number,omitempty"`
 
 	// If set to true, indicates that the user's phone number was verified.
-	PhoneNumberVerified bool `json:"phone_number_verified,omitempty"`
+	PhoneNumberVerified bool `json:"phone_number_verified,omitempty" yaml:"phone_number_verified,omitempty"`
 
 	// User login.
 	// Example: peter
-	Username string `json:"username,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 }
 
 // Validate validates this static user
@@ -121,6 +121,10 @@ func (m *StaticUser) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *StaticUser) contextValidateAdditionalAttributes(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AdditionalAttributes) { // not required
+		return nil
+	}
+
 	if err := m.AdditionalAttributes.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("additional_attributes")
@@ -134,6 +138,10 @@ func (m *StaticUser) contextValidateAdditionalAttributes(ctx context.Context, fo
 }
 
 func (m *StaticUser) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
 
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -21,22 +21,22 @@ type PrivacyLedgerEvent struct {
 
 	// date
 	// Format: date-time
-	Date strfmt.DateTime `json:"date,omitempty"`
+	Date strfmt.DateTime `json:"date,omitempty" yaml:"date,omitempty"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// payload
-	Payload *PrivacyLedgerPayload `json:"payload,omitempty"`
+	Payload *PrivacyLedgerPayload `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// payload signature
-	PayloadSignature string `json:"payload_signature,omitempty"`
+	PayloadSignature string `json:"payload_signature,omitempty" yaml:"payload_signature,omitempty"`
 
 	// subject
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this privacy ledger event
@@ -105,6 +105,11 @@ func (m *PrivacyLedgerEvent) ContextValidate(ctx context.Context, formats strfmt
 func (m *PrivacyLedgerEvent) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payload != nil {
+
+		if swag.IsZero(m.Payload) { // not required
+			return nil
+		}
+
 		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payload")

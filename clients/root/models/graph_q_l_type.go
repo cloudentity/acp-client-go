@@ -20,18 +20,18 @@ import (
 type GraphQLType struct {
 
 	// if false it is not possible to assign a policy, set to false if policy is declaratively assigned
-	CanHavePolicy bool `json:"can_have_policy,omitempty"`
+	CanHavePolicy bool `json:"can_have_policy,omitempty" yaml:"can_have_policy,omitempty"`
 
 	// optional fields of graphql type
-	Fields []*GraphQLField `json:"fields"`
+	Fields []*GraphQLField `json:"fields" yaml:"fields"`
 
 	// name of graphQL type, currently supported types are Interfaces and Objects
 	// Example: block
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// optional id of a policy
 	// Example: block
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 }
 
 // Validate validates this graph q l type
@@ -93,6 +93,11 @@ func (m *GraphQLType) contextValidateFields(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Fields); i++ {
 
 		if m.Fields[i] != nil {
+
+			if swag.IsZero(m.Fields[i]) { // not required
+				return nil
+			}
+
 			if err := m.Fields[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("fields" + "." + strconv.Itoa(i))

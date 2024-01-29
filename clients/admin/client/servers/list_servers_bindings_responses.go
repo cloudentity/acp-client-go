@@ -54,7 +54,7 @@ func (o *ListServersBindingsReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers-bindings] listServersBindings", response, response.Code())
 	}
 }
 
@@ -69,7 +69,16 @@ ListServersBindingsOK describes a response with status code 200, with default he
 Server bindings
 */
 type ListServersBindingsOK struct {
-	Payload *models.ServersBindings
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
+	Payload *models.ServersBindingsResponse
 }
 
 // IsSuccess returns true when this list servers bindings o k response has a 2xx status code
@@ -97,6 +106,11 @@ func (o *ListServersBindingsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list servers bindings o k response
+func (o *ListServersBindingsOK) Code() int {
+	return 200
+}
+
 func (o *ListServersBindingsOK) Error() string {
 	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK  %+v", 200, o.Payload)
 }
@@ -105,13 +119,20 @@ func (o *ListServersBindingsOK) String() string {
 	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK  %+v", 200, o.Payload)
 }
 
-func (o *ListServersBindingsOK) GetPayload() *models.ServersBindings {
+func (o *ListServersBindingsOK) GetPayload() *models.ServersBindingsResponse {
 	return o.Payload
 }
 
 func (o *ListServersBindingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ServersBindings)
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
+
+	o.Payload = new(models.ServersBindingsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,7 +150,7 @@ func NewListServersBindingsUnauthorized() *ListServersBindingsUnauthorized {
 /*
 ListServersBindingsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListServersBindingsUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *ListServersBindingsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list servers bindings unauthorized response a status code equal to that given
 func (o *ListServersBindingsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list servers bindings unauthorized response
+func (o *ListServersBindingsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListServersBindingsUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewListServersBindingsForbidden() *ListServersBindingsForbidden {
 /*
 ListServersBindingsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListServersBindingsForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *ListServersBindingsForbidden) IsServerError() bool {
 // IsCode returns true when this list servers bindings forbidden response a status code equal to that given
 func (o *ListServersBindingsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list servers bindings forbidden response
+func (o *ListServersBindingsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListServersBindingsForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewListServersBindingsNotFound() *ListServersBindingsNotFound {
 /*
 ListServersBindingsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListServersBindingsNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *ListServersBindingsNotFound) IsServerError() bool {
 // IsCode returns true when this list servers bindings not found response a status code equal to that given
 func (o *ListServersBindingsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list servers bindings not found response
+func (o *ListServersBindingsNotFound) Code() int {
+	return 404
 }
 
 func (o *ListServersBindingsNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewListServersBindingsTooManyRequests() *ListServersBindingsTooManyRequests
 /*
 ListServersBindingsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListServersBindingsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *ListServersBindingsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list servers bindings too many requests response a status code equal to that given
 func (o *ListServersBindingsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list servers bindings too many requests response
+func (o *ListServersBindingsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListServersBindingsTooManyRequests) Error() string {

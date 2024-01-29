@@ -72,7 +72,7 @@ func (o *UpdateMFAMethodReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /mfa-methods/{mfaID}] updateMFAMethod", response, response.Code())
 	}
 }
 
@@ -115,6 +115,11 @@ func (o *UpdateMFAMethodOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update m f a method o k response
+func (o *UpdateMFAMethodOK) Code() int {
+	return 200
+}
+
 func (o *UpdateMFAMethodOK) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodOK  %+v", 200, o.Payload)
 }
@@ -147,7 +152,7 @@ func NewUpdateMFAMethodBadRequest() *UpdateMFAMethodBadRequest {
 /*
 UpdateMFAMethodBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateMFAMethodBadRequest struct {
 	Payload *models.Error
@@ -176,6 +181,11 @@ func (o *UpdateMFAMethodBadRequest) IsServerError() bool {
 // IsCode returns true when this update m f a method bad request response a status code equal to that given
 func (o *UpdateMFAMethodBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update m f a method bad request response
+func (o *UpdateMFAMethodBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateMFAMethodBadRequest) Error() string {
@@ -210,7 +220,7 @@ func NewUpdateMFAMethodUnauthorized() *UpdateMFAMethodUnauthorized {
 /*
 UpdateMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateMFAMethodUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +249,11 @@ func (o *UpdateMFAMethodUnauthorized) IsServerError() bool {
 // IsCode returns true when this update m f a method unauthorized response a status code equal to that given
 func (o *UpdateMFAMethodUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update m f a method unauthorized response
+func (o *UpdateMFAMethodUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateMFAMethodUnauthorized) Error() string {
@@ -273,7 +288,7 @@ func NewUpdateMFAMethodForbidden() *UpdateMFAMethodForbidden {
 /*
 UpdateMFAMethodForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateMFAMethodForbidden struct {
 	Payload *models.Error
@@ -302,6 +317,11 @@ func (o *UpdateMFAMethodForbidden) IsServerError() bool {
 // IsCode returns true when this update m f a method forbidden response a status code equal to that given
 func (o *UpdateMFAMethodForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update m f a method forbidden response
+func (o *UpdateMFAMethodForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateMFAMethodForbidden) Error() string {
@@ -336,7 +356,7 @@ func NewUpdateMFAMethodNotFound() *UpdateMFAMethodNotFound {
 /*
 UpdateMFAMethodNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateMFAMethodNotFound struct {
 	Payload *models.Error
@@ -365,6 +385,11 @@ func (o *UpdateMFAMethodNotFound) IsServerError() bool {
 // IsCode returns true when this update m f a method not found response a status code equal to that given
 func (o *UpdateMFAMethodNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update m f a method not found response
+func (o *UpdateMFAMethodNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateMFAMethodNotFound) Error() string {
@@ -399,7 +424,7 @@ func NewUpdateMFAMethodConflict() *UpdateMFAMethodConflict {
 /*
 UpdateMFAMethodConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type UpdateMFAMethodConflict struct {
 	Payload *models.Error
@@ -428,6 +453,11 @@ func (o *UpdateMFAMethodConflict) IsServerError() bool {
 // IsCode returns true when this update m f a method conflict response a status code equal to that given
 func (o *UpdateMFAMethodConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the update m f a method conflict response
+func (o *UpdateMFAMethodConflict) Code() int {
+	return 409
 }
 
 func (o *UpdateMFAMethodConflict) Error() string {
@@ -462,7 +492,7 @@ func NewUpdateMFAMethodUnprocessableEntity() *UpdateMFAMethodUnprocessableEntity
 /*
 UpdateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateMFAMethodUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +521,11 @@ func (o *UpdateMFAMethodUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update m f a method unprocessable entity response a status code equal to that given
 func (o *UpdateMFAMethodUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update m f a method unprocessable entity response
+func (o *UpdateMFAMethodUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateMFAMethodUnprocessableEntity) Error() string {
@@ -525,7 +560,7 @@ func NewUpdateMFAMethodTooManyRequests() *UpdateMFAMethodTooManyRequests {
 /*
 UpdateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateMFAMethodTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +589,11 @@ func (o *UpdateMFAMethodTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update m f a method too many requests response a status code equal to that given
 func (o *UpdateMFAMethodTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update m f a method too many requests response
+func (o *UpdateMFAMethodTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateMFAMethodTooManyRequests) Error() string {

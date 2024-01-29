@@ -19,10 +19,10 @@ import (
 type MFASettings struct {
 
 	// email
-	Email *EmailSettings `json:"email,omitempty"`
+	Email *EmailSettings `json:"email,omitempty" yaml:"email,omitempty"`
 
 	// sms
-	Sms *SMSSettings `json:"sms,omitempty"`
+	Sms *SMSSettings `json:"sms,omitempty" yaml:"sms,omitempty"`
 }
 
 // Validate validates this m f a settings
@@ -102,6 +102,11 @@ func (m *MFASettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *MFASettings) contextValidateEmail(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Email != nil {
+
+		if swag.IsZero(m.Email) { // not required
+			return nil
+		}
+
 		if err := m.Email.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("email")
@@ -118,6 +123,11 @@ func (m *MFASettings) contextValidateEmail(ctx context.Context, formats strfmt.R
 func (m *MFASettings) contextValidateSms(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Sms != nil {
+
+		if swag.IsZero(m.Sms) { // not required
+			return nil
+		}
+
 		if err := m.Sms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sms")

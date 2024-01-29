@@ -20,28 +20,28 @@ import (
 type Template struct {
 
 	// content of the template
-	Content string `json:"content,omitempty"`
+	Content string `json:"content,omitempty" yaml:"content,omitempty"`
 
 	// timestamp when the template was created
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// path to the template in a filesystem zip archive
 	// Required: true
-	FsPath string `json:"fs_path"`
+	FsPath string `json:"fs_path" yaml:"fs_path"`
 
 	// ID of the tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// theme unique identifier
 	// Required: true
-	ThemeID string `json:"theme_id"`
+	ThemeID string `json:"theme_id" yaml:"theme_id"`
 
 	// timestamp when the template was last updated
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 }
 
 // Validate validates this template

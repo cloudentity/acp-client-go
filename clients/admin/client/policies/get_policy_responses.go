@@ -54,7 +54,7 @@ func (o *GetPolicyReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /policies/{pid}] getPolicy", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetPolicyOK describes a response with status code 200, with default header value
 Policy
 */
 type GetPolicyOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Policy
 }
 
@@ -97,6 +106,11 @@ func (o *GetPolicyOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get policy o k response
+func (o *GetPolicyOK) Code() int {
+	return 200
+}
+
 func (o *GetPolicyOK) Error() string {
 	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetPolicyOK) GetPayload() *models.Policy {
 }
 
 func (o *GetPolicyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Policy)
 
@@ -129,7 +150,7 @@ func NewGetPolicyUnauthorized() *GetPolicyUnauthorized {
 /*
 GetPolicyUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetPolicyUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetPolicyUnauthorized) IsServerError() bool {
 // IsCode returns true when this get policy unauthorized response a status code equal to that given
 func (o *GetPolicyUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get policy unauthorized response
+func (o *GetPolicyUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetPolicyUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetPolicyForbidden() *GetPolicyForbidden {
 /*
 GetPolicyForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetPolicyForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetPolicyForbidden) IsServerError() bool {
 // IsCode returns true when this get policy forbidden response a status code equal to that given
 func (o *GetPolicyForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get policy forbidden response
+func (o *GetPolicyForbidden) Code() int {
+	return 403
 }
 
 func (o *GetPolicyForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetPolicyNotFound() *GetPolicyNotFound {
 /*
 GetPolicyNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetPolicyNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetPolicyNotFound) IsServerError() bool {
 // IsCode returns true when this get policy not found response a status code equal to that given
 func (o *GetPolicyNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get policy not found response
+func (o *GetPolicyNotFound) Code() int {
+	return 404
 }
 
 func (o *GetPolicyNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetPolicyTooManyRequests() *GetPolicyTooManyRequests {
 /*
 GetPolicyTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetPolicyTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetPolicyTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get policy too many requests response a status code equal to that given
 func (o *GetPolicyTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get policy too many requests response
+func (o *GetPolicyTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetPolicyTooManyRequests) Error() string {

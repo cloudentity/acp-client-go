@@ -23,65 +23,65 @@ import (
 type IDPSSODescriptor struct {
 
 	// artifact resolution services
-	ArtifactResolutionServices []*Endpoint `json:"ArtifactResolutionServices"`
+	ArtifactResolutionServices []*Endpoint `json:"ArtifactResolutionServices" yaml:"ArtifactResolutionServices"`
 
 	// assertion ID request services
-	AssertionIDRequestServices []*Endpoint `json:"AssertionIDRequestServices"`
+	AssertionIDRequestServices []*Endpoint `json:"AssertionIDRequestServices" yaml:"AssertionIDRequestServices"`
 
 	// attribute profiles
-	AttributeProfiles []string `json:"AttributeProfiles"`
+	AttributeProfiles []string `json:"AttributeProfiles" yaml:"AttributeProfiles"`
 
 	// attributes
-	Attributes []*Attribute `json:"Attributes"`
+	Attributes []*Attribute `json:"Attributes" yaml:"Attributes"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// contact people
-	ContactPeople []*ContactPerson `json:"ContactPeople"`
+	ContactPeople []*ContactPerson `json:"ContactPeople" yaml:"ContactPeople"`
 
 	// error URL
-	ErrorURL string `json:"ErrorURL,omitempty"`
+	ErrorURL string `json:"ErrorURL,omitempty" yaml:"ErrorURL,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// manage name ID services
-	ManageNameIDServices []*Endpoint `json:"ManageNameIDServices"`
+	ManageNameIDServices []*Endpoint `json:"ManageNameIDServices" yaml:"ManageNameIDServices"`
 
 	// name ID formats
-	NameIDFormats []NameIDFormat `json:"NameIDFormats"`
+	NameIDFormats []NameIDFormat `json:"NameIDFormats" yaml:"NameIDFormats"`
 
 	// name ID mapping services
-	NameIDMappingServices []*Endpoint `json:"NameIDMappingServices"`
+	NameIDMappingServices []*Endpoint `json:"NameIDMappingServices" yaml:"NameIDMappingServices"`
 
 	// organization
-	Organization *Organization `json:"Organization,omitempty"`
+	Organization *Organization `json:"Organization,omitempty" yaml:"Organization,omitempty"`
 
 	// protocol support enumeration
-	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty"`
+	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty" yaml:"ProtocolSupportEnumeration,omitempty"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// single logout services
-	SingleLogoutServices []*Endpoint `json:"SingleLogoutServices"`
+	SingleLogoutServices []*Endpoint `json:"SingleLogoutServices" yaml:"SingleLogoutServices"`
 
 	// single sign on services
-	SingleSignOnServices []*Endpoint `json:"SingleSignOnServices"`
+	SingleSignOnServices []*Endpoint `json:"SingleSignOnServices" yaml:"SingleSignOnServices"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 
 	// want authn requests signed
-	WantAuthnRequestsSigned bool `json:"WantAuthnRequestsSigned,omitempty"`
+	WantAuthnRequestsSigned bool `json:"WantAuthnRequestsSigned,omitempty" yaml:"WantAuthnRequestsSigned,omitempty"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this ID p s s o descriptor
@@ -566,6 +566,11 @@ func (m *IDPSSODescriptor) contextValidateArtifactResolutionServices(ctx context
 	for i := 0; i < len(m.ArtifactResolutionServices); i++ {
 
 		if m.ArtifactResolutionServices[i] != nil {
+
+			if swag.IsZero(m.ArtifactResolutionServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ArtifactResolutionServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ArtifactResolutionServices" + "." + strconv.Itoa(i))
@@ -586,6 +591,11 @@ func (m *IDPSSODescriptor) contextValidateAssertionIDRequestServices(ctx context
 	for i := 0; i < len(m.AssertionIDRequestServices); i++ {
 
 		if m.AssertionIDRequestServices[i] != nil {
+
+			if swag.IsZero(m.AssertionIDRequestServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.AssertionIDRequestServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AssertionIDRequestServices" + "." + strconv.Itoa(i))
@@ -606,6 +616,11 @@ func (m *IDPSSODescriptor) contextValidateAttributes(ctx context.Context, format
 	for i := 0; i < len(m.Attributes); i++ {
 
 		if m.Attributes[i] != nil {
+
+			if swag.IsZero(m.Attributes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Attributes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Attributes" + "." + strconv.Itoa(i))
@@ -622,6 +637,10 @@ func (m *IDPSSODescriptor) contextValidateAttributes(ctx context.Context, format
 }
 
 func (m *IDPSSODescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
 
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -640,6 +659,11 @@ func (m *IDPSSODescriptor) contextValidateContactPeople(ctx context.Context, for
 	for i := 0; i < len(m.ContactPeople); i++ {
 
 		if m.ContactPeople[i] != nil {
+
+			if swag.IsZero(m.ContactPeople[i]) { // not required
+				return nil
+			}
+
 			if err := m.ContactPeople[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ContactPeople" + "." + strconv.Itoa(i))
@@ -660,6 +684,11 @@ func (m *IDPSSODescriptor) contextValidateKeyDescriptors(ctx context.Context, fo
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -680,6 +709,11 @@ func (m *IDPSSODescriptor) contextValidateManageNameIDServices(ctx context.Conte
 	for i := 0; i < len(m.ManageNameIDServices); i++ {
 
 		if m.ManageNameIDServices[i] != nil {
+
+			if swag.IsZero(m.ManageNameIDServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ManageNameIDServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ManageNameIDServices" + "." + strconv.Itoa(i))
@@ -698,6 +732,10 @@ func (m *IDPSSODescriptor) contextValidateManageNameIDServices(ctx context.Conte
 func (m *IDPSSODescriptor) contextValidateNameIDFormats(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.NameIDFormats); i++ {
+
+		if swag.IsZero(m.NameIDFormats[i]) { // not required
+			return nil
+		}
 
 		if err := m.NameIDFormats[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -718,6 +756,11 @@ func (m *IDPSSODescriptor) contextValidateNameIDMappingServices(ctx context.Cont
 	for i := 0; i < len(m.NameIDMappingServices); i++ {
 
 		if m.NameIDMappingServices[i] != nil {
+
+			if swag.IsZero(m.NameIDMappingServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.NameIDMappingServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NameIDMappingServices" + "." + strconv.Itoa(i))
@@ -736,6 +779,11 @@ func (m *IDPSSODescriptor) contextValidateNameIDMappingServices(ctx context.Cont
 func (m *IDPSSODescriptor) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Organization != nil {
+
+		if swag.IsZero(m.Organization) { // not required
+			return nil
+		}
+
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Organization")
@@ -752,6 +800,11 @@ func (m *IDPSSODescriptor) contextValidateOrganization(ctx context.Context, form
 func (m *IDPSSODescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")
@@ -770,6 +823,11 @@ func (m *IDPSSODescriptor) contextValidateSingleLogoutServices(ctx context.Conte
 	for i := 0; i < len(m.SingleLogoutServices); i++ {
 
 		if m.SingleLogoutServices[i] != nil {
+
+			if swag.IsZero(m.SingleLogoutServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.SingleLogoutServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("SingleLogoutServices" + "." + strconv.Itoa(i))
@@ -790,6 +848,11 @@ func (m *IDPSSODescriptor) contextValidateSingleSignOnServices(ctx context.Conte
 	for i := 0; i < len(m.SingleSignOnServices); i++ {
 
 		if m.SingleSignOnServices[i] != nil {
+
+			if swag.IsZero(m.SingleSignOnServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.SingleSignOnServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("SingleSignOnServices" + "." + strconv.Itoa(i))
@@ -808,6 +871,11 @@ func (m *IDPSSODescriptor) contextValidateSingleSignOnServices(ctx context.Conte
 func (m *IDPSSODescriptor) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

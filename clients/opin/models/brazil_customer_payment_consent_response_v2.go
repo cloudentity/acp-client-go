@@ -20,28 +20,28 @@ import (
 type BrazilCustomerPaymentConsentResponseV2 struct {
 
 	// aud
-	Aud string `json:"aud,omitempty"`
+	Aud string `json:"aud,omitempty" yaml:"aud,omitempty"`
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilPaymentV2Data1 `json:"data"`
+	Data *OpenbankingBrasilPaymentV2Data1 `json:"data" yaml:"data"`
 
 	// iat
-	Iat int64 `json:"iat,omitempty"`
+	Iat int64 `json:"iat,omitempty" yaml:"iat,omitempty"`
 
 	// iss
-	Iss string `json:"iss,omitempty"`
+	Iss string `json:"iss,omitempty" yaml:"iss,omitempty"`
 
 	// jti
-	Jti string `json:"jti,omitempty"`
+	Jti string `json:"jti,omitempty" yaml:"jti,omitempty"`
 
 	// links
 	// Required: true
-	Links *OpenbankingBrasilPaymentV2LinkSingle `json:"links"`
+	Links *OpenbankingBrasilPaymentV2LinkSingle `json:"links" yaml:"links"`
 
 	// meta
 	// Required: true
-	Meta *OpenbankingBrasilPaymentV2Meta `json:"meta"`
+	Meta *OpenbankingBrasilPaymentV2Meta `json:"meta" yaml:"meta"`
 }
 
 // Validate validates this brazil customer payment consent response v2

@@ -21,28 +21,28 @@ import (
 type MFAMethod struct {
 
 	// auth
-	Auth *MFAAuth `json:"auth,omitempty"`
+	Auth *MFAAuth `json:"auth,omitempty" yaml:"auth,omitempty"`
 
 	// enabled
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
-	Settings *MFASettings `json:"settings,omitempty"`
+	Settings *MFASettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this m f a method
@@ -195,6 +195,11 @@ func (m *MFAMethod) ContextValidate(ctx context.Context, formats strfmt.Registry
 func (m *MFAMethod) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth != nil {
+
+		if swag.IsZero(m.Auth) { // not required
+			return nil
+		}
+
 		if err := m.Auth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth")
@@ -211,6 +216,11 @@ func (m *MFAMethod) contextValidateAuth(ctx context.Context, formats strfmt.Regi
 func (m *MFAMethod) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

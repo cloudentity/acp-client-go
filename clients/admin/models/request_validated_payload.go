@@ -21,87 +21,96 @@ import (
 type RequestValidatedPayload struct {
 
 	// Actor claims
-	ActorClaims map[string]interface{} `json:"actor_claims,omitempty"`
+	ActorClaims map[string]interface{} `json:"actor_claims,omitempty" yaml:"actor_claims,omitempty"`
 
 	// anonymous
-	Anonymous bool `json:"anonymous,omitempty"`
+	Anonymous bool `json:"anonymous,omitempty" yaml:"anonymous,omitempty"`
 
 	// api
-	API *API `json:"api,omitempty"`
+	API *API `json:"api,omitempty" yaml:"api,omitempty"`
 
 	// claims
-	Claims JwtClaims `json:"claims,omitempty"`
+	Claims JwtClaims `json:"claims,omitempty" yaml:"claims,omitempty"`
 
 	// OAuth client application identifier.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Human readable name of a client application
-	ClientName string `json:"client_name,omitempty"`
+	ClientName string `json:"client_name,omitempty" yaml:"client_name,omitempty"`
 
 	// Stores information if the owner of the client application is a developer.
-	CreatedByDeveloper bool `json:"created_by_developer,omitempty"`
+	CreatedByDeveloper bool `json:"created_by_developer,omitempty" yaml:"created_by_developer,omitempty"`
 
 	// duration ms
-	DurationMs int64 `json:"duration_ms,omitempty"`
+	DurationMs int64 `json:"duration_ms,omitempty" yaml:"duration_ms,omitempty"`
 
 	// gateway
-	Gateway *Gateway `json:"gateway,omitempty"`
+	Gateway *Gateway `json:"gateway,omitempty" yaml:"gateway,omitempty"`
 
 	// Stores the information which grant type was selected to perfom a given action.
 	// Matches one of allowed OAuth client grant types for a given client.
-	GrantType string `json:"grant_type,omitempty"`
+	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
+
+	// ID of the Identity Pool
+	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// invalid token
-	InvalidToken bool `json:"invalid_token,omitempty"`
+	InvalidToken bool `json:"invalid_token,omitempty" yaml:"invalid_token,omitempty"`
+
+	// May act claims
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty" yaml:"may_act_claims,omitempty"`
 
 	// output
-	Output map[string]string `json:"output,omitempty"`
+	Output map[string]string `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// Stores information if the client application is a public one.
-	Public bool `json:"public,omitempty"`
+	Public bool `json:"public,omitempty" yaml:"public,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
-	RemoteAddr string `json:"remote_addr,omitempty"`
+	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`
 
 	// result
-	Result *PolicyValidationResult `json:"result,omitempty"`
+	Result *PolicyValidationResult `json:"result,omitempty" yaml:"result,omitempty"`
 
 	// ID of the authorization server (workspace) to which an access request is tied.
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// service
-	Service *Service `json:"service,omitempty"`
+	Service *Service `json:"service,omitempty" yaml:"service,omitempty"`
 
 	// Session id of a given subject. It's uniform across the authentication processes.
 	// It can be used as a correlation ID between a different audit events.
-	SessionID string `json:"session_id,omitempty"`
+	SessionID string `json:"session_id,omitempty" yaml:"session_id,omitempty"`
 
 	// Identification of the principal that is the subject of authorization.
 	// For the authorization grant, the subject typically identifies an authorized accessor for which the access token is being requested.
 	// For client authentication, the subject is the client_id of the OAuth client.
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// Stores information if the client application is a system tenant's application.
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Token endpoint authentication method configured for a client application.
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
-	TokenEndpointAuthnMethod string `json:"token_endpoint_authn_method,omitempty"`
+	TokenEndpointAuthnMethod string `json:"token_endpoint_authn_method,omitempty" yaml:"token_endpoint_authn_method,omitempty"`
 
 	// Token signature
-	TokenSignature string `json:"token_signature,omitempty"`
+	TokenSignature string `json:"token_signature,omitempty" yaml:"token_signature,omitempty"`
+
+	// Requester IP address obtained from True-Client-IP header.
+	TrueClientIP string `json:"true_client_ip,omitempty" yaml:"true_client_ip,omitempty"`
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 
 	// ID of the authorization server (workspace) to which a resource is tied.
-	WorkspaceID string `json:"workspace_id,omitempty"`
+	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
 
 	// Requester IP address obtained from X-Forwarded-For header.
-	XForwardedFor string `json:"x_forwarded_for,omitempty"`
+	XForwardedFor string `json:"x_forwarded_for,omitempty" yaml:"x_forwarded_for,omitempty"`
 
 	// Requester IP address obtained from X-Real-IP header.
-	XRealIP string `json:"x_real_ip,omitempty"`
+	XRealIP string `json:"x_real_ip,omitempty" yaml:"x_real_ip,omitempty"`
 }
 
 // Validate validates this request validated payload
@@ -323,6 +332,11 @@ func (m *RequestValidatedPayload) ContextValidate(ctx context.Context, formats s
 func (m *RequestValidatedPayload) contextValidateAPI(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.API != nil {
+
+		if swag.IsZero(m.API) { // not required
+			return nil
+		}
+
 		if err := m.API.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("api")
@@ -337,6 +351,10 @@ func (m *RequestValidatedPayload) contextValidateAPI(ctx context.Context, format
 }
 
 func (m *RequestValidatedPayload) contextValidateClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Claims) { // not required
+		return nil
+	}
 
 	if err := m.Claims.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -353,6 +371,11 @@ func (m *RequestValidatedPayload) contextValidateClaims(ctx context.Context, for
 func (m *RequestValidatedPayload) contextValidateGateway(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Gateway != nil {
+
+		if swag.IsZero(m.Gateway) { // not required
+			return nil
+		}
+
 		if err := m.Gateway.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("gateway")
@@ -369,6 +392,11 @@ func (m *RequestValidatedPayload) contextValidateGateway(ctx context.Context, fo
 func (m *RequestValidatedPayload) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Result != nil {
+
+		if swag.IsZero(m.Result) { // not required
+			return nil
+		}
+
 		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")
@@ -385,6 +413,11 @@ func (m *RequestValidatedPayload) contextValidateResult(ctx context.Context, for
 func (m *RequestValidatedPayload) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Service != nil {
+
+		if swag.IsZero(m.Service) { // not required
+			return nil
+		}
+
 		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")

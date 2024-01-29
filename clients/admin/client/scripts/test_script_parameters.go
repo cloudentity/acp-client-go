@@ -66,6 +66,14 @@ type TestScriptParams struct {
 	// TestScriptRequest.
 	TestScriptRequest *models.TestScriptRequest
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -149,6 +157,17 @@ func (o *TestScriptParams) SetTestScriptRequest(testScriptRequest *models.TestSc
 	o.TestScriptRequest = testScriptRequest
 }
 
+// WithIfMatch adds the ifMatch to the test script params
+func (o *TestScriptParams) WithIfMatch(ifMatch *string) *TestScriptParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the test script params
+func (o *TestScriptParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the test script params
 func (o *TestScriptParams) WithWid(wid string) *TestScriptParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *TestScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	var res []error
 	if o.TestScriptRequest != nil {
 		if err := r.SetBodyParam(o.TestScriptRequest); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

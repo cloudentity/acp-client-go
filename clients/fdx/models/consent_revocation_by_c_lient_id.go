@@ -19,10 +19,10 @@ import (
 type ConsentRevocationByCLientID struct {
 
 	// revocation details
-	RevocationDetails *FDXConsentRevocation `json:"RevocationDetails,omitempty"`
+	RevocationDetails *FDXConsentRevocation `json:"RevocationDetails,omitempty" yaml:"RevocationDetails,omitempty"`
 
 	// Client ID
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 }
 
 // Validate validates this consent revocation by c lient ID
@@ -75,6 +75,11 @@ func (m *ConsentRevocationByCLientID) ContextValidate(ctx context.Context, forma
 func (m *ConsentRevocationByCLientID) contextValidateRevocationDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RevocationDetails != nil {
+
+		if swag.IsZero(m.RevocationDetails) { // not required
+			return nil
+		}
+
 		if err := m.RevocationDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RevocationDetails")

@@ -23,28 +23,28 @@ type OBWriteInternationalScheduledConsentResponse6DataExchangeRateInformation st
 	// Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
 	// Max Length: 256
 	// Min Length: 1
-	ContractIdentification string `json:"ContractIdentification,omitempty"`
+	ContractIdentification string `json:"ContractIdentification,omitempty" yaml:"ContractIdentification,omitempty"`
 
 	// The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.
 	// Required: true
-	ExchangeRate float64 `json:"ExchangeRate"`
+	ExchangeRate float64 `json:"ExchangeRate" yaml:"ExchangeRate"`
 
 	// Specified date and time the exchange rate agreement will expire.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty"`
+	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty" yaml:"ExpirationDateTime,omitempty"`
 
 	// Specifies the type used to complete the currency exchange.
 	// Required: true
 	// Enum: [Actual Agreed Indicative]
-	RateType string `json:"RateType"`
+	RateType string `json:"RateType" yaml:"RateType"`
 
 	// Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
 	// Required: true
 	// Pattern: ^[A-Z]{3,3}$
-	UnitCurrency string `json:"UnitCurrency"`
+	UnitCurrency string `json:"UnitCurrency" yaml:"UnitCurrency"`
 }
 
 // Validate validates this o b write international scheduled consent response6 data exchange rate information

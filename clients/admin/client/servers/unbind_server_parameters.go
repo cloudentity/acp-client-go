@@ -61,6 +61,14 @@ UnbindServerParams contains all the parameters to send to the API endpoint
 */
 type UnbindServerParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Rid.
 
 	   Dependent server id
@@ -144,6 +152,17 @@ func (o *UnbindServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the unbind server params
+func (o *UnbindServerParams) WithIfMatch(ifMatch *string) *UnbindServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the unbind server params
+func (o *UnbindServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithRid adds the rid to the unbind server params
 func (o *UnbindServerParams) WithRid(rid string) *UnbindServerParams {
 	o.SetRid(rid)
@@ -173,6 +192,14 @@ func (o *UnbindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param rid
 	if err := r.SetPathParam("rid", o.Rid); err != nil {

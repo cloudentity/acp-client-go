@@ -21,7 +21,7 @@ type OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAcco
 
 	// identification
 	// Required: true
-	Identification *Identification0 `json:"Identification"`
+	Identification *Identification0 `json:"Identification" yaml:"Identification"`
 
 	// The account name is the name or names of the account owner(s) represented at an account level.
 	// Note, the account name is not the product name or the nickname of the account.
@@ -29,14 +29,14 @@ type OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAcco
 	// Required: true
 	// Max Length: 350
 	// Min Length: 1
-	Name string `json:"Name"`
+	Name string `json:"Name" yaml:"Name"`
 
 	// scheme name
 	// Required: true
-	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName"`
+	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName" yaml:"SchemeName"`
 
 	// secondary identification
-	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty"`
+	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty" yaml:"SecondaryIdentification,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent response7 data initiation creditor account
@@ -172,6 +172,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Identification")
@@ -188,6 +189,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")
@@ -202,6 +204,10 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 }
 
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -20,71 +20,71 @@ import (
 type OBUKConsentWithClient struct {
 
 	// client
-	Client *OpenbankingClient `json:"Client,omitempty"`
+	Client *OpenbankingClient `json:"Client,omitempty" yaml:"Client,omitempty"`
 
 	// account access consent
-	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty"`
+	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty" yaml:"account_access_consent,omitempty"`
 
 	// account ids
-	AccountIds []string `json:"account_ids"`
+	AccountIds []string `json:"account_ids" yaml:"account_ids"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// domestic payment consent
-	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty"`
+	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty" yaml:"domestic_payment_consent,omitempty"`
 
 	// domestic scheduled payment consent
-	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty"`
+	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty" yaml:"domestic_scheduled_payment_consent,omitempty"`
 
 	// domestic standing order consent
-	DomesticStandingOrderConsent *DomesticStandingOrderConsent `json:"domestic_standing_order_consent,omitempty"`
+	DomesticStandingOrderConsent *DomesticStandingOrderConsent `json:"domestic_standing_order_consent,omitempty" yaml:"domestic_standing_order_consent,omitempty"`
 
 	// file payment consent
-	FilePaymentConsent *FilePaymentConsent `json:"file_payment_consent,omitempty"`
+	FilePaymentConsent *FilePaymentConsent `json:"file_payment_consent,omitempty" yaml:"file_payment_consent,omitempty"`
 
 	// idempotency key
-	IdempotencyKey string `json:"idempotency_key,omitempty"`
+	IdempotencyKey string `json:"idempotency_key,omitempty" yaml:"idempotency_key,omitempty"`
 
 	// international payment consent
-	InternationalPaymentConsent *InternationalPaymentConsent `json:"international_payment_consent,omitempty"`
+	InternationalPaymentConsent *InternationalPaymentConsent `json:"international_payment_consent,omitempty" yaml:"international_payment_consent,omitempty"`
 
 	// international scheduled payment consent
-	InternationalScheduledPaymentConsent *InternationalScheduledPaymentConsent `json:"international_scheduled_payment_consent,omitempty"`
+	InternationalScheduledPaymentConsent *InternationalScheduledPaymentConsent `json:"international_scheduled_payment_consent,omitempty" yaml:"international_scheduled_payment_consent,omitempty"`
 
 	// international standing order consent
-	InternationalStandingOrderConsent *InternationalStandingOrderConsent `json:"international_standing_order_consent,omitempty"`
+	InternationalStandingOrderConsent *InternationalStandingOrderConsent `json:"international_standing_order_consent,omitempty" yaml:"international_standing_order_consent,omitempty"`
 
 	// request hash
-	RequestHash string `json:"request_hash,omitempty"`
+	RequestHash string `json:"request_hash,omitempty" yaml:"request_hash,omitempty"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// spec
-	Spec string `json:"spec,omitempty"`
+	Spec string `json:"spec,omitempty" yaml:"spec,omitempty"`
 
 	// spec version
-	SpecVersion SpecVersion `json:"spec_version,omitempty"`
+	SpecVersion SpecVersion `json:"spec_version,omitempty" yaml:"spec_version,omitempty"`
 
 	// status
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type ConsentType `json:"type,omitempty"`
+	Type ConsentType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this o b u k consent with client
@@ -419,6 +419,11 @@ func (m *OBUKConsentWithClient) ContextValidate(ctx context.Context, formats str
 func (m *OBUKConsentWithClient) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Client != nil {
+
+		if swag.IsZero(m.Client) { // not required
+			return nil
+		}
+
 		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Client")
@@ -435,6 +440,11 @@ func (m *OBUKConsentWithClient) contextValidateClient(ctx context.Context, forma
 func (m *OBUKConsentWithClient) contextValidateAccountAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountAccessConsent != nil {
+
+		if swag.IsZero(m.AccountAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account_access_consent")
@@ -451,6 +461,11 @@ func (m *OBUKConsentWithClient) contextValidateAccountAccessConsent(ctx context.
 func (m *OBUKConsentWithClient) contextValidateDomesticPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DomesticPaymentConsent != nil {
+
+		if swag.IsZero(m.DomesticPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.DomesticPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_payment_consent")
@@ -467,6 +482,11 @@ func (m *OBUKConsentWithClient) contextValidateDomesticPaymentConsent(ctx contex
 func (m *OBUKConsentWithClient) contextValidateDomesticScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DomesticScheduledPaymentConsent != nil {
+
+		if swag.IsZero(m.DomesticScheduledPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.DomesticScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_scheduled_payment_consent")
@@ -483,6 +503,11 @@ func (m *OBUKConsentWithClient) contextValidateDomesticScheduledPaymentConsent(c
 func (m *OBUKConsentWithClient) contextValidateDomesticStandingOrderConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DomesticStandingOrderConsent != nil {
+
+		if swag.IsZero(m.DomesticStandingOrderConsent) { // not required
+			return nil
+		}
+
 		if err := m.DomesticStandingOrderConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_standing_order_consent")
@@ -499,6 +524,11 @@ func (m *OBUKConsentWithClient) contextValidateDomesticStandingOrderConsent(ctx 
 func (m *OBUKConsentWithClient) contextValidateFilePaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FilePaymentConsent != nil {
+
+		if swag.IsZero(m.FilePaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.FilePaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("file_payment_consent")
@@ -515,6 +545,11 @@ func (m *OBUKConsentWithClient) contextValidateFilePaymentConsent(ctx context.Co
 func (m *OBUKConsentWithClient) contextValidateInternationalPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InternationalPaymentConsent != nil {
+
+		if swag.IsZero(m.InternationalPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.InternationalPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("international_payment_consent")
@@ -531,6 +566,11 @@ func (m *OBUKConsentWithClient) contextValidateInternationalPaymentConsent(ctx c
 func (m *OBUKConsentWithClient) contextValidateInternationalScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InternationalScheduledPaymentConsent != nil {
+
+		if swag.IsZero(m.InternationalScheduledPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.InternationalScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("international_scheduled_payment_consent")
@@ -547,6 +587,11 @@ func (m *OBUKConsentWithClient) contextValidateInternationalScheduledPaymentCons
 func (m *OBUKConsentWithClient) contextValidateInternationalStandingOrderConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InternationalStandingOrderConsent != nil {
+
+		if swag.IsZero(m.InternationalStandingOrderConsent) { // not required
+			return nil
+		}
+
 		if err := m.InternationalStandingOrderConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("international_standing_order_consent")
@@ -562,6 +607,10 @@ func (m *OBUKConsentWithClient) contextValidateInternationalStandingOrderConsent
 
 func (m *OBUKConsentWithClient) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
 	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("spec_version")
@@ -575,6 +624,10 @@ func (m *OBUKConsentWithClient) contextValidateSpecVersion(ctx context.Context, 
 }
 
 func (m *OBUKConsentWithClient) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

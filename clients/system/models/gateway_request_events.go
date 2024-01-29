@@ -20,7 +20,7 @@ import (
 type GatewayRequestEvents struct {
 
 	// events
-	Events []*GatewayRequestEvent `json:"events"`
+	Events []*GatewayRequestEvent `json:"events" yaml:"events"`
 }
 
 // Validate validates this gateway request events
@@ -82,6 +82,11 @@ func (m *GatewayRequestEvents) contextValidateEvents(ctx context.Context, format
 	for i := 0; i < len(m.Events); i++ {
 
 		if m.Events[i] != nil {
+
+			if swag.IsZero(m.Events[i]) { // not required
+				return nil
+			}
+
 			if err := m.Events[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("events" + "." + strconv.Itoa(i))

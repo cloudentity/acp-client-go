@@ -60,7 +60,7 @@ func (o *RevokeOBUKConsentsReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/open-banking/consents] revokeOBUKConsents", response, response.Code())
 	}
 }
 
@@ -72,7 +72,7 @@ func NewRevokeOBUKConsentsOK() *RevokeOBUKConsentsOK {
 /*
 RevokeOBUKConsentsOK describes a response with status code 200, with default header values.
 
-ConsentsRemovedResponse
+Consents Revoked
 */
 type RevokeOBUKConsentsOK struct {
 	Payload *models.ConsentsRemovedResponse

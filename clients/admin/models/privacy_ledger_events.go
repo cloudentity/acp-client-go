@@ -20,7 +20,7 @@ import (
 type PrivacyLedgerEvents struct {
 
 	// events
-	Events []*PrivacyLedgerEvent `json:"events"`
+	Events []*PrivacyLedgerEvent `json:"events" yaml:"events"`
 }
 
 // Validate validates this privacy ledger events
@@ -82,6 +82,11 @@ func (m *PrivacyLedgerEvents) contextValidateEvents(ctx context.Context, formats
 	for i := 0; i < len(m.Events); i++ {
 
 		if m.Events[i] != nil {
+
+			if swag.IsZero(m.Events[i]) { // not required
+				return nil
+			}
+
 			if err := m.Events[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("events" + "." + strconv.Itoa(i))

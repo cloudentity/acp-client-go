@@ -66,7 +66,7 @@ func (o *UpdateExternalIDPReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/external/{iid}] updateExternalIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateExternalIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update external Id p o k response
+func (o *UpdateExternalIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateExternalIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateExternalIDPBadRequest() *UpdateExternalIDPBadRequest {
 /*
 UpdateExternalIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateExternalIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateExternalIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update external Id p bad request response a status code equal to that given
 func (o *UpdateExternalIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update external Id p bad request response
+func (o *UpdateExternalIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateExternalIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateExternalIDPUnauthorized() *UpdateExternalIDPUnauthorized {
 /*
 UpdateExternalIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateExternalIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateExternalIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update external Id p unauthorized response a status code equal to that given
 func (o *UpdateExternalIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update external Id p unauthorized response
+func (o *UpdateExternalIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateExternalIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateExternalIDPForbidden() *UpdateExternalIDPForbidden {
 /*
 UpdateExternalIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateExternalIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateExternalIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update external Id p forbidden response a status code equal to that given
 func (o *UpdateExternalIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update external Id p forbidden response
+func (o *UpdateExternalIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateExternalIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateExternalIDPNotFound() *UpdateExternalIDPNotFound {
 /*
 UpdateExternalIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateExternalIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateExternalIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update external Id p not found response a status code equal to that given
 func (o *UpdateExternalIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update external Id p not found response
+func (o *UpdateExternalIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateExternalIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateExternalIDPUnprocessableEntity() *UpdateExternalIDPUnprocessableEn
 /*
 UpdateExternalIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateExternalIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateExternalIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update external Id p unprocessable entity response a status code equal to that given
 func (o *UpdateExternalIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update external Id p unprocessable entity response
+func (o *UpdateExternalIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateExternalIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateExternalIDPTooManyRequests() *UpdateExternalIDPTooManyRequests {
 /*
 UpdateExternalIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateExternalIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateExternalIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update external Id p too many requests response a status code equal to that given
 func (o *UpdateExternalIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update external Id p too many requests response
+func (o *UpdateExternalIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateExternalIDPTooManyRequests) Error() string {

@@ -18,7 +18,7 @@ import (
 type RecoveryConfig struct {
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this recovery config

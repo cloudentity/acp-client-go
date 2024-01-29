@@ -41,6 +41,28 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  FederatedAccount:
+    properties:
+      federated_idp_id:
+        format: idpID
+        type: string
+        x-nullable: false
+      federated_idp_method:
+        type: string
+        x-nullable: false
+      federated_idp_name:
+        type: string
+        x-nullable: false
+      federated_sub:
+        type: string
+        x-nullable: false
+      identifier_id:
+        type: string
+        x-nullable: false
+      workspace_id:
+        type: string
+        x-nullable: false
+    type: object
   ResetPasswordConfirm:
     properties:
       code:
@@ -55,6 +77,38 @@ definitions:
     required:
     - code
     - new_password
+    type: object
+  SelfUserCredentials:
+    properties:
+      expires_after:
+        format: duration
+        type: string
+        x-nullable: false
+      expires_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      state:
+        enum:
+        - valid
+        - must_be_reset
+        - must_be_changed
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        - webauthn
+        example: password
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - type
+    - updated_at
     type: object
   SelfUserIdentifier:
     properties:
@@ -164,6 +218,187 @@ definitions:
         items:
           $ref: '#/definitions/SelfUserVerifiableAddress'
         type: array
+        x-nullable: false
+    type: object
+  SelfUserWithDataV2:
+    properties:
+      credentials:
+        items:
+          $ref: '#/definitions/SelfUserCredentials'
+        type: array
+        x-nullable: false
+      federated_accounts:
+        items:
+          $ref: '#/definitions/FederatedAccount'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/SelfUserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema:
+        $ref: '#/definitions/SupportedJSONSchema'
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/SelfUserVerifiableAddress'
+        type: array
+        x-nullable: false
+    type: object
+  SupportedJSONSchema:
+    properties:
+      additionalProperties:
+        type: boolean
+        x-nullable: false
+      allOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      anyOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      const:
+        type: string
+        x-nullable: false
+      contains:
+        $ref: '#/definitions/SupportedJSONSchema'
+      dependentRequired:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+        x-nullable: false
+      dependentSchemas:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      else:
+        $ref: '#/definitions/SupportedJSONSchema'
+      enum:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      exclusiveMaximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      exclusiveMinimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      hidden:
+        type: boolean
+        x-nullable: false
+      if:
+        $ref: '#/definitions/SupportedJSONSchema'
+      items:
+        $ref: '#/definitions/SupportedJSONSchema'
+      maxContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      maxItems:
+        description: arrays
+        format: int64
+        type: integer
+        x-nullable: false
+      maxLength:
+        description: strings
+        format: int64
+        type: integer
+        x-nullable: false
+      maxProperties:
+        description: objects
+        format: int64
+        type: integer
+        x-nullable: false
+      maximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      minContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      minItems:
+        format: int64
+        type: integer
+        x-nullable: false
+      minLength:
+        format: int64
+        type: integer
+        x-nullable: false
+      minProperties:
+        format: int64
+        type: integer
+        x-nullable: false
+      minimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      multipleOf:
+        description: numeric
+        format: int64
+        type: integer
+        x-nullable: false
+      not:
+        $ref: '#/definitions/SupportedJSONSchema'
+      oneOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      pattern:
+        type: string
+        x-nullable: false
+      patternProperties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      properties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      propertyNames:
+        $ref: '#/definitions/SupportedJSONSchema'
+      required:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      then:
+        $ref: '#/definitions/SupportedJSONSchema'
+      type:
+        description: any
+        type: string
+        x-nullable: false
+      uniqueItems:
+        type: boolean
         x-nullable: false
     type: object
 host: localhost:8443
@@ -370,6 +605,113 @@ paths:
       summary: Self Update User Profile
       tags:
       - Users
+  /v2/self/change-password:
+    post:
+      description: Changes user password if provided password matches current user
+        password.
+      operationId: changePasswordV2
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: ChangePassword
+        schema:
+          $ref: '#/definitions/ChangePassword'
+      responses:
+        "204":
+          $ref: '#/responses/ChangePasswordResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Change Password
+      tags:
+      - Users
+  /v2/self/me:
+    get:
+      description: |-
+        Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+        Also returns user metadata (only fields not marked as hidden) and payload.
+      operationId: getUserProfileV2
+      responses:
+        "200":
+          $ref: '#/responses/GetProfileResponseV2'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - view_ss_profile
+      summary: Self Get User Profile
+      tags:
+      - Users
+    put:
+      description: |-
+        Updates user payload.
+        Payload must be valid against schema defined in user entry.
+
+        Returns base view on user entry (see Self Get User Profile endpoint).
+      operationId: updateUserProfileV2
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: UpdateUser
+        schema:
+          $ref: '#/definitions/SelfUserUpdate'
+      responses:
+        "200":
+          $ref: '#/responses/GetProfileResponseV2'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Self Update User Profile
+      tags:
+      - Users
 produces:
 - application/json
 responses:
@@ -405,6 +747,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/SelfUserWithData'
+  GetProfileResponseV2:
+    description: User profile data
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/SelfUserWithDataV2'
   ResetPasswordConfirmedResponse:
     description: Reset password confirmed
     headers:
@@ -465,6 +819,9 @@ securityDefinitions:
   self:
     authorizationUrl: /default/default/oauth2/authorize
     flow: accessCode
+    scopes:
+      manage_ss_profile: manage_ss_profile
+      view_ss_profile: view_ss_profile
     tokenUrl: /default/default/oauth2/token
     type: oauth2
 swagger: "2.0"

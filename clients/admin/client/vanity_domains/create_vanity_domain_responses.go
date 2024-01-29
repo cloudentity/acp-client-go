@@ -72,7 +72,7 @@ func (o *CreateVanityDomainReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /vanity-domains] createVanityDomain", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ CreateVanityDomainOK describes a response with status code 200, with default hea
 Vanity domain
 */
 type CreateVanityDomainOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.VanityDomain
 }
 
@@ -115,6 +124,11 @@ func (o *CreateVanityDomainOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the create vanity domain o k response
+func (o *CreateVanityDomainOK) Code() int {
+	return 200
+}
+
 func (o *CreateVanityDomainOK) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *CreateVanityDomainOK) GetPayload() *models.VanityDomain {
 }
 
 func (o *CreateVanityDomainOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.VanityDomain)
 
@@ -147,7 +168,7 @@ func NewCreateVanityDomainBadRequest() *CreateVanityDomainBadRequest {
 /*
 CreateVanityDomainBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateVanityDomainBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *CreateVanityDomainBadRequest) IsServerError() bool {
 // IsCode returns true when this create vanity domain bad request response a status code equal to that given
 func (o *CreateVanityDomainBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create vanity domain bad request response
+func (o *CreateVanityDomainBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateVanityDomainBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewCreateVanityDomainUnauthorized() *CreateVanityDomainUnauthorized {
 /*
 CreateVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateVanityDomainUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *CreateVanityDomainUnauthorized) IsServerError() bool {
 // IsCode returns true when this create vanity domain unauthorized response a status code equal to that given
 func (o *CreateVanityDomainUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create vanity domain unauthorized response
+func (o *CreateVanityDomainUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateVanityDomainUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewCreateVanityDomainForbidden() *CreateVanityDomainForbidden {
 /*
 CreateVanityDomainForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateVanityDomainForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *CreateVanityDomainForbidden) IsServerError() bool {
 // IsCode returns true when this create vanity domain forbidden response a status code equal to that given
 func (o *CreateVanityDomainForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create vanity domain forbidden response
+func (o *CreateVanityDomainForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateVanityDomainForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewCreateVanityDomainNotFound() *CreateVanityDomainNotFound {
 /*
 CreateVanityDomainNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateVanityDomainNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *CreateVanityDomainNotFound) IsServerError() bool {
 // IsCode returns true when this create vanity domain not found response a status code equal to that given
 func (o *CreateVanityDomainNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create vanity domain not found response
+func (o *CreateVanityDomainNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateVanityDomainNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewCreateVanityDomainConflict() *CreateVanityDomainConflict {
 /*
 CreateVanityDomainConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateVanityDomainConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *CreateVanityDomainConflict) IsServerError() bool {
 // IsCode returns true when this create vanity domain conflict response a status code equal to that given
 func (o *CreateVanityDomainConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create vanity domain conflict response
+func (o *CreateVanityDomainConflict) Code() int {
+	return 409
 }
 
 func (o *CreateVanityDomainConflict) Error() string {
@@ -462,7 +508,7 @@ func NewCreateVanityDomainUnprocessableEntity() *CreateVanityDomainUnprocessable
 /*
 CreateVanityDomainUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateVanityDomainUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *CreateVanityDomainUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create vanity domain unprocessable entity response a status code equal to that given
 func (o *CreateVanityDomainUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create vanity domain unprocessable entity response
+func (o *CreateVanityDomainUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateVanityDomainUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewCreateVanityDomainTooManyRequests() *CreateVanityDomainTooManyRequests {
 /*
 CreateVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateVanityDomainTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *CreateVanityDomainTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create vanity domain too many requests response a status code equal to that given
 func (o *CreateVanityDomainTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create vanity domain too many requests response
+func (o *CreateVanityDomainTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateVanityDomainTooManyRequests) Error() string {

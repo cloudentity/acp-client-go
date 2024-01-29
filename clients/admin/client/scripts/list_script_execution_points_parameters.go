@@ -61,6 +61,14 @@ ListScriptExecutionPointsParams contains all the parameters to send to the API e
 */
 type ListScriptExecutionPointsParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -133,6 +141,17 @@ func (o *ListScriptExecutionPointsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list script execution points params
+func (o *ListScriptExecutionPointsParams) WithIfMatch(ifMatch *string) *ListScriptExecutionPointsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list script execution points params
+func (o *ListScriptExecutionPointsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list script execution points params
 func (o *ListScriptExecutionPointsParams) WithWid(wid string) *ListScriptExecutionPointsParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *ListScriptExecutionPointsParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

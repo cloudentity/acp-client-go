@@ -22,33 +22,33 @@ type AuditEvent struct {
 
 	// action
 	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
-	Action string `json:"action,omitempty"`
+	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// event id
-	EventID string `json:"event_id,omitempty"`
+	EventID string `json:"event_id,omitempty" yaml:"event_id,omitempty"`
 
 	// event payload
-	EventPayload interface{} `json:"event_payload,omitempty"`
+	EventPayload interface{} `json:"event_payload,omitempty" yaml:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role]
-	EventSubject string `json:"event_subject,omitempty"`
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
+	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// event type
-	EventType AuditEventType `json:"event_type,omitempty"`
+	EventType AuditEventType `json:"event_type,omitempty" yaml:"event_type,omitempty"`
 
 	// metadata
-	Metadata *AuditEventMetadata `json:"metadata,omitempty"`
+	Metadata *AuditEventMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// timestamp
 	// Format: date-time
-	Timestamp strfmt.DateTime `json:"timestamp,omitempty"`
+	Timestamp strfmt.DateTime `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
 }
 
 // Validate validates this audit event
@@ -187,7 +187,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -226,6 +226,9 @@ const (
 
 	// AuditEventEventSubjectClientConsents captures enum value "client_consents"
 	AuditEventEventSubjectClientConsents string = "client_consents"
+
+	// AuditEventEventSubjectCustomerConsents captures enum value "customer_consents"
+	AuditEventEventSubjectCustomerConsents string = "customer_consents"
 
 	// AuditEventEventSubjectAuthorizationCode captures enum value "authorization_code"
 	AuditEventEventSubjectAuthorizationCode string = "authorization_code"
@@ -268,6 +271,21 @@ const (
 
 	// AuditEventEventSubjectRole captures enum value "role"
 	AuditEventEventSubjectRole string = "role"
+
+	// AuditEventEventSubjectTask captures enum value "task"
+	AuditEventEventSubjectTask string = "task"
+
+	// AuditEventEventSubjectJit captures enum value "jit"
+	AuditEventEventSubjectJit string = "jit"
+
+	// AuditEventEventSubjectTokens captures enum value "tokens"
+	AuditEventEventSubjectTokens string = "tokens"
+
+	// AuditEventEventSubjectService captures enum value "service"
+	AuditEventEventSubjectService string = "service"
+
+	// AuditEventEventSubjectServer captures enum value "server"
+	AuditEventEventSubjectServer string = "server"
 )
 
 // prop value enum
@@ -359,6 +377,10 @@ func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *AuditEvent) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.EventType) { // not required
+		return nil
+	}
+
 	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("event_type")
@@ -374,6 +396,11 @@ func (m *AuditEvent) contextValidateEventType(ctx context.Context, formats strfm
 func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
 		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metadata")

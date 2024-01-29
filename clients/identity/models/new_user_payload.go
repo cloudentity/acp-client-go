@@ -22,33 +22,33 @@ import (
 type NewUserPayload struct {
 
 	// credentials
-	Credentials []*NewUserCredential `json:"credentials"`
+	Credentials []*NewUserCredential `json:"credentials" yaml:"credentials"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// identifiers
-	Identifiers []*NewUserIdentifier `json:"identifiers"`
+	Identifiers []*NewUserIdentifier `json:"identifiers" yaml:"identifiers"`
 
 	// metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// metadata schema id
-	MetadataSchemaID string `json:"metadata_schema_id,omitempty"`
+	MetadataSchemaID string `json:"metadata_schema_id,omitempty" yaml:"metadata_schema_id,omitempty"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// payload schema id
-	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
+	PayloadSchemaID string `json:"payload_schema_id,omitempty" yaml:"payload_schema_id,omitempty"`
 
 	// status
 	// Required: true
 	// Enum: [active inactive deleted new]
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 
 	// verifiable addresses
-	VerifiableAddresses []*NewUserVerifiableAddress `json:"verifiable_addresses"`
+	VerifiableAddresses []*NewUserVerifiableAddress `json:"verifiable_addresses" yaml:"verifiable_addresses"`
 }
 
 // Validate validates this new user payload

@@ -21,11 +21,11 @@ type Codes struct {
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 
 	// extended code
 	// Required: true
-	ExtendedCode string `json:"extended_code"`
+	ExtendedCode string `json:"extended_code" yaml:"extended_code"`
 }
 
 // Validate validates this codes

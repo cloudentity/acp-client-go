@@ -20,47 +20,48 @@ import (
 // swagger:model Service
 type Service struct {
 
-	// server id
-	// Example: default
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	// Authorization server identifier
+	// Example: my-server
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
-	// custom service audience
+	// Custom service audience
 	// Example: https://api.example.com
-	CustomAudience string `json:"custom_audience,omitempty"`
+	CustomAudience string `json:"custom_audience,omitempty" yaml:"custom_audience,omitempty"`
 
-	// service description
+	// Service description
 	// Example: Service description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	// gateway id
-	GatewayID string `json:"gateway_id,omitempty"`
+	// Gateway identifier
+	// Example: gateway-1
+	GatewayID string `json:"gateway_id,omitempty" yaml:"gateway_id,omitempty"`
 
-	// unique service id
-	// Example: 1
-	ID string `json:"id,omitempty"`
+	// A unique identifier of a service
+	// Example: service-1
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
-	// service name
-	// Example: Sample service
-	Name string `json:"name,omitempty"`
+	// Service name
+	// Example: My service
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	// Is service a system service
+	// `true` when the service is a system service
 	// Example: false
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
-	// tenant id
-	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	// Tenant identifier
+	// Example: my-company
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
-	// service type
+	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
-	// Updated at date
+	// The date of service update
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
-	// true if service has openapi 3 specification
-	WithSpecification bool `json:"with_specification,omitempty"`
+	// `true` when the service has the OpenAPI 3.0 specification
+	WithSpecification bool `json:"with_specification,omitempty" yaml:"with_specification,omitempty"`
 }
 
 // Validate validates this service

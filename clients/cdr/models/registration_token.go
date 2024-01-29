@@ -18,13 +18,13 @@ import (
 type RegistrationToken struct {
 
 	// client uri
-	ClientURI string `json:"client_uri,omitempty"`
+	ClientURI string `json:"client_uri,omitempty" yaml:"client_uri,omitempty"`
 
 	// expires in
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// signature
-	Signature string `json:"signature,omitempty"`
+	Signature string `json:"signature,omitempty" yaml:"signature,omitempty"`
 }
 
 // Validate validates this registration token

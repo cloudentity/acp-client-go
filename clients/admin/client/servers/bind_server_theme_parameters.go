@@ -61,6 +61,14 @@ BindServerThemeParams contains all the parameters to send to the API endpoint
 */
 type BindServerThemeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -139,6 +147,17 @@ func (o *BindServerThemeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the bind server theme params
+func (o *BindServerThemeParams) WithIfMatch(ifMatch *string) *BindServerThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the bind server theme params
+func (o *BindServerThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the bind server theme params
 func (o *BindServerThemeParams) WithThemeID(themeID string) *BindServerThemeParams {
 	o.SetThemeID(themeID)
@@ -168,6 +187,14 @@ func (o *BindServerThemeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param themeID
 	if err := r.SetPathParam("themeID", o.ThemeID); err != nil {

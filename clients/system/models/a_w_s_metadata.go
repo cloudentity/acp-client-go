@@ -18,13 +18,13 @@ import (
 type AWSMetadata struct {
 
 	// api id
-	APIID string `json:"api_id,omitempty"`
+	APIID string `json:"api_id,omitempty" yaml:"api_id,omitempty"`
 
 	// api name
-	APIName string `json:"api_name,omitempty"`
+	APIName string `json:"api_name,omitempty" yaml:"api_name,omitempty"`
 
 	// stage
-	Stage string `json:"stage,omitempty"`
+	Stage string `json:"stage,omitempty" yaml:"stage,omitempty"`
 }
 
 // Validate validates this a w s metadata

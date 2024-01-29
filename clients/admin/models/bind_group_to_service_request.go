@@ -18,7 +18,7 @@ import (
 type BindGroupToServiceRequest struct {
 
 	// service id
-	ServiceID string `json:"service_id,omitempty"`
+	ServiceID string `json:"service_id,omitempty" yaml:"service_id,omitempty"`
 }
 
 // Validate validates this bind group to service request

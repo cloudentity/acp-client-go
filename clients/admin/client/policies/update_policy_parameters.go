@@ -66,6 +66,14 @@ type UpdatePolicyParams struct {
 	// PolicyBody.
 	PolicyBody *models.Policy
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Pid.
 
 	   ID of the policy to be updated
@@ -136,6 +144,17 @@ func (o *UpdatePolicyParams) SetPolicyBody(policyBody *models.Policy) {
 	o.PolicyBody = policyBody
 }
 
+// WithIfMatch adds the ifMatch to the update policy params
+func (o *UpdatePolicyParams) WithIfMatch(ifMatch *string) *UpdatePolicyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update policy params
+func (o *UpdatePolicyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithPid adds the pid to the update policy params
 func (o *UpdatePolicyParams) WithPid(pid string) *UpdatePolicyParams {
 	o.SetPid(pid)
@@ -156,6 +175,14 @@ func (o *UpdatePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.PolicyBody != nil {
 		if err := r.SetBodyParam(o.PolicyBody); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

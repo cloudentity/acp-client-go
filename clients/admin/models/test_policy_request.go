@@ -19,13 +19,13 @@ import (
 type TestPolicyRequest struct {
 
 	// input
-	Input *TestPolicyInput `json:"input,omitempty"`
+	Input *TestPolicyInput `json:"input,omitempty" yaml:"input,omitempty"`
 
 	// policy
-	Policy *TestPolicyDefinition `json:"policy,omitempty"`
+	Policy *TestPolicyDefinition `json:"policy,omitempty" yaml:"policy,omitempty"`
 
 	// Authorization server (workspace) ID
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 }
 
 // Validate validates this test policy request
@@ -105,6 +105,11 @@ func (m *TestPolicyRequest) ContextValidate(ctx context.Context, formats strfmt.
 func (m *TestPolicyRequest) contextValidateInput(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Input != nil {
+
+		if swag.IsZero(m.Input) { // not required
+			return nil
+		}
+
 		if err := m.Input.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("input")
@@ -121,6 +126,11 @@ func (m *TestPolicyRequest) contextValidateInput(ctx context.Context, formats st
 func (m *TestPolicyRequest) contextValidatePolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Policy != nil {
+
+		if swag.IsZero(m.Policy) { // not required
+			return nil
+		}
+
 		if err := m.Policy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("policy")

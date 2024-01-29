@@ -21,56 +21,56 @@ import (
 type FDXConsent struct {
 
 	// authorization server id
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Time of consent creation
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime strfmt.DateTime `json:"createdTime,omitempty" yaml:"createdTime,omitempty"`
 
 	// Consent duration, in days, from day of original grant.
-	DurationPeriod int64 `json:"durationPeriod,omitempty"`
+	DurationPeriod int64 `json:"durationPeriod,omitempty" yaml:"durationPeriod,omitempty"`
 
 	// duration type
-	DurationType DurationType `json:"durationType,omitempty"`
+	DurationType DurationType `json:"durationType,omitempty" yaml:"durationType,omitempty"`
 
 	// Time of consent expiration
 	// Format: date-time
-	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty"`
+	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty" yaml:"expirationTime,omitempty"`
 
 	// Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
 	// Data Clusters are described in FDX RFC 0167.
-	GrantedResources []*FDXGrantedResource `json:"granted_resources"`
+	GrantedResources []*FDXGrantedResource `json:"granted_resources" yaml:"granted_resources"`
 
 	// id
-	ID FDXConsentID `json:"id,omitempty"`
+	ID FDXConsentID `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Period, in days, for which historical data may be requested; period is measured from request time, not grant time
-	LookbackPeriod int64 `json:"lookbackPeriod,omitempty"`
+	LookbackPeriod int64 `json:"lookbackPeriod,omitempty" yaml:"lookbackPeriod,omitempty"`
 
 	// A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
 	// in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
 	// and populated during issuance by DataProvider from its registry;
-	Parties []*FDXConsentGrantParty `json:"parties"`
+	Parties []*FDXConsentGrantParty `json:"parties" yaml:"parties"`
 
 	// Enumeration of the Clusters of requested data elements permissioned by this Consent Grant.
 	// Data Clusters are described in FDX RFC 0167.
-	Resources []*FDXRequestedResource `json:"resources"`
+	Resources []*FDXRequestedResource `json:"resources" yaml:"resources"`
 
 	// revocation reason
-	RevocationReason *FDXConsentRevocation `json:"revocationReason,omitempty"`
+	RevocationReason *FDXConsentRevocation `json:"revocationReason,omitempty" yaml:"revocationReason,omitempty"`
 
 	// status
-	Status ConsentStatus `json:"status,omitempty"`
+	Status ConsentStatus `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Time of last consent's status change
 	// Format: date-time
-	UpdatedTime strfmt.DateTime `json:"updatedTime,omitempty"`
+	UpdatedTime strfmt.DateTime `json:"updatedTime,omitempty" yaml:"updatedTime,omitempty"`
 }
 
 // Validate validates this f d x consent
@@ -347,6 +347,10 @@ func (m *FDXConsent) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *FDXConsent) contextValidateDurationType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DurationType) { // not required
+		return nil
+	}
+
 	if err := m.DurationType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("durationType")
@@ -364,6 +368,11 @@ func (m *FDXConsent) contextValidateGrantedResources(ctx context.Context, format
 	for i := 0; i < len(m.GrantedResources); i++ {
 
 		if m.GrantedResources[i] != nil {
+
+			if swag.IsZero(m.GrantedResources[i]) { // not required
+				return nil
+			}
+
 			if err := m.GrantedResources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("granted_resources" + "." + strconv.Itoa(i))
@@ -380,6 +389,10 @@ func (m *FDXConsent) contextValidateGrantedResources(ctx context.Context, format
 }
 
 func (m *FDXConsent) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
 
 	if err := m.ID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -398,6 +411,11 @@ func (m *FDXConsent) contextValidateParties(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Parties); i++ {
 
 		if m.Parties[i] != nil {
+
+			if swag.IsZero(m.Parties[i]) { // not required
+				return nil
+			}
+
 			if err := m.Parties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parties" + "." + strconv.Itoa(i))
@@ -418,6 +436,11 @@ func (m *FDXConsent) contextValidateResources(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Resources); i++ {
 
 		if m.Resources[i] != nil {
+
+			if swag.IsZero(m.Resources[i]) { // not required
+				return nil
+			}
+
 			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
@@ -436,6 +459,11 @@ func (m *FDXConsent) contextValidateResources(ctx context.Context, formats strfm
 func (m *FDXConsent) contextValidateRevocationReason(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RevocationReason != nil {
+
+		if swag.IsZero(m.RevocationReason) { // not required
+			return nil
+		}
+
 		if err := m.RevocationReason.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revocationReason")
@@ -450,6 +478,10 @@ func (m *FDXConsent) contextValidateRevocationReason(ctx context.Context, format
 }
 
 func (m *FDXConsent) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

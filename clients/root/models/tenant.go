@@ -20,24 +20,30 @@ type Tenant struct {
 
 	// tenant unique identifier
 	// exampe: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// jwks
-	Jwks *ServerJWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
+
+	// license
+	License *License `json:"license,omitempty" yaml:"license,omitempty"`
 
 	// metadata
-	Metadata TenantMetadata `json:"metadata,omitempty"`
+	Metadata TenantMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// tenant name
 	// Example: Default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	// settings
+	Settings *TenantSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// styling
-	Styling *Styling `json:"styling,omitempty"`
+	Styling *Styling `json:"styling,omitempty" yaml:"styling,omitempty"`
 
 	// optional custom tenant url. If not provided the server url is used instead
 	// Example: https://example.com/default
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this tenant
@@ -48,7 +54,15 @@ func (m *Tenant) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLicense(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,6 +95,25 @@ func (m *Tenant) validateJwks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Tenant) validateLicense(formats strfmt.Registry) error {
+	if swag.IsZero(m.License) { // not required
+		return nil
+	}
+
+	if m.License != nil {
+		if err := m.License.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Tenant) validateMetadata(formats strfmt.Registry) error {
 	if swag.IsZero(m.Metadata) { // not required
 		return nil
@@ -92,6 +125,25 @@ func (m *Tenant) validateMetadata(formats strfmt.Registry) error {
 				return ve.ValidateName("metadata")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Tenant) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}
@@ -127,7 +179,15 @@ func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLicense(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -144,6 +204,11 @@ func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -157,7 +222,32 @@ func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *Tenant) contextValidateLicense(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.License != nil {
+
+		if swag.IsZero(m.License) { // not required
+			return nil
+		}
+
+		if err := m.License.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Tenant) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
 
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -171,9 +261,35 @@ func (m *Tenant) contextValidateMetadata(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *Tenant) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Tenant) contextValidateStyling(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Styling != nil {
+
+		if swag.IsZero(m.Styling) { // not required
+			return nil
+		}
+
 		if err := m.Styling.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("styling")

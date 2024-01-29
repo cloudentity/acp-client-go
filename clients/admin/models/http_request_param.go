@@ -21,10 +21,10 @@ type HTTPRequestParam struct {
 
 	// name
 	// Required: true
-	Name string `json:"name"`
+	Name string `json:"name" yaml:"name"`
 
 	// value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this HTTP request param

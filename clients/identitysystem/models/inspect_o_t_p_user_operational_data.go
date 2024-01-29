@@ -21,11 +21,11 @@ type InspectOTPUserOperationalData struct {
 
 	// password set
 	// Required: true
-	PasswordSet bool `json:"password_set"`
+	PasswordSet bool `json:"password_set" yaml:"password_set"`
 
 	// user id
 	// Required: true
-	UserID string `json:"user_id"`
+	UserID string `json:"user_id" yaml:"user_id"`
 }
 
 // Validate validates this inspect o t p user operational data

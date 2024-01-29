@@ -109,6 +109,18 @@ type PushedAuthorizationRequestParams struct {
 	*/
 	CodeChallengeMethod *string
 
+	/* Dpop.
+
+	   DPoP proof
+	*/
+	Dpop *string
+
+	/* DpopJkt.
+
+	   Thumbprint of the DPoP public key
+	*/
+	DpopJkt *string
+
 	/* RedirectURI.
 
 	   Redirect uri
@@ -278,6 +290,28 @@ func (o *PushedAuthorizationRequestParams) WithCodeChallengeMethod(codeChallenge
 // SetCodeChallengeMethod adds the codeChallengeMethod to the pushed authorization request params
 func (o *PushedAuthorizationRequestParams) SetCodeChallengeMethod(codeChallengeMethod *string) {
 	o.CodeChallengeMethod = codeChallengeMethod
+}
+
+// WithDpop adds the dpop to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) WithDpop(dpop *string) *PushedAuthorizationRequestParams {
+	o.SetDpop(dpop)
+	return o
+}
+
+// SetDpop adds the dpop to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) SetDpop(dpop *string) {
+	o.Dpop = dpop
+}
+
+// WithDpopJkt adds the dpopJkt to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) WithDpopJkt(dpopJkt *string) *PushedAuthorizationRequestParams {
+	o.SetDpopJkt(dpopJkt)
+	return o
+}
+
+// SetDpopJkt adds the dpopJkt to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) SetDpopJkt(dpopJkt *string) {
+	o.DpopJkt = dpopJkt
 }
 
 // WithRedirectURI adds the redirectURI to the pushed authorization request params
@@ -452,6 +486,29 @@ func (o *PushedAuthorizationRequestParams) WriteToRequest(r runtime.ClientReques
 		fCodeChallengeMethod := frCodeChallengeMethod
 		if fCodeChallengeMethod != "" {
 			if err := r.SetFormParam("code_challenge_method", fCodeChallengeMethod); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Dpop != nil {
+
+		// header param dpop
+		if err := r.SetHeaderParam("dpop", *o.Dpop); err != nil {
+			return err
+		}
+	}
+
+	if o.DpopJkt != nil {
+
+		// form param dpop_jkt
+		var frDpopJkt string
+		if o.DpopJkt != nil {
+			frDpopJkt = *o.DpopJkt
+		}
+		fDpopJkt := frDpopJkt
+		if fDpopJkt != "" {
+			if err := r.SetFormParam("dpop_jkt", fDpopJkt); err != nil {
 				return err
 			}
 		}

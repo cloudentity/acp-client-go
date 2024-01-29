@@ -20,7 +20,7 @@ import (
 type GatewayAPIGroups struct {
 
 	// groups
-	Groups []*GatewayAPIGroup `json:"groups"`
+	Groups []*GatewayAPIGroup `json:"groups" yaml:"groups"`
 }
 
 // Validate validates this gateway API groups
@@ -82,6 +82,11 @@ func (m *GatewayAPIGroups) contextValidateGroups(ctx context.Context, formats st
 	for i := 0; i < len(m.Groups); i++ {
 
 		if m.Groups[i] != nil {
+
+			if swag.IsZero(m.Groups[i]) { // not required
+				return nil
+			}
+
 			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))

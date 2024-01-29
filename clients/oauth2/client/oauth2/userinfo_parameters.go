@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewUserinfoParams creates a new UserinfoParams object,
@@ -60,6 +61,13 @@ UserinfoParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type UserinfoParams struct {
+
+	/* SSOSessionExtend.
+
+	   Indicates if sso session should be extended for the request. Optional. Default `true`
+	*/
+	SSOSessionExtend *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +121,17 @@ func (o *UserinfoParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithSSOSessionExtend adds the sSOSessionExtend to the userinfo params
+func (o *UserinfoParams) WithSSOSessionExtend(sSOSessionExtend *bool) *UserinfoParams {
+	o.SetSSOSessionExtend(sSOSessionExtend)
+	return o
+}
+
+// SetSSOSessionExtend adds the sSOSessionExtend to the userinfo params
+func (o *UserinfoParams) SetSSOSessionExtend(sSOSessionExtend *bool) {
+	o.SSOSessionExtend = sSOSessionExtend
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UserinfoParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +139,14 @@ func (o *UserinfoParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.SSOSessionExtend != nil {
+
+		// header param SSO-Session-Extend
+		if err := r.SetHeaderParam("SSO-Session-Extend", swag.FormatBool(*o.SSOSessionExtend)); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

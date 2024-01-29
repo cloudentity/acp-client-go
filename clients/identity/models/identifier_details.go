@@ -22,10 +22,10 @@ type IdentifierDetails struct {
 
 	// type
 	// Enum: [email mobile uid external federated]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this identifier details

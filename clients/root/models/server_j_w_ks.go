@@ -21,31 +21,31 @@ type ServerJWKs struct {
 
 	// keys
 	// Example: []
-	Keys []*ServerJWK `json:"keys"`
+	Keys []*ServerJWK `json:"keys" yaml:"keys"`
 
 	// next encryption key
-	NextEncryptionKey *ServerJWK `json:"next_encryption_key,omitempty"`
+	NextEncryptionKey *ServerJWK `json:"next_encryption_key,omitempty" yaml:"next_encryption_key,omitempty"`
 
 	// next signing key
-	NextSigningKey *ServerJWK `json:"next_signing_key,omitempty"`
+	NextSigningKey *ServerJWK `json:"next_signing_key,omitempty" yaml:"next_signing_key,omitempty"`
 
 	// An array of revoked encryption keys
 	//
 	// Revoked encryption keys cannot be used to encrypt payloads between servers and client applications
-	RevokedEncryptionKeys []*ServerJWK `json:"revoked_encryption_keys"`
+	RevokedEncryptionKeys []*ServerJWK `json:"revoked_encryption_keys" yaml:"revoked_encryption_keys"`
 
 	// The maximum number of revoked keys that ACP stores.
-	RevokedKeysLimit int64 `json:"revoked_keys_limit,omitempty"`
+	RevokedKeysLimit int64 `json:"revoked_keys_limit,omitempty" yaml:"revoked_keys_limit,omitempty"`
 
 	// An array of revoked sigining keys
 	//
 	// Revoked signing keys cannot be used to sign any tokens.
 	// Any attempt to authenticate using a token signed with a revoked signing key results
 	// in failed authentication.
-	RevokedSigningKeys []*ServerJWK `json:"revoked_signing_keys"`
+	RevokedSigningKeys []*ServerJWK `json:"revoked_signing_keys" yaml:"revoked_signing_keys"`
 
 	// The maximum number of rotated keys that ACP stores.
-	RotatedKeysLimit int64 `json:"rotated_keys_limit,omitempty"`
+	RotatedKeysLimit int64 `json:"rotated_keys_limit,omitempty" yaml:"rotated_keys_limit,omitempty"`
 }
 
 // Validate validates this server j w ks
@@ -229,6 +229,11 @@ func (m *ServerJWKs) contextValidateKeys(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Keys); i++ {
 
 		if m.Keys[i] != nil {
+
+			if swag.IsZero(m.Keys[i]) { // not required
+				return nil
+			}
+
 			if err := m.Keys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
@@ -247,6 +252,11 @@ func (m *ServerJWKs) contextValidateKeys(ctx context.Context, formats strfmt.Reg
 func (m *ServerJWKs) contextValidateNextEncryptionKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextEncryptionKey != nil {
+
+		if swag.IsZero(m.NextEncryptionKey) { // not required
+			return nil
+		}
+
 		if err := m.NextEncryptionKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next_encryption_key")
@@ -263,6 +273,11 @@ func (m *ServerJWKs) contextValidateNextEncryptionKey(ctx context.Context, forma
 func (m *ServerJWKs) contextValidateNextSigningKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextSigningKey != nil {
+
+		if swag.IsZero(m.NextSigningKey) { // not required
+			return nil
+		}
+
 		if err := m.NextSigningKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next_signing_key")
@@ -281,6 +296,11 @@ func (m *ServerJWKs) contextValidateRevokedEncryptionKeys(ctx context.Context, f
 	for i := 0; i < len(m.RevokedEncryptionKeys); i++ {
 
 		if m.RevokedEncryptionKeys[i] != nil {
+
+			if swag.IsZero(m.RevokedEncryptionKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RevokedEncryptionKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("revoked_encryption_keys" + "." + strconv.Itoa(i))
@@ -301,6 +321,11 @@ func (m *ServerJWKs) contextValidateRevokedSigningKeys(ctx context.Context, form
 	for i := 0; i < len(m.RevokedSigningKeys); i++ {
 
 		if m.RevokedSigningKeys[i] != nil {
+
+			if swag.IsZero(m.RevokedSigningKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RevokedSigningKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("revoked_signing_keys" + "." + strconv.Itoa(i))

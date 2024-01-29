@@ -19,14 +19,14 @@ import (
 type UpdateGatewayRequest struct {
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// gateway name
 	// Example: Cloudentity Pyron
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// token exchange
-	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
+	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty" yaml:"token_exchange,omitempty"`
 }
 
 // Validate validates this update gateway request
@@ -79,6 +79,11 @@ func (m *UpdateGatewayRequest) ContextValidate(ctx context.Context, formats strf
 func (m *UpdateGatewayRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

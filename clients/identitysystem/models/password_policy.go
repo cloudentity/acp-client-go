@@ -21,26 +21,26 @@ import (
 type PasswordPolicy struct {
 
 	// capital letters
-	CapitalLetters uint64 `json:"capital_letters,omitempty"`
+	CapitalLetters uint64 `json:"capital_letters,omitempty" yaml:"capital_letters,omitempty"`
 
 	// digits
-	Digits uint64 `json:"digits,omitempty"`
+	Digits uint64 `json:"digits,omitempty" yaml:"digits,omitempty"`
 
 	// lowercase letters
-	LowercaseLetters uint64 `json:"lowercase_letters,omitempty"`
+	LowercaseLetters uint64 `json:"lowercase_letters,omitempty" yaml:"lowercase_letters,omitempty"`
 
 	// min length
-	MinLength uint64 `json:"min_length,omitempty"`
+	MinLength uint64 `json:"min_length,omitempty" yaml:"min_length,omitempty"`
 
 	// not used since
-	NotUsedSince uint64 `json:"not_used_since,omitempty"`
+	NotUsedSince uint64 `json:"not_used_since,omitempty" yaml:"not_used_since,omitempty"`
 
 	// special characters
-	SpecialCharacters uint64 `json:"special_characters,omitempty"`
+	SpecialCharacters uint64 `json:"special_characters,omitempty" yaml:"special_characters,omitempty"`
 
 	// strength
 	// Enum: [any weak fair strong very_strong]
-	Strength string `json:"strength,omitempty"`
+	Strength string `json:"strength,omitempty" yaml:"strength,omitempty"`
 }
 
 // Validate validates this password policy

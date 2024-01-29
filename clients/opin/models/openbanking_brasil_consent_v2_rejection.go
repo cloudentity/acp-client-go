@@ -23,11 +23,11 @@ type OpenbankingBrasilConsentV2Rejection struct {
 
 	// reason
 	// Required: true
-	Reason *OpenbankingBrasilConsentV2RejectedReason `json:"reason"`
+	Reason *OpenbankingBrasilConsentV2RejectedReason `json:"reason" yaml:"reason"`
 
 	// rejected by
 	// Required: true
-	RejectedBy *OpenbankingBrasilConsentV2EnumRejectedBy `json:"rejectedBy"`
+	RejectedBy *OpenbankingBrasilConsentV2EnumRejectedBy `json:"rejectedBy" yaml:"rejectedBy"`
 }
 
 // Validate validates this openbanking brasil consent v2 rejection

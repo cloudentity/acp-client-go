@@ -54,7 +54,7 @@ func (o *RejectLoginRequestReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /logins/{login}/reject] rejectLoginRequest", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *RejectLoginRequestOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the reject login request o k response
+func (o *RejectLoginRequestOK) Code() int {
+	return 200
+}
+
 func (o *RejectLoginRequestOK) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewRejectLoginRequestUnauthorized() *RejectLoginRequestUnauthorized {
 /*
 RejectLoginRequestUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RejectLoginRequestUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *RejectLoginRequestUnauthorized) IsServerError() bool {
 // IsCode returns true when this reject login request unauthorized response a status code equal to that given
 func (o *RejectLoginRequestUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the reject login request unauthorized response
+func (o *RejectLoginRequestUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RejectLoginRequestUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewRejectLoginRequestForbidden() *RejectLoginRequestForbidden {
 /*
 RejectLoginRequestForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RejectLoginRequestForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *RejectLoginRequestForbidden) IsServerError() bool {
 // IsCode returns true when this reject login request forbidden response a status code equal to that given
 func (o *RejectLoginRequestForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the reject login request forbidden response
+func (o *RejectLoginRequestForbidden) Code() int {
+	return 403
 }
 
 func (o *RejectLoginRequestForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewRejectLoginRequestNotFound() *RejectLoginRequestNotFound {
 /*
 RejectLoginRequestNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RejectLoginRequestNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *RejectLoginRequestNotFound) IsServerError() bool {
 // IsCode returns true when this reject login request not found response a status code equal to that given
 func (o *RejectLoginRequestNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the reject login request not found response
+func (o *RejectLoginRequestNotFound) Code() int {
+	return 404
 }
 
 func (o *RejectLoginRequestNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewRejectLoginRequestTooManyRequests() *RejectLoginRequestTooManyRequests {
 /*
 RejectLoginRequestTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RejectLoginRequestTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *RejectLoginRequestTooManyRequests) IsServerError() bool {
 // IsCode returns true when this reject login request too many requests response a status code equal to that given
 func (o *RejectLoginRequestTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the reject login request too many requests response
+func (o *RejectLoginRequestTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RejectLoginRequestTooManyRequests) Error() string {

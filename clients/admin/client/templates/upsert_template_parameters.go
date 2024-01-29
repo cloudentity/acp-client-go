@@ -72,6 +72,14 @@ type UpsertTemplateParams struct {
 	*/
 	FsPath string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -153,6 +161,17 @@ func (o *UpsertTemplateParams) SetFsPath(fsPath string) {
 	o.FsPath = fsPath
 }
 
+// WithIfMatch adds the ifMatch to the upsert template params
+func (o *UpsertTemplateParams) WithIfMatch(ifMatch *string) *UpsertTemplateParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the upsert template params
+func (o *UpsertTemplateParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the upsert template params
 func (o *UpsertTemplateParams) WithThemeID(themeID string) *UpsertTemplateParams {
 	o.SetThemeID(themeID)
@@ -180,6 +199,14 @@ func (o *UpsertTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	// path param fsPath
 	if err := r.SetPathParam("fsPath", o.FsPath); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	// path param themeID

@@ -17,23 +17,23 @@ import (
 // swagger:model FilePaymentConsentFileResource
 type FilePaymentConsentFileResource struct {
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// file
-	File []uint8 `json:"file"`
+	File []uint8 `json:"file" yaml:"file"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this file payment consent file resource

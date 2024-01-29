@@ -60,7 +60,7 @@ func (o *UpdateThemeReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /theme/{themeID}] updateTheme", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ UpdateThemeOK describes a response with status code 200, with default header val
 Theme
 */
 type UpdateThemeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Theme
 }
 
@@ -103,6 +112,11 @@ func (o *UpdateThemeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update theme o k response
+func (o *UpdateThemeOK) Code() int {
+	return 200
+}
+
 func (o *UpdateThemeOK) Error() string {
 	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *UpdateThemeOK) GetPayload() *models.Theme {
 }
 
 func (o *UpdateThemeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Theme)
 
@@ -135,7 +156,7 @@ func NewUpdateThemeBadRequest() *UpdateThemeBadRequest {
 /*
 UpdateThemeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateThemeBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *UpdateThemeBadRequest) IsServerError() bool {
 // IsCode returns true when this update theme bad request response a status code equal to that given
 func (o *UpdateThemeBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update theme bad request response
+func (o *UpdateThemeBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateThemeBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewUpdateThemeUnauthorized() *UpdateThemeUnauthorized {
 /*
 UpdateThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateThemeUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *UpdateThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this update theme unauthorized response a status code equal to that given
 func (o *UpdateThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update theme unauthorized response
+func (o *UpdateThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateThemeUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewUpdateThemeForbidden() *UpdateThemeForbidden {
 /*
 UpdateThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateThemeForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *UpdateThemeForbidden) IsServerError() bool {
 // IsCode returns true when this update theme forbidden response a status code equal to that given
 func (o *UpdateThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update theme forbidden response
+func (o *UpdateThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateThemeForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewUpdateThemeUnprocessableEntity() *UpdateThemeUnprocessableEntity {
 /*
 UpdateThemeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateThemeUnprocessableEntity struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *UpdateThemeUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update theme unprocessable entity response a status code equal to that given
 func (o *UpdateThemeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update theme unprocessable entity response
+func (o *UpdateThemeUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateThemeUnprocessableEntity) Error() string {
@@ -387,7 +428,7 @@ func NewUpdateThemeTooManyRequests() *UpdateThemeTooManyRequests {
 /*
 UpdateThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateThemeTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *UpdateThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update theme too many requests response a status code equal to that given
 func (o *UpdateThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update theme too many requests response
+func (o *UpdateThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateThemeTooManyRequests) Error() string {

@@ -20,65 +20,68 @@ import (
 type BrazilConsent struct {
 
 	// account ids
-	AccountIds []string `json:"account_ids"`
+	AccountIds []string `json:"account_ids" yaml:"account_ids"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// cnpj
-	Cnpj string `json:"cnpj,omitempty"`
+	Cnpj string `json:"cnpj,omitempty" yaml:"cnpj,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// cpf
-	Cpf string `json:"cpf,omitempty"`
+	Cpf string `json:"cpf,omitempty" yaml:"cpf,omitempty"`
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// customer data access consent
-	CustomerDataAccessConsent *BrazilCustomerDataAccessConsentV1 `json:"customer_data_access_consent,omitempty"`
+	CustomerDataAccessConsent *BrazilCustomerDataAccessConsentV1 `json:"customer_data_access_consent,omitempty" yaml:"customer_data_access_consent,omitempty"`
 
 	// customer data access consent v2
-	CustomerDataAccessConsentV2 *BrazilCustomerDataAccessConsentV2 `json:"customer_data_access_consent_v2,omitempty"`
+	CustomerDataAccessConsentV2 *BrazilCustomerDataAccessConsentV2 `json:"customer_data_access_consent_v2,omitempty" yaml:"customer_data_access_consent_v2,omitempty"`
 
 	// customer insurance data access consent
-	CustomerInsuranceDataAccessConsent *BrazilInsuranceCustomerDataAccessConsent `json:"customer_insurance_data_access_consent,omitempty"`
+	CustomerInsuranceDataAccessConsent *BrazilInsuranceCustomerDataAccessConsent `json:"customer_insurance_data_access_consent,omitempty" yaml:"customer_insurance_data_access_consent,omitempty"`
 
 	// customer payment consent
-	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
+	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty" yaml:"customer_payment_consent,omitempty"`
 
 	// customer payment consent v2
-	CustomerPaymentConsentV2 *BrazilCustomerPaymentConsentV2 `json:"customer_payment_consent_v2,omitempty"`
+	CustomerPaymentConsentV2 *BrazilCustomerPaymentConsentV2 `json:"customer_payment_consent_v2,omitempty" yaml:"customer_payment_consent_v2,omitempty"`
+
+	// customer payment consent v3
+	CustomerPaymentConsentV3 *BrazilCustomerPaymentConsentV3 `json:"customer_payment_consent_v3,omitempty" yaml:"customer_payment_consent_v3,omitempty"`
 
 	// idempotency key
-	IdempotencyKey string `json:"idempotency_key,omitempty"`
+	IdempotencyKey string `json:"idempotency_key,omitempty" yaml:"idempotency_key,omitempty"`
 
 	// request hash
-	RequestHash string `json:"request_hash,omitempty"`
+	RequestHash string `json:"request_hash,omitempty" yaml:"request_hash,omitempty"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// spec
-	Spec string `json:"spec,omitempty"`
+	Spec string `json:"spec,omitempty" yaml:"spec,omitempty"`
 
 	// spec version
-	SpecVersion SpecVersion `json:"spec_version,omitempty"`
+	SpecVersion SpecVersion `json:"spec_version,omitempty" yaml:"spec_version,omitempty"`
 
 	// status
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type ConsentType `json:"type,omitempty"`
+	Type ConsentType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this brazil consent
@@ -106,6 +109,10 @@ func (m *BrazilConsent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomerPaymentConsentV2(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsentV3(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -230,6 +237,25 @@ func (m *BrazilConsent) validateCustomerPaymentConsentV2(formats strfmt.Registry
 	return nil
 }
 
+func (m *BrazilConsent) validateCustomerPaymentConsentV3(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsentV3 != nil {
+		if err := m.CustomerPaymentConsentV3.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v3")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v3")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) validateSpecVersion(formats strfmt.Registry) error {
 	if swag.IsZero(m.SpecVersion) { // not required
 		return nil
@@ -285,6 +311,10 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateCustomerPaymentConsentV2(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerPaymentConsentV3(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -399,6 +429,27 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Cont
 				return ve.ValidateName("customer_payment_consent_v2")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("customer_payment_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) contextValidateCustomerPaymentConsentV3(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerPaymentConsentV3 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
+			return nil
+		}
+
+		if err := m.CustomerPaymentConsentV3.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v3")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v3")
 			}
 			return err
 		}

@@ -21,7 +21,7 @@ import (
 type ServerAPIs struct {
 
 	// apis by services
-	ApisByServices map[string][]API `json:"apis_by_services,omitempty"`
+	ApisByServices map[string][]API `json:"apis_by_services,omitempty" yaml:"apis_by_services,omitempty"`
 }
 
 // Validate validates this server a p is
@@ -86,6 +86,10 @@ func (m *ServerAPIs) contextValidateApisByServices(ctx context.Context, formats 
 	for k := range m.ApisByServices {
 
 		for i := 0; i < len(m.ApisByServices[k]); i++ {
+
+			if swag.IsZero(m.ApisByServices[k][i]) { // not required
+				return nil
+			}
 
 			if err := m.ApisByServices[k][i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {

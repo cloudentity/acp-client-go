@@ -66,7 +66,7 @@ func (o *UpdateGithubEmbeddedIDPReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/github_embedded/{iid}] updateGithubEmbeddedIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateGithubEmbeddedIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update github embedded Id p o k response
+func (o *UpdateGithubEmbeddedIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateGithubEmbeddedIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateGithubEmbeddedIDPBadRequest() *UpdateGithubEmbeddedIDPBadRequest {
 /*
 UpdateGithubEmbeddedIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateGithubEmbeddedIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateGithubEmbeddedIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p bad request response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update github embedded Id p bad request response
+func (o *UpdateGithubEmbeddedIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateGithubEmbeddedIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateGithubEmbeddedIDPUnauthorized() *UpdateGithubEmbeddedIDPUnauthoriz
 /*
 UpdateGithubEmbeddedIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateGithubEmbeddedIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateGithubEmbeddedIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p unauthorized response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update github embedded Id p unauthorized response
+func (o *UpdateGithubEmbeddedIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateGithubEmbeddedIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateGithubEmbeddedIDPForbidden() *UpdateGithubEmbeddedIDPForbidden {
 /*
 UpdateGithubEmbeddedIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateGithubEmbeddedIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateGithubEmbeddedIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p forbidden response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update github embedded Id p forbidden response
+func (o *UpdateGithubEmbeddedIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateGithubEmbeddedIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateGithubEmbeddedIDPNotFound() *UpdateGithubEmbeddedIDPNotFound {
 /*
 UpdateGithubEmbeddedIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateGithubEmbeddedIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateGithubEmbeddedIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p not found response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update github embedded Id p not found response
+func (o *UpdateGithubEmbeddedIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateGithubEmbeddedIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateGithubEmbeddedIDPUnprocessableEntity() *UpdateGithubEmbeddedIDPUnp
 /*
 UpdateGithubEmbeddedIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateGithubEmbeddedIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p unprocessable entity response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update github embedded Id p unprocessable entity response
+func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateGithubEmbeddedIDPTooManyRequests() *UpdateGithubEmbeddedIDPTooMany
 /*
 UpdateGithubEmbeddedIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateGithubEmbeddedIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateGithubEmbeddedIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update github embedded Id p too many requests response a status code equal to that given
 func (o *UpdateGithubEmbeddedIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update github embedded Id p too many requests response
+func (o *UpdateGithubEmbeddedIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateGithubEmbeddedIDPTooManyRequests) Error() string {

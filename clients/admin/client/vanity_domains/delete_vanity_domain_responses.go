@@ -54,7 +54,7 @@ func (o *DeleteVanityDomainReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /vanity-domains] deleteVanityDomain", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteVanityDomainNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete vanity domain no content response
+func (o *DeleteVanityDomainNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteVanityDomainNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteVanityDomainUnauthorized() *DeleteVanityDomainUnauthorized {
 /*
 DeleteVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteVanityDomainUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteVanityDomainUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete vanity domain unauthorized response a status code equal to that given
 func (o *DeleteVanityDomainUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete vanity domain unauthorized response
+func (o *DeleteVanityDomainUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteVanityDomainUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteVanityDomainForbidden() *DeleteVanityDomainForbidden {
 /*
 DeleteVanityDomainForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteVanityDomainForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteVanityDomainForbidden) IsServerError() bool {
 // IsCode returns true when this delete vanity domain forbidden response a status code equal to that given
 func (o *DeleteVanityDomainForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete vanity domain forbidden response
+func (o *DeleteVanityDomainForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteVanityDomainForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteVanityDomainNotFound() *DeleteVanityDomainNotFound {
 /*
 DeleteVanityDomainNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteVanityDomainNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteVanityDomainNotFound) IsServerError() bool {
 // IsCode returns true when this delete vanity domain not found response a status code equal to that given
 func (o *DeleteVanityDomainNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete vanity domain not found response
+func (o *DeleteVanityDomainNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteVanityDomainNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteVanityDomainTooManyRequests() *DeleteVanityDomainTooManyRequests {
 /*
 DeleteVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteVanityDomainTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteVanityDomainTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete vanity domain too many requests response a status code equal to that given
 func (o *DeleteVanityDomainTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete vanity domain too many requests response
+func (o *DeleteVanityDomainTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteVanityDomainTooManyRequests) Error() string {

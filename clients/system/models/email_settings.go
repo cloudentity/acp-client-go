@@ -24,25 +24,25 @@ type EmailSettings struct {
 	//
 	// If not set, the default is used.
 	// Example: noreply@cloudentity.com
-	CustomFrom string `json:"custom_from,omitempty"`
+	CustomFrom string `json:"custom_from,omitempty" yaml:"custom_from,omitempty"`
 
 	// Custom email subject.
 	//
 	// If not set, the default is used.
-	CustomMessageSubject string `json:"custom_message_subject,omitempty"`
+	CustomMessageSubject string `json:"custom_message_subject,omitempty" yaml:"custom_message_subject,omitempty"`
 
 	// Custom email template.
 	//
 	// If not set, the default is used.
-	CustomMessageTemplate string `json:"custom_message_template,omitempty"`
+	CustomMessageTemplate string `json:"custom_message_template,omitempty" yaml:"custom_message_template,omitempty"`
 
 	// otp
-	Otp *OTPConfig `json:"otp,omitempty"`
+	Otp *OTPConfiguration `json:"otp,omitempty" yaml:"otp,omitempty"`
 
 	// Email provider.
 	// Example: embedded
 	// Enum: [smtp embedded]
-	Provider string `json:"provider,omitempty"`
+	Provider string `json:"provider,omitempty" yaml:"provider,omitempty"`
 }
 
 // Validate validates this email settings
@@ -141,6 +141,11 @@ func (m *EmailSettings) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *EmailSettings) contextValidateOtp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Otp != nil {
+
+		if swag.IsZero(m.Otp) { // not required
+			return nil
+		}
+
 		if err := m.Otp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("otp")

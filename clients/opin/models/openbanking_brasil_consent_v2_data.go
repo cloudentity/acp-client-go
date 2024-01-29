@@ -21,24 +21,23 @@ import (
 type OpenbankingBrasilConsentV2Data struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilConsentV2BusinessEntity `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilConsentV2BusinessEntity `json:"businessEntity,omitempty" yaml:"businessEntity,omitempty"`
 
-	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime" yaml:"expirationDateTime"`
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilConsentV2LoggedUser `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilConsentV2LoggedUser `json:"loggedUser" yaml:"loggedUser"`
 
 	// permissions
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
-	// Max Items: 30
 	// Min Items: 1
-	Permissions []OpenbankingBrasilConsentV2Permission `json:"permissions"`
+	Permissions []OpenbankingBrasilConsentV2Permission `json:"permissions" yaml:"permissions"`
 }
 
 // Validate validates this openbanking brasil consent v2 data
@@ -128,10 +127,6 @@ func (m *OpenbankingBrasilConsentV2Data) validatePermissions(formats strfmt.Regi
 	iPermissionsSize := int64(len(m.Permissions))
 
 	if err := validate.MinItems("permissions", "body", iPermissionsSize, 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxItems("permissions", "body", iPermissionsSize, 30); err != nil {
 		return err
 	}
 

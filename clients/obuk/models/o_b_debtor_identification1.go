@@ -21,7 +21,7 @@ type OBDebtorIdentification1 struct {
 
 	// The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels. Note, the account name is not the product name or the nickname of the account.
 	// Max Length: 350
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 }
 
 // Validate validates this o b debtor identification1

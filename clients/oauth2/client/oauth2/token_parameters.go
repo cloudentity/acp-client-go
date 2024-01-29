@@ -64,10 +64,7 @@ type TokenParams struct {
 	// ActorToken.
 	ActorToken *string
 
-	/* ActorTokenType.
-
-	   in: `json:""` formData
-	*/
+	// ActorTokenType.
 	ActorTokenType *string
 
 	// ClientID.
@@ -81,6 +78,12 @@ type TokenParams struct {
 
 	// CodeVerifier.
 	CodeVerifier *string
+
+	/* Dpop.
+
+	   DPoP proof
+	*/
+	Dpop *string
 
 	// GrantType.
 	GrantType string
@@ -236,6 +239,17 @@ func (o *TokenParams) SetCodeVerifier(codeVerifier *string) {
 	o.CodeVerifier = codeVerifier
 }
 
+// WithDpop adds the dpop to the token params
+func (o *TokenParams) WithDpop(dpop *string) *TokenParams {
+	o.SetDpop(dpop)
+	return o
+}
+
+// SetDpop adds the dpop to the token params
+func (o *TokenParams) SetDpop(dpop *string) {
+	o.Dpop = dpop
+}
+
 // WithGrantType adds the grantType to the token params
 func (o *TokenParams) WithGrantType(grantType string) *TokenParams {
 	o.SetGrantType(grantType)
@@ -371,16 +385,14 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 
 	if o.ActorTokenType != nil {
 
-		// query param actor_token_type
-		var qrActorTokenType string
-
+		// form param actor_token_type
+		var frActorTokenType string
 		if o.ActorTokenType != nil {
-			qrActorTokenType = *o.ActorTokenType
+			frActorTokenType = *o.ActorTokenType
 		}
-		qActorTokenType := qrActorTokenType
-		if qActorTokenType != "" {
-
-			if err := r.SetQueryParam("actor_token_type", qActorTokenType); err != nil {
+		fActorTokenType := frActorTokenType
+		if fActorTokenType != "" {
+			if err := r.SetFormParam("actor_token_type", fActorTokenType); err != nil {
 				return err
 			}
 		}
@@ -443,6 +455,14 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 			if err := r.SetFormParam("code_verifier", fCodeVerifier); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.Dpop != nil {
+
+		// header param dpop
+		if err := r.SetHeaderParam("dpop", *o.Dpop); err != nil {
+			return err
 		}
 	}
 

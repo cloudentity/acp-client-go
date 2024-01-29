@@ -22,45 +22,45 @@ type Code struct {
 
 	// code
 	// Required: true
-	Code *CodeValue `json:"code"`
+	Code *CodeValue `json:"code" yaml:"code"`
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// expires at
 	// Format: date-time
-	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty"`
+	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty" yaml:"expires_at,omitempty"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// issued at
 	// Format: date-time
-	IssuedAt strfmt.DateTime `json:"issued_at,omitempty"`
+	IssuedAt strfmt.DateTime `json:"issued_at,omitempty" yaml:"issued_at,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// type
 	// Example: active
 	// Required: true
 	// Enum: [activation reset_password challenge verify_address authentication]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// user id
 	// Required: true
-	UserID string `json:"user_id"`
+	UserID string `json:"user_id" yaml:"user_id"`
 
 	// user pool id
 	// Example: default
 	// Required: true
-	UserPoolID string `json:"user_pool_id"`
+	UserPoolID string `json:"user_pool_id" yaml:"user_pool_id"`
 
 	// verifiable address id
-	VerifiableAddressID string `json:"verifiable_address_id,omitempty"`
+	VerifiableAddressID string `json:"verifiable_address_id,omitempty" yaml:"verifiable_address_id,omitempty"`
 }
 
 // Validate validates this code

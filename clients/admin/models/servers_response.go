@@ -20,7 +20,7 @@ import (
 type ServersResponse struct {
 
 	// servers
-	Servers []*ServerResponse `json:"servers"`
+	Servers []*ServerResponse `json:"servers" yaml:"servers"`
 }
 
 // Validate validates this servers response
@@ -82,6 +82,11 @@ func (m *ServersResponse) contextValidateServers(ctx context.Context, formats st
 	for i := 0; i < len(m.Servers); i++ {
 
 		if m.Servers[i] != nil {
+
+			if swag.IsZero(m.Servers[i]) { // not required
+				return nil
+			}
+
 			if err := m.Servers[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("servers" + "." + strconv.Itoa(i))

@@ -21,10 +21,10 @@ type DefaultBruteForceLimit struct {
 
 	// duration until retry permitted in minutes
 	// Format: duration
-	BlockDuration strfmt.Duration `json:"block_duration,omitempty"`
+	BlockDuration strfmt.Duration `json:"block_duration,omitempty" yaml:"block_duration,omitempty"`
 
 	// number of attempts before blocked
-	MaxAttempts int64 `json:"max_attempts,omitempty"`
+	MaxAttempts int64 `json:"max_attempts,omitempty" yaml:"max_attempts,omitempty"`
 }
 
 // Validate validates this default brute force limit

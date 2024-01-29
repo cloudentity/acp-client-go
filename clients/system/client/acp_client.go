@@ -14,6 +14,8 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/system/client/consents"
 	"github.com/cloudentity/acp-client-go/clients/system/client/gateways"
 	"github.com/cloudentity/acp-client-go/clients/system/client/logins"
+	"github.com/cloudentity/acp-client-go/clients/system/client/organizations"
+	"github.com/cloudentity/acp-client-go/clients/system/client/post_authn"
 	"github.com/cloudentity/acp-client-go/clients/system/client/scopes"
 	"github.com/cloudentity/acp-client-go/clients/system/client/system"
 	"github.com/cloudentity/acp-client-go/clients/system/client/tenants"
@@ -65,6 +67,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Consents = consents.New(transport, formats)
 	cli.Gateways = gateways.New(transport, formats)
 	cli.Logins = logins.New(transport, formats)
+	cli.Organizations = organizations.New(transport, formats)
+	cli.PostAuthn = post_authn.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
 	cli.System = system.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
@@ -120,6 +124,10 @@ type Acp struct {
 
 	Logins logins.ClientService
 
+	Organizations organizations.ClientService
+
+	PostAuthn post_authn.ClientService
+
 	Scopes scopes.ClientService
 
 	System system.ClientService
@@ -136,6 +144,8 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Consents.SetTransport(transport)
 	c.Gateways.SetTransport(transport)
 	c.Logins.SetTransport(transport)
+	c.Organizations.SetTransport(transport)
+	c.PostAuthn.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
 	c.System.SetTransport(transport)
 	c.Tenants.SetTransport(transport)

@@ -33,49 +33,49 @@ type BrazilInsuranceCustomerDataAccessConsent struct {
 	// Required: true
 	// Max Length: 256
 	// Pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-	ConsentID string `json:"consentId"`
+	ConsentID string `json:"consentId" yaml:"consentId"`
 
 	// Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"creationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"creationDateTime" yaml:"creationDateTime"`
 
 	// document
 	// Required: true
-	Document *OPINDocument1 `json:"document"`
+	Document *OPINDocument1 `json:"document" yaml:"document"`
 
 	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime" yaml:"expirationDateTime"`
 
 	// Especifica os tipos de permisses de acesso  s APIs no escopo do Open Insurance Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
 	// Example: ["PENSION_RISK_READ","CAPITALIZATION_TITLES_READ","RESOURCES_READ"]
 	// Required: true
 	// Min Items: 1
-	Permissions []OPINPermission1 `json:"permissions"`
+	Permissions []OPINPermission1 `json:"permissions" yaml:"permissions"`
 
 	// status
 	// Required: true
-	Status *OPINStatus `json:"status"`
+	Status *OPINStatus `json:"status" yaml:"status"`
 
 	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime" yaml:"statusUpdateDateTime"`
 
 	// Data e hora da transao inicial. Se no for preenchido, a transao ter a data aberta e a data ser retornada com a primeira transao disponvel. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-01-01T00:00:00Z
 	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"transactionFromDateTime,omitempty"`
+	TransactionFromDateTime strfmt.DateTime `json:"transactionFromDateTime,omitempty" yaml:"transactionFromDateTime,omitempty"`
 
 	// Data e hora final da transao. Se no for preenchido, a transao ter a data aberta e a data ser retornada com a ultima transao disponvel. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-02-01T23:59:59Z
 	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"transactionToDateTime,omitempty"`
+	TransactionToDateTime strfmt.DateTime `json:"transactionToDateTime,omitempty" yaml:"transactionToDateTime,omitempty"`
 }
 
 // Validate validates this brazil insurance customer data access consent

@@ -61,6 +61,14 @@ GetOIDCIDPParams contains all the parameters to send to the API endpoint
 */
 type GetOIDCIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetOIDCIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get o ID c ID p params
+func (o *GetOIDCIDPParams) WithIfMatch(ifMatch *string) *GetOIDCIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get o ID c ID p params
+func (o *GetOIDCIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get o ID c ID p params
 func (o *GetOIDCIDPParams) WithIid(iid string) *GetOIDCIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetOIDCIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

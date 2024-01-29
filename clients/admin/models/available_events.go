@@ -19,9 +19,14 @@ import (
 // swagger:model AvailableEvents
 type AvailableEvents struct {
 
+	// The ETag HTTP header is an identifier for a specific version of a resource
+	//
+	// in:header
+	Etag string `json:"etag,omitempty" yaml:"etag,omitempty"`
+
 	// List of the events
 	// in:body
-	Subjects []*EventSubject `json:"subjects"`
+	Subjects []*EventSubject `json:"subjects" yaml:"subjects"`
 }
 
 // Validate validates this available events
@@ -83,6 +88,11 @@ func (m *AvailableEvents) contextValidateSubjects(ctx context.Context, formats s
 	for i := 0; i < len(m.Subjects); i++ {
 
 		if m.Subjects[i] != nil {
+
+			if swag.IsZero(m.Subjects[i]) { // not required
+				return nil
+			}
+
 			if err := m.Subjects[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("subjects" + "." + strconv.Itoa(i))

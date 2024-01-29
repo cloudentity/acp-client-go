@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-	DynamicClientRegistration thes consumer data right c d r dynamic client registration endpoint
+	DynamicClientRegistration cs d r dynamic client registration
 
 	Dynamic Client Registration endpoint allows to dynamically register OAuth 2.0 client applications
 
@@ -89,7 +89,7 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 }
 
 /*
-DynamicClientRegistrationDeleteClient thes consumer data right c d r dynamic client registration delete client endpoint
+DynamicClientRegistrationDeleteClient deletes c d r client
 
 This endpoint allows to delete a dynamically registered client.
 */
@@ -130,7 +130,7 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 }
 
 /*
-DynamicClientRegistrationGetClient thes consumer data right c d r dynamic client registration get client endpoint
+DynamicClientRegistrationGetClient gets c d r client metadata
 
 This endpoint allows to get metadata values of a dynamically registered client.
 */
@@ -171,7 +171,7 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 }
 
 /*
-DynamicClientRegistrationUpdateClient thes consumer data right c d r dynamic client registration update client endpoint
+DynamicClientRegistrationUpdateClient updates c d r client metadata
 
 This endpoint allows to update metadata values of a dynamically registered client.
 */

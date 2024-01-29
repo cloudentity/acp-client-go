@@ -18,13 +18,13 @@ import (
 type RequestOTPCode struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// user ID
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty" yaml:"userID,omitempty"`
 }
 
 // Validate validates this request o t p code

@@ -20,7 +20,7 @@ import (
 type OBUKConsents struct {
 
 	// consents
-	Consents []*OBUKConsentWithClient `json:"Consents"`
+	Consents []*OBUKConsentWithClient `json:"Consents" yaml:"Consents"`
 }
 
 // Validate validates this o b u k consents
@@ -82,6 +82,11 @@ func (m *OBUKConsents) contextValidateConsents(ctx context.Context, formats strf
 	for i := 0; i < len(m.Consents); i++ {
 
 		if m.Consents[i] != nil {
+
+			if swag.IsZero(m.Consents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Consents" + "." + strconv.Itoa(i))

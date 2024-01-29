@@ -26,7 +26,7 @@ type FDXConsentsRequest struct {
 	//
 	// With `after_consent_id`, the list you obtain starts from the subsequent consent after the specified one. Also,
 	// the response depends on the `sort` and `order` parameters, if any are passed.
-	AfterConsentID string `json:"after_consent_id,omitempty"`
+	AfterConsentID string `json:"after_consent_id,omitempty" yaml:"after_consent_id,omitempty"`
 
 	// A consent identifier.
 	//
@@ -35,34 +35,34 @@ type FDXConsentsRequest struct {
 	//
 	// With `before_consent_id`, the list you obtain comprises consents up to the specified one. The specified consent
 	// isn't included. Also, the response depends on the `sort` and `order` parameters, if any are passed.
-	BeforeConsentID string `json:"before_consent_id,omitempty"`
+	BeforeConsentID string `json:"before_consent_id,omitempty" yaml:"before_consent_id,omitempty"`
 
 	// A client identifier.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Limit the number of results returned in the response.
 	// Maximum: 100
 	// Minimum: 1
-	Limit int64 `json:"limit,omitempty"`
+	Limit int64 `json:"limit,omitempty" yaml:"limit,omitempty"`
 
 	// Input: `acs` or `desc`.
 	//
 	// Set the order of results returned in the response.
-	Order string `json:"order,omitempty"`
+	Order string `json:"order,omitempty" yaml:"order,omitempty"`
 
 	// resource
-	Resource *Resource `json:"resource,omitempty"`
+	Resource *Resource `json:"resource,omitempty" yaml:"resource,omitempty"`
 
 	// Sort results returned in the response.
-	Sort string `json:"sort,omitempty"`
+	Sort string `json:"sort,omitempty" yaml:"sort,omitempty"`
 
 	// List of the consent statuses.
-	Status []string `json:"status"`
+	Status []string `json:"status" yaml:"status"`
 
 	// Consent types.
 	//
 	// in:query
-	Types []string `json:"types"`
+	Types []string `json:"types" yaml:"types"`
 }
 
 // Validate validates this f d x consents request
@@ -135,6 +135,11 @@ func (m *FDXConsentsRequest) ContextValidate(ctx context.Context, formats strfmt
 func (m *FDXConsentsRequest) contextValidateResource(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Resource != nil {
+
+		if swag.IsZero(m.Resource) { // not required
+			return nil
+		}
+
 		if err := m.Resource.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource")

@@ -27,14 +27,14 @@ type ValidatorConfig struct {
 	// validated field, and a value for comparison. Configuration can be also branched, which means
 	// that it is possible to create conditional validators. It allows to define complex
 	// authorization scenarios based on the results from other policy validators.
-	Conf map[string]interface{} `json:"conf,omitempty"`
+	Conf map[string]interface{} `json:"conf,omitempty" yaml:"conf,omitempty"`
 
 	// The name of your validator
 	// Example: identity-context
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// recovery
-	Recovery []*RecoveryConfig `json:"recovery"`
+	Recovery []*RecoveryConfig `json:"recovery" yaml:"recovery"`
 }
 
 // Validate validates this validator config
@@ -96,6 +96,11 @@ func (m *ValidatorConfig) contextValidateRecovery(ctx context.Context, formats s
 	for i := 0; i < len(m.Recovery); i++ {
 
 		if m.Recovery[i] != nil {
+
+			if swag.IsZero(m.Recovery[i]) { // not required
+				return nil
+			}
+
 			if err := m.Recovery[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recovery" + "." + strconv.Itoa(i))

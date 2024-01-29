@@ -19,13 +19,13 @@ import (
 type TestAPIResult struct {
 
 	// graphql types
-	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty"`
+	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty" yaml:"graphql_types,omitempty"`
 
 	// match
-	Match bool `json:"match,omitempty"`
+	Match bool `json:"match,omitempty" yaml:"match,omitempty"`
 
 	// policy id
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 }
 
 // Validate validates this test API result

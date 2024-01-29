@@ -66,6 +66,14 @@ type UpdateSecretParams struct {
 	// Secret.
 	Secret *models.Secret
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	//
 	// Default: "default"
@@ -157,6 +165,17 @@ func (o *UpdateSecretParams) SetSecret(secret *models.Secret) {
 	o.Secret = secret
 }
 
+// WithIfMatch adds the ifMatch to the update secret params
+func (o *UpdateSecretParams) WithIfMatch(ifMatch *string) *UpdateSecretParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update secret params
+func (o *UpdateSecretParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the update secret params
 func (o *UpdateSecretParams) WithSid(sid string) *UpdateSecretParams {
 	o.SetSid(sid)
@@ -188,6 +207,14 @@ func (o *UpdateSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.Secret != nil {
 		if err := r.SetBodyParam(o.Secret); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

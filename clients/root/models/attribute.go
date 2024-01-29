@@ -18,20 +18,20 @@ import (
 type Attribute struct {
 
 	// String represented display name of an attribute
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Array of Strings represents attribute labels
-	Labels []string `json:"labels"`
+	Labels []string `json:"labels" yaml:"labels"`
 
 	// String represented variable name of an attribute
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// The data type of an attribute
 	//
 	// It stores information what kind of data is used as the value of the attribute.
 	//
-	// Available types: `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array` or `any`.
-	Type string `json:"type,omitempty"`
+	// Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this attribute

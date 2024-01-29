@@ -54,7 +54,7 @@ func (o *ListClientsWithAccessReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /clients] listClientsWithAccess", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListClientsWithAccessOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list clients with access o k response
+func (o *ListClientsWithAccessOK) Code() int {
+	return 200
+}
+
 func (o *ListClientsWithAccessOK) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsWithAccessOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListClientsWithAccessUnauthorized() *ListClientsWithAccessUnauthorized {
 /*
 ListClientsWithAccessUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListClientsWithAccessUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListClientsWithAccessUnauthorized) IsServerError() bool {
 // IsCode returns true when this list clients with access unauthorized response a status code equal to that given
 func (o *ListClientsWithAccessUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list clients with access unauthorized response
+func (o *ListClientsWithAccessUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListClientsWithAccessUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListClientsWithAccessForbidden() *ListClientsWithAccessForbidden {
 /*
 ListClientsWithAccessForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListClientsWithAccessForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListClientsWithAccessForbidden) IsServerError() bool {
 // IsCode returns true when this list clients with access forbidden response a status code equal to that given
 func (o *ListClientsWithAccessForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list clients with access forbidden response
+func (o *ListClientsWithAccessForbidden) Code() int {
+	return 403
 }
 
 func (o *ListClientsWithAccessForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListClientsWithAccessNotFound() *ListClientsWithAccessNotFound {
 /*
 ListClientsWithAccessNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListClientsWithAccessNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListClientsWithAccessNotFound) IsServerError() bool {
 // IsCode returns true when this list clients with access not found response a status code equal to that given
 func (o *ListClientsWithAccessNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list clients with access not found response
+func (o *ListClientsWithAccessNotFound) Code() int {
+	return 404
 }
 
 func (o *ListClientsWithAccessNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListClientsWithAccessTooManyRequests() *ListClientsWithAccessTooManyRequ
 /*
 ListClientsWithAccessTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListClientsWithAccessTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListClientsWithAccessTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list clients with access too many requests response a status code equal to that given
 func (o *ListClientsWithAccessTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list clients with access too many requests response
+func (o *ListClientsWithAccessTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListClientsWithAccessTooManyRequests) Error() string {

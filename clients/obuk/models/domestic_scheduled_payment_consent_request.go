@@ -21,11 +21,11 @@ type DomesticScheduledPaymentConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteDomesticScheduledConsent4Data `json:"Data"`
+	Data *OBWriteDomesticScheduledConsent4Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this domestic scheduled payment consent request
@@ -107,6 +107,7 @@ func (m *DomesticScheduledPaymentConsentRequest) ContextValidate(ctx context.Con
 func (m *DomesticScheduledPaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")
@@ -123,6 +124,7 @@ func (m *DomesticScheduledPaymentConsentRequest) contextValidateData(ctx context
 func (m *DomesticScheduledPaymentConsentRequest) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")

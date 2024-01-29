@@ -30,17 +30,112 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	SystemCreatePool(params *SystemCreatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreatePoolCreated, error)
+
+	SystemDeletePool(params *SystemDeletePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeletePoolNoContent, error)
+
 	SystemGetPool(params *SystemGetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetPoolOK, error)
+
+	SystemListPools(params *SystemListPoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListPoolsOK, error)
+
+	SystemUpdatePool(params *SystemUpdatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdatePoolOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	SystemGetPool gets pool
+	SystemCreatePool creates identity pool
 
-	Gets pool.
+	Create an identity pool.
 
-This API does not use ETags but data is always consistent.
+When no `metadata_schema_id` and/or `payload_schema_id` are provided in the request body, the identity pool
+is created with the following defaults accordingly:
+
+`default_metadata=metadata_v0`
+
+`default_payload=user_v0`
+*/
+func (a *Client) SystemCreatePool(params *SystemCreatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreatePoolCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemCreatePoolParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemCreatePool",
+		Method:             "POST",
+		PathPattern:        "/system/pools",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemCreatePoolReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemCreatePoolCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemCreatePool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemDeletePool deletes identity pool
+
+Delete an identity pool. For this, provide the required identity pool identifier in the path.
+*/
+func (a *Client) SystemDeletePool(params *SystemDeletePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeletePoolNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemDeletePoolParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemDeletePool",
+		Method:             "DELETE",
+		PathPattern:        "/system/pools/{ipID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemDeletePoolReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemDeletePoolNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemDeletePool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemGetPool gets pool
+
+Gets pool.
 */
 func (a *Client) SystemGetPool(params *SystemGetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetPoolOK, error) {
 	// TODO: Validate the params before sending
@@ -75,6 +170,90 @@ func (a *Client) SystemGetPool(params *SystemGetPoolParams, authInfo runtime.Cli
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for systemGetPool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	SystemListPools lists identity pools
+
+	Retrieve the list of all identity pools.
+
+You can filter the response with the query parameters to narrow the pool list down.
+*/
+func (a *Client) SystemListPools(params *SystemListPoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListPoolsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemListPoolsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemListPools",
+		Method:             "GET",
+		PathPattern:        "/system/pools",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemListPoolsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemListPoolsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemListPools: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemUpdatePool updates identity pool
+
+Update the identity pool details. Pass the identifier of the required identity pool with the `ipID` path parameter.
+*/
+func (a *Client) SystemUpdatePool(params *SystemUpdatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdatePoolOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemUpdatePoolParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemUpdatePool",
+		Method:             "PUT",
+		PathPattern:        "/system/pools/{ipID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemUpdatePoolReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemUpdatePoolOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemUpdatePool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -6,7 +6,7 @@ swagger = docker run --rm -it -e GOPATH=/go \
 .PHONY: generate
 generate: generate-acp generate-openbanking-uk generate-openbanking-brasil
 
-SWAGGERS = public root developer oauth2 system admin web identity identityroot identitysystem identityself fdx obuk cdr ksa obbr opin
+SWAGGERS = public root developer oauth2 system admin web identity identityroot identitysystem identityself fdx obuk cdr ksa obbr opin hub
 
 generate-acp: $(SWAGGERS)
 
@@ -17,7 +17,7 @@ $(SWAGGERS):
 
 	sed -i 's/flow: application/flow: accessCode/g' spec/$@.yaml
 	sed -i 's/flow: password/flow: accessCode/g' spec/$@.yaml
-	${swagger} generate client -f /go/src/spec/$@.yaml -A acp -t /go/src/clients/$@
+	${swagger} generate client -f /go/src/spec/$@.yaml -A acp -t /go/src/clients/$@ --struct-tags=yaml
 
 .PHONY: generate-openbanking-uk
 generate-openbanking-uk:

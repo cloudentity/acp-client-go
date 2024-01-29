@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // IDPConfiguration ID p configuration
@@ -19,46 +17,14 @@ import (
 // swagger:model IDPConfiguration
 type IDPConfiguration struct {
 
-	// If set to `true`, the stateful context is enabled for the IDP
+	// If set to `true`, the claims are reloaded while issuing an access token.
 	//
-	// The stateful authorization feature allows to store the user’s authentication data, including
-	// the login status, locally in ACP. With this feature enabled, ACP can cache the user’s data
-	// and issue multiple tokens during one user’s session without re-authenticating the user.
-	//
-	// With the stateful authorization, the efficiency of issuing tokens in ACP is significantly
-	// improved by minimizing latency and performance degradation related to repetitious calls to
-	// IDPs.
-	EnableStatefulCtx bool `json:"enable_stateful_ctx,omitempty"`
-
-	// The time that a user's authentication context is stored in the ACP's internal caching system
-	// before it's being deleted or refreshed.
-	// Format: duration
-	StatefulCtxDuration strfmt.Duration `json:"stateful_ctx_duration,omitempty"`
+	// Currently it is only available for Identity Pool IDP.
+	ReloadClaimsAtRefreshToken bool `json:"reload_claims_at_refresh_token,omitempty" yaml:"reload_claims_at_refresh_token,omitempty"`
 }
 
 // Validate validates this ID p configuration
 func (m *IDPConfiguration) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateStatefulCtxDuration(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IDPConfiguration) validateStatefulCtxDuration(formats strfmt.Registry) error {
-	if swag.IsZero(m.StatefulCtxDuration) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("stateful_ctx_duration", "body", "duration", m.StatefulCtxDuration.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 

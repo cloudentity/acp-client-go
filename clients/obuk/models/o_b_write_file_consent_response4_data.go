@@ -22,52 +22,52 @@ import (
 type OBWriteFileConsentResponse4Data struct {
 
 	// authorisation
-	Authorisation *OBWriteFileConsentResponse4DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteFileConsentResponse4DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// charges
-	Charges []*OBWriteFileConsentResponse4DataChargesItems0 `json:"Charges"`
+	Charges []*OBWriteFileConsentResponse4DataChargesItems0 `json:"Charges" yaml:"Charges"`
 
 	// OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.
 	// Required: true
 	// Max Length: 128
 	// Min Length: 1
-	ConsentID string `json:"ConsentId"`
+	ConsentID string `json:"ConsentId" yaml:"ConsentId"`
 
 	// Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"CreationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"CreationDateTime" yaml:"CreationDateTime"`
 
 	// Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty"`
+	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty" yaml:"CutOffDateTime,omitempty"`
 
 	// debtor
-	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty"`
+	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty" yaml:"Debtor,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteFileConsentResponse4DataInitiation `json:"Initiation"`
+	Initiation *OBWriteFileConsentResponse4DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// s c a support data
-	SCASupportData *OBWriteFileConsentResponse4DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteFileConsentResponse4DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
 	// Enum: [Authorised AwaitingAuthorisation AwaitingUpload Consumed Rejected]
-	Status string `json:"Status"`
+	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the consent resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime" yaml:"StatusUpdateDateTime"`
 }
 
 // Validate validates this o b write file consent response4 data
@@ -363,6 +363,11 @@ func (m *OBWriteFileConsentResponse4Data) ContextValidate(ctx context.Context, f
 func (m *OBWriteFileConsentResponse4Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -381,6 +386,11 @@ func (m *OBWriteFileConsentResponse4Data) contextValidateCharges(ctx context.Con
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Charges" + "." + strconv.Itoa(i))
@@ -399,6 +409,11 @@ func (m *OBWriteFileConsentResponse4Data) contextValidateCharges(ctx context.Con
 func (m *OBWriteFileConsentResponse4Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Debtor")
@@ -415,6 +430,7 @@ func (m *OBWriteFileConsentResponse4Data) contextValidateDebtor(ctx context.Cont
 func (m *OBWriteFileConsentResponse4Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -431,6 +447,11 @@ func (m *OBWriteFileConsentResponse4Data) contextValidateInitiation(ctx context.
 func (m *OBWriteFileConsentResponse4Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

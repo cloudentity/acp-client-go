@@ -54,7 +54,7 @@ func (o *GetAPIReader) ReadResponse(response runtime.ClientResponse, consumer ru
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /apis/{api}] getAPI", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetAPIOK describes a response with status code 200, with default header values.
 API
 */
 type GetAPIOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.API
 }
 
@@ -97,6 +106,11 @@ func (o *GetAPIOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get Api o k response
+func (o *GetAPIOK) Code() int {
+	return 200
+}
+
 func (o *GetAPIOK) Error() string {
 	return fmt.Sprintf("[GET /apis/{api}][%d] getApiOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetAPIOK) GetPayload() *models.API {
 }
 
 func (o *GetAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.API)
 
@@ -129,7 +150,7 @@ func NewGetAPIUnauthorized() *GetAPIUnauthorized {
 /*
 GetAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAPIUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this get Api unauthorized response a status code equal to that given
 func (o *GetAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get Api unauthorized response
+func (o *GetAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAPIUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetAPIForbidden() *GetAPIForbidden {
 /*
 GetAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAPIForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetAPIForbidden) IsServerError() bool {
 // IsCode returns true when this get Api forbidden response a status code equal to that given
 func (o *GetAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get Api forbidden response
+func (o *GetAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAPIForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetAPINotFound() *GetAPINotFound {
 /*
 GetAPINotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAPINotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetAPINotFound) IsServerError() bool {
 // IsCode returns true when this get Api not found response a status code equal to that given
 func (o *GetAPINotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get Api not found response
+func (o *GetAPINotFound) Code() int {
+	return 404
 }
 
 func (o *GetAPINotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetAPITooManyRequests() *GetAPITooManyRequests {
 /*
 GetAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAPITooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this get Api too many requests response a status code equal to that given
 func (o *GetAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get Api too many requests response
+func (o *GetAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAPITooManyRequests) Error() string {

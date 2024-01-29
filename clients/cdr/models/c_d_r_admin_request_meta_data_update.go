@@ -21,10 +21,10 @@ type CDRAdminRequestMetaDataUpdate struct {
 
 	// data
 	// Required: true
-	Data *CDRAdminRequestMetaDataUpdateData `json:"data"`
+	Data *CDRAdminRequestMetaDataUpdateData `json:"data" yaml:"data"`
 
 	// meta
-	Meta interface{} `json:"meta,omitempty"`
+	Meta interface{} `json:"meta,omitempty" yaml:"meta,omitempty"`
 }
 
 // Validate validates this c d r admin request meta data update
@@ -78,6 +78,7 @@ func (m *CDRAdminRequestMetaDataUpdate) ContextValidate(ctx context.Context, for
 func (m *CDRAdminRequestMetaDataUpdate) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")

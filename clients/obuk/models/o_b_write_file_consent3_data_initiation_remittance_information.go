@@ -25,12 +25,12 @@ type OBWriteFileConsent3DataInitiationRemittanceInformation struct {
 	// OB: The Faster Payments Scheme can only accept 18 characters for the ReferenceInformation field - which is where this ISO field will be mapped.
 	// Max Length: 35
 	// Min Length: 1
-	Reference string `json:"Reference,omitempty"`
+	Reference string `json:"Reference,omitempty" yaml:"Reference,omitempty"`
 
 	// Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.
 	// Max Length: 140
 	// Min Length: 1
-	Unstructured string `json:"Unstructured,omitempty"`
+	Unstructured string `json:"Unstructured,omitempty" yaml:"Unstructured,omitempty"`
 }
 
 // Validate validates this o b write file consent3 data initiation remittance information

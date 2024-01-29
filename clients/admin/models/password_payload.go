@@ -18,13 +18,13 @@ import (
 type PasswordPayload struct {
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// operation type
-	OperationType string `json:"operation_type,omitempty"`
+	OperationType string `json:"operation_type,omitempty" yaml:"operation_type,omitempty"`
 
 	// user ID
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this password payload

@@ -19,35 +19,35 @@ type ScopeWithServicePublicResponse struct {
 
 	// scope description
 	// Example: This scope value requests offline access using refresh token
-	ScopeDescription string `json:"scope_description,omitempty"`
+	ScopeDescription string `json:"scope_description,omitempty" yaml:"scope_description,omitempty"`
 
 	// scope display name
 	// Example: Offline access
-	ScopeDisplayName string `json:"scope_display_name,omitempty"`
+	ScopeDisplayName string `json:"scope_display_name,omitempty" yaml:"scope_display_name,omitempty"`
 
 	// scope id
 	// Example: 1
-	ScopeID string `json:"scope_id,omitempty"`
+	ScopeID string `json:"scope_id,omitempty" yaml:"scope_id,omitempty"`
 
 	// scope name
 	// Example: offline_access
-	ScopeName string `json:"scope_name,omitempty"`
+	ScopeName string `json:"scope_name,omitempty" yaml:"scope_name,omitempty"`
 
 	// service description
 	// Example: service description
-	ServiceDescription string `json:"service_description,omitempty"`
+	ServiceDescription string `json:"service_description,omitempty" yaml:"service_description,omitempty"`
 
 	// service id
 	// Example: 1
-	ServiceID string `json:"service_id,omitempty"`
+	ServiceID string `json:"service_id,omitempty" yaml:"service_id,omitempty"`
 
 	// service name
 	// Example: service
-	ServiceName string `json:"service_name,omitempty"`
+	ServiceName string `json:"service_name,omitempty" yaml:"service_name,omitempty"`
 
 	// is scope assigned to a service
 	// Example: false
-	WithService bool `json:"with_service,omitempty"`
+	WithService bool `json:"with_service,omitempty" yaml:"with_service,omitempty"`
 }
 
 // Validate validates this scope with service public response

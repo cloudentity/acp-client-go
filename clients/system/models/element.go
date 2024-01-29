@@ -20,13 +20,13 @@ import (
 type Element struct {
 
 	// attr
-	Attr []*Attr `json:"Attr"`
+	Attr []*Attr `json:"Attr" yaml:"Attr"`
 
 	// child
-	Child []*Token `json:"Child"`
+	Child []*Token `json:"Child" yaml:"Child"`
 
 	// space
-	Space string `json:"Space,omitempty"`
+	Space string `json:"Space,omitempty" yaml:"Space,omitempty"`
 }
 
 // Validate validates this element
@@ -122,6 +122,11 @@ func (m *Element) contextValidateAttr(ctx context.Context, formats strfmt.Regist
 	for i := 0; i < len(m.Attr); i++ {
 
 		if m.Attr[i] != nil {
+
+			if swag.IsZero(m.Attr[i]) { // not required
+				return nil
+			}
+
 			if err := m.Attr[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Attr" + "." + strconv.Itoa(i))
@@ -142,6 +147,11 @@ func (m *Element) contextValidateChild(ctx context.Context, formats strfmt.Regis
 	for i := 0; i < len(m.Child); i++ {
 
 		if m.Child[i] != nil {
+
+			if swag.IsZero(m.Child[i]) { // not required
+				return nil
+			}
+
 			if err := m.Child[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Child" + "." + strconv.Itoa(i))

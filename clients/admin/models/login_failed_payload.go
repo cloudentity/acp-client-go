@@ -19,22 +19,22 @@ import (
 type LoginFailedPayload struct {
 
 	// cause
-	Cause string `json:"cause,omitempty"`
+	Cause string `json:"cause,omitempty" yaml:"cause,omitempty"`
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// error description
-	ErrorDescription string `json:"error_description,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty" yaml:"error_description,omitempty"`
 
 	// error hint
-	ErrorHint string `json:"error_hint,omitempty"`
+	ErrorHint string `json:"error_hint,omitempty" yaml:"error_hint,omitempty"`
 
 	// idp
-	Idp *IDPPayload `json:"idp,omitempty"`
+	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 
 	// status code
-	StatusCode int64 `json:"status_code,omitempty"`
+	StatusCode int64 `json:"status_code,omitempty" yaml:"status_code,omitempty"`
 }
 
 // Validate validates this login failed payload
@@ -87,6 +87,11 @@ func (m *LoginFailedPayload) ContextValidate(ctx context.Context, formats strfmt
 func (m *LoginFailedPayload) contextValidateIdp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Idp != nil {
+
+		if swag.IsZero(m.Idp) { // not required
+			return nil
+		}
+
 		if err := m.Idp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("idp")

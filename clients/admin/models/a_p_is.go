@@ -20,7 +20,7 @@ import (
 type APIs struct {
 
 	// apis
-	Apis []*API `json:"apis"`
+	Apis []*API `json:"apis" yaml:"apis"`
 }
 
 // Validate validates this a p is
@@ -82,6 +82,11 @@ func (m *APIs) contextValidateApis(ctx context.Context, formats strfmt.Registry)
 	for i := 0; i < len(m.Apis); i++ {
 
 		if m.Apis[i] != nil {
+
+			if swag.IsZero(m.Apis[i]) { // not required
+				return nil
+			}
+
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))

@@ -66,6 +66,14 @@ type SetScriptExecutionPointsParams struct {
 	// Executions.
 	Executions *models.ScriptExecutionPoints
 
+	/* Etag.
+
+	   The ETag HTTP header is an identifier for a specific version of a resource
+
+	   Format: etag
+	*/
+	Etag *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -149,6 +157,17 @@ func (o *SetScriptExecutionPointsParams) SetExecutions(executions *models.Script
 	o.Executions = executions
 }
 
+// WithEtag adds the etag to the set script execution points params
+func (o *SetScriptExecutionPointsParams) WithEtag(etag *string) *SetScriptExecutionPointsParams {
+	o.SetEtag(etag)
+	return o
+}
+
+// SetEtag adds the etag to the set script execution points params
+func (o *SetScriptExecutionPointsParams) SetEtag(etag *string) {
+	o.Etag = etag
+}
+
 // WithWid adds the wid to the set script execution points params
 func (o *SetScriptExecutionPointsParams) WithWid(wid string) *SetScriptExecutionPointsParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *SetScriptExecutionPointsParams) WriteToRequest(r runtime.ClientRequest,
 	var res []error
 	if o.Executions != nil {
 		if err := r.SetBodyParam(o.Executions); err != nil {
+			return err
+		}
+	}
+
+	if o.Etag != nil {
+
+		// header param etag
+		if err := r.SetHeaderParam("etag", *o.Etag); err != nil {
 			return err
 		}
 	}

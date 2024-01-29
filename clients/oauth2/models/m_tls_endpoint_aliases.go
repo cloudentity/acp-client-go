@@ -18,25 +18,28 @@ import (
 type MTLSEndpointAliases struct {
 
 	// backchannel authentication endpoint
-	BackchannelAuthenticationEndpoint string `json:"backchannel_authentication_endpoint,omitempty"`
+	BackchannelAuthenticationEndpoint string `json:"backchannel_authentication_endpoint,omitempty" yaml:"backchannel_authentication_endpoint,omitempty"`
+
+	// device authorization endpoint
+	DeviceAuthorizationEndpoint string `json:"device_authorization_endpoint,omitempty" yaml:"device_authorization_endpoint,omitempty"`
 
 	// introspection endpoint
-	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty"`
+	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty" yaml:"introspection_endpoint,omitempty"`
 
 	// pushed authorization request endpoint
-	PushedAuthorizationRequestEndpoint string `json:"pushed_authorization_request_endpoint,omitempty"`
+	PushedAuthorizationRequestEndpoint string `json:"pushed_authorization_request_endpoint,omitempty" yaml:"pushed_authorization_request_endpoint,omitempty"`
 
 	// registration endpoint
-	RegistrationEndpoint string `json:"registration_endpoint,omitempty"`
+	RegistrationEndpoint string `json:"registration_endpoint,omitempty" yaml:"registration_endpoint,omitempty"`
 
 	// revocation endpoint
-	RevocationEndpoint string `json:"revocation_endpoint,omitempty"`
+	RevocationEndpoint string `json:"revocation_endpoint,omitempty" yaml:"revocation_endpoint,omitempty"`
 
 	// token endpoint
-	TokenEndpoint string `json:"token_endpoint,omitempty"`
+	TokenEndpoint string `json:"token_endpoint,omitempty" yaml:"token_endpoint,omitempty"`
 
 	// userinfo endpoint
-	UserinfoEndpoint string `json:"userinfo_endpoint,omitempty"`
+	UserinfoEndpoint string `json:"userinfo_endpoint,omitempty" yaml:"userinfo_endpoint,omitempty"`
 }
 
 // Validate validates this m TLS endpoint aliases

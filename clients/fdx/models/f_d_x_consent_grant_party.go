@@ -21,22 +21,22 @@ import (
 type FDXConsentGrantParty struct {
 
 	// URL for party, where an end user could learn more about the company or application involved in the data sharing chain
-	HomeURI string `json:"homeUri,omitempty"`
+	HomeURI string `json:"homeUri,omitempty" yaml:"homeUri,omitempty"`
 
 	// URL for a logo asset to be displayed to the end user
-	LogoURI string `json:"logoUri,omitempty"`
+	LogoURI string `json:"logoUri,omitempty" yaml:"logoUri,omitempty"`
 
 	// Common name for party, as it should be displayed to the end user
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Registered id of party
-	RegisteredEntityIdentifier string `json:"registeredEntityIdentifier,omitempty"`
+	RegisteredEntityIdentifier string `json:"registeredEntityIdentifier,omitempty" yaml:"registeredEntityIdentifier,omitempty"`
 
 	// Registered name of party
-	RegisteredEntityName string `json:"registeredEntityName,omitempty"`
+	RegisteredEntityName string `json:"registeredEntityName,omitempty" yaml:"registeredEntityName,omitempty"`
 
 	// The registry with the party's registered name and id
-	RegistryName string `json:"registryName,omitempty"`
+	RegistryName string `json:"registryName,omitempty" yaml:"registryName,omitempty"`
 }
 
 // Validate validates this f d x consent grant party

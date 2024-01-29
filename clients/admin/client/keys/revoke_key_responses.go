@@ -60,7 +60,7 @@ func (o *RevokeKeyReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/keys/revoke/{kid}] revokeKey", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ RevokeKeyOK describes a response with status code 200, with default header value
 JWK
 */
 type RevokeKeyOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerJWK
 }
 
@@ -103,6 +112,11 @@ func (o *RevokeKeyOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the revoke key o k response
+func (o *RevokeKeyOK) Code() int {
+	return 200
+}
+
 func (o *RevokeKeyOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *RevokeKeyOK) GetPayload() *models.ServerJWK {
 }
 
 func (o *RevokeKeyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerJWK)
 
@@ -135,7 +156,7 @@ func NewRevokeKeyBadRequest() *RevokeKeyBadRequest {
 /*
 RevokeKeyBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type RevokeKeyBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *RevokeKeyBadRequest) IsServerError() bool {
 // IsCode returns true when this revoke key bad request response a status code equal to that given
 func (o *RevokeKeyBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the revoke key bad request response
+func (o *RevokeKeyBadRequest) Code() int {
+	return 400
 }
 
 func (o *RevokeKeyBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewRevokeKeyUnauthorized() *RevokeKeyUnauthorized {
 /*
 RevokeKeyUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeKeyUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *RevokeKeyUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke key unauthorized response a status code equal to that given
 func (o *RevokeKeyUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke key unauthorized response
+func (o *RevokeKeyUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeKeyUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewRevokeKeyForbidden() *RevokeKeyForbidden {
 /*
 RevokeKeyForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeKeyForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *RevokeKeyForbidden) IsServerError() bool {
 // IsCode returns true when this revoke key forbidden response a status code equal to that given
 func (o *RevokeKeyForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke key forbidden response
+func (o *RevokeKeyForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeKeyForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewRevokeKeyNotFound() *RevokeKeyNotFound {
 /*
 RevokeKeyNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RevokeKeyNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *RevokeKeyNotFound) IsServerError() bool {
 // IsCode returns true when this revoke key not found response a status code equal to that given
 func (o *RevokeKeyNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the revoke key not found response
+func (o *RevokeKeyNotFound) Code() int {
+	return 404
 }
 
 func (o *RevokeKeyNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewRevokeKeyTooManyRequests() *RevokeKeyTooManyRequests {
 /*
 RevokeKeyTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RevokeKeyTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *RevokeKeyTooManyRequests) IsServerError() bool {
 // IsCode returns true when this revoke key too many requests response a status code equal to that given
 func (o *RevokeKeyTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke key too many requests response
+func (o *RevokeKeyTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeKeyTooManyRequests) Error() string {

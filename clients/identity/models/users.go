@@ -20,7 +20,7 @@ import (
 type Users struct {
 
 	// users
-	Users []*ExtendedUser `json:"users"`
+	Users []*ExtendedUser `json:"users" yaml:"users"`
 }
 
 // Validate validates this users

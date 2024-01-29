@@ -54,7 +54,7 @@ func (o *AcceptInternationalPaymentConsentSystemReader) ReadResponse(response ru
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /open-banking/international-payment-consent/{login}/accept] acceptInternationalPaymentConsentSystem", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewAcceptInternationalPaymentConsentSystemOK() *AcceptInternationalPaymentC
 /*
 AcceptInternationalPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
-Consent accepted
+Consent Accepted
 */
 type AcceptInternationalPaymentConsentSystemOK struct {
 	Payload *models.ConsentAccepted

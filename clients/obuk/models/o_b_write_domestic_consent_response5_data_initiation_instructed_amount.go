@@ -23,11 +23,11 @@ type OBWriteDomesticConsentResponse5DataInitiationInstructedAmount struct {
 
 	// amount
 	// Required: true
-	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount"`
+	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount" yaml:"Amount"`
 
 	// currency
 	// Required: true
-	Currency *ActiveOrHistoricCurrencyCode `json:"Currency"`
+	Currency *ActiveOrHistoricCurrencyCode `json:"Currency" yaml:"Currency"`
 }
 
 // Validate validates this o b write domestic consent response5 data initiation instructed amount
@@ -117,6 +117,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) ContextV
 func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -133,6 +134,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextV
 func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

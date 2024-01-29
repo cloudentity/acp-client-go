@@ -19,14 +19,14 @@ var Default = NewHTTPClient(nil)
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "localhost"
+	DefaultHost string = "localhost:8443"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
-	DefaultBasePath string = "/"
+	DefaultBasePath string = "/default/default"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
-var DefaultSchemes = []string{"http"}
+var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new acp HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *Acp {

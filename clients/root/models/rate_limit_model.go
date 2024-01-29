@@ -20,14 +20,14 @@ import (
 type RateLimitModel struct {
 
 	// max burst
-	Burst int64 `json:"burst,omitempty"`
+	Burst int64 `json:"burst,omitempty" yaml:"burst,omitempty"`
 
 	// period
 	// Format: duration
-	Period strfmt.Duration `json:"period,omitempty"`
+	Period strfmt.Duration `json:"period,omitempty" yaml:"period,omitempty"`
 
 	// rate
-	Rate int64 `json:"rate,omitempty"`
+	Rate int64 `json:"rate,omitempty" yaml:"rate,omitempty"`
 }
 
 // Validate validates this rate limit model

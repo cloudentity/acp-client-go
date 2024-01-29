@@ -20,7 +20,7 @@ import (
 type CDRArrangements struct {
 
 	// arrangements
-	Arrangements []*CDRArrangement `json:"arrangements"`
+	Arrangements []*CDRArrangement `json:"arrangements" yaml:"arrangements"`
 }
 
 // Validate validates this c d r arrangements
@@ -82,6 +82,11 @@ func (m *CDRArrangements) contextValidateArrangements(ctx context.Context, forma
 	for i := 0; i < len(m.Arrangements); i++ {
 
 		if m.Arrangements[i] != nil {
+
+			if swag.IsZero(m.Arrangements[i]) { // not required
+				return nil
+			}
+
 			if err := m.Arrangements[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("arrangements" + "." + strconv.Itoa(i))

@@ -19,19 +19,19 @@ import (
 type CIBAAuthenticationService struct {
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// external
-	External *ExternalCIBAAuthenticationService `json:"external,omitempty"`
+	External *ExternalCIBAAuthenticationService `json:"external,omitempty" yaml:"external,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this c i b a authentication service
@@ -84,6 +84,11 @@ func (m *CIBAAuthenticationService) ContextValidate(ctx context.Context, formats
 func (m *CIBAAuthenticationService) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.External != nil {
+
+		if swag.IsZero(m.External) { // not required
+			return nil
+		}
+
 		if err := m.External.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("external")

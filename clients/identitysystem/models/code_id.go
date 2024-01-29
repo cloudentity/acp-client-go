@@ -21,7 +21,7 @@ type CodeID struct {
 
 	// code id
 	// Required: true
-	CodeID string `json:"code_id"`
+	CodeID string `json:"code_id" yaml:"code_id"`
 }
 
 // Validate validates this code ID

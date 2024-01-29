@@ -18,19 +18,19 @@ import (
 type RejectSession struct {
 
 	// reject error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// reject error description
-	ErrorDescription string `json:"error_description,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty" yaml:"error_description,omitempty"`
 
 	// login identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 
 	// reject http status code
-	StatusCode int64 `json:"status_code,omitempty"`
+	StatusCode int64 `json:"status_code,omitempty" yaml:"status_code,omitempty"`
 }
 
 // Validate validates this reject session

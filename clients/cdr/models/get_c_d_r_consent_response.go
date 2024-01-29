@@ -20,31 +20,31 @@ import (
 type GetCDRConsentResponse struct {
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// cdr arrangement
-	CdrArrangement *CDRArrangement `json:"cdr_arrangement,omitempty"`
+	CdrArrangement *CDRArrangement `json:"cdr_arrangement,omitempty" yaml:"cdr_arrangement,omitempty"`
 
 	// client info
-	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+	ClientInfo *ClientInfo `json:"client_info,omitempty" yaml:"client_info,omitempty"`
 
 	// previous cdr arrangement
-	PreviousCdrArrangement *CDRArrangement `json:"previous_cdr_arrangement,omitempty"`
+	PreviousCdrArrangement *CDRArrangement `json:"previous_cdr_arrangement,omitempty" yaml:"previous_cdr_arrangement,omitempty"`
 
 	// List of requested scopes
-	RequestedScopes []*RequestedScope `json:"requested_scopes"`
+	RequestedScopes []*RequestedScope `json:"requested_scopes" yaml:"requested_scopes"`
 
 	// Cloudentity internal consent status.
 	//
 	// This parameter is deprecated. The `status` value is available in the `cdr_arrangement` >
 	// `status` parameter received with the current response.
 	// Example: AwaitingAuthorisation
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// Subject identifying the authenticated user.
 	// Depending on the workspace configuration, the value can be hashed.
 	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 }
 
 // Validate validates this get c d r consent response
@@ -211,6 +211,10 @@ func (m *GetCDRConsentResponse) ContextValidate(ctx context.Context, formats str
 
 func (m *GetCDRConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -226,6 +230,11 @@ func (m *GetCDRConsentResponse) contextValidateAuthenticationContext(ctx context
 func (m *GetCDRConsentResponse) contextValidateCdrArrangement(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CdrArrangement != nil {
+
+		if swag.IsZero(m.CdrArrangement) { // not required
+			return nil
+		}
+
 		if err := m.CdrArrangement.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdr_arrangement")
@@ -242,6 +251,11 @@ func (m *GetCDRConsentResponse) contextValidateCdrArrangement(ctx context.Contex
 func (m *GetCDRConsentResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -258,6 +272,11 @@ func (m *GetCDRConsentResponse) contextValidateClientInfo(ctx context.Context, f
 func (m *GetCDRConsentResponse) contextValidatePreviousCdrArrangement(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PreviousCdrArrangement != nil {
+
+		if swag.IsZero(m.PreviousCdrArrangement) { // not required
+			return nil
+		}
+
 		if err := m.PreviousCdrArrangement.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous_cdr_arrangement")
@@ -276,6 +295,11 @@ func (m *GetCDRConsentResponse) contextValidateRequestedScopes(ctx context.Conte
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))

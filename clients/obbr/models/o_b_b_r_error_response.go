@@ -20,10 +20,10 @@ import (
 type OBBRErrorResponse struct {
 
 	// errors
-	Errors []*HTTPError `json:"errors"`
+	Errors []*HTTPError `json:"errors" yaml:"errors"`
 
 	// meta
-	Meta *OpenbankingBrasilPaymentMeta `json:"meta,omitempty"`
+	Meta *OpenbankingBrasilPaymentMeta `json:"meta,omitempty" yaml:"meta,omitempty"`
 }
 
 // Validate validates this o b b r error response

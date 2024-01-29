@@ -20,19 +20,29 @@ type CDRConfiguration struct {
 
 	// Flag to enable / disable ADR validation
 	// If enabled, register URL must be provided and point to a existing registry
-	AdrValidationEnabled bool `json:"adr_validation_enabled,omitempty"`
+	AdrValidationEnabled bool `json:"adr_validation_enabled,omitempty" yaml:"adr_validation_enabled,omitempty"`
 
 	// brand id
-	BrandID string `json:"brand_id,omitempty"`
+	BrandID string `json:"brand_id,omitempty" yaml:"brand_id,omitempty"`
+
+	// Do not cache trust anchor data, fetch it from registry every time
+	// This is useful for testing purposes when the registry might not be fully up when the test is run
+	DontCacheTrustAnchorData bool `json:"dont_cache_trust_anchor_data,omitempty" yaml:"dont_cache_trust_anchor_data,omitempty"`
 
 	// industry
-	Industry CDRIndustry `json:"industry,omitempty"`
+	Industry CDRIndustry `json:"industry,omitempty" yaml:"industry,omitempty"`
 
 	// register api version
-	RegisterAPIVersion CDRRegisterAPIVersion `json:"register_api_version,omitempty"`
+	RegisterAPIVersion CDRRegisterAPIVersion `json:"register_api_version,omitempty" yaml:"register_api_version,omitempty"`
 
 	// register url
-	RegisterURL CDRRegisterURL `json:"register_url,omitempty"`
+	RegisterURL CDRRegisterURL `json:"register_url,omitempty" yaml:"register_url,omitempty"`
+
+	// Flag to disable register URL validation
+	// If enabled, there will be no error message
+	// if data from provided register URL can not be fetched
+	// It is highly not recommended to use this flag if it is not required
+	SkipRegisterURLValidation bool `json:"skip_register_url_validation,omitempty" yaml:"skip_register_url_validation,omitempty"`
 }
 
 // Validate validates this c d r configuration
@@ -132,6 +142,10 @@ func (m *CDRConfiguration) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *CDRConfiguration) contextValidateIndustry(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Industry) { // not required
+		return nil
+	}
+
 	if err := m.Industry.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("industry")
@@ -146,6 +160,10 @@ func (m *CDRConfiguration) contextValidateIndustry(ctx context.Context, formats 
 
 func (m *CDRConfiguration) contextValidateRegisterAPIVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.RegisterAPIVersion) { // not required
+		return nil
+	}
+
 	if err := m.RegisterAPIVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("register_api_version")
@@ -159,6 +177,10 @@ func (m *CDRConfiguration) contextValidateRegisterAPIVersion(ctx context.Context
 }
 
 func (m *CDRConfiguration) contextValidateRegisterURL(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RegisterURL) { // not required
+		return nil
+	}
 
 	if err := m.RegisterURL.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

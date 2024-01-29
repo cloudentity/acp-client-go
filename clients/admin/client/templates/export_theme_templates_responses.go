@@ -55,7 +55,7 @@ func (o *ExportThemeTemplatesReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /theme/{themeID}/templates/zip] exportThemeTemplates", response, response.Code())
 	}
 }
 
@@ -73,6 +73,15 @@ ExportThemeTemplatesOK describes a response with status code 200, with default h
 Templates archive
 */
 type ExportThemeTemplatesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload io.Writer
 }
 
@@ -101,6 +110,11 @@ func (o *ExportThemeTemplatesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the export theme templates o k response
+func (o *ExportThemeTemplatesOK) Code() int {
+	return 200
+}
+
 func (o *ExportThemeTemplatesOK) Error() string {
 	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesOK  %+v", 200, o.Payload)
 }
@@ -114,6 +128,13 @@ func (o *ExportThemeTemplatesOK) GetPayload() io.Writer {
 }
 
 func (o *ExportThemeTemplatesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -131,7 +152,7 @@ func NewExportThemeTemplatesUnauthorized() *ExportThemeTemplatesUnauthorized {
 /*
 ExportThemeTemplatesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ExportThemeTemplatesUnauthorized struct {
 	Payload *models.Error
@@ -160,6 +181,11 @@ func (o *ExportThemeTemplatesUnauthorized) IsServerError() bool {
 // IsCode returns true when this export theme templates unauthorized response a status code equal to that given
 func (o *ExportThemeTemplatesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the export theme templates unauthorized response
+func (o *ExportThemeTemplatesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ExportThemeTemplatesUnauthorized) Error() string {
@@ -194,7 +220,7 @@ func NewExportThemeTemplatesForbidden() *ExportThemeTemplatesForbidden {
 /*
 ExportThemeTemplatesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ExportThemeTemplatesForbidden struct {
 	Payload *models.Error
@@ -223,6 +249,11 @@ func (o *ExportThemeTemplatesForbidden) IsServerError() bool {
 // IsCode returns true when this export theme templates forbidden response a status code equal to that given
 func (o *ExportThemeTemplatesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the export theme templates forbidden response
+func (o *ExportThemeTemplatesForbidden) Code() int {
+	return 403
 }
 
 func (o *ExportThemeTemplatesForbidden) Error() string {
@@ -257,7 +288,7 @@ func NewExportThemeTemplatesNotFound() *ExportThemeTemplatesNotFound {
 /*
 ExportThemeTemplatesNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ExportThemeTemplatesNotFound struct {
 	Payload *models.Error
@@ -286,6 +317,11 @@ func (o *ExportThemeTemplatesNotFound) IsServerError() bool {
 // IsCode returns true when this export theme templates not found response a status code equal to that given
 func (o *ExportThemeTemplatesNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the export theme templates not found response
+func (o *ExportThemeTemplatesNotFound) Code() int {
+	return 404
 }
 
 func (o *ExportThemeTemplatesNotFound) Error() string {
@@ -320,7 +356,7 @@ func NewExportThemeTemplatesTooManyRequests() *ExportThemeTemplatesTooManyReques
 /*
 ExportThemeTemplatesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ExportThemeTemplatesTooManyRequests struct {
 	Payload *models.Error
@@ -349,6 +385,11 @@ func (o *ExportThemeTemplatesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this export theme templates too many requests response a status code equal to that given
 func (o *ExportThemeTemplatesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the export theme templates too many requests response
+func (o *ExportThemeTemplatesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ExportThemeTemplatesTooManyRequests) Error() string {

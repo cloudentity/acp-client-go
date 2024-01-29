@@ -20,13 +20,13 @@ import (
 type EventSubject struct {
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// events
-	Events []*Event `json:"events"`
+	Events []*Event `json:"events" yaml:"events"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this event subject
@@ -88,6 +88,11 @@ func (m *EventSubject) contextValidateEvents(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Events); i++ {
 
 		if m.Events[i] != nil {
+
+			if swag.IsZero(m.Events[i]) { // not required
+				return nil
+			}
+
 			if err := m.Events[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("events" + "." + strconv.Itoa(i))

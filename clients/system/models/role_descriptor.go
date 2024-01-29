@@ -23,32 +23,32 @@ import (
 type RoleDescriptor struct {
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// contact people
-	ContactPeople []*ContactPerson `json:"ContactPeople"`
+	ContactPeople []*ContactPerson `json:"ContactPeople" yaml:"ContactPeople"`
 
 	// error URL
-	ErrorURL string `json:"ErrorURL,omitempty"`
+	ErrorURL string `json:"ErrorURL,omitempty" yaml:"ErrorURL,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// organization
-	Organization *Organization `json:"Organization,omitempty"`
+	Organization *Organization `json:"Organization,omitempty" yaml:"Organization,omitempty"`
 
 	// protocol support enumeration
-	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty"`
+	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty" yaml:"ProtocolSupportEnumeration,omitempty"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 }
 
 // Validate validates this role descriptor
@@ -236,6 +236,10 @@ func (m *RoleDescriptor) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *RoleDescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
+
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CacheDuration")
@@ -253,6 +257,11 @@ func (m *RoleDescriptor) contextValidateContactPeople(ctx context.Context, forma
 	for i := 0; i < len(m.ContactPeople); i++ {
 
 		if m.ContactPeople[i] != nil {
+
+			if swag.IsZero(m.ContactPeople[i]) { // not required
+				return nil
+			}
+
 			if err := m.ContactPeople[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ContactPeople" + "." + strconv.Itoa(i))
@@ -273,6 +282,11 @@ func (m *RoleDescriptor) contextValidateKeyDescriptors(ctx context.Context, form
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -291,6 +305,11 @@ func (m *RoleDescriptor) contextValidateKeyDescriptors(ctx context.Context, form
 func (m *RoleDescriptor) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Organization != nil {
+
+		if swag.IsZero(m.Organization) { // not required
+			return nil
+		}
+
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Organization")
@@ -307,6 +326,11 @@ func (m *RoleDescriptor) contextValidateOrganization(ctx context.Context, format
 func (m *RoleDescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")

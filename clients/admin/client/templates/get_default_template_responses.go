@@ -60,7 +60,7 @@ func (o *GetDefaultTemplateReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /themes/template/{fsPath}] getDefaultTemplate", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ GetDefaultTemplateOK describes a response with status code 200, with default hea
 Template
 */
 type GetDefaultTemplateOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Template
 }
 
@@ -103,6 +112,11 @@ func (o *GetDefaultTemplateOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get default template o k response
+func (o *GetDefaultTemplateOK) Code() int {
+	return 200
+}
+
 func (o *GetDefaultTemplateOK) Error() string {
 	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *GetDefaultTemplateOK) GetPayload() *models.Template {
 }
 
 func (o *GetDefaultTemplateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Template)
 
@@ -135,7 +156,7 @@ func NewGetDefaultTemplateBadRequest() *GetDefaultTemplateBadRequest {
 /*
 GetDefaultTemplateBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GetDefaultTemplateBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *GetDefaultTemplateBadRequest) IsServerError() bool {
 // IsCode returns true when this get default template bad request response a status code equal to that given
 func (o *GetDefaultTemplateBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the get default template bad request response
+func (o *GetDefaultTemplateBadRequest) Code() int {
+	return 400
 }
 
 func (o *GetDefaultTemplateBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewGetDefaultTemplateUnauthorized() *GetDefaultTemplateUnauthorized {
 /*
 GetDefaultTemplateUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetDefaultTemplateUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *GetDefaultTemplateUnauthorized) IsServerError() bool {
 // IsCode returns true when this get default template unauthorized response a status code equal to that given
 func (o *GetDefaultTemplateUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get default template unauthorized response
+func (o *GetDefaultTemplateUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetDefaultTemplateUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewGetDefaultTemplateForbidden() *GetDefaultTemplateForbidden {
 /*
 GetDefaultTemplateForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetDefaultTemplateForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *GetDefaultTemplateForbidden) IsServerError() bool {
 // IsCode returns true when this get default template forbidden response a status code equal to that given
 func (o *GetDefaultTemplateForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get default template forbidden response
+func (o *GetDefaultTemplateForbidden) Code() int {
+	return 403
 }
 
 func (o *GetDefaultTemplateForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewGetDefaultTemplateNotFound() *GetDefaultTemplateNotFound {
 /*
 GetDefaultTemplateNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetDefaultTemplateNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *GetDefaultTemplateNotFound) IsServerError() bool {
 // IsCode returns true when this get default template not found response a status code equal to that given
 func (o *GetDefaultTemplateNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get default template not found response
+func (o *GetDefaultTemplateNotFound) Code() int {
+	return 404
 }
 
 func (o *GetDefaultTemplateNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewGetDefaultTemplateTooManyRequests() *GetDefaultTemplateTooManyRequests {
 /*
 GetDefaultTemplateTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetDefaultTemplateTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *GetDefaultTemplateTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get default template too many requests response a status code equal to that given
 func (o *GetDefaultTemplateTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get default template too many requests response
+func (o *GetDefaultTemplateTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetDefaultTemplateTooManyRequests) Error() string {

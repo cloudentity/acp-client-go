@@ -18,10 +18,10 @@ import (
 type CDRRegisterClientMetadata struct {
 
 	// Data recipient status
-	DataRecipientStatus string `json:"data_recipient_status,omitempty"`
+	DataRecipientStatus string `json:"data_recipient_status,omitempty" yaml:"data_recipient_status,omitempty"`
 
 	// Software product status
-	SoftwareProductStatus string `json:"software_product_status,omitempty"`
+	SoftwareProductStatus string `json:"software_product_status,omitempty" yaml:"software_product_status,omitempty"`
 }
 
 // Validate validates this c d r register client metadata

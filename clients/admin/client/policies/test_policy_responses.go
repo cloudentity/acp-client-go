@@ -72,7 +72,7 @@ func (o *TestPolicyReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /policies/test] testPolicy", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ TestPolicyOK describes a response with status code 200, with default header valu
 Test policy result
 */
 type TestPolicyOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.TestPolicyResponse
 }
 
@@ -115,6 +124,11 @@ func (o *TestPolicyOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the test policy o k response
+func (o *TestPolicyOK) Code() int {
+	return 200
+}
+
 func (o *TestPolicyOK) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *TestPolicyOK) GetPayload() *models.TestPolicyResponse {
 }
 
 func (o *TestPolicyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.TestPolicyResponse)
 
@@ -147,7 +168,7 @@ func NewTestPolicyBadRequest() *TestPolicyBadRequest {
 /*
 TestPolicyBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type TestPolicyBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *TestPolicyBadRequest) IsServerError() bool {
 // IsCode returns true when this test policy bad request response a status code equal to that given
 func (o *TestPolicyBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the test policy bad request response
+func (o *TestPolicyBadRequest) Code() int {
+	return 400
 }
 
 func (o *TestPolicyBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewTestPolicyUnauthorized() *TestPolicyUnauthorized {
 /*
 TestPolicyUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type TestPolicyUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *TestPolicyUnauthorized) IsServerError() bool {
 // IsCode returns true when this test policy unauthorized response a status code equal to that given
 func (o *TestPolicyUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the test policy unauthorized response
+func (o *TestPolicyUnauthorized) Code() int {
+	return 401
 }
 
 func (o *TestPolicyUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewTestPolicyForbidden() *TestPolicyForbidden {
 /*
 TestPolicyForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type TestPolicyForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *TestPolicyForbidden) IsServerError() bool {
 // IsCode returns true when this test policy forbidden response a status code equal to that given
 func (o *TestPolicyForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the test policy forbidden response
+func (o *TestPolicyForbidden) Code() int {
+	return 403
 }
 
 func (o *TestPolicyForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewTestPolicyNotFound() *TestPolicyNotFound {
 /*
 TestPolicyNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type TestPolicyNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *TestPolicyNotFound) IsServerError() bool {
 // IsCode returns true when this test policy not found response a status code equal to that given
 func (o *TestPolicyNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the test policy not found response
+func (o *TestPolicyNotFound) Code() int {
+	return 404
 }
 
 func (o *TestPolicyNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewTestPolicyConflict() *TestPolicyConflict {
 /*
 TestPolicyConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type TestPolicyConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *TestPolicyConflict) IsServerError() bool {
 // IsCode returns true when this test policy conflict response a status code equal to that given
 func (o *TestPolicyConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the test policy conflict response
+func (o *TestPolicyConflict) Code() int {
+	return 409
 }
 
 func (o *TestPolicyConflict) Error() string {
@@ -462,7 +508,7 @@ func NewTestPolicyUnprocessableEntity() *TestPolicyUnprocessableEntity {
 /*
 TestPolicyUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type TestPolicyUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *TestPolicyUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this test policy unprocessable entity response a status code equal to that given
 func (o *TestPolicyUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the test policy unprocessable entity response
+func (o *TestPolicyUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *TestPolicyUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewTestPolicyTooManyRequests() *TestPolicyTooManyRequests {
 /*
 TestPolicyTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type TestPolicyTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *TestPolicyTooManyRequests) IsServerError() bool {
 // IsCode returns true when this test policy too many requests response a status code equal to that given
 func (o *TestPolicyTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the test policy too many requests response
+func (o *TestPolicyTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *TestPolicyTooManyRequests) Error() string {

@@ -22,10 +22,10 @@ type OBWriteInternationalScheduledConsent5DataInitiationCreditor struct {
 	// Name by which a party is known and which is usually used to identify that party.
 	// Max Length: 140
 	// Min Length: 1
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 }
 
 // Validate validates this o b write international scheduled consent5 data initiation creditor
@@ -98,6 +98,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiationCreditor) ContextVal
 func (m *OBWriteInternationalScheduledConsent5DataInitiationCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PostalAddress")

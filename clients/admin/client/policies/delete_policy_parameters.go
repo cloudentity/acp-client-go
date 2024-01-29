@@ -61,6 +61,14 @@ DeletePolicyParams contains all the parameters to send to the API endpoint
 */
 type DeletePolicyParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Pid.
 	Pid string
 
@@ -117,6 +125,17 @@ func (o *DeletePolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete policy params
+func (o *DeletePolicyParams) WithIfMatch(ifMatch *string) *DeletePolicyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete policy params
+func (o *DeletePolicyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithPid adds the pid to the delete policy params
 func (o *DeletePolicyParams) WithPid(pid string) *DeletePolicyParams {
 	o.SetPid(pid)
@@ -135,6 +154,14 @@ func (o *DeletePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param pid
 	if err := r.SetPathParam("pid", o.Pid); err != nil {

@@ -66,7 +66,7 @@ func (o *CreateAzureB2CIDPReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/azureb2c] createAzureB2CIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateAzureB2CIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create azure b2 c Id p created response
+func (o *CreateAzureB2CIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateAzureB2CIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateAzureB2CIDPBadRequest() *CreateAzureB2CIDPBadRequest {
 /*
 CreateAzureB2CIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateAzureB2CIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateAzureB2CIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p bad request response a status code equal to that given
 func (o *CreateAzureB2CIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create azure b2 c Id p bad request response
+func (o *CreateAzureB2CIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateAzureB2CIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateAzureB2CIDPUnauthorized() *CreateAzureB2CIDPUnauthorized {
 /*
 CreateAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateAzureB2CIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateAzureB2CIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p unauthorized response a status code equal to that given
 func (o *CreateAzureB2CIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create azure b2 c Id p unauthorized response
+func (o *CreateAzureB2CIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateAzureB2CIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateAzureB2CIDPForbidden() *CreateAzureB2CIDPForbidden {
 /*
 CreateAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateAzureB2CIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateAzureB2CIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p forbidden response a status code equal to that given
 func (o *CreateAzureB2CIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create azure b2 c Id p forbidden response
+func (o *CreateAzureB2CIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateAzureB2CIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateAzureB2CIDPNotFound() *CreateAzureB2CIDPNotFound {
 /*
 CreateAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateAzureB2CIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateAzureB2CIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p not found response a status code equal to that given
 func (o *CreateAzureB2CIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create azure b2 c Id p not found response
+func (o *CreateAzureB2CIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateAzureB2CIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateAzureB2CIDPUnprocessableEntity() *CreateAzureB2CIDPUnprocessableEn
 /*
 CreateAzureB2CIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateAzureB2CIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateAzureB2CIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p unprocessable entity response a status code equal to that given
 func (o *CreateAzureB2CIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create azure b2 c Id p unprocessable entity response
+func (o *CreateAzureB2CIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateAzureB2CIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateAzureB2CIDPTooManyRequests() *CreateAzureB2CIDPTooManyRequests {
 /*
 CreateAzureB2CIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateAzureB2CIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateAzureB2CIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create azure b2 c Id p too many requests response a status code equal to that given
 func (o *CreateAzureB2CIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create azure b2 c Id p too many requests response
+func (o *CreateAzureB2CIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateAzureB2CIDPTooManyRequests) Error() string {

@@ -21,11 +21,11 @@ type TestRequest struct {
 
 	// api
 	// Required: true
-	API *API `json:"api"`
+	API *API `json:"api" yaml:"api"`
 
 	// test request
 	// Required: true
-	TestRequest *HTTPRequest `json:"test_request"`
+	TestRequest *HTTPRequest `json:"test_request" yaml:"test_request"`
 }
 
 // Validate validates this test request
@@ -107,6 +107,7 @@ func (m *TestRequest) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *TestRequest) contextValidateAPI(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.API != nil {
+
 		if err := m.API.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("api")
@@ -123,6 +124,7 @@ func (m *TestRequest) contextValidateAPI(ctx context.Context, formats strfmt.Reg
 func (m *TestRequest) contextValidateTestRequest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TestRequest != nil {
+
 		if err := m.TestRequest.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("test_request")

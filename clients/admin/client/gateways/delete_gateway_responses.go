@@ -54,7 +54,7 @@ func (o *DeleteGatewayReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /gateways/{gw}] deleteGateway", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteGatewayNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete gateway no content response
+func (o *DeleteGatewayNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteGatewayNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteGatewayUnauthorized() *DeleteGatewayUnauthorized {
 /*
 DeleteGatewayUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteGatewayUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteGatewayUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete gateway unauthorized response a status code equal to that given
 func (o *DeleteGatewayUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete gateway unauthorized response
+func (o *DeleteGatewayUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteGatewayUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteGatewayForbidden() *DeleteGatewayForbidden {
 /*
 DeleteGatewayForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteGatewayForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteGatewayForbidden) IsServerError() bool {
 // IsCode returns true when this delete gateway forbidden response a status code equal to that given
 func (o *DeleteGatewayForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete gateway forbidden response
+func (o *DeleteGatewayForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteGatewayForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteGatewayNotFound() *DeleteGatewayNotFound {
 /*
 DeleteGatewayNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteGatewayNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteGatewayNotFound) IsServerError() bool {
 // IsCode returns true when this delete gateway not found response a status code equal to that given
 func (o *DeleteGatewayNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete gateway not found response
+func (o *DeleteGatewayNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteGatewayNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteGatewayTooManyRequests() *DeleteGatewayTooManyRequests {
 /*
 DeleteGatewayTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteGatewayTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteGatewayTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete gateway too many requests response a status code equal to that given
 func (o *DeleteGatewayTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete gateway too many requests response
+func (o *DeleteGatewayTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteGatewayTooManyRequests) Error() string {

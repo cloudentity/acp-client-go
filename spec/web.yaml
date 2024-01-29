@@ -42,14 +42,21 @@ info:
   title: ""
   version: ""
 paths:
-  /styling:
+  /{aid}/styling:
     get:
       operationId: getStyling
+      parameters:
+      - default: admin
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
       responses:
         "200":
           $ref: '#/responses/Styling'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
       summary: Get styling for a tenant.
       tags:
       - web
@@ -58,8 +65,48 @@ responses:
     description: Styling
     schema:
       $ref: '#/definitions/Styling'
-  httpError:
-    description: HttpError
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 swagger: "2.0"

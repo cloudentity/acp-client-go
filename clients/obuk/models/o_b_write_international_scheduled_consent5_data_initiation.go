@@ -21,72 +21,72 @@ import (
 type OBWriteInternationalScheduledConsent5DataInitiation struct {
 
 	// charge bearer
-	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty"`
+	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty" yaml:"ChargeBearer,omitempty"`
 
 	// creditor
-	Creditor *OBWriteInternationalScheduledConsent5DataInitiationCreditor `json:"Creditor,omitempty"`
+	Creditor *OBWriteInternationalScheduledConsent5DataInitiationCreditor `json:"Creditor,omitempty" yaml:"Creditor,omitempty"`
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteInternationalScheduledConsent5DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteInternationalScheduledConsent5DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// creditor agent
-	CreditorAgent *OBWriteInternationalScheduledConsent5DataInitiationCreditorAgent `json:"CreditorAgent,omitempty"`
+	CreditorAgent *OBWriteInternationalScheduledConsent5DataInitiationCreditorAgent `json:"CreditorAgent,omitempty" yaml:"CreditorAgent,omitempty"`
 
 	// Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.
 	// Required: true
 	// Pattern: ^[A-Z]{3,3}$
-	CurrencyOfTransfer string `json:"CurrencyOfTransfer"`
+	CurrencyOfTransfer string `json:"CurrencyOfTransfer" yaml:"CurrencyOfTransfer"`
 
 	// debtor account
-	DebtorAccount *OBWriteInternationalScheduledConsent5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteInternationalScheduledConsent5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// Country in which Credit Account is domiciled. Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).
 	// Pattern: [A-Z]{2,2}
-	DestinationCountryCode string `json:"DestinationCountryCode,omitempty"`
+	DestinationCountryCode string `json:"DestinationCountryCode,omitempty" yaml:"DestinationCountryCode,omitempty"`
 
 	// Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
 	// Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
 	// OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.
 	// Max Length: 35
 	// Min Length: 1
-	EndToEndIdentification string `json:"EndToEndIdentification,omitempty"`
+	EndToEndIdentification string `json:"EndToEndIdentification,omitempty" yaml:"EndToEndIdentification,omitempty"`
 
 	// exchange rate information
-	ExchangeRateInformation *OBWriteInternationalScheduledConsent5DataInitiationExchangeRateInformation `json:"ExchangeRateInformation,omitempty"`
+	ExchangeRateInformation *OBWriteInternationalScheduledConsent5DataInitiationExchangeRateInformation `json:"ExchangeRateInformation,omitempty" yaml:"ExchangeRateInformation,omitempty"`
 
 	// Specifies the purpose of an international payment, when there is no corresponding 4 character code available in the ISO20022 list of Purpose Codes.
 	// Max Length: 140
 	// Min Length: 1
-	ExtendedPurpose string `json:"ExtendedPurpose,omitempty"`
+	ExtendedPurpose string `json:"ExtendedPurpose,omitempty" yaml:"ExtendedPurpose,omitempty"`
 
 	// instructed amount
 	// Required: true
-	InstructedAmount *OBWriteInternationalScheduledConsent5DataInitiationInstructedAmount `json:"InstructedAmount"`
+	InstructedAmount *OBWriteInternationalScheduledConsent5DataInitiationInstructedAmount `json:"InstructedAmount" yaml:"InstructedAmount"`
 
 	// Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.
 	// Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	InstructionIdentification string `json:"InstructionIdentification"`
+	InstructionIdentification string `json:"InstructionIdentification" yaml:"InstructionIdentification"`
 
 	// Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
 	// Enum: [Normal Urgent]
-	InstructionPriority string `json:"InstructionPriority,omitempty"`
+	InstructionPriority string `json:"InstructionPriority,omitempty" yaml:"InstructionPriority,omitempty"`
 
 	// local instrument
-	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty"`
+	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty" yaml:"LocalInstrument,omitempty"`
 
 	// Specifies the external purpose code in the format of character string with a maximum length of 4 characters.
 	// The list of valid codes is an external code list published separately.
 	// External code sets can be downloaded from www.iso20022.org.
 	// Max Length: 4
 	// Min Length: 1
-	Purpose string `json:"Purpose,omitempty"`
+	Purpose string `json:"Purpose,omitempty" yaml:"Purpose,omitempty"`
 
 	// remittance information
-	RemittanceInformation *OBWriteInternationalScheduledConsent5DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty"`
+	RemittanceInformation *OBWriteInternationalScheduledConsent5DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty" yaml:"RemittanceInformation,omitempty"`
 
 	// Date at which the initiating party requests the clearing agent to process the payment.
 	// Usage: This is the date on which the debtor's account is to be debited.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -94,10 +94,10 @@ type OBWriteInternationalScheduledConsent5DataInitiation struct {
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	RequestedExecutionDateTime strfmt.DateTime `json:"RequestedExecutionDateTime"`
+	RequestedExecutionDateTime strfmt.DateTime `json:"RequestedExecutionDateTime" yaml:"RequestedExecutionDateTime"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write international scheduled consent5 data initiation
@@ -540,6 +540,10 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) ContextValidate(ct
 
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("ChargeBearer")
@@ -555,6 +559,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCha
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
+		if swag.IsZero(m.Creditor) { // not required
+			return nil
+		}
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Creditor")
@@ -571,6 +580,7 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCre
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -587,6 +597,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCre
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -603,6 +618,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateCre
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -619,6 +639,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateDeb
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateExchangeRateInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ExchangeRateInformation != nil {
+
+		if swag.IsZero(m.ExchangeRateInformation) { // not required
+			return nil
+		}
+
 		if err := m.ExchangeRateInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ExchangeRateInformation")
@@ -635,6 +660,7 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateExc
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")
@@ -649,6 +675,10 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateIns
 }
 
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
 
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -665,6 +695,11 @@ func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateLoc
 func (m *OBWriteInternationalScheduledConsent5DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RemittanceInformation != nil {
+
+		if swag.IsZero(m.RemittanceInformation) { // not required
+			return nil
+		}
+
 		if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RemittanceInformation")

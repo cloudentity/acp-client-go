@@ -18,15 +18,15 @@ import (
 type GraphQLField struct {
 
 	// if false it is not possible to assign a policy, set to false if policy is declaratively assigned
-	CanHavePolicy bool `json:"can_have_policy,omitempty"`
+	CanHavePolicy bool `json:"can_have_policy,omitempty" yaml:"can_have_policy,omitempty"`
 
 	// name of graphQL field
 	// Example: id
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// optional id of a policy
 	// Example: block
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 }
 
 // Validate validates this graph q l field

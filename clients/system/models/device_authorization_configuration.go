@@ -22,13 +22,13 @@ type DeviceAuthorizationConfiguration struct {
 	// Custom device authorization request TTL
 	// If not provided, TTL is set to 30 minutes
 	// Format: duration
-	RequestTTL strfmt.Duration `json:"request_ttl,omitempty"`
+	RequestTTL strfmt.Duration `json:"request_ttl,omitempty" yaml:"request_ttl,omitempty"`
 
 	// user code character set
-	UserCodeCharacterSet UserCodeCharacterSet `json:"user_code_character_set,omitempty"`
+	UserCodeCharacterSet UserCodeCharacterSet `json:"user_code_character_set,omitempty" yaml:"user_code_character_set,omitempty"`
 
 	// user code length
-	UserCodeLength int64 `json:"user_code_length,omitempty"`
+	UserCodeLength int64 `json:"user_code_length,omitempty" yaml:"user_code_length,omitempty"`
 }
 
 // Validate validates this device authorization configuration
@@ -93,6 +93,10 @@ func (m *DeviceAuthorizationConfiguration) ContextValidate(ctx context.Context, 
 }
 
 func (m *DeviceAuthorizationConfiguration) contextValidateUserCodeCharacterSet(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.UserCodeCharacterSet) { // not required
+		return nil
+	}
 
 	if err := m.UserCodeCharacterSet.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

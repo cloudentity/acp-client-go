@@ -19,7 +19,7 @@ import (
 type FDXErrorResponse struct {
 
 	// error
-	Error *FDXError `json:"error,omitempty"`
+	Error *FDXError `json:"error,omitempty" yaml:"error,omitempty"`
 }
 
 // Validate validates this f d x error response
@@ -72,6 +72,11 @@ func (m *FDXErrorResponse) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *FDXErrorResponse) contextValidateError(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Error != nil {
+
+		if swag.IsZero(m.Error) { // not required
+			return nil
+		}
+
 		if err := m.Error.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("error")

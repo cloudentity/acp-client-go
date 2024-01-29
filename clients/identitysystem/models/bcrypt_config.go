@@ -18,7 +18,7 @@ import (
 type BcryptConfig struct {
 
 	// cost
-	Cost int64 `json:"cost,omitempty"`
+	Cost int64 `json:"cost,omitempty" yaml:"cost,omitempty"`
 }
 
 // Validate validates this bcrypt config

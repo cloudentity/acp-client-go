@@ -18,22 +18,22 @@ import (
 type RecentActivityPayload struct {
 
 	// action
-	Action string `json:"action,omitempty"`
+	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// count
-	Count int64 `json:"count,omitempty"`
+	Count int64 `json:"count,omitempty" yaml:"count,omitempty"`
 
 	// primary name
-	PrimaryName string `json:"primary_name,omitempty"`
+	PrimaryName string `json:"primary_name,omitempty" yaml:"primary_name,omitempty"`
 
 	// secondary name
-	SecondaryName string `json:"secondary_name,omitempty"`
+	SecondaryName string `json:"secondary_name,omitempty" yaml:"secondary_name,omitempty"`
 
 	// subject
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// subject id
-	SubjectID string `json:"subject_id,omitempty"`
+	SubjectID string `json:"subject_id,omitempty" yaml:"subject_id,omitempty"`
 }
 
 // Validate validates this recent activity payload

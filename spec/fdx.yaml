@@ -20,6 +20,8 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthorizationDetailType:
+    type: string
   ClientInfo:
     properties:
       client_name:
@@ -539,6 +541,15 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
@@ -667,12 +678,16 @@ definitions:
         type: integer
         x-nullable: false
       duration_type:
+        default:
+        - ONE_TIME
+        - PERSISTENT
+        - TIME_BOUND
         description: |-
           The rule of consent granting by the end-user to indicate whether they must take action
           to revoke access or the consent will be revoked automatically.
 
-          The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-        example: '"ONE_TIME"'
+          One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+        example: ONE_TIME
         items:
           $ref: '#/definitions/DurationType'
         type: array
@@ -743,7 +758,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -797,6 +812,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -862,7 +884,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1090,6 +1112,15 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
@@ -1255,8 +1286,8 @@ definitions:
           The rule of consent granting by the end-user to indicate whether they must take action
           to revoke access or the consent will be revoked automatically.
 
-          The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-        example: '"ONE_TIME"'
+          One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+        example: ONE_TIME
         items:
           $ref: '#/definitions/DurationType'
         type: array
@@ -1341,7 +1372,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1393,6 +1424,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -1463,7 +1501,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1623,6 +1661,8 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      token_ttls:
+        $ref: '#/definitions/TokenTTLs'
       tos_uri:
         description: Terms of Service URL.
         type: string
@@ -1639,6 +1679,11 @@ definitions:
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
+        x-nullable: false
+      use_custom_token_ttls:
+        description: If enabled the client application will be able to set its own
+          token TTLs.
+        type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
         default: none
@@ -1804,7 +1849,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -1829,7 +1874,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -1844,7 +1889,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -1999,20 +2044,17 @@ definitions:
         description: Issuer URL is a string representing the issuer of this token.
         type: string
         x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
+        x-nullable: false
       nbf:
         description: |-
           NotBefore is an integer timestamp measured in the number of seconds
           since January 1 1970 UTC. It indicates this token was not
           used before the specified time.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          The integer timestamp measured in the number
-          of seconds since January 1 1970 UTC. It indicates when the issued refresh
-          token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -2174,6 +2216,11 @@ definitions:
         example: scope-1
         format: scopeID
         type: string
+        x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
@@ -2339,6 +2386,51 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  TokenTTLs:
+    properties:
+      access_token_ttl:
+        default: 1h0m0s
+        description: |-
+          Access token time to live
+
+          After an access token reaches its time to live, it expires and it cannot be used to
+          authenticate the client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      authorization_code_ttl:
+        description: |-
+          Authorization code time to live
+
+          After an authorization code reaches its time to live, it expires and it cannot be used to
+          authorize the request to the `/token` endpoint.
+        example: 10m0s
+        format: duration
+        type: string
+        x-nullable: false
+      id_token_ttl:
+        description: |-
+          ID token time to live
+
+          After an ID token reaches its time to live, it expires and it cannot be used to provide
+          user profile information to a client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      refresh_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Refresh token time to live
+
+          After a refresh token reaches its time to live, it expires and it cannot be used to obtain
+          new access tokens for a client application.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
+    type: object
   genericError:
     description: Error response
     properties:
@@ -2362,25 +2454,37 @@ definitions:
 host: localhost:8443
 info:
   description: |-
-    Cloudentity FDX APIs
-
-    Financial Data Exchange (FDX) APIs ensure compliance with the FDX
-    standard.
+    [Financial Data Exchange (FDX)](https://cloudentity.com/developers/basics/openfinance/financial-data-exchange-basics/)
+    APIs ensure compliance with the FDX standard.
 
     This collection is compatible with the
-    [FDX workspace](https://cloudentity.com/developers/howtos/fdx/fdx-security-profile-workspace/) available in Cloudentity.
-    It covers operations for
+    [FDX workspace](https://cloudentity.com/developers/howtos/fdx/fdx-security-profile-workspace/) available in
+    Cloudentity. It covers operations for
     [dynamic client registration](https://cloudentity.com/developers/howtos/applications/configuring-dcr/), client details
     update and deletion, as well as [consent management](https://cloudentity.com/developers/howtos/fdx/fdx-consent-apis/)
     options for a
-    [custom Open Finance consent screen](https://cloudentity.com/developers/howtos/fdx/fdx-consent-page/), including
+    [custom consent screen](https://cloudentity.com/developers/howtos/fdx/fdx-consent-page/), including
     consent provision, consent information retrieval, and handling consent revocation options.
-  title: Cloudentity API
+
+    API requests must feature the explicitly defined scopes the client application can access. The required and optional
+    scopes are listed under individual endpoints. To check scopes for an endpoint, unfold the **AUTHORIZATIONS:** block
+    in the endpoint description.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    necessary scopes for your client application in advance.
+
+    Learn more about the [pattern]((https://cloudentity.com/developers/howtos/fdx/fdx-consent-apis/)) Cloudentity
+    provides for the customers to build and integrate consent pages with the Financial ecosystem
+    and how FDX data providers can
+    [protect their API](https://cloudentity.com/developers/howtos/fdx/fdx-data-api-protection/).
+
+    Terms and abbreviations are clarified in the
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/).
+  title: Cloudentity Financial Data Exchange APIs
   version: latest
 paths:
   /consents/{consentID}:
     get:
-      description: 'Get a Consent Grant'
+      description: Retrieve FDX consent grant data by the consent identifier.
       operationId: getFDXConsent
       parameters:
       - default: default
@@ -2400,15 +2504,19 @@ paths:
           $ref: '#/responses/FDXErrorResponse'
         "404":
           $ref: '#/responses/FDXErrorResponse'
-      summary: Get a Consent Grant
+      summary: Get Consent Grant
       tags:
       - FDX
   /consents/{consentID}/revocation:
     get:
       description: |-
-        This API can be used used to get information about consent revocation.
-        404 response code is returned in two cases:
-        when consent does not exists or consent is not revoked
+        Retrieve the details about consent revocation by the consent identifier.
+
+        This endpoint returns the `404` response code when:
+
+        1. No consent with this ID exists.
+
+        2. The specified consent isn't revoked.
       operationId: getFDXConsentRevocation
       parameters:
       - default: default
@@ -2428,14 +2536,15 @@ paths:
           $ref: '#/responses/FDXErrorResponse'
         "404":
           $ref: '#/responses/FDXErrorResponse'
-      summary: Retrieve Consent Revocation record
+      summary: Retrieve Consent Revocation Record
       tags:
       - FDX
     put:
       description: |-
-        This API can be used used to revoke user's consent.
-        As a result consent's state is changed to REVOKED
-        and revocation reason and initiator passed in request body are saved.
+        Revoke a user's consent.
+
+        The `204` response indicates that the consent status is changed to `REVOKED`. The revocation `initiator` and `reason`
+        passed in the request body are saved.
       operationId: revokeFDXConsent
       parameters:
       - default: default
@@ -2451,7 +2560,7 @@ paths:
           $ref: '#/definitions/FDXConsentRevocation'
       responses:
         "204":
-          description: ' consent revoked'
+          description: ' FDX Consent Revoked'
         "400":
           $ref: '#/responses/FDXErrorResponse'
         "401":
@@ -2462,12 +2571,17 @@ paths:
           $ref: '#/responses/FDXErrorResponse'
         "409":
           $ref: '#/responses/FDXErrorResponse'
-      summary: Revoke a Consent
+      summary: Revoke FDX Consent
       tags:
       - FDX
   /fdx/clients/{cid}:
     put:
-      description: This API updates FDX client status.
+      description: |-
+        Update an FDX client application status.
+
+        Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token, apply
+        the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: FDXUpdateClientStatus
       parameters:
       - default: default
@@ -2483,7 +2597,7 @@ paths:
           $ref: '#/definitions/FDXUpdateClientStatusRequest'
       responses:
         "200":
-          description: ' Client status has been changed'
+          description: ' Client Status Updated'
         "400":
           $ref: '#/responses/badRequestHTTPError'
         "401":
@@ -2499,7 +2613,7 @@ paths:
       security:
       - system:
         - update_client_status
-      summary: Update FDX Client's status
+      summary: Update FDX Client Status
       tags:
       - DCR
   /fdx/consents/introspect:
@@ -2510,6 +2624,9 @@ paths:
         Accepts an OAuth 2.0 token and returns meta information surrounding the token along with the FDX consent.
 
         Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Authorization code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
       operationId: fdxConsentIntrospect
       parameters:
       - in: formData
@@ -2562,8 +2679,11 @@ paths:
   /fdx/dcr/register/{cid}:
     delete:
       description: |-
-        This endpoint can be used to delete registered client details.
-        Use client credentials flow to authorize to this api.
+        Delete the registered client application details.
+
+        Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token,
+        apply the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: FDXDynamicClientRegistrationDelete
       parameters:
       - default: default
@@ -2574,7 +2694,7 @@ paths:
         type: string
       responses:
         "204":
-          description: ' Client has been deleted'
+          description: ' Client details deleted'
         "400":
           $ref: '#/responses/RFC6749Error'
         "401":
@@ -2585,13 +2705,17 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: Delete client endpoint.
+      summary: Delete Client
       tags:
       - DCR
     get:
       description: |-
-        This endpoint can be used to get registered client details.
-        Use client credentials flow to authorize to this api.
+        Retrieve the details about a registered client application by the client identifier.
+
+        Pass the `Authorization: Bearer` header with a token as the bearer value for authorization.
+        To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: FDXDynamicClientRegistrationGet
       parameters:
       - default: default
@@ -2613,11 +2737,16 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: Get client endpoint.
+      summary: Get Client Endpoint
       tags:
       - DCR
     put:
-      description: This endpoint can be used to modify registered client details.
+      description: |-
+        Modify the registered client application details.
+
+        Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token, apply
+        the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: FDXDynamicClientRegistrationPut
       parameters:
       - default: default
@@ -2643,14 +2772,19 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: Update client endpoint.
+      summary: Update FDX Client Details
       tags:
       - DCR
   /fdx/fdx/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve FDX consent-related data: information about a consent, its status, type, and scopes it requires, as well
+        as data of the client application requesting this consent.
+
+        Pass the `Authorization: Bearer` header with a token as the bearer value for authorization. To obtain a
+        token and create the consent, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getFDXConsentSystem
       parameters:
       - in: path
@@ -2674,7 +2808,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get FDX consent
+      summary: Get FDX Consent
       tags:
       - CONSENT_PAGE
   /fdx/fdx/{login}/accept:
@@ -2682,12 +2816,15 @@ paths:
       description: |-
         Used by a custom consent page to notify Cloudentity that a consumer accepted a consent.
 
-        Authorization: Bearer token.
-
         The `login` path parameter accepts the `login_id` value—the login session identifier.
 
         Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
         a user to the consent page.
+
+        Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
       operationId: acceptFDXConsentSystem
       parameters:
       - in: path
@@ -2720,12 +2857,15 @@ paths:
       description: |-
         Used by a consent page to notify Cloudentity that a consumer rejected a consent.
 
-        Authorization: Bearer token.
-
         The `login` path parameter accepts the `login_id` value—the login session identifier.
 
         Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
         a user to the consent page.
+
+        Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
       operationId: rejectFDXConsentSystem
       parameters:
       - in: path
@@ -2756,10 +2896,17 @@ paths:
   /servers/{wid}/fdx/consents:
     delete:
       description: |-
-        This API revokes FDX consents matching provided parameters.
+        Revoke FDX consents by parameters passed with the request.
 
-        Currently supporting removal by client id.
-        RevocationDetails also have to be provided.
+        Currently supported revocation by a client identifier. It revokes all consents provided for a given client
+        application.
+
+        Pass the revocation initiator and reason details with the `RevocationDetails` body parameter.
+
+        Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
       operationId: revokeFDXConsents
       parameters:
       - default: default
@@ -2789,7 +2936,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Revoke FDX consents.
+      summary: Revoke FDX Consents
       tags:
       - MANAGEMENT
     post:
@@ -2799,6 +2946,9 @@ paths:
         To narrow down the list, define the required parameters in the request body.
 
         Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
       operationId: listFDXConsents
       parameters:
       - default: default
@@ -2834,8 +2984,13 @@ paths:
       - MANAGEMENT
   /servers/{wid}/fdx/consents/{consentID}:
     delete:
-      description: 'This API revokes a single FDX Consent with the matching consent
-        id'
+      description: |-
+        Revoke an FDX consent. Provide the required consent identifier in the path.
+
+        Authorization: Bearer token.
+
+        To obtain a token, use the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
       operationId: revokeFDXConsentByID
       parameters:
       - default: default
@@ -2856,7 +3011,7 @@ paths:
           $ref: '#/definitions/FDXConsentRevocation'
       responses:
         "204":
-          description: ' Consnet has been revoked'
+          description: ' Consent revoked'
         "401":
           $ref: '#/responses/unauthorizedHTTPError'
         "403":
@@ -2877,7 +3032,7 @@ produces:
 - application/json
 responses:
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -2885,7 +3040,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   FDXConsentResponse:
@@ -2905,7 +3060,7 @@ responses:
     schema:
       $ref: '#/definitions/FDXDynamicClientRegistrationResponse'
   FDXDynamicClientRegistrationPutResponse:
-    description: Update client response
+    description: Client Details Updated Response
     schema:
       $ref: '#/definitions/FDXDynamicClientRegistrationResponse'
   FDXDynamicClientRegistrationResponse:
@@ -2994,7 +3149,7 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       accounts: accounts
       consents: consents
@@ -3003,7 +3158,7 @@ securityDefinitions:
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       manage_openbanking_consents: manage_openbanking_consents
     tokenUrl: /default/system/oauth2/token

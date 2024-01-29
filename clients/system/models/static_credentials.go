@@ -23,7 +23,7 @@ type StaticCredentials struct {
 	//
 	// The `users` parameter accepts a JSON of user data. You can add multiple users, define their
 	// usernames and passwords. You can also enrich their authentication context.
-	Users []*StaticUser `json:"users"`
+	Users []*StaticUser `json:"users" yaml:"users"`
 }
 
 // Validate validates this static credentials
@@ -85,6 +85,11 @@ func (m *StaticCredentials) contextValidateUsers(ctx context.Context, formats st
 	for i := 0; i < len(m.Users); i++ {
 
 		if m.Users[i] != nil {
+
+			if swag.IsZero(m.Users[i]) { // not required
+				return nil
+			}
+
 			if err := m.Users[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("users" + "." + strconv.Itoa(i))

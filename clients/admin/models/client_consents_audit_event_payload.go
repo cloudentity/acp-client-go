@@ -18,10 +18,10 @@ import (
 type ClientConsentsAuditEventPayload struct {
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// number of consents revoked
-	NumberRevoked int64 `json:"number_revoked,omitempty"`
+	NumberRevoked int64 `json:"number_revoked,omitempty" yaml:"number_revoked,omitempty"`
 }
 
 // Validate validates this client consents audit event payload

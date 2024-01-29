@@ -20,14 +20,14 @@ import (
 type UserAuthenticatedPayload struct {
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// password mode
-	PasswordMode bool `json:"password_mode,omitempty"`
+	PasswordMode bool `json:"password_mode,omitempty" yaml:"password_mode,omitempty"`
 
 	// success
 	// Required: true
-	Success bool `json:"success"`
+	Success bool `json:"success" yaml:"success"`
 }
 
 // Validate validates this user authenticated payload

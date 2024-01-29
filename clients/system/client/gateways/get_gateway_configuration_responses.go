@@ -54,7 +54,7 @@ func (o *GetGatewayConfigurationReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /gateways/configuration] getGatewayConfiguration", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetGatewayConfigurationOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get gateway configuration o k response
+func (o *GetGatewayConfigurationOK) Code() int {
+	return 200
+}
+
 func (o *GetGatewayConfigurationOK) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetGatewayConfigurationUnauthorized() *GetGatewayConfigurationUnauthoriz
 /*
 GetGatewayConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetGatewayConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetGatewayConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this get gateway configuration unauthorized response a status code equal to that given
 func (o *GetGatewayConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get gateway configuration unauthorized response
+func (o *GetGatewayConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetGatewayConfigurationUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetGatewayConfigurationForbidden() *GetGatewayConfigurationForbidden {
 /*
 GetGatewayConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetGatewayConfigurationForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetGatewayConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this get gateway configuration forbidden response a status code equal to that given
 func (o *GetGatewayConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get gateway configuration forbidden response
+func (o *GetGatewayConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *GetGatewayConfigurationForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetGatewayConfigurationNotFound() *GetGatewayConfigurationNotFound {
 /*
 GetGatewayConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetGatewayConfigurationNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetGatewayConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this get gateway configuration not found response a status code equal to that given
 func (o *GetGatewayConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get gateway configuration not found response
+func (o *GetGatewayConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *GetGatewayConfigurationNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetGatewayConfigurationTooManyRequests() *GetGatewayConfigurationTooMany
 /*
 GetGatewayConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetGatewayConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetGatewayConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get gateway configuration too many requests response a status code equal to that given
 func (o *GetGatewayConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get gateway configuration too many requests response
+func (o *GetGatewayConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetGatewayConfigurationTooManyRequests) Error() string {

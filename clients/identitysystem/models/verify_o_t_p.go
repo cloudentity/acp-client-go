@@ -21,17 +21,17 @@ type VerifyOTP struct {
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// identifier
 	// Example: sample@email.com/+48123456789
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// user ID
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty" yaml:"userID,omitempty"`
 }
 
 // Validate validates this verify o t p

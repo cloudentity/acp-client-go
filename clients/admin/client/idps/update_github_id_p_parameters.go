@@ -69,6 +69,14 @@ type UpdateGithubIDPParams struct {
 	*/
 	GithubIDP *models.GithubIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateGithubIDPParams) SetGithubIDP(githubIDP *models.GithubIDP) {
 	o.GithubIDP = githubIDP
 }
 
+// WithIfMatch adds the ifMatch to the update github ID p params
+func (o *UpdateGithubIDPParams) WithIfMatch(ifMatch *string) *UpdateGithubIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update github ID p params
+func (o *UpdateGithubIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update github ID p params
 func (o *UpdateGithubIDPParams) WithIid(iid string) *UpdateGithubIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateGithubIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 	if o.GithubIDP != nil {
 		if err := r.SetBodyParam(o.GithubIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

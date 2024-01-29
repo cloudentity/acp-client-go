@@ -18,10 +18,10 @@ import (
 type RequestActivation struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 }
 
 // Validate validates this request activation

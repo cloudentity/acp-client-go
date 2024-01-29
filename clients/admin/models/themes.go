@@ -20,7 +20,7 @@ import (
 type Themes struct {
 
 	// list of themes
-	Themes []*Theme `json:"themes"`
+	Themes []*Theme `json:"themes" yaml:"themes"`
 }
 
 // Validate validates this themes
@@ -82,6 +82,11 @@ func (m *Themes) contextValidateThemes(ctx context.Context, formats strfmt.Regis
 	for i := 0; i < len(m.Themes); i++ {
 
 		if m.Themes[i] != nil {
+
+			if swag.IsZero(m.Themes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Themes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("themes" + "." + strconv.Itoa(i))

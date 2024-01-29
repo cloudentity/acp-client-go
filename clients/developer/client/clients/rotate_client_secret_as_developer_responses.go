@@ -54,7 +54,7 @@ func (o *RotateClientSecretAsDeveloperReader) ReadResponse(response runtime.Clie
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/rotateSecret] rotateClientSecretAsDeveloper", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *RotateClientSecretAsDeveloperOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the rotate client secret as developer o k response
+func (o *RotateClientSecretAsDeveloperOK) Code() int {
+	return 200
+}
+
 func (o *RotateClientSecretAsDeveloperOK) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewRotateClientSecretAsDeveloperUnauthorized() *RotateClientSecretAsDevelop
 /*
 RotateClientSecretAsDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RotateClientSecretAsDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *RotateClientSecretAsDeveloperUnauthorized) IsServerError() bool {
 // IsCode returns true when this rotate client secret as developer unauthorized response a status code equal to that given
 func (o *RotateClientSecretAsDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the rotate client secret as developer unauthorized response
+func (o *RotateClientSecretAsDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RotateClientSecretAsDeveloperUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewRotateClientSecretAsDeveloperForbidden() *RotateClientSecretAsDeveloperF
 /*
 RotateClientSecretAsDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RotateClientSecretAsDeveloperForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *RotateClientSecretAsDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this rotate client secret as developer forbidden response a status code equal to that given
 func (o *RotateClientSecretAsDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the rotate client secret as developer forbidden response
+func (o *RotateClientSecretAsDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *RotateClientSecretAsDeveloperForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewRotateClientSecretAsDeveloperNotFound() *RotateClientSecretAsDeveloperNo
 /*
 RotateClientSecretAsDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RotateClientSecretAsDeveloperNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *RotateClientSecretAsDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this rotate client secret as developer not found response a status code equal to that given
 func (o *RotateClientSecretAsDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the rotate client secret as developer not found response
+func (o *RotateClientSecretAsDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *RotateClientSecretAsDeveloperNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewRotateClientSecretAsDeveloperTooManyRequests() *RotateClientSecretAsDeve
 /*
 RotateClientSecretAsDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RotateClientSecretAsDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *RotateClientSecretAsDeveloperTooManyRequests) IsServerError() bool {
 // IsCode returns true when this rotate client secret as developer too many requests response a status code equal to that given
 func (o *RotateClientSecretAsDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the rotate client secret as developer too many requests response
+func (o *RotateClientSecretAsDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RotateClientSecretAsDeveloperTooManyRequests) Error() string {

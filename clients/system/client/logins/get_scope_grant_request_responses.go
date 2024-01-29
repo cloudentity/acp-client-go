@@ -54,7 +54,7 @@ func (o *GetScopeGrantRequestReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /scope-grants/{login}] getScopeGrantRequest", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetScopeGrantRequestOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get scope grant request o k response
+func (o *GetScopeGrantRequestOK) Code() int {
+	return 200
+}
+
 func (o *GetScopeGrantRequestOK) Error() string {
 	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetScopeGrantRequestUnauthorized() *GetScopeGrantRequestUnauthorized {
 /*
 GetScopeGrantRequestUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetScopeGrantRequestUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetScopeGrantRequestUnauthorized) IsServerError() bool {
 // IsCode returns true when this get scope grant request unauthorized response a status code equal to that given
 func (o *GetScopeGrantRequestUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get scope grant request unauthorized response
+func (o *GetScopeGrantRequestUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetScopeGrantRequestUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetScopeGrantRequestForbidden() *GetScopeGrantRequestForbidden {
 /*
 GetScopeGrantRequestForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetScopeGrantRequestForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetScopeGrantRequestForbidden) IsServerError() bool {
 // IsCode returns true when this get scope grant request forbidden response a status code equal to that given
 func (o *GetScopeGrantRequestForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get scope grant request forbidden response
+func (o *GetScopeGrantRequestForbidden) Code() int {
+	return 403
 }
 
 func (o *GetScopeGrantRequestForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetScopeGrantRequestNotFound() *GetScopeGrantRequestNotFound {
 /*
 GetScopeGrantRequestNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetScopeGrantRequestNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetScopeGrantRequestNotFound) IsServerError() bool {
 // IsCode returns true when this get scope grant request not found response a status code equal to that given
 func (o *GetScopeGrantRequestNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get scope grant request not found response
+func (o *GetScopeGrantRequestNotFound) Code() int {
+	return 404
 }
 
 func (o *GetScopeGrantRequestNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetScopeGrantRequestTooManyRequests() *GetScopeGrantRequestTooManyReques
 /*
 GetScopeGrantRequestTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetScopeGrantRequestTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetScopeGrantRequestTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get scope grant request too many requests response a status code equal to that given
 func (o *GetScopeGrantRequestTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get scope grant request too many requests response
+func (o *GetScopeGrantRequestTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetScopeGrantRequestTooManyRequests) Error() string {

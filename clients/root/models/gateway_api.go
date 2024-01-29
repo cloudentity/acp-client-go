@@ -22,16 +22,16 @@ type GatewayAPI struct {
 
 	// api type
 	// Enum: [rest graphql]
-	APIType string `json:"api_type,omitempty"`
+	APIType string `json:"api_type,omitempty" yaml:"api_type,omitempty"`
 
 	// graphql schema
-	GraphqlSchema string `json:"graphql_schema,omitempty"`
+	GraphqlSchema string `json:"graphql_schema,omitempty" yaml:"graphql_schema,omitempty"`
 
 	// method
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// path
-	Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 }
 
 // Validate validates this gateway API

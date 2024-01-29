@@ -60,7 +60,7 @@ func (o *DeleteAuthorizationServerReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}] deleteAuthorizationServer", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *DeleteAuthorizationServerNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete authorization server no content response
+func (o *DeleteAuthorizationServerNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteAuthorizationServerNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
 }
@@ -123,7 +128,7 @@ func NewDeleteAuthorizationServerBadRequest() *DeleteAuthorizationServerBadReque
 /*
 DeleteAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type DeleteAuthorizationServerBadRequest struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *DeleteAuthorizationServerBadRequest) IsServerError() bool {
 // IsCode returns true when this delete authorization server bad request response a status code equal to that given
 func (o *DeleteAuthorizationServerBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete authorization server bad request response
+func (o *DeleteAuthorizationServerBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeleteAuthorizationServerBadRequest) Error() string {
@@ -186,7 +196,7 @@ func NewDeleteAuthorizationServerUnauthorized() *DeleteAuthorizationServerUnauth
 /*
 DeleteAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteAuthorizationServerUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *DeleteAuthorizationServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete authorization server unauthorized response a status code equal to that given
 func (o *DeleteAuthorizationServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete authorization server unauthorized response
+func (o *DeleteAuthorizationServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteAuthorizationServerUnauthorized) Error() string {
@@ -249,7 +264,7 @@ func NewDeleteAuthorizationServerForbidden() *DeleteAuthorizationServerForbidden
 /*
 DeleteAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteAuthorizationServerForbidden struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *DeleteAuthorizationServerForbidden) IsServerError() bool {
 // IsCode returns true when this delete authorization server forbidden response a status code equal to that given
 func (o *DeleteAuthorizationServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete authorization server forbidden response
+func (o *DeleteAuthorizationServerForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteAuthorizationServerForbidden) Error() string {
@@ -312,7 +332,7 @@ func NewDeleteAuthorizationServerNotFound() *DeleteAuthorizationServerNotFound {
 /*
 DeleteAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteAuthorizationServerNotFound struct {
 	Payload *models.Error
@@ -341,6 +361,11 @@ func (o *DeleteAuthorizationServerNotFound) IsServerError() bool {
 // IsCode returns true when this delete authorization server not found response a status code equal to that given
 func (o *DeleteAuthorizationServerNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete authorization server not found response
+func (o *DeleteAuthorizationServerNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteAuthorizationServerNotFound) Error() string {
@@ -375,7 +400,7 @@ func NewDeleteAuthorizationServerTooManyRequests() *DeleteAuthorizationServerToo
 /*
 DeleteAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
@@ -404,6 +429,11 @@ func (o *DeleteAuthorizationServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete authorization server too many requests response a status code equal to that given
 func (o *DeleteAuthorizationServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete authorization server too many requests response
+func (o *DeleteAuthorizationServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteAuthorizationServerTooManyRequests) Error() string {

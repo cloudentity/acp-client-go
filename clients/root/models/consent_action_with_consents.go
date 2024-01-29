@@ -20,23 +20,23 @@ import (
 type ConsentActionWithConsents struct {
 
 	// consents
-	Consents []*ConsentActionToConsent `json:"consents"`
+	Consents []*ConsentActionToConsent `json:"consents" yaml:"consents"`
 
 	// consent description
 	// Example: Consents required by application X
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// unique consent action id
 	// Example: 1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// consent action name
 	// Example: application_x
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this consent action with consents
@@ -98,6 +98,11 @@ func (m *ConsentActionWithConsents) contextValidateConsents(ctx context.Context,
 	for i := 0; i < len(m.Consents); i++ {
 
 		if m.Consents[i] != nil {
+
+			if swag.IsZero(m.Consents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consents" + "." + strconv.Itoa(i))

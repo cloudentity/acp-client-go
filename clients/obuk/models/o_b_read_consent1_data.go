@@ -25,12 +25,12 @@ type OBReadConsent1Data struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty"`
+	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty" yaml:"ExpirationDateTime,omitempty"`
 
 	// permissions
 	// Required: true
 	// Min Items: 1
-	Permissions []string `json:"Permissions"`
+	Permissions []string `json:"Permissions" yaml:"Permissions"`
 
 	// Specified start date and time for the transaction query period.
 	// If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -38,7 +38,7 @@ type OBReadConsent1Data struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"TransactionFromDateTime,omitempty"`
+	TransactionFromDateTime strfmt.DateTime `json:"TransactionFromDateTime,omitempty" yaml:"TransactionFromDateTime,omitempty"`
 
 	// Specified end date and time for the transaction query period.
 	// If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -46,7 +46,7 @@ type OBReadConsent1Data struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"TransactionToDateTime,omitempty"`
+	TransactionToDateTime strfmt.DateTime `json:"TransactionToDateTime,omitempty" yaml:"TransactionToDateTime,omitempty"`
 }
 
 // Validate validates this o b read consent1 data

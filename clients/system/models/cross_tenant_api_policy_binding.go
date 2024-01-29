@@ -18,22 +18,22 @@ import (
 type CrossTenantAPIPolicyBinding struct {
 
 	// api id
-	APIID string `json:"api_id,omitempty"`
+	APIID string `json:"api_id,omitempty" yaml:"api_id,omitempty"`
 
 	// api tenant id
 	// Example: system
-	APITenantID string `json:"api_tenant_id,omitempty"`
+	APITenantID string `json:"api_tenant_id,omitempty" yaml:"api_tenant_id,omitempty"`
 
 	// policy id
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 
 	// policy server id
 	// Example: default
-	PolicyServerID string `json:"policy_server_id,omitempty"`
+	PolicyServerID string `json:"policy_server_id,omitempty" yaml:"policy_server_id,omitempty"`
 
 	// policy tenant id
 	// Example: default
-	PolicyTenantID string `json:"policy_tenant_id,omitempty"`
+	PolicyTenantID string `json:"policy_tenant_id,omitempty" yaml:"policy_tenant_id,omitempty"`
 }
 
 // Validate validates this cross tenant API policy binding

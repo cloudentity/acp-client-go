@@ -21,20 +21,20 @@ import (
 type HashConfig struct {
 
 	// argon2
-	Argon2 *Argon2Config `json:"argon2,omitempty"`
+	Argon2 *Argon2Config `json:"argon2,omitempty" yaml:"argon2,omitempty"`
 
 	// bcrypt
-	Bcrypt *BcryptConfig `json:"bcrypt,omitempty"`
+	Bcrypt *BcryptConfig `json:"bcrypt,omitempty" yaml:"bcrypt,omitempty"`
 
 	// method
 	// Enum: [bcrypt pbkdf2 argon2 sha]
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// pbkdf2
-	Pbkdf2 *PBKDF2Config `json:"pbkdf2,omitempty"`
+	Pbkdf2 *PBKDF2Config `json:"pbkdf2,omitempty" yaml:"pbkdf2,omitempty"`
 
 	// sha
-	Sha *SHAConfig `json:"sha,omitempty"`
+	Sha *SHAConfig `json:"sha,omitempty" yaml:"sha,omitempty"`
 }
 
 // Validate validates this hash config

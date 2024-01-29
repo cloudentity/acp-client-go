@@ -18,10 +18,10 @@ import (
 type Address struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// verified
-	Verified bool `json:"verified,omitempty"`
+	Verified bool `json:"verified,omitempty" yaml:"verified,omitempty"`
 }
 
 // Validate validates this address

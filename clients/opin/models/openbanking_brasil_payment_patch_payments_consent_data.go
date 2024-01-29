@@ -23,14 +23,14 @@ type OpenbankingBrasilPaymentPatchPaymentsConsentData struct {
 
 	// revocation
 	// Required: true
-	Revocation *OpenbankingBrasilPaymentRevocation `json:"revocation"`
+	Revocation *OpenbankingBrasilPaymentRevocation `json:"revocation" yaml:"revocation"`
 
 	// Estado para o qual deve ir.
 	//
 	// [Restrio] O nico valor vlido  REVOKED. (caso contrrio a detentora deve retornar erro HTTP 400)
 	// Example: REVOKED
 	// Required: true
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 }
 
 // Validate validates this openbanking brasil payment patch payments consent data

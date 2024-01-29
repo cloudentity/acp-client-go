@@ -19,16 +19,16 @@ import (
 type ConsentPayload struct {
 
 	// details
-	Details *ConsentDetails `json:"details,omitempty"`
+	Details *ConsentDetails `json:"details,omitempty" yaml:"details,omitempty"`
 
 	// consent id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// kind
-	Kind AuditConsentKind `json:"kind,omitempty"`
+	Kind AuditConsentKind `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	// Type of a consent, specifies the subject of consent, e.g.: domestic_payment
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this consent payload
@@ -106,6 +106,11 @@ func (m *ConsentPayload) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *ConsentPayload) contextValidateDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Details != nil {
+
+		if swag.IsZero(m.Details) { // not required
+			return nil
+		}
+
 		if err := m.Details.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("details")
@@ -120,6 +125,10 @@ func (m *ConsentPayload) contextValidateDetails(ctx context.Context, formats str
 }
 
 func (m *ConsentPayload) contextValidateKind(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Kind) { // not required
+		return nil
+	}
 
 	if err := m.Kind.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

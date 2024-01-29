@@ -22,63 +22,63 @@ type UserVerifiableAddress struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// address lc
 	// Required: true
-	AddressLc string `json:"address_lc"`
+	AddressLc string `json:"address_lc" yaml:"address_lc"`
 
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at" yaml:"created_at"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// preferred contact method
 	// Example: sms
 	// Enum: [sms voice]
-	PreferredContactMethod string `json:"preferred_contact_method,omitempty"`
+	PreferredContactMethod string `json:"preferred_contact_method,omitempty" yaml:"preferred_contact_method,omitempty"`
 
 	// status
 	// Example: active
 	// Required: true
 	// Enum: [active inactive]
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// type
 	// Example: mobile
 	// Required: true
 	// Enum: [email mobile]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at" yaml:"updated_at"`
 
 	// user id
 	// Required: true
-	UserID string `json:"user_id"`
+	UserID string `json:"user_id" yaml:"user_id"`
 
 	// user pool id
 	// Example: default
 	// Required: true
-	UserPoolID string `json:"user_pool_id"`
+	UserPoolID string `json:"user_pool_id" yaml:"user_pool_id"`
 
 	// verified
 	// Required: true
-	Verified bool `json:"verified"`
+	Verified bool `json:"verified" yaml:"verified"`
 
 	// verified at
 	// Format: date-time
-	VerifiedAt strfmt.DateTime `json:"verified_at,omitempty"`
+	VerifiedAt strfmt.DateTime `json:"verified_at,omitempty" yaml:"verified_at,omitempty"`
 }
 
 // Validate validates this user verifiable address

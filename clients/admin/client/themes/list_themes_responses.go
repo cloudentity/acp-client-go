@@ -48,7 +48,7 @@ func (o *ListThemesReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /themes] listThemes", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListThemesOK describes a response with status code 200, with default header valu
 Themes
 */
 type ListThemesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Themes
 }
 
@@ -91,6 +100,11 @@ func (o *ListThemesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list themes o k response
+func (o *ListThemesOK) Code() int {
+	return 200
+}
+
 func (o *ListThemesOK) Error() string {
 	return fmt.Sprintf("[GET /themes][%d] listThemesOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListThemesOK) GetPayload() *models.Themes {
 }
 
 func (o *ListThemesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Themes)
 
@@ -123,7 +144,7 @@ func NewListThemesUnauthorized() *ListThemesUnauthorized {
 /*
 ListThemesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListThemesUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListThemesUnauthorized) IsServerError() bool {
 // IsCode returns true when this list themes unauthorized response a status code equal to that given
 func (o *ListThemesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list themes unauthorized response
+func (o *ListThemesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListThemesUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListThemesForbidden() *ListThemesForbidden {
 /*
 ListThemesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListThemesForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListThemesForbidden) IsServerError() bool {
 // IsCode returns true when this list themes forbidden response a status code equal to that given
 func (o *ListThemesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list themes forbidden response
+func (o *ListThemesForbidden) Code() int {
+	return 403
 }
 
 func (o *ListThemesForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListThemesTooManyRequests() *ListThemesTooManyRequests {
 /*
 ListThemesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListThemesTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListThemesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list themes too many requests response a status code equal to that given
 func (o *ListThemesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list themes too many requests response
+func (o *ListThemesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListThemesTooManyRequests) Error() string {

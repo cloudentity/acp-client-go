@@ -21,13 +21,13 @@ type OBWriteDomesticConsent4DataInitiation struct {
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteDomesticConsent4DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteDomesticConsent4DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// creditor postal address
-	CreditorPostalAddress *OBPostalAddress6 `json:"CreditorPostalAddress,omitempty"`
+	CreditorPostalAddress *OBPostalAddress6 `json:"CreditorPostalAddress,omitempty" yaml:"CreditorPostalAddress,omitempty"`
 
 	// debtor account
-	DebtorAccount *OBWriteDomesticConsent4DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteDomesticConsent4DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
 	// Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
@@ -35,27 +35,27 @@ type OBWriteDomesticConsent4DataInitiation struct {
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	EndToEndIdentification string `json:"EndToEndIdentification"`
+	EndToEndIdentification string `json:"EndToEndIdentification" yaml:"EndToEndIdentification"`
 
 	// instructed amount
 	// Required: true
-	InstructedAmount *OBWriteDomesticConsent4DataInitiationInstructedAmount `json:"InstructedAmount"`
+	InstructedAmount *OBWriteDomesticConsent4DataInitiationInstructedAmount `json:"InstructedAmount" yaml:"InstructedAmount"`
 
 	// Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.
 	// Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	InstructionIdentification string `json:"InstructionIdentification"`
+	InstructionIdentification string `json:"InstructionIdentification" yaml:"InstructionIdentification"`
 
 	// local instrument
-	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty"`
+	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty" yaml:"LocalInstrument,omitempty"`
 
 	// remittance information
-	RemittanceInformation *OBWriteDomesticConsent4DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty"`
+	RemittanceInformation *OBWriteDomesticConsent4DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty" yaml:"RemittanceInformation,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write domestic consent4 data initiation
@@ -285,6 +285,7 @@ func (m *OBWriteDomesticConsent4DataInitiation) ContextValidate(ctx context.Cont
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -301,6 +302,11 @@ func (m *OBWriteDomesticConsent4DataInitiation) contextValidateCreditorAccount(c
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateCreditorPostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorPostalAddress != nil {
+
+		if swag.IsZero(m.CreditorPostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.CreditorPostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorPostalAddress")
@@ -317,6 +323,11 @@ func (m *OBWriteDomesticConsent4DataInitiation) contextValidateCreditorPostalAdd
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -333,6 +344,7 @@ func (m *OBWriteDomesticConsent4DataInitiation) contextValidateDebtorAccount(ctx
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")
@@ -347,6 +359,10 @@ func (m *OBWriteDomesticConsent4DataInitiation) contextValidateInstructedAmount(
 }
 
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
 
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -363,6 +379,11 @@ func (m *OBWriteDomesticConsent4DataInitiation) contextValidateLocalInstrument(c
 func (m *OBWriteDomesticConsent4DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RemittanceInformation != nil {
+
+		if swag.IsZero(m.RemittanceInformation) { // not required
+			return nil
+		}
+
 		if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RemittanceInformation")

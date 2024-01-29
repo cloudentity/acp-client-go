@@ -61,6 +61,14 @@ DeleteScopeParams contains all the parameters to send to the API endpoint
 */
 type DeleteScopeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Scp.
 	Scp string
 
@@ -117,6 +125,17 @@ func (o *DeleteScopeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete scope params
+func (o *DeleteScopeParams) WithIfMatch(ifMatch *string) *DeleteScopeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete scope params
+func (o *DeleteScopeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithScp adds the scp to the delete scope params
 func (o *DeleteScopeParams) WithScp(scp string) *DeleteScopeParams {
 	o.SetScp(scp)
@@ -135,6 +154,14 @@ func (o *DeleteScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param scp
 	if err := r.SetPathParam("scp", o.Scp); err != nil {

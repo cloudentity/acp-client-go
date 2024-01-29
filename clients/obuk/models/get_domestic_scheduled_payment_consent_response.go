@@ -21,47 +21,47 @@ import (
 type GetDomesticScheduledPaymentConsentResponse struct {
 
 	// List of account identifiers
-	AccountIds []string `json:"account_ids"`
+	AccountIds []string `json:"account_ids" yaml:"account_ids"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// client info
-	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+	ClientInfo *ClientInfo `json:"client_info,omitempty" yaml:"client_info,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// Consent creation time
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// domestic scheduled payment consent
-	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty"`
+	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty" yaml:"domestic_scheduled_payment_consent,omitempty"`
 
 	// List of requested scopes
-	RequestedScopes []*RequestedScope `json:"requested_scopes"`
+	RequestedScopes []*RequestedScope `json:"requested_scopes" yaml:"requested_scopes"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// Consent status
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// Subject
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type ConsentType `json:"type,omitempty"`
+	Type ConsentType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this get domestic scheduled payment consent response
@@ -242,6 +242,10 @@ func (m *GetDomesticScheduledPaymentConsentResponse) ContextValidate(ctx context
 
 func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -257,6 +261,11 @@ func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateAuthenticati
 func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -273,6 +282,11 @@ func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateClientInfo(c
 func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateDomesticScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DomesticScheduledPaymentConsent != nil {
+
+		if swag.IsZero(m.DomesticScheduledPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.DomesticScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_scheduled_payment_consent")
@@ -291,6 +305,11 @@ func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateRequestedSco
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
@@ -307,6 +326,10 @@ func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateRequestedSco
 }
 
 func (m *GetDomesticScheduledPaymentConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

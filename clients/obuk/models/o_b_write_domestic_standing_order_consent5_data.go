@@ -21,23 +21,23 @@ import (
 type OBWriteDomesticStandingOrderConsent5Data struct {
 
 	// authorisation
-	Authorisation *OBWriteDomesticStandingOrderConsent5DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteDomesticStandingOrderConsent5DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteDomesticStandingOrderConsent5DataInitiation `json:"Initiation"`
+	Initiation *OBWriteDomesticStandingOrderConsent5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteDomesticStandingOrderConsent5DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteDomesticStandingOrderConsent5DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write domestic standing order consent5 data
@@ -235,6 +235,11 @@ func (m *OBWriteDomesticStandingOrderConsent5Data) ContextValidate(ctx context.C
 func (m *OBWriteDomesticStandingOrderConsent5Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -251,6 +256,7 @@ func (m *OBWriteDomesticStandingOrderConsent5Data) contextValidateAuthorisation(
 func (m *OBWriteDomesticStandingOrderConsent5Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -267,6 +273,11 @@ func (m *OBWriteDomesticStandingOrderConsent5Data) contextValidateInitiation(ctx
 func (m *OBWriteDomesticStandingOrderConsent5Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

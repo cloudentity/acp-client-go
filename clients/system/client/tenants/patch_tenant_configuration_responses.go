@@ -66,7 +66,7 @@ func (o *PatchTenantConfigurationReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PATCH /configuration] patchTenantConfiguration", response, response.Code())
 	}
 }
 
@@ -108,6 +108,11 @@ func (o *PatchTenantConfigurationNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the patch tenant configuration no content response
+func (o *PatchTenantConfigurationNoContent) Code() int {
+	return 204
+}
+
 func (o *PatchTenantConfigurationNoContent) Error() string {
 	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNoContent ", 204)
 }
@@ -129,7 +134,7 @@ func NewPatchTenantConfigurationBadRequest() *PatchTenantConfigurationBadRequest
 /*
 PatchTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type PatchTenantConfigurationBadRequest struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *PatchTenantConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration bad request response a status code equal to that given
 func (o *PatchTenantConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the patch tenant configuration bad request response
+func (o *PatchTenantConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *PatchTenantConfigurationBadRequest) Error() string {
@@ -192,7 +202,7 @@ func NewPatchTenantConfigurationUnauthorized() *PatchTenantConfigurationUnauthor
 /*
 PatchTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchTenantConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *PatchTenantConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration unauthorized response a status code equal to that given
 func (o *PatchTenantConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the patch tenant configuration unauthorized response
+func (o *PatchTenantConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PatchTenantConfigurationUnauthorized) Error() string {
@@ -255,7 +270,7 @@ func NewPatchTenantConfigurationForbidden() *PatchTenantConfigurationForbidden {
 /*
 PatchTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchTenantConfigurationForbidden struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *PatchTenantConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration forbidden response a status code equal to that given
 func (o *PatchTenantConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the patch tenant configuration forbidden response
+func (o *PatchTenantConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *PatchTenantConfigurationForbidden) Error() string {
@@ -318,7 +338,7 @@ func NewPatchTenantConfigurationNotFound() *PatchTenantConfigurationNotFound {
 /*
 PatchTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchTenantConfigurationNotFound struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *PatchTenantConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration not found response a status code equal to that given
 func (o *PatchTenantConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the patch tenant configuration not found response
+func (o *PatchTenantConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *PatchTenantConfigurationNotFound) Error() string {
@@ -381,7 +406,7 @@ func NewPatchTenantConfigurationUnprocessableEntity() *PatchTenantConfigurationU
 /*
 PatchTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -410,6 +435,11 @@ func (o *PatchTenantConfigurationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration unprocessable entity response a status code equal to that given
 func (o *PatchTenantConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the patch tenant configuration unprocessable entity response
+func (o *PatchTenantConfigurationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *PatchTenantConfigurationUnprocessableEntity) Error() string {
@@ -444,7 +474,7 @@ func NewPatchTenantConfigurationTooManyRequests() *PatchTenantConfigurationTooMa
 /*
 PatchTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchTenantConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -473,6 +503,11 @@ func (o *PatchTenantConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this patch tenant configuration too many requests response a status code equal to that given
 func (o *PatchTenantConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the patch tenant configuration too many requests response
+func (o *PatchTenantConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PatchTenantConfigurationTooManyRequests) Error() string {

@@ -21,11 +21,12 @@ import (
 type PasswordSettings struct {
 
 	// expires after
-	ExpiresAfter Duration `json:"expires_after,omitempty"`
+	// Format: duration
+	ExpiresAfter strfmt.Duration `json:"expires_after,omitempty" yaml:"expires_after,omitempty"`
 
 	// hashing method
 	// Enum: [bcrypt pbkdf2 argon2 sha]
-	HashingMethod string `json:"hashing_method,omitempty"`
+	HashingMethod string `json:"hashing_method,omitempty" yaml:"hashing_method,omitempty"`
 }
 
 // Validate validates this password settings
@@ -51,12 +52,7 @@ func (m *PasswordSettings) validateExpiresAfter(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.ExpiresAfter.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("expires_after")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("expires_after")
-		}
+	if err := validate.FormatOf("expires_after", "body", "duration", m.ExpiresAfter.String(), formats); err != nil {
 		return err
 	}
 
@@ -111,35 +107,8 @@ func (m *PasswordSettings) validateHashingMethod(formats strfmt.Registry) error 
 	return nil
 }
 
-// ContextValidate validate this password settings based on the context it is used
+// ContextValidate validates this password settings based on context it is used
 func (m *PasswordSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateExpiresAfter(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PasswordSettings) contextValidateExpiresAfter(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.ExpiresAfter) { // not required
-		return nil
-	}
-
-	if err := m.ExpiresAfter.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("expires_after")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("expires_after")
-		}
-		return err
-	}
-
 	return nil
 }
 

@@ -19,16 +19,16 @@ import (
 type OBWriteInternationalConsent5DataInitiationCreditorAgent struct {
 
 	// identification
-	Identification Identification1 `json:"Identification,omitempty"`
+	Identification Identification1 `json:"Identification,omitempty" yaml:"Identification,omitempty"`
 
 	// name
-	Name Name `json:"Name,omitempty"`
+	Name Name `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 
 	// scheme name
-	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty"`
+	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty" yaml:"SchemeName,omitempty"`
 }
 
 // Validate validates this o b write international consent5 data initiation creditor agent
@@ -155,6 +155,10 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) ContextValidat
 
 func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Identification) { // not required
+		return nil
+	}
+
 	if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Identification")
@@ -168,6 +172,10 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidat
 }
 
 func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
 
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -184,6 +192,11 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidat
 func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PostalAddress")
@@ -198,6 +211,10 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidat
 }
 
 func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

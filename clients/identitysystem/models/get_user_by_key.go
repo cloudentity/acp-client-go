@@ -18,10 +18,10 @@ import (
 type GetUserByKey struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 }
 
 // Validate validates this get user by key

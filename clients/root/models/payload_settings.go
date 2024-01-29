@@ -22,10 +22,10 @@ type PayloadSettings struct {
 
 	// payload format
 	// Enum: [json jws]
-	Format string `json:"format,omitempty"`
+	Format string `json:"format,omitempty" yaml:"format,omitempty"`
 
 	// jws payload
-	JwsPayload *JWSPayloadSettings `json:"jws_payload,omitempty"`
+	JwsPayload *JWSPayloadSettings `json:"jws_payload,omitempty" yaml:"jws_payload,omitempty"`
 }
 
 // Validate validates this payload settings
@@ -124,6 +124,11 @@ func (m *PayloadSettings) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *PayloadSettings) contextValidateJwsPayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.JwsPayload != nil {
+
+		if swag.IsZero(m.JwsPayload) { // not required
+			return nil
+		}
+
 		if err := m.JwsPayload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jws_payload")

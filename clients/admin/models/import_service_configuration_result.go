@@ -21,65 +21,66 @@ import (
 // swagger:model ImportServiceConfigurationResult
 type ImportServiceConfigurationResult struct {
 
-	// server id
-	// Example: default
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	// Authorization server identifier
+	// Example: my-server
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// created apis
-	CreatedApis []*API `json:"created_apis"`
+	CreatedApis []*API `json:"created_apis" yaml:"created_apis"`
 
 	// created policies
-	CreatedPolicies []*Policy `json:"created_policies"`
+	CreatedPolicies []*Policy `json:"created_policies" yaml:"created_policies"`
 
 	// created scopes
-	CreatedScopes []*Scope `json:"created_scopes"`
+	CreatedScopes []*Scope `json:"created_scopes" yaml:"created_scopes"`
 
-	// custom service audience
+	// Custom service audience
 	// Example: https://api.example.com
-	CustomAudience string `json:"custom_audience,omitempty"`
+	CustomAudience string `json:"custom_audience,omitempty" yaml:"custom_audience,omitempty"`
 
-	// service description
+	// Service description
 	// Example: Service description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	// gateway id
-	GatewayID string `json:"gateway_id,omitempty"`
+	// Gateway identifier
+	// Example: gateway-1
+	GatewayID string `json:"gateway_id,omitempty" yaml:"gateway_id,omitempty"`
 
-	// unique service id
-	// Example: 1
-	ID string `json:"id,omitempty"`
+	// A unique identifier of a service
+	// Example: service-1
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
-	// service name
-	// Example: Sample service
-	Name string `json:"name,omitempty"`
+	// Service name
+	// Example: My service
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// not removed policies
-	NotRemovedPolicies []*Policy `json:"not_removed_policies"`
+	NotRemovedPolicies []*Policy `json:"not_removed_policies" yaml:"not_removed_policies"`
 
 	// removed apis
-	RemovedApis []*API `json:"removed_apis"`
+	RemovedApis []*API `json:"removed_apis" yaml:"removed_apis"`
 
 	// removed policies
-	RemovedPolicies []*Policy `json:"removed_policies"`
+	RemovedPolicies []*Policy `json:"removed_policies" yaml:"removed_policies"`
 
-	// Is service a system service
+	// `true` when the service is a system service
 	// Example: false
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
-	// tenant id
-	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	// Tenant identifier
+	// Example: my-company
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
-	// service type
+	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
-	// Updated at date
+	// The date of service update
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
-	// true if service has openapi 3 specification
-	WithSpecification bool `json:"with_specification,omitempty"`
+	// `true` when the service has the OpenAPI 3.0 specification
+	WithSpecification bool `json:"with_specification,omitempty" yaml:"with_specification,omitempty"`
 }
 
 // Validate validates this import service configuration result
@@ -382,6 +383,11 @@ func (m *ImportServiceConfigurationResult) contextValidateCreatedApis(ctx contex
 	for i := 0; i < len(m.CreatedApis); i++ {
 
 		if m.CreatedApis[i] != nil {
+
+			if swag.IsZero(m.CreatedApis[i]) { // not required
+				return nil
+			}
+
 			if err := m.CreatedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("created_apis" + "." + strconv.Itoa(i))
@@ -402,6 +408,11 @@ func (m *ImportServiceConfigurationResult) contextValidateCreatedPolicies(ctx co
 	for i := 0; i < len(m.CreatedPolicies); i++ {
 
 		if m.CreatedPolicies[i] != nil {
+
+			if swag.IsZero(m.CreatedPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.CreatedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("created_policies" + "." + strconv.Itoa(i))
@@ -422,6 +433,11 @@ func (m *ImportServiceConfigurationResult) contextValidateCreatedScopes(ctx cont
 	for i := 0; i < len(m.CreatedScopes); i++ {
 
 		if m.CreatedScopes[i] != nil {
+
+			if swag.IsZero(m.CreatedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.CreatedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("created_scopes" + "." + strconv.Itoa(i))
@@ -442,6 +458,11 @@ func (m *ImportServiceConfigurationResult) contextValidateNotRemovedPolicies(ctx
 	for i := 0; i < len(m.NotRemovedPolicies); i++ {
 
 		if m.NotRemovedPolicies[i] != nil {
+
+			if swag.IsZero(m.NotRemovedPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.NotRemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("not_removed_policies" + "." + strconv.Itoa(i))
@@ -462,6 +483,11 @@ func (m *ImportServiceConfigurationResult) contextValidateRemovedApis(ctx contex
 	for i := 0; i < len(m.RemovedApis); i++ {
 
 		if m.RemovedApis[i] != nil {
+
+			if swag.IsZero(m.RemovedApis[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemovedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
@@ -482,6 +508,11 @@ func (m *ImportServiceConfigurationResult) contextValidateRemovedPolicies(ctx co
 	for i := 0; i < len(m.RemovedPolicies); i++ {
 
 		if m.RemovedPolicies[i] != nil {
+
+			if swag.IsZero(m.RemovedPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_policies" + "." + strconv.Itoa(i))

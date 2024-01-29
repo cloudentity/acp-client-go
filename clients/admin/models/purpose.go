@@ -19,11 +19,11 @@ type Purpose struct {
 
 	// name
 	// Example: Core Function
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// is the purpose primary. If there are multiple purposes defined, one of them must be marked as primary.
 	// Example: true
-	Primary bool `json:"primary,omitempty"`
+	Primary bool `json:"primary,omitempty" yaml:"primary,omitempty"`
 }
 
 // Validate validates this purpose

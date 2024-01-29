@@ -19,10 +19,10 @@ import (
 type OIDCCredentials struct {
 
 	// OAuth client application secret
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 
 	// private key jwt
-	PrivateKeyJwt *PrivateKeyJWTCredentials `json:"private_key_jwt,omitempty"`
+	PrivateKeyJwt *PrivateKeyJWTCredentials `json:"private_key_jwt,omitempty" yaml:"private_key_jwt,omitempty"`
 }
 
 // Validate validates this o ID c credentials
@@ -75,6 +75,11 @@ func (m *OIDCCredentials) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *OIDCCredentials) contextValidatePrivateKeyJwt(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PrivateKeyJwt != nil {
+
+		if swag.IsZero(m.PrivateKeyJwt) { // not required
+			return nil
+		}
+
 		if err := m.PrivateKeyJwt.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("private_key_jwt")

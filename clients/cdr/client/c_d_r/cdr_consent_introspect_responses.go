@@ -51,7 +51,7 @@ func (o *CdrConsentIntrospectReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /cdr/consents/introspect] cdrConsentIntrospect", response, response.Code())
 	}
 }
 
@@ -335,16 +335,16 @@ type CdrConsentIntrospectOKBody struct {
 	models.IntrospectResponse
 
 	// Deprecated list of account ids, use `account_ids` from `cdr_arrangement`
-	AccountIDs []string `json:"AccountIDs"`
+	AccountIDs []string `json:"AccountIDs" yaml:"AccountIDs"`
 
 	// cdr arrangement
-	CdrArrangement *models.CDRArrangement `json:"cdr_arrangement,omitempty"`
+	CdrArrangement *models.CDRArrangement `json:"cdr_arrangement,omitempty" yaml:"cdr_arrangement,omitempty"`
 
 	// CDR arrangement ID
-	CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
+	CdrArrangementID string `json:"cdr_arrangement_id,omitempty" yaml:"cdr_arrangement_id,omitempty"`
 
 	// cdr register client metadata
-	CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty"`
+	CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty" yaml:"cdr_register_client_metadata,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
@@ -505,6 +505,11 @@ func (o *CdrConsentIntrospectOKBody) ContextValidate(ctx context.Context, format
 func (o *CdrConsentIntrospectOKBody) contextValidateCdrArrangement(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.CdrArrangement != nil {
+
+		if swag.IsZero(o.CdrArrangement) { // not required
+			return nil
+		}
+
 		if err := o.CdrArrangement.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_arrangement")
@@ -521,6 +526,11 @@ func (o *CdrConsentIntrospectOKBody) contextValidateCdrArrangement(ctx context.C
 func (o *CdrConsentIntrospectOKBody) contextValidateCdrRegisterClientMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.CdrRegisterClientMetadata != nil {
+
+		if swag.IsZero(o.CdrRegisterClientMetadata) { // not required
+			return nil
+		}
+
 		if err := o.CdrRegisterClientMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")

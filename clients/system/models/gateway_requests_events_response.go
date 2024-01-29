@@ -18,7 +18,7 @@ import (
 type GatewayRequestsEventsResponse struct {
 
 	// number of pushed events
-	NumberOfPushedEvents int64 `json:"number_of_pushed_events,omitempty"`
+	NumberOfPushedEvents int64 `json:"number_of_pushed_events,omitempty" yaml:"number_of_pushed_events,omitempty"`
 }
 
 // Validate validates this gateway requests events response

@@ -21,11 +21,11 @@ type AccountAccessConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBReadConsent1Data `json:"Data"`
+	Data *OBReadConsent1Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk OBRisk2 `json:"Risk"`
+	Risk OBRisk2 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this account access consent request
@@ -92,6 +92,7 @@ func (m *AccountAccessConsentRequest) ContextValidate(ctx context.Context, forma
 func (m *AccountAccessConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")

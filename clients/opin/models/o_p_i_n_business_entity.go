@@ -23,7 +23,7 @@ type OPINBusinessEntity struct {
 
 	// document
 	// Required: true
-	Document *OPINDocument1 `json:"document"`
+	Document *OPINDocument1 `json:"document" yaml:"document"`
 }
 
 // Validate validates this o p i n business entity

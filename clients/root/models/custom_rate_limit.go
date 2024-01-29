@@ -20,20 +20,20 @@ import (
 type CustomRateLimit struct {
 
 	// max burst
-	Burst int64 `json:"burst,omitempty"`
+	Burst int64 `json:"burst,omitempty" yaml:"burst,omitempty"`
 
 	// module
-	Module RateLimitModule `json:"module,omitempty"`
+	Module RateLimitModule `json:"module,omitempty" yaml:"module,omitempty"`
 
 	// period
 	// Format: duration
-	Period strfmt.Duration `json:"period,omitempty"`
+	Period strfmt.Duration `json:"period,omitempty" yaml:"period,omitempty"`
 
 	// rate
-	Rate int64 `json:"rate,omitempty"`
+	Rate int64 `json:"rate,omitempty" yaml:"rate,omitempty"`
 
 	// Tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this custom rate limit
@@ -98,6 +98,10 @@ func (m *CustomRateLimit) ContextValidate(ctx context.Context, formats strfmt.Re
 }
 
 func (m *CustomRateLimit) contextValidateModule(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Module) { // not required
+		return nil
+	}
 
 	if err := m.Module.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -23,7 +23,7 @@ type OPINLoggedUser struct {
 
 	// document
 	// Required: true
-	Document *OPINDocument `json:"document"`
+	Document *OPINDocument `json:"document" yaml:"document"`
 }
 
 // Validate validates this o p i n logged user

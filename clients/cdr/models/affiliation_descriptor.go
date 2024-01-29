@@ -23,26 +23,26 @@ import (
 type AffiliationDescriptor struct {
 
 	// affiliate members
-	AffiliateMembers []string `json:"AffiliateMembers"`
+	AffiliateMembers []string `json:"AffiliateMembers" yaml:"AffiliateMembers"`
 
 	// affiliation owner ID
-	AffiliationOwnerID string `json:"AffiliationOwnerID,omitempty"`
+	AffiliationOwnerID string `json:"AffiliationOwnerID,omitempty" yaml:"AffiliationOwnerID,omitempty"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 }
 
 // Validate validates this affiliation descriptor
@@ -169,6 +169,10 @@ func (m *AffiliationDescriptor) ContextValidate(ctx context.Context, formats str
 
 func (m *AffiliationDescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
+
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CacheDuration")
@@ -186,6 +190,11 @@ func (m *AffiliationDescriptor) contextValidateKeyDescriptors(ctx context.Contex
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -204,6 +213,11 @@ func (m *AffiliationDescriptor) contextValidateKeyDescriptors(ctx context.Contex
 func (m *AffiliationDescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")

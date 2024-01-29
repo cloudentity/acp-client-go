@@ -20,7 +20,7 @@ import (
 type Tenants struct {
 
 	// tenants
-	Tenants []*Tenant `json:"tenants"`
+	Tenants []*Tenant `json:"tenants" yaml:"tenants"`
 }
 
 // Validate validates this tenants
@@ -82,6 +82,11 @@ func (m *Tenants) contextValidateTenants(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Tenants); i++ {
 
 		if m.Tenants[i] != nil {
+
+			if swag.IsZero(m.Tenants[i]) { // not required
+				return nil
+			}
+
 			if err := m.Tenants[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tenants" + "." + strconv.Itoa(i))

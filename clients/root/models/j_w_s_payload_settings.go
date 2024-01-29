@@ -19,14 +19,14 @@ import (
 type JWSPayloadSettings struct {
 
 	// jwks
-	Jwks *ClientJWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// URI of the JWKs of the trusted party responsible for signing request body
-	JwksURI string `json:"jwks_uri,omitempty"`
+	JwksURI string `json:"jwks_uri,omitempty" yaml:"jwks_uri,omitempty"`
 
 	// JWK source - defines where are the keys for validating dcr request signature
 	// Keys can be defined at server level or can be taken from jwks_uri claim from the software statement sent by the client
-	Source string `json:"source,omitempty"`
+	Source string `json:"source,omitempty" yaml:"source,omitempty"`
 }
 
 // Validate validates this j w s payload settings
@@ -79,6 +79,11 @@ func (m *JWSPayloadSettings) ContextValidate(ctx context.Context, formats strfmt
 func (m *JWSPayloadSettings) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")

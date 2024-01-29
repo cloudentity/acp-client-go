@@ -69,6 +69,14 @@ type CreateOktaIDPParams struct {
 	*/
 	OktaIDP *models.OktaIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateOktaIDPParams) SetOktaIDP(oktaIDP *models.OktaIDP) {
 	o.OktaIDP = oktaIDP
 }
 
+// WithIfMatch adds the ifMatch to the create okta ID p params
+func (o *CreateOktaIDPParams) WithIfMatch(ifMatch *string) *CreateOktaIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create okta ID p params
+func (o *CreateOktaIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create okta ID p params
 func (o *CreateOktaIDPParams) WithWid(wid string) *CreateOktaIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.OktaIDP != nil {
 		if err := r.SetBodyParam(o.OktaIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

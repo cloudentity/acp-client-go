@@ -19,28 +19,31 @@ type CognitoSettings struct {
 
 	// Cognito app client ID from your application settings
 	// Example: client
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// If enabled, additional user data is collected from the `userinfo` Cognito API
-	GetUserInfo bool `json:"get_user_info,omitempty"`
+	GetUserInfo bool `json:"get_user_info,omitempty" yaml:"get_user_info,omitempty"`
 
 	// Cognito pool ID
 	//
 	// A user pool is a user directory in Amazon Cognito. It enables your users to sign in to your
 	// application through Amazon Cognito. You can find your pool ID in your User Pools > Federated
 	// Identities settings.
-	PoolID string `json:"pool_id,omitempty"`
+	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
 
 	// AWS Region where the user pool is hosted
 	// Example: us-east-1
-	Region string `json:"region,omitempty"`
+	Region string `json:"region,omitempty" yaml:"region,omitempty"`
 
 	// An array of allowed OAuth scopes which the client requests
 	//
 	// The following scopes can be allowed for a Cognito application:
 	// `phone`, `email`, `openid`, `aws.cognito.signin.user.admin`, `profile`.
 	// Example: ["email","profile","openid"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
+
+	// Whether to send the identifier as a `login_hint` parameter to the IDP
+	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
 }
 
 // Validate validates this cognito settings

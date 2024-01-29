@@ -20,13 +20,13 @@ import (
 type ClaimsRequests struct {
 
 	// extra
-	Extra map[string]interface{} `json:"extra,omitempty"`
+	Extra map[string]interface{} `json:"extra,omitempty" yaml:"extra,omitempty"`
 
 	// id token
-	IDToken map[string]ClaimRequest `json:"id_token,omitempty"`
+	IDToken map[string]ClaimRequest `json:"id_token,omitempty" yaml:"id_token,omitempty"`
 
 	// userinfo
-	Userinfo map[string]ClaimRequest `json:"userinfo,omitempty"`
+	Userinfo map[string]ClaimRequest `json:"userinfo,omitempty" yaml:"userinfo,omitempty"`
 }
 
 // Validate validates this claims requests

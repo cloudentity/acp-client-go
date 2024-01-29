@@ -20,7 +20,7 @@ import (
 type ConsentActions struct {
 
 	// consent actions
-	ConsentActions []*ConsentAction `json:"consent_actions"`
+	ConsentActions []*ConsentAction `json:"consent_actions" yaml:"consent_actions"`
 }
 
 // Validate validates this consent actions
@@ -82,6 +82,11 @@ func (m *ConsentActions) contextValidateConsentActions(ctx context.Context, form
 	for i := 0; i < len(m.ConsentActions); i++ {
 
 		if m.ConsentActions[i] != nil {
+
+			if swag.IsZero(m.ConsentActions[i]) { // not required
+				return nil
+			}
+
 			if err := m.ConsentActions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consent_actions" + "." + strconv.Itoa(i))

@@ -21,7 +21,7 @@ type InspectOTP struct {
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 }
 
 // Validate validates this inspect o t p

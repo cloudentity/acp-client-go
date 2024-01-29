@@ -18,13 +18,13 @@ import (
 type UnbindSystemAPIRequest struct {
 
 	// api id
-	APIID string `json:"api_id,omitempty"`
+	APIID string `json:"api_id,omitempty" yaml:"api_id,omitempty"`
 
 	// policy id
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 
 	// policy server id
-	PolicyServerID string `json:"policy_server_id,omitempty"`
+	PolicyServerID string `json:"policy_server_id,omitempty" yaml:"policy_server_id,omitempty"`
 }
 
 // Validate validates this unbind system API request

@@ -48,7 +48,7 @@ func (o *ListScopesReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/scopes] listScopes", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListScopesOK describes a response with status code 200, with default header valu
 Scopes with services
 */
 type ListScopesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScopesWithServices
 }
 
@@ -91,6 +100,11 @@ func (o *ListScopesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list scopes o k response
+func (o *ListScopesOK) Code() int {
+	return 200
+}
+
 func (o *ListScopesOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListScopesOK) GetPayload() *models.ScopesWithServices {
 }
 
 func (o *ListScopesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScopesWithServices)
 
@@ -123,7 +144,7 @@ func NewListScopesUnauthorized() *ListScopesUnauthorized {
 /*
 ListScopesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListScopesUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListScopesUnauthorized) IsServerError() bool {
 // IsCode returns true when this list scopes unauthorized response a status code equal to that given
 func (o *ListScopesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list scopes unauthorized response
+func (o *ListScopesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListScopesUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListScopesForbidden() *ListScopesForbidden {
 /*
 ListScopesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListScopesForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListScopesForbidden) IsServerError() bool {
 // IsCode returns true when this list scopes forbidden response a status code equal to that given
 func (o *ListScopesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list scopes forbidden response
+func (o *ListScopesForbidden) Code() int {
+	return 403
 }
 
 func (o *ListScopesForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListScopesTooManyRequests() *ListScopesTooManyRequests {
 /*
 ListScopesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListScopesTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListScopesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list scopes too many requests response a status code equal to that given
 func (o *ListScopesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list scopes too many requests response
+func (o *ListScopesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListScopesTooManyRequests) Error() string {

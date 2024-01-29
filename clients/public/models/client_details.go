@@ -19,19 +19,19 @@ type ClientDetails struct {
 
 	// url to a client website
 	// Example: https://example.com
-	ClientURI string `json:"client_uri,omitempty"`
+	ClientURI string `json:"client_uri,omitempty" yaml:"client_uri,omitempty"`
 
 	// client id
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// url to a page where client logo is served
 	// Example: https://example.com/logo.png
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// client name
 	// Example: My app
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this client details

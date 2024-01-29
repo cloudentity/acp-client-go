@@ -20,11 +20,11 @@ import (
 type OtpConfig struct {
 
 	// length
-	Length int64 `json:"length,omitempty"`
+	Length int64 `json:"length,omitempty" yaml:"length,omitempty"`
 
 	// ttl
 	// Format: duration
-	TTL strfmt.Duration `json:"ttl,omitempty"`
+	TTL strfmt.Duration `json:"ttl,omitempty" yaml:"ttl,omitempty"`
 }
 
 // Validate validates this otp config

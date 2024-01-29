@@ -54,7 +54,7 @@ func (o *RevokeTokensReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/tokens] revokeTokens", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *RevokeTokensNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the revoke tokens no content response
+func (o *RevokeTokensNoContent) Code() int {
+	return 204
+}
+
 func (o *RevokeTokensNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewRevokeTokensUnauthorized() *RevokeTokensUnauthorized {
 /*
 RevokeTokensUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeTokensUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *RevokeTokensUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke tokens unauthorized response a status code equal to that given
 func (o *RevokeTokensUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke tokens unauthorized response
+func (o *RevokeTokensUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeTokensUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewRevokeTokensForbidden() *RevokeTokensForbidden {
 /*
 RevokeTokensForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeTokensForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *RevokeTokensForbidden) IsServerError() bool {
 // IsCode returns true when this revoke tokens forbidden response a status code equal to that given
 func (o *RevokeTokensForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke tokens forbidden response
+func (o *RevokeTokensForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeTokensForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewRevokeTokensNotFound() *RevokeTokensNotFound {
 /*
 RevokeTokensNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RevokeTokensNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *RevokeTokensNotFound) IsServerError() bool {
 // IsCode returns true when this revoke tokens not found response a status code equal to that given
 func (o *RevokeTokensNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the revoke tokens not found response
+func (o *RevokeTokensNotFound) Code() int {
+	return 404
 }
 
 func (o *RevokeTokensNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewRevokeTokensUnprocessableEntity() *RevokeTokensUnprocessableEntity {
 /*
 RevokeTokensUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type RevokeTokensUnprocessableEntity struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *RevokeTokensUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this revoke tokens unprocessable entity response a status code equal to that given
 func (o *RevokeTokensUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the revoke tokens unprocessable entity response
+func (o *RevokeTokensUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *RevokeTokensUnprocessableEntity) Error() string {

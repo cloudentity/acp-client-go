@@ -18,15 +18,15 @@ import (
 type ConsentGrantContext struct {
 
 	// json object - device print of the End User's device
-	Device map[string]interface{} `json:"device,omitempty"`
+	Device map[string]interface{} `json:"device,omitempty" yaml:"device,omitempty"`
 
 	// string in the form of a valid IP v 4 address, represents the current IP of the End User
 	// Example: 52.14.142.76
-	IP string `json:"ip,omitempty"`
+	IP string `json:"ip,omitempty" yaml:"ip,omitempty"`
 
 	// 2 element array of floats - current geolocation of the end-user, the format is [lat, long]
 	// Example: [25.2084,55.2719]
-	Location []float64 `json:"location"`
+	Location []float64 `json:"location" yaml:"location"`
 }
 
 // Validate validates this consent grant context

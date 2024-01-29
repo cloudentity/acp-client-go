@@ -18,7 +18,7 @@ import (
 type AzureB2CCredentials struct {
 
 	// Application secret from your Microsoft Azure application settings
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 }
 
 // Validate validates this azure b2 c credentials

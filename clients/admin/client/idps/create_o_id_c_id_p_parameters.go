@@ -69,6 +69,14 @@ type CreateOIDCIDPParams struct {
 	*/
 	OIDCIDP *models.OIDCIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateOIDCIDPParams) SetOIDCIDP(oIDCIDP *models.OIDCIDP) {
 	o.OIDCIDP = oIDCIDP
 }
 
+// WithIfMatch adds the ifMatch to the create o ID c ID p params
+func (o *CreateOIDCIDPParams) WithIfMatch(ifMatch *string) *CreateOIDCIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create o ID c ID p params
+func (o *CreateOIDCIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create o ID c ID p params
 func (o *CreateOIDCIDPParams) WithWid(wid string) *CreateOIDCIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateOIDCIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.OIDCIDP != nil {
 		if err := r.SetBodyParam(o.OIDCIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

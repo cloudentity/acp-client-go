@@ -72,7 +72,7 @@ func (o *ImportSAMLMetadataFromTextReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/saml/metadata/import/text] importSAMLMetadataFromText", response, response.Code())
 	}
 }
 
@@ -114,6 +114,11 @@ func (o *ImportSAMLMetadataFromTextNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the import s a m l metadata from text no content response
+func (o *ImportSAMLMetadataFromTextNoContent) Code() int {
+	return 204
+}
+
 func (o *ImportSAMLMetadataFromTextNoContent) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/text][%d] importSAMLMetadataFromTextNoContent ", 204)
 }
@@ -135,7 +140,7 @@ func NewImportSAMLMetadataFromTextBadRequest() *ImportSAMLMetadataFromTextBadReq
 /*
 ImportSAMLMetadataFromTextBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportSAMLMetadataFromTextBadRequest struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *ImportSAMLMetadataFromTextBadRequest) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text bad request response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import s a m l metadata from text bad request response
+func (o *ImportSAMLMetadataFromTextBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportSAMLMetadataFromTextBadRequest) Error() string {
@@ -198,7 +208,7 @@ func NewImportSAMLMetadataFromTextUnauthorized() *ImportSAMLMetadataFromTextUnau
 /*
 ImportSAMLMetadataFromTextUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportSAMLMetadataFromTextUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *ImportSAMLMetadataFromTextUnauthorized) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text unauthorized response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import s a m l metadata from text unauthorized response
+func (o *ImportSAMLMetadataFromTextUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportSAMLMetadataFromTextUnauthorized) Error() string {
@@ -261,7 +276,7 @@ func NewImportSAMLMetadataFromTextForbidden() *ImportSAMLMetadataFromTextForbidd
 /*
 ImportSAMLMetadataFromTextForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportSAMLMetadataFromTextForbidden struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *ImportSAMLMetadataFromTextForbidden) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text forbidden response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import s a m l metadata from text forbidden response
+func (o *ImportSAMLMetadataFromTextForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportSAMLMetadataFromTextForbidden) Error() string {
@@ -324,7 +344,7 @@ func NewImportSAMLMetadataFromTextNotFound() *ImportSAMLMetadataFromTextNotFound
 /*
 ImportSAMLMetadataFromTextNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportSAMLMetadataFromTextNotFound struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *ImportSAMLMetadataFromTextNotFound) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text not found response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import s a m l metadata from text not found response
+func (o *ImportSAMLMetadataFromTextNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportSAMLMetadataFromTextNotFound) Error() string {
@@ -387,7 +412,7 @@ func NewImportSAMLMetadataFromTextConflict() *ImportSAMLMetadataFromTextConflict
 /*
 ImportSAMLMetadataFromTextConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportSAMLMetadataFromTextConflict struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *ImportSAMLMetadataFromTextConflict) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text conflict response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import s a m l metadata from text conflict response
+func (o *ImportSAMLMetadataFromTextConflict) Code() int {
+	return 409
 }
 
 func (o *ImportSAMLMetadataFromTextConflict) Error() string {
@@ -450,7 +480,7 @@ func NewImportSAMLMetadataFromTextUnprocessableEntity() *ImportSAMLMetadataFromT
 /*
 ImportSAMLMetadataFromTextUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportSAMLMetadataFromTextUnprocessableEntity struct {
 	Payload *models.Error
@@ -479,6 +509,11 @@ func (o *ImportSAMLMetadataFromTextUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text unprocessable entity response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the import s a m l metadata from text unprocessable entity response
+func (o *ImportSAMLMetadataFromTextUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ImportSAMLMetadataFromTextUnprocessableEntity) Error() string {
@@ -513,7 +548,7 @@ func NewImportSAMLMetadataFromTextTooManyRequests() *ImportSAMLMetadataFromTextT
 /*
 ImportSAMLMetadataFromTextTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportSAMLMetadataFromTextTooManyRequests struct {
 	Payload *models.Error
@@ -542,6 +577,11 @@ func (o *ImportSAMLMetadataFromTextTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from text too many requests response a status code equal to that given
 func (o *ImportSAMLMetadataFromTextTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import s a m l metadata from text too many requests response
+func (o *ImportSAMLMetadataFromTextTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportSAMLMetadataFromTextTooManyRequests) Error() string {

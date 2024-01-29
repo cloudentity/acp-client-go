@@ -21,11 +21,14 @@ import (
 type OTPPayload struct {
 
 	// address
-	Address string `json:"Address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
+
+	// purpose
+	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 
 	// type
 	// Enum: [sms email]
-	Type string `json:"Type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this o t p payload
@@ -77,7 +80,7 @@ func (m *OTPPayload) validateType(formats strfmt.Registry) error {
 	}
 
 	// value enum
-	if err := m.validateTypeEnum("Type", "body", m.Type); err != nil {
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 

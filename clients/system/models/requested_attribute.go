@@ -22,19 +22,19 @@ import (
 type RequestedAttribute struct {
 
 	// friendly name
-	FriendlyName string `json:"FriendlyName,omitempty"`
+	FriendlyName string `json:"FriendlyName,omitempty" yaml:"FriendlyName,omitempty"`
 
 	// is required
-	IsRequired bool `json:"IsRequired,omitempty"`
+	IsRequired bool `json:"IsRequired,omitempty" yaml:"IsRequired,omitempty"`
 
 	// name
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// name format
-	NameFormat string `json:"NameFormat,omitempty"`
+	NameFormat string `json:"NameFormat,omitempty" yaml:"NameFormat,omitempty"`
 
 	// values
-	Values []*AttributeValue `json:"Values"`
+	Values []*AttributeValue `json:"Values" yaml:"Values"`
 }
 
 // Validate validates this requested attribute
@@ -96,6 +96,11 @@ func (m *RequestedAttribute) contextValidateValues(ctx context.Context, formats 
 	for i := 0; i < len(m.Values); i++ {
 
 		if m.Values[i] != nil {
+
+			if swag.IsZero(m.Values[i]) { // not required
+				return nil
+			}
+
 			if err := m.Values[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Values" + "." + strconv.Itoa(i))

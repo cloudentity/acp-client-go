@@ -48,7 +48,7 @@ func (o *ListConsentsReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /consents] listConsents", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListConsentsOK describes a response with status code 200, with default header va
 Consents
 */
 type ListConsentsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Consents
 }
 
@@ -91,6 +100,11 @@ func (o *ListConsentsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list consents o k response
+func (o *ListConsentsOK) Code() int {
+	return 200
+}
+
 func (o *ListConsentsOK) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listConsentsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListConsentsOK) GetPayload() *models.Consents {
 }
 
 func (o *ListConsentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Consents)
 
@@ -123,7 +144,7 @@ func NewListConsentsUnauthorized() *ListConsentsUnauthorized {
 /*
 ListConsentsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListConsentsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListConsentsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list consents unauthorized response a status code equal to that given
 func (o *ListConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list consents unauthorized response
+func (o *ListConsentsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListConsentsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListConsentsForbidden() *ListConsentsForbidden {
 /*
 ListConsentsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListConsentsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this list consents forbidden response a status code equal to that given
 func (o *ListConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list consents forbidden response
+func (o *ListConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListConsentsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListConsentsTooManyRequests() *ListConsentsTooManyRequests {
 /*
 ListConsentsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListConsentsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListConsentsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list consents too many requests response a status code equal to that given
 func (o *ListConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list consents too many requests response
+func (o *ListConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListConsentsTooManyRequests) Error() string {

@@ -20,13 +20,13 @@ import (
 type KeyDescriptor struct {
 
 	// encryption methods
-	EncryptionMethods []*EncryptionMethod `json:"EncryptionMethods"`
+	EncryptionMethods []*EncryptionMethod `json:"EncryptionMethods" yaml:"EncryptionMethods"`
 
 	// key info
-	KeyInfo *KeyInfo `json:"KeyInfo,omitempty"`
+	KeyInfo *KeyInfo `json:"KeyInfo,omitempty" yaml:"KeyInfo,omitempty"`
 
 	// use
-	Use string `json:"Use,omitempty"`
+	Use string `json:"Use,omitempty" yaml:"Use,omitempty"`
 }
 
 // Validate validates this key descriptor
@@ -115,6 +115,11 @@ func (m *KeyDescriptor) contextValidateEncryptionMethods(ctx context.Context, fo
 	for i := 0; i < len(m.EncryptionMethods); i++ {
 
 		if m.EncryptionMethods[i] != nil {
+
+			if swag.IsZero(m.EncryptionMethods[i]) { // not required
+				return nil
+			}
+
 			if err := m.EncryptionMethods[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("EncryptionMethods" + "." + strconv.Itoa(i))
@@ -133,6 +138,11 @@ func (m *KeyDescriptor) contextValidateEncryptionMethods(ctx context.Context, fo
 func (m *KeyDescriptor) contextValidateKeyInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.KeyInfo != nil {
+
+		if swag.IsZero(m.KeyInfo) { // not required
+			return nil
+		}
+
 		if err := m.KeyInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("KeyInfo")

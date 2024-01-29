@@ -69,6 +69,14 @@ type UpdateClaimParams struct {
 	// Claim.
 	Claim string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -144,6 +152,17 @@ func (o *UpdateClaimParams) SetClaim(claim string) {
 	o.Claim = claim
 }
 
+// WithIfMatch adds the ifMatch to the update claim params
+func (o *UpdateClaimParams) WithIfMatch(ifMatch *string) *UpdateClaimParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update claim params
+func (o *UpdateClaimParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -160,6 +179,14 @@ func (o *UpdateClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param claim
 	if err := r.SetPathParam("claim", o.Claim); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

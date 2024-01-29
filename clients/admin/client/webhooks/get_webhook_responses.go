@@ -54,7 +54,7 @@ func (o *GetWebhookReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/webhooks/{webhookID}] getWebhook", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetWebhookOK describes a response with status code 200, with default header valu
 Webhook response
 */
 type GetWebhookOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.WebhookResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetWebhookOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get webhook o k response
+func (o *GetWebhookOK) Code() int {
+	return 200
+}
+
 func (o *GetWebhookOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/webhooks/{webhookID}][%d] getWebhookOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetWebhookOK) GetPayload() *models.WebhookResponse {
 }
 
 func (o *GetWebhookOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.WebhookResponse)
 
@@ -129,7 +150,7 @@ func NewGetWebhookUnauthorized() *GetWebhookUnauthorized {
 /*
 GetWebhookUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetWebhookUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetWebhookUnauthorized) IsServerError() bool {
 // IsCode returns true when this get webhook unauthorized response a status code equal to that given
 func (o *GetWebhookUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get webhook unauthorized response
+func (o *GetWebhookUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetWebhookUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetWebhookForbidden() *GetWebhookForbidden {
 /*
 GetWebhookForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetWebhookForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetWebhookForbidden) IsServerError() bool {
 // IsCode returns true when this get webhook forbidden response a status code equal to that given
 func (o *GetWebhookForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get webhook forbidden response
+func (o *GetWebhookForbidden) Code() int {
+	return 403
 }
 
 func (o *GetWebhookForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetWebhookNotFound() *GetWebhookNotFound {
 /*
 GetWebhookNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetWebhookNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetWebhookNotFound) IsServerError() bool {
 // IsCode returns true when this get webhook not found response a status code equal to that given
 func (o *GetWebhookNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get webhook not found response
+func (o *GetWebhookNotFound) Code() int {
+	return 404
 }
 
 func (o *GetWebhookNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetWebhookTooManyRequests() *GetWebhookTooManyRequests {
 /*
 GetWebhookTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetWebhookTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetWebhookTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get webhook too many requests response a status code equal to that given
 func (o *GetWebhookTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get webhook too many requests response
+func (o *GetWebhookTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetWebhookTooManyRequests) Error() string {

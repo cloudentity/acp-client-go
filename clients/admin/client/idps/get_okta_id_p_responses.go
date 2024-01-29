@@ -54,7 +54,7 @@ func (o *GetOktaIDPReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/okta/{iid}] getOktaIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetOktaIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get okta Id p o k response
+func (o *GetOktaIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetOktaIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetOktaIDPUnauthorized() *GetOktaIDPUnauthorized {
 /*
 GetOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetOktaIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetOktaIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get okta Id p unauthorized response a status code equal to that given
 func (o *GetOktaIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get okta Id p unauthorized response
+func (o *GetOktaIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetOktaIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetOktaIDPForbidden() *GetOktaIDPForbidden {
 /*
 GetOktaIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetOktaIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetOktaIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get okta Id p forbidden response a status code equal to that given
 func (o *GetOktaIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get okta Id p forbidden response
+func (o *GetOktaIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetOktaIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetOktaIDPNotFound() *GetOktaIDPNotFound {
 /*
 GetOktaIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetOktaIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetOktaIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get okta Id p not found response a status code equal to that given
 func (o *GetOktaIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get okta Id p not found response
+func (o *GetOktaIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetOktaIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetOktaIDPTooManyRequests() *GetOktaIDPTooManyRequests {
 /*
 GetOktaIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetOktaIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetOktaIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get okta Id p too many requests response a status code equal to that given
 func (o *GetOktaIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get okta Id p too many requests response
+func (o *GetOktaIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetOktaIDPTooManyRequests) Error() string {

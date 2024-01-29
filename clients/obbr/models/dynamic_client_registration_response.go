@@ -32,24 +32,24 @@ type DynamicClientRegistrationResponse struct {
 	//
 	// Apply security measures according to the type of your application.
 	// Example: web
-	ApplicationType string `json:"application_type,omitempty"`
+	ApplicationType string `json:"application_type,omitempty" yaml:"application_type,omitempty"`
 
 	// An array of dynamically calculated application types that can be used for filtering
 	// Example: ["single_page","server_web","mobile_desktop","service","legacy","dcr"]
 	// Read Only: true
-	ApplicationTypes []string `json:"application_types"`
+	ApplicationTypes []string `json:"application_types" yaml:"application_types"`
 
 	// Identity of the intended recipients (the audience).
 	//
 	// Typically, the audience is a single resource server or a list of resource servers.
 	//
 	// It is considered a good practice to limit the audience of the token for security purposes.
-	Audience []string `json:"audience"`
+	Audience []string `json:"audience" yaml:"audience"`
 
 	// Authorization details types
 	//
 	// Indicates what authorization details types the client can use.
-	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types"`
+	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types" yaml:"authorization_details_types"`
 
 	// Algorithm used for encrypting authorization responses.
 	//
@@ -59,7 +59,7 @@ type DynamicClientRegistrationResponse struct {
 	// If omitted, no encryption is applied by default.
 	// Example: RSA-OAEP-256
 	// Enum: [RSA-OAEP RSA-OAEP-256]
-	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty"`
+	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty" yaml:"authorization_encrypted_response_alg,omitempty"`
 
 	// Algorithm used for encrypting authorization responses.
 	//
@@ -68,7 +68,7 @@ type DynamicClientRegistrationResponse struct {
 	// MUST also be provided in a request.
 	// Example: A128CBC-HS256
 	// Enum: [A256GCM A128CBC-HS256]
-	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty"`
+	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty" yaml:"authorization_encrypted_response_enc,omitempty"`
 
 	// Algorithm used for signing authorization responses.
 	//
@@ -76,12 +76,12 @@ type DynamicClientRegistrationResponse struct {
 	//
 	// `none` isn't allowed.
 	// Example: RS256
-	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty"`
+	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty" yaml:"authorization_signed_response_alg,omitempty"`
 
 	// OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
 	//
 	// When omitted, the client application doesn't send signed authentication requests.
-	BackchannelAuthenticationRequestSigningAlg string `json:"backchannel_authentication_request_signing_alg,omitempty"`
+	BackchannelAuthenticationRequestSigningAlg string `json:"backchannel_authentication_request_signing_alg,omitempty" yaml:"backchannel_authentication_request_signing_alg,omitempty"`
 
 	// REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
 	// delivery mode is set to `ping` or `push`.
@@ -89,62 +89,62 @@ type DynamicClientRegistrationResponse struct {
 	// This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 	//
 	// Input: an HTTPS URL.
-	BackchannelClientNotificationEndpoint string `json:"backchannel_client_notification_endpoint,omitempty"`
+	BackchannelClientNotificationEndpoint string `json:"backchannel_client_notification_endpoint,omitempty" yaml:"backchannel_client_notification_endpoint,omitempty"`
 
 	// REQUIRED for requests when the client application uses CIBA as an authorization grant type.
 	//
 	// Input: `poll`, `ping`, or `push`.
-	BackchannelTokenDeliveryMode string `json:"backchannel_token_delivery_mode,omitempty"`
+	BackchannelTokenDeliveryMode string `json:"backchannel_token_delivery_mode,omitempty" yaml:"backchannel_token_delivery_mode,omitempty"`
 
 	// OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
 	//
 	// If omitted, the default value is `false`.
 	//
 	// This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
-	BackchannelUserCodeParameter bool `json:"backchannel_user_code_parameter,omitempty"`
+	BackchannelUserCodeParameter bool `json:"backchannel_user_code_parameter,omitempty" yaml:"backchannel_user_code_parameter,omitempty"`
 
 	// OAuth client application identifier
 	//
 	// If not provided, a random client ID is generated.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// The client identifier time of issue.
 	//
 	// The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
-	ClientIDIssuedAt int64 `json:"client_id_issued_at,omitempty"`
+	ClientIDIssuedAt int64 `json:"client_id_issued_at,omitempty" yaml:"client_id_issued_at,omitempty"`
 
 	// Human-readable name of a client application.
 	// Example: My app
-	ClientName string `json:"client_name,omitempty"`
+	ClientName string `json:"client_name,omitempty" yaml:"client_name,omitempty"`
 
 	// OAuth client secret
 	//
 	// If not provided, a random client secret is generated.
 	// Min Length: 32
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 
 	// The client secret expiration time.
 	//
 	// If the client secret does not expire, `client_secret_expires_at` = `0`.
-	ClientSecretExpiresAt int64 `json:"client_secret_expires_at,omitempty"`
+	ClientSecretExpiresAt int64 `json:"client_secret_expires_at,omitempty" yaml:"client_secret_expires_at,omitempty"`
 
 	// URI of a client application.
-	ClientURI string `json:"client_uri,omitempty"`
+	ClientURI string `json:"client_uri,omitempty" yaml:"client_uri,omitempty"`
 
 	// Date when the client application was created.
 	// Example: 2022-04-07T19:17:31.323187Z
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// Description of the client application.
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Boolean value specifying whether the client always uses DPoP for token requests
 	// If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
-	DpopBoundAccessTokens bool `json:"dpop_bound_access_tokens,omitempty"`
+	DpopBoundAccessTokens bool `json:"dpop_bound_access_tokens,omitempty" yaml:"dpop_bound_access_tokens,omitempty"`
 
 	// dynamically registered
-	DynamicallyRegistered bool `json:"dynamically_registered,omitempty"`
+	DynamicallyRegistered bool `json:"dynamically_registered,omitempty" yaml:"dynamically_registered,omitempty"`
 
 	// An array of allowed OAuth client grant types.
 	//
@@ -152,31 +152,31 @@ type DynamicClientRegistrationResponse struct {
 	//
 	// [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
 	// Example: ["password","refresh_token","client_credentials","implicit","authorization_code"]
-	GrantTypes []string `json:"grant_types"`
+	GrantTypes []string `json:"grant_types" yaml:"grant_types"`
 
 	// An array of hashed rotated client secrets
-	HashedRotatedSecrets []string `json:"hashed_rotated_secrets"`
+	HashedRotatedSecrets []string `json:"hashed_rotated_secrets" yaml:"hashed_rotated_secrets"`
 
 	// Hashed client secret
 	//
 	// Hashing client secrets provides additional security for your secrets storage as it hides
 	// plaintext secrets from being viewed both in the UI and the database.
-	HashedSecret string `json:"hashed_secret,omitempty"`
+	HashedSecret string `json:"hashed_secret,omitempty" yaml:"hashed_secret,omitempty"`
 
 	// JWE alg algorithm for encrypting the ID token issued to this client application.
 	// Enum: [RSA-OAEP RSA-OAEP-256]
-	IDTokenEncryptedResponseAlg string `json:"id_token_encrypted_response_alg,omitempty"`
+	IDTokenEncryptedResponseAlg string `json:"id_token_encrypted_response_alg,omitempty" yaml:"id_token_encrypted_response_alg,omitempty"`
 
 	// JWE enc algorithm for encrypting the ID token issued to this client application.
 	// Enum: [A256GCM A128CBC-HS256]
-	IDTokenEncryptedResponseEnc string `json:"id_token_encrypted_response_enc,omitempty"`
+	IDTokenEncryptedResponseEnc string `json:"id_token_encrypted_response_enc,omitempty" yaml:"id_token_encrypted_response_enc,omitempty"`
 
 	// Algorithm for signing ID tokens issued for a client application.
 	//
 	// The default value depends on authorization server configuration.
 	// Example: ES256
 	// Enum: [RS256 ES256 PS256]
-	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
+	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty" yaml:"id_token_signed_response_alg,omitempty"`
 
 	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
@@ -189,16 +189,16 @@ type DynamicClientRegistrationResponse struct {
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
-	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty"`
+	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty" yaml:"introspection_endpoint_auth_method,omitempty"`
 
 	// jwks
-	Jwks *ClientJWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// A URL of JSON Web Key Set with the public keys used by a client application to authenticate to Cloudentity.
-	JwksURI string `json:"jwks_uri,omitempty"`
+	JwksURI string `json:"jwks_uri,omitempty" yaml:"jwks_uri,omitempty"`
 
 	// Logo URI.
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
 	// Data Recipient Brand.
@@ -206,36 +206,39 @@ type DynamicClientRegistrationResponse struct {
 	// The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
 	// required for authorization, and represents the audience(s) the JWT is intended for.
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-	OrganisationID string `json:"organisation_id,omitempty"`
+	OrganisationID string `json:"organisation_id,omitempty" yaml:"organisation_id,omitempty"`
 
 	// Policy URL to read about how the profile data is used.
-	PolicyURI string `json:"policy_uri,omitempty"`
+	PolicyURI string `json:"policy_uri,omitempty" yaml:"policy_uri,omitempty"`
+
+	// Array of URLs to which a relying party may request that the user be redirected after a logout has been performed.
+	PostLogoutRedirectUris []string `json:"post_logout_redirect_uris" yaml:"post_logout_redirect_uris"`
 
 	// privacy
-	Privacy *ClientPrivacy `json:"privacy,omitempty"`
+	Privacy *ClientPrivacy `json:"privacy,omitempty" yaml:"privacy,omitempty"`
 
 	// redirect uris
-	RedirectUris RedirectURIs `json:"redirect_uris,omitempty"`
+	RedirectUris RedirectURIs `json:"redirect_uris,omitempty" yaml:"redirect_uris,omitempty"`
 
 	// Registration token that can be used for client management
-	RegistrationAccessToken string `json:"registration_access_token,omitempty"`
+	RegistrationAccessToken string `json:"registration_access_token,omitempty" yaml:"registration_access_token,omitempty"`
 
 	// Registration token expiration time in seconds. If 0 value is returned, token never expires.
-	RegistrationAccessTokenExpiresIn int64 `json:"registration_access_token_expires_in,omitempty"`
+	RegistrationAccessTokenExpiresIn int64 `json:"registration_access_token_expires_in,omitempty" yaml:"registration_access_token_expires_in,omitempty"`
 
 	// URL for client management
-	RegistrationClientURI string `json:"registration_client_uri,omitempty"`
+	RegistrationClientURI string `json:"registration_client_uri,omitempty" yaml:"registration_client_uri,omitempty"`
 
 	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
 	// Example: RSA-OAEP
 	// Enum: [RSA-OAEP RSA-OAEP-256]
-	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty"`
+	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty" yaml:"request_object_encryption_alg,omitempty"`
 
 	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
 	// When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
 	// Example: A256GCM
 	// Enum: [A256GCM A128CBC-HS256]
-	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty"`
+	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty" yaml:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
 	//
@@ -243,16 +246,16 @@ type DynamicClientRegistrationResponse struct {
 	// to use a signing algorithm, set the value of this parameter to `none`.
 	// Example: none
 	// Enum: [any none RS256 ES256 PS256]
-	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty"`
+	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty" yaml:"request_object_signing_alg,omitempty"`
 
 	// Array of absolute URIs that points to the Request Object that holds authorization request parameters.
-	RequestUris []string `json:"request_uris"`
+	RequestUris []string `json:"request_uris" yaml:"request_uris"`
 
 	// Boolean parameter indicating whether the only means of initiating an authorization request the client is allowed to use is PAR.
-	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
+	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty" yaml:"require_pushed_authorization_requests,omitempty"`
 
 	// response types
-	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+	ResponseTypes ResponseTypes `json:"response_types,omitempty" yaml:"response_types,omitempty"`
 
 	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
@@ -264,18 +267,18 @@ type DynamicClientRegistrationResponse struct {
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
-	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty"`
+	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty" yaml:"revocation_endpoint_auth_method,omitempty"`
 
 	// An array of rotated OAuth client secrets
-	RotatedSecrets []string `json:"rotated_secrets"`
+	RotatedSecrets []string `json:"rotated_secrets" yaml:"rotated_secrets"`
 
 	// Space-separated list of scopes for compatibility with the OAuth specification.
 	// Example: email offline_access openid
-	Scope string `json:"scope,omitempty"`
+	Scope string `json:"scope,omitempty" yaml:"scope,omitempty"`
 
 	// An array of string represented scopes assigned to a client application
 	// Example: ["email","offline_access","openid"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
 	// It must reference a JSON file with the array of `redirect_uri` values.
@@ -284,7 +287,7 @@ type DynamicClientRegistrationResponse struct {
 	// domain without affecting consumer consent.
 	//
 	// [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
-	SectorIdentifierURI string `json:"sector_identifier_uri,omitempty"`
+	SectorIdentifierURI string `json:"sector_identifier_uri,omitempty" yaml:"sector_identifier_uri,omitempty"`
 
 	// A unique identifier string (e.g., a Universally Unique Identifier
 	// (UUID)) assigned by the client developer or software publisher.
@@ -293,16 +296,16 @@ type DynamicClientRegistrationResponse struct {
 	// multiple updates or versions of the same software package. The
 	// value of this field is not intended to be human-readable and is
 	// usually opaque to the client and authorization server.
-	SoftwareID string `json:"software_id,omitempty"`
+	SoftwareID string `json:"software_id,omitempty" yaml:"software_id,omitempty"`
 
 	// software statement
-	SoftwareStatement string `json:"software_statement,omitempty"`
+	SoftwareStatement string `json:"software_statement,omitempty" yaml:"software_statement,omitempty"`
 
 	// A version identifier string for the client software identified by
 	// `software_id`. The value of the `software_version` MUST be changed
 	// with any update of the client software identified by the same
 	// `software_id`.
-	SoftwareVersion string `json:"software_version,omitempty"`
+	SoftwareVersion string `json:"software_version,omitempty" yaml:"software_version,omitempty"`
 
 	// Subject identifier type
 	//
@@ -319,25 +322,25 @@ type DynamicClientRegistrationResponse struct {
 	// activity without their permission.
 	// Example: public
 	// Enum: [public pairwise]
-	SubjectType string `json:"subject_type,omitempty"`
+	SubjectType string `json:"subject_type,omitempty" yaml:"subject_type,omitempty"`
 
 	// A string containing the value of an expected dNSName SAN entry in the certificate.
-	TLSClientAuthSanDNS string `json:"tls_client_auth_san_dns,omitempty"`
+	TLSClientAuthSanDNS string `json:"tls_client_auth_san_dns,omitempty" yaml:"tls_client_auth_san_dns,omitempty"`
 
 	// A string containing the value of an expected rfc822Name SAN entry in the certificate.
-	TLSClientAuthSanEmail string `json:"tls_client_auth_san_email,omitempty"`
+	TLSClientAuthSanEmail string `json:"tls_client_auth_san_email,omitempty" yaml:"tls_client_auth_san_email,omitempty"`
 
 	// A string representation of an IP address in either dotted decimal notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined in [RFC5952]) that is expected to be present as an iPAddress SAN entry in the certificate.
-	TLSClientAuthSanIP string `json:"tls_client_auth_san_ip,omitempty"`
+	TLSClientAuthSanIP string `json:"tls_client_auth_san_ip,omitempty" yaml:"tls_client_auth_san_ip,omitempty"`
 
 	// A string containing the value of an expected uniformResourceIdentifier SAN entry in the certificate.
-	TLSClientAuthSanURI string `json:"tls_client_auth_san_uri,omitempty"`
+	TLSClientAuthSanURI string `json:"tls_client_auth_san_uri,omitempty" yaml:"tls_client_auth_san_uri,omitempty"`
 
 	// An [RFC4514] string representation of the expected subject distinguished name of the certificate.
-	TLSClientAuthSubjectDn string `json:"tls_client_auth_subject_dn,omitempty"`
+	TLSClientAuthSubjectDn string `json:"tls_client_auth_subject_dn,omitempty" yaml:"tls_client_auth_subject_dn,omitempty"`
 
 	// Boolean value indicating server support for mutual TLS client certificate-bound access tokens. If omitted, the default value is "false".
-	TLSClientCertificateBoundAccessTokens bool `json:"tls_client_certificate_bound_access_tokens,omitempty"`
+	TLSClientCertificateBoundAccessTokens bool `json:"tls_client_certificate_bound_access_tokens,omitempty" yaml:"tls_client_certificate_bound_access_tokens,omitempty"`
 
 	// Token endpoint authentication method configured for a client application
 	//
@@ -348,7 +351,7 @@ type DynamicClientRegistrationResponse struct {
 	// To learn more, go to the Authorization Basics > Client Authentication section of this guide.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
-	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty"`
+	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 
 	// Signing algorithm for the token endpoint
 	//
@@ -363,18 +366,18 @@ type DynamicClientRegistrationResponse struct {
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
 	// Example: ES256
 	// Enum: [RS256 ES256 PS256 HS256 ]
-	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
+	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty" yaml:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// token exchange
-	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
+	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty" yaml:"token_exchange,omitempty"`
 
 	// Terms of Service URL.
-	TosURI string `json:"tos_uri,omitempty"`
+	TosURI string `json:"tos_uri,omitempty" yaml:"tos_uri,omitempty"`
 
 	// Date when the client application was updated.
 	// Example: 2022-05-08T01:11:51.1262916Z
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -384,7 +387,7 @@ type DynamicClientRegistrationResponse struct {
 	// as an UTF-8 encoded JSON object using the application/json content-type.
 	// Example: none
 	// Enum: [none RS256 ES256]
-	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty"`
+	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty" yaml:"userinfo_signed_response_alg,omitempty"`
 }
 
 // Validate validates this dynamic client registration response

@@ -24,15 +24,15 @@ import (
 type OpenbankingBrasilPaymentRevocation struct {
 
 	// logged user
-	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser,omitempty"`
+	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser,omitempty" yaml:"loggedUser,omitempty"`
 
 	// reason
 	// Required: true
-	Reason *OpenbankingBrasilPaymentReason `json:"reason"`
+	Reason *OpenbankingBrasilPaymentReason `json:"reason" yaml:"reason"`
 
 	// revoked by
 	// Required: true
-	RevokedBy *OpenbankingBrasilPaymentEnumRevokedBy `json:"revokedBy"`
+	RevokedBy *OpenbankingBrasilPaymentEnumRevokedBy `json:"revokedBy" yaml:"revokedBy"`
 }
 
 // Validate validates this openbanking brasil payment revocation

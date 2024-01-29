@@ -19,16 +19,16 @@ import (
 type ConsentDetails struct {
 
 	// br
-	Br *BRConsentPayload `json:"br,omitempty"`
+	Br *BRConsentPayload `json:"br,omitempty" yaml:"br,omitempty"`
 
 	// cdr
-	Cdr *CDRArrangement `json:"cdr,omitempty"`
+	Cdr *CDRArrangement `json:"cdr,omitempty" yaml:"cdr,omitempty"`
 
 	// fdx
-	Fdx *FDXConsent `json:"fdx,omitempty"`
+	Fdx *FDXConsent `json:"fdx,omitempty" yaml:"fdx,omitempty"`
 
 	// uk
-	Uk *UKConsentPayload `json:"uk,omitempty"`
+	Uk *UKConsentPayload `json:"uk,omitempty" yaml:"uk,omitempty"`
 }
 
 // Validate validates this consent details
@@ -162,6 +162,11 @@ func (m *ConsentDetails) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *ConsentDetails) contextValidateBr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Br != nil {
+
+		if swag.IsZero(m.Br) { // not required
+			return nil
+		}
+
 		if err := m.Br.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("br")
@@ -178,6 +183,11 @@ func (m *ConsentDetails) contextValidateBr(ctx context.Context, formats strfmt.R
 func (m *ConsentDetails) contextValidateCdr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cdr != nil {
+
+		if swag.IsZero(m.Cdr) { // not required
+			return nil
+		}
+
 		if err := m.Cdr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdr")
@@ -194,6 +204,11 @@ func (m *ConsentDetails) contextValidateCdr(ctx context.Context, formats strfmt.
 func (m *ConsentDetails) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fdx != nil {
+
+		if swag.IsZero(m.Fdx) { // not required
+			return nil
+		}
+
 		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fdx")
@@ -210,6 +225,11 @@ func (m *ConsentDetails) contextValidateFdx(ctx context.Context, formats strfmt.
 func (m *ConsentDetails) contextValidateUk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Uk != nil {
+
+		if swag.IsZero(m.Uk) { // not required
+			return nil
+		}
+
 		if err := m.Uk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("uk")

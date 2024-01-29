@@ -19,15 +19,15 @@ import (
 type BackchannelAuthenticationError struct {
 
 	// REQUIRED. A single ASCII error code from one present in the list below.
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// OPTIONAL. Humanreadable ASCII [USASCII] text providing additional information, used to assist the client developer in understanding
 	// the error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x2021 / %x235B / %x5D7E.
-	ErrorDescription string `json:"error_description,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty" yaml:"error_description,omitempty"`
 
 	// OPTIONAL. A URI identifying a humanreadable web page with information about the error to provide the client developer with additional information.
 	// Values for the "error_uri" parameter MUST conform to the URIreference syntax and thus MUST NOT include characters outside the set %x21 / %x235B / %x5D7E.
-	ErrorURI string `json:"error_uri,omitempty"`
+	ErrorURI string `json:"error_uri,omitempty" yaml:"error_uri,omitempty"`
 }
 
 // Validate validates this backchannel authentication error

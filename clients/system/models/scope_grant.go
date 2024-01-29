@@ -19,30 +19,39 @@ import (
 // swagger:model ScopeGrant
 type ScopeGrant struct {
 
-	// Client ID that the scope belongs to
-	ClientID string `json:"client_id,omitempty"`
+	// Identifier of a client application that is granted with the scope.
+	// Example: bugkgm23g9kregtu051g
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Time when the scope was granted
 	// Format: date-time
-	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
+	GivenAt strfmt.DateTime `json:"given_at,omitempty" yaml:"given_at,omitempty"`
 
-	// Granted scope name
-	GrantedScopeName string `json:"granted_scope_name,omitempty"`
+	// The scope name with its actual value
+	// Example: accounts.read.own
+	GrantedScopeName string `json:"granted_scope_name,omitempty" yaml:"granted_scope_name,omitempty"`
 
 	// Language
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
-	// Scope name
-	ScopeName string `json:"scope_name,omitempty"`
+	// The scope name as it's set initially. This parameter supports dynamic scope syntax, thus can include a scope
+	// root—a fixed core of the dynamic scope name supplemented with a wildcard—a symbol representing
+	// an adjustable extension to the scope root allowing to retrieve a specific requested scope.
+	//
+	// The basic dynamic scope template is as follows: `[scope-root.*]` where `*` is a wildcard.
+	// Example: accounts.read.*
+	ScopeName string `json:"scope_name,omitempty" yaml:"scope_name,omitempty"`
 
-	// Server ID
-	ServerID string `json:"server_id,omitempty"`
+	// Identifier of a server where the client app is hosted.
+	// Example: my-server
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
-	// Subject ID that has granted the scope.
-	Subject string `json:"subject,omitempty"`
+	// Identifier of a user who granted the scope.
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
-	// Tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
+	// Identifier of the tenant where the client app is hosted.
+	// Example: my-company
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this scope grant

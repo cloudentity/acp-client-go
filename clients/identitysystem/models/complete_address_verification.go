@@ -22,11 +22,11 @@ type CompleteAddressVerification struct {
 	// address
 	// Example: sample@email.com/+48123456789
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 }
 
 // Validate validates this complete address verification

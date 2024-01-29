@@ -61,6 +61,14 @@ GetCIBAAuthenticationServiceParams contains all the parameters to send to the AP
 */
 type GetCIBAAuthenticationServiceParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -133,6 +141,17 @@ func (o *GetCIBAAuthenticationServiceParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get c i b a authentication service params
+func (o *GetCIBAAuthenticationServiceParams) WithIfMatch(ifMatch *string) *GetCIBAAuthenticationServiceParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get c i b a authentication service params
+func (o *GetCIBAAuthenticationServiceParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the get c i b a authentication service params
 func (o *GetCIBAAuthenticationServiceParams) WithWid(wid string) *GetCIBAAuthenticationServiceParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *GetCIBAAuthenticationServiceParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

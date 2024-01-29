@@ -23,54 +23,54 @@ type UserWithData struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// credentials
-	Credentials []*UserCredential `json:"credentials"`
+	Credentials []*UserCredential `json:"credentials" yaml:"credentials"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// identifiers
-	Identifiers []*UserIdentifier `json:"identifiers"`
+	Identifiers []*UserIdentifier `json:"identifiers" yaml:"identifiers"`
 
 	// metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// metadata schema id
-	MetadataSchemaID string `json:"metadata_schema_id,omitempty"`
+	MetadataSchemaID string `json:"metadata_schema_id,omitempty" yaml:"metadata_schema_id,omitempty"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// payload schema id
-	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
+	PayloadSchemaID string `json:"payload_schema_id,omitempty" yaml:"payload_schema_id,omitempty"`
 
 	// status
 	// Required: true
 	// Enum: [active inactive deleted new]
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 
 	// status updated at
 	// Format: date-time
-	StatusUpdatedAt strfmt.DateTime `json:"status_updated_at,omitempty"`
+	StatusUpdatedAt strfmt.DateTime `json:"status_updated_at,omitempty" yaml:"status_updated_at,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// user pool id
 	// Example: default
 	// Required: true
-	UserPoolID string `json:"user_pool_id"`
+	UserPoolID string `json:"user_pool_id" yaml:"user_pool_id"`
 
 	// verifiable addresses
-	VerifiableAddresses []*UserVerifiableAddress `json:"verifiable_addresses"`
+	VerifiableAddresses []*UserVerifiableAddress `json:"verifiable_addresses" yaml:"verifiable_addresses"`
 }
 
 // Validate validates this user with data

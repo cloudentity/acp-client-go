@@ -18,10 +18,10 @@ import (
 type ScriptRuntime struct {
 
 	// dependencies
-	Dependencies map[string]string `json:"dependencies,omitempty"`
+	Dependencies map[string]string `json:"dependencies,omitempty" yaml:"dependencies,omitempty"`
 
 	// version
-	Version string `json:"version,omitempty"`
+	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 }
 
 // Validate validates this script runtime

@@ -65,6 +65,9 @@ type ExportTenantConfigurationParams struct {
 	// WithData.
 	WithData *bool
 
+	// WorkspaceID.
+	WorkspaceID *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -129,6 +132,17 @@ func (o *ExportTenantConfigurationParams) SetWithData(withData *bool) {
 	o.WithData = withData
 }
 
+// WithWorkspaceID adds the workspaceID to the export tenant configuration params
+func (o *ExportTenantConfigurationParams) WithWorkspaceID(workspaceID *string) *ExportTenantConfigurationParams {
+	o.SetWorkspaceID(workspaceID)
+	return o
+}
+
+// SetWorkspaceID adds the workspaceId to the export tenant configuration params
+func (o *ExportTenantConfigurationParams) SetWorkspaceID(workspaceID *string) {
+	o.WorkspaceID = workspaceID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ExportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -149,6 +163,23 @@ func (o *ExportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest
 		if qWithData != "" {
 
 			if err := r.SetQueryParam("with_data", qWithData); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.WorkspaceID != nil {
+
+		// query param workspace_id
+		var qrWorkspaceID string
+
+		if o.WorkspaceID != nil {
+			qrWorkspaceID = *o.WorkspaceID
+		}
+		qWorkspaceID := qrWorkspaceID
+		if qWorkspaceID != "" {
+
+			if err := r.SetQueryParam("workspace_id", qWorkspaceID); err != nil {
 				return err
 			}
 		}

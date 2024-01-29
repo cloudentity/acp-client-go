@@ -60,7 +60,7 @@ func (o *RevokeConsentReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /privacy/consents/revoke] revokeConsent", response, response.Code())
 	}
 }
 
@@ -103,6 +103,11 @@ func (o *RevokeConsentOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the revoke consent o k response
+func (o *RevokeConsentOK) Code() int {
+	return 200
+}
+
 func (o *RevokeConsentOK) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
 }
@@ -135,7 +140,7 @@ func NewRevokeConsentUnauthorized() *RevokeConsentUnauthorized {
 /*
 RevokeConsentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeConsentUnauthorized struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *RevokeConsentUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke consent unauthorized response a status code equal to that given
 func (o *RevokeConsentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke consent unauthorized response
+func (o *RevokeConsentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeConsentUnauthorized) Error() string {
@@ -198,7 +208,7 @@ func NewRevokeConsentForbidden() *RevokeConsentForbidden {
 /*
 RevokeConsentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeConsentForbidden struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *RevokeConsentForbidden) IsServerError() bool {
 // IsCode returns true when this revoke consent forbidden response a status code equal to that given
 func (o *RevokeConsentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke consent forbidden response
+func (o *RevokeConsentForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeConsentForbidden) Error() string {
@@ -261,7 +276,7 @@ func NewRevokeConsentNotFound() *RevokeConsentNotFound {
 /*
 RevokeConsentNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RevokeConsentNotFound struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *RevokeConsentNotFound) IsServerError() bool {
 // IsCode returns true when this revoke consent not found response a status code equal to that given
 func (o *RevokeConsentNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the revoke consent not found response
+func (o *RevokeConsentNotFound) Code() int {
+	return 404
 }
 
 func (o *RevokeConsentNotFound) Error() string {
@@ -324,7 +344,7 @@ func NewRevokeConsentUnprocessableEntity() *RevokeConsentUnprocessableEntity {
 /*
 RevokeConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type RevokeConsentUnprocessableEntity struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *RevokeConsentUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this revoke consent unprocessable entity response a status code equal to that given
 func (o *RevokeConsentUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the revoke consent unprocessable entity response
+func (o *RevokeConsentUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *RevokeConsentUnprocessableEntity) Error() string {
@@ -387,7 +412,7 @@ func NewRevokeConsentTooManyRequests() *RevokeConsentTooManyRequests {
 /*
 RevokeConsentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RevokeConsentTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *RevokeConsentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this revoke consent too many requests response a status code equal to that given
 func (o *RevokeConsentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke consent too many requests response
+func (o *RevokeConsentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeConsentTooManyRequests) Error() string {

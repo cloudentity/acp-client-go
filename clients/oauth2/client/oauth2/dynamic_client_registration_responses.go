@@ -54,7 +54,7 @@ func (o *DynamicClientRegistrationReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /oauth2/register] dynamicClientRegistration", response, response.Code())
 	}
 }
 
@@ -95,6 +95,11 @@ func (o *DynamicClientRegistrationCreated) IsServerError() bool {
 // IsCode returns true when this dynamic client registration created response a status code equal to that given
 func (o *DynamicClientRegistrationCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the dynamic client registration created response
+func (o *DynamicClientRegistrationCreated) Code() int {
+	return 201
 }
 
 func (o *DynamicClientRegistrationCreated) Error() string {
@@ -160,6 +165,11 @@ func (o *DynamicClientRegistrationBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the dynamic client registration bad request response
+func (o *DynamicClientRegistrationBadRequest) Code() int {
+	return 400
+}
+
 func (o *DynamicClientRegistrationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationBadRequest  %+v", 400, o.Payload)
 }
@@ -221,6 +231,11 @@ func (o *DynamicClientRegistrationUnauthorized) IsServerError() bool {
 // IsCode returns true when this dynamic client registration unauthorized response a status code equal to that given
 func (o *DynamicClientRegistrationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the dynamic client registration unauthorized response
+func (o *DynamicClientRegistrationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DynamicClientRegistrationUnauthorized) Error() string {
@@ -286,6 +301,11 @@ func (o *DynamicClientRegistrationForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the dynamic client registration forbidden response
+func (o *DynamicClientRegistrationForbidden) Code() int {
+	return 403
+}
+
 func (o *DynamicClientRegistrationForbidden) Error() string {
 	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationForbidden  %+v", 403, o.Payload)
 }
@@ -347,6 +367,11 @@ func (o *DynamicClientRegistrationNotFound) IsServerError() bool {
 // IsCode returns true when this dynamic client registration not found response a status code equal to that given
 func (o *DynamicClientRegistrationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the dynamic client registration not found response
+func (o *DynamicClientRegistrationNotFound) Code() int {
+	return 404
 }
 
 func (o *DynamicClientRegistrationNotFound) Error() string {

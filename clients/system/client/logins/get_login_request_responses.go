@@ -54,7 +54,7 @@ func (o *GetLoginRequestReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /logins/{login}] getLoginRequest", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetLoginRequestOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get login request o k response
+func (o *GetLoginRequestOK) Code() int {
+	return 200
+}
+
 func (o *GetLoginRequestOK) Error() string {
 	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetLoginRequestUnauthorized() *GetLoginRequestUnauthorized {
 /*
 GetLoginRequestUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetLoginRequestUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetLoginRequestUnauthorized) IsServerError() bool {
 // IsCode returns true when this get login request unauthorized response a status code equal to that given
 func (o *GetLoginRequestUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get login request unauthorized response
+func (o *GetLoginRequestUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetLoginRequestUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetLoginRequestForbidden() *GetLoginRequestForbidden {
 /*
 GetLoginRequestForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetLoginRequestForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetLoginRequestForbidden) IsServerError() bool {
 // IsCode returns true when this get login request forbidden response a status code equal to that given
 func (o *GetLoginRequestForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get login request forbidden response
+func (o *GetLoginRequestForbidden) Code() int {
+	return 403
 }
 
 func (o *GetLoginRequestForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetLoginRequestNotFound() *GetLoginRequestNotFound {
 /*
 GetLoginRequestNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetLoginRequestNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetLoginRequestNotFound) IsServerError() bool {
 // IsCode returns true when this get login request not found response a status code equal to that given
 func (o *GetLoginRequestNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get login request not found response
+func (o *GetLoginRequestNotFound) Code() int {
+	return 404
 }
 
 func (o *GetLoginRequestNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetLoginRequestTooManyRequests() *GetLoginRequestTooManyRequests {
 /*
 GetLoginRequestTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetLoginRequestTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetLoginRequestTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get login request too many requests response a status code equal to that given
 func (o *GetLoginRequestTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get login request too many requests response
+func (o *GetLoginRequestTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetLoginRequestTooManyRequests) Error() string {

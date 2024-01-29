@@ -20,48 +20,48 @@ import (
 type OBWriteInternationalStandingOrderConsentResponse7DataInitiation struct {
 
 	// charge bearer
-	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty"`
+	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty" yaml:"ChargeBearer,omitempty"`
 
 	// creditor
-	Creditor *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor `json:"Creditor,omitempty"`
+	Creditor *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor `json:"Creditor,omitempty" yaml:"Creditor,omitempty"`
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// creditor agent
-	CreditorAgent *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAgent `json:"CreditorAgent,omitempty"`
+	CreditorAgent *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAgent `json:"CreditorAgent,omitempty" yaml:"CreditorAgent,omitempty"`
 
 	// Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.
 	// Required: true
 	// Pattern: ^[A-Z]{3,3}$
-	CurrencyOfTransfer string `json:"CurrencyOfTransfer"`
+	CurrencyOfTransfer string `json:"CurrencyOfTransfer" yaml:"CurrencyOfTransfer"`
 
 	// debtor account
-	DebtorAccount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// Country in which Credit Account is domiciled. Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).
 	// Pattern: [A-Z]{2,2}
-	DestinationCountryCode string `json:"DestinationCountryCode,omitempty"`
+	DestinationCountryCode string `json:"DestinationCountryCode,omitempty" yaml:"DestinationCountryCode,omitempty"`
 
 	// Specifies the purpose of an international payment, when there is no corresponding 4 character code available in the ISO20022 list of Purpose Codes.
 	// Max Length: 140
 	// Min Length: 1
-	ExtendedPurpose string `json:"ExtendedPurpose,omitempty"`
+	ExtendedPurpose string `json:"ExtendedPurpose,omitempty" yaml:"ExtendedPurpose,omitempty"`
 
 	// The date on which the final payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	FinalPaymentDateTime strfmt.DateTime `json:"FinalPaymentDateTime,omitempty"`
+	FinalPaymentDateTime strfmt.DateTime `json:"FinalPaymentDateTime,omitempty" yaml:"FinalPaymentDateTime,omitempty"`
 
 	// The date on which the first payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	FirstPaymentDateTime strfmt.DateTime `json:"FirstPaymentDateTime"`
+	FirstPaymentDateTime strfmt.DateTime `json:"FirstPaymentDateTime" yaml:"FirstPaymentDateTime"`
 
 	// Individual Definitions:
 	// EvryDay - Every day
@@ -91,33 +91,33 @@ type OBWriteInternationalStandingOrderConsentResponse7DataInitiation struct {
 	// ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
 	// Required: true
 	// Pattern: ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
-	Frequency string `json:"Frequency"`
+	Frequency string `json:"Frequency" yaml:"Frequency"`
 
 	// instructed amount
 	// Required: true
-	InstructedAmount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstructedAmount `json:"InstructedAmount"`
+	InstructedAmount *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstructedAmount `json:"InstructedAmount" yaml:"InstructedAmount"`
 
 	// Number of the payments that will be made in completing this frequency sequence including any executed since the sequence start date.
 	// Max Length: 35
 	// Min Length: 1
-	NumberOfPayments string `json:"NumberOfPayments,omitempty"`
+	NumberOfPayments string `json:"NumberOfPayments,omitempty" yaml:"NumberOfPayments,omitempty"`
 
 	// Specifies the external purpose code in the format of character string with a maximum length of 4 characters.
 	// The list of valid codes is an external code list published separately.
 	// External code sets can be downloaded from www.iso20022.org.
 	// Max Length: 4
 	// Min Length: 1
-	Purpose string `json:"Purpose,omitempty"`
+	Purpose string `json:"Purpose,omitempty" yaml:"Purpose,omitempty"`
 
 	// Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.
 	// Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.
 	// If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.
 	// Max Length: 35
 	// Min Length: 1
-	Reference string `json:"Reference,omitempty"`
+	Reference string `json:"Reference,omitempty" yaml:"Reference,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent response7 data initiation
@@ -467,6 +467,10 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) Contex
 
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("ChargeBearer")
@@ -482,6 +486,11 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contex
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
+		if swag.IsZero(m.Creditor) { // not required
+			return nil
+		}
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Creditor")
@@ -498,6 +507,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contex
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -514,6 +524,11 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contex
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -530,6 +545,11 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contex
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -546,6 +566,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contex
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiation) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")

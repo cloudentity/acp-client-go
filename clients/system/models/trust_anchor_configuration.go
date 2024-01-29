@@ -19,10 +19,10 @@ import (
 type TrustAnchorConfiguration struct {
 
 	// jwks
-	Jwks *ClientJWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// URI of the JWKs of the trusted party responsible for signing the Software Statement
-	JwksURI string `json:"jwks_uri,omitempty"`
+	JwksURI string `json:"jwks_uri,omitempty" yaml:"jwks_uri,omitempty"`
 }
 
 // Validate validates this trust anchor configuration
@@ -75,6 +75,11 @@ func (m *TrustAnchorConfiguration) ContextValidate(ctx context.Context, formats 
 func (m *TrustAnchorConfiguration) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")

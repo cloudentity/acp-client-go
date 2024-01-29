@@ -54,7 +54,7 @@ func (o *DeleteBruteForceLimitReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /bruteforce/{protectedType}] deleteBruteForceLimit", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteBruteForceLimitNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete brute force limit no content response
+func (o *DeleteBruteForceLimitNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteBruteForceLimitNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteBruteForceLimitUnauthorized() *DeleteBruteForceLimitUnauthorized {
 /*
 DeleteBruteForceLimitUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteBruteForceLimitUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteBruteForceLimitUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete brute force limit unauthorized response a status code equal to that given
 func (o *DeleteBruteForceLimitUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete brute force limit unauthorized response
+func (o *DeleteBruteForceLimitUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteBruteForceLimitUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteBruteForceLimitForbidden() *DeleteBruteForceLimitForbidden {
 /*
 DeleteBruteForceLimitForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteBruteForceLimitForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteBruteForceLimitForbidden) IsServerError() bool {
 // IsCode returns true when this delete brute force limit forbidden response a status code equal to that given
 func (o *DeleteBruteForceLimitForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete brute force limit forbidden response
+func (o *DeleteBruteForceLimitForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteBruteForceLimitForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteBruteForceLimitNotFound() *DeleteBruteForceLimitNotFound {
 /*
 DeleteBruteForceLimitNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteBruteForceLimitNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteBruteForceLimitNotFound) IsServerError() bool {
 // IsCode returns true when this delete brute force limit not found response a status code equal to that given
 func (o *DeleteBruteForceLimitNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete brute force limit not found response
+func (o *DeleteBruteForceLimitNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteBruteForceLimitNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteBruteForceLimitTooManyRequests() *DeleteBruteForceLimitTooManyRequ
 /*
 DeleteBruteForceLimitTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteBruteForceLimitTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteBruteForceLimitTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete brute force limit too many requests response a status code equal to that given
 func (o *DeleteBruteForceLimitTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete brute force limit too many requests response
+func (o *DeleteBruteForceLimitTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteBruteForceLimitTooManyRequests) Error() string {

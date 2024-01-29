@@ -61,6 +61,14 @@ DeleteThemeParams contains all the parameters to send to the API endpoint
 */
 type DeleteThemeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -120,6 +128,17 @@ func (o *DeleteThemeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete theme params
+func (o *DeleteThemeParams) WithIfMatch(ifMatch *string) *DeleteThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete theme params
+func (o *DeleteThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the delete theme params
 func (o *DeleteThemeParams) WithThemeID(themeID string) *DeleteThemeParams {
 	o.SetThemeID(themeID)
@@ -138,6 +157,14 @@ func (o *DeleteThemeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param themeID
 	if err := r.SetPathParam("themeID", o.ThemeID); err != nil {

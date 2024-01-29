@@ -22,13 +22,13 @@ type ActivateSelfRegisteredUser struct {
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 
 	// password
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
 	// webauthn
-	Webauthn []*Credential `json:"webauthn"`
+	Webauthn []*Credential `json:"webauthn" yaml:"webauthn"`
 }
 
 // Validate validates this activate self registered user

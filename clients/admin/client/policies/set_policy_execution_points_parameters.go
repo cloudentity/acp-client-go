@@ -66,6 +66,14 @@ type SetPolicyExecutionPointsParams struct {
 	// Executions.
 	Executions *models.PolicyExecutionPoints
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -149,6 +157,17 @@ func (o *SetPolicyExecutionPointsParams) SetExecutions(executions *models.Policy
 	o.Executions = executions
 }
 
+// WithIfMatch adds the ifMatch to the set policy execution points params
+func (o *SetPolicyExecutionPointsParams) WithIfMatch(ifMatch *string) *SetPolicyExecutionPointsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the set policy execution points params
+func (o *SetPolicyExecutionPointsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the set policy execution points params
 func (o *SetPolicyExecutionPointsParams) WithWid(wid string) *SetPolicyExecutionPointsParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *SetPolicyExecutionPointsParams) WriteToRequest(r runtime.ClientRequest,
 	var res []error
 	if o.Executions != nil {
 		if err := r.SetBodyParam(o.Executions); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

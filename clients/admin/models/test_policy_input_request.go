@@ -18,22 +18,22 @@ import (
 type TestPolicyInputRequest struct {
 
 	// Body that is used in your request that you use to test your policy
-	Body string `json:"body,omitempty"`
+	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
 	// Headers that are used in your request that you use to test your policy
-	Headers map[string][]string `json:"headers,omitempty"`
+	Headers map[string][]string `json:"headers,omitempty" yaml:"headers,omitempty"`
 
 	// Method that is used in your request that you use to test your policy
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// Path that is used in your request that you use to test your policy
-	Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	// Path parameters that are used in your request that you use to test your policy
-	PathParams map[string]string `json:"path_params,omitempty"`
+	PathParams map[string]string `json:"path_params,omitempty" yaml:"path_params,omitempty"`
 
 	// Query parameters that are used in your request that you use to test your policy
-	QueryParams map[string][]string `json:"query_params,omitempty"`
+	QueryParams map[string][]string `json:"query_params,omitempty" yaml:"query_params,omitempty"`
 }
 
 // Validate validates this test policy input request

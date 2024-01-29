@@ -22,14 +22,14 @@ type Meta struct {
 
 	// first available date time
 	// Format: date-time
-	FirstAvailableDateTime ISODateTime `json:"FirstAvailableDateTime,omitempty"`
+	FirstAvailableDateTime ISODateTime `json:"FirstAvailableDateTime,omitempty" yaml:"FirstAvailableDateTime,omitempty"`
 
 	// last available date time
 	// Format: date-time
-	LastAvailableDateTime ISODateTime `json:"LastAvailableDateTime,omitempty"`
+	LastAvailableDateTime ISODateTime `json:"LastAvailableDateTime,omitempty" yaml:"LastAvailableDateTime,omitempty"`
 
 	// total pages
-	TotalPages int32 `json:"TotalPages,omitempty"`
+	TotalPages int32 `json:"TotalPages,omitempty" yaml:"TotalPages,omitempty"`
 }
 
 // Validate validates this meta
@@ -104,6 +104,10 @@ func (m *Meta) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 
 func (m *Meta) contextValidateFirstAvailableDateTime(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FirstAvailableDateTime) { // not required
+		return nil
+	}
+
 	if err := m.FirstAvailableDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FirstAvailableDateTime")
@@ -117,6 +121,10 @@ func (m *Meta) contextValidateFirstAvailableDateTime(ctx context.Context, format
 }
 
 func (m *Meta) contextValidateLastAvailableDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LastAvailableDateTime) { // not required
+		return nil
+	}
 
 	if err := m.LastAvailableDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

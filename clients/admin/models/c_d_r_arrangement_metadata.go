@@ -19,13 +19,13 @@ import (
 type CDRArrangementMetadata struct {
 
 	// personal details
-	PersonalDetails *PersonalDetails `json:"personal_details,omitempty"`
+	PersonalDetails *PersonalDetails `json:"personal_details,omitempty" yaml:"personal_details,omitempty"`
 
 	// revocation channel
-	RevocationChannel RevocationChannel `json:"revocation_channel,omitempty"`
+	RevocationChannel RevocationChannel `json:"revocation_channel,omitempty" yaml:"revocation_channel,omitempty"`
 
 	// revocation reason
-	RevocationReason RevocationReason `json:"revocation_reason,omitempty"`
+	RevocationReason RevocationReason `json:"revocation_reason,omitempty" yaml:"revocation_reason,omitempty"`
 }
 
 // Validate validates this c d r arrangement metadata
@@ -128,6 +128,11 @@ func (m *CDRArrangementMetadata) ContextValidate(ctx context.Context, formats st
 func (m *CDRArrangementMetadata) contextValidatePersonalDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PersonalDetails != nil {
+
+		if swag.IsZero(m.PersonalDetails) { // not required
+			return nil
+		}
+
 		if err := m.PersonalDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("personal_details")
@@ -143,6 +148,10 @@ func (m *CDRArrangementMetadata) contextValidatePersonalDetails(ctx context.Cont
 
 func (m *CDRArrangementMetadata) contextValidateRevocationChannel(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.RevocationChannel) { // not required
+		return nil
+	}
+
 	if err := m.RevocationChannel.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("revocation_channel")
@@ -156,6 +165,10 @@ func (m *CDRArrangementMetadata) contextValidateRevocationChannel(ctx context.Co
 }
 
 func (m *CDRArrangementMetadata) contextValidateRevocationReason(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RevocationReason) { // not required
+		return nil
+	}
 
 	if err := m.RevocationReason.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

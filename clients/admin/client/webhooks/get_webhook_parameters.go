@@ -61,6 +61,14 @@ GetWebhookParams contains all the parameters to send to the API endpoint
 */
 type GetWebhookParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* WebhookID.
 
 	   Webhook ID
@@ -126,6 +134,17 @@ func (o *GetWebhookParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get webhook params
+func (o *GetWebhookParams) WithIfMatch(ifMatch *string) *GetWebhookParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get webhook params
+func (o *GetWebhookParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWebhookID adds the webhookID to the get webhook params
 func (o *GetWebhookParams) WithWebhookID(webhookID string) *GetWebhookParams {
 	o.SetWebhookID(webhookID)
@@ -155,6 +174,14 @@ func (o *GetWebhookParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param webhookID
 	if err := r.SetPathParam("webhookID", o.WebhookID); err != nil {

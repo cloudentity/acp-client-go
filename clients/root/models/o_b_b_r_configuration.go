@@ -19,7 +19,7 @@ import (
 type OBBRConfiguration struct {
 
 	// industry
-	Industry OBBRIndustry `json:"industry,omitempty"`
+	Industry OBBRIndustry `json:"industry,omitempty" yaml:"industry,omitempty"`
 }
 
 // Validate validates this o b b r configuration
@@ -68,6 +68,10 @@ func (m *OBBRConfiguration) ContextValidate(ctx context.Context, formats strfmt.
 }
 
 func (m *OBBRConfiguration) contextValidateIndustry(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Industry) { // not required
+		return nil
+	}
 
 	if err := m.Industry.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

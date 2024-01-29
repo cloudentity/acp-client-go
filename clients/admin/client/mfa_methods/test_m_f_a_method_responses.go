@@ -60,7 +60,7 @@ func (o *TestMFAMethodReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /mfa-methods/{mfaID}/test] testMFAMethod", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *TestMFAMethodOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the test m f a method o k response
+func (o *TestMFAMethodOK) Code() int {
+	return 200
+}
+
 func (o *TestMFAMethodOK) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodOK ", 200)
 }
@@ -123,7 +128,7 @@ func NewTestMFAMethodBadRequest() *TestMFAMethodBadRequest {
 /*
 TestMFAMethodBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type TestMFAMethodBadRequest struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *TestMFAMethodBadRequest) IsServerError() bool {
 // IsCode returns true when this test m f a method bad request response a status code equal to that given
 func (o *TestMFAMethodBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the test m f a method bad request response
+func (o *TestMFAMethodBadRequest) Code() int {
+	return 400
 }
 
 func (o *TestMFAMethodBadRequest) Error() string {
@@ -186,7 +196,7 @@ func NewTestMFAMethodUnauthorized() *TestMFAMethodUnauthorized {
 /*
 TestMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type TestMFAMethodUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *TestMFAMethodUnauthorized) IsServerError() bool {
 // IsCode returns true when this test m f a method unauthorized response a status code equal to that given
 func (o *TestMFAMethodUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the test m f a method unauthorized response
+func (o *TestMFAMethodUnauthorized) Code() int {
+	return 401
 }
 
 func (o *TestMFAMethodUnauthorized) Error() string {
@@ -249,7 +264,7 @@ func NewTestMFAMethodForbidden() *TestMFAMethodForbidden {
 /*
 TestMFAMethodForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type TestMFAMethodForbidden struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *TestMFAMethodForbidden) IsServerError() bool {
 // IsCode returns true when this test m f a method forbidden response a status code equal to that given
 func (o *TestMFAMethodForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the test m f a method forbidden response
+func (o *TestMFAMethodForbidden) Code() int {
+	return 403
 }
 
 func (o *TestMFAMethodForbidden) Error() string {
@@ -312,7 +332,7 @@ func NewTestMFAMethodNotFound() *TestMFAMethodNotFound {
 /*
 TestMFAMethodNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type TestMFAMethodNotFound struct {
 	Payload *models.Error
@@ -341,6 +361,11 @@ func (o *TestMFAMethodNotFound) IsServerError() bool {
 // IsCode returns true when this test m f a method not found response a status code equal to that given
 func (o *TestMFAMethodNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the test m f a method not found response
+func (o *TestMFAMethodNotFound) Code() int {
+	return 404
 }
 
 func (o *TestMFAMethodNotFound) Error() string {
@@ -375,7 +400,7 @@ func NewTestMFAMethodTooManyRequests() *TestMFAMethodTooManyRequests {
 /*
 TestMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type TestMFAMethodTooManyRequests struct {
 	Payload *models.Error
@@ -404,6 +429,11 @@ func (o *TestMFAMethodTooManyRequests) IsServerError() bool {
 // IsCode returns true when this test m f a method too many requests response a status code equal to that given
 func (o *TestMFAMethodTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the test m f a method too many requests response
+func (o *TestMFAMethodTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *TestMFAMethodTooManyRequests) Error() string {

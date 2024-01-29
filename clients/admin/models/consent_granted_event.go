@@ -21,49 +21,49 @@ type ConsentGrantedEvent struct {
 
 	// time when the grant occurred
 	// Example: 1257894000000000000
-	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
+	CollectionTimestamp int64 `json:"collection_timestamp,omitempty" yaml:"collection_timestamp,omitempty"`
 
 	// consent
-	Consent *Consent `json:"consent,omitempty"`
+	Consent *Consent `json:"consent,omitempty" yaml:"consent,omitempty"`
 
 	// consent grant id
 	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
-	ConsentGrantActID string `json:"consent_grant_act_id,omitempty"`
+	ConsentGrantActID string `json:"consent_grant_act_id,omitempty" yaml:"consent_grant_act_id,omitempty"`
 
 	// consent id
 	// Example: 1
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
+	Context *ConsentGrantContext `json:"context,omitempty" yaml:"context,omitempty"`
 
 	// given at timestamp
 	// Format: date-time
-	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
+	GivenAt strfmt.DateTime `json:"given_at,omitempty" yaml:"given_at,omitempty"`
 
 	// grant type, one of: implicit, explicit
 	// Example: implicit
-	GrantType string `json:"grant_type,omitempty"`
+	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
 
 	// language in which the consent was obtained [ISO 639]
 	// Example: en
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// subject
 	// Example: peter
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
-	TriggeredByAction string `json:"triggered_by_action,omitempty"`
+	TriggeredByAction string `json:"triggered_by_action,omitempty" yaml:"triggered_by_action,omitempty"`
 
 	// version
 	// Example: 1
-	Version int64 `json:"version,omitempty"`
+	Version int64 `json:"version,omitempty" yaml:"version,omitempty"`
 }
 
 // Validate validates this consent granted event
@@ -159,6 +159,11 @@ func (m *ConsentGrantedEvent) ContextValidate(ctx context.Context, formats strfm
 func (m *ConsentGrantedEvent) contextValidateConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Consent != nil {
+
+		if swag.IsZero(m.Consent) { // not required
+			return nil
+		}
+
 		if err := m.Consent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("consent")
@@ -175,6 +180,11 @@ func (m *ConsentGrantedEvent) contextValidateConsent(ctx context.Context, format
 func (m *ConsentGrantedEvent) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
 		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")

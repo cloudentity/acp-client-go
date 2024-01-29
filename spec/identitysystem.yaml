@@ -357,6 +357,8 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  Cursor:
+    type: string
   DeleteUserIdentifier:
     properties:
       identifier:
@@ -375,13 +377,6 @@ definitions:
     required:
     - address
     type: object
-  Duration:
-    description: |-
-      A Duration represents the elapsed time between two instants
-      as an int64 nanosecond count. The representation limits the
-      largest representable duration to approximately 290 years.
-    format: int64
-    type: integer
   Error:
     description: HTTP error response
     properties:
@@ -777,7 +772,9 @@ definitions:
   PasswordSettings:
     properties:
       expires_after:
-        $ref: '#/definitions/Duration'
+        format: duration
+        type: string
+        x-nullable: false
       hashing_method:
         enum:
         - bcrypt
@@ -936,6 +933,14 @@ definitions:
     required:
     - tenant_id
     - name
+    type: object
+  Pools:
+    properties:
+      pools:
+        items:
+          $ref: '#/definitions/PoolResponse'
+        type: array
+        x-nullable: false
     type: object
   RequestActivation:
     properties:
@@ -1108,6 +1113,14 @@ definitions:
     - tenant_id
     - name
     - schema
+    type: object
+  Schemas:
+    properties:
+      schemas:
+        items:
+          $ref: '#/definitions/Schema'
+        type: array
+        x-nullable: false
     type: object
   SelfRegisterUser:
     properties:
@@ -1571,6 +1584,16 @@ definitions:
     - created_at
     - updated_at
     type: object
+  UserPools:
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      pools:
+        items:
+          $ref: '#/definitions/PoolResponse'
+        type: array
+        x-nullable: false
+    type: object
   UserVerifiableAddress:
     properties:
       address:
@@ -1886,12 +1909,180 @@ paths:
       summary: Imports configuration
       tags:
       - tenants
-  /system/pools/{ipID}:
+  /system/pools:
     get:
       description: |-
-        Gets pool.
+        Retrieve the list of all identity pools.
 
-        This API does not use ETags but data is always consistent.
+        You can filter the response with the query parameters to narrow the pool list down.
+      operationId: systemListPools
+      parameters:
+      - description: |-
+          A search substring. Use the identity pool identifier or name as its value.
+
+          SearchPhrase
+        in: query
+        name: search_phrase
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for results in the response.
+
+          With `after_pool_id`, the list you obtain starts from the subsequent identity pool after the specified one. Also,
+          the response depends on the `sort` and `order` parameters, if any are passed.
+
+          AfterPoolID
+        in: query
+        name: after_pool_id
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for the results in the response.
+
+          With `before_pool_id`, the list you obtain comprises identity pools up to the specified one. The specified
+          identity pool isn't included. Also, the response depends on the `sort` and `order` parameters, if any are
+          passed.
+
+          BeforePoolID
+        in: query
+        name: before_pool_id
+        type: string
+      - description: |-
+          Sort results returned in the response by `name` or `id`.
+
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          Set the order of results returned in the response. Input: `acs`, `desc`.
+
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          Limit the number of results returned in the response.
+
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      responses:
+        "200":
+          description: Pools
+          schema:
+            $ref: '#/definitions/Pools'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List Identity Pools
+      tags:
+      - Pools
+    post:
+      description: |-
+        Create an identity pool.
+
+        When no `metadata_schema_id` and/or `payload_schema_id` are provided in the request body, the identity pool
+        is created with the following defaults accordingly:
+
+        `default_metadata=metadata_v0`
+
+        `default_payload=user_v0`
+      operationId: systemCreatePool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: Pool
+        schema:
+          $ref: '#/definitions/Pool'
+      responses:
+        "201":
+          $ref: '#/responses/PoolResponseParams'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Create Identity Pool
+      tags:
+      - Pools
+  /system/pools/{ipID}:
+    delete:
+      description: Delete an identity pool. For this, provide the required identity
+        pool identifier in the path.
+      operationId: systemDeletePool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - description: With idp
+        in: query
+        name: with_idp
+        type: boolean
+      responses:
+        "204":
+          description: ' Identity Pool Deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Delete Identity Pool
+      tags:
+      - Pools
+    get:
+      description: Gets pool.
       operationId: systemGetPool
       parameters:
       - in: path
@@ -1913,6 +2104,48 @@ paths:
       - system:
         - identity
       summary: Get Pool
+      tags:
+      - Pools
+    put:
+      description: Update the identity pool details. Pass the identifier of the required
+        identity pool with the `ipID` path parameter.
+      operationId: systemUpdatePool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Pool
+        schema:
+          $ref: '#/definitions/Pool'
+      responses:
+        "200":
+          $ref: '#/responses/PoolResponseParams'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Update Identity Pool
       tags:
       - Pools
   /system/pools/{ipID}/user/activate:
@@ -3471,12 +3704,113 @@ paths:
       summary: Get User Details by key
       tags:
       - Users
-  /system/schemas/{schID}:
+  /system/schemas:
     get:
-      description: |-
-        Gets schema.
-
-        This API does not use ETags but data is always consistent.
+      description: List all schemas.
+      operationId: systemListSchemas
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      responses:
+        "200":
+          description: Schemas
+          schema:
+            $ref: '#/definitions/Schemas'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List Schemas
+      tags:
+      - Schemas
+    post:
+      description: Create a schema. Set the `system` flag to prevent the schema from
+        deletion or modifications.
+      operationId: systemCreateSchema
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: Schema
+        schema:
+          $ref: '#/definitions/Schema'
+      responses:
+        "201":
+          description: Schema
+          schema:
+            $ref: '#/definitions/Schema'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Create Schema
+      tags:
+      - Schemas
+  /system/schemas/{schID}:
+    delete:
+      description: Delete a schema. Schemas marked with the `system` flag aren't available
+        for deletion.
+      operationId: systemDeleteSchema
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: schID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Schema has been deleted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Delete Schema
+      tags:
+      - Schemas
+    get:
+      description: Gets schema.
       operationId: systemGetSchema
       parameters:
       - in: path
@@ -3498,6 +3832,50 @@ paths:
       - system:
         - identity
       summary: Get Schema
+      tags:
+      - Schemas
+    put:
+      description: Update a schema. Schemas marked with the `system` flag aren't available
+        for update.
+      operationId: systemUpdateSchema
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: schID
+        required: true
+        type: string
+      - in: body
+        name: Schema
+        schema:
+          $ref: '#/definitions/Schema'
+      responses:
+        "200":
+          description: Schema
+          schema:
+            $ref: '#/definitions/Schema'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Update Schema
       tags:
       - Schemas
 produces:
@@ -3611,8 +3989,28 @@ responses:
       $ref: '#/definitions/InspectOTPUserOperationalData'
   PoolResponseParams:
     description: Identity Pool
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/PoolResponse'
+  PoolsResponse:
+    description: Identity Pools
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/Pools'
   RequestAddressVerificationResponse:
     description: Request accepted
     headers:
@@ -3655,8 +4053,28 @@ responses:
         type: string
   SchemaResponse:
     description: Identity Schema
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Schema'
+  SchemasResponse:
+    description: Identity Schemas
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/Schemas'
   SelfSendActivationMessageResponse:
     description: Activation message sent
     headers:
@@ -3729,6 +4147,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/UserID'
+  UserPoolsResponse:
+    description: Identity User Pools
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserPools'
   UsersResponse:
     description: Identity Users
     schema:

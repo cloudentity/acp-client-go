@@ -25,11 +25,11 @@ type OpenbankingBrasilConsentV2RejectedReason struct {
 	// Example: Tempo de confirmao da mltipla alada excedido.
 	// Max Length: 140
 	// Pattern: [\w\W\s]*
-	AdditionalInformation string `json:"additionalInformation,omitempty"`
+	AdditionalInformation string `json:"additionalInformation,omitempty" yaml:"additionalInformation,omitempty"`
 
 	// code
 	// Required: true
-	Code *OpenbankingBrasilConsentV2EnumReasonCode `json:"code"`
+	Code *OpenbankingBrasilConsentV2EnumReasonCode `json:"code" yaml:"code"`
 }
 
 // Validate validates this openbanking brasil consent v2 rejected reason

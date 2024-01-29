@@ -20,16 +20,16 @@ import (
 type TenantCreated struct {
 
 	// list of clients created in tenant
-	Clients []*Client `json:"clients"`
+	Clients []*Client `json:"clients" yaml:"clients"`
 
 	// list of identity providers
-	Idps []*IDP `json:"idps"`
+	Idps []*IDP `json:"idps" yaml:"idps"`
 
 	// list of servers created in tenant
-	Servers []*Server `json:"servers"`
+	Servers []*Server `json:"servers" yaml:"servers"`
 
 	// tenant
-	Tenant *Tenant `json:"tenant,omitempty"`
+	Tenant *Tenant `json:"tenant,omitempty" yaml:"tenant,omitempty"`
 }
 
 // Validate validates this tenant created
@@ -186,6 +186,11 @@ func (m *TenantCreated) contextValidateClients(ctx context.Context, formats strf
 	for i := 0; i < len(m.Clients); i++ {
 
 		if m.Clients[i] != nil {
+
+			if swag.IsZero(m.Clients[i]) { // not required
+				return nil
+			}
+
 			if err := m.Clients[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clients" + "." + strconv.Itoa(i))
@@ -206,6 +211,11 @@ func (m *TenantCreated) contextValidateIdps(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Idps); i++ {
 
 		if m.Idps[i] != nil {
+
+			if swag.IsZero(m.Idps[i]) { // not required
+				return nil
+			}
+
 			if err := m.Idps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
@@ -226,6 +236,11 @@ func (m *TenantCreated) contextValidateServers(ctx context.Context, formats strf
 	for i := 0; i < len(m.Servers); i++ {
 
 		if m.Servers[i] != nil {
+
+			if swag.IsZero(m.Servers[i]) { // not required
+				return nil
+			}
+
 			if err := m.Servers[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("servers" + "." + strconv.Itoa(i))
@@ -244,6 +259,11 @@ func (m *TenantCreated) contextValidateServers(ctx context.Context, formats strf
 func (m *TenantCreated) contextValidateTenant(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Tenant != nil {
+
+		if swag.IsZero(m.Tenant) { // not required
+			return nil
+		}
+
 		if err := m.Tenant.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("tenant")

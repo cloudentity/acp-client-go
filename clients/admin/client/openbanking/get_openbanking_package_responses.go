@@ -61,7 +61,7 @@ func (o *GetOpenbankingPackageReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /openbanking/{wid}/package] getOpenbankingPackage", response, response.Code())
 	}
 }
 
@@ -79,6 +79,15 @@ GetOpenbankingPackageOK describes a response with status code 200, with default 
 Openbanking package
 */
 type GetOpenbankingPackageOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload io.Writer
 }
 
@@ -107,6 +116,11 @@ func (o *GetOpenbankingPackageOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get openbanking package o k response
+func (o *GetOpenbankingPackageOK) Code() int {
+	return 200
+}
+
 func (o *GetOpenbankingPackageOK) Error() string {
 	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageOK  %+v", 200, o.Payload)
 }
@@ -120,6 +134,13 @@ func (o *GetOpenbankingPackageOK) GetPayload() io.Writer {
 }
 
 func (o *GetOpenbankingPackageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -137,7 +158,7 @@ func NewGetOpenbankingPackageBadRequest() *GetOpenbankingPackageBadRequest {
 /*
 GetOpenbankingPackageBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GetOpenbankingPackageBadRequest struct {
 	Payload *models.Error
@@ -166,6 +187,11 @@ func (o *GetOpenbankingPackageBadRequest) IsServerError() bool {
 // IsCode returns true when this get openbanking package bad request response a status code equal to that given
 func (o *GetOpenbankingPackageBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the get openbanking package bad request response
+func (o *GetOpenbankingPackageBadRequest) Code() int {
+	return 400
 }
 
 func (o *GetOpenbankingPackageBadRequest) Error() string {
@@ -200,7 +226,7 @@ func NewGetOpenbankingPackageUnauthorized() *GetOpenbankingPackageUnauthorized {
 /*
 GetOpenbankingPackageUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetOpenbankingPackageUnauthorized struct {
 	Payload *models.Error
@@ -229,6 +255,11 @@ func (o *GetOpenbankingPackageUnauthorized) IsServerError() bool {
 // IsCode returns true when this get openbanking package unauthorized response a status code equal to that given
 func (o *GetOpenbankingPackageUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get openbanking package unauthorized response
+func (o *GetOpenbankingPackageUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetOpenbankingPackageUnauthorized) Error() string {
@@ -263,7 +294,7 @@ func NewGetOpenbankingPackageForbidden() *GetOpenbankingPackageForbidden {
 /*
 GetOpenbankingPackageForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetOpenbankingPackageForbidden struct {
 	Payload *models.Error
@@ -292,6 +323,11 @@ func (o *GetOpenbankingPackageForbidden) IsServerError() bool {
 // IsCode returns true when this get openbanking package forbidden response a status code equal to that given
 func (o *GetOpenbankingPackageForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get openbanking package forbidden response
+func (o *GetOpenbankingPackageForbidden) Code() int {
+	return 403
 }
 
 func (o *GetOpenbankingPackageForbidden) Error() string {
@@ -326,7 +362,7 @@ func NewGetOpenbankingPackageNotFound() *GetOpenbankingPackageNotFound {
 /*
 GetOpenbankingPackageNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetOpenbankingPackageNotFound struct {
 	Payload *models.Error
@@ -355,6 +391,11 @@ func (o *GetOpenbankingPackageNotFound) IsServerError() bool {
 // IsCode returns true when this get openbanking package not found response a status code equal to that given
 func (o *GetOpenbankingPackageNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get openbanking package not found response
+func (o *GetOpenbankingPackageNotFound) Code() int {
+	return 404
 }
 
 func (o *GetOpenbankingPackageNotFound) Error() string {
@@ -389,7 +430,7 @@ func NewGetOpenbankingPackageTooManyRequests() *GetOpenbankingPackageTooManyRequ
 /*
 GetOpenbankingPackageTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetOpenbankingPackageTooManyRequests struct {
 	Payload *models.Error
@@ -418,6 +459,11 @@ func (o *GetOpenbankingPackageTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get openbanking package too many requests response a status code equal to that given
 func (o *GetOpenbankingPackageTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get openbanking package too many requests response
+func (o *GetOpenbankingPackageTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetOpenbankingPackageTooManyRequests) Error() string {

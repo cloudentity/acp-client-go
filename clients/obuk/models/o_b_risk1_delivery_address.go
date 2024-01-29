@@ -21,28 +21,28 @@ type OBRisk1DeliveryAddress struct {
 
 	// address line
 	// Max Items: 2
-	AddressLine []string `json:"AddressLine"`
+	AddressLine []string `json:"AddressLine" yaml:"AddressLine"`
 
 	// building number
-	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty"`
+	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty" yaml:"BuildingNumber,omitempty"`
 
 	// Nation with its own government, occupying a particular territory.
 	// Required: true
 	// Pattern: ^[A-Z]{2,2}$
-	Country string `json:"Country"`
+	Country string `json:"Country" yaml:"Country"`
 
 	// country sub division
-	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty"`
+	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty" yaml:"CountrySubDivision,omitempty"`
 
 	// post code
-	PostCode PostCode `json:"PostCode,omitempty"`
+	PostCode PostCode `json:"PostCode,omitempty" yaml:"PostCode,omitempty"`
 
 	// street name
-	StreetName StreetName `json:"StreetName,omitempty"`
+	StreetName StreetName `json:"StreetName,omitempty" yaml:"StreetName,omitempty"`
 
 	// town name
 	// Required: true
-	TownName *TownName `json:"TownName"`
+	TownName *TownName `json:"TownName" yaml:"TownName"`
 }
 
 // Validate validates this o b risk1 delivery address
@@ -234,6 +234,10 @@ func (m *OBRisk1DeliveryAddress) ContextValidate(ctx context.Context, formats st
 
 func (m *OBRisk1DeliveryAddress) contextValidateBuildingNumber(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.BuildingNumber) { // not required
+		return nil
+	}
+
 	if err := m.BuildingNumber.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("BuildingNumber")
@@ -247,6 +251,10 @@ func (m *OBRisk1DeliveryAddress) contextValidateBuildingNumber(ctx context.Conte
 }
 
 func (m *OBRisk1DeliveryAddress) contextValidateCountrySubDivision(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CountrySubDivision) { // not required
+		return nil
+	}
 
 	if err := m.CountrySubDivision.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -262,6 +270,10 @@ func (m *OBRisk1DeliveryAddress) contextValidateCountrySubDivision(ctx context.C
 
 func (m *OBRisk1DeliveryAddress) contextValidatePostCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.PostCode) { // not required
+		return nil
+	}
+
 	if err := m.PostCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("PostCode")
@@ -275,6 +287,10 @@ func (m *OBRisk1DeliveryAddress) contextValidatePostCode(ctx context.Context, fo
 }
 
 func (m *OBRisk1DeliveryAddress) contextValidateStreetName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StreetName) { // not required
+		return nil
+	}
 
 	if err := m.StreetName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -291,6 +307,7 @@ func (m *OBRisk1DeliveryAddress) contextValidateStreetName(ctx context.Context, 
 func (m *OBRisk1DeliveryAddress) contextValidateTownName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TownName != nil {
+
 		if err := m.TownName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("TownName")

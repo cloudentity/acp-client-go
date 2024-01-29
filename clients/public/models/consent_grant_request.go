@@ -20,24 +20,24 @@ type ConsentGrantRequest struct {
 
 	// time when the grant occurred
 	// Example: 1257894000000000000
-	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
+	CollectionTimestamp int64 `json:"collection_timestamp,omitempty" yaml:"collection_timestamp,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
+	Context *ConsentGrantContext `json:"context,omitempty" yaml:"context,omitempty"`
 
 	// grant type
-	GrantType string `json:"grant_type,omitempty"`
+	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
 
 	// language in which the consent was obtained [ISO 639]
 	// Example: en
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
-	TriggeredByAction string `json:"triggered_by_action,omitempty"`
+	TriggeredByAction string `json:"triggered_by_action,omitempty" yaml:"triggered_by_action,omitempty"`
 }
 
 // Validate validates this consent grant request
@@ -90,6 +90,11 @@ func (m *ConsentGrantRequest) ContextValidate(ctx context.Context, formats strfm
 func (m *ConsentGrantRequest) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
 		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")

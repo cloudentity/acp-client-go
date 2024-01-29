@@ -19,25 +19,25 @@ import (
 type ServerConsent struct {
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// custom
-	Custom *CustomServerConsent `json:"custom,omitempty"`
+	Custom *CustomServerConsent `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// oidc
-	Oidc OIDCServerConsent `json:"oidc,omitempty"`
+	Oidc OIDCServerConsent `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// openbanking
-	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty"`
+	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty" yaml:"openbanking,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this server consent
@@ -117,6 +117,11 @@ func (m *ServerConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *ServerConsent) contextValidateCustom(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Custom != nil {
+
+		if swag.IsZero(m.Custom) { // not required
+			return nil
+		}
+
 		if err := m.Custom.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
@@ -133,6 +138,11 @@ func (m *ServerConsent) contextValidateCustom(ctx context.Context, formats strfm
 func (m *ServerConsent) contextValidateOpenbanking(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Openbanking != nil {
+
+		if swag.IsZero(m.Openbanking) { // not required
+			return nil
+		}
+
 		if err := m.Openbanking.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("openbanking")

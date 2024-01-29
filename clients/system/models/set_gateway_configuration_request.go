@@ -20,7 +20,7 @@ import (
 type SetGatewayConfigurationRequest struct {
 
 	// List of api groups
-	APIGroups []*APIGroup `json:"api_groups"`
+	APIGroups []*APIGroup `json:"api_groups" yaml:"api_groups"`
 }
 
 // Validate validates this set gateway configuration request
@@ -82,6 +82,11 @@ func (m *SetGatewayConfigurationRequest) contextValidateAPIGroups(ctx context.Co
 	for i := 0; i < len(m.APIGroups); i++ {
 
 		if m.APIGroups[i] != nil {
+
+			if swag.IsZero(m.APIGroups[i]) { // not required
+				return nil
+			}
+
 			if err := m.APIGroups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("api_groups" + "." + strconv.Itoa(i))

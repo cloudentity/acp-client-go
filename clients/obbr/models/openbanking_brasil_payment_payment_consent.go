@@ -27,7 +27,7 @@ type OpenbankingBrasilPaymentPaymentConsent struct {
 	// Max Length: 19
 	// Min Length: 4
 	// Pattern: ^((\d{1,16}\.\d{2}))$
-	Amount string `json:"amount"`
+	Amount string `json:"amount" yaml:"amount"`
 
 	// Cdigo da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
 	// Todos os valores monetrios informados esto representados com a moeda vigente do Brasil.
@@ -35,16 +35,16 @@ type OpenbankingBrasilPaymentPaymentConsent struct {
 	// Required: true
 	// Max Length: 3
 	// Pattern: ^([A-Z]{3})$
-	Currency string `json:"currency"`
+	Currency string `json:"currency" yaml:"currency"`
 
 	// Mutuamente exclusivo com o objeto schedule. Este campo  obrigatrio no caso de pagamento nico. Neste caso, o objeto schedule no deve ser informado.
 	// Example: 2021-01-01
 	// Format: date
-	Date strfmt.Date `json:"date,omitempty"`
+	Date strfmt.Date `json:"date,omitempty" yaml:"date,omitempty"`
 
 	// details
 	// Required: true
-	Details *OpenbankingBrasilPaymentDetails `json:"details"`
+	Details *OpenbankingBrasilPaymentDetails `json:"details" yaml:"details"`
 
 	// Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
 	// Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
@@ -54,15 +54,15 @@ type OpenbankingBrasilPaymentPaymentConsent struct {
 	// Max Length: 7
 	// Min Length: 7
 	// Pattern: ^\d{7}$
-	IbgeTownCode string `json:"ibgeTownCode,omitempty"`
+	IbgeTownCode string `json:"ibgeTownCode,omitempty" yaml:"ibgeTownCode,omitempty"`
 
 	// schedule
-	Schedule *OpenbankingBrasilPaymentSchedule `json:"schedule,omitempty"`
+	Schedule *OpenbankingBrasilPaymentSchedule `json:"schedule,omitempty" yaml:"schedule,omitempty"`
 
 	// Este campo define o tipo de pagamento que ser iniciado aps a autorizao do consentimento.
 	// Example: PIX
 	// Required: true
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this openbanking brasil payment payment consent

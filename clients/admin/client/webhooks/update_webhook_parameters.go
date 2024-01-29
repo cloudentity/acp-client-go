@@ -66,6 +66,14 @@ type UpdateWebhookParams struct {
 	// Webhook.
 	Webhook *models.Webhook
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* WebhookID.
 
 	   Webhook ID
@@ -142,6 +150,17 @@ func (o *UpdateWebhookParams) SetWebhook(webhook *models.Webhook) {
 	o.Webhook = webhook
 }
 
+// WithIfMatch adds the ifMatch to the update webhook params
+func (o *UpdateWebhookParams) WithIfMatch(ifMatch *string) *UpdateWebhookParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update webhook params
+func (o *UpdateWebhookParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWebhookID adds the webhookID to the update webhook params
 func (o *UpdateWebhookParams) WithWebhookID(webhookID string) *UpdateWebhookParams {
 	o.SetWebhookID(webhookID)
@@ -173,6 +192,14 @@ func (o *UpdateWebhookParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Webhook != nil {
 		if err := r.SetBodyParam(o.Webhook); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

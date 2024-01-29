@@ -69,6 +69,14 @@ type CreateCognitoIDPParams struct {
 	*/
 	CognitoIDP *models.CognitoIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateCognitoIDPParams) SetCognitoIDP(cognitoIDP *models.CognitoIDP) {
 	o.CognitoIDP = cognitoIDP
 }
 
+// WithIfMatch adds the ifMatch to the create cognito ID p params
+func (o *CreateCognitoIDPParams) WithIfMatch(ifMatch *string) *CreateCognitoIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create cognito ID p params
+func (o *CreateCognitoIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create cognito ID p params
 func (o *CreateCognitoIDPParams) WithWid(wid string) *CreateCognitoIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateCognitoIDPParams) WriteToRequest(r runtime.ClientRequest, reg str
 	var res []error
 	if o.CognitoIDP != nil {
 		if err := r.SetBodyParam(o.CognitoIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

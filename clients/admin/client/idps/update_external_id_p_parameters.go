@@ -69,6 +69,14 @@ type UpdateExternalIDPParams struct {
 	*/
 	ExternalIDP *models.ExternalIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateExternalIDPParams) SetExternalIDP(externalIDP *models.ExternalIDP
 	o.ExternalIDP = externalIDP
 }
 
+// WithIfMatch adds the ifMatch to the update external ID p params
+func (o *UpdateExternalIDPParams) WithIfMatch(ifMatch *string) *UpdateExternalIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update external ID p params
+func (o *UpdateExternalIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update external ID p params
 func (o *UpdateExternalIDPParams) WithIid(iid string) *UpdateExternalIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateExternalIDPParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.ExternalIDP != nil {
 		if err := r.SetBodyParam(o.ExternalIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

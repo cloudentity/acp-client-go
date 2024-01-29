@@ -21,7 +21,7 @@ type ClientJWKs struct {
 
 	// keys
 	// Example: []
-	Keys []*ClientJWK `json:"keys"`
+	Keys []*ClientJWK `json:"keys" yaml:"keys"`
 }
 
 // Validate validates this client j w ks

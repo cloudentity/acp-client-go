@@ -66,6 +66,14 @@ type UpdateAuthorizationServerParams struct {
 	// Server.
 	Server *models.Server
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Workspace id
@@ -149,6 +157,17 @@ func (o *UpdateAuthorizationServerParams) SetServer(server *models.Server) {
 	o.Server = server
 }
 
+// WithIfMatch adds the ifMatch to the update authorization server params
+func (o *UpdateAuthorizationServerParams) WithIfMatch(ifMatch *string) *UpdateAuthorizationServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update authorization server params
+func (o *UpdateAuthorizationServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the update authorization server params
 func (o *UpdateAuthorizationServerParams) WithWid(wid string) *UpdateAuthorizationServerParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *UpdateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 	var res []error
 	if o.Server != nil {
 		if err := r.SetBodyParam(o.Server); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

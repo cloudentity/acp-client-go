@@ -72,7 +72,7 @@ func (o *SetScriptExecutionPointsReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/script-execution-points] setScriptExecutionPoints", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ SetScriptExecutionPointsOK describes a response with status code 200, with defau
 Script execution points
 */
 type SetScriptExecutionPointsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScriptExecutionPoints
 }
 
@@ -115,6 +124,11 @@ func (o *SetScriptExecutionPointsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the set script execution points o k response
+func (o *SetScriptExecutionPointsOK) Code() int {
+	return 200
+}
+
 func (o *SetScriptExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *SetScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints 
 }
 
 func (o *SetScriptExecutionPointsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScriptExecutionPoints)
 
@@ -147,7 +168,7 @@ func NewSetScriptExecutionPointsBadRequest() *SetScriptExecutionPointsBadRequest
 /*
 SetScriptExecutionPointsBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SetScriptExecutionPointsBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *SetScriptExecutionPointsBadRequest) IsServerError() bool {
 // IsCode returns true when this set script execution points bad request response a status code equal to that given
 func (o *SetScriptExecutionPointsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the set script execution points bad request response
+func (o *SetScriptExecutionPointsBadRequest) Code() int {
+	return 400
 }
 
 func (o *SetScriptExecutionPointsBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewSetScriptExecutionPointsUnauthorized() *SetScriptExecutionPointsUnauthor
 /*
 SetScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetScriptExecutionPointsUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *SetScriptExecutionPointsUnauthorized) IsServerError() bool {
 // IsCode returns true when this set script execution points unauthorized response a status code equal to that given
 func (o *SetScriptExecutionPointsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set script execution points unauthorized response
+func (o *SetScriptExecutionPointsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetScriptExecutionPointsUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewSetScriptExecutionPointsForbidden() *SetScriptExecutionPointsForbidden {
 /*
 SetScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetScriptExecutionPointsForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *SetScriptExecutionPointsForbidden) IsServerError() bool {
 // IsCode returns true when this set script execution points forbidden response a status code equal to that given
 func (o *SetScriptExecutionPointsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set script execution points forbidden response
+func (o *SetScriptExecutionPointsForbidden) Code() int {
+	return 403
 }
 
 func (o *SetScriptExecutionPointsForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewSetScriptExecutionPointsNotFound() *SetScriptExecutionPointsNotFound {
 /*
 SetScriptExecutionPointsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetScriptExecutionPointsNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *SetScriptExecutionPointsNotFound) IsServerError() bool {
 // IsCode returns true when this set script execution points not found response a status code equal to that given
 func (o *SetScriptExecutionPointsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set script execution points not found response
+func (o *SetScriptExecutionPointsNotFound) Code() int {
+	return 404
 }
 
 func (o *SetScriptExecutionPointsNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewSetScriptExecutionPointsConflict() *SetScriptExecutionPointsConflict {
 /*
 SetScriptExecutionPointsConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SetScriptExecutionPointsConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *SetScriptExecutionPointsConflict) IsServerError() bool {
 // IsCode returns true when this set script execution points conflict response a status code equal to that given
 func (o *SetScriptExecutionPointsConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the set script execution points conflict response
+func (o *SetScriptExecutionPointsConflict) Code() int {
+	return 409
 }
 
 func (o *SetScriptExecutionPointsConflict) Error() string {
@@ -462,7 +508,7 @@ func NewSetScriptExecutionPointsUnprocessableEntity() *SetScriptExecutionPointsU
 /*
 SetScriptExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SetScriptExecutionPointsUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *SetScriptExecutionPointsUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this set script execution points unprocessable entity response a status code equal to that given
 func (o *SetScriptExecutionPointsUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the set script execution points unprocessable entity response
+func (o *SetScriptExecutionPointsUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SetScriptExecutionPointsUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewSetScriptExecutionPointsTooManyRequests() *SetScriptExecutionPointsTooMa
 /*
 SetScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetScriptExecutionPointsTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *SetScriptExecutionPointsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set script execution points too many requests response a status code equal to that given
 func (o *SetScriptExecutionPointsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set script execution points too many requests response
+func (o *SetScriptExecutionPointsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetScriptExecutionPointsTooManyRequests) Error() string {

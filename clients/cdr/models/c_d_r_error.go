@@ -18,13 +18,13 @@ import (
 type CDRError struct {
 
 	// code
-	Code string `json:"code,omitempty"`
+	Code string `json:"code,omitempty" yaml:"code,omitempty"`
 
 	// detail
-	Detail string `json:"detail,omitempty"`
+	Detail string `json:"detail,omitempty" yaml:"detail,omitempty"`
 
 	// title
-	Title string `json:"title,omitempty"`
+	Title string `json:"title,omitempty" yaml:"title,omitempty"`
 }
 
 // Validate validates this c d r error

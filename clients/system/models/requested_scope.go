@@ -18,47 +18,50 @@ import (
 // swagger:model RequestedScope
 type RequestedScope struct {
 
-	// server id
-	// Example: default
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	// Authorization server identifier
+	// Example: my-server
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
-	// scope description which will be displayed as a hint on a consent page
+	// The scope description displayed as a hint on a consent page
 	// Example: This scope value requests offline access using refresh token
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	// scope display name which will be displayed on a consent page
+	// The scope name displayed on a consent page
 	// Example: Offline Access
-	DisplayName string `json:"display_name,omitempty"`
+	DisplayName string `json:"display_name,omitempty" yaml:"display_name,omitempty"`
 
-	// scope id
-	// Example: 1
-	ID string `json:"id,omitempty"`
+	// Scope identifier
+	// Example: scope-1
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
+
+	// Request this scope by default for all clients who subscribed to this scope
+	Implicit bool `json:"implicit,omitempty" yaml:"implicit,omitempty"`
 
 	// metadata
-	Metadata Metadata `json:"metadata,omitempty"`
+	Metadata Metadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
-	// scope name
+	// Scope name
 	// Example: offline_access
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// params
-	Params []string `json:"params"`
+	Params []string `json:"params" yaml:"params"`
 
 	// requested name
-	RequestedName string `json:"requested_name,omitempty"`
+	RequestedName string `json:"requested_name,omitempty" yaml:"requested_name,omitempty"`
 
 	// service
-	Service *Service `json:"service,omitempty"`
+	Service *Service `json:"service,omitempty" yaml:"service,omitempty"`
 
-	// tenant id
-	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	// Tenant identifier
+	// Example: my-company
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
-	// disable storage of scope grants
-	Transient bool `json:"transient,omitempty"`
+	// Disable storage of scope grants
+	Transient bool `json:"transient,omitempty" yaml:"transient,omitempty"`
 
 	// with service
-	WithService bool `json:"with_service,omitempty"`
+	WithService bool `json:"with_service,omitempty" yaml:"with_service,omitempty"`
 }
 
 // Validate validates this requested scope
@@ -137,6 +140,10 @@ func (m *RequestedScope) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("metadata")
@@ -152,6 +159,11 @@ func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats st
 func (m *RequestedScope) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Service != nil {
+
+		if swag.IsZero(m.Service) { // not required
+			return nil
+		}
+
 		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")

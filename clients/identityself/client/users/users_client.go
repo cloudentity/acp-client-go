@@ -32,11 +32,17 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error)
 
+	ChangePasswordV2(params *ChangePasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordV2NoContent, error)
+
 	GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error)
+
+	GetUserProfileV2(params *GetUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileV2OK, error)
 
 	ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error)
 
 	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error)
+
+	UpdateUserProfileV2(params *UpdateUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -83,6 +89,47 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 }
 
 /*
+ChangePasswordV2 changes password
+
+Changes user password if provided password matches current user password.
+*/
+func (a *Client) ChangePasswordV2(params *ChangePasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangePasswordV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "changePasswordV2",
+		Method:             "POST",
+		PathPattern:        "/v2/self/change-password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangePasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ChangePasswordV2NoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for changePasswordV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	GetUserProfile selves get user profile
 
 	Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
@@ -122,6 +169,49 @@ func (a *Client) GetUserProfile(params *GetUserProfileParams, authInfo runtime.C
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getUserProfile: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetUserProfileV2 selves get user profile
+
+	Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+
+Also returns user metadata (only fields not marked as hidden) and payload.
+*/
+func (a *Client) GetUserProfileV2(params *GetUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserProfileV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getUserProfileV2",
+		Method:             "GET",
+		PathPattern:        "/v2/self/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserProfileV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetUserProfileV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getUserProfileV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -213,6 +303,51 @@ func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo run
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateUserProfile: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	UpdateUserProfileV2 selves update user profile
+
+	Updates user payload.
+
+Payload must be valid against schema defined in user entry.
+
+Returns base view on user entry (see Self Get User Profile endpoint).
+*/
+func (a *Client) UpdateUserProfileV2(params *UpdateUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserProfileV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateUserProfileV2",
+		Method:             "PUT",
+		PathPattern:        "/v2/self/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserProfileV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateUserProfileV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateUserProfileV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

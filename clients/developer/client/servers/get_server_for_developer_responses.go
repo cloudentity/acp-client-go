@@ -54,7 +54,7 @@ func (o *GetServerForDeveloperReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{rid}] getServerForDeveloper", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetServerForDeveloperOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get server for developer o k response
+func (o *GetServerForDeveloperOK) Code() int {
+	return 200
+}
+
 func (o *GetServerForDeveloperOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetServerForDeveloperUnauthorized() *GetServerForDeveloperUnauthorized {
 /*
 GetServerForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetServerForDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetServerForDeveloperUnauthorized) IsServerError() bool {
 // IsCode returns true when this get server for developer unauthorized response a status code equal to that given
 func (o *GetServerForDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get server for developer unauthorized response
+func (o *GetServerForDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetServerForDeveloperUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetServerForDeveloperForbidden() *GetServerForDeveloperForbidden {
 /*
 GetServerForDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetServerForDeveloperForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetServerForDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this get server for developer forbidden response a status code equal to that given
 func (o *GetServerForDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get server for developer forbidden response
+func (o *GetServerForDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *GetServerForDeveloperForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetServerForDeveloperNotFound() *GetServerForDeveloperNotFound {
 /*
 GetServerForDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetServerForDeveloperNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetServerForDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this get server for developer not found response a status code equal to that given
 func (o *GetServerForDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get server for developer not found response
+func (o *GetServerForDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *GetServerForDeveloperNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetServerForDeveloperTooManyRequests() *GetServerForDeveloperTooManyRequ
 /*
 GetServerForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetServerForDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetServerForDeveloperTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get server for developer too many requests response a status code equal to that given
 func (o *GetServerForDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get server for developer too many requests response
+func (o *GetServerForDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetServerForDeveloperTooManyRequests) Error() string {

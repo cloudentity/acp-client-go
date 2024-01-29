@@ -48,7 +48,7 @@ func (o *ListDefaultTemplatesReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /themes/templates] listDefaultTemplates", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListDefaultTemplatesOK describes a response with status code 200, with default h
 TemplatePaths
 */
 type ListDefaultTemplatesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.TemplatePaths
 }
 
@@ -91,6 +100,11 @@ func (o *ListDefaultTemplatesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list default templates o k response
+func (o *ListDefaultTemplatesOK) Code() int {
+	return 200
+}
+
 func (o *ListDefaultTemplatesOK) Error() string {
 	return fmt.Sprintf("[GET /themes/templates][%d] listDefaultTemplatesOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListDefaultTemplatesOK) GetPayload() *models.TemplatePaths {
 }
 
 func (o *ListDefaultTemplatesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.TemplatePaths)
 
@@ -123,7 +144,7 @@ func NewListDefaultTemplatesUnauthorized() *ListDefaultTemplatesUnauthorized {
 /*
 ListDefaultTemplatesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListDefaultTemplatesUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListDefaultTemplatesUnauthorized) IsServerError() bool {
 // IsCode returns true when this list default templates unauthorized response a status code equal to that given
 func (o *ListDefaultTemplatesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list default templates unauthorized response
+func (o *ListDefaultTemplatesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListDefaultTemplatesUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListDefaultTemplatesForbidden() *ListDefaultTemplatesForbidden {
 /*
 ListDefaultTemplatesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListDefaultTemplatesForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListDefaultTemplatesForbidden) IsServerError() bool {
 // IsCode returns true when this list default templates forbidden response a status code equal to that given
 func (o *ListDefaultTemplatesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list default templates forbidden response
+func (o *ListDefaultTemplatesForbidden) Code() int {
+	return 403
 }
 
 func (o *ListDefaultTemplatesForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListDefaultTemplatesTooManyRequests() *ListDefaultTemplatesTooManyReques
 /*
 ListDefaultTemplatesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListDefaultTemplatesTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListDefaultTemplatesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list default templates too many requests response a status code equal to that given
 func (o *ListDefaultTemplatesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list default templates too many requests response
+func (o *ListDefaultTemplatesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListDefaultTemplatesTooManyRequests) Error() string {

@@ -22,45 +22,45 @@ type Consent struct {
 
 	// flag determining if can user withdrawn consent
 	// Example: false
-	CanBeWithdrawn bool `json:"can_be_withdrawn,omitempty"`
+	CanBeWithdrawn bool `json:"can_be_withdrawn,omitempty" yaml:"can_be_withdrawn,omitempty"`
 
 	// consent description
 	// Example: End User License Agreement
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// consent unique identifier
 	// Example: 1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// internal services
-	InternalServices []*ConsentService `json:"internal_services"`
+	InternalServices []*ConsentService `json:"internal_services" yaml:"internal_services"`
 
 	// consent name
 	// Example: EULA
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// PII Categories
-	PiiCategories []*PIICategory `json:"pii_categories"`
+	PiiCategories []*PIICategory `json:"pii_categories" yaml:"pii_categories"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// third party services
-	ThirdPartyServices []*ConsentService `json:"third_party_services"`
+	ThirdPartyServices []*ConsentService `json:"third_party_services" yaml:"third_party_services"`
 
 	// strategy for upading existing grants, one of: explicitAll, implicitAll, keepCurrent
 	// Example: explicitAll
-	UpdateExistingGrants string `json:"update_existing_grants,omitempty"`
+	UpdateExistingGrants string `json:"update_existing_grants,omitempty" yaml:"update_existing_grants,omitempty"`
 
 	// marks the time from which the consent is in use. Can't be set to a future time
 	// Example: 2019-12-11T13:44:28.772101Z
 	// Format: date-time
-	ValidFrom strfmt.DateTime `json:"valid_from,omitempty"`
+	ValidFrom strfmt.DateTime `json:"valid_from,omitempty" yaml:"valid_from,omitempty"`
 
 	// consent version. When a consent is updated, version is incremented.
 	// Example: 1
-	Version int64 `json:"version,omitempty"`
+	Version int64 `json:"version,omitempty" yaml:"version,omitempty"`
 }
 
 // Validate validates this consent
@@ -206,6 +206,11 @@ func (m *Consent) contextValidateInternalServices(ctx context.Context, formats s
 	for i := 0; i < len(m.InternalServices); i++ {
 
 		if m.InternalServices[i] != nil {
+
+			if swag.IsZero(m.InternalServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.InternalServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("internal_services" + "." + strconv.Itoa(i))
@@ -226,6 +231,11 @@ func (m *Consent) contextValidatePiiCategories(ctx context.Context, formats strf
 	for i := 0; i < len(m.PiiCategories); i++ {
 
 		if m.PiiCategories[i] != nil {
+
+			if swag.IsZero(m.PiiCategories[i]) { // not required
+				return nil
+			}
+
 			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
@@ -246,6 +256,11 @@ func (m *Consent) contextValidateThirdPartyServices(ctx context.Context, formats
 	for i := 0; i < len(m.ThirdPartyServices); i++ {
 
 		if m.ThirdPartyServices[i] != nil {
+
+			if swag.IsZero(m.ThirdPartyServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ThirdPartyServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("third_party_services" + "." + strconv.Itoa(i))

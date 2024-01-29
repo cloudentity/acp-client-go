@@ -66,6 +66,14 @@ type CreateConsentParams struct {
 	// Consent.
 	Consent *models.Consent
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *CreateConsentParams) SetConsent(consent *models.Consent) {
 	o.Consent = consent
 }
 
+// WithIfMatch adds the ifMatch to the create consent params
+func (o *CreateConsentParams) WithIfMatch(ifMatch *string) *CreateConsentParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create consent params
+func (o *CreateConsentParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *CreateConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Consent != nil {
 		if err := r.SetBodyParam(o.Consent); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

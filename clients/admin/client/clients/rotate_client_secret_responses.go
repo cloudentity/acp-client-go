@@ -60,7 +60,7 @@ func (o *RotateClientSecretReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/rotateSecret] rotateClientSecret", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ RotateClientSecretOK describes a response with status code 200, with default hea
 Rotate client secret response
 */
 type RotateClientSecretOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.RotateClientSecretResponse
 }
 
@@ -103,6 +112,11 @@ func (o *RotateClientSecretOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the rotate client secret o k response
+func (o *RotateClientSecretOK) Code() int {
+	return 200
+}
+
 func (o *RotateClientSecretOK) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *RotateClientSecretOK) GetPayload() *models.RotateClientSecretResponse {
 }
 
 func (o *RotateClientSecretOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.RotateClientSecretResponse)
 
@@ -135,7 +156,7 @@ func NewRotateClientSecretBadRequest() *RotateClientSecretBadRequest {
 /*
 RotateClientSecretBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type RotateClientSecretBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *RotateClientSecretBadRequest) IsServerError() bool {
 // IsCode returns true when this rotate client secret bad request response a status code equal to that given
 func (o *RotateClientSecretBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the rotate client secret bad request response
+func (o *RotateClientSecretBadRequest) Code() int {
+	return 400
 }
 
 func (o *RotateClientSecretBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewRotateClientSecretUnauthorized() *RotateClientSecretUnauthorized {
 /*
 RotateClientSecretUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RotateClientSecretUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *RotateClientSecretUnauthorized) IsServerError() bool {
 // IsCode returns true when this rotate client secret unauthorized response a status code equal to that given
 func (o *RotateClientSecretUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the rotate client secret unauthorized response
+func (o *RotateClientSecretUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RotateClientSecretUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewRotateClientSecretForbidden() *RotateClientSecretForbidden {
 /*
 RotateClientSecretForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RotateClientSecretForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *RotateClientSecretForbidden) IsServerError() bool {
 // IsCode returns true when this rotate client secret forbidden response a status code equal to that given
 func (o *RotateClientSecretForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the rotate client secret forbidden response
+func (o *RotateClientSecretForbidden) Code() int {
+	return 403
 }
 
 func (o *RotateClientSecretForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewRotateClientSecretNotFound() *RotateClientSecretNotFound {
 /*
 RotateClientSecretNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RotateClientSecretNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *RotateClientSecretNotFound) IsServerError() bool {
 // IsCode returns true when this rotate client secret not found response a status code equal to that given
 func (o *RotateClientSecretNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the rotate client secret not found response
+func (o *RotateClientSecretNotFound) Code() int {
+	return 404
 }
 
 func (o *RotateClientSecretNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewRotateClientSecretTooManyRequests() *RotateClientSecretTooManyRequests {
 /*
 RotateClientSecretTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RotateClientSecretTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *RotateClientSecretTooManyRequests) IsServerError() bool {
 // IsCode returns true when this rotate client secret too many requests response a status code equal to that given
 func (o *RotateClientSecretTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the rotate client secret too many requests response
+func (o *RotateClientSecretTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RotateClientSecretTooManyRequests) Error() string {

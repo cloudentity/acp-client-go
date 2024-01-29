@@ -69,7 +69,7 @@ type PatchTenantConfigurationParams struct {
 	Mode *string
 
 	// Patch.
-	Patch models.PatchTenantConfiguration
+	Patch models.Rfc6902PatchOperations
 
 	timeout    time.Duration
 	Context    context.Context
@@ -136,13 +136,13 @@ func (o *PatchTenantConfigurationParams) SetMode(mode *string) {
 }
 
 // WithPatch adds the patch to the patch tenant configuration params
-func (o *PatchTenantConfigurationParams) WithPatch(patch models.PatchTenantConfiguration) *PatchTenantConfigurationParams {
+func (o *PatchTenantConfigurationParams) WithPatch(patch models.Rfc6902PatchOperations) *PatchTenantConfigurationParams {
 	o.SetPatch(patch)
 	return o
 }
 
 // SetPatch adds the patch to the patch tenant configuration params
-func (o *PatchTenantConfigurationParams) SetPatch(patch models.PatchTenantConfiguration) {
+func (o *PatchTenantConfigurationParams) SetPatch(patch models.Rfc6902PatchOperations) {
 	o.Patch = patch
 }
 

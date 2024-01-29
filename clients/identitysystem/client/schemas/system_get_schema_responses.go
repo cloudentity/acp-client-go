@@ -69,6 +69,15 @@ SystemGetSchemaOK describes a response with status code 200, with default header
 Identity Schema
 */
 type SystemGetSchemaOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Schema
 }
 
@@ -115,6 +124,13 @@ func (o *SystemGetSchemaOK) GetPayload() *models.Schema {
 }
 
 func (o *SystemGetSchemaOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Schema)
 

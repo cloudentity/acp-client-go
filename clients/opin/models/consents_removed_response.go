@@ -18,7 +18,7 @@ import (
 type ConsentsRemovedResponse struct {
 
 	// number of consents removed
-	NumberOfConsentsRemoved int64 `json:"number_of_consents_removed,omitempty"`
+	NumberOfConsentsRemoved int64 `json:"number_of_consents_removed,omitempty" yaml:"number_of_consents_removed,omitempty"`
 }
 
 // Validate validates this consents removed response

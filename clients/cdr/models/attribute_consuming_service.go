@@ -22,19 +22,19 @@ import (
 type AttributeConsumingService struct {
 
 	// index
-	Index int64 `json:"Index,omitempty"`
+	Index int64 `json:"Index,omitempty" yaml:"Index,omitempty"`
 
 	// is default
-	IsDefault bool `json:"IsDefault,omitempty"`
+	IsDefault bool `json:"IsDefault,omitempty" yaml:"IsDefault,omitempty"`
 
 	// requested attributes
-	RequestedAttributes []*RequestedAttribute `json:"RequestedAttributes"`
+	RequestedAttributes []*RequestedAttribute `json:"RequestedAttributes" yaml:"RequestedAttributes"`
 
 	// service descriptions
-	ServiceDescriptions []*LocalizedName `json:"ServiceDescriptions"`
+	ServiceDescriptions []*LocalizedName `json:"ServiceDescriptions" yaml:"ServiceDescriptions"`
 
 	// service names
-	ServiceNames []*LocalizedName `json:"ServiceNames"`
+	ServiceNames []*LocalizedName `json:"ServiceNames" yaml:"ServiceNames"`
 }
 
 // Validate validates this attribute consuming service
@@ -164,6 +164,11 @@ func (m *AttributeConsumingService) contextValidateRequestedAttributes(ctx conte
 	for i := 0; i < len(m.RequestedAttributes); i++ {
 
 		if m.RequestedAttributes[i] != nil {
+
+			if swag.IsZero(m.RequestedAttributes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedAttributes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("RequestedAttributes" + "." + strconv.Itoa(i))
@@ -184,6 +189,11 @@ func (m *AttributeConsumingService) contextValidateServiceDescriptions(ctx conte
 	for i := 0; i < len(m.ServiceDescriptions); i++ {
 
 		if m.ServiceDescriptions[i] != nil {
+
+			if swag.IsZero(m.ServiceDescriptions[i]) { // not required
+				return nil
+			}
+
 			if err := m.ServiceDescriptions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ServiceDescriptions" + "." + strconv.Itoa(i))
@@ -204,6 +214,11 @@ func (m *AttributeConsumingService) contextValidateServiceNames(ctx context.Cont
 	for i := 0; i < len(m.ServiceNames); i++ {
 
 		if m.ServiceNames[i] != nil {
+
+			if swag.IsZero(m.ServiceNames[i]) { // not required
+				return nil
+			}
+
 			if err := m.ServiceNames[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ServiceNames" + "." + strconv.Itoa(i))

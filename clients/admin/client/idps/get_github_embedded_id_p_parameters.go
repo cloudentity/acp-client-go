@@ -61,6 +61,14 @@ GetGithubEmbeddedIDPParams contains all the parameters to send to the API endpoi
 */
 type GetGithubEmbeddedIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetGithubEmbeddedIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get github embedded ID p params
+func (o *GetGithubEmbeddedIDPParams) WithIfMatch(ifMatch *string) *GetGithubEmbeddedIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get github embedded ID p params
+func (o *GetGithubEmbeddedIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get github embedded ID p params
 func (o *GetGithubEmbeddedIDPParams) WithIid(iid string) *GetGithubEmbeddedIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetGithubEmbeddedIDPParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

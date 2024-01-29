@@ -18,10 +18,10 @@ import (
 type Confirmation struct {
 
 	// jkt
-	Jkt string `json:"jkt,omitempty"`
+	Jkt string `json:"jkt,omitempty" yaml:"jkt,omitempty"`
 
 	// x5t s256
-	X5tS256 string `json:"x5t#S256,omitempty"`
+	X5tS256 string `json:"x5t#S256,omitempty" yaml:"x5t#S256,omitempty"`
 }
 
 // Validate validates this confirmation

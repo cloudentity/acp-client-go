@@ -21,21 +21,21 @@ import (
 type CompleteResetWebAuthn struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// new web authn
 	// Required: true
-	NewWebAuthn []*Credential `json:"new_web_authn"`
+	NewWebAuthn []*Credential `json:"new_web_authn" yaml:"new_web_authn"`
 
 	// user ID
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty" yaml:"userID,omitempty"`
 }
 
 // Validate validates this complete reset web authn

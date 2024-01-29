@@ -20,7 +20,7 @@ import (
 type CDRErrorResponse struct {
 
 	// errors
-	Errors []*CDRError `json:"errors"`
+	Errors []*CDRError `json:"errors" yaml:"errors"`
 }
 
 // Validate validates this c d r error response
@@ -82,6 +82,11 @@ func (m *CDRErrorResponse) contextValidateErrors(ctx context.Context, formats st
 	for i := 0; i < len(m.Errors); i++ {
 
 		if m.Errors[i] != nil {
+
+			if swag.IsZero(m.Errors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Errors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("errors" + "." + strconv.Itoa(i))

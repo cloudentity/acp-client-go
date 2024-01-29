@@ -54,7 +54,7 @@ func (o *PushGatewayRequestsReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways/requests] pushGatewayRequests", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *PushGatewayRequestsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the push gateway requests o k response
+func (o *PushGatewayRequestsOK) Code() int {
+	return 200
+}
+
 func (o *PushGatewayRequestsOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewPushGatewayRequestsUnauthorized() *PushGatewayRequestsUnauthorized {
 /*
 PushGatewayRequestsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PushGatewayRequestsUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *PushGatewayRequestsUnauthorized) IsServerError() bool {
 // IsCode returns true when this push gateway requests unauthorized response a status code equal to that given
 func (o *PushGatewayRequestsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the push gateway requests unauthorized response
+func (o *PushGatewayRequestsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PushGatewayRequestsUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewPushGatewayRequestsForbidden() *PushGatewayRequestsForbidden {
 /*
 PushGatewayRequestsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PushGatewayRequestsForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *PushGatewayRequestsForbidden) IsServerError() bool {
 // IsCode returns true when this push gateway requests forbidden response a status code equal to that given
 func (o *PushGatewayRequestsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the push gateway requests forbidden response
+func (o *PushGatewayRequestsForbidden) Code() int {
+	return 403
 }
 
 func (o *PushGatewayRequestsForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewPushGatewayRequestsNotFound() *PushGatewayRequestsNotFound {
 /*
 PushGatewayRequestsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PushGatewayRequestsNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *PushGatewayRequestsNotFound) IsServerError() bool {
 // IsCode returns true when this push gateway requests not found response a status code equal to that given
 func (o *PushGatewayRequestsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the push gateway requests not found response
+func (o *PushGatewayRequestsNotFound) Code() int {
+	return 404
 }
 
 func (o *PushGatewayRequestsNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewPushGatewayRequestsTooManyRequests() *PushGatewayRequestsTooManyRequests
 /*
 PushGatewayRequestsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PushGatewayRequestsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *PushGatewayRequestsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this push gateway requests too many requests response a status code equal to that given
 func (o *PushGatewayRequestsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the push gateway requests too many requests response
+func (o *PushGatewayRequestsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PushGatewayRequestsTooManyRequests) Error() string {

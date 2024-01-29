@@ -19,15 +19,15 @@ type ServerToServer struct {
 
 	// dependent server id
 	// Example: default
-	Dependent string `json:"dependent,omitempty"`
+	Dependent string `json:"dependent,omitempty" yaml:"dependent,omitempty"`
 
 	// authorization server id
 	// Example: developer
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this server to server

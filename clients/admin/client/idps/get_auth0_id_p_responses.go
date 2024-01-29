@@ -54,7 +54,7 @@ func (o *GetAuth0IDPReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/auth0/{iid}] getAuth0IDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetAuth0IDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get auth0 Id p o k response
+func (o *GetAuth0IDPOK) Code() int {
+	return 200
+}
+
 func (o *GetAuth0IDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/auth0/{iid}][%d] getAuth0IdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetAuth0IDPUnauthorized() *GetAuth0IDPUnauthorized {
 /*
 GetAuth0IDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAuth0IDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetAuth0IDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get auth0 Id p unauthorized response a status code equal to that given
 func (o *GetAuth0IDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get auth0 Id p unauthorized response
+func (o *GetAuth0IDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAuth0IDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetAuth0IDPForbidden() *GetAuth0IDPForbidden {
 /*
 GetAuth0IDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAuth0IDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetAuth0IDPForbidden) IsServerError() bool {
 // IsCode returns true when this get auth0 Id p forbidden response a status code equal to that given
 func (o *GetAuth0IDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get auth0 Id p forbidden response
+func (o *GetAuth0IDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAuth0IDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetAuth0IDPNotFound() *GetAuth0IDPNotFound {
 /*
 GetAuth0IDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAuth0IDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetAuth0IDPNotFound) IsServerError() bool {
 // IsCode returns true when this get auth0 Id p not found response a status code equal to that given
 func (o *GetAuth0IDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get auth0 Id p not found response
+func (o *GetAuth0IDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetAuth0IDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetAuth0IDPTooManyRequests() *GetAuth0IDPTooManyRequests {
 /*
 GetAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAuth0IDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetAuth0IDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get auth0 Id p too many requests response a status code equal to that given
 func (o *GetAuth0IDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get auth0 Id p too many requests response
+func (o *GetAuth0IDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAuth0IDPTooManyRequests) Error() string {

@@ -20,7 +20,7 @@ import (
 type OBBRConsents struct {
 
 	// consents
-	Consents []*OBBRConsentWithClient `json:"Consents"`
+	Consents []*OBBRConsentWithClient `json:"Consents" yaml:"Consents"`
 }
 
 // Validate validates this o b b r consents

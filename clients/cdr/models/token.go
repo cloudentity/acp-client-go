@@ -13,18 +13,18 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Token A Token is an empty interface that represents an Element, CharData,
-//
-// Comment, Directive, or ProcInst.
+// Token A Token is an interface type used to represent XML elements, character
+// data, CDATA sections, XML comments, XML directives, and XML processing
+// instructions.
 //
 // swagger:model Token
 type Token struct {
 
 	// index
-	Index int64 `json:"Index,omitempty"`
+	Index int64 `json:"Index,omitempty" yaml:"Index,omitempty"`
 
 	// parent
-	Parent *Element `json:"Parent,omitempty"`
+	Parent *Element `json:"Parent,omitempty" yaml:"Parent,omitempty"`
 }
 
 // Validate validates this token
@@ -77,6 +77,11 @@ func (m *Token) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 func (m *Token) contextValidateParent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Parent != nil {
+
+		if swag.IsZero(m.Parent) { // not required
+			return nil
+		}
+
 		if err := m.Parent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Parent")

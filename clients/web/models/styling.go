@@ -19,16 +19,16 @@ import (
 type Styling struct {
 
 	// colors
-	Colors StylingColors `json:"colors,omitempty"`
+	Colors StylingColors `json:"colors,omitempty" yaml:"colors,omitempty"`
 
 	// font url
-	FontURL string `json:"font_url,omitempty"`
+	FontURL string `json:"font_url,omitempty" yaml:"font_url,omitempty"`
 
 	// logo size
-	LogoSize string `json:"logo_size,omitempty"`
+	LogoSize string `json:"logo_size,omitempty" yaml:"logo_size,omitempty"`
 
 	// logo url
-	LogoURL string `json:"logo_url,omitempty"`
+	LogoURL string `json:"logo_url,omitempty" yaml:"logo_url,omitempty"`
 }
 
 // Validate validates this styling
@@ -78,6 +78,10 @@ func (m *Styling) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 
 func (m *Styling) contextValidateColors(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Colors) { // not required
+		return nil
+	}
+
 	if err := m.Colors.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("colors")
@@ -114,13 +118,13 @@ func (m *Styling) UnmarshalBinary(b []byte) error {
 type StylingColors struct {
 
 	// background
-	Background string `json:"background,omitempty"`
+	Background string `json:"background,omitempty" yaml:"background,omitempty"`
 
 	// header
-	Header string `json:"header,omitempty"`
+	Header string `json:"header,omitempty" yaml:"header,omitempty"`
 
 	// primary
-	Primary string `json:"primary,omitempty"`
+	Primary string `json:"primary,omitempty" yaml:"primary,omitempty"`
 }
 
 // Validate validates this styling colors

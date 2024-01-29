@@ -48,7 +48,7 @@ func (o *ListPolicyExecutionPointsReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/policy-execution-points] listPolicyExecutionPoints", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListPolicyExecutionPointsOK describes a response with status code 200, with defa
 Policy execution points
 */
 type ListPolicyExecutionPointsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.PolicyExecutionPoints
 }
 
@@ -91,6 +100,11 @@ func (o *ListPolicyExecutionPointsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list policy execution points o k response
+func (o *ListPolicyExecutionPointsOK) Code() int {
+	return 200
+}
+
 func (o *ListPolicyExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints
 }
 
 func (o *ListPolicyExecutionPointsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.PolicyExecutionPoints)
 
@@ -123,7 +144,7 @@ func NewListPolicyExecutionPointsUnauthorized() *ListPolicyExecutionPointsUnauth
 /*
 ListPolicyExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListPolicyExecutionPointsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListPolicyExecutionPointsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list policy execution points unauthorized response a status code equal to that given
 func (o *ListPolicyExecutionPointsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list policy execution points unauthorized response
+func (o *ListPolicyExecutionPointsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListPolicyExecutionPointsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListPolicyExecutionPointsForbidden() *ListPolicyExecutionPointsForbidden
 /*
 ListPolicyExecutionPointsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListPolicyExecutionPointsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListPolicyExecutionPointsForbidden) IsServerError() bool {
 // IsCode returns true when this list policy execution points forbidden response a status code equal to that given
 func (o *ListPolicyExecutionPointsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list policy execution points forbidden response
+func (o *ListPolicyExecutionPointsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListPolicyExecutionPointsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListPolicyExecutionPointsTooManyRequests() *ListPolicyExecutionPointsToo
 /*
 ListPolicyExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListPolicyExecutionPointsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListPolicyExecutionPointsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list policy execution points too many requests response a status code equal to that given
 func (o *ListPolicyExecutionPointsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list policy execution points too many requests response
+func (o *ListPolicyExecutionPointsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListPolicyExecutionPointsTooManyRequests) Error() string {

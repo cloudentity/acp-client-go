@@ -61,6 +61,14 @@ GetMFAMethodParams contains all the parameters to send to the API endpoint
 */
 type GetMFAMethodParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// MfaID.
 	MfaID string
 
@@ -117,6 +125,17 @@ func (o *GetMFAMethodParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get m f a method params
+func (o *GetMFAMethodParams) WithIfMatch(ifMatch *string) *GetMFAMethodParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get m f a method params
+func (o *GetMFAMethodParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithMfaID adds the mfaID to the get m f a method params
 func (o *GetMFAMethodParams) WithMfaID(mfaID string) *GetMFAMethodParams {
 	o.SetMfaID(mfaID)
@@ -135,6 +154,14 @@ func (o *GetMFAMethodParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param mfaID
 	if err := r.SetPathParam("mfaID", o.MfaID); err != nil {

@@ -11,12 +11,13 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// RedirectURIs An array of OAuth allowed redirect URIs
+// RedirectURIs OAuth-allowed redirect URIs
 //
-// Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-// the application with an authorization code or an access token included in the URL.
+// Cloudentity uses redirect URIs to redirect users back to the application after they authorized the application. Along
+// with the redirection, an authorization code or access token is added to the URL.
 //
-// For a legacy reason it's also acceptable to pass redirect_uris as string, example: "https://example.com/callback"
+// For backward compatibility reasons, it's also acceptable to pass `redirect_uris` as a string, for example:
+// https://example.com/callback.
 //
 // example: ["https://example.com/callback"]
 //

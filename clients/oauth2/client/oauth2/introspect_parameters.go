@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewIntrospectParams creates a new IntrospectParams object,
@@ -60,6 +61,12 @@ IntrospectParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type IntrospectParams struct {
+
+	/* SSOSessionExtend.
+
+	   Indicates if sso session should be extended for the request. Optional. Default `true`
+	*/
+	SSOSessionExtend *bool
 
 	// Token.
 	Token *string
@@ -117,6 +124,17 @@ func (o *IntrospectParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithSSOSessionExtend adds the sSOSessionExtend to the introspect params
+func (o *IntrospectParams) WithSSOSessionExtend(sSOSessionExtend *bool) *IntrospectParams {
+	o.SetSSOSessionExtend(sSOSessionExtend)
+	return o
+}
+
+// SetSSOSessionExtend adds the sSOSessionExtend to the introspect params
+func (o *IntrospectParams) SetSSOSessionExtend(sSOSessionExtend *bool) {
+	o.SSOSessionExtend = sSOSessionExtend
+}
+
 // WithToken adds the token to the introspect params
 func (o *IntrospectParams) WithToken(token *string) *IntrospectParams {
 	o.SetToken(token)
@@ -135,6 +153,14 @@ func (o *IntrospectParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.SSOSessionExtend != nil {
+
+		// header param SSO-Session-Extend
+		if err := r.SetHeaderParam("SSO-Session-Extend", swag.FormatBool(*o.SSOSessionExtend)); err != nil {
+			return err
+		}
+	}
 
 	if o.Token != nil {
 

@@ -21,34 +21,34 @@ import (
 type MFAMethodResponse struct {
 
 	// auth
-	Auth *MFAAuth `json:"auth,omitempty"`
+	Auth *MFAAuth `json:"auth,omitempty" yaml:"auth,omitempty"`
 
 	// default email settings
-	DefaultEmailSettings *DefaultEmailSettings `json:"default_email_settings,omitempty"`
+	DefaultEmailSettings *DefaultEmailSettings `json:"default_email_settings,omitempty" yaml:"default_email_settings,omitempty"`
 
 	// default sms settings
-	DefaultSmsSettings *DefaultSMSSettings `json:"default_sms_settings,omitempty"`
+	DefaultSmsSettings *DefaultSMSSettings `json:"default_sms_settings,omitempty" yaml:"default_sms_settings,omitempty"`
 
 	// enabled
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
-	Settings *MFASettings `json:"settings,omitempty"`
+	Settings *MFASettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this m f a method response
@@ -255,6 +255,11 @@ func (m *MFAMethodResponse) ContextValidate(ctx context.Context, formats strfmt.
 func (m *MFAMethodResponse) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth != nil {
+
+		if swag.IsZero(m.Auth) { // not required
+			return nil
+		}
+
 		if err := m.Auth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth")
@@ -271,6 +276,11 @@ func (m *MFAMethodResponse) contextValidateAuth(ctx context.Context, formats str
 func (m *MFAMethodResponse) contextValidateDefaultEmailSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DefaultEmailSettings != nil {
+
+		if swag.IsZero(m.DefaultEmailSettings) { // not required
+			return nil
+		}
+
 		if err := m.DefaultEmailSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("default_email_settings")
@@ -287,6 +297,11 @@ func (m *MFAMethodResponse) contextValidateDefaultEmailSettings(ctx context.Cont
 func (m *MFAMethodResponse) contextValidateDefaultSmsSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DefaultSmsSettings != nil {
+
+		if swag.IsZero(m.DefaultSmsSettings) { // not required
+			return nil
+		}
+
 		if err := m.DefaultSmsSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("default_sms_settings")
@@ -303,6 +318,11 @@ func (m *MFAMethodResponse) contextValidateDefaultSmsSettings(ctx context.Contex
 func (m *MFAMethodResponse) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

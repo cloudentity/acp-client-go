@@ -19,7 +19,7 @@ import (
 type LoginPayload struct {
 
 	// idp
-	Idp *IDPPayload `json:"idp,omitempty"`
+	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 }
 
 // Validate validates this login payload
@@ -72,6 +72,11 @@ func (m *LoginPayload) ContextValidate(ctx context.Context, formats strfmt.Regis
 func (m *LoginPayload) contextValidateIdp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Idp != nil {
+
+		if swag.IsZero(m.Idp) { // not required
+			return nil
+		}
+
 		if err := m.Idp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("idp")

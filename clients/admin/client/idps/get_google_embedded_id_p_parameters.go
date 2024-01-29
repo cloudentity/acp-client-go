@@ -61,6 +61,14 @@ GetGoogleEmbeddedIDPParams contains all the parameters to send to the API endpoi
 */
 type GetGoogleEmbeddedIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetGoogleEmbeddedIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get google embedded ID p params
+func (o *GetGoogleEmbeddedIDPParams) WithIfMatch(ifMatch *string) *GetGoogleEmbeddedIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get google embedded ID p params
+func (o *GetGoogleEmbeddedIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get google embedded ID p params
 func (o *GetGoogleEmbeddedIDPParams) WithIid(iid string) *GetGoogleEmbeddedIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetGoogleEmbeddedIDPParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

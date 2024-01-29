@@ -19,10 +19,10 @@ type FDXError struct {
 
 	// Long term persistent identifier
 	// which can be used to trace error condition back to log information
-	Code string `json:"code,omitempty"`
+	Code string `json:"code,omitempty" yaml:"code,omitempty"`
 
 	// End user displayable information which might help the customer diagnose an error
-	Message string `json:"message,omitempty"`
+	Message string `json:"message,omitempty" yaml:"message,omitempty"`
 }
 
 // Validate validates this f d x error

@@ -18,7 +18,7 @@ import (
 type EncryptionMethod struct {
 
 	// algorithm
-	Algorithm string `json:"Algorithm,omitempty"`
+	Algorithm string `json:"Algorithm,omitempty" yaml:"Algorithm,omitempty"`
 }
 
 // Validate validates this encryption method

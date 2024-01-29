@@ -21,21 +21,21 @@ type ConsentGrantPatchRequest struct {
 
 	// time when the grant occurred
 	// Example: 1257894000000000000
-	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
+	CollectionTimestamp int64 `json:"collection_timestamp,omitempty" yaml:"collection_timestamp,omitempty"`
 
 	// an array of consent objects, consisting of consentId and granted - boolean flag marking if the user granted or revoked the consent
-	Consents []*ConsentGrantPatch `json:"consents"`
+	Consents []*ConsentGrantPatch `json:"consents" yaml:"consents"`
 
 	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
+	Context *ConsentGrantContext `json:"context,omitempty" yaml:"context,omitempty"`
 
 	// language in which the consent was obtained [ISO 639]
 	// Example: en
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
-	TriggeredByAction string `json:"triggered_by_action,omitempty"`
+	TriggeredByAction string `json:"triggered_by_action,omitempty" yaml:"triggered_by_action,omitempty"`
 }
 
 // Validate validates this consent grant patch request
@@ -124,6 +124,11 @@ func (m *ConsentGrantPatchRequest) contextValidateConsents(ctx context.Context, 
 	for i := 0; i < len(m.Consents); i++ {
 
 		if m.Consents[i] != nil {
+
+			if swag.IsZero(m.Consents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
@@ -142,6 +147,11 @@ func (m *ConsentGrantPatchRequest) contextValidateConsents(ctx context.Context, 
 func (m *ConsentGrantPatchRequest) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
 		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")

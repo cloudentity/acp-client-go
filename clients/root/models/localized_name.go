@@ -20,10 +20,10 @@ import (
 type LocalizedName struct {
 
 	// lang
-	Lang string `json:"Lang,omitempty"`
+	Lang string `json:"Lang,omitempty" yaml:"Lang,omitempty"`
 
 	// value
-	Value string `json:"Value,omitempty"`
+	Value string `json:"Value,omitempty" yaml:"Value,omitempty"`
 }
 
 // Validate validates this localized name

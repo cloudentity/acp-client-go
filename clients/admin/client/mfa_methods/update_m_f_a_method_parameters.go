@@ -66,6 +66,14 @@ type UpdateMFAMethodParams struct {
 	// MFAMethod.
 	MFAMethod *models.MFAMethod
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// MfaID.
 	MfaID string
 
@@ -133,6 +141,17 @@ func (o *UpdateMFAMethodParams) SetMFAMethod(mFAMethod *models.MFAMethod) {
 	o.MFAMethod = mFAMethod
 }
 
+// WithIfMatch adds the ifMatch to the update m f a method params
+func (o *UpdateMFAMethodParams) WithIfMatch(ifMatch *string) *UpdateMFAMethodParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update m f a method params
+func (o *UpdateMFAMethodParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithMfaID adds the mfaID to the update m f a method params
 func (o *UpdateMFAMethodParams) WithMfaID(mfaID string) *UpdateMFAMethodParams {
 	o.SetMfaID(mfaID)
@@ -153,6 +172,14 @@ func (o *UpdateMFAMethodParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 	if o.MFAMethod != nil {
 		if err := r.SetBodyParam(o.MFAMethod); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

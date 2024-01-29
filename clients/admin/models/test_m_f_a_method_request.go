@@ -21,7 +21,7 @@ type TestMFAMethodRequest struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 }
 
 // Validate validates this test m f a method request

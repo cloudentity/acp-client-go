@@ -23,20 +23,20 @@ type SMSSettings struct {
 	// Custom message template.
 	//
 	// If not set, the default is used.
-	CustomMessageTemplate string `json:"custom_message_template,omitempty"`
+	CustomMessageTemplate string `json:"custom_message_template,omitempty" yaml:"custom_message_template,omitempty"`
 
 	// Custom SMS From phone number.
 	//
 	// If not set, the default is used.
-	CustomSource string `json:"custom_source,omitempty"`
+	CustomSource string `json:"custom_source,omitempty" yaml:"custom_source,omitempty"`
 
 	// otp
-	Otp *OTPConfig `json:"otp,omitempty"`
+	Otp *OTPConfiguration `json:"otp,omitempty" yaml:"otp,omitempty"`
 
 	// SMS provider.
 	// Example: embedded
 	// Enum: [twilio embedded]
-	Provider string `json:"provider,omitempty"`
+	Provider string `json:"provider,omitempty" yaml:"provider,omitempty"`
 }
 
 // Validate validates this s m s settings
@@ -135,6 +135,11 @@ func (m *SMSSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *SMSSettings) contextValidateOtp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Otp != nil {
+
+		if swag.IsZero(m.Otp) { // not required
+			return nil
+		}
+
 		if err := m.Otp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("otp")

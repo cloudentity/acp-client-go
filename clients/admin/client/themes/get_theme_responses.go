@@ -54,7 +54,7 @@ func (o *GetThemeReader) ReadResponse(response runtime.ClientResponse, consumer 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /theme/{themeID}] getTheme", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetThemeOK describes a response with status code 200, with default header values
 Theme
 */
 type GetThemeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Theme
 }
 
@@ -97,6 +106,11 @@ func (o *GetThemeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get theme o k response
+func (o *GetThemeOK) Code() int {
+	return 200
+}
+
 func (o *GetThemeOK) Error() string {
 	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetThemeOK) GetPayload() *models.Theme {
 }
 
 func (o *GetThemeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Theme)
 
@@ -129,7 +150,7 @@ func NewGetThemeUnauthorized() *GetThemeUnauthorized {
 /*
 GetThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetThemeUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this get theme unauthorized response a status code equal to that given
 func (o *GetThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get theme unauthorized response
+func (o *GetThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetThemeUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetThemeForbidden() *GetThemeForbidden {
 /*
 GetThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetThemeForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetThemeForbidden) IsServerError() bool {
 // IsCode returns true when this get theme forbidden response a status code equal to that given
 func (o *GetThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get theme forbidden response
+func (o *GetThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *GetThemeForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetThemeNotFound() *GetThemeNotFound {
 /*
 GetThemeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetThemeNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetThemeNotFound) IsServerError() bool {
 // IsCode returns true when this get theme not found response a status code equal to that given
 func (o *GetThemeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get theme not found response
+func (o *GetThemeNotFound) Code() int {
+	return 404
 }
 
 func (o *GetThemeNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetThemeTooManyRequests() *GetThemeTooManyRequests {
 /*
 GetThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetThemeTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get theme too many requests response a status code equal to that given
 func (o *GetThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get theme too many requests response
+func (o *GetThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetThemeTooManyRequests) Error() string {

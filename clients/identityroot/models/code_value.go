@@ -19,7 +19,7 @@ import (
 type CodeValue struct {
 
 	// hashed code
-	HashedCode *Hash `json:"hashed_code,omitempty"`
+	HashedCode *Hash `json:"hashed_code,omitempty" yaml:"hashed_code,omitempty"`
 }
 
 // Validate validates this code value

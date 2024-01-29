@@ -48,7 +48,7 @@ func (o *ListAPIsByServerReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/apis] listAPIsByServer", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListAPIsByServerOK describes a response with status code 200, with default heade
 APIs grouped by service ids
 */
 type ListAPIsByServerOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerAPIs
 }
 
@@ -91,6 +100,11 @@ func (o *ListAPIsByServerOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list a p is by server o k response
+func (o *ListAPIsByServerOK) Code() int {
+	return 200
+}
+
 func (o *ListAPIsByServerOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListAPIsByServerOK) GetPayload() *models.ServerAPIs {
 }
 
 func (o *ListAPIsByServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerAPIs)
 
@@ -123,7 +144,7 @@ func NewListAPIsByServerUnauthorized() *ListAPIsByServerUnauthorized {
 /*
 ListAPIsByServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListAPIsByServerUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListAPIsByServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this list a p is by server unauthorized response a status code equal to that given
 func (o *ListAPIsByServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list a p is by server unauthorized response
+func (o *ListAPIsByServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListAPIsByServerUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListAPIsByServerForbidden() *ListAPIsByServerForbidden {
 /*
 ListAPIsByServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListAPIsByServerForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListAPIsByServerForbidden) IsServerError() bool {
 // IsCode returns true when this list a p is by server forbidden response a status code equal to that given
 func (o *ListAPIsByServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list a p is by server forbidden response
+func (o *ListAPIsByServerForbidden) Code() int {
+	return 403
 }
 
 func (o *ListAPIsByServerForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListAPIsByServerTooManyRequests() *ListAPIsByServerTooManyRequests {
 /*
 ListAPIsByServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListAPIsByServerTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListAPIsByServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list a p is by server too many requests response a status code equal to that given
 func (o *ListAPIsByServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list a p is by server too many requests response
+func (o *ListAPIsByServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListAPIsByServerTooManyRequests) Error() string {

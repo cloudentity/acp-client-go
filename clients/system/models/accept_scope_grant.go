@@ -19,21 +19,28 @@ import (
 type AcceptScopeGrant struct {
 
 	// optional consent identifier
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
+
+	// granted claims
+	GrantedClaims GrantedClaims `json:"granted_claims,omitempty" yaml:"granted_claims,omitempty"`
 
 	// granted scopes
-	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
+	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty" yaml:"granted_scopes,omitempty"`
 
 	// login identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 }
 
 // Validate validates this accept scope grant
 func (m *AcceptScopeGrant) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateGrantedClaims(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateGrantedScopes(formats); err != nil {
 		res = append(res, err)
@@ -42,6 +49,23 @@ func (m *AcceptScopeGrant) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AcceptScopeGrant) validateGrantedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedClaims) { // not required
+		return nil
+	}
+
+	if err := m.GrantedClaims.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_claims")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("granted_claims")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -66,6 +90,10 @@ func (m *AcceptScopeGrant) validateGrantedScopes(formats strfmt.Registry) error 
 func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateGrantedClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -73,6 +101,20 @@ func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AcceptScopeGrant) contextValidateGrantedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.GrantedClaims.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_claims")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("granted_claims")
+		}
+		return err
+	}
+
 	return nil
 }
 

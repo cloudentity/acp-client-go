@@ -18,26 +18,26 @@ import (
 type DeviceResponse struct {
 
 	// The device verification code.
-	DeviceCode string `json:"device_code,omitempty"`
+	DeviceCode string `json:"device_code,omitempty" yaml:"device_code,omitempty"`
 
 	// The lifetime in seconds of the "device_code" and "user_code".
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// The minimum amount of time in seconds that the client
 	// SHOULD wait between polling requests to the token endpoint.  If no
 	// value is provided, clients MUST use 5 as the default.
-	Interval int64 `json:"interval,omitempty"`
+	Interval int64 `json:"interval,omitempty" yaml:"interval,omitempty"`
 
 	// The end-user verification code.
-	UserCode string `json:"user_code,omitempty"`
+	UserCode string `json:"user_code,omitempty" yaml:"user_code,omitempty"`
 
 	// The end-user verification URI on the authorization server.
 	// The URI should be short and easy to remember as end users will be asked to manually type it into their user agent.
-	VerificationURI string `json:"verification_uri,omitempty"`
+	VerificationURI string `json:"verification_uri,omitempty" yaml:"verification_uri,omitempty"`
 
 	// A verification URI that includes the "user_code" (or other information with the same function as the "user_code"),
 	// which is designed for non-textual transmission.
-	VerificationURIComplete string `json:"verification_uri_complete,omitempty"`
+	VerificationURIComplete string `json:"verification_uri_complete,omitempty" yaml:"verification_uri_complete,omitempty"`
 }
 
 // Validate validates this device response

@@ -21,7 +21,7 @@ type ClientJWKs struct {
 
 	// keys
 	// Example: []
-	Keys []*ClientJWK `json:"keys"`
+	Keys []*ClientJWK `json:"keys" yaml:"keys"`
 }
 
 // Validate validates this client j w ks
@@ -83,6 +83,11 @@ func (m *ClientJWKs) contextValidateKeys(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Keys); i++ {
 
 		if m.Keys[i] != nil {
+
+			if swag.IsZero(m.Keys[i]) { // not required
+				return nil
+			}
+
 			if err := m.Keys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("keys" + "." + strconv.Itoa(i))

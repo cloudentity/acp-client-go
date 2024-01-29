@@ -24,16 +24,16 @@ type OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent struct
 	// Unique and unambiguous identification of the servicing institution.
 	// Max Length: 35
 	// Min Length: 1
-	Identification string `json:"Identification,omitempty"`
+	Identification string `json:"Identification,omitempty" yaml:"Identification,omitempty"`
 
 	// name
-	Name Name `json:"Name,omitempty"`
+	Name Name `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 
 	// scheme name
-	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty"`
+	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty" yaml:"SchemeName,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent6 data initiation creditor agent
@@ -155,6 +155,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) C
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Name")
@@ -170,6 +174,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) c
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PostalAddress")
@@ -184,6 +193,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) c
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

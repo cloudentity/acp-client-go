@@ -54,7 +54,7 @@ func (o *GetTransientOTPReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /authn/otp/transient/{otpID}] getTransientOTP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetTransientOTPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get transient o t p o k response
+func (o *GetTransientOTPOK) Code() int {
+	return 200
+}
+
 func (o *GetTransientOTPOK) Error() string {
 	return fmt.Sprintf("[GET /authn/otp/transient/{otpID}][%d] getTransientOTPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetTransientOTPUnauthorized() *GetTransientOTPUnauthorized {
 /*
 GetTransientOTPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetTransientOTPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetTransientOTPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get transient o t p unauthorized response a status code equal to that given
 func (o *GetTransientOTPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get transient o t p unauthorized response
+func (o *GetTransientOTPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetTransientOTPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetTransientOTPForbidden() *GetTransientOTPForbidden {
 /*
 GetTransientOTPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetTransientOTPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetTransientOTPForbidden) IsServerError() bool {
 // IsCode returns true when this get transient o t p forbidden response a status code equal to that given
 func (o *GetTransientOTPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get transient o t p forbidden response
+func (o *GetTransientOTPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetTransientOTPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetTransientOTPNotFound() *GetTransientOTPNotFound {
 /*
 GetTransientOTPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetTransientOTPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetTransientOTPNotFound) IsServerError() bool {
 // IsCode returns true when this get transient o t p not found response a status code equal to that given
 func (o *GetTransientOTPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get transient o t p not found response
+func (o *GetTransientOTPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetTransientOTPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetTransientOTPUnprocessableEntity() *GetTransientOTPUnprocessableEntity
 /*
 GetTransientOTPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GetTransientOTPUnprocessableEntity struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetTransientOTPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this get transient o t p unprocessable entity response a status code equal to that given
 func (o *GetTransientOTPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the get transient o t p unprocessable entity response
+func (o *GetTransientOTPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *GetTransientOTPUnprocessableEntity) Error() string {

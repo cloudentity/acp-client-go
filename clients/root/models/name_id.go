@@ -20,19 +20,19 @@ import (
 type NameID struct {
 
 	// format
-	Format string `json:"Format,omitempty"`
+	Format string `json:"Format,omitempty" yaml:"Format,omitempty"`
 
 	// name qualifier
-	NameQualifier string `json:"NameQualifier,omitempty"`
+	NameQualifier string `json:"NameQualifier,omitempty" yaml:"NameQualifier,omitempty"`
 
 	// s p name qualifier
-	SPNameQualifier string `json:"SPNameQualifier,omitempty"`
+	SPNameQualifier string `json:"SPNameQualifier,omitempty" yaml:"SPNameQualifier,omitempty"`
 
 	// s p provided ID
-	SPProvidedID string `json:"SPProvidedID,omitempty"`
+	SPProvidedID string `json:"SPProvidedID,omitempty" yaml:"SPProvidedID,omitempty"`
 
 	// value
-	Value string `json:"Value,omitempty"`
+	Value string `json:"Value,omitempty" yaml:"Value,omitempty"`
 }
 
 // Validate validates this name ID

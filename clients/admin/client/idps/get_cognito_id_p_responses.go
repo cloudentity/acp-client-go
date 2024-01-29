@@ -54,7 +54,7 @@ func (o *GetCognitoIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/cognito/{iid}] getCognitoIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetCognitoIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get cognito Id p o k response
+func (o *GetCognitoIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetCognitoIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetCognitoIDPUnauthorized() *GetCognitoIDPUnauthorized {
 /*
 GetCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetCognitoIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetCognitoIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get cognito Id p unauthorized response a status code equal to that given
 func (o *GetCognitoIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get cognito Id p unauthorized response
+func (o *GetCognitoIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetCognitoIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetCognitoIDPForbidden() *GetCognitoIDPForbidden {
 /*
 GetCognitoIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetCognitoIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetCognitoIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get cognito Id p forbidden response a status code equal to that given
 func (o *GetCognitoIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get cognito Id p forbidden response
+func (o *GetCognitoIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetCognitoIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetCognitoIDPNotFound() *GetCognitoIDPNotFound {
 /*
 GetCognitoIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetCognitoIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetCognitoIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get cognito Id p not found response a status code equal to that given
 func (o *GetCognitoIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get cognito Id p not found response
+func (o *GetCognitoIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetCognitoIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetCognitoIDPTooManyRequests() *GetCognitoIDPTooManyRequests {
 /*
 GetCognitoIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetCognitoIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetCognitoIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get cognito Id p too many requests response a status code equal to that given
 func (o *GetCognitoIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get cognito Id p too many requests response
+func (o *GetCognitoIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetCognitoIDPTooManyRequests) Error() string {

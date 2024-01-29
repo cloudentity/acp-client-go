@@ -17,17 +17,17 @@ import (
 // swagger:model FDXGrantedResource
 type FDXGrantedResource struct {
 
-	// Name of cluster of data elements permissioned
+	// The names of clusters with data elements permitted.
 	// Example: ["ACCOUNT_DETAILED","TRANSACTIONS","STATEMENTS"]
-	DataClusters []string `json:"dataClusters"`
+	DataClusters []string `json:"dataClusters" yaml:"dataClusters"`
 
 	// resource ID
 	// Example: b14e1e714693bc00
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
-	// Resource for which data may be permissioned; can be extended to supportadditional types of resources
+	// A type of resource that holds the permitted data elements. This parameter can be extended to support additional resource types.
 	// Example: ACCOUNT
-	ResourceType string `json:"resourceType,omitempty"`
+	ResourceType string `json:"resourceType,omitempty" yaml:"resourceType,omitempty"`
 }
 
 // Validate validates this f d x granted resource

@@ -26,7 +26,7 @@ type OpenbankingBrasilPaymentLinks struct {
 	// Required: true
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	Self string `json:"self"`
+	Self string `json:"self" yaml:"self"`
 }
 
 // Validate validates this openbanking brasil payment links

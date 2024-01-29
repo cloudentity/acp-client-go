@@ -19,16 +19,16 @@ import (
 type GatewayExchangeResponse struct {
 
 	// Exchanged access token
-	AccessToken string `json:"access_token,omitempty"`
+	AccessToken string `json:"access_token,omitempty" yaml:"access_token,omitempty"`
 
 	// error
-	Error ExchangeError `json:"error,omitempty"`
+	Error ExchangeError `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// has token been exchanged
-	Exchanged bool `json:"exchanged,omitempty"`
+	Exchanged bool `json:"exchanged,omitempty" yaml:"exchanged,omitempty"`
 
 	// Access token expiration
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 }
 
 // Validate validates this gateway exchange response
@@ -77,6 +77,10 @@ func (m *GatewayExchangeResponse) ContextValidate(ctx context.Context, formats s
 }
 
 func (m *GatewayExchangeResponse) contextValidateError(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Error) { // not required
+		return nil
+	}
 
 	if err := m.Error.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

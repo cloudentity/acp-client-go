@@ -21,11 +21,11 @@ type OBWriteDomesticStandingOrderConsentResponse6DataInitiationRecurringPaymentA
 
 	// amount
 	// Required: true
-	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount"`
+	Amount *OBActiveCurrencyAndAmountSimpleType `json:"Amount" yaml:"Amount"`
 
 	// currency
 	// Required: true
-	Currency *ActiveOrHistoricCurrencyCode `json:"Currency"`
+	Currency *ActiveOrHistoricCurrencyCode `json:"Currency" yaml:"Currency"`
 }
 
 // Validate validates this o b write domestic standing order consent response6 data initiation recurring payment amount
@@ -115,6 +115,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationRecurringPaym
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationRecurringPaymentAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -131,6 +132,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationRecurringPaym
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationRecurringPaymentAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

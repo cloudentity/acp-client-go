@@ -20,10 +20,10 @@ import (
 type ScopePrivacyInformation struct {
 
 	// pii categories
-	PiiCategories []*PIICategory `json:"pii_categories"`
+	PiiCategories []*PIICategory `json:"pii_categories" yaml:"pii_categories"`
 
 	// purpose
-	Purpose string `json:"purpose,omitempty"`
+	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 }
 
 // Validate validates this scope privacy information
@@ -85,6 +85,11 @@ func (m *ScopePrivacyInformation) contextValidatePiiCategories(ctx context.Conte
 	for i := 0; i < len(m.PiiCategories); i++ {
 
 		if m.PiiCategories[i] != nil {
+
+			if swag.IsZero(m.PiiCategories[i]) { // not required
+				return nil
+			}
+
 			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))

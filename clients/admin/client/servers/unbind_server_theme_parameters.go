@@ -61,6 +61,14 @@ UnbindServerThemeParams contains all the parameters to send to the API endpoint
 */
 type UnbindServerThemeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Workspace id
@@ -133,6 +141,17 @@ func (o *UnbindServerThemeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the unbind server theme params
+func (o *UnbindServerThemeParams) WithIfMatch(ifMatch *string) *UnbindServerThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the unbind server theme params
+func (o *UnbindServerThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the unbind server theme params
 func (o *UnbindServerThemeParams) WithWid(wid string) *UnbindServerThemeParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *UnbindServerThemeParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

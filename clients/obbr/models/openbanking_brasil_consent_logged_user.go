@@ -23,7 +23,7 @@ type OpenbankingBrasilConsentLoggedUser struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilConsentDocument `json:"document"`
+	Document *OpenbankingBrasilConsentDocument `json:"document" yaml:"document"`
 }
 
 // Validate validates this openbanking brasil consent logged user

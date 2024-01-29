@@ -20,131 +20,166 @@ import (
 // swagger:model Environment
 type Environment struct {
 
-	// enable admin workspace access (tenant)
-	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
+	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
+	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty" yaml:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
+
+	// admin issuer url
+	AdminIssuerURL string `json:"admin_issuer_url,omitempty" yaml:"admin_issuer_url,omitempty"`
+
+	// admin portal face lifting
+	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty" yaml:"admin_portal_face_lifting,omitempty"`
+
+	// admin workspace access
+	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty" yaml:"admin_workspace_access,omitempty"`
+
+	// analytics duration
+	// Format: duration
+	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty" yaml:"analytics_duration,omitempty"`
 
 	// audit events duration
 	// Format: duration
-	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty"`
+	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty" yaml:"audit_events_duration,omitempty"`
 
-	// block access to tenant for traffic not originated from the vanity domain
-	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
+	// block access to a tenant's resources from traffic not originating from the tenant's vanity domain
+	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty" yaml:"block_non_vanity_domain_access,omitempty"`
 
 	// brute force limits
-	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty"`
+	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty" yaml:"brute_force_limits,omitempty"`
+
+	// cache access tokens
+	CacheAccessTokens bool `json:"cache_access_tokens,omitempty" yaml:"cache_access_tokens,omitempty"`
+
+	// arrangement cache for CDR
+	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty" yaml:"cdr_arrangement_cache,omitempty"`
 
 	// disable unique software id for CDR
-	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
+	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty" yaml:"cdr_disable_unique_software_id,omitempty"`
 
-	// enable ciba (system)
-	Ciba bool `json:"ciba,omitempty"`
+	// stores client secrets as one-way hashes
+	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty" yaml:"client_secrets_stored_as_one_way_hash,omitempty"`
 
-	// store client secrets as a one way hash (tenant)
-	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
-
-	// enable Cloudentity IDP (tenant)
-	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
+	// Cloudentity IDP
+	CloudentityIdp bool `json:"cloudentity_idp,omitempty" yaml:"cloudentity_idp,omitempty"`
 
 	// commit
-	Commit string `json:"commit,omitempty"`
+	Commit string `json:"commit,omitempty" yaml:"commit,omitempty"`
 
-	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
-	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
+	// connectID profile
+	ConnectID bool `json:"connect_id,omitempty" yaml:"connect_id,omitempty"`
 
-	// enable demo app endpoints (system)
-	DemoApp bool `json:"demo_app,omitempty"`
+	// enable additional debug logs
+	Debug bool `json:"debug,omitempty" yaml:"debug,omitempty"`
 
-	// realod templates and adds local redirects urls to frontend apps (system)
-	DevMode bool `json:"dev_mode,omitempty"`
+	// allow the usage of dedicated FaaS Rego/JS environments
+	DedicatedFaas bool `json:"dedicated_faas,omitempty" yaml:"dedicated_faas,omitempty"`
+
+	// demo app
+	DemoApp bool `json:"demo_app,omitempty" yaml:"demo_app,omitempty"`
+
+	// hot reloading of templates
+	DevMode bool `json:"dev_mode,omitempty" yaml:"dev_mode,omitempty"`
+
+	// disable audit events
+	DisableAuditEvents bool `json:"disable_audit_events,omitempty" yaml:"disable_audit_events,omitempty"`
 
 	// display workspace wizard
-	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
+	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty" yaml:"display_workspace_wizard,omitempty"`
 
-	// extended audit events retention
-	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
+	// do not validate cert for private key jwt
+	DoNotValidateCertForPrivateKeyJwt bool `json:"do_not_validate_cert_for_private_key_jwt,omitempty" yaml:"do_not_validate_cert_for_private_key_jwt,omitempty"`
+
+	// drop tokens on password reset
+	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty" yaml:"drop_tokens_on_password_reset,omitempty"`
 
 	// grpc url
-	GrpcURL string `json:"grpc_url,omitempty"`
+	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
 
-	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
-	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
+	// has google image search
+	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
 
-	// INSECURE disable csrf (tenant)
-	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty"`
+	// identifier-based discovery
+	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty" yaml:"identifier_based_discovery,omitempty"`
 
-	// enable insecure token exchange public clients (tenant)
-	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty"`
+	// identity assurance
+	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
 
-	// enable global import and export configuration endpoints (system)
-	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
+	// image proxy url
+	ImageProxyURL string `json:"image_proxy_url,omitempty" yaml:"image_proxy_url,omitempty"`
 
-	// enable login with select_account param (tenant)
-	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
+	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed
+	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty" yaml:"initialize_demo_workspace,omitempty"`
 
-	// enable consents v2 apis for open banking brasil
-	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+	// disable csrf
+	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty" yaml:"insecure_disable_csrf,omitempty"`
 
-	// enable permissions
-	Permissions bool `json:"permissions,omitempty"`
+	// insecure token exchange public clients
+	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
-	// enable planet scale authorization
-	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`
+	// openbanking ksa workspace and security profile
+	OpenbankingKsa bool `json:"openbanking_ksa,omitempty" yaml:"openbanking_ksa,omitempty"`
 
-	// enable planet scale identity
-	PlanetScaleIdentity bool `json:"planet_scale_identity,omitempty"`
+	// organizations
+	Organizations bool `json:"organizations,omitempty" yaml:"organizations,omitempty"`
 
-	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
-	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
+	// permissions
+	Permissions bool `json:"permissions,omitempty" yaml:"permissions,omitempty"`
 
-	// enable quick access functionality on UI (system)
-	QuickAccess bool `json:"quick_access,omitempty"`
+	// rich authorization requests
+	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 
-	// enable SAML (tenant)
-	Saml bool `json:"saml,omitempty"`
+	// roles
+	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
 
-	// enable scope transient_otp (tenant)
-	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
+	// scope transient_otp
+	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
 
 	// script runtimes
-	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes"`
+	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes" yaml:"script_runtimes"`
 
-	// enable the javascript transformer (tenant)
-	ScriptTransformer bool `json:"script_transformer,omitempty"`
+	// self-service
+	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 
-	// enable swagger ui (system)
-	SwaggerUI bool `json:"swagger_ui,omitempty"`
+	// simple api integration
+	SimpleAPIIntegration bool `json:"simple_api_integration,omitempty" yaml:"simple_api_integration,omitempty"`
+
+	// swagger ui
+	SwaggerUI bool `json:"swagger_ui,omitempty" yaml:"swagger_ui,omitempty"`
 
 	// system flags
-	SystemFlags []string `json:"system_flags"`
+	SystemFlags []string `json:"system_flags" yaml:"system_flags"`
 
-	// enable admin workspace access (tenant)
-	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
+	// system workspace access
+	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty" yaml:"system_workspace_access,omitempty"`
 
 	// tenant flags
-	TenantFlags []string `json:"tenant_flags"`
+	TenantFlags []string `json:"tenant_flags" yaml:"tenant_flags"`
 
-	// enable Custom Branding Themes (tenant)
-	Themes bool `json:"themes,omitempty"`
+	// tenant settings
+	TenantSettings *TenantSettings `json:"tenant_settings,omitempty" yaml:"tenant_settings,omitempty"`
 
-	// enable Token Exchange (system)
-	TokenExchange bool `json:"token_exchange,omitempty"`
-
-	// enable Token Exchange Delegation (tenant)
-	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
+	// hierarchical dumps tenant APIs
+	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty" yaml:"tree_dump_tenant,omitempty"`
 
 	// version
-	Version string `json:"version,omitempty"`
+	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 
 	// with analytics
-	WithAnalytics bool `json:"with_analytics,omitempty"`
+	WithAnalytics bool `json:"with_analytics,omitempty" yaml:"with_analytics,omitempty"`
 
 	// with permissions
-	WithPermissions bool `json:"with_permissions,omitempty"`
+	WithPermissions bool `json:"with_permissions,omitempty" yaml:"with_permissions,omitempty"`
+
+	// with roles
+	WithRoles bool `json:"with_roles,omitempty" yaml:"with_roles,omitempty"`
 }
 
 // Validate validates this environment
 func (m *Environment) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAnalyticsDuration(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAuditEventsDuration(formats); err != nil {
 		res = append(res, err)
@@ -158,9 +193,25 @@ func (m *Environment) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTenantSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Environment) validateAnalyticsDuration(formats strfmt.Registry) error {
+	if swag.IsZero(m.AnalyticsDuration) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("analytics_duration", "body", "duration", m.AnalyticsDuration.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -221,6 +272,25 @@ func (m *Environment) validateScriptRuntimes(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Environment) validateTenantSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.TenantSettings) { // not required
+		return nil
+	}
+
+	if m.TenantSettings != nil {
+		if err := m.TenantSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tenant_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tenant_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this environment based on the context it is used
 func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -233,6 +303,10 @@ func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTenantSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -242,6 +316,11 @@ func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *Environment) contextValidateBruteForceLimits(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BruteForceLimits != nil {
+
+		if swag.IsZero(m.BruteForceLimits) { // not required
+			return nil
+		}
+
 		if err := m.BruteForceLimits.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("brute_force_limits")
@@ -260,6 +339,11 @@ func (m *Environment) contextValidateScriptRuntimes(ctx context.Context, formats
 	for i := 0; i < len(m.ScriptRuntimes); i++ {
 
 		if m.ScriptRuntimes[i] != nil {
+
+			if swag.IsZero(m.ScriptRuntimes[i]) { // not required
+				return nil
+			}
+
 			if err := m.ScriptRuntimes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("script_runtimes" + "." + strconv.Itoa(i))
@@ -270,6 +354,27 @@ func (m *Environment) contextValidateScriptRuntimes(ctx context.Context, formats
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Environment) contextValidateTenantSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TenantSettings != nil {
+
+		if swag.IsZero(m.TenantSettings) { // not required
+			return nil
+		}
+
+		if err := m.TenantSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tenant_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tenant_settings")
+			}
+			return err
+		}
 	}
 
 	return nil

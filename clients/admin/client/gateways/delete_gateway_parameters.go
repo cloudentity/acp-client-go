@@ -64,6 +64,14 @@ type DeleteGatewayParams struct {
 	// Gw.
 	Gw string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -128,6 +136,17 @@ func (o *DeleteGatewayParams) SetGw(gw string) {
 	o.Gw = gw
 }
 
+// WithIfMatch adds the ifMatch to the delete gateway params
+func (o *DeleteGatewayParams) WithIfMatch(ifMatch *string) *DeleteGatewayParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete gateway params
+func (o *DeleteGatewayParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteGatewayParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *DeleteGatewayParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	// path param gw
 	if err := r.SetPathParam("gw", o.Gw); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

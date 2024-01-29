@@ -23,46 +23,46 @@ type UserIdentifier struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at" yaml:"created_at"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// identifier
 	// Required: true
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier" yaml:"identifier"`
 
 	// identifier lc
 	// Required: true
-	IdentifierLc string `json:"identifier_lc"`
+	IdentifierLc string `json:"identifier_lc" yaml:"identifier_lc"`
 
 	// general purpose metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// type
 	// Example: email
 	// Required: true
 	// Enum: [email mobile uid external federated]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at" yaml:"updated_at"`
 
 	// user id
 	// Required: true
-	UserID string `json:"user_id"`
+	UserID string `json:"user_id" yaml:"user_id"`
 
 	// user pool id
 	// Example: default
 	// Required: true
-	UserPoolID string `json:"user_pool_id"`
+	UserPoolID string `json:"user_pool_id" yaml:"user_pool_id"`
 }
 
 // Validate validates this user identifier

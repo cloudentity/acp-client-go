@@ -20,16 +20,16 @@ import (
 type KeysResponse struct {
 
 	// current key
-	CurrentKey *ServerJWK `json:"current_key,omitempty"`
+	CurrentKey *ServerJWK `json:"current_key,omitempty" yaml:"current_key,omitempty"`
 
 	// next key
-	NextKey *ServerJWK `json:"next_key,omitempty"`
+	NextKey *ServerJWK `json:"next_key,omitempty" yaml:"next_key,omitempty"`
 
 	// revoked keys
-	RevokedKeys []*ServerJWK `json:"revoked_keys"`
+	RevokedKeys []*ServerJWK `json:"revoked_keys" yaml:"revoked_keys"`
 
 	// rotated keys
-	RotatedKeys []*ServerJWK `json:"rotated_keys"`
+	RotatedKeys []*ServerJWK `json:"rotated_keys" yaml:"rotated_keys"`
 }
 
 // Validate validates this keys response
@@ -177,6 +177,11 @@ func (m *KeysResponse) ContextValidate(ctx context.Context, formats strfmt.Regis
 func (m *KeysResponse) contextValidateCurrentKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CurrentKey != nil {
+
+		if swag.IsZero(m.CurrentKey) { // not required
+			return nil
+		}
+
 		if err := m.CurrentKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("current_key")
@@ -193,6 +198,11 @@ func (m *KeysResponse) contextValidateCurrentKey(ctx context.Context, formats st
 func (m *KeysResponse) contextValidateNextKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextKey != nil {
+
+		if swag.IsZero(m.NextKey) { // not required
+			return nil
+		}
+
 		if err := m.NextKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next_key")
@@ -211,6 +221,11 @@ func (m *KeysResponse) contextValidateRevokedKeys(ctx context.Context, formats s
 	for i := 0; i < len(m.RevokedKeys); i++ {
 
 		if m.RevokedKeys[i] != nil {
+
+			if swag.IsZero(m.RevokedKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RevokedKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("revoked_keys" + "." + strconv.Itoa(i))
@@ -231,6 +246,11 @@ func (m *KeysResponse) contextValidateRotatedKeys(ctx context.Context, formats s
 	for i := 0; i < len(m.RotatedKeys); i++ {
 
 		if m.RotatedKeys[i] != nil {
+
+			if swag.IsZero(m.RotatedKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RotatedKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rotated_keys" + "." + strconv.Itoa(i))

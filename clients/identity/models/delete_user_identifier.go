@@ -21,7 +21,7 @@ type DeleteUserIdentifier struct {
 
 	// identifier
 	// Required: true
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier" yaml:"identifier"`
 }
 
 // Validate validates this delete user identifier

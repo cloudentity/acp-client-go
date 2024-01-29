@@ -54,7 +54,7 @@ func (o *GetOIDCIDPReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/oidc/{iid}] getOIDCIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetOIDCIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get o Id c Id p o k response
+func (o *GetOIDCIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetOIDCIDPUnauthorized() *GetOIDCIDPUnauthorized {
 /*
 GetOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetOIDCIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetOIDCIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get o Id c Id p unauthorized response a status code equal to that given
 func (o *GetOIDCIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get o Id c Id p unauthorized response
+func (o *GetOIDCIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetOIDCIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetOIDCIDPForbidden() *GetOIDCIDPForbidden {
 /*
 GetOIDCIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetOIDCIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetOIDCIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get o Id c Id p forbidden response a status code equal to that given
 func (o *GetOIDCIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get o Id c Id p forbidden response
+func (o *GetOIDCIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetOIDCIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetOIDCIDPNotFound() *GetOIDCIDPNotFound {
 /*
 GetOIDCIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetOIDCIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetOIDCIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get o Id c Id p not found response a status code equal to that given
 func (o *GetOIDCIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get o Id c Id p not found response
+func (o *GetOIDCIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetOIDCIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetOIDCIDPTooManyRequests() *GetOIDCIDPTooManyRequests {
 /*
 GetOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetOIDCIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetOIDCIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get o Id c Id p too many requests response a status code equal to that given
 func (o *GetOIDCIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get o Id c Id p too many requests response
+func (o *GetOIDCIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetOIDCIDPTooManyRequests) Error() string {

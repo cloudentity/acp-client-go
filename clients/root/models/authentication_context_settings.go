@@ -20,7 +20,7 @@ import (
 type AuthenticationContextSettings struct {
 
 	// attributes
-	Attributes []*Attribute `json:"attributes"`
+	Attributes []*Attribute `json:"attributes" yaml:"attributes"`
 }
 
 // Validate validates this authentication context settings
@@ -82,6 +82,11 @@ func (m *AuthenticationContextSettings) contextValidateAttributes(ctx context.Co
 	for i := 0; i < len(m.Attributes); i++ {
 
 		if m.Attributes[i] != nil {
+
+			if swag.IsZero(m.Attributes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Attributes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("attributes" + "." + strconv.Itoa(i))

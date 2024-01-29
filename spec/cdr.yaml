@@ -69,7 +69,7 @@ definitions:
       Value:
         type: string
         x-nullable: false
-    title: An Attr represents a key-value attribute of an XML element.
+    title: An Attr represents a key-value attribute within an XML element.
     type: object
   Attribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
@@ -249,6 +249,8 @@ definitions:
         x-nullable: false
     title: AuthnAuthorityDescriptor represents the SAML AuthnAuthorityDescriptor object.
     type: object
+  AuthorizationDetailType:
+    type: string
   CDRAdminRequestMetaDataUpdate:
     description: CDRAdminRequestMetaDataUpdate RequestMetaDataUpdate
     properties:
@@ -482,10 +484,6 @@ definitions:
     type: string
   CDRDynamicClientRegistrationRequest:
     properties:
-      Validators:
-        additionalProperties: {}
-        type: object
-        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -547,6 +545,15 @@ definitions:
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
+        type: array
+        x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
         type: array
         x-nullable: false
       authorization_encrypted_response_alg:
@@ -735,7 +742,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -794,6 +801,13 @@ definitions:
         description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
+        x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
@@ -850,7 +864,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1114,6 +1128,15 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
@@ -1338,7 +1361,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1403,6 +1426,13 @@ definitions:
         description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
+        x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       recipient_base_uri:
@@ -1465,7 +1495,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1652,6 +1682,8 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      token_ttls:
+        $ref: '#/definitions/TokenTTLs'
       tos_uri:
         description: Terms of Service URL.
         type: string
@@ -1668,6 +1700,11 @@ definitions:
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
+        x-nullable: false
+      use_custom_token_ttls:
+        description: If enabled the client application will be able to set its own
+          token TTLs.
+        type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
         default: none
@@ -1770,6 +1807,15 @@ definitions:
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
+        type: array
+        x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
         type: array
         x-nullable: false
       authorization_encrypted_response_alg:
@@ -2010,7 +2056,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -2043,6 +2089,8 @@ definitions:
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      obbr:
+        $ref: '#/definitions/OBBRMetadata'
       organisation_id:
         description: |-
           External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
@@ -2056,6 +2104,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -2115,7 +2170,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -2322,6 +2377,8 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      token_ttls:
+        $ref: '#/definitions/TokenTTLs'
       tos_uri:
         description: Terms of Service URL.
         type: string
@@ -2338,6 +2395,11 @@ definitions:
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
+        x-nullable: false
+      use_custom_token_ttls:
+        description: If enabled the client application will be able to set its own
+          token TTLs.
+        type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
         default: none
@@ -2356,8 +2418,8 @@ definitions:
         type: string
         x-nullable: false
     required:
-    - authorization_server_id
     - tenant_id
+    - authorization_server_id
     title: Defines a client application and its properties.
     type: object
   ClientInfo:
@@ -2774,8 +2836,8 @@ definitions:
           The rule of consent granting by the end-user to indicate whether they must take action
           to revoke access or the consent will be revoked automatically.
 
-          The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-        example: '"ONE_TIME"'
+          One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+        example: ONE_TIME
         items:
           $ref: '#/definitions/DurationType'
         type: array
@@ -3063,20 +3125,17 @@ definitions:
         description: Issuer URL is a string representing the issuer of this token.
         type: string
         x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
+        x-nullable: false
       nbf:
         description: |-
           NotBefore is an integer timestamp measured in the number of seconds
           since January 1 1970 UTC. It indicates this token was not
           used before the specified time.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          The integer timestamp measured in the number
-          of seconds since January 1 1970 UTC. It indicates when the issued refresh
-          token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -3282,6 +3341,15 @@ definitions:
   NameIDFormat:
     description: NameIDFormat is the format of the id
     type: string
+  OBBRMetadata:
+    properties:
+      webhook_uris:
+        description: An array of hosts subscribed to Open Finance Webhook Notifications
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   Organization:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.3.2.1
@@ -3507,6 +3575,11 @@ definitions:
         example: scope-1
         format: scopeID
         type: string
+        x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
@@ -3823,7 +3896,10 @@ definitions:
         x-nullable: false
     type: object
   Token:
-    description: Comment, Directive, or ProcInst.
+    description: |-
+      A Token is an interface type used to represent XML elements, character
+      data, CDATA sections, XML comments, XML directives, and XML processing
+      instructions.
     properties:
       Index:
         format: int64
@@ -3831,7 +3907,51 @@ definitions:
         x-nullable: false
       Parent:
         $ref: '#/definitions/Element'
-    title: A Token is an empty interface that represents an Element, CharData,
+    type: object
+  TokenTTLs:
+    properties:
+      access_token_ttl:
+        default: 1h0m0s
+        description: |-
+          Access token time to live
+
+          After an access token reaches its time to live, it expires and it cannot be used to
+          authenticate the client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      authorization_code_ttl:
+        description: |-
+          Authorization code time to live
+
+          After an authorization code reaches its time to live, it expires and it cannot be used to
+          authorize the request to the `/token` endpoint.
+        example: 10m0s
+        format: duration
+        type: string
+        x-nullable: false
+      id_token_ttl:
+        description: |-
+          ID token time to live
+
+          After an ID token reaches its time to live, it expires and it cannot be used to provide
+          user profile information to a client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      refresh_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Refresh token time to live
+
+          After a refresh token reaches its time to live, it expires and it cannot be used to obtain
+          new access tokens for a client application.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
     type: object
   X509Certificate:
     description: X509Certificate represents the XMLSEC object of the same name
@@ -3876,19 +3996,43 @@ definitions:
 host: localhost:8443
 info:
   description: |-
-    Cloudentity Open Finance APIs
+    Cloudentity [CDR](https://cloudentity.com/developers/basics/openfinance/consumer-data-right-overview/) APIs
+    conform with Consumer Data Right requirements for the banking and energy sectors.
 
-    Cloudentity APIs for Open Finance provide compliance with requirements set by the regulatory authorities for
-    participating in Open Finance ecosystems.
-    The focus is on the security and privacy of consumer financial data, transparency of information about data use,
-    and consent from customers before they share their data.
+    The point of CDR APIs we have is to allow data recipients to request consumer authorization to access their
+    financial data. To make it possible, we have APIs that allow data holders to build their custom consent pages to
+    enable their customers to provide their consent.
 
-    This section covers the following API collections:
+    This collection of APIs allows a
+    [data recipient](https://cloudentity.com/developers/basics/openfinance/consumer-data-right-overview/#accredited-data-recipients)
+    to request [consumer authorization](https://cloudentity.com/developers/basics/openfinance/consumer-data-right-overview/#consumer-consents)
+    to access a consumer's financial data. For this, Cloudentity offers APIs for data holders to build their
+    [custom consent page](https://cloudentity.com/developers/howtos/cdr/build-cdr-consent-screen/).
+    Upon consent provision or rejection, consumers can manage their consents on their own with
+    [consumer dashboards](https://cloudentity.com/developers/howtos/cdr/cdr-consumer-dashboards/). Also, administrators
+    can manage consents on behalf of consumers with
+    [administrator portals](https://cloudentity.com/developers/howtos/cdr/cdr-admin-portal/).
 
-    Consumer Data Right (CDR) APIs conform with Consumer Data Rights
-    requirements for the banking and energy sectors. This collection provides users with capabilities to control their financial data, make sharing data
-    transparent, and allow consent revocation at any time.
-  title: Cloudentity API
+    Where authorization is required, include the `Authorization: Bearer`
+    header in your request and use a token as its value. To obtain the token, apply the
+    [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+    or [JWT Bearer](https://cloudentity.com/developers/basics/oauth-grant-types/using-jwt-profile-for-authorization-flows/)
+    grant type.
+
+    API requests must feature the explicitly defined `manage_openbanking_consents` scope the client application can access.
+    Any other required and optional scopes are listed under individual endpoints. To check scopes for an endpoint, unfold
+    the **AUTHORIZATIONS:** block in the endpoint description.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    the necessary scopes for your client application in advance.
+
+    Learn more about [Cloudentity CDR Workspace](https://cloudentity.com/developers/howtos/cdr/cdr-workspace/),
+    [Accredited Data Recipients validation](https://cloudentity.com/developers/howtos/cdr/cdr-adr-validation/), and
+    [Data Holder API protection in CDR](https://cloudentity.com/developers/howtos/cdr/cdr-data-api-protection/).
+
+    Check our
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/) to get familiar with terms and
+    abbreviations.
+  title: Cloudentity Consumer Data Right APIs
   version: latest
 paths:
   /admin/register/metadata:
@@ -4179,7 +4323,7 @@ paths:
       security:
       - default:
         - dcr_register
-      summary: The Consumer Data Right (CDR) Dynamic Client Registration endpoint
+      summary: CDR Dynamic Client Registration
       tags:
       - DCR
   /oauth2/register/{cid}:
@@ -4206,8 +4350,7 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Consumer Data Right (CDR) Dynamic Client Registration Delete Client
-        endpoint
+      summary: Delete CDR Client
       tags:
       - DCR
     get:
@@ -4234,8 +4377,7 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Consumer Data Right (CDR) Dynamic Client Registration Get Client
-        endpoint
+      summary: Get CDR Client Metadata
       tags:
       - DCR
     put:
@@ -4266,8 +4408,7 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Consumer Data Right (CDR) Dynamic Client Registration Update Client
-        endpoint
+      summary: Update CDR Client Metadata
       tags:
       - DCR
   /servers/{wid}/cdr/arrangements:
@@ -4710,7 +4851,7 @@ responses:
     schema:
       $ref: '#/definitions/Clients'
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -4718,7 +4859,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   DynamicClientRegistrationResponse:
@@ -4813,7 +4954,7 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       accounts: accounts
       consents: consents
@@ -4822,7 +4963,7 @@ securityDefinitions:
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       manage_openbanking_consents: manage_openbanking_consents
     tokenUrl: /default/system/oauth2/token

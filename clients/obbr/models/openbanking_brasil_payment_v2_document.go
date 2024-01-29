@@ -24,14 +24,14 @@ type OpenbankingBrasilPaymentV2Document struct {
 	// Required: true
 	// Max Length: 14
 	// Pattern: ^\d{14}$
-	Identification string `json:"identification"`
+	Identification string `json:"identification" yaml:"identification"`
 
 	// Tipo do documento de identificao oficial do titular pessoa jurdica.
 	// Example: CNPJ
 	// Required: true
 	// Max Length: 4
 	// Pattern: ^[A-Z]{4}$
-	Rel string `json:"rel"`
+	Rel string `json:"rel" yaml:"rel"`
 }
 
 // Validate validates this openbanking brasil payment v2 document

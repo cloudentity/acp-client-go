@@ -20,19 +20,19 @@ import (
 type IndexedEndpoint struct {
 
 	// binding
-	Binding string `json:"Binding,omitempty"`
+	Binding string `json:"Binding,omitempty" yaml:"Binding,omitempty"`
 
 	// index
-	Index int64 `json:"Index,omitempty"`
+	Index int64 `json:"Index,omitempty" yaml:"Index,omitempty"`
 
 	// is default
-	IsDefault bool `json:"IsDefault,omitempty"`
+	IsDefault bool `json:"IsDefault,omitempty" yaml:"IsDefault,omitempty"`
 
 	// location
-	Location string `json:"Location,omitempty"`
+	Location string `json:"Location,omitempty" yaml:"Location,omitempty"`
 
 	// response location
-	ResponseLocation string `json:"ResponseLocation,omitempty"`
+	ResponseLocation string `json:"ResponseLocation,omitempty" yaml:"ResponseLocation,omitempty"`
 }
 
 // Validate validates this indexed endpoint

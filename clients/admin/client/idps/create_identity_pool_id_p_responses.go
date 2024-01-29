@@ -66,7 +66,7 @@ func (o *CreateIdentityPoolIDPReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/identity_pool] createIdentityPoolIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateIdentityPoolIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create identity pool Id p created response
+func (o *CreateIdentityPoolIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateIdentityPoolIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateIdentityPoolIDPBadRequest() *CreateIdentityPoolIDPBadRequest {
 /*
 CreateIdentityPoolIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateIdentityPoolIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateIdentityPoolIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p bad request response a status code equal to that given
 func (o *CreateIdentityPoolIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create identity pool Id p bad request response
+func (o *CreateIdentityPoolIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateIdentityPoolIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateIdentityPoolIDPUnauthorized() *CreateIdentityPoolIDPUnauthorized {
 /*
 CreateIdentityPoolIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateIdentityPoolIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateIdentityPoolIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p unauthorized response a status code equal to that given
 func (o *CreateIdentityPoolIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create identity pool Id p unauthorized response
+func (o *CreateIdentityPoolIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateIdentityPoolIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateIdentityPoolIDPForbidden() *CreateIdentityPoolIDPForbidden {
 /*
 CreateIdentityPoolIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateIdentityPoolIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateIdentityPoolIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p forbidden response a status code equal to that given
 func (o *CreateIdentityPoolIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create identity pool Id p forbidden response
+func (o *CreateIdentityPoolIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateIdentityPoolIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateIdentityPoolIDPNotFound() *CreateIdentityPoolIDPNotFound {
 /*
 CreateIdentityPoolIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateIdentityPoolIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateIdentityPoolIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p not found response a status code equal to that given
 func (o *CreateIdentityPoolIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create identity pool Id p not found response
+func (o *CreateIdentityPoolIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateIdentityPoolIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateIdentityPoolIDPUnprocessableEntity() *CreateIdentityPoolIDPUnproce
 /*
 CreateIdentityPoolIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateIdentityPoolIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateIdentityPoolIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p unprocessable entity response a status code equal to that given
 func (o *CreateIdentityPoolIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create identity pool Id p unprocessable entity response
+func (o *CreateIdentityPoolIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateIdentityPoolIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateIdentityPoolIDPTooManyRequests() *CreateIdentityPoolIDPTooManyRequ
 /*
 CreateIdentityPoolIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateIdentityPoolIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateIdentityPoolIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create identity pool Id p too many requests response a status code equal to that given
 func (o *CreateIdentityPoolIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create identity pool Id p too many requests response
+func (o *CreateIdentityPoolIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateIdentityPoolIDPTooManyRequests) Error() string {

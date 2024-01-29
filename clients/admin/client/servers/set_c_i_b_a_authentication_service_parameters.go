@@ -69,6 +69,14 @@ type SetCIBAAuthenticationServiceParams struct {
 	*/
 	CIBAAuthenticationService *models.CIBAAuthenticationService
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *SetCIBAAuthenticationServiceParams) SetCIBAAuthenticationService(cIBAAu
 	o.CIBAAuthenticationService = cIBAAuthenticationService
 }
 
+// WithIfMatch adds the ifMatch to the set c i b a authentication service params
+func (o *SetCIBAAuthenticationServiceParams) WithIfMatch(ifMatch *string) *SetCIBAAuthenticationServiceParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the set c i b a authentication service params
+func (o *SetCIBAAuthenticationServiceParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the set c i b a authentication service params
 func (o *SetCIBAAuthenticationServiceParams) WithWid(wid string) *SetCIBAAuthenticationServiceParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *SetCIBAAuthenticationServiceParams) WriteToRequest(r runtime.ClientRequ
 	var res []error
 	if o.CIBAAuthenticationService != nil {
 		if err := r.SetBodyParam(o.CIBAAuthenticationService); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

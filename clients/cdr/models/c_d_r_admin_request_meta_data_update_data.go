@@ -23,7 +23,7 @@ type CDRAdminRequestMetaDataUpdateData struct {
 	// The action to take for the meta data. At the moment the only option is REFRESH which requires the data holder to call the ACCC to refresh meta data as soon as practicable
 	// Example: REFRESH
 	// Required: true
-	Action string `json:"action"`
+	Action string `json:"action" yaml:"action"`
 }
 
 // Validate validates this c d r admin request meta data update data

@@ -153,13 +153,6 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  Duration:
-    description: |-
-      A Duration represents the elapsed time between two instants
-      as an int64 nanosecond count. The representation limits the
-      largest representable duration to approximately 290 years.
-    format: int64
-    type: integer
   Error:
     description: HTTP error response
     properties:
@@ -285,7 +278,9 @@ definitions:
   PasswordSettings:
     properties:
       expires_after:
-        $ref: '#/definitions/Duration'
+        format: duration
+        type: string
+        x-nullable: false
       hashing_method:
         enum:
         - bcrypt

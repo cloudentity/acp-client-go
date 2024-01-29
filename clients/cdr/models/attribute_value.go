@@ -21,13 +21,13 @@ import (
 type AttributeValue struct {
 
 	// name ID
-	NameID *NameID `json:"NameID,omitempty"`
+	NameID *NameID `json:"NameID,omitempty" yaml:"NameID,omitempty"`
 
 	// type
-	Type string `json:"Type,omitempty"`
+	Type string `json:"Type,omitempty" yaml:"Type,omitempty"`
 
 	// value
-	Value string `json:"Value,omitempty"`
+	Value string `json:"Value,omitempty" yaml:"Value,omitempty"`
 }
 
 // Validate validates this attribute value
@@ -80,6 +80,11 @@ func (m *AttributeValue) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *AttributeValue) contextValidateNameID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NameID != nil {
+
+		if swag.IsZero(m.NameID) { // not required
+			return nil
+		}
+
 		if err := m.NameID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("NameID")

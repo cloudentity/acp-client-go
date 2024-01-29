@@ -23,22 +23,22 @@ type OBError1 struct {
 
 	// Low level textual error code, e.g., UK.OBIE.Field.Missing
 	// Required: true
-	ErrorCode string `json:"ErrorCode"`
+	ErrorCode string `json:"ErrorCode" yaml:"ErrorCode"`
 
 	// A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future'
 	// OBIE doesn't standardise this field
 	// Required: true
 	// Max Length: 500
 	// Min Length: 1
-	Message string `json:"Message"`
+	Message string `json:"Message" yaml:"Message"`
 
 	// Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
 	// Max Length: 500
 	// Min Length: 1
-	Path string `json:"Path,omitempty"`
+	Path string `json:"Path,omitempty" yaml:"Path,omitempty"`
 
 	// URL to help remediate the problem, or provide more information, or to API Reference, or help etc
-	URL string `json:"Url,omitempty"`
+	URL string `json:"Url,omitempty" yaml:"Url,omitempty"`
 }
 
 // Validate validates this o b error1

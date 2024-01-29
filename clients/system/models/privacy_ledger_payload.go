@@ -19,13 +19,13 @@ import (
 type PrivacyLedgerPayload struct {
 
 	// consent granted
-	ConsentGranted *ConsentGrantedEvent `json:"consent_granted,omitempty"`
+	ConsentGranted *ConsentGrantedEvent `json:"consent_granted,omitempty" yaml:"consent_granted,omitempty"`
 
 	// consent revoked
-	ConsentRevoked *ConsentRevokedEvent `json:"consent_revoked,omitempty"`
+	ConsentRevoked *ConsentRevokedEvent `json:"consent_revoked,omitempty" yaml:"consent_revoked,omitempty"`
 
 	// event type
-	EventType PrivacyLedgerEventType `json:"event_type,omitempty"`
+	EventType PrivacyLedgerEventType `json:"event_type,omitempty" yaml:"event_type,omitempty"`
 }
 
 // Validate validates this privacy ledger payload
@@ -130,6 +130,11 @@ func (m *PrivacyLedgerPayload) ContextValidate(ctx context.Context, formats strf
 func (m *PrivacyLedgerPayload) contextValidateConsentGranted(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ConsentGranted != nil {
+
+		if swag.IsZero(m.ConsentGranted) { // not required
+			return nil
+		}
+
 		if err := m.ConsentGranted.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("consent_granted")
@@ -146,6 +151,11 @@ func (m *PrivacyLedgerPayload) contextValidateConsentGranted(ctx context.Context
 func (m *PrivacyLedgerPayload) contextValidateConsentRevoked(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ConsentRevoked != nil {
+
+		if swag.IsZero(m.ConsentRevoked) { // not required
+			return nil
+		}
+
 		if err := m.ConsentRevoked.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("consent_revoked")
@@ -160,6 +170,10 @@ func (m *PrivacyLedgerPayload) contextValidateConsentRevoked(ctx context.Context
 }
 
 func (m *PrivacyLedgerPayload) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventType) { // not required
+		return nil
+	}
 
 	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -18,10 +18,10 @@ import (
 type SetTenantFeature struct {
 
 	// flag
-	Flag string `json:"flag,omitempty"`
+	Flag string `json:"flag,omitempty" yaml:"flag,omitempty"`
 
 	// value
-	Value bool `json:"value,omitempty"`
+	Value bool `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this set tenant feature

@@ -66,6 +66,14 @@ type UpdateServiceParams struct {
 	// Service.
 	Service *models.Service
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	Sid string
 
@@ -133,6 +141,17 @@ func (o *UpdateServiceParams) SetService(service *models.Service) {
 	o.Service = service
 }
 
+// WithIfMatch adds the ifMatch to the update service params
+func (o *UpdateServiceParams) WithIfMatch(ifMatch *string) *UpdateServiceParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update service params
+func (o *UpdateServiceParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the update service params
 func (o *UpdateServiceParams) WithSid(sid string) *UpdateServiceParams {
 	o.SetSid(sid)
@@ -153,6 +172,14 @@ func (o *UpdateServiceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Service != nil {
 		if err := r.SetBodyParam(o.Service); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

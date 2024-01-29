@@ -18,15 +18,13 @@ import (
 type SAMLSettings struct {
 
 	// Unique id of a service provider
-	//
-	// If not provided, a random string is generated.
 	// Example: https://localhost:8443/default/default/login
-	EntityIssuer string `json:"entity_issuer,omitempty"`
+	EntityIssuer string `json:"entity_issuer,omitempty" yaml:"entity_issuer,omitempty"`
 
 	// The attribute name from the `AttributeStatement` SAML response which is used as an identifier in ACP
 	//
 	// Applies only when `identifierSource` parameter is set to `attribute`.
-	IdentifierAttribute string `json:"identifier_attribute,omitempty"`
+	IdentifierAttribute string `json:"identifier_attribute,omitempty" yaml:"identifier_attribute,omitempty"`
 
 	// The source for an identifier
 	//
@@ -36,18 +34,24 @@ type SAMLSettings struct {
 	//
 	// Depending on which identifier source you choose, you must define either the
 	// `identifierAttribute` or the `subjectNameIDFormat` parameter.
-	IdentifierSource string `json:"identifier_source,omitempty"`
+	IdentifierSource string `json:"identifier_source,omitempty" yaml:"identifier_source,omitempty"`
+
+	// IDP metadata URL
+	MetadataURL string `json:"metadata_url,omitempty" yaml:"metadata_url,omitempty"`
+
+	// IDP metadata xml
+	MetadataXML string `json:"metadata_xml,omitempty" yaml:"metadata_xml,omitempty"`
 
 	// If enabled, the verification, if the `InResponseTo` parameter matches the original ID attribute
 	// sent from ACP, is skipped.
 	//
 	// Enable the `skipInResponseToVerification` flag when the `InResponseTo` parameter is not
 	// returned by your IDP.
-	SkipInResponseToVerification bool `json:"skip_in_response_to_verification,omitempty"`
+	SkipInResponseToVerification bool `json:"skip_in_response_to_verification,omitempty" yaml:"skip_in_response_to_verification,omitempty"`
 
 	// String represented SSO URL (endpoint) where the SAML request is sent
 	// Example: https://test-dev-ed.my.salesforce.com/idp/endpoint/HttpPost
-	SsoURL string `json:"sso_url,omitempty"`
+	SsoURL string `json:"sso_url,omitempty" yaml:"sso_url,omitempty"`
 
 	// Name ID format of a SAML subject
 	//
@@ -75,7 +79,7 @@ type SAMLSettings struct {
 	//
 	// default value:
 	// `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
-	SubjectNameIDFormat string `json:"subject_name_id_format,omitempty"`
+	SubjectNameIDFormat string `json:"subject_name_id_format,omitempty" yaml:"subject_name_id_format,omitempty"`
 }
 
 // Validate validates this s a m l settings

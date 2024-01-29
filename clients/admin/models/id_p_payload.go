@@ -18,13 +18,13 @@ import (
 type IDPPayload struct {
 
 	// Unique identifierof IDP.
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Defines the type of an IDP, e.g. google, saml
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// Display name of IDP.
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this ID p payload

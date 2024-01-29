@@ -66,6 +66,14 @@ type TestMFAMethodParams struct {
 	// MFAMethodTest.
 	MFAMethodTest *models.TestMFAMethodRequest
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* MfaID.
 
 	   MFA id
@@ -136,6 +144,17 @@ func (o *TestMFAMethodParams) SetMFAMethodTest(mFAMethodTest *models.TestMFAMeth
 	o.MFAMethodTest = mFAMethodTest
 }
 
+// WithIfMatch adds the ifMatch to the test m f a method params
+func (o *TestMFAMethodParams) WithIfMatch(ifMatch *string) *TestMFAMethodParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the test m f a method params
+func (o *TestMFAMethodParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithMfaID adds the mfaID to the test m f a method params
 func (o *TestMFAMethodParams) WithMfaID(mfaID string) *TestMFAMethodParams {
 	o.SetMfaID(mfaID)
@@ -156,6 +175,14 @@ func (o *TestMFAMethodParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.MFAMethodTest != nil {
 		if err := r.SetBodyParam(o.MFAMethodTest); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

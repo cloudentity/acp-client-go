@@ -20,14 +20,14 @@ type PARResponse struct {
 	// A JSON number that represents the lifetime of the request URI in seconds as a positive integer.
 	// The request URI lifetime is at the discretion of the authorization server but will typically be
 	// relatively short (e.g., between 5 and 600 seconds).
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// The request URI corresponding to the authorization request posted.
 	// This URI is a single-use reference to the respective request data in the subsequent authorization request.
 	// The way the authorization process obtains the authorization request data is at the discretion of the
 	// authorization server and is out of scope of this specification.
 	// There is no need to make the authorization request data available to other parties via this URI.
-	RequestURI string `json:"request_uri,omitempty"`
+	RequestURI string `json:"request_uri,omitempty" yaml:"request_uri,omitempty"`
 }
 
 // Validate validates this p a r response

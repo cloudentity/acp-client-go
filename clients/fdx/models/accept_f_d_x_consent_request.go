@@ -20,13 +20,13 @@ import (
 type AcceptFDXConsentRequest struct {
 
 	// granted scopes
-	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
+	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty" yaml:"granted_scopes,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 
 	// resources
-	Resources []*FDXResource `json:"resources"`
+	Resources []*FDXResource `json:"resources" yaml:"resources"`
 }
 
 // Validate validates this accept f d x consent request
@@ -127,6 +127,11 @@ func (m *AcceptFDXConsentRequest) contextValidateResources(ctx context.Context, 
 	for i := 0; i < len(m.Resources); i++ {
 
 		if m.Resources[i] != nil {
+
+			if swag.IsZero(m.Resources[i]) { // not required
+				return nil
+			}
+
 			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resources" + "." + strconv.Itoa(i))

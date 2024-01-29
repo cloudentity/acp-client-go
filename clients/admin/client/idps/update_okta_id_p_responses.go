@@ -66,7 +66,7 @@ func (o *UpdateOktaIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/okta/{iid}] updateOktaIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateOktaIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update okta Id p o k response
+func (o *UpdateOktaIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateOktaIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateOktaIDPBadRequest() *UpdateOktaIDPBadRequest {
 /*
 UpdateOktaIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateOktaIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateOktaIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update okta Id p bad request response a status code equal to that given
 func (o *UpdateOktaIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update okta Id p bad request response
+func (o *UpdateOktaIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateOktaIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateOktaIDPUnauthorized() *UpdateOktaIDPUnauthorized {
 /*
 UpdateOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateOktaIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateOktaIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update okta Id p unauthorized response a status code equal to that given
 func (o *UpdateOktaIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update okta Id p unauthorized response
+func (o *UpdateOktaIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateOktaIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateOktaIDPForbidden() *UpdateOktaIDPForbidden {
 /*
 UpdateOktaIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateOktaIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateOktaIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update okta Id p forbidden response a status code equal to that given
 func (o *UpdateOktaIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update okta Id p forbidden response
+func (o *UpdateOktaIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateOktaIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateOktaIDPNotFound() *UpdateOktaIDPNotFound {
 /*
 UpdateOktaIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateOktaIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateOktaIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update okta Id p not found response a status code equal to that given
 func (o *UpdateOktaIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update okta Id p not found response
+func (o *UpdateOktaIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateOktaIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateOktaIDPUnprocessableEntity() *UpdateOktaIDPUnprocessableEntity {
 /*
 UpdateOktaIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateOktaIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateOktaIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update okta Id p unprocessable entity response a status code equal to that given
 func (o *UpdateOktaIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update okta Id p unprocessable entity response
+func (o *UpdateOktaIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateOktaIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateOktaIDPTooManyRequests() *UpdateOktaIDPTooManyRequests {
 /*
 UpdateOktaIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateOktaIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateOktaIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update okta Id p too many requests response a status code equal to that given
 func (o *UpdateOktaIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update okta Id p too many requests response
+func (o *UpdateOktaIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateOktaIDPTooManyRequests) Error() string {

@@ -21,15 +21,15 @@ type OBWriteInternationalScheduledConsentResponse6DataChargesItems0 struct {
 
 	// amount
 	// Required: true
-	Amount *OBActiveOrHistoricCurrencyAndAmount `json:"Amount"`
+	Amount *OBActiveOrHistoricCurrencyAndAmount `json:"Amount" yaml:"Amount"`
 
 	// charge bearer
 	// Required: true
-	ChargeBearer *OBChargeBearerType1Code `json:"ChargeBearer"`
+	ChargeBearer *OBChargeBearerType1Code `json:"ChargeBearer" yaml:"ChargeBearer"`
 
 	// type
 	// Required: true
-	Type *OBExternalPaymentChargeType1Code `json:"Type"`
+	Type *OBExternalPaymentChargeType1Code `json:"Type" yaml:"Type"`
 }
 
 // Validate validates this o b write international scheduled consent response6 data charges items0
@@ -147,6 +147,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) Context
 func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -163,6 +164,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) context
 func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeBearer != nil {
+
 		if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeBearer")
@@ -179,6 +181,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) context
 func (m *OBWriteInternationalScheduledConsentResponse6DataChargesItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")

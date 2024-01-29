@@ -19,13 +19,13 @@ import (
 type TestPolicyInput struct {
 
 	// authn ctx
-	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty"`
+	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty" yaml:"authn_ctx,omitempty"`
 
 	// Contexts for your policy validation
-	Contexts map[string]interface{} `json:"contexts,omitempty"`
+	Contexts map[string]interface{} `json:"contexts,omitempty" yaml:"contexts,omitempty"`
 
 	// request
-	Request *TestPolicyInputRequest `json:"request,omitempty"`
+	Request *TestPolicyInputRequest `json:"request,omitempty" yaml:"request,omitempty"`
 }
 
 // Validate validates this test policy input
@@ -104,6 +104,10 @@ func (m *TestPolicyInput) ContextValidate(ctx context.Context, formats strfmt.Re
 
 func (m *TestPolicyInput) contextValidateAuthnCtx(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthnCtx) { // not required
+		return nil
+	}
+
 	if err := m.AuthnCtx.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authn_ctx")
@@ -119,6 +123,11 @@ func (m *TestPolicyInput) contextValidateAuthnCtx(ctx context.Context, formats s
 func (m *TestPolicyInput) contextValidateRequest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Request != nil {
+
+		if swag.IsZero(m.Request) { // not required
+			return nil
+		}
+
 		if err := m.Request.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("request")

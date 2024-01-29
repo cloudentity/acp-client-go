@@ -54,7 +54,7 @@ func (o *GetGithubEmbeddedIDPReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/github_embedded/{iid}] getGithubEmbeddedIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetGithubEmbeddedIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get github embedded Id p o k response
+func (o *GetGithubEmbeddedIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetGithubEmbeddedIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github_embedded/{iid}][%d] getGithubEmbeddedIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetGithubEmbeddedIDPUnauthorized() *GetGithubEmbeddedIDPUnauthorized {
 /*
 GetGithubEmbeddedIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetGithubEmbeddedIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetGithubEmbeddedIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get github embedded Id p unauthorized response a status code equal to that given
 func (o *GetGithubEmbeddedIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get github embedded Id p unauthorized response
+func (o *GetGithubEmbeddedIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetGithubEmbeddedIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetGithubEmbeddedIDPForbidden() *GetGithubEmbeddedIDPForbidden {
 /*
 GetGithubEmbeddedIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetGithubEmbeddedIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetGithubEmbeddedIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get github embedded Id p forbidden response a status code equal to that given
 func (o *GetGithubEmbeddedIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get github embedded Id p forbidden response
+func (o *GetGithubEmbeddedIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetGithubEmbeddedIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetGithubEmbeddedIDPNotFound() *GetGithubEmbeddedIDPNotFound {
 /*
 GetGithubEmbeddedIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetGithubEmbeddedIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetGithubEmbeddedIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get github embedded Id p not found response a status code equal to that given
 func (o *GetGithubEmbeddedIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get github embedded Id p not found response
+func (o *GetGithubEmbeddedIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetGithubEmbeddedIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetGithubEmbeddedIDPTooManyRequests() *GetGithubEmbeddedIDPTooManyReques
 /*
 GetGithubEmbeddedIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetGithubEmbeddedIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetGithubEmbeddedIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get github embedded Id p too many requests response a status code equal to that given
 func (o *GetGithubEmbeddedIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get github embedded Id p too many requests response
+func (o *GetGithubEmbeddedIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetGithubEmbeddedIDPTooManyRequests) Error() string {

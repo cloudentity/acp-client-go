@@ -54,7 +54,7 @@ func (o *GetClientReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /clients/{cid}] getClient", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetClientOK describes a response with status code 200, with default header value
 Client
 */
 type GetClientOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ClientAdminResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetClientOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get client o k response
+func (o *GetClientOK) Code() int {
+	return 200
+}
+
 func (o *GetClientOK) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetClientOK) GetPayload() *models.ClientAdminResponse {
 }
 
 func (o *GetClientOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ClientAdminResponse)
 
@@ -129,7 +150,7 @@ func NewGetClientUnauthorized() *GetClientUnauthorized {
 /*
 GetClientUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetClientUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetClientUnauthorized) IsServerError() bool {
 // IsCode returns true when this get client unauthorized response a status code equal to that given
 func (o *GetClientUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get client unauthorized response
+func (o *GetClientUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetClientUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetClientForbidden() *GetClientForbidden {
 /*
 GetClientForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetClientForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetClientForbidden) IsServerError() bool {
 // IsCode returns true when this get client forbidden response a status code equal to that given
 func (o *GetClientForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get client forbidden response
+func (o *GetClientForbidden) Code() int {
+	return 403
 }
 
 func (o *GetClientForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetClientNotFound() *GetClientNotFound {
 /*
 GetClientNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetClientNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetClientNotFound) IsServerError() bool {
 // IsCode returns true when this get client not found response a status code equal to that given
 func (o *GetClientNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get client not found response
+func (o *GetClientNotFound) Code() int {
+	return 404
 }
 
 func (o *GetClientNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetClientTooManyRequests() *GetClientTooManyRequests {
 /*
 GetClientTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetClientTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetClientTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get client too many requests response a status code equal to that given
 func (o *GetClientTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get client too many requests response
+func (o *GetClientTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetClientTooManyRequests) Error() string {
