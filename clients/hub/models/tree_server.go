@@ -244,7 +244,7 @@ type TreeServer struct {
 	// organization
 	Organization *OrganizationConfiguration `json:"organization,omitempty" yaml:"organization,omitempty"`
 
-	// parent id
+	// Optional ID of a parent server
 	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
 
 	// policies
@@ -322,6 +322,9 @@ type TreeServer struct {
 
 	// services
 	Services TreeServices `json:"services,omitempty" yaml:"services,omitempty"`
+
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// sso
 	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
@@ -560,6 +563,10 @@ func (m *TreeServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateServices(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1465,6 +1472,25 @@ func (m *TreeServer) validateServices(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TreeServer) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *TreeServer) validateSso(formats strfmt.Registry) error {
 	if swag.IsZero(m.Sso) { // not required
 		return nil
@@ -1882,6 +1908,10 @@ func (m *TreeServer) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2490,6 +2520,27 @@ func (m *TreeServer) contextValidateServices(ctx context.Context, formats strfmt
 			return ce.ValidateName("services")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *TreeServer) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
 	}
 
 	return nil

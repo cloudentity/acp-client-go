@@ -122,6 +122,9 @@ type SupportedJSONSchema struct {
 	// then
 	Then *SupportedJSONSchema `json:"then,omitempty" yaml:"then,omitempty"`
 
+	// title
+	Title string `json:"title,omitempty" yaml:"title,omitempty"`
+
 	// any
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 

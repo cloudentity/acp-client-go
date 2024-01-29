@@ -257,6 +257,9 @@ type ServerAuditPayload struct {
 	// saml
 	Saml *SAMLConfiguration `json:"saml,omitempty" yaml:"saml,omitempty"`
 
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
+
 	// sso
 	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
 
@@ -418,6 +421,10 @@ func (m *ServerAuditPayload) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1015,6 +1022,25 @@ func (m *ServerAuditPayload) validateSaml(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerAuditPayload) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerAuditPayload) validateSso(formats strfmt.Registry) error {
 	if swag.IsZero(m.Sso) { // not required
 		return nil
@@ -1342,6 +1368,10 @@ func (m *ServerAuditPayload) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSso(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1639,6 +1669,27 @@ func (m *ServerAuditPayload) contextValidateSaml(ctx context.Context, formats st
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerAuditPayload) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}

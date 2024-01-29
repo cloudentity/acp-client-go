@@ -2,6 +2,14 @@ basePath: /default/default/identity
 consumes:
 - application/json
 definitions:
+  AuthenticationMechanisms:
+    items:
+      enum:
+      - password
+      - otp
+      - webauthn
+      type: string
+    type: array
   ChangePassword:
     properties:
       new_password:
@@ -222,6 +230,8 @@ definitions:
     type: object
   SelfUserWithDataV2:
     properties:
+      authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
       credentials:
         items:
           $ref: '#/definitions/SelfUserCredentials'
@@ -253,11 +263,27 @@ definitions:
         x-nullable: false
       payload_schema:
         $ref: '#/definitions/SupportedJSONSchema'
+      preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        - webauthn
+        example: password
+        type: string
+        x-nullable: false
       verifiable_addresses:
         items:
           $ref: '#/definitions/SelfUserVerifiableAddress'
         type: array
         x-nullable: false
+    type: object
+  SetPassword:
+    properties:
+      new_password:
+        type: string
+        x-nullable: false
+    required:
+    - new_password
     type: object
   SupportedJSONSchema:
     properties:
@@ -393,6 +419,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -712,6 +741,47 @@ paths:
       summary: Self Update User Profile
       tags:
       - Users
+  /v2/self/set-password:
+    post:
+      description: |-
+        Set a password for a user who doesn't have one yet
+
+        This API requires authentication to happen within the last 5 minutes.
+      operationId: setPassword
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: SetPassword
+        schema:
+          $ref: '#/definitions/SetPassword'
+      responses:
+        "204":
+          $ref: '#/responses/SetPasswordResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Set Password
+      tags:
+      - Users
 produces:
 - application/json
 responses:
@@ -761,6 +831,16 @@ responses:
       $ref: '#/definitions/SelfUserWithDataV2'
   ResetPasswordConfirmedResponse:
     description: Reset password confirmed
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  SetPasswordResponse:
+    description: Password has been set
     headers:
       etag:
         description: |-

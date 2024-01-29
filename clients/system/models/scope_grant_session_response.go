@@ -36,6 +36,9 @@ type ScopeGrantSessionResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
+	// authorization correlation id
+	AuthorizationCorrelationID string `json:"authorization_correlation_id,omitempty" yaml:"authorization_correlation_id,omitempty"`
+
 	// authorization details
 	AuthorizationDetails []map[string]interface{} `json:"authorization_details" yaml:"authorization_details"`
 
@@ -96,6 +99,9 @@ type ScopeGrantSessionResponse struct {
 	// requested claims
 	RequestedClaims *ClaimsRequests `json:"requested_claims,omitempty" yaml:"requested_claims,omitempty"`
 
+	// requested claims to display on consent page
+	RequestedClaimsToConsent []string `json:"requested_claims_to_consent" yaml:"requested_claims_to_consent"`
+
 	// requested grant type
 	RequestedGrantType string `json:"requested_grant_type,omitempty" yaml:"requested_grant_type,omitempty"`
 
@@ -104,6 +110,9 @@ type ScopeGrantSessionResponse struct {
 
 	// list of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes" yaml:"requested_scopes"`
+
+	// requested verified claims
+	RequestedVerifiedClaims *VerifiedClaimsRequests `json:"requested_verified_claims,omitempty" yaml:"requested_verified_claims,omitempty"`
 
 	// is scope grant approved
 	// Example: true
@@ -162,6 +171,10 @@ func (m *ScopeGrantSessionResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRequestedScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestedVerifiedClaims(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -328,6 +341,25 @@ func (m *ScopeGrantSessionResponse) validateRequestedScopes(formats strfmt.Regis
 	return nil
 }
 
+func (m *ScopeGrantSessionResponse) validateRequestedVerifiedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestedVerifiedClaims) { // not required
+		return nil
+	}
+
+	if m.RequestedVerifiedClaims != nil {
+		if err := m.RequestedVerifiedClaims.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("requested_verified_claims")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("requested_verified_claims")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this scope grant session response based on the context it is used
 func (m *ScopeGrantSessionResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -353,6 +385,10 @@ func (m *ScopeGrantSessionResponse) ContextValidate(ctx context.Context, formats
 	}
 
 	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRequestedVerifiedClaims(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -481,6 +517,27 @@ func (m *ScopeGrantSessionResponse) contextValidateRequestedScopes(ctx context.C
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) contextValidateRequestedVerifiedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RequestedVerifiedClaims != nil {
+
+		if swag.IsZero(m.RequestedVerifiedClaims) { // not required
+			return nil
+		}
+
+		if err := m.RequestedVerifiedClaims.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("requested_verified_claims")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("requested_verified_claims")
+			}
+			return err
+		}
 	}
 
 	return nil

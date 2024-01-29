@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -22,15 +23,76 @@ type TenantSettings struct {
 
 	// default workspace id
 	DefaultWorkspaceID string `json:"default_workspace_id,omitempty" yaml:"default_workspace_id,omitempty"`
+
+	// security
+	Security *SecureOptions `json:"security,omitempty" yaml:"security,omitempty"`
 }
 
 // Validate validates this tenant settings
 func (m *TenantSettings) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateSecurity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this tenant settings based on context it is used
+func (m *TenantSettings) validateSecurity(formats strfmt.Registry) error {
+	if swag.IsZero(m.Security) { // not required
+		return nil
+	}
+
+	if m.Security != nil {
+		if err := m.Security.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this tenant settings based on the context it is used
 func (m *TenantSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSecurity(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TenantSettings) contextValidateSecurity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Security != nil {
+
+		if swag.IsZero(m.Security) { // not required
+			return nil
+		}
+
+		if err := m.Security.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -20,17 +21,73 @@ type TestScriptRequest struct {
 	// Contains the script source for testing
 	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
+	// env version
+	EnvVersion FnEnvVersion `json:"env_version,omitempty" yaml:"env_version,omitempty"`
+
 	// Contains the input for the script
 	Input map[string]interface{} `json:"input,omitempty" yaml:"input,omitempty"`
 }
 
 // Validate validates this test script request
 func (m *TestScriptRequest) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateEnvVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this test script request based on context it is used
+func (m *TestScriptRequest) validateEnvVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this test script request based on the context it is used
 func (m *TestScriptRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEnvVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TestScriptRequest) contextValidateEnvVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
 	return nil
 }
 

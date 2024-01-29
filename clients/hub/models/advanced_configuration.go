@@ -53,6 +53,9 @@ type AdvancedConfiguration struct {
 	// disallowed response modes
 	DisallowedResponseModes ResponseModes `json:"disallowed_response_modes,omitempty" yaml:"disallowed_response_modes,omitempty"`
 
+	// Do not issue acr claim in ID Token
+	DoNotIssueAcrClaimInIDToken bool `json:"do_not_issue_acr_claim_in_id_token,omitempty" yaml:"do_not_issue_acr_claim_in_id_token,omitempty"`
+
 	// Enforce acr values
 	EnforceAcrValues bool `json:"enforce_acr_values,omitempty" yaml:"enforce_acr_values,omitempty"`
 
@@ -66,6 +69,9 @@ type AdvancedConfiguration struct {
 
 	// Return iss parameter in the authorization response
 	ReturnIssParameterInAuthorizationResponse bool `json:"return_iss_parameter_in_authorization_response,omitempty" yaml:"return_iss_parameter_in_authorization_response,omitempty"`
+
+	// Disables SSO as a fallback mechanism for post-logout redirect URI validation
+	StrictPostLogoutRedirectEnforcement bool `json:"strict_post_logout_redirect_enforcement,omitempty" yaml:"strict_post_logout_redirect_enforcement,omitempty"`
 }
 
 // Validate validates this advanced configuration

@@ -278,6 +278,9 @@ type Server struct {
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty" yaml:"secret,omitempty"`
 
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
+
 	// sso
 	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
 
@@ -454,6 +457,10 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1070,6 +1077,25 @@ func (m *Server) validateSaml(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Server) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Server) validateSso(formats strfmt.Registry) error {
 	if swag.IsZero(m.Sso) { // not required
 		return nil
@@ -1401,6 +1427,10 @@ func (m *Server) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSso(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1719,6 +1749,27 @@ func (m *Server) contextValidateSaml(ctx context.Context, formats strfmt.Registr
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Server) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}

@@ -61,6 +61,12 @@ AuthorizeParams contains all the parameters to send to the API endpoint
 */
 type AuthorizeParams struct {
 
+	/* AuthorizationCorrelationID.
+
+	   Authorization correlation ID
+	*/
+	AuthorizationCorrelationID *string
+
 	// Claims.
 	Claims *string
 
@@ -160,6 +166,17 @@ func (o *AuthorizeParams) WithHTTPClient(client *http.Client) *AuthorizeParams {
 // SetHTTPClient adds the HTTPClient to the authorize params
 func (o *AuthorizeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithAuthorizationCorrelationID adds the authorizationCorrelationID to the authorize params
+func (o *AuthorizeParams) WithAuthorizationCorrelationID(authorizationCorrelationID *string) *AuthorizeParams {
+	o.SetAuthorizationCorrelationID(authorizationCorrelationID)
+	return o
+}
+
+// SetAuthorizationCorrelationID adds the authorizationCorrelationId to the authorize params
+func (o *AuthorizeParams) SetAuthorizationCorrelationID(authorizationCorrelationID *string) {
+	o.AuthorizationCorrelationID = authorizationCorrelationID
 }
 
 // WithClaims adds the claims to the authorize params
@@ -312,6 +329,23 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.AuthorizationCorrelationID != nil {
+
+		// query param authorization_correlation_id
+		var qrAuthorizationCorrelationID string
+
+		if o.AuthorizationCorrelationID != nil {
+			qrAuthorizationCorrelationID = *o.AuthorizationCorrelationID
+		}
+		qAuthorizationCorrelationID := qrAuthorizationCorrelationID
+		if qAuthorizationCorrelationID != "" {
+
+			if err := r.SetQueryParam("authorization_correlation_id", qAuthorizationCorrelationID); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Claims != nil {
 

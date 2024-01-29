@@ -6072,6 +6072,10 @@ definitions:
       OpenbankingUKDynamicClientRegistrationRequest represents decoded jwt of dcr obuk request
       Reference: https://openbankinguk.github.io/dcr-docs-pub/v3.2/dynamic-client-registration.html
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -6196,6 +6200,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -6663,6 +6678,10 @@ definitions:
     type: object
   OpenbankingUKDynamicClientRegistrationResponse:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -6777,6 +6796,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -7318,6 +7348,10 @@ definitions:
       implicit:
         description: Request this scope by default for all clients who subscribed
           to this scope
+        type: boolean
+        x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
         type: boolean
         x-nullable: false
       metadata:

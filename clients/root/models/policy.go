@@ -22,6 +22,9 @@ type Policy struct {
 	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
 	Definition string `json:"definition,omitempty" yaml:"definition,omitempty"`
 
+	// env version
+	EnvVersion FnEnvVersion `json:"env_version,omitempty" yaml:"env_version,omitempty"`
+
 	// Unique ID of your policy
 	// Example: 1
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
@@ -78,6 +81,10 @@ type Policy struct {
 func (m *Policy) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEnvVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateValidators(formats); err != nil {
 		res = append(res, err)
 	}
@@ -85,6 +92,23 @@ func (m *Policy) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Policy) validateEnvVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -118,6 +142,10 @@ func (m *Policy) validateValidators(formats strfmt.Registry) error {
 func (m *Policy) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateEnvVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateValidators(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -125,6 +153,24 @@ func (m *Policy) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Policy) contextValidateEnvVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
 	return nil
 }
 

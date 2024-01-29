@@ -47,6 +47,9 @@ type WorkspaceResponse struct {
 	// Example: default
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	// number of child organizations
+	NumberOfChildOrganizations int64 `json:"number_of_child_organizations,omitempty" yaml:"number_of_child_organizations,omitempty"`
+
 	// The profile of a server
 	//
 	// ACP is delivered with preconfigured workspace templates that enable quick and easy setup for

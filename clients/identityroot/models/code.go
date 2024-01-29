@@ -39,6 +39,9 @@ type Code struct {
 	// Format: date-time
 	IssuedAt strfmt.DateTime `json:"issued_at,omitempty" yaml:"issued_at,omitempty"`
 
+	// general purpose metadata
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	// tenant id
 	// Example: default
 	// Required: true

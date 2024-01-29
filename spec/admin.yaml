@@ -411,6 +411,10 @@ definitions:
         x-nullable: false
       disallowed_response_modes:
         $ref: '#/definitions/ResponseModes'
+      do_not_issue_acr_claim_in_id_token:
+        description: Do not issue acr claim in ID Token
+        type: boolean
+        x-nullable: false
       enforce_acr_values:
         description: Enforce acr values
         type: boolean
@@ -428,6 +432,11 @@ definitions:
         x-nullable: false
       return_iss_parameter_in_authorization_response:
         description: Return iss parameter in the authorization response
+        type: boolean
+        x-nullable: false
+      strict_post_logout_redirect_enforcement:
+        description: Disables SSO as a fallback mechanism for post-logout redirect
+          URI validation
         type: boolean
         x-nullable: false
     type: object
@@ -694,6 +703,7 @@ definitions:
         - access_token
         - saml_assertion
         - scopes
+        - claims
         - otp
         - user
         - selfuser
@@ -709,6 +719,7 @@ definitions:
         - tokens
         - service
         - server
+        - import
         example: client
         type: string
         x-nullable: false
@@ -742,6 +753,14 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      authorization_correlation_id:
+        description: |-
+          Authorization correlation ID
+
+          Represents the correlation ID used for the OAuth2 authorization code grant flow.
+        format: authorizationCorrelationID
+        type: string
         x-nullable: false
       client_id:
         description: |-
@@ -820,6 +839,8 @@ definitions:
         $ref: '#/definitions/BruteForcePayload'
       bruteforce_updated:
         $ref: '#/definitions/BruteForcePayload'
+      claims_granted:
+        $ref: '#/definitions/ClaimsGrantedPayload'
       client_consents_revoked:
         $ref: '#/definitions/ClientConsentsAuditEventPayload'
       client_created:
@@ -858,6 +879,10 @@ definitions:
         $ref: '#/definitions/RequestValidatedPayload'
       gateway_request_unauthorized:
         $ref: '#/definitions/RequestValidatedPayload'
+      import_created:
+        $ref: '#/definitions/ConfigImportEventPayload'
+      import_failed:
+        $ref: '#/definitions/ConfigImportEventPayload'
       jit_created:
         $ref: '#/definitions/JITCreatedPayload'
       jit_failed:
@@ -2146,6 +2171,10 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      description:
+        description: description
+        type: string
+        x-nullable: false
       id:
         description: unique claim id
         example: "1"
@@ -2202,6 +2231,58 @@ definitions:
         x-nullable: false
       type:
         $ref: '#/definitions/ClaimType'
+      verified:
+        description: mark claim as verified (required by identity assurance spec)
+        type: boolean
+        x-nullable: false
+    type: object
+  ClaimGrant:
+    properties:
+      claim_name:
+        description: The claim name as it's set initially.
+        example: email
+        format: claimName
+        type: string
+        x-nullable: false
+      claim_type:
+        $ref: '#/definitions/ClaimType'
+      client_id:
+        description: Identifier of a client application that is granted with the claim.
+        example: bugkgm23g9kregtu051g
+        format: clientID
+        type: string
+        x-nullable: false
+      given_at:
+        description: Time when the claim was granted
+        format: date-time
+        type: string
+        x-nullable: false
+      language:
+        description: Language
+        format: language
+        type: string
+        x-nullable: false
+      server_id:
+        description: Identifier of a server where the client app is hosted.
+        example: my-server
+        format: serverID
+        type: string
+        x-nullable: false
+      subject:
+        description: Identifier of a user who granted the claim.
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Identifier of the tenant where the client app is hosted.
+        example: my-company
+        format: tenantID
+        type: string
+        x-nullable: false
+      verified:
+        description: mark claim as verified (required by identity assurance spec)
+        type: boolean
+        x-nullable: false
     type: object
   ClaimSourceType:
     type: string
@@ -2219,8 +2300,21 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  ClaimsGrantedPayload:
+    properties:
+      new_claim_grants:
+        description: List of claims to grant.
+        items:
+          $ref: '#/definitions/ClaimGrant'
+        type: array
+        x-nullable: false
+    type: object
   Client:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -2342,6 +2436,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -2889,6 +2994,10 @@ definitions:
     type: object
   ClientAdminResponse:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -3010,6 +3119,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -3558,6 +3678,10 @@ definitions:
     type: object
   ClientAuditPayload:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -3679,6 +3803,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -4508,6 +4643,18 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  ConfigImportEventPayload:
+    properties:
+      error_message:
+        type: string
+        x-nullable: false
+      tenant_id:
+        type: string
+        x-nullable: false
+      workspace_id:
+        type: string
+        x-nullable: false
+    type: object
   Confirmation:
     properties:
       jkt:
@@ -4978,6 +5125,10 @@ definitions:
     type: object
   CreateClientAdminRequest:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -5099,6 +5250,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -6476,7 +6638,10 @@ definitions:
         type: string
         x-nullable: false
       admin_portal_face_lifting:
-        description: admin portal face lifting
+        description: |-
+          Admin portal face lifting
+
+          Improve user experience by facelifting the basic components of Cloudentity.
         type: boolean
         x-nullable: false
       admin_workspace_access:
@@ -6545,6 +6710,10 @@ definitions:
         description: disable audit events
         type: boolean
         x-nullable: false
+      disable_embedded_sms_provider:
+        description: disable embedded sms provider
+        type: boolean
+        x-nullable: false
       display_workspace_wizard:
         type: boolean
         x-nullable: false
@@ -6563,7 +6732,10 @@ definitions:
         type: boolean
         x-nullable: false
       identifier_based_discovery:
-        description: identifier-based discovery
+        description: |-
+          Identifier-based discovery
+
+          Enable users to provide their identifier first during user authentication and discover their preffered authentication provider.
         type: boolean
         x-nullable: false
       identity_assurance:
@@ -6587,16 +6759,26 @@ definitions:
         description: insecure token exchange public clients
         type: boolean
         x-nullable: false
+      mark_address_as_verified_on_any_proof_of_possession:
+        description: mark address as verified on any proof of possession of the address
+        type: boolean
+        x-nullable: false
       openbanking_ksa:
         description: openbanking ksa workspace and security profile
         type: boolean
         x-nullable: false
       organizations:
-        description: organizations
+        description: |-
+          Organizations
+
+          Delineate a structured and hierarchical separation among your business customers' companies or partners. Enable Delegated Admin Portal.
         type: boolean
         x-nullable: false
       permissions:
-        description: permissions
+        description: |-
+          Permissions
+
+          Control access to resources based on user permissions. Create permission systems.
         type: boolean
         x-nullable: false
       rar:
@@ -6604,7 +6786,10 @@ definitions:
         type: boolean
         x-nullable: false
       roles:
-        description: roles
+        description: |-
+          Roles
+
+          Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
         type: boolean
         x-nullable: false
       scope_transient_otp:
@@ -6617,7 +6802,10 @@ definitions:
         type: array
         x-nullable: false
       self_service:
-        description: self-service
+        description: |-
+          Self-service
+
+          Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
         type: boolean
         x-nullable: false
       simple_api_integration:
@@ -7168,6 +7356,31 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  FeatureResponse:
+    properties:
+      description:
+        type: string
+        x-nullable: false
+      display_name:
+        type: string
+        x-nullable: false
+      enabled:
+        type: boolean
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+    type: object
+  FeaturesResponse:
+    properties:
+      features:
+        items:
+          $ref: '#/definitions/FeatureResponse'
+        type: array
+        x-nullable: false
+    type: object
+  FnEnvVersion:
+    type: string
   Gateway:
     properties:
       authorization_server_id:
@@ -8494,10 +8707,9 @@ definitions:
           type: string
         type: array
         x-nullable: false
-      claims_in_verified_claims:
-        items:
-          type: string
-        type: array
+      block_verified_claims_via_userinfo:
+        description: If enabled, verified claims request via userinfo will be blocked
+        type: boolean
         x-nullable: false
       digest_algorithms:
         description: |-
@@ -10341,6 +10553,8 @@ definitions:
           using the REGO language.
         type: string
         x-nullable: false
+      env_version:
+        $ref: '#/definitions/FnEnvVersion'
       id:
         description: Unique ID of your policy
         example: "1"
@@ -11703,6 +11917,10 @@ definitions:
           to this scope
         type: boolean
         x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -11816,6 +12034,10 @@ definitions:
           to this scope
         type: boolean
         x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -11867,6 +12089,10 @@ definitions:
       implicit:
         description: Request this scope by default for all clients who subscribed
           to this scope
+        type: boolean
+        x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
         type: boolean
         x-nullable: false
       metadata:
@@ -11924,6 +12150,8 @@ definitions:
         format: scriptBody
         type: string
         x-nullable: false
+      env_version:
+        $ref: '#/definitions/FnEnvVersion'
       id:
         description: |-
           Unique ID of your script
@@ -12136,9 +12364,20 @@ definitions:
       dependencies:
         additionalProperties:
           type: string
+        description: Preinstalled nodejs libraries
         type: object
         x-nullable: false
-      version:
+      env_version:
+        description: Node executor environment runtime version
+        type: string
+        x-nullable: false
+      node_version:
+        description: Nodejs engine version
+        type: string
+        x-nullable: false
+      valid_until:
+        description: Nodejs executor end-of-life date
+        format: date-time
         type: string
         x-nullable: false
     type: object
@@ -12196,6 +12435,162 @@ definitions:
         items:
           $ref: '#/definitions/Secret'
         type: array
+        x-nullable: false
+    type: object
+  SecureOptions:
+    description: nolint
+    properties:
+      AllowedHosts:
+        description: AllowedHosts is a slice of fully qualified domain names that
+          are allowed. Default is an empty slice, which allows any and all host names.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AllowedHostsAreRegex:
+        description: AllowedHostsAreRegex determines, if the provided `AllowedHosts`
+          slice contains valid regular expressions. If this flag is set to true, every
+          request's host will be checked against these expressions. Default is false.
+        type: boolean
+        x-nullable: false
+      BrowserXssFilter:
+        description: If BrowserXssFilter is true, adds the X-XSS-Protection header
+          with the value `1; mode=block`. Default is false.
+        type: boolean
+        x-nullable: false
+      ContentSecurityPolicy:
+        description: ContentSecurityPolicy allows the Content-Security-Policy header
+          value to be set with a custom value. Default is "".
+        type: string
+        x-nullable: false
+      ContentSecurityPolicyReportOnly:
+        description: ContentSecurityPolicyReportOnly allows the Content-Security-Policy-Report-Only
+          header value to be set with a custom value. Default is "".
+        type: string
+        x-nullable: false
+      ContentTypeNosniff:
+        description: If ContentTypeNosniff is true, adds the X-Content-Type-Options
+          header with the value `nosniff`. Default is false.
+        type: boolean
+        x-nullable: false
+      CrossOriginOpenerPolicy:
+        description: |-
+          CrossOriginOpenerPolicy allows you to ensure a top-level document does not share a browsing context group with cross-origin documents. Default is "".
+          Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
+        type: string
+        x-nullable: false
+      CustomBrowserXssValue:
+        description: CustomBrowserXssValue allows the X-XSS-Protection header value
+          to be set with a custom value. This overrides the BrowserXssFilter option.
+          Default is "".
+        type: string
+        x-nullable: false
+      CustomFrameOptionsValue:
+        description: |-
+          Passing a template string will replace `$NONCE` with a dynamic nonce value of 16 bytes for each request which can be later retrieved using the Nonce function.
+          Eg: script-src $NONCE -> script-src 'nonce-a2ZobGFoZg=='
+          CustomFrameOptionsValue allows the X-Frame-Options header value to be set with a custom value. This overrides the FrameDeny option. Default is "".
+        type: string
+        x-nullable: false
+      ExpectCTHeader:
+        description: ExpectCTHeader allows the Expect-CT header value to be set with
+          a custom value. Default is "".
+        type: string
+        x-nullable: false
+      FeaturePolicy:
+        description: |-
+          FeaturePolicy allows to selectively enable and disable use of various browser features and APIs. Default is "".
+          Deprecated: This header has been renamed to Permissions-Policy.
+        type: string
+        x-nullable: false
+      ForceSTSHeader:
+        description: If ForceSTSHeader is set to true, the STS header will be added
+          even when the connection is HTTP. Default is false.
+        type: boolean
+        x-nullable: false
+      FrameDeny:
+        description: If FrameDeny is set to true, adds the X-Frame-Options header
+          with the value of `DENY`. Default is false.
+        type: boolean
+        x-nullable: false
+      HostsProxyHeaders:
+        description: HostsProxyHeaders is a set of header keys that may hold a proxied
+          hostname value for the request.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      IsDevelopment:
+        description: |-
+          When developing, the AllowedHosts, SSL, and STS options can cause some unwanted effects. Usually testing happens on http, not https, and on localhost, not your production domain... so set this to true for dev environment.
+          If you would like your development environment to mimic production with complete Host blocking, SSL redirects, and STS headers, leave this as false. Default if false.
+        type: boolean
+        x-nullable: false
+      PermissionsPolicy:
+        description: PermissionsPolicy allows to selectively enable and disable use
+          of various browser features and APIs. Default is "".
+        type: string
+        x-nullable: false
+      PublicKey:
+        description: |-
+          PublicKey implements HPKP to prevent MITM attacks with forged certificates. Default is "".
+          Deprecated: This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible.
+        type: string
+        x-nullable: false
+      ReferrerPolicy:
+        description: ReferrerPolicy allows sites to control when browsers will pass
+          the Referer header to other sites. Default is "".
+        type: string
+        x-nullable: false
+      SSLForceHost:
+        description: If SSLForceHost is true and SSLHost is set, requests will be
+          forced to use SSLHost even the ones that are already using SSL. Default
+          is false.
+        type: boolean
+        x-nullable: false
+      SSLHost:
+        description: SSLHost is the host name that is used to redirect http requests
+          to https. Default is "", which indicates to use the same host.
+        type: string
+        x-nullable: false
+      SSLProxyHeaders:
+        additionalProperties:
+          type: string
+        description: 'SSLProxyHeaders is set of header keys with associated values
+          that would indicate a valid https request. Useful when using Nginx: `map[string]string{"X-Forwarded-Proto":
+          "https"}`. Default is blank map.'
+        type: object
+        x-nullable: false
+      SSLRedirect:
+        description: If SSLRedirect is set to true, then only allow https requests.
+          Default is false.
+        type: boolean
+        x-nullable: false
+      SSLTemporaryRedirect:
+        description: If SSLTemporaryRedirect is true, the a 302 will be used while
+          redirecting. Default is false (301).
+        type: boolean
+        x-nullable: false
+      STSIncludeSubdomains:
+        description: If STSIncludeSubdomains is set to true, the `includeSubdomains`
+          will be appended to the Strict-Transport-Security header. Default is false.
+        type: boolean
+        x-nullable: false
+      STSPreload:
+        description: If STSPreload is set to true, the `preload` flag will be appended
+          to the Strict-Transport-Security header. Default is false.
+        type: boolean
+        x-nullable: false
+      STSSeconds:
+        description: STSSeconds is the max-age of the Strict-Transport-Security header.
+          Default is 0, which would NOT include the header.
+        format: int64
+        type: integer
+        x-nullable: false
+      SecureContextKey:
+        description: SecureContextKey allows a custom key to be specified for context
+          storage.
+        type: string
         x-nullable: false
     type: object
   Server:
@@ -12567,6 +12962,8 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
       sso:
         $ref: '#/definitions/SSOConfiguration'
       styling:
@@ -13059,6 +13456,8 @@ definitions:
         $ref: '#/definitions/ResponseTypes'
       saml:
         $ref: '#/definitions/SAMLConfiguration'
+      settings:
+        $ref: '#/definitions/ServerSettings'
       sso:
         $ref: '#/definitions/SSOConfiguration'
       styling:
@@ -13971,6 +14370,8 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
       sso:
         $ref: '#/definitions/SSOConfiguration'
       styling:
@@ -14135,6 +14536,13 @@ definitions:
         x-nullable: false
     required:
     - tenant_id
+    type: object
+  ServerSettings:
+    properties:
+      default_client_id:
+        format: clientID
+        type: string
+        x-nullable: false
     type: object
   ServerToServer:
     properties:
@@ -14552,6 +14960,15 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  SetBetaFeature:
+    properties:
+      flag:
+        type: string
+        x-nullable: false
+      value:
+        type: boolean
+        x-nullable: false
+    type: object
   SpecVersion:
     type: string
   StaticCredentials:
@@ -14895,6 +15312,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -15212,6 +15632,8 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      security:
+        $ref: '#/definitions/SecureOptions'
     type: object
   TestAPIResult:
     properties:
@@ -15369,6 +15791,8 @@ definitions:
         format: scriptBody
         type: string
         x-nullable: false
+      env_version:
+        $ref: '#/definitions/FnEnvVersion'
       input:
         additionalProperties:
           type: object
@@ -15580,6 +16004,10 @@ definitions:
     type: object
   UpdateClientAdminRequest:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -15701,6 +16129,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -16904,6 +17343,10 @@ definitions:
         example: default
         type: string
         x-nullable: false
+      number_of_child_organizations:
+        format: int64
+        type: integer
+        x-nullable: false
       profile:
         default: default
         description: |-
@@ -17546,6 +17989,53 @@ paths:
       summary: Update AuthorizationDetail
       tags:
       - authorizationDetails
+  /beta-feature:
+    post:
+      operationId: setBetaFeature
+      parameters:
+      - in: body
+        name: SetTenantFeature
+        schema:
+          $ref: '#/definitions/SetBetaFeature'
+      responses:
+        "204":
+          description: ' beta feature set'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Set beta feature
+      tags:
+      - features
+  /beta-features:
+    get:
+      operationId: getBetaFeatures
+      responses:
+        "200":
+          $ref: '#/responses/BetaFeaturesResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get beta features
+      tags:
+      - features
   /bruteforce:
     get:
       description: 'Get tenant''s brute force limits'
@@ -20079,6 +20569,11 @@ paths:
           SessionID
         in: query
         name: session_id
+        type: string
+      - description: optional list audit events with a given authorization correlation
+          id
+        in: query
+        name: authorization_correlation_id
         type: string
       - description: |-
           Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
@@ -27196,6 +27691,10 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/AvailableEvents'
+  BetaFeaturesResponse:
+    description: Beta features
+    schema:
+      $ref: '#/definitions/FeaturesResponse'
   BindGroupToServiceResponse:
     description: Bind group to service response
     headers:

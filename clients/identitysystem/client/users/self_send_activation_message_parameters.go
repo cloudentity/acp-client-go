@@ -85,6 +85,22 @@ type SelfSendActivationMessageParams struct {
 	// IPID.
 	IPID string
 
+	/* Mode.
+
+	     optional mode
+	Mode
+
+	     Default: "registration"
+	*/
+	Mode *string
+
+	/* PostActivationURL.
+
+	     optional URL where user will be asked to sign in after successful activation
+	PostActivationURL
+	*/
+	PostActivationURL *string
+
 	/* ServerID.
 
 	     optional server's identifier (used for themes etc.)
@@ -114,10 +130,13 @@ func (o *SelfSendActivationMessageParams) WithDefaults() *SelfSendActivationMess
 func (o *SelfSendActivationMessageParams) SetDefaults() {
 	var (
 		codeTypeInMessageDefault = string("link")
+
+		modeDefault = string("registration")
 	)
 
 	val := SelfSendActivationMessageParams{
 		CodeTypeInMessage: &codeTypeInMessageDefault,
+		Mode:              &modeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -203,6 +222,28 @@ func (o *SelfSendActivationMessageParams) SetIPID(iPID string) {
 	o.IPID = iPID
 }
 
+// WithMode adds the mode to the self send activation message params
+func (o *SelfSendActivationMessageParams) WithMode(mode *string) *SelfSendActivationMessageParams {
+	o.SetMode(mode)
+	return o
+}
+
+// SetMode adds the mode to the self send activation message params
+func (o *SelfSendActivationMessageParams) SetMode(mode *string) {
+	o.Mode = mode
+}
+
+// WithPostActivationURL adds the postActivationURL to the self send activation message params
+func (o *SelfSendActivationMessageParams) WithPostActivationURL(postActivationURL *string) *SelfSendActivationMessageParams {
+	o.SetPostActivationURL(postActivationURL)
+	return o
+}
+
+// SetPostActivationURL adds the postActivationUrl to the self send activation message params
+func (o *SelfSendActivationMessageParams) SetPostActivationURL(postActivationURL *string) {
+	o.PostActivationURL = postActivationURL
+}
+
 // WithServerID adds the serverID to the self send activation message params
 func (o *SelfSendActivationMessageParams) WithServerID(serverID *string) *SelfSendActivationMessageParams {
 	o.SetServerID(serverID)
@@ -266,6 +307,40 @@ func (o *SelfSendActivationMessageParams) WriteToRequest(r runtime.ClientRequest
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.Mode != nil {
+
+		// query param mode
+		var qrMode string
+
+		if o.Mode != nil {
+			qrMode = *o.Mode
+		}
+		qMode := qrMode
+		if qMode != "" {
+
+			if err := r.SetQueryParam("mode", qMode); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.PostActivationURL != nil {
+
+		// query param post_activation_url
+		var qrPostActivationURL string
+
+		if o.PostActivationURL != nil {
+			qrPostActivationURL = *o.PostActivationURL
+		}
+		qPostActivationURL := qrPostActivationURL
+		if qPostActivationURL != "" {
+
+			if err := r.SetQueryParam("post_activation_url", qPostActivationURL); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.ServerID != nil {

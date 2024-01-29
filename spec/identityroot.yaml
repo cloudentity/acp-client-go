@@ -63,6 +63,12 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       tenant_id:
         example: default
         format: tenantID
@@ -367,6 +373,12 @@ definitions:
       identifier:
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: code metadata
+        type: object
+        x-nullable: false
       type:
         enum:
         - activation
@@ -598,6 +610,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string

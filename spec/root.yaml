@@ -153,6 +153,10 @@ definitions:
         x-nullable: false
       disallowed_response_modes:
         $ref: '#/definitions/ResponseModes'
+      do_not_issue_acr_claim_in_id_token:
+        description: Do not issue acr claim in ID Token
+        type: boolean
+        x-nullable: false
       enforce_acr_values:
         description: Enforce acr values
         type: boolean
@@ -170,6 +174,11 @@ definitions:
         x-nullable: false
       return_iss_parameter_in_authorization_response:
         description: Return iss parameter in the authorization response
+        type: boolean
+        x-nullable: false
+      strict_post_logout_redirect_enforcement:
+        description: Disables SSO as a fallback mechanism for post-logout redirect
+          URI validation
         type: boolean
         x-nullable: false
     type: object
@@ -427,6 +436,7 @@ definitions:
         - access_token
         - saml_assertion
         - scopes
+        - claims
         - otp
         - user
         - selfuser
@@ -442,6 +452,7 @@ definitions:
         - tokens
         - service
         - server
+        - import
         type: string
         x-nullable: false
       event_type:
@@ -471,6 +482,14 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      authorization_correlation_id:
+        description: |-
+          Authorization correlation ID
+
+          Represents the correlation ID used for the OAuth2 authorization code grant flow.
+        format: authorizationCorrelationID
+        type: string
         x-nullable: false
       client_id:
         description: |-
@@ -1055,6 +1074,10 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      description:
+        description: description
+        type: string
+        x-nullable: false
       id:
         description: unique claim id
         example: "1"
@@ -1111,6 +1134,10 @@ definitions:
         x-nullable: false
       type:
         $ref: '#/definitions/ClaimType'
+      verified:
+        description: mark claim as verified (required by identity assurance spec)
+        type: boolean
+        x-nullable: false
     type: object
   ClaimGrant:
     properties:
@@ -1120,6 +1147,8 @@ definitions:
         format: claimName
         type: string
         x-nullable: false
+      claim_type:
+        $ref: '#/definitions/ClaimType'
       client_id:
         description: Identifier of a client application that is granted with the claim.
         example: bugkgm23g9kregtu051g
@@ -1153,6 +1182,10 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      verified:
+        description: mark claim as verified (required by identity assurance spec)
+        type: boolean
+        x-nullable: false
     type: object
   ClaimSourceType:
     type: string
@@ -1163,6 +1196,10 @@ definitions:
     type: string
   Client:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -1284,6 +1321,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -2486,6 +2534,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Cursor:
+    type: string
   CustomApp:
     description: Custom Branding CustomApp
     properties:
@@ -3485,6 +3535,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  FnEnvVersion:
+    type: string
   Gateway:
     properties:
       authorization_server_id:
@@ -4111,10 +4163,9 @@ definitions:
           type: string
         type: array
         x-nullable: false
-      claims_in_verified_claims:
-        items:
-          type: string
-        type: array
+      block_verified_claims_via_userinfo:
+        description: If enabled, verified claims request via userinfo will be blocked
+        type: boolean
         x-nullable: false
       digest_algorithms:
         description: |-
@@ -4903,6 +4954,76 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  OrganizationResponse:
+    properties:
+      color:
+        default: '#007FFF'
+        description: Your organization's label color in a HEX format.
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      description:
+        description: Display description of the organization
+        example: Organization description
+        type: string
+        x-nullable: false
+      domains:
+        description: An array of email domains configured for an organization for
+          the purposes of IDP discovery
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: |-
+          Unique identifier of an organization
+
+          If not provided, a random ID is generated.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      issuer_url:
+        type: string
+        x-nullable: false
+      metadata:
+        $ref: '#/definitions/ServerMetadata'
+      name:
+        description: Display name of the organization
+        example: default
+        type: string
+        x-nullable: false
+      number_of_child_organizations:
+        format: int64
+        type: integer
+        x-nullable: false
+      subject_format:
+        enum:
+        - hash
+        - legacy
+        type: string
+        x-nullable: false
+      subject_identifier_algorithm_salt:
+        type: string
+        x-nullable: false
+      template:
+        description: If true this organization can be used as a template when creating
+          a new ones.
+        type: boolean
+        x-nullable: false
+      theme_id:
+        format: themeID
+        type: string
+        x-nullable: false
+    type: object
+  OrganizationsResponse:
+    properties:
+      organizations:
+        items:
+          $ref: '#/definitions/OrganizationResponse'
+        type: array
+        x-nullable: false
+    type: object
   PDPDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.6
@@ -4988,6 +5109,8 @@ definitions:
           using the REGO language.
         type: string
         x-nullable: false
+      env_version:
+        $ref: '#/definitions/FnEnvVersion'
       id:
         description: Unique ID of your policy
         example: "1"
@@ -5769,6 +5892,10 @@ definitions:
           to this scope
         type: boolean
         x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -5866,6 +5993,8 @@ definitions:
         format: scriptBody
         type: string
         x-nullable: false
+      env_version:
+        $ref: '#/definitions/FnEnvVersion'
       id:
         description: |-
           Unique ID of your script
@@ -5970,6 +6099,162 @@ definitions:
     - server_id
     - tenant_id
     - secret
+    type: object
+  SecureOptions:
+    description: nolint
+    properties:
+      AllowedHosts:
+        description: AllowedHosts is a slice of fully qualified domain names that
+          are allowed. Default is an empty slice, which allows any and all host names.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AllowedHostsAreRegex:
+        description: AllowedHostsAreRegex determines, if the provided `AllowedHosts`
+          slice contains valid regular expressions. If this flag is set to true, every
+          request's host will be checked against these expressions. Default is false.
+        type: boolean
+        x-nullable: false
+      BrowserXssFilter:
+        description: If BrowserXssFilter is true, adds the X-XSS-Protection header
+          with the value `1; mode=block`. Default is false.
+        type: boolean
+        x-nullable: false
+      ContentSecurityPolicy:
+        description: ContentSecurityPolicy allows the Content-Security-Policy header
+          value to be set with a custom value. Default is "".
+        type: string
+        x-nullable: false
+      ContentSecurityPolicyReportOnly:
+        description: ContentSecurityPolicyReportOnly allows the Content-Security-Policy-Report-Only
+          header value to be set with a custom value. Default is "".
+        type: string
+        x-nullable: false
+      ContentTypeNosniff:
+        description: If ContentTypeNosniff is true, adds the X-Content-Type-Options
+          header with the value `nosniff`. Default is false.
+        type: boolean
+        x-nullable: false
+      CrossOriginOpenerPolicy:
+        description: |-
+          CrossOriginOpenerPolicy allows you to ensure a top-level document does not share a browsing context group with cross-origin documents. Default is "".
+          Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
+        type: string
+        x-nullable: false
+      CustomBrowserXssValue:
+        description: CustomBrowserXssValue allows the X-XSS-Protection header value
+          to be set with a custom value. This overrides the BrowserXssFilter option.
+          Default is "".
+        type: string
+        x-nullable: false
+      CustomFrameOptionsValue:
+        description: |-
+          Passing a template string will replace `$NONCE` with a dynamic nonce value of 16 bytes for each request which can be later retrieved using the Nonce function.
+          Eg: script-src $NONCE -> script-src 'nonce-a2ZobGFoZg=='
+          CustomFrameOptionsValue allows the X-Frame-Options header value to be set with a custom value. This overrides the FrameDeny option. Default is "".
+        type: string
+        x-nullable: false
+      ExpectCTHeader:
+        description: ExpectCTHeader allows the Expect-CT header value to be set with
+          a custom value. Default is "".
+        type: string
+        x-nullable: false
+      FeaturePolicy:
+        description: |-
+          FeaturePolicy allows to selectively enable and disable use of various browser features and APIs. Default is "".
+          Deprecated: This header has been renamed to Permissions-Policy.
+        type: string
+        x-nullable: false
+      ForceSTSHeader:
+        description: If ForceSTSHeader is set to true, the STS header will be added
+          even when the connection is HTTP. Default is false.
+        type: boolean
+        x-nullable: false
+      FrameDeny:
+        description: If FrameDeny is set to true, adds the X-Frame-Options header
+          with the value of `DENY`. Default is false.
+        type: boolean
+        x-nullable: false
+      HostsProxyHeaders:
+        description: HostsProxyHeaders is a set of header keys that may hold a proxied
+          hostname value for the request.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      IsDevelopment:
+        description: |-
+          When developing, the AllowedHosts, SSL, and STS options can cause some unwanted effects. Usually testing happens on http, not https, and on localhost, not your production domain... so set this to true for dev environment.
+          If you would like your development environment to mimic production with complete Host blocking, SSL redirects, and STS headers, leave this as false. Default if false.
+        type: boolean
+        x-nullable: false
+      PermissionsPolicy:
+        description: PermissionsPolicy allows to selectively enable and disable use
+          of various browser features and APIs. Default is "".
+        type: string
+        x-nullable: false
+      PublicKey:
+        description: |-
+          PublicKey implements HPKP to prevent MITM attacks with forged certificates. Default is "".
+          Deprecated: This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible.
+        type: string
+        x-nullable: false
+      ReferrerPolicy:
+        description: ReferrerPolicy allows sites to control when browsers will pass
+          the Referer header to other sites. Default is "".
+        type: string
+        x-nullable: false
+      SSLForceHost:
+        description: If SSLForceHost is true and SSLHost is set, requests will be
+          forced to use SSLHost even the ones that are already using SSL. Default
+          is false.
+        type: boolean
+        x-nullable: false
+      SSLHost:
+        description: SSLHost is the host name that is used to redirect http requests
+          to https. Default is "", which indicates to use the same host.
+        type: string
+        x-nullable: false
+      SSLProxyHeaders:
+        additionalProperties:
+          type: string
+        description: 'SSLProxyHeaders is set of header keys with associated values
+          that would indicate a valid https request. Useful when using Nginx: `map[string]string{"X-Forwarded-Proto":
+          "https"}`. Default is blank map.'
+        type: object
+        x-nullable: false
+      SSLRedirect:
+        description: If SSLRedirect is set to true, then only allow https requests.
+          Default is false.
+        type: boolean
+        x-nullable: false
+      SSLTemporaryRedirect:
+        description: If SSLTemporaryRedirect is true, the a 302 will be used while
+          redirecting. Default is false (301).
+        type: boolean
+        x-nullable: false
+      STSIncludeSubdomains:
+        description: If STSIncludeSubdomains is set to true, the `includeSubdomains`
+          will be appended to the Strict-Transport-Security header. Default is false.
+        type: boolean
+        x-nullable: false
+      STSPreload:
+        description: If STSPreload is set to true, the `preload` flag will be appended
+          to the Strict-Transport-Security header. Default is false.
+        type: boolean
+        x-nullable: false
+      STSSeconds:
+        description: STSSeconds is the max-age of the Strict-Transport-Security header.
+          Default is 0, which would NOT include the header.
+        format: int64
+        type: integer
+        x-nullable: false
+      SecureContextKey:
+        description: SecureContextKey allows a custom key to be specified for context
+          storage.
+        type: string
+        x-nullable: false
     type: object
   Server:
     description: Multi Tenant authorization server
@@ -6340,6 +6625,8 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
       sso:
         $ref: '#/definitions/SSOConfiguration'
       styling:
@@ -6885,6 +7172,8 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
       sso:
         $ref: '#/definitions/SSOConfiguration'
       styling:
@@ -7217,6 +7506,13 @@ definitions:
         x-nullable: false
       schema:
         $ref: '#/definitions/SupportedJSONSchema'
+    type: object
+  ServerSettings:
+    properties:
+      default_client_id:
+        format: clientID
+        type: string
+        x-nullable: false
     type: object
   ServerToServer:
     properties:
@@ -7588,6 +7884,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -7702,6 +8001,8 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      security:
+        $ref: '#/definitions/SecureOptions'
     type: object
   Tenants:
     properties:
@@ -7882,6 +8183,26 @@ definitions:
     type: array
   UserCodeCharacterSet:
     type: string
+  UserOrganizationsResponse:
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      organizations:
+        items:
+          $ref: '#/definitions/OrganizationResponse'
+        type: array
+        x-nullable: false
+    type: object
+  UserWorkspacesResponse:
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      workspaces:
+        items:
+          $ref: '#/definitions/WorkspaceResponse'
+        type: array
+        x-nullable: false
+    type: object
   ValidatorConfig:
     description: Depending on the type of a policy different validators are available.
     properties:
@@ -8005,6 +8326,129 @@ definitions:
     - tenant_id
     - server_id
     type: object
+  WorkspaceMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
+  WorkspaceResponse:
+    properties:
+      color:
+        default: '#007FFF'
+        description: Your server's label color in a HEX format.
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      description:
+        description: Display description of the workspace
+        example: Server description
+        type: string
+        x-nullable: false
+      id:
+        description: Unique identifier of an workspace
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      issuer_url:
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      metadata:
+        $ref: '#/definitions/ServerMetadata'
+      name:
+        description: |-
+          Display name of the workspace
+
+          If not provided, a random ID is generated.
+        example: default
+        type: string
+        x-nullable: false
+      number_of_child_organizations:
+        format: int64
+        type: integer
+        x-nullable: false
+      profile:
+        default: default
+        description: |-
+          The profile of a server
+
+          ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
+          specific configuration patterns. For example, you can instantly create an Open Banking
+          compliant workspace that has all of the required mechanisms and settings already in place.
+        enum:
+        - default
+        - demo
+        - workforce
+        - consumer
+        - partners
+        - third_party
+        - fapi_advanced
+        - fapi_rw
+        - fapi_ro
+        - openbanking_uk_fapi_advanced
+        - openbanking_uk
+        - openbanking_br
+        - cdr_australia
+        - cdr_australia_fapi_rw
+        - fdx
+        - openbanking_ksa
+        - fapi_20_security
+        - fapi_20_message_signing
+        - connect_id
+        example: default
+        type: string
+        x-nullable: false
+      subject_format:
+        description: Subject format
+        enum:
+        - hash
+        - legacy
+        type: string
+        x-nullable: false
+      subject_identifier_algorithm_salt:
+        description: Subject identifier algorithm salt
+        type: string
+        x-nullable: false
+      template:
+        type: boolean
+        x-nullable: false
+      theme_id:
+        description: optional theme id
+        format: themeID
+        type: string
+        x-nullable: false
+      type:
+        default: regular
+        description: |-
+          Server type
+
+          It is an internal property used to recognize if the server is created for an admin portal,
+          a developer portal, or if it is a system or a regular workspace.
+        enum:
+        - admin
+        - developer
+        - system
+        - regular
+        - organization
+        example: regular
+        type: string
+        x-nullable: false
+    type: object
+  WorkspacesResponse:
+    properties:
+      workspaces:
+        items:
+          $ref: '#/definitions/WorkspaceResponse'
+        type: array
+        x-nullable: false
+    type: object
   X509Certificate:
     description: X509Certificate represents the XMLSEC object of the same name
     properties:
@@ -8052,6 +8496,92 @@ paths:
       summary: List tenants
       tags:
       - tenants
+  /api/admin/tenants/{tenantID}/workspaces:
+    get:
+      description: 'List workspaces'
+      operationId: listWorkspaces
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: admin,developer,system,regular,organization
+        description: comma separated workspace types that are to be filtered out
+        in: query
+        name: workspace_types
+        type: string
+      - description: optional flag to filter by template
+        in: query
+        name: template
+        type: boolean
+      - description: optional flag to filter by theme id
+        in: query
+        name: theme_id
+        type: string
+      - description: |-
+          Optional search phrase: workspace id OR workspace name substring (case insensitive)
+          SearchPhrase
+        in: query
+        name: search_phrase
+        type: string
+      - description: |-
+          optional list workspaces after given id
+          AfterWorkspaceID
+        in: query
+        name: after_workspace_id
+        type: string
+      - description: |-
+          optional list workspaces before given id
+          BeforeWorkspaceID
+        in: query
+        name: before_workspace_id
+        type: string
+      - description: |-
+          optional sort workspaces by given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order workspaces by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      responses:
+        "200":
+          $ref: '#/responses/Workspaces'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - setup: []
+      summary: List workspaces
+      tags:
+      - workspaces
   /api/admin/tenants/{tid}/feature:
     post:
       description: |-
@@ -8211,6 +8741,85 @@ paths:
       summary: Set rate limit
       tags:
       - limits
+  /api/admin/tenants/{tid}/security:
+    get:
+      operationId: getTenantSecurity
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetTenantSecurityResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - adminSystem: []
+      summary: Get tenant security
+      tags:
+      - security
+    post:
+      operationId: setTenantSecurity
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: body
+        name: SetTenantSecurity
+        schema:
+          $ref: '#/definitions/SecureOptions'
+      responses:
+        "204":
+          description: ' tenant feature set'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - adminSystem: []
+      summary: Set tenant security
+      tags:
+      - security
+  /api/admin/tenants/security:
+    get:
+      description: 'Returns default security configuration'
+      operationId: getSecurity
+      responses:
+        "200":
+          $ref: '#/responses/GetSecurityResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - adminSystem: []
+      summary: Get security
+      tags:
+      - security
   /api/system/configuration:
     get:
       description: |-
@@ -8528,10 +9137,18 @@ paths:
 produces:
 - application/json
 responses:
+  GetSecurityResponse:
+    description: Get security
+    schema:
+      $ref: '#/definitions/SecureOptions'
   GetTenantFeaturesResponse:
     description: Get tenant features
     schema:
       $ref: '#/definitions/FeaturesResponse'
+  GetTenantSecurityResponse:
+    description: Get tenant security
+    schema:
+      $ref: '#/definitions/SecureOptions'
   ListRateLimitsResponse:
     description: Tenant rate limits
     schema:
@@ -8540,6 +9157,30 @@ responses:
     description: List of tenants
     schema:
       $ref: '#/definitions/Tenants'
+  Org:
+    description: Org
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationResponse'
+  Orgs:
+    description: Orgs
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationsResponse'
   TenantCreated:
     description: Tenant created
     schema:
@@ -8548,6 +9189,66 @@ responses:
     description: Tenant
     schema:
       $ref: '#/definitions/Tenant'
+  UserOrgs:
+    description: User orgs
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserOrganizationsResponse'
+  UserWorkspaces:
+    description: User Workspaces
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserWorkspacesResponse'
+  Workspace:
+    description: Workspace
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/WorkspaceResponse'
+  WorkspaceMetadata:
+    description: Workspace metadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/WorkspaceMetadata'
+  Workspaces:
+    description: Workspaces
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/WorkspacesResponse'
   badRequestHTTPError:
     description: Bad request
     schema:
