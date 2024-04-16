@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ScriptRuntime script runtime
@@ -17,15 +19,43 @@ import (
 // swagger:model ScriptRuntime
 type ScriptRuntime struct {
 
-	// dependencies
+	// Preinstalled nodejs libraries
 	Dependencies map[string]string `json:"dependencies,omitempty" yaml:"dependencies,omitempty"`
 
-	// version
-	Version string `json:"version,omitempty" yaml:"version,omitempty"`
+	// Node executor environment runtime version
+	EnvVersion string `json:"env_version,omitempty" yaml:"env_version,omitempty"`
+
+	// Nodejs engine version
+	NodeVersion string `json:"node_version,omitempty" yaml:"node_version,omitempty"`
+
+	// Nodejs executor end-of-life date
+	// Format: date-time
+	ValidUntil strfmt.DateTime `json:"valid_until,omitempty" yaml:"valid_until,omitempty"`
 }
 
 // Validate validates this script runtime
 func (m *ScriptRuntime) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateValidUntil(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ScriptRuntime) validateValidUntil(formats strfmt.Registry) error {
+	if swag.IsZero(m.ValidUntil) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("valid_until", "body", "date-time", m.ValidUntil.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

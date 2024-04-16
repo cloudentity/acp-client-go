@@ -54,6 +54,9 @@ type IDPCredentials struct {
 	// saml
 	Saml *SAMLCredentials `json:"saml,omitempty" yaml:"saml,omitempty"`
 
+	// saml v2
+	SamlV2 SAMLV2Credentials `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
+
 	// static
 	Static *StaticCredentials `json:"static,omitempty" yaml:"static,omitempty"`
 }

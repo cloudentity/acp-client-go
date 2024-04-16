@@ -26,6 +26,9 @@ type Script struct {
 	// Script body
 	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
+	// env version
+	EnvVersion FnEnvVersion `json:"env_version,omitempty" yaml:"env_version,omitempty"`
+
 	// Unique ID of your script
 	//
 	// If not provided, a random ID is generated.
@@ -50,6 +53,10 @@ func (m *Script) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEnvVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTenantID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -69,6 +76,23 @@ func (m *Script) validateAuthorizationServerID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Script) validateEnvVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *Script) validateTenantID(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("tenant_id", "body", m.TenantID); err != nil {
@@ -78,8 +102,35 @@ func (m *Script) validateTenantID(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this script based on context it is used
+// ContextValidate validate this script based on the context it is used
 func (m *Script) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEnvVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Script) contextValidateEnvVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
+	}
+
 	return nil
 }
 

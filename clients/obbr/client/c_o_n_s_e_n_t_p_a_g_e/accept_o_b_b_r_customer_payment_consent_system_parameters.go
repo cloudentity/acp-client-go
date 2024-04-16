@@ -64,7 +64,7 @@ AcceptOBBRCustomerPaymentConsentSystemParams contains all the parameters to send
 type AcceptOBBRCustomerPaymentConsentSystemParams struct {
 
 	// AcceptConsent.
-	AcceptConsent *models.AcceptConsentRequest
+	AcceptConsent *models.AcceptPaymentConsent
 
 	// Login.
 	Login string
@@ -123,13 +123,13 @@ func (o *AcceptOBBRCustomerPaymentConsentSystemParams) SetHTTPClient(client *htt
 }
 
 // WithAcceptConsent adds the acceptConsent to the accept o b b r customer payment consent system params
-func (o *AcceptOBBRCustomerPaymentConsentSystemParams) WithAcceptConsent(acceptConsent *models.AcceptConsentRequest) *AcceptOBBRCustomerPaymentConsentSystemParams {
+func (o *AcceptOBBRCustomerPaymentConsentSystemParams) WithAcceptConsent(acceptConsent *models.AcceptPaymentConsent) *AcceptOBBRCustomerPaymentConsentSystemParams {
 	o.SetAcceptConsent(acceptConsent)
 	return o
 }
 
 // SetAcceptConsent adds the acceptConsent to the accept o b b r customer payment consent system params
-func (o *AcceptOBBRCustomerPaymentConsentSystemParams) SetAcceptConsent(acceptConsent *models.AcceptConsentRequest) {
+func (o *AcceptOBBRCustomerPaymentConsentSystemParams) SetAcceptConsent(acceptConsent *models.AcceptPaymentConsent) {
 	o.AcceptConsent = acceptConsent
 }
 

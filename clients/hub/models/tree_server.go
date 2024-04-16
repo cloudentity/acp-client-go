@@ -244,7 +244,7 @@ type TreeServer struct {
 	// organization
 	Organization *OrganizationConfiguration `json:"organization,omitempty" yaml:"organization,omitempty"`
 
-	// parent id
+	// Optional ID of a parent server
 	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
 
 	// policies
@@ -262,7 +262,7 @@ type TreeServer struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br openbanking_br_unico cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
 	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -322,6 +322,9 @@ type TreeServer struct {
 
 	// services
 	Services TreeServices `json:"services,omitempty" yaml:"services,omitempty"`
+
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// sso
 	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
@@ -560,6 +563,10 @@ func (m *TreeServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateServices(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1202,7 +1209,7 @@ var treeServerTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","openbanking_br_unico","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1247,6 +1254,9 @@ const (
 
 	// TreeServerProfileOpenbankingBr captures enum value "openbanking_br"
 	TreeServerProfileOpenbankingBr string = "openbanking_br"
+
+	// TreeServerProfileOpenbankingBrUnico captures enum value "openbanking_br_unico"
+	TreeServerProfileOpenbankingBrUnico string = "openbanking_br_unico"
 
 	// TreeServerProfileCdrAustralia captures enum value "cdr_australia"
 	TreeServerProfileCdrAustralia string = "cdr_australia"
@@ -1457,6 +1467,25 @@ func (m *TreeServer) validateServices(formats strfmt.Registry) error {
 				return ve.ValidateName("services")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("services")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TreeServer) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}
@@ -1882,6 +1911,10 @@ func (m *TreeServer) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2490,6 +2523,27 @@ func (m *TreeServer) contextValidateServices(ctx context.Context, formats strfmt
 			return ce.ValidateName("services")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *TreeServer) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
 	}
 
 	return nil

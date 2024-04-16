@@ -20,6 +20,9 @@ type RFC6749Error struct {
 	// cause
 	Cause string `json:"cause,omitempty" yaml:"cause,omitempty"`
 
+	// details
+	Details interface{} `json:"details,omitempty" yaml:"details,omitempty"`
+
 	// error
 	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 

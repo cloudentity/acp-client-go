@@ -40,6 +40,8 @@ type ClientService interface {
 
 	ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error)
 
+	SetPassword(params *SetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordNoContent, error)
+
 	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error)
 
 	UpdateUserProfileV2(params *UpdateUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileV2OK, error)
@@ -258,6 +260,49 @@ func (a *Client) ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts .
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for resetPasswordConfirm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	SetPassword sets password
+
+	Set a password for a user who doesn't have one yet
+
+This API requires authentication to happen within the last 5 minutes.
+*/
+func (a *Client) SetPassword(params *SetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetPasswordParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setPassword",
+		Method:             "POST",
+		PathPattern:        "/v2/self/set-password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetPasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetPasswordNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

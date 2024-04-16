@@ -18,6 +18,9 @@ import (
 // swagger:model TreeClaim
 type TreeClaim struct {
 
+	// description
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
 	// DeprecatedMapping use SourceType and SourcePath instead
 	// claim mapping - path to attribute in authentication context from where claim value should be picked
 	// Example: email
@@ -44,6 +47,9 @@ type TreeClaim struct {
 
 	// source type
 	SourceType ClaimSourceType `json:"source_type,omitempty" yaml:"source_type,omitempty"`
+
+	// mark claim as verified (required by identity assurance spec)
+	Verified bool `json:"verified,omitempty" yaml:"verified,omitempty"`
 }
 
 // Validate validates this tree claim

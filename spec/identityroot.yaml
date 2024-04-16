@@ -63,6 +63,12 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       tenant_id:
         example: default
         format: tenantID
@@ -297,6 +303,10 @@ definitions:
       badge_color:
         type: string
         x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       deleted:
         type: boolean
         x-nullable: false
@@ -317,6 +327,10 @@ definitions:
         x-nullable: false
       metadata_schema_id:
         format: schemaID
+        type: string
+        x-nullable: false
+      mfa_session_ttl:
+        format: duration
         type: string
         x-nullable: false
       name:
@@ -343,6 +357,16 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      second_factor_authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      second_factor_preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        - webauthn
+        example: password
+        type: string
+        x-nullable: false
       system:
         type: boolean
         x-nullable: false
@@ -366,6 +390,12 @@ definitions:
         x-nullable: false
       identifier:
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: code metadata
+        type: object
         x-nullable: false
       type:
         enum:
@@ -598,6 +628,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -608,6 +641,15 @@ definitions:
     type: object
   User:
     properties:
+      business_metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       created_at:
         format: date-time
         type: string

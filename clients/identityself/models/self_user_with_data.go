@@ -19,6 +19,9 @@ import (
 // swagger:model SelfUserWithData
 type SelfUserWithData struct {
 
+	// business metadata
+	BusinessMetadata map[string]interface{} `json:"business_metadata,omitempty" yaml:"business_metadata,omitempty"`
+
 	// id
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 

@@ -25,6 +25,9 @@ type TreePolicy struct {
 	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
 	Definition string `json:"definition,omitempty" yaml:"definition,omitempty"`
 
+	// env version
+	EnvVersion FnEnvVersion `json:"env_version,omitempty" yaml:"env_version,omitempty"`
+
 	// Language of a policy
 	//
 	// ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
@@ -73,6 +76,10 @@ func (m *TreePolicy) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEnvVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateValidators(formats); err != nil {
 		res = append(res, err)
 	}
@@ -97,6 +104,23 @@ func (m *TreePolicy) validateCrossTenantAPIPolicyBindings(formats strfmt.Registr
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TreePolicy) validateEnvVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
+		}
+		return err
 	}
 
 	return nil
@@ -136,6 +160,10 @@ func (m *TreePolicy) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEnvVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateValidators(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -157,6 +185,24 @@ func (m *TreePolicy) contextValidateCrossTenantAPIPolicyBindings(ctx context.Con
 			return ve.ValidateName("cross_tenant_api_policy_bindings")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("cross_tenant_api_policy_bindings")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *TreePolicy) contextValidateEnvVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EnvVersion) { // not required
+		return nil
+	}
+
+	if err := m.EnvVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("env_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("env_version")
 		}
 		return err
 	}

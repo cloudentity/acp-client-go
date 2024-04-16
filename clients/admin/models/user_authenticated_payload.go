@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -19,8 +20,19 @@ import (
 // swagger:model UserAuthenticatedPayload
 type UserAuthenticatedPayload struct {
 
+	// first factor method
+	// Enum: [password otp webauthn]
+	AuthnMethod string `json:"authn_method,omitempty" yaml:"authn_method,omitempty"`
+
 	// identifier
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
+
+	// second factor method
+	// Enum: [password otp webauthn]
+	Mfa string `json:"mfa,omitempty" yaml:"mfa,omitempty"`
+
+	// m f a skipped
+	MfaSkipped bool `json:"mfa_skipped,omitempty" yaml:"mfa_skipped,omitempty"`
 
 	// password mode
 	PasswordMode bool `json:"password_mode,omitempty" yaml:"password_mode,omitempty"`
@@ -34,6 +46,14 @@ type UserAuthenticatedPayload struct {
 func (m *UserAuthenticatedPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthnMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMfa(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSuccess(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,6 +61,96 @@ func (m *UserAuthenticatedPayload) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var userAuthenticatedPayloadTypeAuthnMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		userAuthenticatedPayloadTypeAuthnMethodPropEnum = append(userAuthenticatedPayloadTypeAuthnMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// UserAuthenticatedPayloadAuthnMethodPassword captures enum value "password"
+	UserAuthenticatedPayloadAuthnMethodPassword string = "password"
+
+	// UserAuthenticatedPayloadAuthnMethodOtp captures enum value "otp"
+	UserAuthenticatedPayloadAuthnMethodOtp string = "otp"
+
+	// UserAuthenticatedPayloadAuthnMethodWebauthn captures enum value "webauthn"
+	UserAuthenticatedPayloadAuthnMethodWebauthn string = "webauthn"
+)
+
+// prop value enum
+func (m *UserAuthenticatedPayload) validateAuthnMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, userAuthenticatedPayloadTypeAuthnMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UserAuthenticatedPayload) validateAuthnMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthnMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthnMethodEnum("authn_method", "body", m.AuthnMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var userAuthenticatedPayloadTypeMfaPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		userAuthenticatedPayloadTypeMfaPropEnum = append(userAuthenticatedPayloadTypeMfaPropEnum, v)
+	}
+}
+
+const (
+
+	// UserAuthenticatedPayloadMfaPassword captures enum value "password"
+	UserAuthenticatedPayloadMfaPassword string = "password"
+
+	// UserAuthenticatedPayloadMfaOtp captures enum value "otp"
+	UserAuthenticatedPayloadMfaOtp string = "otp"
+
+	// UserAuthenticatedPayloadMfaWebauthn captures enum value "webauthn"
+	UserAuthenticatedPayloadMfaWebauthn string = "webauthn"
+)
+
+// prop value enum
+func (m *UserAuthenticatedPayload) validateMfaEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, userAuthenticatedPayloadTypeMfaPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UserAuthenticatedPayload) validateMfa(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mfa) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateMfaEnum("mfa", "body", m.Mfa); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -26,6 +26,9 @@ type PolicyPayload struct {
 	// default/default/scope/email/machine
 	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
+	// Policy id
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
+
 	// Define a type of your policy
 	//
 	// ACP is provided with the following policy types: user, developer, machine, dcr, api.

@@ -19,16 +19,26 @@ import (
 // swagger:model ListClientsWithAccess
 type ListClientsWithAccess struct {
 
+	// claims
+	Claims []*ClaimPublicResponse `json:"claims" yaml:"claims"`
+
 	// clients
 	Clients []*ClientWithAccess `json:"clients" yaml:"clients"`
 
 	// scopes
 	Scopes []*ScopeWithServicePublicResponse `json:"scopes" yaml:"scopes"`
+
+	// verified claims
+	VerifiedClaims []*ClaimPublicResponse `json:"verified_claims" yaml:"verified_claims"`
 }
 
 // Validate validates this list clients with access
 func (m *ListClientsWithAccess) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateClaims(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateClients(formats); err != nil {
 		res = append(res, err)
@@ -38,9 +48,39 @@ func (m *ListClientsWithAccess) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVerifiedClaims(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ListClientsWithAccess) validateClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.Claims) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Claims); i++ {
+		if swag.IsZero(m.Claims[i]) { // not required
+			continue
+		}
+
+		if m.Claims[i] != nil {
+			if err := m.Claims[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -96,9 +136,39 @@ func (m *ListClientsWithAccess) validateScopes(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ListClientsWithAccess) validateVerifiedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.VerifiedClaims) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.VerifiedClaims); i++ {
+		if swag.IsZero(m.VerifiedClaims[i]) { // not required
+			continue
+		}
+
+		if m.VerifiedClaims[i] != nil {
+			if err := m.VerifiedClaims[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("verified_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("verified_claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this list clients with access based on the context it is used
 func (m *ListClientsWithAccess) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateClients(ctx, formats); err != nil {
 		res = append(res, err)
@@ -108,9 +178,38 @@ func (m *ListClientsWithAccess) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateVerifiedClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ListClientsWithAccess) contextValidateClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Claims); i++ {
+
+		if m.Claims[i] != nil {
+
+			if swag.IsZero(m.Claims[i]) { // not required
+				return nil
+			}
+
+			if err := m.Claims[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -154,6 +253,31 @@ func (m *ListClientsWithAccess) contextValidateScopes(ctx context.Context, forma
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ListClientsWithAccess) contextValidateVerifiedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VerifiedClaims); i++ {
+
+		if m.VerifiedClaims[i] != nil {
+
+			if swag.IsZero(m.VerifiedClaims[i]) { // not required
+				return nil
+			}
+
+			if err := m.VerifiedClaims[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("verified_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("verified_claims" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

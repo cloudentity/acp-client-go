@@ -22,6 +22,11 @@ type AuditEventMetadata struct {
 	// It's only populated if the token has been issued in token exchange delegation flow.
 	ActorClaims map[string]interface{} `json:"actor_claims,omitempty" yaml:"actor_claims,omitempty"`
 
+	// Authorization correlation ID
+	//
+	// Represents the correlation ID used for the OAuth2 authorization code grant flow.
+	AuthorizationCorrelationID string `json:"authorization_correlation_id,omitempty" yaml:"authorization_correlation_id,omitempty"`
+
 	// Access request client ID related to an audit event.
 	//
 	// May be empty when the access is incorrect or missing.

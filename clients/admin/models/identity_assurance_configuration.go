@@ -20,8 +20,8 @@ type IdentityAssuranceConfiguration struct {
 	// JSON array containing all attachment types supported by the OP.  REQUIRED when OP supports attachments. Possible values are external and embedded.
 	Attachments []string `json:"attachments" yaml:"attachments"`
 
-	// claims in verified claims
-	ClaimsInVerifiedClaims []string `json:"claims_in_verified_claims" yaml:"claims_in_verified_claims"`
+	// If enabled, verified claims request via userinfo will be blocked
+	BlockVerifiedClaimsViaUserinfo bool `json:"block_verified_claims_via_userinfo,omitempty" yaml:"block_verified_claims_via_userinfo,omitempty"`
 
 	// REQUIRED when OP supports external attachments. JSON array containing all supported digest algorithms which can be used as alg property within
 	// the digest object of external attachments. If the OP supports external attachments, at least the algorithm sha-256 MUST be supported by the OP as well.

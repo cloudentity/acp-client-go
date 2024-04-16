@@ -29,6 +29,9 @@ type TreeScope struct {
 	// Request this scope by default for all clients who subscribed to this scope
 	Implicit bool `json:"implicit,omitempty" yaml:"implicit,omitempty"`
 
+	// Do not ask for consent for this scope
+	ImplicitGrant bool `json:"implicit_grant,omitempty" yaml:"implicit_grant,omitempty"`
+
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 

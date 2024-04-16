@@ -2990,17 +2990,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3109,17 +3109,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3239,17 +3239,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3388,17 +3388,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3548,17 +3548,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3697,17 +3697,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -3790,6 +3790,267 @@ paths:
       summary: Query http requests by group
       tags:
       - Metrics
+  /tenants/{tenantID}/servers/{wid}/access-tokens:
+    get:
+      description: Query access token data points.
+      operationId: systemWorkspaceSingleAccessTokenMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - setup: []
+      summary: Query access tokens
+      tags:
+      - Metrics
+  /tenants/{tenantID}/servers/{wid}/access-tokens/{group}:
+    get:
+      description: Query access token data points by group.
+      operationId: systemWorkspaceAggregatedAccessTokenMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      - default: grant_type
+        description: |-
+          Group by
+          grant_type AccessTokensByGrantType
+        enum:
+        - grant_type
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: grant_type AccessTokensByGrantType
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - setup: []
+      summary: Query access tokens by group
+      tags:
+      - Metrics
   /tenants/{tenantID}/users:
     get:
       description: Query users data points.
@@ -3864,17 +4125,17 @@ paths:
         in: query
         name: to
         type: string
-      - description: A server will only return requested resources if the resource
-          matches one of the listed ETag value
-        format: etag
-        in: header
-        name: if-match
-        type: string
       - default: default
         description: Tenant ID
         in: path
         name: tenantID
         required: true
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count_all
         description: |-

@@ -60,6 +60,12 @@ type OBBRConsentWithClient struct {
 	// customer payment consent v3
 	CustomerPaymentConsentV3 *BrazilCustomerPaymentConsentV3 `json:"customer_payment_consent_v3,omitempty" yaml:"customer_payment_consent_v3,omitempty"`
 
+	// customer payment consent v4
+	CustomerPaymentConsentV4 *BrazilCustomerPaymentConsentV4 `json:"customer_payment_consent_v4,omitempty" yaml:"customer_payment_consent_v4,omitempty"`
+
+	// customer recurring payment consent v1
+	CustomerRecurringPaymentConsentV1 *BrazilCustomerRecurringPaymentConsentV1 `json:"customer_recurring_payment_consent_v1,omitempty" yaml:"customer_recurring_payment_consent_v1,omitempty"`
+
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty" yaml:"idempotency_key,omitempty"`
 
@@ -120,6 +126,14 @@ func (m *OBBRConsentWithClient) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomerPaymentConsentV3(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsentV4(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerRecurringPaymentConsentV1(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -282,6 +296,44 @@ func (m *OBBRConsentWithClient) validateCustomerPaymentConsentV3(formats strfmt.
 	return nil
 }
 
+func (m *OBBRConsentWithClient) validateCustomerPaymentConsentV4(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV4) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsentV4 != nil {
+		if err := m.CustomerPaymentConsentV4.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v4")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v4")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBBRConsentWithClient) validateCustomerRecurringPaymentConsentV1(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerRecurringPaymentConsentV1) { // not required
+		return nil
+	}
+
+	if m.CustomerRecurringPaymentConsentV1 != nil {
+		if err := m.CustomerRecurringPaymentConsentV1.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_recurring_payment_consent_v1")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_recurring_payment_consent_v1")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OBBRConsentWithClient) validateSpecVersion(formats strfmt.Registry) error {
 	if swag.IsZero(m.SpecVersion) { // not required
 		return nil
@@ -345,6 +397,14 @@ func (m *OBBRConsentWithClient) ContextValidate(ctx context.Context, formats str
 	}
 
 	if err := m.contextValidateCustomerPaymentConsentV3(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerPaymentConsentV4(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerRecurringPaymentConsentV1(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -501,6 +561,48 @@ func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsentV3(ctx cont
 				return ve.ValidateName("customer_payment_consent_v3")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("customer_payment_consent_v3")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsentV4(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerPaymentConsentV4 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV4) { // not required
+			return nil
+		}
+
+		if err := m.CustomerPaymentConsentV4.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v4")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v4")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBBRConsentWithClient) contextValidateCustomerRecurringPaymentConsentV1(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerRecurringPaymentConsentV1 != nil {
+
+		if swag.IsZero(m.CustomerRecurringPaymentConsentV1) { // not required
+			return nil
+		}
+
+		if err := m.CustomerRecurringPaymentConsentV1.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_recurring_payment_consent_v1")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_recurring_payment_consent_v1")
 			}
 			return err
 		}

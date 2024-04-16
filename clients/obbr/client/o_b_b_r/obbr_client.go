@@ -46,6 +46,10 @@ type ClientService interface {
 
 	CreatePaymentConsentV3(params *CreatePaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV3Created, error)
 
+	CreatePaymentConsentV4(params *CreatePaymentConsentV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV4Created, error)
+
+	CreateRecurringPaymentConsentV1(params *CreateRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecurringPaymentConsentV1Created, error)
+
 	DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentNoContent, error)
 
 	DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error)
@@ -68,7 +72,15 @@ type ClientService interface {
 
 	GetPaymentConsentV3(params *GetPaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV3OK, error)
 
+	GetPaymentConsentV4(params *GetPaymentConsentV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV4OK, error)
+
+	GetRecurringPaymentConsentV1(params *GetRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecurringPaymentConsentV1OK, error)
+
 	PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error)
+
+	PatchRecurringPaymentConsentV1(params *PatchRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchRecurringPaymentConsentV1Created, error)
+
+	ObbrAutomaticPaymentsRecurringConsentIntrospect(params *ObbrAutomaticPaymentsRecurringConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrAutomaticPaymentsRecurringConsentIntrospectOK, error)
 
 	ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error)
 
@@ -79,6 +91,8 @@ type ClientService interface {
 	ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntrospectV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV2OK, error)
 
 	ObbrPaymentConsentIntrospectV3(params *ObbrPaymentConsentIntrospectV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV3OK, error)
+
+	ObbrPaymentConsentIntrospectV4(params *ObbrPaymentConsentIntrospectV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV4OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -477,6 +491,104 @@ func (a *Client) CreatePaymentConsentV3(params *CreatePaymentConsentV3Params, au
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreatePaymentConsentV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CreatePaymentConsentV4 creates payment consent v4
+
+	This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) CreatePaymentConsentV4(params *CreatePaymentConsentV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePaymentConsentV4Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreatePaymentConsentV4",
+		Method:             "POST",
+		PathPattern:        "/open-banking/payments/v4/consents",
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePaymentConsentV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreatePaymentConsentV4Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreatePaymentConsentV4: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CreateRecurringPaymentConsentV1 creates recurring payment consent v1
+
+	This API allows an Account Information Service Provider (AISP) to create a long-term consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) CreateRecurringPaymentConsentV1(params *CreateRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecurringPaymentConsentV1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRecurringPaymentConsentV1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateRecurringPaymentConsentV1",
+		Method:             "POST",
+		PathPattern:        "/open-banking/automatic-payments/v1/recurring-consents",
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRecurringPaymentConsentV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateRecurringPaymentConsentV1Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateRecurringPaymentConsentV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -1036,6 +1148,108 @@ func (a *Client) GetPaymentConsentV3(params *GetPaymentConsentV3Params, authInfo
 }
 
 /*
+	GetPaymentConsentV4 gets payment consent v4
+
+	Retrieve the information about a previously created payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) GetPaymentConsentV4(params *GetPaymentConsentV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentConsentV4Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetPaymentConsentV4",
+		Method:             "GET",
+		PathPattern:        "/open-banking/payments/v4/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentConsentV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetPaymentConsentV4OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetPaymentConsentV4: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetRecurringPaymentConsentV1 gets recurring payment consent v1
+
+	Retrieve the information about a previously created long-term payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) GetRecurringPaymentConsentV1(params *GetRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecurringPaymentConsentV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecurringPaymentConsentV1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetRecurringPaymentConsentV1",
+		Method:             "GET",
+		PathPattern:        "/open-banking/automatic-payments/v1/recurring-consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecurringPaymentConsentV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRecurringPaymentConsentV1OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRecurringPaymentConsentV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	PatchPaymentConsent revokes payment consent
 
 	Revoke a previously granted payment consent. Pass the required consent identifier in the path.
@@ -1081,6 +1295,104 @@ func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PatchPaymentConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	PatchRecurringPaymentConsentV1 patches recurring payment consent v1
+
+	This API allows an Account Information Service Provider (AISP) to reject, revoke, or edit a long-term consent. Pass the required consent identifier
+
+in the path.
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) PatchRecurringPaymentConsentV1(params *PatchRecurringPaymentConsentV1Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchRecurringPaymentConsentV1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchRecurringPaymentConsentV1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PatchRecurringPaymentConsentV1",
+		Method:             "PATCH",
+		PathPattern:        "/open-banking/automatic-payments/v1/recurring-consents/{consentID}",
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchRecurringPaymentConsentV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchRecurringPaymentConsentV1Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PatchRecurringPaymentConsentV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ObbrAutomaticPaymentsRecurringConsentIntrospect introspects open banking brazil automatic payments recurring consent
+
+	This endpoint accepts an OAuth 2.0 token and returns meta information surrounding the token along with the
+
+data access consent and the associated account identifiers.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) ObbrAutomaticPaymentsRecurringConsentIntrospect(params *ObbrAutomaticPaymentsRecurringConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrAutomaticPaymentsRecurringConsentIntrospectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewObbrAutomaticPaymentsRecurringConsentIntrospectParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "obbrAutomaticPaymentsRecurringConsentIntrospect",
+		Method:             "POST",
+		PathPattern:        "/open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ObbrAutomaticPaymentsRecurringConsentIntrospectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ObbrAutomaticPaymentsRecurringConsentIntrospectOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for obbrAutomaticPaymentsRecurringConsentIntrospect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -1329,6 +1641,56 @@ func (a *Client) ObbrPaymentConsentIntrospectV3(params *ObbrPaymentConsentIntros
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospectV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ObbrPaymentConsentIntrospectV4 introspects open banking brazil payment consent v4
+
+	This endpoint accepts an OAuth 2.0 token bound to v4 payment consents and returns meta information surrounding the
+
+token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1, v2 and v3
+payment consent tokens.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) ObbrPaymentConsentIntrospectV4(params *ObbrPaymentConsentIntrospectV4Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewObbrPaymentConsentIntrospectV4Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "obbrPaymentConsentIntrospectV4",
+		Method:             "POST",
+		PathPattern:        "/open-banking-brasil/open-banking/payments/v4/consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ObbrPaymentConsentIntrospectV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ObbrPaymentConsentIntrospectV4OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospectV4: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

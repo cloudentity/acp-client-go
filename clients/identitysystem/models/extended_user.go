@@ -24,6 +24,12 @@ type ExtendedUser struct {
 	// addresses
 	Addresses []*Address `json:"addresses" yaml:"addresses"`
 
+	// business metadata
+	BusinessMetadata map[string]interface{} `json:"business_metadata,omitempty" yaml:"business_metadata,omitempty"`
+
+	// business metadata schema id
+	BusinessMetadataSchemaID string `json:"business_metadata_schema_id,omitempty" yaml:"business_metadata_schema_id,omitempty"`
+
 	// created at
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`

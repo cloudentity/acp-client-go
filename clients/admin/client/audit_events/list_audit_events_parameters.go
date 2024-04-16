@@ -69,6 +69,12 @@ type ListAuditEventsParams struct {
 	*/
 	AfterEventID *string
 
+	/* AuthorizationCorrelationID.
+
+	   optional list audit events with a given authorization correlation id
+	*/
+	AuthorizationCorrelationID *string
+
 	/* BeforeEventID.
 
 	     optional list events before a given event id
@@ -256,6 +262,17 @@ func (o *ListAuditEventsParams) SetAfterEventID(afterEventID *string) {
 	o.AfterEventID = afterEventID
 }
 
+// WithAuthorizationCorrelationID adds the authorizationCorrelationID to the list audit events params
+func (o *ListAuditEventsParams) WithAuthorizationCorrelationID(authorizationCorrelationID *string) *ListAuditEventsParams {
+	o.SetAuthorizationCorrelationID(authorizationCorrelationID)
+	return o
+}
+
+// SetAuthorizationCorrelationID adds the authorizationCorrelationId to the list audit events params
+func (o *ListAuditEventsParams) SetAuthorizationCorrelationID(authorizationCorrelationID *string) {
+	o.AuthorizationCorrelationID = authorizationCorrelationID
+}
+
 // WithBeforeEventID adds the beforeEventID to the list audit events params
 func (o *ListAuditEventsParams) WithBeforeEventID(beforeEventID *string) *ListAuditEventsParams {
 	o.SetBeforeEventID(beforeEventID)
@@ -430,6 +447,23 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qAfterEventID != "" {
 
 			if err := r.SetQueryParam("after_event_id", qAfterEventID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AuthorizationCorrelationID != nil {
+
+		// query param authorization_correlation_id
+		var qrAuthorizationCorrelationID string
+
+		if o.AuthorizationCorrelationID != nil {
+			qrAuthorizationCorrelationID = *o.AuthorizationCorrelationID
+		}
+		qAuthorizationCorrelationID := qrAuthorizationCorrelationID
+		if qAuthorizationCorrelationID != "" {
+
+			if err := r.SetQueryParam("authorization_correlation_id", qAuthorizationCorrelationID); err != nil {
 				return err
 			}
 		}

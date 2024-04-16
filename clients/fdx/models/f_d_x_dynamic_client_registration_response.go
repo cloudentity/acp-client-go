@@ -21,6 +21,9 @@ import (
 // swagger:model FDXDynamicClientRegistrationResponse
 type FDXDynamicClientRegistrationResponse struct {
 
+	// Application URL
+	AppURL string `json:"app_url,omitempty" yaml:"app_url,omitempty"`
+
 	// The client application type.
 	//
 	// Client applications can be either of a `web` or `native` types.
@@ -90,6 +93,12 @@ type FDXDynamicClientRegistrationResponse struct {
 	//
 	// Input: an HTTPS URL.
 	BackchannelClientNotificationEndpoint string `json:"backchannel_client_notification_endpoint,omitempty" yaml:"backchannel_client_notification_endpoint,omitempty"`
+
+	// Boolean value specifying whether the RP requires that a sid (session ID) claim be included in the Logout Token to identify the RP session with the OP when the backchannel_logout_uri is used.
+	BackchannelLogoutSessionRequired bool `json:"backchannel_logout_session_required,omitempty" yaml:"backchannel_logout_session_required,omitempty"`
+
+	// RP URL that will cause the RP to log itself out when sent a Logout Token by the OP.
+	BackchannelLogoutURI string `json:"backchannel_logout_uri,omitempty" yaml:"backchannel_logout_uri,omitempty"`
 
 	// REQUIRED for requests when the client application uses CIBA as an authorization grant type.
 	//

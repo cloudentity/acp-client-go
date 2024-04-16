@@ -58,6 +58,8 @@ type ClientService interface {
 
 	CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLIDPCreated, error)
 
+	CreateSAMLV2IDP(params *CreateSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLV2IDPCreated, error)
+
 	CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStaticIDPCreated, error)
 
 	CreateWorkspaceIDP(params *CreateWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateWorkspaceIDPCreated, error)
@@ -128,6 +130,10 @@ type ClientService interface {
 
 	GetSAMLIDPClient(params *GetSAMLIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLIDPClientOK, error)
 
+	GetSAMLV2IDP(params *GetSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLV2IDPOK, error)
+
+	GetSAMLV2IDPClient(params *GetSAMLV2IDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLV2IDPClientOK, error)
+
 	GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStaticIDPOK, error)
 
 	GetStaticIDPClient(params *GetStaticIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStaticIDPClientOK, error)
@@ -171,6 +177,8 @@ type ClientService interface {
 	UpdateOrganizationIDP(params *UpdateOrganizationIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrganizationIDPOK, error)
 
 	UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLIDPOK, error)
+
+	UpdateSAMLV2IDP(params *UpdateSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLV2IDPOK, error)
 
 	UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateStaticIDPOK, error)
 
@@ -750,6 +758,47 @@ func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.Cli
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for createSAMLIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreateSAMLV2IDP creates s a m l v2 ID p
+
+Create SAMLV2 IDP.
+*/
+func (a *Client) CreateSAMLV2IDP(params *CreateSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLV2IDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSAMLV2IDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createSAMLV2IDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/saml_v2",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateSAMLV2IDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateSAMLV2IDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createSAMLV2IDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -2161,6 +2210,86 @@ func (a *Client) GetSAMLIDPClient(params *GetSAMLIDPClientParams, authInfo runti
 }
 
 /*
+GetSAMLV2IDP gets s a m l v2 ID p
+
+Get SAMLV2 IDP.
+*/
+func (a *Client) GetSAMLV2IDP(params *GetSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLV2IDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSAMLV2IDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getSAMLV2IDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/saml_v2/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSAMLV2IDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSAMLV2IDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSAMLV2IDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetSAMLV2IDPClient returns s a m l v2 ID p client
+*/
+func (a *Client) GetSAMLV2IDPClient(params *GetSAMLV2IDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLV2IDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSAMLV2IDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getSAMLV2IDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/saml_v2/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSAMLV2IDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSAMLV2IDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSAMLV2IDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetStaticIDP gets static ID p
 
 Get Static IDP.
@@ -3051,6 +3180,47 @@ func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.Cli
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateSAMLIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateSAMLV2IDP updates s a m l v2 ID p
+
+Update SAMLV2 IDP.
+*/
+func (a *Client) UpdateSAMLV2IDP(params *UpdateSAMLV2IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLV2IDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSAMLV2IDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateSAMLV2IDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/saml_v2/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSAMLV2IDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateSAMLV2IDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateSAMLV2IDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

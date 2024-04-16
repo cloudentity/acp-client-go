@@ -26,6 +26,9 @@ type RequestCode struct {
 	// identifier
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
+	// code metadata
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	// type
 	// Required: true
 	// Enum: [activation reset_password challenge verify_address authentication]

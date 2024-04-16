@@ -2,6 +2,27 @@ basePath: /default/default
 consumes:
 - application/json
 definitions:
+  ClaimPublicResponse:
+    properties:
+      description:
+        description: description
+        type: string
+        x-nullable: false
+      id:
+        description: unique claim id
+        example: "1"
+        type: string
+        x-nullable: false
+      name:
+        description: claim name in outgoing id / access token
+        example: email
+        type: string
+        x-nullable: false
+      verified:
+        description: mark claim as verified (required by identity assurance spec)
+        type: boolean
+        x-nullable: false
+    type: object
   ClientDetails:
     properties:
       client_uri:
@@ -29,10 +50,22 @@ definitions:
     properties:
       client:
         $ref: '#/definitions/ClientDetails'
+      granted_claims:
+        description: Claims granted to client
+        items:
+          $ref: '#/definitions/GrantedClaim'
+        type: array
+        x-nullable: false
       granted_scopes:
         description: Scopes granted to client
         items:
           $ref: '#/definitions/GrantedScope'
+        type: array
+        x-nullable: false
+      granted_verified_claims:
+        description: Claims granted to client
+        items:
+          $ref: '#/definitions/GrantedClaim'
         type: array
         x-nullable: false
     type: object
@@ -554,6 +587,15 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  GrantedClaim:
+    properties:
+      claim_name:
+        type: string
+        x-nullable: false
+      id:
+        type: string
+        x-nullable: false
+    type: object
   GrantedScope:
     properties:
       granted_scope_name:
@@ -568,6 +610,11 @@ definitions:
     type: object
   ListClientsWithAccess:
     properties:
+      claims:
+        items:
+          $ref: '#/definitions/ClaimPublicResponse'
+        type: array
+        x-nullable: false
       clients:
         items:
           $ref: '#/definitions/ClientWithAccess'
@@ -576,6 +623,11 @@ definitions:
       scopes:
         items:
           $ref: '#/definitions/ScopeWithServicePublicResponse'
+        type: array
+        x-nullable: false
+      verified_claims:
+        items:
+          $ref: '#/definitions/ClaimPublicResponse'
         type: array
         x-nullable: false
     type: object
