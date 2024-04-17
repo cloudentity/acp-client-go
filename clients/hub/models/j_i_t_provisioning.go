@@ -7,16 +7,22 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // JITProvisioning j i t provisioning
 //
 // swagger:model JITProvisioning
 type JITProvisioning struct {
+
+	// Admin role assigned to the provisioned user if JIT is enabled (available only for admin workspaces only)
+	// Enum: [admin business_admin auditor manager user_manager member]
+	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
 
 	// identifier salt
 	IdentifierSalt string `json:"identifier_salt,omitempty" yaml:"identifier_salt,omitempty"`
@@ -35,6 +41,10 @@ type JITProvisioning struct {
 func (m *JITProvisioning) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAdminRoleType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -46,6 +56,60 @@ func (m *JITProvisioning) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var jITProvisioningTypeAdminRoleTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["admin","business_admin","auditor","manager","user_manager","member"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		jITProvisioningTypeAdminRoleTypePropEnum = append(jITProvisioningTypeAdminRoleTypePropEnum, v)
+	}
+}
+
+const (
+
+	// JITProvisioningAdminRoleTypeAdmin captures enum value "admin"
+	JITProvisioningAdminRoleTypeAdmin string = "admin"
+
+	// JITProvisioningAdminRoleTypeBusinessAdmin captures enum value "business_admin"
+	JITProvisioningAdminRoleTypeBusinessAdmin string = "business_admin"
+
+	// JITProvisioningAdminRoleTypeAuditor captures enum value "auditor"
+	JITProvisioningAdminRoleTypeAuditor string = "auditor"
+
+	// JITProvisioningAdminRoleTypeManager captures enum value "manager"
+	JITProvisioningAdminRoleTypeManager string = "manager"
+
+	// JITProvisioningAdminRoleTypeUserManager captures enum value "user_manager"
+	JITProvisioningAdminRoleTypeUserManager string = "user_manager"
+
+	// JITProvisioningAdminRoleTypeMember captures enum value "member"
+	JITProvisioningAdminRoleTypeMember string = "member"
+)
+
+// prop value enum
+func (m *JITProvisioning) validateAdminRoleTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, jITProvisioningTypeAdminRoleTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *JITProvisioning) validateAdminRoleType(formats strfmt.Registry) error {
+	if swag.IsZero(m.AdminRoleType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAdminRoleTypeEnum("admin_role_type", "body", m.AdminRoleType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

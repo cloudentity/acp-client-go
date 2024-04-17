@@ -50,7 +50,7 @@ type ServerBindingResponse struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br openbanking_br_unico cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
 	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// authorization server id
@@ -115,7 +115,7 @@ var serverBindingResponseTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","openbanking_br_unico","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -160,6 +160,9 @@ const (
 
 	// ServerBindingResponseProfileOpenbankingBr captures enum value "openbanking_br"
 	ServerBindingResponseProfileOpenbankingBr string = "openbanking_br"
+
+	// ServerBindingResponseProfileOpenbankingBrUnico captures enum value "openbanking_br_unico"
+	ServerBindingResponseProfileOpenbankingBrUnico string = "openbanking_br_unico"
 
 	// ServerBindingResponseProfileCdrAustralia captures enum value "cdr_australia"
 	ServerBindingResponseProfileCdrAustralia string = "cdr_australia"

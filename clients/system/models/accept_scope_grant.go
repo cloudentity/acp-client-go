@@ -27,6 +27,9 @@ type AcceptScopeGrant struct {
 	// granted scopes
 	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty" yaml:"granted_scopes,omitempty"`
 
+	// granted verified claims
+	GrantedVerifiedClaims GrantedVerifiedClaims `json:"granted_verified_claims,omitempty" yaml:"granted_verified_claims,omitempty"`
+
 	// login identifier
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
@@ -43,6 +46,10 @@ func (m *AcceptScopeGrant) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGrantedScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGrantedVerifiedClaims(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,6 +93,23 @@ func (m *AcceptScopeGrant) validateGrantedScopes(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *AcceptScopeGrant) validateGrantedVerifiedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedVerifiedClaims) { // not required
+		return nil
+	}
+
+	if err := m.GrantedVerifiedClaims.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_verified_claims")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("granted_verified_claims")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this accept scope grant based on the context it is used
 func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -95,6 +119,10 @@ func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.R
 	}
 
 	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGrantedVerifiedClaims(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -125,6 +153,20 @@ func (m *AcceptScopeGrant) contextValidateGrantedScopes(ctx context.Context, for
 			return ve.ValidateName("granted_scopes")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("granted_scopes")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *AcceptScopeGrant) contextValidateGrantedVerifiedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.GrantedVerifiedClaims.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_verified_claims")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("granted_verified_claims")
 		}
 		return err
 	}

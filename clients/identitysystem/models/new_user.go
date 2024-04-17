@@ -21,6 +21,12 @@ import (
 // swagger:model NewUser
 type NewUser struct {
 
+	// business metadata
+	BusinessMetadata map[string]interface{} `json:"business_metadata,omitempty" yaml:"business_metadata,omitempty"`
+
+	// business metadata schema id
+	BusinessMetadataSchemaID string `json:"business_metadata_schema_id,omitempty" yaml:"business_metadata_schema_id,omitempty"`
+
 	// credentials
 	Credentials []*NewUserCredential `json:"credentials" yaml:"credentials"`
 

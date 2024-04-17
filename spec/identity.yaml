@@ -109,6 +109,214 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  B2BUsers:
+    description: Identity B2BUsers
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/BaseExtendedUser'
+        type: array
+        x-nullable: false
+    type: object
+  BaseExtendedUser:
+    properties:
+      addresses:
+        items:
+          $ref: '#/definitions/Address'
+        type: array
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      identifiers_with_details:
+        items:
+          $ref: '#/definitions/IdentifierDetails'
+        type: array
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        example: active
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      user_type:
+        x-nullable: false
+      verified addresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  BaseNewUserPayload:
+    properties:
+      credentials:
+        items:
+          $ref: '#/definitions/NewUserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/NewUserIdentifier'
+        type: array
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/NewUserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - status
+    type: object
+  BaseUpdateUser:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+    type: object
+  BaseUserWithData:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      credentials:
+        items:
+          $ref: '#/definitions/UserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/UserIdentifier'
+        type: array
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/UserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
   Credential:
     description: Credential contains all needed information about a WebAuthn credential
       for storage
@@ -180,6 +388,15 @@ definitions:
         items:
           $ref: '#/definitions/Address'
         type: array
+        x-nullable: false
+      business_metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
         x-nullable: false
       created_at:
         format: date-time
@@ -337,6 +554,15 @@ definitions:
     type: object
   NewUserPayload:
     properties:
+      business_metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       credentials:
         items:
           $ref: '#/definitions/NewUserCredential'
@@ -503,6 +729,10 @@ definitions:
       badge_color:
         type: string
         x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       deleted:
         type: boolean
         x-nullable: false
@@ -523,6 +753,10 @@ definitions:
         x-nullable: false
       metadata_schema_id:
         format: schemaID
+        type: string
+        x-nullable: false
+      mfa_session_ttl:
+        format: duration
         type: string
         x-nullable: false
       name:
@@ -549,6 +783,16 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      second_factor_authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      second_factor_preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        - webauthn
+        example: password
+        type: string
+        x-nullable: false
       system:
         type: boolean
         x-nullable: false
@@ -567,6 +811,24 @@ definitions:
     type: object
   PoolPermissionsResponse:
     properties:
+      b2b_manage_admin_metadata:
+        type: boolean
+        x-nullable: false
+      b2b_manage_business_metadata:
+        type: boolean
+        x-nullable: false
+      b2b_manage_users:
+        type: boolean
+        x-nullable: false
+      b2b_read_admin_metadata:
+        type: boolean
+        x-nullable: false
+      b2b_read_business_metadata:
+        type: boolean
+        x-nullable: false
+      b2b_read_users:
+        type: boolean
+        x-nullable: false
       delete_identity_pool:
         type: boolean
         x-nullable: false
@@ -596,6 +858,10 @@ definitions:
       badge_color:
         type: string
         x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       deleted:
         type: boolean
         x-nullable: false
@@ -616,6 +882,10 @@ definitions:
         x-nullable: false
       metadata_schema_id:
         format: schemaID
+        type: string
+        x-nullable: false
+      mfa_session_ttl:
+        format: duration
         type: string
         x-nullable: false
       name:
@@ -653,6 +923,16 @@ definitions:
         x-nullable: false
       public_registration_allowed:
         type: boolean
+        x-nullable: false
+      second_factor_authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      second_factor_preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        - webauthn
+        example: password
+        type: string
         x-nullable: false
       system:
         type: boolean
@@ -898,6 +1178,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -908,6 +1191,15 @@ definitions:
     type: object
   UpdateUser:
     properties:
+      business_metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       metadata:
         additionalProperties:
           type: object
@@ -1095,6 +1387,14 @@ definitions:
     - created_at
     - updated_at
     type: object
+  UserMetadata:
+    properties:
+      Metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
   UserPools:
     properties:
       cursor:
@@ -1183,6 +1483,15 @@ definitions:
     type: object
   UserWithData:
     properties:
+      business_metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      business_metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
       created_at:
         format: date-time
         type: string
@@ -1270,6 +1579,244 @@ info:
   title: Cloudentity API
   version: latest
 paths:
+  /admin/b2b/pools/{ipID}/users:
+    get:
+      description: |-
+        Retrieve the list of business users from the specified identity pool.
+
+        Results are sorted by user ID. No other sorting is supported.
+      operationId: listUsersB2B
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - description: |-
+          optional list users after given id
+          AfterUserID
+        in: query
+        name: after_user_id
+        type: string
+      - description: |-
+          optional list users before given id
+          BeforeUserID
+        in: query
+        name: before_user_id
+        type: string
+      - description: |-
+          optional sort clients by given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order clients by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format like {"user_key":"john"} - parameter must be url-encoded
+          supported parameters
+          `user_key` - limits user set to users that has identifier starting or ending with provided user_key or has verified address starting or ending with provided user_key or their ID is equal to provided user_key
+          `payload` - limits user set to users with payload matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          `metadata` - limits user set to users with metadata matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          if multiple parameters provided it does logical AND between the results so users must match ALL parameters
+        in: query
+        name: query
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/B2BUsersResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List B2B Users
+      tags:
+      - B2BUsers
+    post:
+      description: |-
+        Create a business user with extended data.
+
+        Any status and set of identifiers, addresses, and credentials are allowed.
+        If credential of type password is provided it can be marked as must_be_changed which forces user to change its password upon first login.
+
+        When no `payload_schema_id` are provided, the default values are taken from the
+        specified Identity Pool.
+
+        Payload and metadata must match the specified schema.
+
+        The response contains an extended view on user entry.
+
+        To retrieve a user entry without user creation, call the **Get B2B User Details** endpoint.
+      operationId: createB2BUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewUser
+        schema:
+          $ref: '#/definitions/BaseNewUserPayload'
+      responses:
+        "201":
+          $ref: '#/responses/AdminB2BUserResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Create B2B User Account
+      tags:
+      - B2BUsers
+  /admin/b2b/pools/{ipID}/users/{userID}:
+    delete:
+      description: Remove a record about a business user account in the specified
+        identity pool.
+      operationId: deleteB2BUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' User has been deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Delete B2B User Account
+      tags:
+      - B2BUsers
+    get:
+      description: |-
+        Retrieve extended information about a business user record.
+
+        The response contains business user's basic details, payload as well as all their identifiers,
+        addresses, and blurred credentials.
+      operationId: getB2BUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/AdminB2BUserResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get B2B User Details
+      tags:
+      - B2BUsers
+    put:
+      description: |-
+        Update the basic set of business user data: payload, schemas, and status. Provide the required values for the fields
+        you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+
+        The fields to be updated are overridden.
+
+        Any `payload` and `payload_schema_id` values passed must be mutually relevant.
+
+        To retrieve a business user entry without updating their record, call the **Get B2B User Details** endpoint.
+      operationId: updateB2BUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: UpdateUser
+        schema:
+          $ref: '#/definitions/BaseUpdateUser'
+      responses:
+        "200":
+          $ref: '#/responses/AdminB2BUserResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Update B2B User Record
+      tags:
+      - B2BUsers
   /admin/pools:
     get:
       description: |-
@@ -1877,6 +2424,22 @@ paths:
         in: query
         name: server_id
         type: string
+      - description: |-
+          optional URL where user will be asked to sign in after successful activation
+          PostActivationURL
+        in: query
+        name: post_activation_url
+        type: string
+      - default: registration
+        description: |-
+          optional mode
+          Mode
+        enum:
+        - registration
+        - invitation
+        in: query
+        name: mode
+        type: string
       responses:
         "204":
           description: ' Activation message sent'
@@ -2149,6 +2712,99 @@ paths:
       security:
       - admin: []
       summary: Remove Identifier
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}:
+    get:
+      description: Retrieve user metadata by metadata type.
+      operationId: getUserMetadata
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - enum:
+        - admin
+        - business
+        in: path
+        name: metadataType
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/UserMetadataResponse'
+        "400":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get User Metadata
+      tags:
+      - Users
+    put:
+      description: Set user metadata for given metadata type.
+      operationId: setUserMetadata
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - enum:
+        - admin
+        - business
+        in: path
+        name: metadataType
+        required: true
+        type: string
+      - in: body
+        name: UserMetadata
+        schema:
+          $ref: '#/definitions/UserMetadata'
+      responses:
+        "200":
+          $ref: '#/responses/UserMetadataResponse'
+        "400":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Set User Metadata
       tags:
       - Users
   /admin/pools/{ipID}/users/{userID}/otp/request:
@@ -2824,6 +3480,10 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/UserVerifiableAddress'
+  AdminB2BUserResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/BaseUserWithData'
   AdminIdentifierResponse:
     description: Identifier
     headers:
@@ -2848,6 +3508,10 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/UserWithData'
+  B2BUsersResponse:
+    description: Identity B2B Users
+    schema:
+      $ref: '#/definitions/B2BUsers'
   PoolPermissionsResponse:
     description: PoolPermissions
     headers:
@@ -2912,6 +3576,18 @@ responses:
     description: User
     schema:
       $ref: '#/definitions/UserID'
+  UserMetadataResponse:
+    description: UserMetadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserMetadata'
   UserPoolsResponse:
     description: Identity User Pools
     headers:

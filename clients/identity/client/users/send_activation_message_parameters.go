@@ -85,6 +85,22 @@ type SendActivationMessageParams struct {
 	// IPID.
 	IPID string
 
+	/* Mode.
+
+	     optional mode
+	Mode
+
+	     Default: "registration"
+	*/
+	Mode *string
+
+	/* PostActivationURL.
+
+	     optional URL where user will be asked to sign in after successful activation
+	PostActivationURL
+	*/
+	PostActivationURL *string
+
 	/* ServerID.
 
 	     optional server's identifier (used for themes etc.)
@@ -114,10 +130,13 @@ func (o *SendActivationMessageParams) WithDefaults() *SendActivationMessageParam
 func (o *SendActivationMessageParams) SetDefaults() {
 	var (
 		codeTypeInMessageDefault = string("link")
+
+		modeDefault = string("registration")
 	)
 
 	val := SendActivationMessageParams{
 		CodeTypeInMessage: &codeTypeInMessageDefault,
+		Mode:              &modeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -203,6 +222,28 @@ func (o *SendActivationMessageParams) SetIPID(iPID string) {
 	o.IPID = iPID
 }
 
+// WithMode adds the mode to the send activation message params
+func (o *SendActivationMessageParams) WithMode(mode *string) *SendActivationMessageParams {
+	o.SetMode(mode)
+	return o
+}
+
+// SetMode adds the mode to the send activation message params
+func (o *SendActivationMessageParams) SetMode(mode *string) {
+	o.Mode = mode
+}
+
+// WithPostActivationURL adds the postActivationURL to the send activation message params
+func (o *SendActivationMessageParams) WithPostActivationURL(postActivationURL *string) *SendActivationMessageParams {
+	o.SetPostActivationURL(postActivationURL)
+	return o
+}
+
+// SetPostActivationURL adds the postActivationUrl to the send activation message params
+func (o *SendActivationMessageParams) SetPostActivationURL(postActivationURL *string) {
+	o.PostActivationURL = postActivationURL
+}
+
 // WithServerID adds the serverID to the send activation message params
 func (o *SendActivationMessageParams) WithServerID(serverID *string) *SendActivationMessageParams {
 	o.SetServerID(serverID)
@@ -266,6 +307,40 @@ func (o *SendActivationMessageParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.Mode != nil {
+
+		// query param mode
+		var qrMode string
+
+		if o.Mode != nil {
+			qrMode = *o.Mode
+		}
+		qMode := qrMode
+		if qMode != "" {
+
+			if err := r.SetQueryParam("mode", qMode); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.PostActivationURL != nil {
+
+		// query param post_activation_url
+		var qrPostActivationURL string
+
+		if o.PostActivationURL != nil {
+			qrPostActivationURL = *o.PostActivationURL
+		}
+		qPostActivationURL := qrPostActivationURL
+		if qPostActivationURL != "" {
+
+			if err := r.SetQueryParam("post_activation_url", qPostActivationURL); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.ServerID != nil {

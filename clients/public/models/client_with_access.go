@@ -22,8 +22,14 @@ type ClientWithAccess struct {
 	// client
 	Client *ClientDetails `json:"client,omitempty" yaml:"client,omitempty"`
 
+	// Claims granted to client
+	GrantedClaims []*GrantedClaim `json:"granted_claims" yaml:"granted_claims"`
+
 	// Scopes granted to client
 	GrantedScopes []*GrantedScope `json:"granted_scopes" yaml:"granted_scopes"`
+
+	// Claims granted to client
+	GrantedVerifiedClaims []*GrantedClaim `json:"granted_verified_claims" yaml:"granted_verified_claims"`
 }
 
 // Validate validates this client with access
@@ -34,7 +40,15 @@ func (m *ClientWithAccess) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGrantedClaims(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGrantedScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGrantedVerifiedClaims(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,6 +72,32 @@ func (m *ClientWithAccess) validateClient(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ClientWithAccess) validateGrantedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedClaims) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.GrantedClaims); i++ {
+		if swag.IsZero(m.GrantedClaims[i]) { // not required
+			continue
+		}
+
+		if m.GrantedClaims[i] != nil {
+			if err := m.GrantedClaims[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -89,6 +129,32 @@ func (m *ClientWithAccess) validateGrantedScopes(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *ClientWithAccess) validateGrantedVerifiedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedVerifiedClaims) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.GrantedVerifiedClaims); i++ {
+		if swag.IsZero(m.GrantedVerifiedClaims[i]) { // not required
+			continue
+		}
+
+		if m.GrantedVerifiedClaims[i] != nil {
+			if err := m.GrantedVerifiedClaims[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_verified_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_verified_claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this client with access based on the context it is used
 func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -97,7 +163,15 @@ func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.R
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGrantedClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGrantedVerifiedClaims(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,6 +202,31 @@ func (m *ClientWithAccess) contextValidateClient(ctx context.Context, formats st
 	return nil
 }
 
+func (m *ClientWithAccess) contextValidateGrantedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GrantedClaims); i++ {
+
+		if m.GrantedClaims[i] != nil {
+
+			if swag.IsZero(m.GrantedClaims[i]) { // not required
+				return nil
+			}
+
+			if err := m.GrantedClaims[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ClientWithAccess) contextValidateGrantedScopes(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.GrantedScopes); i++ {
@@ -143,6 +242,31 @@ func (m *ClientWithAccess) contextValidateGrantedScopes(ctx context.Context, for
 					return ve.ValidateName("granted_scopes" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("granted_scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ClientWithAccess) contextValidateGrantedVerifiedClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GrantedVerifiedClaims); i++ {
+
+		if m.GrantedVerifiedClaims[i] != nil {
+
+			if swag.IsZero(m.GrantedVerifiedClaims[i]) { // not required
+				return nil
+			}
+
+			if err := m.GrantedVerifiedClaims[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_verified_claims" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_verified_claims" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

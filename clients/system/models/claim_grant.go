@@ -23,6 +23,9 @@ type ClaimGrant struct {
 	// Example: email
 	ClaimName string `json:"claim_name,omitempty" yaml:"claim_name,omitempty"`
 
+	// claim type
+	ClaimType ClaimType `json:"claim_type,omitempty" yaml:"claim_type,omitempty"`
+
 	// Identifier of a client application that is granted with the claim.
 	// Example: bugkgm23g9kregtu051g
 	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
@@ -44,11 +47,18 @@ type ClaimGrant struct {
 	// Identifier of the tenant where the client app is hosted.
 	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
+
+	// mark claim as verified (required by identity assurance spec)
+	Verified bool `json:"verified,omitempty" yaml:"verified,omitempty"`
 }
 
 // Validate validates this claim grant
 func (m *ClaimGrant) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateClaimType(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateGivenAt(formats); err != nil {
 		res = append(res, err)
@@ -57,6 +67,23 @@ func (m *ClaimGrant) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ClaimGrant) validateClaimType(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClaimType) { // not required
+		return nil
+	}
+
+	if err := m.ClaimType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("claim_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("claim_type")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -72,8 +99,35 @@ func (m *ClaimGrant) validateGivenAt(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this claim grant based on context it is used
+// ContextValidate validate this claim grant based on the context it is used
 func (m *ClaimGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClaimType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ClaimGrant) contextValidateClaimType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ClaimType) { // not required
+		return nil
+	}
+
+	if err := m.ClaimType.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("claim_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("claim_type")
+		}
+		return err
+	}
+
 	return nil
 }
 

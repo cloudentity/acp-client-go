@@ -282,6 +282,10 @@ definitions:
           to this scope
         type: boolean
         x-nullable: false
+      implicit_grant:
+        description: Do not ask for consent for this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:

@@ -248,6 +248,10 @@ definitions:
     type: object
   DynamicClientRegistrationRequest:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -362,6 +366,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -800,6 +815,10 @@ definitions:
     type: object
   DynamicClientRegistrationResponse:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -914,6 +933,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -1595,6 +1625,9 @@ definitions:
     properties:
       cause:
         type: string
+        x-nullable: false
+      details:
+        type: object
         x-nullable: false
       error:
         type: string
@@ -2598,6 +2631,10 @@ paths:
       - description: Thumbprint of the DPoP public key
         in: query
         name: dpop_jkt
+        type: string
+      - description: Authorization correlation ID
+        in: query
+        name: authorization_correlation_id
         type: string
       responses:
         "302":

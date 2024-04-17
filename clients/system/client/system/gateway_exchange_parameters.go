@@ -61,6 +61,11 @@ GatewayExchangeParams contains all the parameters to send to the API endpoint
 */
 type GatewayExchangeParams struct {
 
+	// RequestScopes.
+	//
+	// Default: "original_token"
+	RequestScopes *string
+
 	// SubjectToken.
 	SubjectToken *string
 
@@ -81,7 +86,18 @@ func (o *GatewayExchangeParams) WithDefaults() *GatewayExchangeParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GatewayExchangeParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		requestScopesDefault = string("original_token")
+	)
+
+	val := GatewayExchangeParams{
+		RequestScopes: &requestScopesDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the gateway exchange params
@@ -117,6 +133,17 @@ func (o *GatewayExchangeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithRequestScopes adds the requestScopes to the gateway exchange params
+func (o *GatewayExchangeParams) WithRequestScopes(requestScopes *string) *GatewayExchangeParams {
+	o.SetRequestScopes(requestScopes)
+	return o
+}
+
+// SetRequestScopes adds the requestScopes to the gateway exchange params
+func (o *GatewayExchangeParams) SetRequestScopes(requestScopes *string) {
+	o.RequestScopes = requestScopes
+}
+
 // WithSubjectToken adds the subjectToken to the gateway exchange params
 func (o *GatewayExchangeParams) WithSubjectToken(subjectToken *string) *GatewayExchangeParams {
 	o.SetSubjectToken(subjectToken)
@@ -135,6 +162,21 @@ func (o *GatewayExchangeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.RequestScopes != nil {
+
+		// form param request_scopes
+		var frRequestScopes string
+		if o.RequestScopes != nil {
+			frRequestScopes = *o.RequestScopes
+		}
+		fRequestScopes := frRequestScopes
+		if fRequestScopes != "" {
+			if err := r.SetFormParam("request_scopes", fRequestScopes); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.SubjectToken != nil {
 

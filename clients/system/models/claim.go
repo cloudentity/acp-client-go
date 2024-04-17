@@ -22,6 +22,9 @@ type Claim struct {
 	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
+	// description
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
 	// unique claim id
 	// Example: 1
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
@@ -63,6 +66,9 @@ type Claim struct {
 
 	// type
 	Type ClaimType `json:"type,omitempty" yaml:"type,omitempty"`
+
+	// mark claim as verified (required by identity assurance spec)
+	Verified bool `json:"verified,omitempty" yaml:"verified,omitempty"`
 }
 
 // Validate validates this claim

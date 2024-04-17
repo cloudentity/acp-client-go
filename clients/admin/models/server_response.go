@@ -241,7 +241,7 @@ type ServerResponse struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br openbanking_br_unico cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
 	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -283,6 +283,9 @@ type ServerResponse struct {
 	// It must have at least 32 characters. If not provided, it is generated.
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty" yaml:"secret,omitempty"`
+
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// sso
 	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
@@ -467,6 +470,10 @@ func (m *ServerResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -938,7 +945,7 @@ var serverResponseTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","openbanking_br_unico","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -983,6 +990,9 @@ const (
 
 	// ServerResponseProfileOpenbankingBr captures enum value "openbanking_br"
 	ServerResponseProfileOpenbankingBr string = "openbanking_br"
+
+	// ServerResponseProfileOpenbankingBrUnico captures enum value "openbanking_br_unico"
+	ServerResponseProfileOpenbankingBrUnico string = "openbanking_br_unico"
 
 	// ServerResponseProfileCdrAustralia captures enum value "cdr_australia"
 	ServerResponseProfileCdrAustralia string = "cdr_australia"
@@ -1079,6 +1089,25 @@ func (m *ServerResponse) validateSaml(formats strfmt.Registry) error {
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerResponse) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}
@@ -1454,6 +1483,10 @@ func (m *ServerResponse) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSso(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1772,6 +1805,27 @@ func (m *ServerResponse) contextValidateSaml(ctx context.Context, formats strfmt
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerResponse) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
 			}
 			return err
 		}

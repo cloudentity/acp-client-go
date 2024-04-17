@@ -54,6 +54,9 @@ type IDPSettings struct {
 	// saml
 	Saml *SAMLSettings `json:"saml,omitempty" yaml:"saml,omitempty"`
 
+	// saml v2
+	SamlV2 *SAMLV2Settings `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
+
 	// static
 	Static *StaticSettings `json:"static,omitempty" yaml:"static,omitempty"`
 }
@@ -107,6 +110,10 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -348,6 +355,25 @@ func (m *IDPSettings) validateSaml(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IDPSettings) validateSamlV2(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlV2) { // not required
+		return nil
+	}
+
+	if m.SamlV2 != nil {
+		if err := m.SamlV2.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDPSettings) validateStatic(formats strfmt.Registry) error {
 	if swag.IsZero(m.Static) { // not required
 		return nil
@@ -416,6 +442,10 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidateSaml(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSamlV2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -673,6 +703,27 @@ func (m *IDPSettings) contextValidateSaml(ctx context.Context, formats strfmt.Re
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateSamlV2(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SamlV2 != nil {
+
+		if swag.IsZero(m.SamlV2) { // not required
+			return nil
+		}
+
+		if err := m.SamlV2.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_v2")
 			}
 			return err
 		}

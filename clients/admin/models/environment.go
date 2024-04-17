@@ -26,7 +26,9 @@ type Environment struct {
 	// admin issuer url
 	AdminIssuerURL string `json:"admin_issuer_url,omitempty" yaml:"admin_issuer_url,omitempty"`
 
-	// admin portal face lifting
+	// Admin portal face lifting
+	//
+	// Improve user experience by facelifting the basic components of Cloudentity.
 	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty" yaml:"admin_portal_face_lifting,omitempty"`
 
 	// admin workspace access
@@ -49,6 +51,9 @@ type Environment struct {
 	// cache access tokens
 	CacheAccessTokens bool `json:"cache_access_tokens,omitempty" yaml:"cache_access_tokens,omitempty"`
 
+	// add previous arrangement to CDR amend audit event
+	CdrAmendAuditEventWithPreviousArrangement bool `json:"cdr_amend_audit_event_with_previous_arrangement,omitempty" yaml:"cdr_amend_audit_event_with_previous_arrangement,omitempty"`
+
 	// arrangement cache for CDR
 	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty" yaml:"cdr_arrangement_cache,omitempty"`
 
@@ -67,6 +72,9 @@ type Environment struct {
 	// connectID profile
 	ConnectID bool `json:"connect_id,omitempty" yaml:"connect_id,omitempty"`
 
+	// connect ID consent page facelifting
+	ConnectIDConsentPageFaceLifting bool `json:"connect_id_consent_page_face_lifting,omitempty" yaml:"connect_id_consent_page_face_lifting,omitempty"`
+
 	// enable additional debug logs
 	Debug bool `json:"debug,omitempty" yaml:"debug,omitempty"`
 
@@ -81,6 +89,9 @@ type Environment struct {
 
 	// disable audit events
 	DisableAuditEvents bool `json:"disable_audit_events,omitempty" yaml:"disable_audit_events,omitempty"`
+
+	// disable embedded sms provider
+	DisableEmbeddedSmsProvider bool `json:"disable_embedded_sms_provider,omitempty" yaml:"disable_embedded_sms_provider,omitempty"`
 
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty" yaml:"display_workspace_wizard,omitempty"`
@@ -97,11 +108,18 @@ type Environment struct {
 	// has google image search
 	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
 
-	// identifier-based discovery
+	// Identifier-based discovery
+	//
+	// Enable users to provide their identifier first during user authentication and discover their preffered authentication provider.
 	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty" yaml:"identifier_based_discovery,omitempty"`
 
 	// identity assurance
 	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
+
+	// Identity Pool MFA
+	//
+	// Enable MFA for Identity Pool
+	IdentityPoolMfa bool `json:"identity_pool_mfa,omitempty" yaml:"identity_pool_mfa,omitempty"`
 
 	// image proxy url
 	ImageProxyURL string `json:"image_proxy_url,omitempty" yaml:"image_proxy_url,omitempty"`
@@ -115,20 +133,35 @@ type Environment struct {
 	// insecure token exchange public clients
 	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
+	// Enforce JIT users roles
+	JitPermissions bool `json:"jit_permissions,omitempty" yaml:"jit_permissions,omitempty"`
+
+	// mark address as verified on any proof of possession of the address
+	MarkAddressAsVerifiedOnAnyProofOfPossession bool `json:"mark_address_as_verified_on_any_proof_of_possession,omitempty" yaml:"mark_address_as_verified_on_any_proof_of_possession,omitempty"`
+
 	// openbanking ksa workspace and security profile
 	OpenbankingKsa bool `json:"openbanking_ksa,omitempty" yaml:"openbanking_ksa,omitempty"`
 
-	// organizations
+	// Organizations
+	//
+	// Delineate a structured and hierarchical separation among your business customers' companies or partners. Enable Delegated Admin Portal.
 	Organizations bool `json:"organizations,omitempty" yaml:"organizations,omitempty"`
 
-	// permissions
+	// Permissions
+	//
+	// Control access to resources based on user permissions. Create permission systems.
 	Permissions bool `json:"permissions,omitempty" yaml:"permissions,omitempty"`
 
 	// rich authorization requests
 	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 
-	// roles
+	// Roles
+	//
+	// Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
 	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
+
+	// Enable SAML V2
+	SamlV2 bool `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
 
 	// scope transient_otp
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
@@ -136,7 +169,14 @@ type Environment struct {
 	// script runtimes
 	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes" yaml:"script_runtimes"`
 
-	// self-service
+	// Scripts runtime versions
+	//
+	// Enable users to manage runtime versions for scripts.
+	ScriptsRuntimeVersions bool `json:"scripts_runtime_versions,omitempty" yaml:"scripts_runtime_versions,omitempty"`
+
+	// Self-service
+	//
+	// Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
 	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 
 	// simple api integration

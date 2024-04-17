@@ -17,6 +17,24 @@ import (
 // swagger:model PoolPermissionsResponse
 type PoolPermissionsResponse struct {
 
+	// b2b manage admin metadata
+	B2bManageAdminMetadata bool `json:"b2b_manage_admin_metadata,omitempty" yaml:"b2b_manage_admin_metadata,omitempty"`
+
+	// b2b manage business metadata
+	B2bManageBusinessMetadata bool `json:"b2b_manage_business_metadata,omitempty" yaml:"b2b_manage_business_metadata,omitempty"`
+
+	// b2b manage users
+	B2bManageUsers bool `json:"b2b_manage_users,omitempty" yaml:"b2b_manage_users,omitempty"`
+
+	// b2b read admin metadata
+	B2bReadAdminMetadata bool `json:"b2b_read_admin_metadata,omitempty" yaml:"b2b_read_admin_metadata,omitempty"`
+
+	// b2b read business metadata
+	B2bReadBusinessMetadata bool `json:"b2b_read_business_metadata,omitempty" yaml:"b2b_read_business_metadata,omitempty"`
+
+	// b2b read users
+	B2bReadUsers bool `json:"b2b_read_users,omitempty" yaml:"b2b_read_users,omitempty"`
+
 	// delete identity pool
 	DeleteIdentityPool bool `json:"delete_identity_pool,omitempty" yaml:"delete_identity_pool,omitempty"`
 

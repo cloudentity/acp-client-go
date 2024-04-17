@@ -19,6 +19,7 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/admin/client/consents"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/custom_apps"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/environment"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/features"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/gateways"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/idps"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/images"
@@ -95,6 +96,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Consents = consents.New(transport, formats)
 	cli.CustomApps = custom_apps.New(transport, formats)
 	cli.Environment = environment.New(transport, formats)
+	cli.Features = features.New(transport, formats)
 	cli.Gateways = gateways.New(transport, formats)
 	cli.Idps = idps.New(transport, formats)
 	cli.Images = images.New(transport, formats)
@@ -180,6 +182,8 @@ type Acp struct {
 
 	Environment environment.ClientService
 
+	Features features.ClientService
+
 	Gateways gateways.ClientService
 
 	Idps idps.ClientService
@@ -241,6 +245,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Consents.SetTransport(transport)
 	c.CustomApps.SetTransport(transport)
 	c.Environment.SetTransport(transport)
+	c.Features.SetTransport(transport)
 	c.Gateways.SetTransport(transport)
 	c.Idps.SetTransport(transport)
 	c.Images.SetTransport(transport)

@@ -45,6 +45,10 @@ definitions:
     type: object
   ClientDeveloperResponse:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -166,6 +170,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -772,6 +787,10 @@ definitions:
     type: object
   CreateClientDeveloperRequest:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -893,6 +912,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
@@ -1759,6 +1789,9 @@ definitions:
         x-nullable: false
       then:
         $ref: '#/definitions/SupportedJSONSchema'
+      title:
+        type: string
+        x-nullable: false
       type:
         description: any
         type: string
@@ -1769,6 +1802,10 @@ definitions:
     type: object
   UpdateClientDeveloperRequest:
     properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
       application_type:
         default: web
         description: |-
@@ -1883,6 +1920,17 @@ definitions:
           This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
 
           Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:

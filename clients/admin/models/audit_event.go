@@ -33,7 +33,7 @@ type AuditEvent struct {
 
 	// Resource or entity that is a subject of a given audit event.
 	// Example: client
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// metadata
@@ -189,7 +189,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -244,6 +244,9 @@ const (
 	// AuditEventEventSubjectScopes captures enum value "scopes"
 	AuditEventEventSubjectScopes string = "scopes"
 
+	// AuditEventEventSubjectClaims captures enum value "claims"
+	AuditEventEventSubjectClaims string = "claims"
+
 	// AuditEventEventSubjectOtp captures enum value "otp"
 	AuditEventEventSubjectOtp string = "otp"
 
@@ -288,6 +291,12 @@ const (
 
 	// AuditEventEventSubjectServer captures enum value "server"
 	AuditEventEventSubjectServer string = "server"
+
+	// AuditEventEventSubjectImport captures enum value "import"
+	AuditEventEventSubjectImport string = "import"
+
+	// AuditEventEventSubjectOrganization captures enum value "organization"
+	AuditEventEventSubjectOrganization string = "organization"
 )
 
 // prop value enum

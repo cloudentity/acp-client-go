@@ -20,6 +20,12 @@ import (
 // swagger:model UpdateUser
 type UpdateUser struct {
 
+	// business metadata
+	BusinessMetadata map[string]interface{} `json:"business_metadata,omitempty" yaml:"business_metadata,omitempty"`
+
+	// business metadata schema id
+	BusinessMetadataSchemaID string `json:"business_metadata_schema_id,omitempty" yaml:"business_metadata_schema_id,omitempty"`
+
 	// metadata
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 

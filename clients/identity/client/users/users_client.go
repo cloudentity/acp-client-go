@@ -44,6 +44,8 @@ type ClientService interface {
 
 	GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error)
 
+	GetUserMetadata(params *GetUserMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserMetadataOK, error)
+
 	ListUsers(params *ListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUsersOK, error)
 
 	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
@@ -51,6 +53,8 @@ type ClientService interface {
 	SendActivationMessage(params *SendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendActivationMessageNoContent, error)
 
 	SetPasswordState(params *SetPasswordStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordStateNoContent, error)
+
+	SetUserMetadata(params *SetUserMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetUserMetadataOK, error)
 
 	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error)
 
@@ -362,6 +366,47 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
+GetUserMetadata gets user metadata
+
+Retrieve user metadata by metadata type.
+*/
+func (a *Client) GetUserMetadata(params *GetUserMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserMetadataParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getUserMetadata",
+		Method:             "GET",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/metadata/{metadataType}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserMetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetUserMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getUserMetadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	ListUsers lists users
 
 	Retrieve the list of users from the specified identity pool.
@@ -554,6 +599,47 @@ func (a *Client) SetPasswordState(params *SetPasswordStateParams, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for setPasswordState: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetUserMetadata sets user metadata
+
+Set user metadata for given metadata type.
+*/
+func (a *Client) SetUserMetadata(params *SetUserMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetUserMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetUserMetadataParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setUserMetadata",
+		Method:             "PUT",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/metadata/{metadataType}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetUserMetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetUserMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setUserMetadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

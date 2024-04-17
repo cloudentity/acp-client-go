@@ -18,6 +18,9 @@ import (
 // swagger:model JITCreatedPayload
 type JITCreatedPayload struct {
 
+	// admin role type
+	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
+
 	// idp
 	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 

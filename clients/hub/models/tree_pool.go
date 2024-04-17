@@ -26,6 +26,9 @@ type TreePool struct {
 	// badge color
 	BadgeColor string `json:"badge_color,omitempty" yaml:"badge_color,omitempty"`
 
+	// business metadata schema id
+	BusinessMetadataSchemaID string `json:"business_metadata_schema_id,omitempty" yaml:"business_metadata_schema_id,omitempty"`
+
 	// deleted
 	Deleted bool `json:"deleted,omitempty" yaml:"deleted,omitempty"`
 
@@ -40,6 +43,10 @@ type TreePool struct {
 
 	// metadata schema id
 	MetadataSchemaID string `json:"metadata_schema_id,omitempty" yaml:"metadata_schema_id,omitempty"`
+
+	// mfa session ttl
+	// Format: duration
+	MfaSessionTTL strfmt.Duration `json:"mfa_session_ttl,omitempty" yaml:"mfa_session_ttl,omitempty"`
 
 	// name
 	// Required: true
@@ -65,6 +72,14 @@ type TreePool struct {
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty" yaml:"public_registration_allowed,omitempty"`
 
+	// second factor authentication mechanisms
+	SecondFactorAuthenticationMechanisms AuthenticationMechanisms `json:"second_factor_authentication_mechanisms,omitempty" yaml:"second_factor_authentication_mechanisms,omitempty"`
+
+	// second factor preferred authentication mechanism
+	// Example: password
+	// Enum: [password otp webauthn]
+	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
+
 	// system
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 }
@@ -74,6 +89,10 @@ func (m *TreePool) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAuthenticationMechanisms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMfaSessionTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -97,6 +116,14 @@ func (m *TreePool) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSecondFactorAuthenticationMechanisms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecondFactorPreferredAuthenticationMechanism(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -114,6 +141,18 @@ func (m *TreePool) validateAuthenticationMechanisms(formats strfmt.Registry) err
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("authentication_mechanisms")
 		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *TreePool) validateMfaSessionTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.MfaSessionTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("mfa_session_ttl", "body", "duration", m.MfaSessionTTL.String(), formats); err != nil {
 		return err
 	}
 
@@ -231,6 +270,68 @@ func (m *TreePool) validatePreferredAuthenticationMechanism(formats strfmt.Regis
 	return nil
 }
 
+func (m *TreePool) validateSecondFactorAuthenticationMechanisms(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecondFactorAuthenticationMechanisms) { // not required
+		return nil
+	}
+
+	if err := m.SecondFactorAuthenticationMechanisms.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("second_factor_authentication_mechanisms")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("second_factor_authentication_mechanisms")
+		}
+		return err
+	}
+
+	return nil
+}
+
+var treePoolTypeSecondFactorPreferredAuthenticationMechanismPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		treePoolTypeSecondFactorPreferredAuthenticationMechanismPropEnum = append(treePoolTypeSecondFactorPreferredAuthenticationMechanismPropEnum, v)
+	}
+}
+
+const (
+
+	// TreePoolSecondFactorPreferredAuthenticationMechanismPassword captures enum value "password"
+	TreePoolSecondFactorPreferredAuthenticationMechanismPassword string = "password"
+
+	// TreePoolSecondFactorPreferredAuthenticationMechanismOtp captures enum value "otp"
+	TreePoolSecondFactorPreferredAuthenticationMechanismOtp string = "otp"
+
+	// TreePoolSecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
+	TreePoolSecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
+)
+
+// prop value enum
+func (m *TreePool) validateSecondFactorPreferredAuthenticationMechanismEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, treePoolTypeSecondFactorPreferredAuthenticationMechanismPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *TreePool) validateSecondFactorPreferredAuthenticationMechanism(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecondFactorPreferredAuthenticationMechanism) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSecondFactorPreferredAuthenticationMechanismEnum("second_factor_preferred_authentication_mechanism", "body", m.SecondFactorPreferredAuthenticationMechanism); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this tree pool based on the context it is used
 func (m *TreePool) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -248,6 +349,10 @@ func (m *TreePool) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	}
 
 	if err := m.contextValidatePasswordSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecondFactorAuthenticationMechanisms(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -329,6 +434,20 @@ func (m *TreePool) contextValidatePasswordSettings(ctx context.Context, formats 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TreePool) contextValidateSecondFactorAuthenticationMechanisms(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.SecondFactorAuthenticationMechanisms.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("second_factor_authentication_mechanisms")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("second_factor_authentication_mechanisms")
+		}
+		return err
 	}
 
 	return nil
