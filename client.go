@@ -777,7 +777,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Hub = &Hub{
 		Acp: hub.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/api/hub/%s"),
+			"/api/hub",
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
@@ -829,14 +829,6 @@ func (c *Client) apiPathPrefix(vanityDomainType string, format string) string {
 		switch vanityDomainType {
 		case "tenant", "server":
 			return c.BasePath + "/api/identity/system"
-		default:
-			return c.BasePath + fmt.Sprintf(format, c.TenantID)
-		}
-
-	case "/api/hub/%s":
-		switch vanityDomainType {
-		case "tenant", "server":
-			return c.BasePath + "/api/hub"
 		default:
 			return c.BasePath + fmt.Sprintf(format, c.TenantID)
 		}
