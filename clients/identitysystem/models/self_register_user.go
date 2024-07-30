@@ -30,6 +30,9 @@ type SelfRegisterUser struct {
 	// payload
 	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
+	// totp secret
+	TotpSecret string `json:"totp_secret,omitempty" yaml:"totp_secret,omitempty"`
+
 	// webauthn credentials
 	WebauthnCredentials []*Credential `json:"webauthn_credentials" yaml:"webauthn_credentials"`
 }

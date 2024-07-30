@@ -30,6 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	ListWorkspacePools(params *ListWorkspacePoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListWorkspacePoolsOK, error)
+
 	SystemCreatePool(params *SystemCreatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreatePoolCreated, error)
 
 	SystemDeletePool(params *SystemDeletePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeletePoolNoContent, error)
@@ -41,6 +43,51 @@ type ClientService interface {
 	SystemUpdatePool(params *SystemUpdatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdatePoolOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+	ListWorkspacePools lists identity pools per workspace
+
+	Retrieve the list of identity pools available for a workspace. Pass the required workspace identifier with the
+
+`wid` path parameter.
+
+You can filter the response with the query parameters to narrow the pool list down.
+*/
+func (a *Client) ListWorkspacePools(params *ListWorkspacePoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListWorkspacePoolsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListWorkspacePoolsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listWorkspacePools",
+		Method:             "GET",
+		PathPattern:        "/system/workspace/{wid}/pools",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListWorkspacePoolsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListWorkspacePoolsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listWorkspacePools: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*

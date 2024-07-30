@@ -34,6 +34,8 @@ type ClientService interface {
 
 	ChangePasswordV2(params *ChangePasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordV2NoContent, error)
 
+	ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error)
+
 	GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error)
 
 	GetUserProfileV2(params *GetUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileV2OK, error)
@@ -41,6 +43,8 @@ type ClientService interface {
 	ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error)
 
 	SetPassword(params *SetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordNoContent, error)
+
+	SetTotpSecret(params *SetTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTotpSecretNoContent, error)
 
 	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error)
 
@@ -128,6 +132,47 @@ func (a *Client) ChangePasswordV2(params *ChangePasswordV2Params, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for changePasswordV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ChangeTotpSecret changes totp secret
+
+Changes user totp secret if provided totp code is valid.
+*/
+func (a *Client) ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeTotpSecretParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "changeTotpSecret",
+		Method:             "POST",
+		PathPattern:        "/v2/self/change-totp-secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeTotpSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ChangeTotpSecretNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for changeTotpSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -303,6 +348,49 @@ func (a *Client) SetPassword(params *SetPasswordParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for setPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	SetTotpSecret sets totp secret
+
+	Set totp secret for a user who doesn't have one yet
+
+This API requires authentication to happen within the last 5 minutes.
+*/
+func (a *Client) SetTotpSecret(params *SetTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTotpSecretNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetTotpSecretParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setTotpSecret",
+		Method:             "POST",
+		PathPattern:        "/v2/self/set-totp-secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetTotpSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetTotpSecretNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setTotpSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

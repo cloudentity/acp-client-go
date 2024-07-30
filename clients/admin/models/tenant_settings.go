@@ -26,6 +26,9 @@ type TenantSettings struct {
 
 	// security
 	Security *SecureOptions `json:"security,omitempty" yaml:"security,omitempty"`
+
+	// well known
+	WellKnown map[string]interface{} `json:"well_known,omitempty" yaml:"well_known,omitempty"`
 }
 
 // Validate validates this tenant settings

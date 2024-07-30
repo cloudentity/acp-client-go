@@ -18,6 +18,9 @@ import (
 // swagger:model UpdateGatewayRequest
 type UpdateGatewayRequest struct {
 
+	// default policy id assigned to new APIs
+	DefaultPolicyID string `json:"default_policy_id,omitempty" yaml:"default_policy_id,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 

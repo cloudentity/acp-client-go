@@ -29,6 +29,12 @@ func (o *GetLoginRequestReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetLoginRequestBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetLoginRequestUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -117,6 +123,74 @@ func (o *GetLoginRequestOK) GetPayload() *models.LoginSessionResponse {
 func (o *GetLoginRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.LoginSessionResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetLoginRequestBadRequest creates a GetLoginRequestBadRequest with default headers values
+func NewGetLoginRequestBadRequest() *GetLoginRequestBadRequest {
+	return &GetLoginRequestBadRequest{}
+}
+
+/*
+GetLoginRequestBadRequest describes a response with status code 400, with default header values.
+
+Bad request
+*/
+type GetLoginRequestBadRequest struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this get login request bad request response has a 2xx status code
+func (o *GetLoginRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get login request bad request response has a 3xx status code
+func (o *GetLoginRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get login request bad request response has a 4xx status code
+func (o *GetLoginRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get login request bad request response has a 5xx status code
+func (o *GetLoginRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get login request bad request response a status code equal to that given
+func (o *GetLoginRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+// Code gets the status code for the get login request bad request response
+func (o *GetLoginRequestBadRequest) Code() int {
+	return 400
+}
+
+func (o *GetLoginRequestBadRequest) Error() string {
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetLoginRequestBadRequest) String() string {
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *GetLoginRequestBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *GetLoginRequestBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

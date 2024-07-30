@@ -22,6 +22,9 @@ type CDRConfiguration struct {
 	// If enabled, register URL must be provided and point to a existing registry
 	AdrValidationEnabled bool `json:"adr_validation_enabled,omitempty" yaml:"adr_validation_enabled,omitempty"`
 
+	// arrangements auto removal
+	ArrangementsAutoRemoval *CDRArrangementsAutoRemoval `json:"arrangements_auto_removal,omitempty" yaml:"arrangements_auto_removal,omitempty"`
+
 	// brand id
 	BrandID string `json:"brand_id,omitempty" yaml:"brand_id,omitempty"`
 
@@ -49,6 +52,10 @@ type CDRConfiguration struct {
 func (m *CDRConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArrangementsAutoRemoval(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIndustry(formats); err != nil {
 		res = append(res, err)
 	}
@@ -64,6 +71,25 @@ func (m *CDRConfiguration) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CDRConfiguration) validateArrangementsAutoRemoval(formats strfmt.Registry) error {
+	if swag.IsZero(m.ArrangementsAutoRemoval) { // not required
+		return nil
+	}
+
+	if m.ArrangementsAutoRemoval != nil {
+		if err := m.ArrangementsAutoRemoval.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arrangements_auto_removal")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arrangements_auto_removal")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -122,6 +148,10 @@ func (m *CDRConfiguration) validateRegisterURL(formats strfmt.Registry) error {
 func (m *CDRConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateArrangementsAutoRemoval(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIndustry(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -137,6 +167,27 @@ func (m *CDRConfiguration) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CDRConfiguration) contextValidateArrangementsAutoRemoval(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ArrangementsAutoRemoval != nil {
+
+		if swag.IsZero(m.ArrangementsAutoRemoval) { // not required
+			return nil
+		}
+
+		if err := m.ArrangementsAutoRemoval.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arrangements_auto_removal")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arrangements_auto_removal")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

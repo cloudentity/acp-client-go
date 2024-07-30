@@ -103,6 +103,27 @@ type ListAuditEventsParams struct {
 	*/
 	EventSubject []string
 
+	/* IdpID.
+
+	     optional list audit events with a given IDP id
+	IDPID
+	*/
+	IdpID *string
+
+	/* IdpMethod.
+
+	     optional list audit events with a given IDP method
+	IDPMethod
+	*/
+	IdpMethod *string
+
+	/* IdpSubject.
+
+	     optional list audit events with a given IDP subject
+	IDPSubject
+	*/
+	IdpSubject *string
+
 	/* IfMatch.
 
 	   A server will only return requested resources if the resource matches one of the listed ETag value
@@ -134,6 +155,12 @@ type ListAuditEventsParams struct {
 	Order
 	*/
 	Order *string
+
+	/* OrganizationID.
+
+	   optional organization id
+	*/
+	OrganizationID *string
 
 	/* SessionID.
 
@@ -175,6 +202,20 @@ type ListAuditEventsParams struct {
 	     Format: date-time
 	*/
 	TimestampTo *strfmt.DateTime
+
+	/* UserID.
+
+	     optional list audit events with a given user id
+	UserID
+	*/
+	UserID *string
+
+	/* UserPoolID.
+
+	     optional list audit events with a given user identity pool id
+	UserPoolID
+	*/
+	UserPoolID *string
 
 	/* Wid.
 
@@ -317,6 +358,39 @@ func (o *ListAuditEventsParams) SetEventSubject(eventSubject []string) {
 	o.EventSubject = eventSubject
 }
 
+// WithIdpID adds the idpID to the list audit events params
+func (o *ListAuditEventsParams) WithIdpID(idpID *string) *ListAuditEventsParams {
+	o.SetIdpID(idpID)
+	return o
+}
+
+// SetIdpID adds the idpId to the list audit events params
+func (o *ListAuditEventsParams) SetIdpID(idpID *string) {
+	o.IdpID = idpID
+}
+
+// WithIdpMethod adds the idpMethod to the list audit events params
+func (o *ListAuditEventsParams) WithIdpMethod(idpMethod *string) *ListAuditEventsParams {
+	o.SetIdpMethod(idpMethod)
+	return o
+}
+
+// SetIdpMethod adds the idpMethod to the list audit events params
+func (o *ListAuditEventsParams) SetIdpMethod(idpMethod *string) {
+	o.IdpMethod = idpMethod
+}
+
+// WithIdpSubject adds the idpSubject to the list audit events params
+func (o *ListAuditEventsParams) WithIdpSubject(idpSubject *string) *ListAuditEventsParams {
+	o.SetIdpSubject(idpSubject)
+	return o
+}
+
+// SetIdpSubject adds the idpSubject to the list audit events params
+func (o *ListAuditEventsParams) SetIdpSubject(idpSubject *string) {
+	o.IdpSubject = idpSubject
+}
+
 // WithIfMatch adds the ifMatch to the list audit events params
 func (o *ListAuditEventsParams) WithIfMatch(ifMatch *string) *ListAuditEventsParams {
 	o.SetIfMatch(ifMatch)
@@ -359,6 +433,17 @@ func (o *ListAuditEventsParams) WithOrder(order *string) *ListAuditEventsParams 
 // SetOrder adds the order to the list audit events params
 func (o *ListAuditEventsParams) SetOrder(order *string) {
 	o.Order = order
+}
+
+// WithOrganizationID adds the organizationID to the list audit events params
+func (o *ListAuditEventsParams) WithOrganizationID(organizationID *string) *ListAuditEventsParams {
+	o.SetOrganizationID(organizationID)
+	return o
+}
+
+// SetOrganizationID adds the organizationId to the list audit events params
+func (o *ListAuditEventsParams) SetOrganizationID(organizationID *string) {
+	o.OrganizationID = organizationID
 }
 
 // WithSessionID adds the sessionID to the list audit events params
@@ -414,6 +499,28 @@ func (o *ListAuditEventsParams) WithTimestampTo(timestampTo *strfmt.DateTime) *L
 // SetTimestampTo adds the timestampTo to the list audit events params
 func (o *ListAuditEventsParams) SetTimestampTo(timestampTo *strfmt.DateTime) {
 	o.TimestampTo = timestampTo
+}
+
+// WithUserID adds the userID to the list audit events params
+func (o *ListAuditEventsParams) WithUserID(userID *string) *ListAuditEventsParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the list audit events params
+func (o *ListAuditEventsParams) SetUserID(userID *string) {
+	o.UserID = userID
+}
+
+// WithUserPoolID adds the userPoolID to the list audit events params
+func (o *ListAuditEventsParams) WithUserPoolID(userPoolID *string) *ListAuditEventsParams {
+	o.SetUserPoolID(userPoolID)
+	return o
+}
+
+// SetUserPoolID adds the userPoolId to the list audit events params
+func (o *ListAuditEventsParams) SetUserPoolID(userPoolID *string) {
+	o.UserPoolID = userPoolID
 }
 
 // WithWid adds the wid to the list audit events params
@@ -525,6 +632,57 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
+	if o.IdpID != nil {
+
+		// query param idp_id
+		var qrIdpID string
+
+		if o.IdpID != nil {
+			qrIdpID = *o.IdpID
+		}
+		qIdpID := qrIdpID
+		if qIdpID != "" {
+
+			if err := r.SetQueryParam("idp_id", qIdpID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IdpMethod != nil {
+
+		// query param idp_method
+		var qrIdpMethod string
+
+		if o.IdpMethod != nil {
+			qrIdpMethod = *o.IdpMethod
+		}
+		qIdpMethod := qrIdpMethod
+		if qIdpMethod != "" {
+
+			if err := r.SetQueryParam("idp_method", qIdpMethod); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IdpSubject != nil {
+
+		// query param idp_subject
+		var qrIdpSubject string
+
+		if o.IdpSubject != nil {
+			qrIdpSubject = *o.IdpSubject
+		}
+		qIdpSubject := qrIdpSubject
+		if qIdpSubject != "" {
+
+			if err := r.SetQueryParam("idp_subject", qIdpSubject); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.IfMatch != nil {
 
 		// header param if-match
@@ -579,6 +737,23 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qOrder != "" {
 
 			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.OrganizationID != nil {
+
+		// query param organization_id
+		var qrOrganizationID string
+
+		if o.OrganizationID != nil {
+			qrOrganizationID = *o.OrganizationID
+		}
+		qOrganizationID := qrOrganizationID
+		if qOrganizationID != "" {
+
+			if err := r.SetQueryParam("organization_id", qOrganizationID); err != nil {
 				return err
 			}
 		}
@@ -664,6 +839,40 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qTimestampTo != "" {
 
 			if err := r.SetQueryParam("timestamp_to", qTimestampTo); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.UserID != nil {
+
+		// query param user_id
+		var qrUserID string
+
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+
+			if err := r.SetQueryParam("user_id", qUserID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.UserPoolID != nil {
+
+		// query param user_pool_id
+		var qrUserPoolID string
+
+		if o.UserPoolID != nil {
+			qrUserPoolID = *o.UserPoolID
+		}
+		qUserPoolID := qrUserPoolID
+		if qUserPoolID != "" {
+
+			if err := r.SetQueryParam("user_pool_id", qUserPoolID); err != nil {
 				return err
 			}
 		}

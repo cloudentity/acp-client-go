@@ -32,6 +32,9 @@ type AccessRequestData struct {
 	// Stores information if the owner of the client application is a developer.
 	CreatedByDeveloper bool `json:"created_by_developer,omitempty" yaml:"created_by_developer,omitempty"`
 
+	// Arculix DBFP `jwt` cookie.
+	Dbfp string `json:"dbfp,omitempty" yaml:"dbfp,omitempty"`
+
 	// Stores the information which grant type was selected to perfom a given action.
 	// Matches one of allowed OAuth client grant types for a given client.
 	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
@@ -39,14 +42,35 @@ type AccessRequestData struct {
 	// ID of the Identity Pool
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
+	// IDP identifier
+	IdpID string `json:"idp_id,omitempty" yaml:"idp_id,omitempty"`
+
+	// IDP method
+	IdpMethod string `json:"idp_method,omitempty" yaml:"idp_method,omitempty"`
+
+	// Subject within the Identity Provider
+	IdpSubject string `json:"idp_subject,omitempty" yaml:"idp_subject,omitempty"`
+
+	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
+
+	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
+
 	// May act claims
 	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty" yaml:"may_act_claims,omitempty"`
+
+	// ID of the Organization
+	OrganizationID string `json:"organization_id,omitempty" yaml:"organization_id,omitempty"`
 
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty" yaml:"public,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`
+
+	// risk engine context
+	RiskEngineContext *RiskContext `json:"risk_engine_context,omitempty" yaml:"risk_engine_context,omitempty"`
 
 	// ID of the authorization server (workspace) to which an access request is tied.
 	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
@@ -64,7 +88,7 @@ type AccessRequestData struct {
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Token endpoint authentication method configured for a client application.
-	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthnMethod string `json:"token_endpoint_authn_method,omitempty" yaml:"token_endpoint_authn_method,omitempty"`
 
 	// Token signature
@@ -75,6 +99,12 @@ type AccessRequestData struct {
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
 	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
+
+	// ID of the User in Identity Pool
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
+
+	// ID of the Identity Pool
+	UserPoolID string `json:"user_pool_id,omitempty" yaml:"user_pool_id,omitempty"`
 
 	// ID of the authorization server (workspace) to which a resource is tied.
 	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
@@ -90,6 +120,10 @@ type AccessRequestData struct {
 func (m *AccessRequestData) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateRiskEngineContext(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTokenEndpointAuthnMethod(formats); err != nil {
 		res = append(res, err)
 	}
@@ -100,11 +134,30 @@ func (m *AccessRequestData) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AccessRequestData) validateRiskEngineContext(formats strfmt.Registry) error {
+	if swag.IsZero(m.RiskEngineContext) { // not required
+		return nil
+	}
+
+	if m.RiskEngineContext != nil {
+		if err := m.RiskEngineContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_engine_context")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_engine_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var accessRequestDataTypeTokenEndpointAuthnMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -134,6 +187,9 @@ const (
 
 	// AccessRequestDataTokenEndpointAuthnMethodNone captures enum value "none"
 	AccessRequestDataTokenEndpointAuthnMethodNone string = "none"
+
+	// AccessRequestDataTokenEndpointAuthnMethodUnspecified captures enum value "unspecified"
+	AccessRequestDataTokenEndpointAuthnMethodUnspecified string = "unspecified"
 )
 
 // prop value enum
@@ -157,8 +213,38 @@ func (m *AccessRequestData) validateTokenEndpointAuthnMethod(formats strfmt.Regi
 	return nil
 }
 
-// ContextValidate validates this access request data based on context it is used
+// ContextValidate validate this access request data based on the context it is used
 func (m *AccessRequestData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRiskEngineContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AccessRequestData) contextValidateRiskEngineContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RiskEngineContext != nil {
+
+		if swag.IsZero(m.RiskEngineContext) { // not required
+			return nil
+		}
+
+		if err := m.RiskEngineContext.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_engine_context")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_engine_context")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

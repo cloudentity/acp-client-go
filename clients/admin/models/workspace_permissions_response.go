@@ -83,6 +83,9 @@ type WorkspacePermissionsResponse struct {
 	// manage services
 	ManageServices bool `json:"manage_services,omitempty" yaml:"manage_services,omitempty"`
 
+	// manage tokens
+	ManageTokens bool `json:"manage_tokens,omitempty" yaml:"manage_tokens,omitempty"`
+
 	// manage user manager role
 	ManageUserManagerRole bool `json:"manage_user_manager_role,omitempty" yaml:"manage_user_manager_role,omitempty"`
 

@@ -121,13 +121,13 @@ type AuditEventPayloads struct {
 	LoginFailed *LoginFailedPayload `json:"login_failed,omitempty" yaml:"login_failed,omitempty"`
 
 	// organization created
-	OrganizationCreated *OrganizationPayload `json:"organization_created,omitempty" yaml:"organization_created,omitempty"`
+	OrganizationCreated *Organization `json:"organization_created,omitempty" yaml:"organization_created,omitempty"`
 
 	// organization deleted
-	OrganizationDeleted *OrganizationPayload `json:"organization_deleted,omitempty" yaml:"organization_deleted,omitempty"`
+	OrganizationDeleted *Organization `json:"organization_deleted,omitempty" yaml:"organization_deleted,omitempty"`
 
 	// organization updated
-	OrganizationUpdated *OrganizationPayload `json:"organization_updated,omitempty" yaml:"organization_updated,omitempty"`
+	OrganizationUpdated *Organization `json:"organization_updated,omitempty" yaml:"organization_updated,omitempty"`
 
 	// otp accepted
 	OtpAccepted *OTPPayload `json:"otp_accepted,omitempty" yaml:"otp_accepted,omitempty"`
@@ -173,6 +173,9 @@ type AuditEventPayloads struct {
 
 	// pool updated
 	PoolUpdated *PoolAuditPayload `json:"pool_updated,omitempty" yaml:"pool_updated,omitempty"`
+
+	// recovery confirmed
+	RecoveryConfirmed *RecoveryPayload `json:"recovery_confirmed,omitempty" yaml:"recovery_confirmed,omitempty"`
 
 	// role granted
 	RoleGranted *RoleGrantAuditPayload `json:"role_granted,omitempty" yaml:"role_granted,omitempty"`
@@ -230,6 +233,9 @@ type AuditEventPayloads struct {
 
 	// user authenticated
 	UserAuthenticated *UserAuthenticatedPayload `json:"user_authenticated,omitempty" yaml:"user_authenticated,omitempty"`
+
+	// user challenged
+	UserChallenged *UserAuthenticatedPayload `json:"user_challenged,omitempty" yaml:"user_challenged,omitempty"`
 
 	// user created
 	UserCreated *UserPayload `json:"user_created,omitempty" yaml:"user_created,omitempty"`
@@ -453,6 +459,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRecoveryConfirmed(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRoleGranted(formats); err != nil {
 		res = append(res, err)
 	}
@@ -526,6 +536,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUserAuthenticated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserChallenged(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1535,6 +1549,25 @@ func (m *AuditEventPayloads) validatePoolUpdated(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *AuditEventPayloads) validateRecoveryConfirmed(formats strfmt.Registry) error {
+	if swag.IsZero(m.RecoveryConfirmed) { // not required
+		return nil
+	}
+
+	if m.RecoveryConfirmed != nil {
+		if err := m.RecoveryConfirmed.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recovery_confirmed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recovery_confirmed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateRoleGranted(formats strfmt.Registry) error {
 	if swag.IsZero(m.RoleGranted) { // not required
 		return nil
@@ -1896,6 +1929,25 @@ func (m *AuditEventPayloads) validateUserAuthenticated(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *AuditEventPayloads) validateUserChallenged(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserChallenged) { // not required
+		return nil
+	}
+
+	if m.UserChallenged != nil {
+		if err := m.UserChallenged.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_challenged")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_challenged")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateUserCreated(formats strfmt.Registry) error {
 	if swag.IsZero(m.UserCreated) { // not required
 		return nil
@@ -2165,6 +2217,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRecoveryConfirmed(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRoleGranted(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2238,6 +2294,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateUserAuthenticated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserChallenged(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -3351,6 +3411,27 @@ func (m *AuditEventPayloads) contextValidatePoolUpdated(ctx context.Context, for
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateRecoveryConfirmed(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RecoveryConfirmed != nil {
+
+		if swag.IsZero(m.RecoveryConfirmed) { // not required
+			return nil
+		}
+
+		if err := m.RecoveryConfirmed.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recovery_confirmed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recovery_confirmed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateRoleGranted(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RoleGranted != nil {
@@ -3742,6 +3823,27 @@ func (m *AuditEventPayloads) contextValidateUserAuthenticated(ctx context.Contex
 				return ve.ValidateName("user_authenticated")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("user_authenticated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserChallenged(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserChallenged != nil {
+
+		if swag.IsZero(m.UserChallenged) { // not required
+			return nil
+		}
+
+		if err := m.UserChallenged.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_challenged")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_challenged")
 			}
 			return err
 		}

@@ -21,14 +21,14 @@ import (
 type UserAuthenticatedPayload struct {
 
 	// first factor method
-	// Enum: [password otp webauthn]
+	// Enum: [totp password otp webauthn arculix]
 	AuthnMethod string `json:"authn_method,omitempty" yaml:"authn_method,omitempty"`
 
 	// identifier
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// second factor method
-	// Enum: [password otp webauthn]
+	// Enum: [totp password otp webauthn arculix]
 	Mfa string `json:"mfa,omitempty" yaml:"mfa,omitempty"`
 
 	// m f a skipped
@@ -68,7 +68,7 @@ var userAuthenticatedPayloadTypeAuthnMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -78,6 +78,9 @@ func init() {
 
 const (
 
+	// UserAuthenticatedPayloadAuthnMethodTotp captures enum value "totp"
+	UserAuthenticatedPayloadAuthnMethodTotp string = "totp"
+
 	// UserAuthenticatedPayloadAuthnMethodPassword captures enum value "password"
 	UserAuthenticatedPayloadAuthnMethodPassword string = "password"
 
@@ -86,6 +89,9 @@ const (
 
 	// UserAuthenticatedPayloadAuthnMethodWebauthn captures enum value "webauthn"
 	UserAuthenticatedPayloadAuthnMethodWebauthn string = "webauthn"
+
+	// UserAuthenticatedPayloadAuthnMethodArculix captures enum value "arculix"
+	UserAuthenticatedPayloadAuthnMethodArculix string = "arculix"
 )
 
 // prop value enum
@@ -113,7 +119,7 @@ var userAuthenticatedPayloadTypeMfaPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -123,6 +129,9 @@ func init() {
 
 const (
 
+	// UserAuthenticatedPayloadMfaTotp captures enum value "totp"
+	UserAuthenticatedPayloadMfaTotp string = "totp"
+
 	// UserAuthenticatedPayloadMfaPassword captures enum value "password"
 	UserAuthenticatedPayloadMfaPassword string = "password"
 
@@ -131,6 +140,9 @@ const (
 
 	// UserAuthenticatedPayloadMfaWebauthn captures enum value "webauthn"
 	UserAuthenticatedPayloadMfaWebauthn string = "webauthn"
+
+	// UserAuthenticatedPayloadMfaArculix captures enum value "arculix"
+	UserAuthenticatedPayloadMfaArculix string = "arculix"
 )
 
 // prop value enum

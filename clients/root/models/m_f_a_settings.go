@@ -18,8 +18,14 @@ import (
 // swagger:model MFASettings
 type MFASettings struct {
 
+	// arculix
+	Arculix *ArculixSettings `json:"arculix,omitempty" yaml:"arculix,omitempty"`
+
 	// email
 	Email *EmailSettings `json:"email,omitempty" yaml:"email,omitempty"`
+
+	// risk engine
+	RiskEngine *RiskEngineSettings `json:"risk_engine,omitempty" yaml:"risk_engine,omitempty"`
 
 	// sms
 	Sms *SMSSettings `json:"sms,omitempty" yaml:"sms,omitempty"`
@@ -29,7 +35,15 @@ type MFASettings struct {
 func (m *MFASettings) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArculix(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRiskEngine(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,6 +54,25 @@ func (m *MFASettings) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *MFASettings) validateArculix(formats strfmt.Registry) error {
+	if swag.IsZero(m.Arculix) { // not required
+		return nil
+	}
+
+	if m.Arculix != nil {
+		if err := m.Arculix.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arculix")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arculix")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -54,6 +87,25 @@ func (m *MFASettings) validateEmail(formats strfmt.Registry) error {
 				return ve.ValidateName("email")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("email")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *MFASettings) validateRiskEngine(formats strfmt.Registry) error {
+	if swag.IsZero(m.RiskEngine) { // not required
+		return nil
+	}
+
+	if m.RiskEngine != nil {
+		if err := m.RiskEngine.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_engine")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_engine")
 			}
 			return err
 		}
@@ -85,7 +137,15 @@ func (m *MFASettings) validateSms(formats strfmt.Registry) error {
 func (m *MFASettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateArculix(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEmail(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRiskEngine(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -96,6 +156,27 @@ func (m *MFASettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *MFASettings) contextValidateArculix(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Arculix != nil {
+
+		if swag.IsZero(m.Arculix) { // not required
+			return nil
+		}
+
+		if err := m.Arculix.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arculix")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arculix")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -112,6 +193,27 @@ func (m *MFASettings) contextValidateEmail(ctx context.Context, formats strfmt.R
 				return ve.ValidateName("email")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("email")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *MFASettings) contextValidateRiskEngine(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RiskEngine != nil {
+
+		if swag.IsZero(m.RiskEngine) { // not required
+			return nil
+		}
+
+		if err := m.RiskEngine.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_engine")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_engine")
 			}
 			return err
 		}

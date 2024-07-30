@@ -29,6 +29,12 @@ func (o *TokenReader) ReadResponse(response runtime.ClientResponse, consumer run
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewTokenBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewTokenUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -133,6 +139,74 @@ func (o *TokenOK) readResponse(response runtime.ClientResponse, consumer runtime
 	}
 
 	o.Payload = new(models.TokenResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewTokenBadRequest creates a TokenBadRequest with default headers values
+func NewTokenBadRequest() *TokenBadRequest {
+	return &TokenBadRequest{}
+}
+
+/*
+TokenBadRequest describes a response with status code 400, with default header values.
+
+ErrorResponse
+*/
+type TokenBadRequest struct {
+	Payload *models.GenericError
+}
+
+// IsSuccess returns true when this token bad request response has a 2xx status code
+func (o *TokenBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this token bad request response has a 3xx status code
+func (o *TokenBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token bad request response has a 4xx status code
+func (o *TokenBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this token bad request response has a 5xx status code
+func (o *TokenBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token bad request response a status code equal to that given
+func (o *TokenBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+// Code gets the status code for the token bad request response
+func (o *TokenBadRequest) Code() int {
+	return 400
+}
+
+func (o *TokenBadRequest) Error() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *TokenBadRequest) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *TokenBadRequest) GetPayload() *models.GenericError {
+	return o.Payload
+}
+
+func (o *TokenBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GenericError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -20,6 +21,9 @@ type IDPPayload struct {
 	// Unique identifierof IDP.
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
+	// mappings
+	Mappings Mappings `json:"mappings,omitempty" yaml:"mappings,omitempty"`
+
 	// Defines the type of an IDP, e.g. google, saml
 	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
@@ -29,11 +33,60 @@ type IDPPayload struct {
 
 // Validate validates this ID p payload
 func (m *IDPPayload) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateMappings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this ID p payload based on context it is used
+func (m *IDPPayload) validateMappings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mappings) { // not required
+		return nil
+	}
+
+	if err := m.Mappings.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mappings")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mappings")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this ID p payload based on the context it is used
 func (m *IDPPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMappings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IDPPayload) contextValidateMappings(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Mappings.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mappings")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mappings")
+		}
+		return err
+	}
+
 	return nil
 }
 

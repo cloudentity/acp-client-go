@@ -758,6 +758,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -1365,6 +1366,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -2179,6 +2181,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -2321,6 +2324,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -2375,6 +2379,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -2924,6 +2929,8 @@ paths:
       responses:
         "200":
           $ref: '#/responses/tokenResponse'
+        "400":
+          $ref: '#/responses/genericError'
         "401":
           $ref: '#/responses/genericError'
         "404":

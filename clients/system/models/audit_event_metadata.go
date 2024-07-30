@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -32,8 +33,22 @@ type AuditEventMetadata struct {
 	// May be empty when the access is incorrect or missing.
 	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
+	// DBFP jwt fingerprint
+	DbfpFingerprint string `json:"dbfp_fingerprint,omitempty" yaml:"dbfp_fingerprint,omitempty"`
+
 	// ID of the Identity Pool
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
+
+	// IDP identifier
+	IdpID string `json:"idp_id,omitempty" yaml:"idp_id,omitempty"`
+
+	// IDP method
+	IdpMethod string `json:"idp_method,omitempty" yaml:"idp_method,omitempty"`
+
+	// Access request subject value from IDP related to a given audit event.
+	//
+	// May be empty when the access is incorrect or missing.
+	IdpSubject string `json:"idp_subject,omitempty" yaml:"idp_subject,omitempty"`
 
 	// Audit event IP address.
 	//
@@ -44,6 +59,15 @@ type AuditEventMetadata struct {
 	//
 	// It's only populated if the token has been issued token with may_act claim.
 	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty" yaml:"may_act_claims,omitempty"`
+
+	// ID of the Organization
+	OrganizationID string `json:"organization_id,omitempty" yaml:"organization_id,omitempty"`
+
+	// risk id
+	RiskID RiskID `json:"risk_id,omitempty" yaml:"risk_id,omitempty"`
+
+	// risk loa
+	RiskLoa RiskLOA `json:"risk_loa,omitempty" yaml:"risk_loa,omitempty"`
 
 	// Session id
 	//
@@ -66,15 +90,117 @@ type AuditEventMetadata struct {
 
 	// User-agent that describes a device name that generated the audit event.
 	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
+
+	// ID of the User in Identity Pool
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
+
+	// ID of the Identity Pool
+	UserPoolID string `json:"user_pool_id,omitempty" yaml:"user_pool_id,omitempty"`
 }
 
 // Validate validates this audit event metadata
 func (m *AuditEventMetadata) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateRiskID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRiskLoa(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this audit event metadata based on context it is used
+func (m *AuditEventMetadata) validateRiskID(formats strfmt.Registry) error {
+	if swag.IsZero(m.RiskID) { // not required
+		return nil
+	}
+
+	if err := m.RiskID.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("risk_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("risk_id")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *AuditEventMetadata) validateRiskLoa(formats strfmt.Registry) error {
+	if swag.IsZero(m.RiskLoa) { // not required
+		return nil
+	}
+
+	if err := m.RiskLoa.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("risk_loa")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("risk_loa")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this audit event metadata based on the context it is used
 func (m *AuditEventMetadata) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRiskID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRiskLoa(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AuditEventMetadata) contextValidateRiskID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RiskID) { // not required
+		return nil
+	}
+
+	if err := m.RiskID.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("risk_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("risk_id")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *AuditEventMetadata) contextValidateRiskLoa(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RiskLoa) { // not required
+		return nil
+	}
+
+	if err := m.RiskLoa.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("risk_loa")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("risk_loa")
+		}
+		return err
+	}
+
 	return nil
 }
 

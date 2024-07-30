@@ -40,6 +40,7 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/admin/client/templates"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/tenants"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/themes"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/tokens"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/vanity_domains"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/webhooks"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/workspaces"
@@ -117,6 +118,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Templates = templates.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
 	cli.Themes = themes.New(transport, formats)
+	cli.Tokens = tokens.New(transport, formats)
 	cli.VanityDomains = vanity_domains.New(transport, formats)
 	cli.Webhooks = webhooks.New(transport, formats)
 	cli.Workspaces = workspaces.New(transport, formats)
@@ -224,6 +226,8 @@ type Acp struct {
 
 	Themes themes.ClientService
 
+	Tokens tokens.ClientService
+
 	VanityDomains vanity_domains.ClientService
 
 	Webhooks webhooks.ClientService
@@ -266,6 +270,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Templates.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
 	c.Themes.SetTransport(transport)
+	c.Tokens.SetTransport(transport)
 	c.VanityDomains.SetTransport(transport)
 	c.Webhooks.SetTransport(transport)
 	c.Workspaces.SetTransport(transport)

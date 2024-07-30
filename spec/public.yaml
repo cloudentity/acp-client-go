@@ -692,6 +692,10 @@ definitions:
     type: object
   PublicEnvironment:
     properties:
+      identity_pool_mfa:
+        description: If Identity Pool MFA is enabled
+        type: boolean
+        x-nullable: false
       self_service:
         description: If self-service is enabled
         type: boolean
@@ -765,6 +769,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -805,6 +811,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -1214,7 +1222,7 @@ paths:
       summary: List privacy ledger events
       tags:
       - consents
-  /sessions:
+  /sso/sessions:
     get:
       description: User sessions.
       operationId: listUserSessions
@@ -1235,7 +1243,7 @@ paths:
       summary: Lists user sessions.
       tags:
       - sessions
-  /sessions/{sessionID}:
+  /sso/sessions/{sessionID}:
     delete:
       operationId: deleteSession
       parameters:

@@ -27,6 +27,9 @@ type ActivateSelfRegisteredUser struct {
 	// password
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
+	// totp secret
+	TotpSecret string `json:"totp_secret,omitempty" yaml:"totp_secret,omitempty"`
+
 	// webauthn
 	Webauthn []*Credential `json:"webauthn" yaml:"webauthn"`
 }

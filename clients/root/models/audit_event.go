@@ -21,7 +21,7 @@ import (
 type AuditEvent struct {
 
 	// action
-	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
+	// Enum: [authenticated challenged authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
 	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// event id
@@ -31,7 +31,7 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty" yaml:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// event type
@@ -85,7 +85,7 @@ var auditEventTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -97,6 +97,9 @@ const (
 
 	// AuditEventActionAuthenticated captures enum value "authenticated"
 	AuditEventActionAuthenticated string = "authenticated"
+
+	// AuditEventActionChallenged captures enum value "challenged"
+	AuditEventActionChallenged string = "challenged"
 
 	// AuditEventActionAuthorized captures enum value "authorized"
 	AuditEventActionAuthorized string = "authorized"
@@ -187,7 +190,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -220,6 +223,9 @@ const (
 
 	// AuditEventEventSubjectPostAuthn captures enum value "post_authn"
 	AuditEventEventSubjectPostAuthn string = "post_authn"
+
+	// AuditEventEventSubjectRecovery captures enum value "recovery"
+	AuditEventEventSubjectRecovery string = "recovery"
 
 	// AuditEventEventSubjectConsent captures enum value "consent"
 	AuditEventEventSubjectConsent string = "consent"

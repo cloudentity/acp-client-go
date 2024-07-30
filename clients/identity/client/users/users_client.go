@@ -648,13 +648,16 @@ func (a *Client) SetUserMetadata(params *SetUserMetadataParams, authInfo runtime
 
 	Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
 
-you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+you need to update. Fields (top level elements like `status`, `payload` etc.) with no values are skipped for the update (not removed nor cleared).
 
 The fields to be updated are overridden.
 
 Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
 
 To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
+
+Please notice that `deleted` status may be used as soft-delete but does not have any special meaning in the
+system besides it does not allow such user to authenticate.
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending

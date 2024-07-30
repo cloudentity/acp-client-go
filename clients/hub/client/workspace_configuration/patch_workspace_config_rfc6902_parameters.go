@@ -63,6 +63,14 @@ PatchWorkspaceConfigRfc6902Params contains all the parameters to send to the API
 */
 type PatchWorkspaceConfigRfc6902Params struct {
 
+	/* DryRun.
+
+	   Dry Run
+
+	   Default: "false"
+	*/
+	DryRun *string
+
 	/* Mode.
 
 	     Insert mode
@@ -128,14 +136,17 @@ func (o *PatchWorkspaceConfigRfc6902Params) WithDefaults() *PatchWorkspaceConfig
 // All values with no default are reset to their zero value.
 func (o *PatchWorkspaceConfigRfc6902Params) SetDefaults() {
 	var (
+		dryRunDefault = string("false")
+
 		tidDefault = string("default")
 
 		widDefault = string("default")
 	)
 
 	val := PatchWorkspaceConfigRfc6902Params{
-		Tid: tidDefault,
-		Wid: widDefault,
+		DryRun: &dryRunDefault,
+		Tid:    tidDefault,
+		Wid:    widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -175,6 +186,17 @@ func (o *PatchWorkspaceConfigRfc6902Params) WithHTTPClient(client *http.Client) 
 // SetHTTPClient adds the HTTPClient to the patch workspace config rfc6902 params
 func (o *PatchWorkspaceConfigRfc6902Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithDryRun adds the dryRun to the patch workspace config rfc6902 params
+func (o *PatchWorkspaceConfigRfc6902Params) WithDryRun(dryRun *string) *PatchWorkspaceConfigRfc6902Params {
+	o.SetDryRun(dryRun)
+	return o
+}
+
+// SetDryRun adds the dryRun to the patch workspace config rfc6902 params
+func (o *PatchWorkspaceConfigRfc6902Params) SetDryRun(dryRun *string) {
+	o.DryRun = dryRun
 }
 
 // WithMode adds the mode to the patch workspace config rfc6902 params
@@ -228,6 +250,23 @@ func (o *PatchWorkspaceConfigRfc6902Params) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.DryRun != nil {
+
+		// query param dry_run
+		var qrDryRun string
+
+		if o.DryRun != nil {
+			qrDryRun = *o.DryRun
+		}
+		qDryRun := qrDryRun
+		if qDryRun != "" {
+
+			if err := r.SetQueryParam("dry_run", qDryRun); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Mode != nil {
 

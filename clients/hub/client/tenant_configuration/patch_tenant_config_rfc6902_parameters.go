@@ -63,6 +63,14 @@ PatchTenantConfigRfc6902Params contains all the parameters to send to the API en
 */
 type PatchTenantConfigRfc6902Params struct {
 
+	/* DryRun.
+
+	   Dry Run
+
+	   Default: "false"
+	*/
+	DryRun *string
+
 	/* Mode.
 
 	     Insert mode
@@ -120,11 +128,14 @@ func (o *PatchTenantConfigRfc6902Params) WithDefaults() *PatchTenantConfigRfc690
 // All values with no default are reset to their zero value.
 func (o *PatchTenantConfigRfc6902Params) SetDefaults() {
 	var (
+		dryRunDefault = string("false")
+
 		tidDefault = string("default")
 	)
 
 	val := PatchTenantConfigRfc6902Params{
-		Tid: tidDefault,
+		DryRun: &dryRunDefault,
+		Tid:    tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -164,6 +175,17 @@ func (o *PatchTenantConfigRfc6902Params) WithHTTPClient(client *http.Client) *Pa
 // SetHTTPClient adds the HTTPClient to the patch tenant config rfc6902 params
 func (o *PatchTenantConfigRfc6902Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithDryRun adds the dryRun to the patch tenant config rfc6902 params
+func (o *PatchTenantConfigRfc6902Params) WithDryRun(dryRun *string) *PatchTenantConfigRfc6902Params {
+	o.SetDryRun(dryRun)
+	return o
+}
+
+// SetDryRun adds the dryRun to the patch tenant config rfc6902 params
+func (o *PatchTenantConfigRfc6902Params) SetDryRun(dryRun *string) {
+	o.DryRun = dryRun
 }
 
 // WithMode adds the mode to the patch tenant config rfc6902 params
@@ -206,6 +228,23 @@ func (o *PatchTenantConfigRfc6902Params) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.DryRun != nil {
+
+		// query param dry_run
+		var qrDryRun string
+
+		if o.DryRun != nil {
+			qrDryRun = *o.DryRun
+		}
+		qDryRun := qrDryRun
+		if qDryRun != "" {
+
+			if err := r.SetQueryParam("dry_run", qDryRun); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Mode != nil {
 

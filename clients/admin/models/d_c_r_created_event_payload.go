@@ -21,6 +21,15 @@ type DCRCreatedEventPayload struct {
 	// client details
 	ClientDetails *DCRDetails `json:"client_details,omitempty" yaml:"client_details,omitempty"`
 
+	// Arculix DBFP `jwt` cookie.
+	Dbfp string `json:"dbfp,omitempty" yaml:"dbfp,omitempty"`
+
+	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
+
+	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
+
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`
 

@@ -18,6 +18,9 @@ import (
 // swagger:model TreeTenant
 type TreeTenant struct {
 
+	// features
+	Features TreeFeatures `json:"features,omitempty" yaml:"features,omitempty"`
+
 	// jwks
 	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
@@ -60,6 +63,10 @@ type TreeTenant struct {
 // Validate validates this tree tenant
 func (m *TreeTenant) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateFeatures(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
@@ -104,6 +111,25 @@ func (m *TreeTenant) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *TreeTenant) validateFeatures(formats strfmt.Registry) error {
+	if swag.IsZero(m.Features) { // not required
+		return nil
+	}
+
+	if m.Features != nil {
+		if err := m.Features.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("features")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("features")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -301,6 +327,10 @@ func (m *TreeTenant) validateThemes(formats strfmt.Registry) error {
 func (m *TreeTenant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateFeatures(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -344,6 +374,24 @@ func (m *TreeTenant) ContextValidate(ctx context.Context, formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *TreeTenant) contextValidateFeatures(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Features) { // not required
+		return nil
+	}
+
+	if err := m.Features.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("features")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("features")
+		}
+		return err
+	}
+
 	return nil
 }
 

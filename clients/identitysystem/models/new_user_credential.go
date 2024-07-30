@@ -28,10 +28,14 @@ type NewUserCredential struct {
 	// Example: secret
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
+	// totp secret
+	// Example: BLEXAM6OPBBZTCFUOPVHDQ2HVG7PTMK3
+	TotpSecret string `json:"totp_secret,omitempty" yaml:"totp_secret,omitempty"`
+
 	// type
 	// Example: password
 	// Required: true
-	// Enum: [password webauthn]
+	// Enum: [password webauthn totp]
 	Type string `json:"type" yaml:"type"`
 
 	// webauthn credentials
@@ -61,7 +65,7 @@ var newUserCredentialTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["password","webauthn","totp"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -76,6 +80,9 @@ const (
 
 	// NewUserCredentialTypeWebauthn captures enum value "webauthn"
 	NewUserCredentialTypeWebauthn string = "webauthn"
+
+	// NewUserCredentialTypeTotp captures enum value "totp"
+	NewUserCredentialTypeTotp string = "totp"
 )
 
 // prop value enum

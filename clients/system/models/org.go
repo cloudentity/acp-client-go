@@ -42,6 +42,9 @@ type Org struct {
 	// Example: default
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	// The id of the parent workspace / organization
+	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
+
 	// If true this organization can be used as a template when creating a new ones.
 	Template bool `json:"template,omitempty" yaml:"template,omitempty"`
 }

@@ -17,6 +17,9 @@ import (
 // swagger:model DCRRejectedEventPayload
 type DCRRejectedEventPayload struct {
 
+	// Arculix DBFP `jwt` cookie.
+	Dbfp string `json:"dbfp,omitempty" yaml:"dbfp,omitempty"`
+
 	// High level error name (request_forbidden, access_denied, invalid_request).
 	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
@@ -31,6 +34,12 @@ type DCRRejectedEventPayload struct {
 
 	// External error
 	ExternalError bool `json:"external_error,omitempty" yaml:"external_error,omitempty"`
+
+	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
+
+	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`

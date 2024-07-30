@@ -84,7 +84,7 @@ type GetUserMetadataOK struct {
 	*/
 	Etag string
 
-	Payload *models.UserMetadata
+	Payload *models.UserMetadataWithSchema
 }
 
 // IsSuccess returns true when this get user metadata o k response has a 2xx status code
@@ -125,7 +125,7 @@ func (o *GetUserMetadataOK) String() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataOK  %+v", 200, o.Payload)
 }
 
-func (o *GetUserMetadataOK) GetPayload() *models.UserMetadata {
+func (o *GetUserMetadataOK) GetPayload() *models.UserMetadataWithSchema {
 	return o.Payload
 }
 
@@ -138,7 +138,7 @@ func (o *GetUserMetadataOK) readResponse(response runtime.ClientResponse, consum
 		o.Etag = hdrEtag
 	}
 
-	o.Payload = new(models.UserMetadata)
+	o.Payload = new(models.UserMetadataWithSchema)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -50,6 +50,9 @@ type OrganizationResponse struct {
 	// number of child organizations
 	NumberOfChildOrganizations int64 `json:"number_of_child_organizations,omitempty" yaml:"number_of_child_organizations,omitempty"`
 
+	// The id of the parent workspace / organization
+	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
+
 	// subject format
 	// Enum: [hash legacy]
 	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`

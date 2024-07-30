@@ -44,14 +44,32 @@ type PoolPermissionsResponse struct {
 	// manage identity pool users
 	ManageIdentityPoolUsers bool `json:"manage_identity_pool_users,omitempty" yaml:"manage_identity_pool_users,omitempty"`
 
+	// manage user addresses
+	ManageUserAddresses bool `json:"manage_user_addresses,omitempty" yaml:"manage_user_addresses,omitempty"`
+
+	// manage user identifiers
+	ManageUserIdentifiers bool `json:"manage_user_identifiers,omitempty" yaml:"manage_user_identifiers,omitempty"`
+
 	// manage user manager role
 	ManageUserManagerRole bool `json:"manage_user_manager_role,omitempty" yaml:"manage_user_manager_role,omitempty"`
+
+	// manage user otps
+	ManageUserOtps bool `json:"manage_user_otps,omitempty" yaml:"manage_user_otps,omitempty"`
+
+	// manage user passwords
+	ManageUserPasswords bool `json:"manage_user_passwords,omitempty" yaml:"manage_user_passwords,omitempty"`
 
 	// read identity pool users
 	ReadIdentityPoolUsers bool `json:"read_identity_pool_users,omitempty" yaml:"read_identity_pool_users,omitempty"`
 
 	// read roles
 	ReadRoles bool `json:"read_roles,omitempty" yaml:"read_roles,omitempty"`
+
+	// send user activation
+	SendUserActivation bool `json:"send_user_activation,omitempty" yaml:"send_user_activation,omitempty"`
+
+	// send user verification
+	SendUserVerification bool `json:"send_user_verification,omitempty" yaml:"send_user_verification,omitempty"`
 
 	// update identity pool
 	UpdateIdentityPool bool `json:"update_identity_pool,omitempty" yaml:"update_identity_pool,omitempty"`

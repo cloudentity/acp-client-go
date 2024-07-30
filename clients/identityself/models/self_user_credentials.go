@@ -35,7 +35,7 @@ type SelfUserCredentials struct {
 	// type
 	// Example: password
 	// Required: true
-	// Enum: [password webauthn]
+	// Enum: [password webauthn totp]
 	Type string `json:"type" yaml:"type"`
 
 	// updated at
@@ -147,7 +147,7 @@ var selfUserCredentialsTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["password","webauthn","totp"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -162,6 +162,9 @@ const (
 
 	// SelfUserCredentialsTypeWebauthn captures enum value "webauthn"
 	SelfUserCredentialsTypeWebauthn string = "webauthn"
+
+	// SelfUserCredentialsTypeTotp captures enum value "totp"
+	SelfUserCredentialsTypeTotp string = "totp"
 )
 
 // prop value enum
