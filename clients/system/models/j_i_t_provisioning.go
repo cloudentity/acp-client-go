@@ -21,7 +21,7 @@ import (
 type JITProvisioning struct {
 
 	// Admin role assigned to the provisioned user if JIT is enabled (available only for admin workspaces only)
-	// Enum: [admin business_admin auditor manager user_manager member]
+	// Enum: [admin business_admin auditor member]
 	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
 
 	// identifier salt
@@ -63,7 +63,7 @@ var jITProvisioningTypeAdminRoleTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["admin","business_admin","auditor","manager","user_manager","member"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["admin","business_admin","auditor","member"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -81,12 +81,6 @@ const (
 
 	// JITProvisioningAdminRoleTypeAuditor captures enum value "auditor"
 	JITProvisioningAdminRoleTypeAuditor string = "auditor"
-
-	// JITProvisioningAdminRoleTypeManager captures enum value "manager"
-	JITProvisioningAdminRoleTypeManager string = "manager"
-
-	// JITProvisioningAdminRoleTypeUserManager captures enum value "user_manager"
-	JITProvisioningAdminRoleTypeUserManager string = "user_manager"
 
 	// JITProvisioningAdminRoleTypeMember captures enum value "member"
 	JITProvisioningAdminRoleTypeMember string = "member"

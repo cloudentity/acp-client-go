@@ -1033,6 +1033,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -1684,6 +1685,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -2394,6 +2396,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false

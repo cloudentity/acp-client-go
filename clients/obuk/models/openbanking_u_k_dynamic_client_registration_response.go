@@ -332,7 +332,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	//
 	// To learn more, go to the Authorization Basics > Client Authentication section of this guide.
 	// Example: client_secret_basic
-	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 
 	// Signing algorithm for the token endpoint
@@ -1163,7 +1163,7 @@ var openbankingUKDynamicClientRegistrationResponseTypeTokenEndpointAuthMethodPro
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1193,6 +1193,9 @@ const (
 
 	// OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthMethodNone captures enum value "none"
 	OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthMethodNone string = "none"
+
+	// OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthMethodUnspecified captures enum value "unspecified"
+	OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthMethodUnspecified string = "unspecified"
 )
 
 // prop value enum

@@ -20,6 +20,9 @@ type CreateGatewayRequest struct {
 	// if true a services is created automatically for each new discovered api group
 	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty" yaml:"create_and_bind_services_automatically,omitempty"`
 
+	// default policy id assigned to new APIs
+	DefaultPolicyID string `json:"default_policy_id,omitempty" yaml:"default_policy_id,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 

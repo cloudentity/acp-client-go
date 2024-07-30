@@ -38,6 +38,9 @@ type Environment struct {
 	// Format: duration
 	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty" yaml:"analytics_duration,omitempty"`
 
+	// Arculix 2FA and MFA
+	Arculix bool `json:"arculix,omitempty" yaml:"arculix,omitempty"`
+
 	// audit events duration
 	// Format: duration
 	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty" yaml:"audit_events_duration,omitempty"`
@@ -50,9 +53,6 @@ type Environment struct {
 
 	// cache access tokens
 	CacheAccessTokens bool `json:"cache_access_tokens,omitempty" yaml:"cache_access_tokens,omitempty"`
-
-	// add previous arrangement to CDR amend audit event
-	CdrAmendAuditEventWithPreviousArrangement bool `json:"cdr_amend_audit_event_with_previous_arrangement,omitempty" yaml:"cdr_amend_audit_event_with_previous_arrangement,omitempty"`
 
 	// arrangement cache for CDR
 	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty" yaml:"cdr_arrangement_cache,omitempty"`
@@ -102,8 +102,14 @@ type Environment struct {
 	// drop tokens on password reset
 	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty" yaml:"drop_tokens_on_password_reset,omitempty"`
 
+	// Gateway default policy
+	GatewayDefaultPolicy bool `json:"gateway_default_policy,omitempty" yaml:"gateway_default_policy,omitempty"`
+
 	// grpc url
 	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
+
+	// Handle MFA Recovery in Identity Pools
+	HandleMfaRecoveryInIdentityPools bool `json:"handle_mfa_recovery_in_identity_pools,omitempty" yaml:"handle_mfa_recovery_in_identity_pools,omitempty"`
 
 	// has google image search
 	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
@@ -121,6 +127,11 @@ type Environment struct {
 	// Enable MFA for Identity Pool
 	IdentityPoolMfa bool `json:"identity_pool_mfa,omitempty" yaml:"identity_pool_mfa,omitempty"`
 
+	// Identity Pool TOTP
+	//
+	// Enable TOTP for Identity Pool
+	IdentityPoolTotp bool `json:"identity_pool_totp,omitempty" yaml:"identity_pool_totp,omitempty"`
+
 	// image proxy url
 	ImageProxyURL string `json:"image_proxy_url,omitempty" yaml:"image_proxy_url,omitempty"`
 
@@ -133,11 +144,11 @@ type Environment struct {
 	// insecure token exchange public clients
 	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
-	// Enforce JIT users roles
-	JitPermissions bool `json:"jit_permissions,omitempty" yaml:"jit_permissions,omitempty"`
-
 	// mark address as verified on any proof of possession of the address
 	MarkAddressAsVerifiedOnAnyProofOfPossession bool `json:"mark_address_as_verified_on_any_proof_of_possession,omitempty" yaml:"mark_address_as_verified_on_any_proof_of_possession,omitempty"`
+
+	// openbanking brasil
+	Obbr bool `json:"obbr,omitempty" yaml:"obbr,omitempty"`
 
 	// openbanking ksa workspace and security profile
 	OpenbankingKsa bool `json:"openbanking_ksa,omitempty" yaml:"openbanking_ksa,omitempty"`
@@ -155,12 +166,17 @@ type Environment struct {
 	// rich authorization requests
 	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 
+	// Risk engine
+	RiskEngine bool `json:"risk_engine,omitempty" yaml:"risk_engine,omitempty"`
+
 	// Roles
 	//
 	// Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
 	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
 
-	// Enable SAML V2
+	// SAML Identity Provider V2
+	//
+	// Enable SAML Identity Provider V2
 	SamlV2 bool `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
 
 	// scope transient_otp
@@ -168,11 +184,6 @@ type Environment struct {
 
 	// script runtimes
 	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes" yaml:"script_runtimes"`
-
-	// Scripts runtime versions
-	//
-	// Enable users to manage runtime versions for scripts.
-	ScriptsRuntimeVersions bool `json:"scripts_runtime_versions,omitempty" yaml:"scripts_runtime_versions,omitempty"`
 
 	// Self-service
 	//

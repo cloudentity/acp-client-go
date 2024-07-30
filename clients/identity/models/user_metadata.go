@@ -18,7 +18,7 @@ import (
 type UserMetadata struct {
 
 	// metadata
-	Metadata map[string]interface{} `json:"Metadata,omitempty" yaml:"Metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 }
 
 // Validate validates this user metadata

@@ -36,7 +36,11 @@ type ClientService interface {
 
 	ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error)
 
+	ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error)
+
 	CompleteResetPassword(params *CompleteResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetPasswordNoContent, error)
+
+	CompleteResetTotp(params *CompleteResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetTotpNoContent, error)
 
 	CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetWebAuthnNoContent, error)
 
@@ -49,6 +53,8 @@ type ClientService interface {
 	GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeForUserCreated, error)
 
 	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
+
+	RequestResetTotp(params *RequestResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetTotpNoContent, error)
 
 	RequestResetWebAuthn(params *RequestResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetWebAuthnNoContent, error)
 
@@ -232,6 +238,50 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 }
 
 /*
+	ChangeTotpSecret changes totp secret
+
+	Changes user totp secret if the provided totp code matches is valid.
+
+Fails if totp secret is not set. For setting a totp secret for user use the reset totp secret flow.
+Endpoint is protected by Brute Force mechanism.
+*/
+func (a *Client) ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeTotpSecretParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "changeTotpSecret",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/totp/change",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeTotpSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ChangeTotpSecretNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for changeTotpSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	CompleteResetPassword completes reset password
 
 	Resets password for user if the provided OTP is valid. It's the second and final step of the
@@ -275,6 +325,53 @@ func (a *Client) CompleteResetPassword(params *CompleteResetPasswordParams, auth
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for completeResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CompleteResetTotp completes reset totp secret
+
+	Resets totp secret for user if the provided OTP is valid. It's the second and final step of the
+
+flow to reset totp secret.
+Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+After a successful totp secret reset, OTP gets invalidated, so it cannot be reused.
+Endpoint is protected by Brute Force mechanism.
+*/
+func (a *Client) CompleteResetTotp(params *CompleteResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetTotpNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteResetTotpParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "completeResetTotp",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/totp/reset/complete",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CompleteResetTotpReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CompleteResetTotpNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for completeResetTotp: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -575,6 +672,56 @@ func (a *Client) RequestResetPassword(params *RequestResetPasswordParams, authIn
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for requestResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RequestResetTotp requests reset totp secret
+
+	Sends OTP for totp secret reset. It's first out of two steps of the reset totp secret flow.
+
+Address must be a valid email or mobile which is marked as verified address for the user.
+For validating unverified address userID or identifier must be provided.
+If userID is provided then identifier must not be set.
+When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
+Regardless if the address points to some user or not, the request ends successfully to
+prevent email/mobile enumeration.
+Invalidates previously generated OTPs for totp reset.
+Reset totp secret OTP is valid for a specific period of time configured in Identity Pool.
+*/
+func (a *Client) RequestResetTotp(params *RequestResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetTotpNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestResetTotpParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "requestResetTotp",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/totp/reset/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestResetTotpReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RequestResetTotpNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for requestResetTotp: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -1193,13 +1340,16 @@ func (a *Client) SystemListUsers(params *SystemListUsersParams, authInfo runtime
 
 	Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
 
-you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+you need to update. Fields (top level elements like `status`, `payload` etc.) with no values are skipped for the update (not removed nor cleared).
 
 The fields to be updated are overridden.
 
 Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
 
 To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
+
+Please notice that `deleted` status may be used as soft-delete but does not have any special meaning in the
+system besides it does not allow such user to authenticate.
 */
 func (a *Client) SystemUpdateUser(params *SystemUpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateUserOK, error) {
 	// TODO: Validate the params before sending

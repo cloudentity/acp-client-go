@@ -10,6 +10,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/cloudentity/acp-client-go/clients/identityself/client/mfa"
 	"github.com/cloudentity/acp-client-go/clients/identityself/client/o_t_p"
 	"github.com/cloudentity/acp-client-go/clients/identityself/client/users"
 )
@@ -56,6 +57,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 
 	cli := new(Acp)
 	cli.Transport = transport
+	cli.Mfa = mfa.New(transport, formats)
 	cli.Otp = o_t_p.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	return cli
@@ -102,6 +104,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Acp is a client for acp
 type Acp struct {
+	Mfa mfa.ClientService
+
 	Otp o_t_p.ClientService
 
 	Users users.ClientService
@@ -112,6 +116,7 @@ type Acp struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Mfa.SetTransport(transport)
 	c.Otp.SetTransport(transport)
 	c.Users.SetTransport(transport)
 }

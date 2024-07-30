@@ -75,9 +75,11 @@ definitions:
   AuthenticationMechanisms:
     items:
       enum:
+      - totp
       - password
       - otp
       - webauthn
+      - arculix
       type: string
     type: array
   Authenticator:
@@ -510,10 +512,15 @@ definitions:
         example: secret
         type: string
         x-nullable: false
+      totp_secret:
+        example: BLEXAM6OPBBZTCFUOPVHDQ2HVG7PTMK3
+        type: string
+        x-nullable: false
       type:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false
@@ -774,9 +781,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -787,11 +796,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -838,13 +854,31 @@ definitions:
       manage_identity_pool_users:
         type: boolean
         x-nullable: false
+      manage_user_addresses:
+        type: boolean
+        x-nullable: false
+      manage_user_identifiers:
+        type: boolean
+        x-nullable: false
       manage_user_manager_role:
+        type: boolean
+        x-nullable: false
+      manage_user_otps:
+        type: boolean
+        x-nullable: false
+      manage_user_passwords:
         type: boolean
         x-nullable: false
       read_identity_pool_users:
         type: boolean
         x-nullable: false
       read_roles:
+        type: boolean
+        x-nullable: false
+      send_user_activation:
+        type: boolean
+        x-nullable: false
+      send_user_verification:
         type: boolean
         x-nullable: false
       update_identity_pool:
@@ -915,9 +949,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -928,11 +964,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -1291,6 +1334,7 @@ definitions:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false
@@ -1389,10 +1433,22 @@ definitions:
     type: object
   UserMetadata:
     properties:
-      Metadata:
+      metadata:
         additionalProperties:
           type: object
         type: object
+        x-nullable: false
+    type: object
+  UserMetadataWithSchema:
+    properties:
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      schema_id:
+        format: SchemaID
+        type: string
         x-nullable: false
     type: object
   UserPools:
@@ -2317,13 +2373,16 @@ paths:
     put:
       description: |-
         Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
-        you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+        you need to update. Fields (top level elements like `status`, `payload` etc.) with no values are skipped for the update (not removed nor cleared).
 
         The fields to be updated are overridden.
 
         Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
 
         To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
+
+        Please notice that `deleted` status may be used as soft-delete but does not have any special meaning in the
+        system besides it does not allow such user to authenticate.
       operationId: updateUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -3587,7 +3646,7 @@ responses:
         format: etag
         type: string
     schema:
-      $ref: '#/definitions/UserMetadata'
+      $ref: '#/definitions/UserMetadataWithSchema'
   UserPoolsResponse:
     description: Identity User Pools
     headers:

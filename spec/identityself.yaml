@@ -5,9 +5,11 @@ definitions:
   AuthenticationMechanisms:
     items:
       enum:
+      - totp
       - password
       - otp
       - webauthn
+      - arculix
       type: string
     type: array
   ChangePassword:
@@ -21,6 +23,18 @@ definitions:
     required:
     - old_password
     - new_password
+    type: object
+  ChangeTotpSecret:
+    properties:
+      new_totp_secret:
+        type: string
+        x-nullable: false
+      totp:
+        type: string
+        x-nullable: false
+    required:
+    - new_totp_secret
+    - totp
     type: object
   CompleteAddressVerification:
     properties:
@@ -71,6 +85,14 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  ListUserMFASessions:
+    properties:
+      sessions:
+        items:
+          $ref: '#/definitions/UserMFASession'
+        type: array
+        x-nullable: false
+    type: object
   ResetPasswordConfirm:
     properties:
       code:
@@ -107,6 +129,7 @@ definitions:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false
@@ -275,9 +298,23 @@ definitions:
         $ref: '#/definitions/SupportedJSONSchema'
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
+        example: password
+        type: string
+        x-nullable: false
+      second_factor_authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      second_factor_preferred_authentication_mechanism:
+        enum:
+        - totp
+        - password
+        - otp
+        - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -294,6 +331,14 @@ definitions:
         x-nullable: false
     required:
     - new_password
+    type: object
+  SetTotpSecret:
+    properties:
+      new_totp_secret:
+        type: string
+        x-nullable: false
+    required:
+    - new_totp_secret
     type: object
   SupportedJSONSchema:
     properties:
@@ -438,6 +483,26 @@ definitions:
         x-nullable: false
       uniqueItems:
         type: boolean
+        x-nullable: false
+    type: object
+  UserMFASession:
+    properties:
+      id:
+        description: Session id
+        type: string
+        x-nullable: false
+      ip_address:
+        description: IP address of the user who created the session
+        type: string
+        x-nullable: false
+      issue_time:
+        description: Time when the session was issued
+        format: date-time
+        type: string
+        x-nullable: false
+      user_agent:
+        description: User agent of the user who created the session
+        type: string
         x-nullable: false
     type: object
 host: localhost:8443
@@ -683,6 +748,38 @@ paths:
       summary: Change Password
       tags:
       - Users
+  /v2/self/change-totp-secret:
+    post:
+      description: Changes user totp secret if provided totp code is valid.
+      operationId: changeTotpSecret
+      parameters:
+      - in: body
+        name: ChangeTotpSecret
+        schema:
+          $ref: '#/definitions/ChangeTotpSecret'
+      responses:
+        "204":
+          description: ' Totp secret changed successfully'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Change Totp Secret
+      tags:
+      - Users
   /v2/self/me:
     get:
       description: |-
@@ -751,6 +848,54 @@ paths:
       summary: Self Update User Profile
       tags:
       - Users
+  /v2/self/mfa/sessions:
+    get:
+      description: user MFA sessions.
+      operationId: listUserMFASessions
+      responses:
+        "200":
+          $ref: '#/responses/ListUserMFASessions'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - view_ss_profile
+      summary: Lists user MFA sessions.
+      tags:
+      - mfa
+  /v2/self/mfa/sessions/{mfaSessionID}:
+    delete:
+      operationId: deleteMFASession
+      parameters:
+      - default: default
+        description: MFA session id
+        in: path
+        name: mfaSessionID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' MFA session has been deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Delete user MFA session
+      tags:
+      - mfa
   /v2/self/set-password:
     post:
       description: |-
@@ -790,6 +935,47 @@ paths:
       - self:
         - manage_ss_profile
       summary: Set Password
+      tags:
+      - Users
+  /v2/self/set-totp-secret:
+    post:
+      description: |-
+        Set totp secret for a user who doesn't have one yet
+
+        This API requires authentication to happen within the last 5 minutes.
+      operationId: setTotpSecret
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: body
+        name: SetTotpSecret
+        schema:
+          $ref: '#/definitions/SetTotpSecret'
+      responses:
+        "204":
+          description: ' Totp secret set successfully'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - self:
+        - manage_ss_profile
+      summary: Set Totp Secret
       tags:
       - Users
 produces:
@@ -839,6 +1025,10 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/SelfUserWithDataV2'
+  ListUserMFASessions:
+    description: User MFA sessions
+    schema:
+      $ref: '#/definitions/ListUserMFASessions'
   ResetPasswordConfirmedResponse:
     description: Reset password confirmed
     headers:

@@ -26,6 +26,9 @@ type SSOConfiguration struct {
 	// Example: false
 	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
+	// loa threshold
+	LoaThreshold RiskLOA `json:"loa_threshold,omitempty" yaml:"loa_threshold,omitempty"`
+
 	// Additional domains permitted in the logout redirect_to parameter
 	LogoutRedirectDomains []string `json:"logout_redirect_domains" yaml:"logout_redirect_domains"`
 
@@ -45,6 +48,10 @@ type SSOConfiguration struct {
 func (m *SSOConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateLoaThreshold(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxAge(formats); err != nil {
 		res = append(res, err)
 	}
@@ -56,6 +63,23 @@ func (m *SSOConfiguration) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *SSOConfiguration) validateLoaThreshold(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoaThreshold) { // not required
+		return nil
+	}
+
+	if err := m.LoaThreshold.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("loa_threshold")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("loa_threshold")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -83,8 +107,35 @@ func (m *SSOConfiguration) validateMaxIdle(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this s s o configuration based on context it is used
+// ContextValidate validate this s s o configuration based on the context it is used
 func (m *SSOConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLoaThreshold(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SSOConfiguration) contextValidateLoaThreshold(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LoaThreshold) { // not required
+		return nil
+	}
+
+	if err := m.LoaThreshold.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("loa_threshold")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("loa_threshold")
+		}
+		return err
+	}
+
 	return nil
 }
 

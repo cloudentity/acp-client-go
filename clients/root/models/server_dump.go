@@ -278,6 +278,10 @@ type ServerDump struct {
 	// saml
 	Saml *SAMLConfiguration `json:"saml,omitempty" yaml:"saml,omitempty"`
 
+	// formats of the scope claim that will be included in the access token
+	// Example: ["scp_array","scope_space_separated"]
+	ScopeClaimFormats []ScopeClaimFormat `json:"scope_claim_formats" yaml:"scope_claim_formats"`
+
 	// Secret used for hashing
 	//
 	// It must have at least 32 characters. If not provided, it is generated.
@@ -463,6 +467,10 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScopeClaimFormats(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1086,6 +1094,27 @@ func (m *ServerDump) validateSaml(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerDump) validateScopeClaimFormats(formats strfmt.Registry) error {
+	if swag.IsZero(m.ScopeClaimFormats) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ScopeClaimFormats); i++ {
+
+		if err := m.ScopeClaimFormats[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("scope_claim_formats" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scope_claim_formats" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ServerDump) validateSettings(formats strfmt.Registry) error {
 	if swag.IsZero(m.Settings) { // not required
 		return nil
@@ -1234,7 +1263,7 @@ var serverDumpTokenEndpointAuthMethodsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1270,7 +1299,7 @@ var serverDumpTokenEndpointAuthnMethodsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1433,6 +1462,10 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateSaml(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateScopeClaimFormats(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1761,6 +1794,28 @@ func (m *ServerDump) contextValidateSaml(ctx context.Context, formats strfmt.Reg
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateScopeClaimFormats(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ScopeClaimFormats); i++ {
+
+		if swag.IsZero(m.ScopeClaimFormats[i]) { // not required
+			return nil
+		}
+
+		if err := m.ScopeClaimFormats[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("scope_claim_formats" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scope_claim_formats" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
 	}
 
 	return nil

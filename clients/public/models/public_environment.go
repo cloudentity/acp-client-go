@@ -17,6 +17,9 @@ import (
 // swagger:model PublicEnvironment
 type PublicEnvironment struct {
 
+	// If Identity Pool MFA is enabled
+	IdentityPoolMfa bool `json:"identity_pool_mfa,omitempty" yaml:"identity_pool_mfa,omitempty"`
+
 	// If self-service is enabled
 	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 }

@@ -48,7 +48,7 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "deleteSession",
 		Method:             "DELETE",
-		PathPattern:        "/sessions/{sessionID}",
+		PathPattern:        "/sso/sessions/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -89,7 +89,7 @@ func (a *Client) ListUserSessions(params *ListUserSessionsParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "listUserSessions",
 		Method:             "GET",
-		PathPattern:        "/sessions",
+		PathPattern:        "/sso/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

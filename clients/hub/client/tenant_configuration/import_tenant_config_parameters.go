@@ -66,6 +66,14 @@ type ImportTenantConfigParams struct {
 	// Config.
 	Config *models.TreeTenant
 
+	/* DryRun.
+
+	   Dry Run
+
+	   Default: "false"
+	*/
+	DryRun *string
+
 	/* Mode.
 
 	     Insert mode
@@ -115,11 +123,14 @@ func (o *ImportTenantConfigParams) WithDefaults() *ImportTenantConfigParams {
 // All values with no default are reset to their zero value.
 func (o *ImportTenantConfigParams) SetDefaults() {
 	var (
+		dryRunDefault = string("false")
+
 		tidDefault = string("default")
 	)
 
 	val := ImportTenantConfigParams{
-		Tid: tidDefault,
+		DryRun: &dryRunDefault,
+		Tid:    tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -172,6 +183,17 @@ func (o *ImportTenantConfigParams) SetConfig(config *models.TreeTenant) {
 	o.Config = config
 }
 
+// WithDryRun adds the dryRun to the import tenant config params
+func (o *ImportTenantConfigParams) WithDryRun(dryRun *string) *ImportTenantConfigParams {
+	o.SetDryRun(dryRun)
+	return o
+}
+
+// SetDryRun adds the dryRun to the import tenant config params
+func (o *ImportTenantConfigParams) SetDryRun(dryRun *string) {
+	o.DryRun = dryRun
+}
+
 // WithMode adds the mode to the import tenant config params
 func (o *ImportTenantConfigParams) WithMode(mode *string) *ImportTenantConfigParams {
 	o.SetMode(mode)
@@ -204,6 +226,23 @@ func (o *ImportTenantConfigParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Config != nil {
 		if err := r.SetBodyParam(o.Config); err != nil {
 			return err
+		}
+	}
+
+	if o.DryRun != nil {
+
+		// query param dry_run
+		var qrDryRun string
+
+		if o.DryRun != nil {
+			qrDryRun = *o.DryRun
+		}
+		qDryRun := qrDryRun
+		if qDryRun != "" {
+
+			if err := r.SetQueryParam("dry_run", qDryRun); err != nil {
+				return err
+			}
 		}
 	}
 

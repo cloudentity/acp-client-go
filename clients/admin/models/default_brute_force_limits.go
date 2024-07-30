@@ -42,6 +42,9 @@ type DefaultBruteForceLimits struct {
 	// identity change password
 	IdentityChangePassword *DefaultBruteForceLimit `json:"identity_change_password,omitempty" yaml:"identity_change_password,omitempty"`
 
+	// identity change totp secret
+	IdentityChangeTotpSecret *DefaultBruteForceLimit `json:"identity_change_totp_secret,omitempty" yaml:"identity_change_totp_secret,omitempty"`
+
 	// identity code inspect
 	IdentityCodeInspect *DefaultBruteForceLimit `json:"identity_code_inspect,omitempty" yaml:"identity_code_inspect,omitempty"`
 
@@ -59,6 +62,9 @@ type DefaultBruteForceLimits struct {
 
 	// identity self change password
 	IdentitySelfChangePassword *DefaultBruteForceLimit `json:"identity_self_change_password,omitempty" yaml:"identity_self_change_password,omitempty"`
+
+	// identity self change totp secret
+	IdentitySelfChangeTotpSecret *DefaultBruteForceLimit `json:"identity_self_change_totp_secret,omitempty" yaml:"identity_self_change_totp_secret,omitempty"`
 
 	// identity self register
 	IdentitySelfRegister *DefaultBruteForceLimit `json:"identity_self_register,omitempty" yaml:"identity_self_register,omitempty"`
@@ -105,6 +111,10 @@ func (m *DefaultBruteForceLimits) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIdentityChangeTotpSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIdentityCodeInspect(formats); err != nil {
 		res = append(res, err)
 	}
@@ -126,6 +136,10 @@ func (m *DefaultBruteForceLimits) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIdentitySelfChangePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdentitySelfChangeTotpSecret(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -284,6 +298,25 @@ func (m *DefaultBruteForceLimits) validateIdentityChangePassword(formats strfmt.
 	return nil
 }
 
+func (m *DefaultBruteForceLimits) validateIdentityChangeTotpSecret(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentityChangeTotpSecret) { // not required
+		return nil
+	}
+
+	if m.IdentityChangeTotpSecret != nil {
+		if err := m.IdentityChangeTotpSecret.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_change_totp_secret")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_change_totp_secret")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *DefaultBruteForceLimits) validateIdentityCodeInspect(formats strfmt.Registry) error {
 	if swag.IsZero(m.IdentityCodeInspect) { // not required
 		return nil
@@ -390,6 +423,25 @@ func (m *DefaultBruteForceLimits) validateIdentitySelfChangePassword(formats str
 				return ve.ValidateName("identity_self_change_password")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("identity_self_change_password")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DefaultBruteForceLimits) validateIdentitySelfChangeTotpSecret(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentitySelfChangeTotpSecret) { // not required
+		return nil
+	}
+
+	if m.IdentitySelfChangeTotpSecret != nil {
+		if err := m.IdentitySelfChangeTotpSecret.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_self_change_totp_secret")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_self_change_totp_secret")
 			}
 			return err
 		}
@@ -506,6 +558,10 @@ func (m *DefaultBruteForceLimits) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIdentityChangeTotpSecret(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdentityCodeInspect(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -527,6 +583,10 @@ func (m *DefaultBruteForceLimits) ContextValidate(ctx context.Context, formats s
 	}
 
 	if err := m.contextValidateIdentitySelfChangePassword(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdentitySelfChangeTotpSecret(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -699,6 +759,27 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityChangePassword(ctx cont
 	return nil
 }
 
+func (m *DefaultBruteForceLimits) contextValidateIdentityChangeTotpSecret(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IdentityChangeTotpSecret != nil {
+
+		if swag.IsZero(m.IdentityChangeTotpSecret) { // not required
+			return nil
+		}
+
+		if err := m.IdentityChangeTotpSecret.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_change_totp_secret")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_change_totp_secret")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *DefaultBruteForceLimits) contextValidateIdentityCodeInspect(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityCodeInspect != nil {
@@ -817,6 +898,27 @@ func (m *DefaultBruteForceLimits) contextValidateIdentitySelfChangePassword(ctx 
 				return ve.ValidateName("identity_self_change_password")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("identity_self_change_password")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DefaultBruteForceLimits) contextValidateIdentitySelfChangeTotpSecret(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IdentitySelfChangeTotpSecret != nil {
+
+		if swag.IsZero(m.IdentitySelfChangeTotpSecret) { // not required
+			return nil
+		}
+
+		if err := m.IdentitySelfChangeTotpSecret.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_self_change_totp_secret")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_self_change_totp_secret")
 			}
 			return err
 		}

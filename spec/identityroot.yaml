@@ -31,9 +31,11 @@ definitions:
   AuthenticationMechanisms:
     items:
       enum:
+      - totp
       - password
       - otp
       - webauthn
+      - arculix
       type: string
     type: array
   BcryptConfig:
@@ -348,9 +350,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -361,11 +365,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -745,6 +756,7 @@ definitions:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false

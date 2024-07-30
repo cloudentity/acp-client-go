@@ -132,6 +132,10 @@ definitions:
           a developer.
         type: boolean
         x-nullable: false
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
       grant_type:
         description: |-
           Stores the information which grant type was selected to perfom a given action.
@@ -143,11 +147,40 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: Subject within the Identity Provider
+        format: subject
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
       may_act_claims:
         additionalProperties:
           type: object
         description: May act claims
         type: object
+        x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
         x-nullable: false
       public:
         description: Stores information if the client application is a public one.
@@ -157,6 +190,8 @@ definitions:
         description: Requester IP address obtained from system network socket information.
         type: string
         x-nullable: false
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
       server_id:
         description: ID of the authorization server (workspace) to which an access
           request is tied.
@@ -194,6 +229,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         type: string
         x-nullable: false
       token_signature:
@@ -208,6 +244,15 @@ definitions:
         description: A characteristic string that lets servers and network peers identify
           the application, operating system, vendor, and/or version of the requesting
           user agent.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
         type: string
         x-nullable: false
       workspace_id:
@@ -247,6 +292,10 @@ definitions:
           a developer.
         type: boolean
         x-nullable: false
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
       error:
         description: High level error name (request_forbidden, access_denied, invalid_request).
         type: string
@@ -278,11 +327,40 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: Subject within the Identity Provider
+        format: subject
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
       may_act_claims:
         additionalProperties:
           type: object
         description: May act claims
         type: object
+        x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
         x-nullable: false
       public:
         description: Stores information if the client application is a public one.
@@ -292,6 +370,8 @@ definitions:
         description: Requester IP address obtained from system network socket information.
         type: string
         x-nullable: false
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
       server_id:
         description: ID of the authorization server (workspace) to which an access
           request is tied.
@@ -329,6 +409,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         type: string
         x-nullable: false
       token_signature:
@@ -343,6 +424,15 @@ definitions:
         description: A characteristic string that lets servers and network peers identify
           the application, operating system, vendor, and/or version of the requesting
           user agent.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
         type: string
         x-nullable: false
       workspace_id:
@@ -494,6 +584,48 @@ definitions:
     - organization_name
     - proxy_name
     - environment_name
+    type: object
+  ArculixAuth:
+    properties:
+      client_id:
+        description: The Arculix client ID.
+        type: string
+        x-nullable: false
+      client_secret:
+        description: The Arculix client secret.
+        type: string
+        x-nullable: false
+    required:
+    - client_id
+    - client_secret
+    type: object
+  ArculixSettings:
+    properties:
+      dbfp_url:
+        description: URL to the DBFP script.
+        example: https://dbfp.acceptto.com/bfp.js
+        type: string
+        x-nullable: false
+      faye_url:
+        description: URL to the Faye server.
+        example: https://faye.acceptto.net
+        type: string
+        x-nullable: false
+      token_endpoint:
+        description: URL to the OIDC server's token endpoint.
+        example: https://oidc.acceptto.net/ce-poc/oauth2/v1/token
+        type: string
+        x-nullable: false
+      url:
+        description: URL to the Arculix server.
+        example: https://m2m.acceptto.net
+        type: string
+        x-nullable: false
+    required:
+    - token_endpoint
+    - url
+    - faye_url
+    - dbfp_url
     type: object
   Attr:
     properties:
@@ -650,6 +782,7 @@ definitions:
         description: Name of an action that was performed for a given event subject.
         enum:
         - authenticated
+        - challenged
         - authorized
         - unauthorized
         - created
@@ -696,6 +829,7 @@ definitions:
         - credential
         - login
         - post_authn
+        - recovery
         - consent
         - client_consents
         - customer_consents
@@ -771,9 +905,30 @@ definitions:
         format: clientID
         type: string
         x-nullable: false
+      dbfp_fingerprint:
+        description: DBFP jwt fingerprint
+        type: string
+        x-nullable: false
       identity_pool_id:
         description: ID of the Identity Pool
         format: poolID
+        type: string
+        x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: |-
+          Access request subject value from IDP related to a given audit event.
+
+          May be empty when the access is incorrect or missing.
+        format: subject
         type: string
         x-nullable: false
       ip:
@@ -792,6 +947,15 @@ definitions:
           It's only populated if the token has been issued token with may_act claim.
         type: object
         x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
+        x-nullable: false
+      risk_id:
+        $ref: '#/definitions/RiskID'
+      risk_loa:
+        $ref: '#/definitions/RiskLOA'
       session_id:
         description: |-
           Session id
@@ -823,6 +987,15 @@ definitions:
       user_agent:
         description: User-agent that describes a device name that generated the audit
           event.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
         type: string
         x-nullable: false
     type: object
@@ -897,11 +1070,11 @@ definitions:
       login_failed:
         $ref: '#/definitions/LoginFailedPayload'
       organization_created:
-        $ref: '#/definitions/OrganizationPayload'
+        $ref: '#/definitions/Organization'
       organization_deleted:
-        $ref: '#/definitions/OrganizationPayload'
+        $ref: '#/definitions/Organization'
       organization_updated:
-        $ref: '#/definitions/OrganizationPayload'
+        $ref: '#/definitions/Organization'
       otp_accepted:
         $ref: '#/definitions/OTPPayload'
       otp_not_sent:
@@ -932,6 +1105,8 @@ definitions:
         $ref: '#/definitions/PoolAuditPayload'
       pool_updated:
         $ref: '#/definitions/PoolAuditPayload'
+      recovery_confirmed:
+        $ref: '#/definitions/RecoveryPayload'
       role_granted:
         $ref: '#/definitions/RoleGrantAuditPayload'
       role_revoked:
@@ -969,6 +1144,8 @@ definitions:
       tokens_revoked:
         $ref: '#/definitions/TokensRevokedPayload'
       user_authenticated:
+        $ref: '#/definitions/UserAuthenticatedPayload'
+      user_challenged:
         $ref: '#/definitions/UserAuthenticatedPayload'
       user_created:
         $ref: '#/definitions/UserPayload'
@@ -2076,6 +2253,19 @@ definitions:
       revocation_reason:
         $ref: '#/definitions/RevocationReason'
     type: object
+  CDRArrangementsAutoRemoval:
+    properties:
+      enabled:
+        description: enable auto removal
+        type: boolean
+        x-nullable: false
+      remove_after_days:
+        description: Period in days after which arrangements in Expired status will
+          be removed
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
   CDRConfiguration:
     properties:
       adr_validation_enabled:
@@ -2084,6 +2274,8 @@ definitions:
           If enabled, register URL must be provided and point to a existing registry
         type: boolean
         x-nullable: false
+      arrangements_auto_removal:
+        $ref: '#/definitions/CDRArrangementsAutoRemoval'
       brand_id:
         type: string
         x-nullable: false
@@ -2926,6 +3118,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -3611,6 +3804,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -4226,6 +4420,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -5709,6 +5904,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -5787,6 +5983,11 @@ definitions:
         description: if true a services is created automatically for each new discovered
           api group
         type: boolean
+        x-nullable: false
+      default_policy_id:
+        description: default policy id assigned to new APIs
+        format: policyID
+        type: string
         x-nullable: false
       description:
         description: description
@@ -6196,6 +6397,20 @@ definitions:
     properties:
       client_details:
         $ref: '#/definitions/DCRDetails'
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
       remote_addr:
         description: Requester IP address obtained from system network socket information.
         type: string
@@ -6263,11 +6478,16 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         type: string
         x-nullable: false
     type: object
   DCRRejectedEventPayload:
     properties:
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
       error:
         description: High level error name (request_forbidden, access_denied, invalid_request).
         type: string
@@ -6287,6 +6507,16 @@ definitions:
       external_error:
         description: External error
         type: boolean
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
         x-nullable: false
       remote_addr:
         description: Requester IP address obtained from system network socket information.
@@ -6343,6 +6573,8 @@ definitions:
         $ref: '#/definitions/DefaultBruteForceLimit'
       identity_change_password:
         $ref: '#/definitions/DefaultBruteForceLimit'
+      identity_change_totp_secret:
+        $ref: '#/definitions/DefaultBruteForceLimit'
       identity_code_inspect:
         $ref: '#/definitions/DefaultBruteForceLimit'
       identity_code_verify:
@@ -6354,6 +6586,8 @@ definitions:
       identity_self_activation:
         $ref: '#/definitions/DefaultBruteForceLimit'
       identity_self_change_password:
+        $ref: '#/definitions/DefaultBruteForceLimit'
+      identity_self_change_totp_secret:
         $ref: '#/definitions/DefaultBruteForceLimit'
       identity_self_register:
         $ref: '#/definitions/DefaultBruteForceLimit'
@@ -6661,6 +6895,10 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      arculix:
+        description: Arculix 2FA and MFA
+        type: boolean
+        x-nullable: false
       audit_events_duration:
         format: duration
         type: string
@@ -6674,10 +6912,6 @@ definitions:
         $ref: '#/definitions/DefaultBruteForceLimits'
       cache_access_tokens:
         description: cache access tokens
-        type: boolean
-        x-nullable: false
-      cdr_amend_audit_event_with_previous_arrangement:
-        description: add previous arrangement to CDR amend audit event
         type: boolean
         x-nullable: false
       cdr_arrangement_cache:
@@ -6742,8 +6976,16 @@ definitions:
         description: drop tokens on password reset
         type: boolean
         x-nullable: false
+      gateway_default_policy:
+        description: Gateway default policy
+        type: boolean
+        x-nullable: false
       grpc_url:
         type: string
+        x-nullable: false
+      handle_mfa_recovery_in_identity_pools:
+        description: Handle MFA Recovery in Identity Pools
+        type: boolean
         x-nullable: false
       has_google_image_search:
         type: boolean
@@ -6766,6 +7008,13 @@ definitions:
           Enable MFA for Identity Pool
         type: boolean
         x-nullable: false
+      identity_pool_totp:
+        description: |-
+          Identity Pool TOTP
+
+          Enable TOTP for Identity Pool
+        type: boolean
+        x-nullable: false
       image_proxy_url:
         type: string
         x-nullable: false
@@ -6783,12 +7032,12 @@ definitions:
         description: insecure token exchange public clients
         type: boolean
         x-nullable: false
-      jit_permissions:
-        description: Enforce JIT users roles
-        type: boolean
-        x-nullable: false
       mark_address_as_verified_on_any_proof_of_possession:
         description: mark address as verified on any proof of possession of the address
+        type: boolean
+        x-nullable: false
+      obbr:
+        description: openbanking brasil
         type: boolean
         x-nullable: false
       openbanking_ksa:
@@ -6813,6 +7062,10 @@ definitions:
         description: rich authorization requests
         type: boolean
         x-nullable: false
+      risk_engine:
+        description: Risk engine
+        type: boolean
+        x-nullable: false
       roles:
         description: |-
           Roles
@@ -6821,7 +7074,10 @@ definitions:
         type: boolean
         x-nullable: false
       saml_v2:
-        description: Enable SAML V2
+        description: |-
+          SAML Identity Provider V2
+
+          Enable SAML Identity Provider V2
         type: boolean
         x-nullable: false
       scope_transient_otp:
@@ -6832,13 +7088,6 @@ definitions:
         items:
           $ref: '#/definitions/ScriptRuntime'
         type: array
-        x-nullable: false
-      scripts_runtime_versions:
-        description: |-
-          Scripts runtime versions
-
-          Enable users to manage runtime versions for scripts.
-        type: boolean
         x-nullable: false
       self_service:
         description: |-
@@ -7438,6 +7687,11 @@ definitions:
           api group
         type: boolean
         x-nullable: false
+      default_policy_id:
+        description: default policy id assigned to new APIs
+        format: policyID
+        type: string
+        x-nullable: false
       description:
         description: description
         type: string
@@ -7571,6 +7825,11 @@ definitions:
         description: if true services are created automatically for each new discovered
           api group
         type: boolean
+        x-nullable: false
+      default_policy_id:
+        description: default policy id assigned to new APIs
+        format: policyID
+        type: string
         x-nullable: false
       description:
         description: description
@@ -8618,6 +8877,8 @@ definitions:
         format: idpID
         type: string
         x-nullable: false
+      mappings:
+        $ref: '#/definitions/Mappings'
       method:
         description: Defines the type of an IDP, e.g. google, saml
         format: idpMethod
@@ -9384,8 +9645,6 @@ definitions:
         - admin
         - business_admin
         - auditor
-        - manager
-        - user_manager
         - member
         type: string
         x-nullable: false
@@ -9600,8 +9859,12 @@ definitions:
     type: object
   MFAAuth:
     properties:
+      arculix:
+        $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
+      risk_engine:
+        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
@@ -9620,6 +9883,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9654,6 +9919,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9679,8 +9946,12 @@ definitions:
     type: object
   MFASettings:
     properties:
+      arculix:
+        $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
+      risk_engine:
+        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -10037,6 +10308,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         type: string
         x-nullable: false
     type: object
@@ -10270,6 +10543,11 @@ definitions:
         example: default
         type: string
         x-nullable: false
+      parent_id:
+        description: The id of the parent workspace / organization
+        format: serverID
+        type: string
+        x-nullable: false
       template:
         description: If true this organization can be used as a template when creating
           a new ones.
@@ -10430,51 +10708,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  OrganizationPayload:
-    description: OrganizationPayload organization payload
-    properties:
-      color:
-        description: Your organization's label color in a HEX format.
-        example: '#007FFF'
-        type: string
-        x-nullable: false
-      description:
-        description: Display description of the organization
-        example: Organization description
-        type: string
-        x-nullable: false
-      domains:
-        description: An array of email domains configured for an organization for
-          the purposes of IDP discovery
-        items:
-          type: string
-        type: array
-        x-nullable: false
-      id:
-        description: |-
-          Unique identifier of an organization
-
-          If not provided, a random ID is generated.
-        example: default
-        type: string
-        x-nullable: false
-      metadata:
-        $ref: '#/definitions/ServerMetadata'
-      name:
-        description: Display name of the organization
-        example: default
-        type: string
-        x-nullable: false
-      parent_id:
-        description: The id of the parent workspace / organization
-        type: string
-        x-nullable: false
-      template:
-        description: If true this organization can be used as a template when creating
-          a new ones.
-        type: boolean
-        x-nullable: false
-    type: object
   OrganizationResponse:
     properties:
       color:
@@ -10517,6 +10750,11 @@ definitions:
       number_of_child_organizations:
         format: int64
         type: integer
+        x-nullable: false
+      parent_id:
+        description: The id of the parent workspace / organization
+        format: serverID
+        type: string
         x-nullable: false
       subject_format:
         enum:
@@ -11027,6 +11265,19 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  RecoveryPayload:
+    properties:
+      amr:
+        items:
+          format: amr
+          type: string
+        type: array
+        x-nullable: false
+      recovery_methods:
+        items: {}
+        type: array
+        x-nullable: false
+    type: object
   RedirectURIs:
     description: |-
       Cloudentity uses redirect URIs to redirect users back to the application after they authorized the application. Along
@@ -11117,6 +11368,10 @@ definitions:
           a developer.
         type: boolean
         x-nullable: false
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
       duration_ms:
         format: int64
         type: integer
@@ -11134,14 +11389,43 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: Subject within the Identity Provider
+        format: subject
+        type: string
+        x-nullable: false
       invalid_token:
         type: boolean
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
         x-nullable: false
       may_act_claims:
         additionalProperties:
           type: object
         description: May act claims
         type: object
+        x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
         x-nullable: false
       output:
         additionalProperties:
@@ -11158,6 +11442,8 @@ definitions:
         x-nullable: false
       result:
         $ref: '#/definitions/PolicyValidationResult'
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
       server_id:
         description: ID of the authorization server (workspace) to which an access
           request is tied.
@@ -11197,6 +11483,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         type: string
         x-nullable: false
       token_signature:
@@ -11211,6 +11498,15 @@ definitions:
         description: A characteristic string that lets servers and network peers identify
           the application, operating system, vendor, and/or version of the requesting
           user agent.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
         type: string
         x-nullable: false
       workspace_id:
@@ -11383,6 +11679,22 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  RevokeTokenRequest:
+    properties:
+      idp_id:
+        description: optional idp id - if provided subjects will be recalculated if
+          server is using hashed subject type
+        format: idpID
+        type: string
+        x-nullable: false
+      subjects:
+        description: list of subjects (min 1, max 100)
+        items:
+          format: subject
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   RevokeWorkspaceRoleRequest:
     properties:
       identity_pool_id:
@@ -11459,6 +11771,74 @@ definitions:
     items:
       $ref: '#/definitions/Rfc6902PatchOperation'
     type: array
+  RiskContext:
+    properties:
+      dbfp_fingerprint:
+        type: string
+        x-nullable: false
+      id:
+        $ref: '#/definitions/RiskID'
+      loa:
+        $ref: '#/definitions/RiskLOA'
+    type: object
+  RiskEngineAuth:
+    properties:
+      api_key:
+        description: The Risk Engine API key.
+        type: string
+        x-nullable: false
+    required:
+    - api_key
+    type: object
+  RiskEngineSettings:
+    properties:
+      dbfp_gps_timeout:
+        description: Timeout for the GPS.
+        example: 1s
+        format: duration
+        type: string
+        x-nullable: false
+      dbfp_timeout:
+        description: Timeout for the DBFP script.
+        example: 1s
+        format: duration
+        type: string
+        x-nullable: false
+      dbfp_url:
+        description: URL to the DBFP script.
+        example: https://dbfp.acceptto.com/bfp.js
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Risk Engine TenantID
+        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
+        type: string
+        x-nullable: false
+      timeout:
+        description: Risk Engine timeout
+        example: 200ms
+        format: duration
+        type: string
+        x-nullable: false
+      url:
+        description: URL to the Risk Engine server
+        example: https://cyber-inference.mm-dev.acceptto.com/
+        type: string
+        x-nullable: false
+    required:
+    - url
+    - timeout
+    - dbfp_url
+    - dbfp_timeout
+    - dbfp_gps_timeout
+    type: object
+  RiskID:
+    description: Risk engine transaction id
+    type: string
+  RiskLOA:
+    description: Risk engine level of assurance
+    format: double
+    type: number
   RoleDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.1
@@ -11825,6 +12205,15 @@ definitions:
         x-nullable: false
     type: object
   SAMLV2Credentials:
+    properties:
+      signing_cert:
+        description: saml authn request signing cert
+        type: string
+        x-nullable: false
+      signing_key:
+        description: saml authn request signing key
+        type: string
+        x-nullable: false
     type: object
   SAMLV2IDP:
     properties:
@@ -12121,6 +12510,8 @@ definitions:
         example: false
         type: boolean
         x-nullable: false
+      loa_threshold:
+        $ref: '#/definitions/RiskLOA'
       logout_redirect_domains:
         description: Additional domains permitted in the logout redirect_to parameter
         items:
@@ -12218,6 +12609,8 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  ScopeClaimFormat:
+    type: string
   ScopeGrant:
     properties:
       client_id:
@@ -13233,6 +13626,18 @@ definitions:
         x-nullable: false
       saml:
         $ref: '#/definitions/SAMLConfiguration'
+      scope_claim_formats:
+        default:
+        - scp_array
+        description: formats of the scope claim that will be included in the access
+          token
+        example:
+        - scp_array
+        - scope_space_separated
+        items:
+          $ref: '#/definitions/ScopeClaimFormat'
+        type: array
+        x-nullable: false
       secret:
         description: |-
           Secret used for hashing
@@ -13326,6 +13731,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -13353,6 +13759,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -13736,6 +14143,18 @@ definitions:
         $ref: '#/definitions/ResponseTypes'
       saml:
         $ref: '#/definitions/SAMLConfiguration'
+      scope_claim_formats:
+        default:
+        - scp_array
+        description: formats of the scope claim that will be included in the access
+          token
+        example:
+        - scp_array
+        - scope_space_separated
+        items:
+          $ref: '#/definitions/ScopeClaimFormat'
+        type: array
+        x-nullable: false
       settings:
         $ref: '#/definitions/ServerSettings'
       sso:
@@ -13808,6 +14227,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -13835,6 +14255,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -14645,6 +15066,18 @@ definitions:
         x-nullable: false
       saml:
         $ref: '#/definitions/SAMLConfiguration'
+      scope_claim_formats:
+        default:
+        - scp_array
+        description: formats of the scope claim that will be included in the access
+          token
+        example:
+        - scp_array
+        - scope_space_separated
+        items:
+          $ref: '#/definitions/ScopeClaimFormat'
+        type: array
+        x-nullable: false
       secret:
         description: |-
           Secret used for hashing
@@ -14721,6 +15154,8 @@ definitions:
           - mobile_desktop
           - service
           - legacy
+          - custom
+          - saml
           type: string
         type: array
         x-nullable: false
@@ -14761,6 +15196,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -14788,6 +15224,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -15921,6 +16358,11 @@ definitions:
         x-nullable: false
       security:
         $ref: '#/definitions/SecureOptions'
+      well_known:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
     type: object
   TestAPIResult:
     properties:
@@ -16871,6 +17313,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -16945,6 +17388,11 @@ definitions:
     type: object
   UpdateGatewayRequest:
     properties:
+      default_policy_id:
+        description: default policy id assigned to new APIs
+        format: policyID
+        type: string
+        x-nullable: false
       description:
         description: description
         type: string
@@ -17038,9 +17486,11 @@ definitions:
       authn_method:
         description: first factor method
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         type: string
         x-nullable: false
       identifier:
@@ -17050,9 +17500,11 @@ definitions:
       mfa:
         description: second factor method
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         type: string
         x-nullable: false
       mfa_skipped:
@@ -17551,6 +18003,9 @@ definitions:
         type: boolean
         x-nullable: false
       manage_services:
+        type: boolean
+        x-nullable: false
+      manage_tokens:
         type: boolean
         x-nullable: false
       manage_user_manager_role:
@@ -20882,6 +21337,40 @@ paths:
           id
         in: query
         name: authorization_correlation_id
+        type: string
+      - description: |-
+          optional list audit events with a given IDP subject
+          IDPSubject
+        in: query
+        name: idp_subject
+        type: string
+      - description: |-
+          optional list audit events with a given IDP id
+          IDPID
+        in: query
+        name: idp_id
+        type: string
+      - description: |-
+          optional list audit events with a given user identity pool id
+          UserPoolID
+        in: query
+        name: user_pool_id
+        type: string
+      - description: |-
+          optional list audit events with a given user id
+          UserID
+        in: query
+        name: user_id
+        type: string
+      - description: |-
+          optional list audit events with a given IDP method
+          IDPMethod
+        in: query
+        name: idp_method
+        type: string
+      - description: optional organization id
+        in: query
+        name: organization_id
         type: string
       - description: |-
           Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
@@ -26264,6 +26753,49 @@ paths:
       summary: Get server theme
       tags:
       - servers
+  /servers/{wid}/tokens:
+    delete:
+      description: |-
+        Revoke tokens for given set of subjects (min 1, max 100 subjects can be specified).
+
+        Tokens includes access and refresh tokens but also authorization codes, authorization requests,
+        sso sessions and scopes grants.
+
+        Optional IDP id if provided will recalculate subjects values if server is using hashed subject type.
+      operationId: revokeTokens
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/RevokeTokenRequest'
+      responses:
+        "204":
+          description: ' tokens revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - admin: []
+      summary: Revoke tokens
+      tags:
+      - tokens
   /servers/{wid}/unbind-theme:
     post:
       description: Deletes the server's current binding to a customer-branding theme.

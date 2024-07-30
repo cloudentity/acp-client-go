@@ -163,6 +163,48 @@ definitions:
     - proxy_name
     - environment_name
     type: object
+  ArculixAuth:
+    properties:
+      client_id:
+        description: The Arculix client ID.
+        type: string
+        x-nullable: false
+      client_secret:
+        description: The Arculix client secret.
+        type: string
+        x-nullable: false
+    required:
+    - client_id
+    - client_secret
+    type: object
+  ArculixSettings:
+    properties:
+      dbfp_url:
+        description: URL to the DBFP script.
+        example: https://dbfp.acceptto.com/bfp.js
+        type: string
+        x-nullable: false
+      faye_url:
+        description: URL to the Faye server.
+        example: https://faye.acceptto.net
+        type: string
+        x-nullable: false
+      token_endpoint:
+        description: URL to the OIDC server's token endpoint.
+        example: https://oidc.acceptto.net/ce-poc/oauth2/v1/token
+        type: string
+        x-nullable: false
+      url:
+        description: URL to the Arculix server.
+        example: https://m2m.acceptto.net
+        type: string
+        x-nullable: false
+    required:
+    - token_endpoint
+    - url
+    - faye_url
+    - dbfp_url
+    type: object
   Attr:
     properties:
       Space:
@@ -367,9 +409,11 @@ definitions:
   AuthenticationMechanisms:
     items:
       enum:
+      - totp
       - password
       - otp
       - webauthn
+      - arculix
       type: string
     type: array
   AuthnAuthorityDescriptor:
@@ -590,6 +634,19 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  CDRArrangementsAutoRemoval:
+    properties:
+      enabled:
+        description: enable auto removal
+        type: boolean
+        x-nullable: false
+      remove_after_days:
+        description: Period in days after which arrangements in Expired status will
+          be removed
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
   CDRConfiguration:
     properties:
       adr_validation_enabled:
@@ -598,6 +655,8 @@ definitions:
           If enabled, register URL must be provided and point to a existing registry
         type: boolean
         x-nullable: false
+      arrangements_auto_removal:
+        $ref: '#/definitions/CDRArrangementsAutoRemoval'
       brand_id:
         type: string
         x-nullable: false
@@ -1931,8 +1990,6 @@ definitions:
         - admin
         - business_admin
         - auditor
-        - manager
-        - user_manager
         - member
         type: string
         x-nullable: false
@@ -2082,15 +2139,23 @@ definitions:
     type: object
   MFAAuth:
     properties:
+      arculix:
+        $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
+      risk_engine:
+        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
   MFASettings:
     properties:
+      arculix:
+        $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
+      risk_engine:
+        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -2733,6 +2798,61 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  RiskEngineAuth:
+    properties:
+      api_key:
+        description: The Risk Engine API key.
+        type: string
+        x-nullable: false
+    required:
+    - api_key
+    type: object
+  RiskEngineSettings:
+    properties:
+      dbfp_gps_timeout:
+        description: Timeout for the GPS.
+        example: 1s
+        format: duration
+        type: string
+        x-nullable: false
+      dbfp_timeout:
+        description: Timeout for the DBFP script.
+        example: 1s
+        format: duration
+        type: string
+        x-nullable: false
+      dbfp_url:
+        description: URL to the DBFP script.
+        example: https://dbfp.acceptto.com/bfp.js
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Risk Engine TenantID
+        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
+        type: string
+        x-nullable: false
+      timeout:
+        description: Risk Engine timeout
+        example: 200ms
+        format: duration
+        type: string
+        x-nullable: false
+      url:
+        description: URL to the Risk Engine server
+        example: https://cyber-inference.mm-dev.acceptto.com/
+        type: string
+        x-nullable: false
+    required:
+    - url
+    - timeout
+    - dbfp_url
+    - dbfp_timeout
+    - dbfp_gps_timeout
+    type: object
+  RiskLOA:
+    description: Risk engine level of assurance
+    format: double
+    type: number
   RoleDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.1
@@ -2870,6 +2990,15 @@ definitions:
         x-nullable: false
     type: object
   SAMLV2Credentials:
+    properties:
+      signing_cert:
+        description: saml authn request signing cert
+        type: string
+        x-nullable: false
+      signing_key:
+        description: saml authn request signing key
+        type: string
+        x-nullable: false
     type: object
   SAMLV2Settings:
     properties:
@@ -3039,6 +3168,8 @@ definitions:
         example: false
         type: boolean
         x-nullable: false
+      loa_threshold:
+        $ref: '#/definitions/RiskLOA'
       logout_redirect_domains:
         description: Additional domains permitted in the logout redirect_to parameter
         items:
@@ -3061,6 +3192,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  ScopeClaimFormat:
+    type: string
   ScopePrivacyInformation:
     properties:
       pii_categories:
@@ -3672,6 +3805,11 @@ definitions:
         x-nullable: false
       security:
         $ref: '#/definitions/SecureOptions'
+      well_known:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
     type: object
   Token:
     description: |-
@@ -4443,6 +4581,7 @@ definitions:
         - self_signed_tls_client_auth
         - tls_client_auth
         - none
+        - unspecified
         example: client_secret_basic
         type: string
         x-nullable: false
@@ -4548,6 +4687,20 @@ definitions:
     additionalProperties:
       $ref: '#/definitions/TreeCustomApp'
     type: object
+  TreeFeature:
+    properties:
+      enabled:
+        description: Feature flag state that overrides global features configuration
+        example: true
+        type: boolean
+        x-nullable: false
+    required:
+    - enabled
+    type: object
+  TreeFeatures:
+    additionalProperties:
+      $ref: '#/definitions/TreeFeature'
+    type: object
   TreeGateway:
     properties:
       client:
@@ -4556,6 +4709,11 @@ definitions:
         description: if true services are created automatically for each new discovered
           api group
         type: boolean
+        x-nullable: false
+      default_policy_id:
+        description: default policy id assigned to new APIs
+        format: policyID
+        type: string
         x-nullable: false
       description:
         description: description
@@ -4730,6 +4888,8 @@ definitions:
         enum:
         - sms
         - email
+        - arculix
+        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -4861,9 +5021,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -4874,11 +5036,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -5372,6 +5541,18 @@ definitions:
         x-nullable: false
       saml:
         $ref: '#/definitions/SAMLConfiguration'
+      scope_claim_formats:
+        default:
+        - scp_array
+        description: formats of the scope claim that will be included in the access
+          token
+        example:
+        - scp_array
+        - scope_space_separated
+        items:
+          $ref: '#/definitions/ScopeClaimFormat'
+        type: array
+        x-nullable: false
       scopes_without_service:
         $ref: '#/definitions/TreeScopes'
       script_execution_points:
@@ -5473,6 +5654,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -5500,6 +5682,7 @@ definitions:
           - self_signed_tls_client_auth
           - tls_client_auth
           - none
+          - unspecified
           type: string
         type: array
         x-nullable: false
@@ -5637,6 +5820,8 @@ definitions:
     type: object
   TreeTenant:
     properties:
+      features:
+        $ref: '#/definitions/TreeFeatures'
       jwks:
         $ref: '#/definitions/ServerJWKs'
       license:
@@ -5944,6 +6129,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' configuration has been imported'
@@ -6015,6 +6205,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' patch applied'
@@ -6082,6 +6277,11 @@ paths:
         format: insertMode
         in: query
         name: mode
+        type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
         type: string
       responses:
         "204":
@@ -6241,6 +6441,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' configuration has been imported'
@@ -6318,6 +6523,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' patch applied'
@@ -6391,6 +6601,11 @@ paths:
         format: insertMode
         in: query
         name: mode
+        type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
         type: string
       responses:
         "204":
@@ -6491,6 +6706,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' configuration has been imported'
@@ -6562,6 +6782,11 @@ paths:
         in: query
         name: mode
         type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
+        type: string
       responses:
         "204":
           description: ' patch applied'
@@ -6629,6 +6854,11 @@ paths:
         format: insertMode
         in: query
         name: mode
+        type: string
+      - default: "false"
+        description: Dry Run
+        in: query
+        name: dry_run
         type: string
       responses:
         "204":

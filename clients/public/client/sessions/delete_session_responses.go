@@ -54,7 +54,7 @@ func (o *DeleteSessionReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[DELETE /sessions/{sessionID}] deleteSession", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /sso/sessions/{sessionID}] deleteSession", response, response.Code())
 	}
 }
 
@@ -102,11 +102,11 @@ func (o *DeleteSessionNoContent) Code() int {
 }
 
 func (o *DeleteSessionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
 }
 
 func (o *DeleteSessionNoContent) String() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
 }
 
 func (o *DeleteSessionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +159,11 @@ func (o *DeleteSessionUnauthorized) Code() int {
 }
 
 func (o *DeleteSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteSessionUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteSessionUnauthorized) GetPayload() *models.Error {
@@ -227,11 +227,11 @@ func (o *DeleteSessionForbidden) Code() int {
 }
 
 func (o *DeleteSessionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteSessionForbidden) String() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteSessionForbidden) GetPayload() *models.Error {
@@ -295,11 +295,11 @@ func (o *DeleteSessionNotFound) Code() int {
 }
 
 func (o *DeleteSessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteSessionNotFound) String() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteSessionNotFound) GetPayload() *models.Error {
@@ -363,11 +363,11 @@ func (o *DeleteSessionTooManyRequests) Code() int {
 }
 
 func (o *DeleteSessionTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteSessionTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteSessionTooManyRequests) GetPayload() *models.Error {

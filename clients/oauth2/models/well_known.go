@@ -547,7 +547,7 @@ var wellKnownIntrospectionEndpointAuthMethodsSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -693,7 +693,7 @@ var wellKnownRevocationEndpointAuthMethodsSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -775,7 +775,7 @@ var wellKnownTokenEndpointAuthMethodsSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

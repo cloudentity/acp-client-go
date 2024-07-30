@@ -10,6 +10,9 @@ definitions:
       password:
         type: string
         x-nullable: false
+      totp_secret:
+        type: string
+        x-nullable: false
       webauthn:
         items:
           $ref: '#/definitions/Credential'
@@ -117,9 +120,11 @@ definitions:
   AuthenticationMechanisms:
     items:
       enum:
+      - totp
       - password
       - otp
       - webauthn
+      - arculix
       type: string
     type: array
   Authenticator:
@@ -169,6 +174,18 @@ definitions:
     required:
     - old_password
     - new_password
+    type: object
+  ChangeTotpSecret:
+    properties:
+      new_totp_secret:
+        type: string
+        x-nullable: false
+      totp:
+        type: string
+        x-nullable: false
+    required:
+    - new_totp_secret
+    - totp
     type: object
   Code:
     properties:
@@ -290,6 +307,27 @@ definitions:
     required:
     - code
     - new_password
+    type: object
+  CompleteResetTotp:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      code:
+        type: string
+        x-nullable: false
+      identifier:
+        type: string
+        x-nullable: false
+      new_totp_secret:
+        type: string
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - new_totp_secret
     type: object
   CompleteResetWebAuthn:
     properties:
@@ -634,10 +672,15 @@ definitions:
         example: secret
         type: string
         x-nullable: false
+      totp_secret:
+        example: BLEXAM6OPBBZTCFUOPVHDQ2HVG7PTMK3
+        type: string
+        x-nullable: false
       type:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false
@@ -860,9 +903,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -873,11 +918,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -959,9 +1011,11 @@ definitions:
         x-nullable: false
       preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
         x-nullable: false
@@ -972,11 +1026,18 @@ definitions:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
         enum:
+        - totp
         - password
         - otp
         - webauthn
+        - arculix
         example: password
         type: string
+        x-nullable: false
+      second_factor_threshold:
+        description: The minimal risk engine loa score value to skip the 2FA
+        format: double
+        type: number
         x-nullable: false
       system:
         type: boolean
@@ -1206,6 +1267,9 @@ definitions:
         additionalProperties:
           type: object
         type: object
+        x-nullable: false
+      totp_secret:
+        type: string
         x-nullable: false
       webauthn_credentials:
         items:
@@ -1581,6 +1645,7 @@ definitions:
         enum:
         - password
         - webauthn
+        - totp
         example: password
         type: string
         x-nullable: false
@@ -1944,7 +2009,7 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - system:
-        - manage_configuration
+        - read_configuration
       tags:
       - tenants
     patch:
@@ -2739,6 +2804,105 @@ paths:
       summary: Self Register User
       tags:
       - Users
+  /system/pools/{ipID}/user/totp/reset/complete:
+    post:
+      description: |-
+        Resets totp secret for user if the provided OTP is valid. It's the second and final step of the
+        flow to reset totp secret.
+        Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+        Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+        After a successful totp secret reset, OTP gets invalidated, so it cannot be reused.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: completeResetTotp
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: CompleteResetTotp
+        schema:
+          $ref: '#/definitions/CompleteResetTotp'
+      responses:
+        "204":
+          description: ' Reset totp secret completed'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Complete Reset Totp Secret
+      tags:
+      - Users
+  /system/pools/{ipID}/user/totp/reset/request:
+    post:
+      description: |-
+        Sends OTP for totp secret reset. It's first out of two steps of the reset totp secret flow.
+        Address must be a valid email or mobile which is marked as verified address for the user.
+        For validating unverified address userID or identifier must be provided.
+        If userID is provided then identifier must not be set.
+        When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
+        Regardless if the address points to some user or not, the request ends successfully to
+        prevent email/mobile enumeration.
+        Invalidates previously generated OTPs for totp reset.
+        Reset totp secret OTP is valid for a specific period of time configured in Identity Pool.
+      operationId: requestResetTotp
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: RequestResetTotp
+        schema:
+          $ref: '#/definitions/RequestResetCredential'
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
+      responses:
+        "204":
+          description: ' Request to reset totp secret accepted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Request Reset Totp Secret
+      tags:
+      - Users
   /system/pools/{ipID}/user/webauthn/reset/complete:
     post:
       description: |-
@@ -3060,13 +3224,16 @@ paths:
     put:
       description: |-
         Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
-        you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+        you need to update. Fields (top level elements like `status`, `payload` etc.) with no values are skipped for the update (not removed nor cleared).
 
         The fields to be updated are overridden.
 
         Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
 
         To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
+
+        Please notice that `deleted` status may be used as soft-delete but does not have any special meaning in the
+        system besides it does not allow such user to authenticate.
       operationId: systemUpdateUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -3777,6 +3944,49 @@ paths:
       summary: Set Password State
       tags:
       - Users
+  /system/pools/{ipID}/users/{userID}/totp/change:
+    post:
+      description: |-
+        Changes user totp secret if the provided totp code matches is valid.
+        Fails if totp secret is not set. For setting a totp secret for user use the reset totp secret flow.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: changeTotpSecret
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: ChangeTotpSecret
+        schema:
+          $ref: '#/definitions/ChangeTotpSecret'
+      responses:
+        "204":
+          description: ' Totp secret changed'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Change Totp Secret
+      tags:
+      - Users
   /system/pools/{ipID}/users/by_key:
     post:
       description: |-
@@ -3996,6 +4206,103 @@ paths:
       summary: Update Schema
       tags:
       - Schemas
+  /system/workspace/{wid}/pools:
+    get:
+      description: |-
+        Retrieve the list of identity pools available for a workspace. Pass the required workspace identifier with the
+        `wid` path parameter.
+
+        You can filter the response with the query parameters to narrow the pool list down.
+      operationId: listWorkspacePools
+      parameters:
+      - description: |-
+          A search substring. Use the identity pool identifier or name as its value.
+
+          SearchPhrase
+        in: query
+        name: search_phrase
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for results in the response.
+
+          With `after_pool_id`, the list you obtain starts from the subsequent identity pool after the specified one. Also,
+          the response depends on the `sort` and `order` parameters, if any are passed.
+
+          AfterPoolID
+        in: query
+        name: after_pool_id
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for the results in the response.
+
+          With `before_pool_id`, the list you obtain comprises identity pools up to the specified one. The specified
+          identity pool isn't included. Also, the response depends on the `sort` and `order` parameters, if any are
+          passed.
+
+          BeforePoolID
+        in: query
+        name: before_pool_id
+        type: string
+      - description: |-
+          Sort results returned in the response by `name` or `id`.
+
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          Set the order of results returned in the response. Input: `acs`, `desc`.
+
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          Limit the number of results returned in the response.
+
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Pools
+          schema:
+            $ref: '#/definitions/Pools'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List Identity Pools Per Workspace
+      tags:
+      - Pools
 produces:
 - application/json
 responses:

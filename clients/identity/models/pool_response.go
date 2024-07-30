@@ -78,7 +78,7 @@ type PoolResponse struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: [password otp webauthn]
+	// Enum: [totp password otp webauthn arculix]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
@@ -89,8 +89,11 @@ type PoolResponse struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: [password otp webauthn]
+	// Enum: [totp password otp webauthn arculix]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
+
+	// The minimal risk engine loa score value to skip the 2FA
+	SecondFactorThreshold float64 `json:"second_factor_threshold,omitempty" yaml:"second_factor_threshold,omitempty"`
 
 	// system
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
@@ -253,7 +256,7 @@ var poolResponseTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -263,6 +266,9 @@ func init() {
 
 const (
 
+	// PoolResponsePreferredAuthenticationMechanismTotp captures enum value "totp"
+	PoolResponsePreferredAuthenticationMechanismTotp string = "totp"
+
 	// PoolResponsePreferredAuthenticationMechanismPassword captures enum value "password"
 	PoolResponsePreferredAuthenticationMechanismPassword string = "password"
 
@@ -271,6 +277,9 @@ const (
 
 	// PoolResponsePreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponsePreferredAuthenticationMechanismWebauthn string = "webauthn"
+
+	// PoolResponsePreferredAuthenticationMechanismArculix captures enum value "arculix"
+	PoolResponsePreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum
@@ -315,7 +324,7 @@ var poolResponseTypeSecondFactorPreferredAuthenticationMechanismPropEnum []inter
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -325,6 +334,9 @@ func init() {
 
 const (
 
+	// PoolResponseSecondFactorPreferredAuthenticationMechanismTotp captures enum value "totp"
+	PoolResponseSecondFactorPreferredAuthenticationMechanismTotp string = "totp"
+
 	// PoolResponseSecondFactorPreferredAuthenticationMechanismPassword captures enum value "password"
 	PoolResponseSecondFactorPreferredAuthenticationMechanismPassword string = "password"
 
@@ -333,6 +345,9 @@ const (
 
 	// PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
+
+	// PoolResponseSecondFactorPreferredAuthenticationMechanismArculix captures enum value "arculix"
+	PoolResponseSecondFactorPreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum

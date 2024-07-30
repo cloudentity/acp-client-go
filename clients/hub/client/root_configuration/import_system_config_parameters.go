@@ -66,6 +66,14 @@ type ImportSystemConfigParams struct {
 	// Config.
 	Config *models.TreeTenant
 
+	/* DryRun.
+
+	   Dry Run
+
+	   Default: "false"
+	*/
+	DryRun *string
+
 	/* Mode.
 
 	     Insert mode
@@ -115,11 +123,14 @@ func (o *ImportSystemConfigParams) WithDefaults() *ImportSystemConfigParams {
 // All values with no default are reset to their zero value.
 func (o *ImportSystemConfigParams) SetDefaults() {
 	var (
+		dryRunDefault = string("false")
+
 		tidDefault = string("default")
 	)
 
 	val := ImportSystemConfigParams{
-		Tid: tidDefault,
+		DryRun: &dryRunDefault,
+		Tid:    tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -172,6 +183,17 @@ func (o *ImportSystemConfigParams) SetConfig(config *models.TreeTenant) {
 	o.Config = config
 }
 
+// WithDryRun adds the dryRun to the import system config params
+func (o *ImportSystemConfigParams) WithDryRun(dryRun *string) *ImportSystemConfigParams {
+	o.SetDryRun(dryRun)
+	return o
+}
+
+// SetDryRun adds the dryRun to the import system config params
+func (o *ImportSystemConfigParams) SetDryRun(dryRun *string) {
+	o.DryRun = dryRun
+}
+
 // WithMode adds the mode to the import system config params
 func (o *ImportSystemConfigParams) WithMode(mode *string) *ImportSystemConfigParams {
 	o.SetMode(mode)
@@ -204,6 +226,23 @@ func (o *ImportSystemConfigParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Config != nil {
 		if err := r.SetBodyParam(o.Config); err != nil {
 			return err
+		}
+	}
+
+	if o.DryRun != nil {
+
+		// query param dry_run
+		var qrDryRun string
+
+		if o.DryRun != nil {
+			qrDryRun = *o.DryRun
+		}
+		qDryRun := qrDryRun
+		if qDryRun != "" {
+
+			if err := r.SetQueryParam("dry_run", qDryRun); err != nil {
+				return err
+			}
 		}
 	}
 

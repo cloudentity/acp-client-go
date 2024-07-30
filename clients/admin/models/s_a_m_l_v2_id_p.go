@@ -34,7 +34,7 @@ type SAMLV2IDP struct {
 	Config *IDPConfiguration `json:"config,omitempty" yaml:"config,omitempty"`
 
 	// credentials
-	Credentials SAMLV2Credentials `json:"credentials,omitempty" yaml:"credentials,omitempty"`
+	Credentials *SAMLV2Credentials `json:"credentials,omitempty" yaml:"credentials,omitempty"`
 
 	// If set to `true`, the IDP is disabled
 	//
@@ -127,6 +127,10 @@ func (m *SAMLV2IDP) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCredentials(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDiscoverySettings(formats); err != nil {
 		res = append(res, err)
 	}
@@ -185,6 +189,25 @@ func (m *SAMLV2IDP) validateConfig(formats strfmt.Registry) error {
 				return ve.ValidateName("config")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SAMLV2IDP) validateCredentials(formats strfmt.Registry) error {
+	if swag.IsZero(m.Credentials) { // not required
+		return nil
+	}
+
+	if m.Credentials != nil {
+		if err := m.Credentials.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -317,6 +340,10 @@ func (m *SAMLV2IDP) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCredentials(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDiscoverySettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -374,6 +401,27 @@ func (m *SAMLV2IDP) contextValidateConfig(ctx context.Context, formats strfmt.Re
 				return ve.ValidateName("config")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SAMLV2IDP) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Credentials != nil {
+
+		if swag.IsZero(m.Credentials) { // not required
+			return nil
+		}
+
+		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}

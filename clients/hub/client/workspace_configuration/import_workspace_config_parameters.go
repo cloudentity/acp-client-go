@@ -66,6 +66,14 @@ type ImportWorkspaceConfigParams struct {
 	// Config.
 	Config *models.TreeServer
 
+	/* DryRun.
+
+	   Dry Run
+
+	   Default: "false"
+	*/
+	DryRun *string
+
 	/* Mode.
 
 	     Insert mode
@@ -123,14 +131,17 @@ func (o *ImportWorkspaceConfigParams) WithDefaults() *ImportWorkspaceConfigParam
 // All values with no default are reset to their zero value.
 func (o *ImportWorkspaceConfigParams) SetDefaults() {
 	var (
+		dryRunDefault = string("false")
+
 		tidDefault = string("default")
 
 		widDefault = string("default")
 	)
 
 	val := ImportWorkspaceConfigParams{
-		Tid: tidDefault,
-		Wid: widDefault,
+		DryRun: &dryRunDefault,
+		Tid:    tidDefault,
+		Wid:    widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -183,6 +194,17 @@ func (o *ImportWorkspaceConfigParams) SetConfig(config *models.TreeServer) {
 	o.Config = config
 }
 
+// WithDryRun adds the dryRun to the import workspace config params
+func (o *ImportWorkspaceConfigParams) WithDryRun(dryRun *string) *ImportWorkspaceConfigParams {
+	o.SetDryRun(dryRun)
+	return o
+}
+
+// SetDryRun adds the dryRun to the import workspace config params
+func (o *ImportWorkspaceConfigParams) SetDryRun(dryRun *string) {
+	o.DryRun = dryRun
+}
+
 // WithMode adds the mode to the import workspace config params
 func (o *ImportWorkspaceConfigParams) WithMode(mode *string) *ImportWorkspaceConfigParams {
 	o.SetMode(mode)
@@ -226,6 +248,23 @@ func (o *ImportWorkspaceConfigParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Config != nil {
 		if err := r.SetBodyParam(o.Config); err != nil {
 			return err
+		}
+	}
+
+	if o.DryRun != nil {
+
+		// query param dry_run
+		var qrDryRun string
+
+		if o.DryRun != nil {
+			qrDryRun = *o.DryRun
+		}
+		qDryRun := qrDryRun
+		if qDryRun != "" {
+
+			if err := r.SetQueryParam("dry_run", qDryRun); err != nil {
+				return err
+			}
 		}
 	}
 
