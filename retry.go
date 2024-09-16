@@ -11,7 +11,6 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/system/models"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
-	"golang.org/x/tools/go/analysis/passes/defers"
 )
 
 const (
