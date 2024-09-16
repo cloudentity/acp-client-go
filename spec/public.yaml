@@ -582,6 +582,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -696,6 +699,10 @@ definitions:
         description: If Identity Pool MFA is enabled
         type: boolean
         x-nullable: false
+      identity_pool_totp:
+        description: If Identity Pool TOTP is enabled
+        type: boolean
+        x-nullable: false
       self_service:
         description: If self-service is enabled
         type: boolean
@@ -770,7 +777,6 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -812,7 +818,6 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false

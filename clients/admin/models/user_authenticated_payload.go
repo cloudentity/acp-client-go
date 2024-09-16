@@ -24,6 +24,9 @@ type UserAuthenticatedPayload struct {
 	// Enum: [totp password otp webauthn arculix]
 	AuthnMethod string `json:"authn_method,omitempty" yaml:"authn_method,omitempty"`
 
+	// failure reason
+	FailureReason string `json:"failure_reason,omitempty" yaml:"failure_reason,omitempty"`
+
 	// identifier
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 

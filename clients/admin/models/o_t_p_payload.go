@@ -23,12 +23,18 @@ type OTPPayload struct {
 	// address
 	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
+	// failure reason
+	FailureReason string `json:"failure_reason,omitempty" yaml:"failure_reason,omitempty"`
+
 	// purpose
 	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 
 	// type
-	// Enum: [sms email arculix risk_engine]
+	// Enum: [sms email arculix]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
+
+	// user id
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this o t p payload
@@ -49,7 +55,7 @@ var oTPPayloadTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["sms","email","arculix","risk_engine"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["sms","email","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -67,9 +73,6 @@ const (
 
 	// OTPPayloadTypeArculix captures enum value "arculix"
 	OTPPayloadTypeArculix string = "arculix"
-
-	// OTPPayloadTypeRiskEngine captures enum value "risk_engine"
-	OTPPayloadTypeRiskEngine string = "risk_engine"
 )
 
 // prop value enum

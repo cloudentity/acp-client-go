@@ -7,25 +7,89 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
-// CredentialPayload credential payload
+// CredentialPayload CredentialPayload credential payload
 //
 // swagger:model CredentialPayload
 type CredentialPayload struct {
 
-	// credential id
+	// credential ID
 	CredentialID string `json:"credential_id,omitempty" yaml:"credential_id,omitempty"`
 
-	// user id
+	// credential type
+	// Enum: [password webauthn totp]
+	CredentialType string `json:"credential_type,omitempty" yaml:"credential_type,omitempty"`
+
+	// operation type
+	OperationType string `json:"operation_type,omitempty" yaml:"operation_type,omitempty"`
+
+	// user ID
 	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this credential payload
 func (m *CredentialPayload) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCredentialType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var credentialPayloadTypeCredentialTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","webauthn","totp"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		credentialPayloadTypeCredentialTypePropEnum = append(credentialPayloadTypeCredentialTypePropEnum, v)
+	}
+}
+
+const (
+
+	// CredentialPayloadCredentialTypePassword captures enum value "password"
+	CredentialPayloadCredentialTypePassword string = "password"
+
+	// CredentialPayloadCredentialTypeWebauthn captures enum value "webauthn"
+	CredentialPayloadCredentialTypeWebauthn string = "webauthn"
+
+	// CredentialPayloadCredentialTypeTotp captures enum value "totp"
+	CredentialPayloadCredentialTypeTotp string = "totp"
+)
+
+// prop value enum
+func (m *CredentialPayload) validateCredentialTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, credentialPayloadTypeCredentialTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *CredentialPayload) validateCredentialType(formats strfmt.Registry) error {
+	if swag.IsZero(m.CredentialType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateCredentialTypeEnum("credential_type", "body", m.CredentialType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

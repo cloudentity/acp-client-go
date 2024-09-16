@@ -132,6 +132,15 @@ type AuditEventPayloads struct {
 	// otp accepted
 	OtpAccepted *OTPPayload `json:"otp_accepted,omitempty" yaml:"otp_accepted,omitempty"`
 
+	// otp generated
+	OtpGenerated *OTPPayload `json:"otp_generated,omitempty" yaml:"otp_generated,omitempty"`
+
+	// otp inspect failed
+	OtpInspectFailed *OTPPayload `json:"otp_inspect_failed,omitempty" yaml:"otp_inspect_failed,omitempty"`
+
+	// otp inspect succeeded
+	OtpInspectSucceeded *OTPPayload `json:"otp_inspect_succeeded,omitempty" yaml:"otp_inspect_succeeded,omitempty"`
+
 	// otp not sent
 	OtpNotSent *OTPPayload `json:"otp_not_sent,omitempty" yaml:"otp_not_sent,omitempty"`
 
@@ -400,6 +409,18 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOtpAccepted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOtpGenerated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOtpInspectFailed(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOtpInspectSucceeded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1283,6 +1304,63 @@ func (m *AuditEventPayloads) validateOtpAccepted(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *AuditEventPayloads) validateOtpGenerated(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpGenerated) { // not required
+		return nil
+	}
+
+	if m.OtpGenerated != nil {
+		if err := m.OtpGenerated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_generated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_generated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateOtpInspectFailed(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpInspectFailed) { // not required
+		return nil
+	}
+
+	if m.OtpInspectFailed != nil {
+		if err := m.OtpInspectFailed.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_inspect_failed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_inspect_failed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateOtpInspectSucceeded(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpInspectSucceeded) { // not required
+		return nil
+	}
+
+	if m.OtpInspectSucceeded != nil {
+		if err := m.OtpInspectSucceeded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_inspect_succeeded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_inspect_succeeded")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateOtpNotSent(formats strfmt.Registry) error {
 	if swag.IsZero(m.OtpNotSent) { // not required
 		return nil
@@ -2158,6 +2236,18 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateOtpAccepted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOtpGenerated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOtpInspectFailed(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOtpInspectSucceeded(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -3109,6 +3199,69 @@ func (m *AuditEventPayloads) contextValidateOtpAccepted(ctx context.Context, for
 				return ve.ValidateName("otp_accepted")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("otp_accepted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateOtpGenerated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpGenerated != nil {
+
+		if swag.IsZero(m.OtpGenerated) { // not required
+			return nil
+		}
+
+		if err := m.OtpGenerated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_generated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_generated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateOtpInspectFailed(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpInspectFailed != nil {
+
+		if swag.IsZero(m.OtpInspectFailed) { // not required
+			return nil
+		}
+
+		if err := m.OtpInspectFailed.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_inspect_failed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_inspect_failed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateOtpInspectSucceeded(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpInspectSucceeded != nil {
+
+		if swag.IsZero(m.OtpInspectSucceeded) { // not required
+			return nil
+		}
+
+		if err := m.OtpInspectSucceeded.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_inspect_succeeded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_inspect_succeeded")
 			}
 			return err
 		}

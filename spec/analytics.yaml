@@ -46,6 +46,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -159,10 +162,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -170,6 +177,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       responses:
@@ -272,10 +281,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -283,6 +296,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       - default: grant_type
@@ -1704,10 +1719,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -1715,6 +1734,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       responses:
@@ -1823,10 +1844,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -1834,6 +1859,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       - default: grant_type
@@ -3118,10 +3145,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -3129,6 +3160,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       responses:
@@ -3237,10 +3270,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -3248,6 +3285,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       - default: grant_type
@@ -3998,10 +4037,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -4009,6 +4052,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       responses:
@@ -4123,10 +4168,14 @@ paths:
         description: |-
           Function
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
@@ -4134,6 +4183,8 @@ paths:
         type: string
         x-go-enum-desc: |-
           count AccessTokensCount
+          count_recovery AccessTokensCountRecovery
+          recovery_friction AccessTokensCountRecoveryFriction
           unique AccessTokensUnique
           unique_clients AccessTokensUniqueClients
       - default: grant_type

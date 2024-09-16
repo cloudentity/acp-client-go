@@ -140,6 +140,9 @@ type WorkspacePermissionsResponse struct {
 	// update organization
 	UpdateOrganization bool `json:"update_organization,omitempty" yaml:"update_organization,omitempty"`
 
+	// update organization metadata
+	UpdateOrganizationMetadata bool `json:"update_organization_metadata,omitempty" yaml:"update_organization_metadata,omitempty"`
+
 	// update workspace
 	UpdateWorkspace bool `json:"update_workspace,omitempty" yaml:"update_workspace,omitempty"`
 

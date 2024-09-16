@@ -42,6 +42,14 @@ func TestBasePath(t *testing.T) {
 			serverID: "system",
 		},
 		{
+			title:    "Tenant vanity domain",
+			url:      "https://acp-primary.acp:8443/system",
+			tid:      "dev-mks",
+			vanityTp: "tenant",
+			tenantID: "dev-mks",
+			serverID: "system",
+		},
+		{
 			title:    "Tenant vanity domain with base path",
 			url:      "https://acp.local/base/system",
 			tid:      "default",

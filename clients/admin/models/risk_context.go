@@ -18,6 +18,9 @@ import (
 // swagger:model RiskContext
 type RiskContext struct {
 
+	// analyzers
+	Analyzers map[string]float64 `json:"analyzers,omitempty" yaml:"analyzers,omitempty"`
+
 	// dbfp fingerprint
 	DbfpFingerprint string `json:"dbfp_fingerprint,omitempty" yaml:"dbfp_fingerprint,omitempty"`
 

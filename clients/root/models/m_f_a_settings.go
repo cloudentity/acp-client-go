@@ -24,9 +24,6 @@ type MFASettings struct {
 	// email
 	Email *EmailSettings `json:"email,omitempty" yaml:"email,omitempty"`
 
-	// risk engine
-	RiskEngine *RiskEngineSettings `json:"risk_engine,omitempty" yaml:"risk_engine,omitempty"`
-
 	// sms
 	Sms *SMSSettings `json:"sms,omitempty" yaml:"sms,omitempty"`
 }
@@ -40,10 +37,6 @@ func (m *MFASettings) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEmail(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRiskEngine(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -95,25 +88,6 @@ func (m *MFASettings) validateEmail(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MFASettings) validateRiskEngine(formats strfmt.Registry) error {
-	if swag.IsZero(m.RiskEngine) { // not required
-		return nil
-	}
-
-	if m.RiskEngine != nil {
-		if err := m.RiskEngine.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("risk_engine")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("risk_engine")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *MFASettings) validateSms(formats strfmt.Registry) error {
 	if swag.IsZero(m.Sms) { // not required
 		return nil
@@ -142,10 +116,6 @@ func (m *MFASettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidateEmail(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRiskEngine(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -193,27 +163,6 @@ func (m *MFASettings) contextValidateEmail(ctx context.Context, formats strfmt.R
 				return ve.ValidateName("email")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("email")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *MFASettings) contextValidateRiskEngine(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.RiskEngine != nil {
-
-		if swag.IsZero(m.RiskEngine) { // not required
-			return nil
-		}
-
-		if err := m.RiskEngine.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("risk_engine")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("risk_engine")
 			}
 			return err
 		}

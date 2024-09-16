@@ -20,16 +20,14 @@ import (
 // swagger:model Environment
 type Environment struct {
 
+	// ACR support
+	Acr bool `json:"acr,omitempty" yaml:"acr,omitempty"`
+
 	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
 	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty" yaml:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
 
 	// admin issuer url
 	AdminIssuerURL string `json:"admin_issuer_url,omitempty" yaml:"admin_issuer_url,omitempty"`
-
-	// Admin portal face lifting
-	//
-	// Improve user experience by facelifting the basic components of Cloudentity.
-	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty" yaml:"admin_portal_face_lifting,omitempty"`
 
 	// admin workspace access
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty" yaml:"admin_workspace_access,omitempty"`
@@ -102,9 +100,6 @@ type Environment struct {
 	// drop tokens on password reset
 	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty" yaml:"drop_tokens_on_password_reset,omitempty"`
 
-	// Gateway default policy
-	GatewayDefaultPolicy bool `json:"gateway_default_policy,omitempty" yaml:"gateway_default_policy,omitempty"`
-
 	// grpc url
 	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
 
@@ -144,6 +139,9 @@ type Environment struct {
 	// insecure token exchange public clients
 	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
+	// allow to map user pool attributes to authn ctx if JIT is enabled
+	JitMapUserPoolAttributesToAuthnCtx bool `json:"jit_map_user_pool_attributes_to_authn_ctx,omitempty" yaml:"jit_map_user_pool_attributes_to_authn_ctx,omitempty"`
+
 	// mark address as verified on any proof of possession of the address
 	MarkAddressAsVerifiedOnAnyProofOfPossession bool `json:"mark_address_as_verified_on_any_proof_of_possession,omitempty" yaml:"mark_address_as_verified_on_any_proof_of_possession,omitempty"`
 
@@ -174,11 +172,6 @@ type Environment struct {
 	// Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
 	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
 
-	// SAML Identity Provider V2
-	//
-	// Enable SAML Identity Provider V2
-	SamlV2 bool `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
-
 	// scope transient_otp
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
 
@@ -189,9 +182,6 @@ type Environment struct {
 	//
 	// Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
 	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
-
-	// simple api integration
-	SimpleAPIIntegration bool `json:"simple_api_integration,omitempty" yaml:"simple_api_integration,omitempty"`
 
 	// swagger ui
 	SwaggerUI bool `json:"swagger_ui,omitempty" yaml:"swagger_ui,omitempty"`

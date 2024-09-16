@@ -118,6 +118,16 @@ definitions:
         description: Actor claims
         type: object
         x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
       client_id:
         description: OAuth client application identifier.
         format: clientID
@@ -184,6 +194,10 @@ definitions:
         x-nullable: false
       public:
         description: Stores information if the client application is a public one.
+        type: boolean
+        x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
         type: boolean
         x-nullable: false
       remote_addr:
@@ -278,6 +292,16 @@ definitions:
         description: Actor claims
         type: object
         x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
       client_id:
         description: OAuth client application identifier.
         format: clientID
@@ -364,6 +388,10 @@ definitions:
         x-nullable: false
       public:
         description: Stores information if the client application is a public one.
+        type: boolean
+        x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
         type: boolean
         x-nullable: false
       remote_addr:
@@ -855,6 +883,7 @@ definitions:
         - server
         - import
         - organization
+        - otp_inspect
         example: client
         type: string
         x-nullable: false
@@ -888,6 +917,16 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
         x-nullable: false
       authorization_correlation_id:
         description: |-
@@ -1076,6 +1115,12 @@ definitions:
       organization_updated:
         $ref: '#/definitions/Organization'
       otp_accepted:
+        $ref: '#/definitions/OTPPayload'
+      otp_generated:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_failed:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_succeeded:
         $ref: '#/definitions/OTPPayload'
       otp_not_sent:
         $ref: '#/definitions/OTPPayload'
@@ -6065,11 +6110,26 @@ definitions:
         x-nullable: false
     type: object
   CredentialPayload:
+    description: CredentialPayload credential payload
     properties:
       credential_id:
+        description: credential ID
+        type: string
+        x-nullable: false
+      credential_type:
+        description: credential type
+        enum:
+        - password
+        - webauthn
+        - totp
+        type: string
+        x-nullable: false
+      operation_type:
+        description: operation type
         type: string
         x-nullable: false
       user_id:
+        description: user ID
         type: string
         x-nullable: false
     type: object
@@ -6872,6 +6932,10 @@ definitions:
     type: object
   Environment:
     properties:
+      acr:
+        description: ACR support
+        type: boolean
+        x-nullable: false
       add_fake_tenant_url_to_login_request_for_non_default_routing:
         description: add fake tenantUrl to query params for routing other than default
           (needed for backward compatibility with CIP for vanity domains)
@@ -6879,13 +6943,6 @@ definitions:
         x-nullable: false
       admin_issuer_url:
         type: string
-        x-nullable: false
-      admin_portal_face_lifting:
-        description: |-
-          Admin portal face lifting
-
-          Improve user experience by facelifting the basic components of Cloudentity.
-        type: boolean
         x-nullable: false
       admin_workspace_access:
         description: admin workspace access
@@ -6976,10 +7033,6 @@ definitions:
         description: drop tokens on password reset
         type: boolean
         x-nullable: false
-      gateway_default_policy:
-        description: Gateway default policy
-        type: boolean
-        x-nullable: false
       grpc_url:
         type: string
         x-nullable: false
@@ -7032,6 +7085,10 @@ definitions:
         description: insecure token exchange public clients
         type: boolean
         x-nullable: false
+      jit_map_user_pool_attributes_to_authn_ctx:
+        description: allow to map user pool attributes to authn ctx if JIT is enabled
+        type: boolean
+        x-nullable: false
       mark_address_as_verified_on_any_proof_of_possession:
         description: mark address as verified on any proof of possession of the address
         type: boolean
@@ -7073,13 +7130,6 @@ definitions:
           Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
         type: boolean
         x-nullable: false
-      saml_v2:
-        description: |-
-          SAML Identity Provider V2
-
-          Enable SAML Identity Provider V2
-        type: boolean
-        x-nullable: false
       scope_transient_otp:
         description: scope transient_otp
         type: boolean
@@ -7094,10 +7144,6 @@ definitions:
           Self-service
 
           Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
-        type: boolean
-        x-nullable: false
-      simple_api_integration:
-        description: simple api integration
         type: boolean
         x-nullable: false
       swagger_ui:
@@ -7144,6 +7190,9 @@ definitions:
         type: object
         x-nullable: false
       error:
+        type: string
+        x-nullable: false
+      error_code:
         type: string
         x-nullable: false
       status_code:
@@ -9863,8 +9912,6 @@ definitions:
         $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
@@ -9884,7 +9931,6 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9920,7 +9966,6 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9950,8 +9995,6 @@ definitions:
         $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -10046,7 +10089,7 @@ definitions:
     description: |-
       A Name represents an XML name (Local) annotated
       with a name space identifier (Space).
-      In tokens returned by Decoder.Token, the Space identifier
+      In tokens returned by [Decoder.Token], the Space identifier
       is given as a canonical URL, not the short prefix used
       in the document being parsed.
     properties:
@@ -10301,6 +10344,9 @@ definitions:
       address:
         type: string
         x-nullable: false
+      failure_reason:
+        type: string
+        x-nullable: false
       purpose:
         type: string
         x-nullable: false
@@ -10309,7 +10355,10 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
         type: string
         x-nullable: false
     type: object
@@ -10706,6 +10755,14 @@ definitions:
         description: ID of the Workspace to which the IDP is connected
         format: serverID
         type: string
+        x-nullable: false
+    type: object
+  OrganizationMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
         x-nullable: false
     type: object
   OrganizationResponse:
@@ -11277,6 +11334,10 @@ definitions:
         items: {}
         type: array
         x-nullable: false
+      recovery_steps:
+        items: {}
+        type: array
+        x-nullable: false
     type: object
   RedirectURIs:
     description: |-
@@ -11339,14 +11400,8 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  RequestValidatedPayload:
+  RequestValidatedData:
     properties:
-      actor_claims:
-        additionalProperties:
-          type: object
-        description: Actor claims
-        type: object
-        x-nullable: false
       anonymous:
         type: boolean
         x-nullable: false
@@ -11354,175 +11409,31 @@ definitions:
         $ref: '#/definitions/API'
       claims:
         $ref: '#/definitions/JwtClaims'
-      client_id:
-        description: OAuth client application identifier.
-        format: clientID
-        type: string
-        x-nullable: false
-      client_name:
-        description: Human readable name of a client application
-        type: string
-        x-nullable: false
-      created_by_developer:
-        description: Stores information if the owner of the client application is
-          a developer.
-        type: boolean
-        x-nullable: false
-      dbfp:
-        description: Arculix DBFP `jwt` cookie.
-        type: string
-        x-nullable: false
       duration_ms:
         format: int64
         type: integer
         x-nullable: false
       gateway:
         $ref: '#/definitions/Gateway'
-      grant_type:
-        description: |-
-          Stores the information which grant type was selected to perfom a given action.
-          Matches one of allowed OAuth client grant types for a given client.
-        type: string
-        x-nullable: false
-      identity_pool_id:
-        description: ID of the Identity Pool
-        format: poolID
-        type: string
-        x-nullable: false
-      idp_id:
-        description: IDP identifier
-        format: idpID
-        type: string
-        x-nullable: false
-      idp_method:
-        description: IDP method
-        type: string
-        x-nullable: false
-      idp_subject:
-        description: Subject within the Identity Provider
-        format: subject
-        type: string
-        x-nullable: false
       invalid_token:
         type: boolean
-        x-nullable: false
-      latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
-        type: string
-        x-nullable: false
-      longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
-        type: string
-        x-nullable: false
-      may_act_claims:
-        additionalProperties:
-          type: object
-        description: May act claims
-        type: object
-        x-nullable: false
-      organization_id:
-        description: ID of the Organization
-        format: serverID
-        type: string
         x-nullable: false
       output:
         additionalProperties:
           type: string
         type: object
         x-nullable: false
-      public:
-        description: Stores information if the client application is a public one.
-        type: boolean
-        x-nullable: false
-      remote_addr:
-        description: Requester IP address obtained from system network socket information.
-        type: string
-        x-nullable: false
       result:
         $ref: '#/definitions/PolicyValidationResult'
-      risk_engine_context:
-        $ref: '#/definitions/RiskContext'
-      server_id:
-        description: ID of the authorization server (workspace) to which an access
-          request is tied.
-        format: serverID
-        type: string
-        x-nullable: false
       service:
         $ref: '#/definitions/Service'
-      session_id:
-        description: |-
-          Session id of a given subject. It's uniform across the authentication processes.
-          It can be used as a correlation ID between a different audit events.
-        format: loginID
-        type: string
-        x-nullable: false
-      subject:
-        description: |-
-          Identification of the principal that is the subject of authorization.
-          For the authorization grant, the subject typically identifies an authorized accessor for which the access token is being requested.
-          For client authentication, the subject is the client_id of the OAuth client.
-        format: subject
-        type: string
-        x-nullable: false
-      system:
-        description: Stores information if the client application is a system tenant's
-          application.
-        type: boolean
-        x-nullable: false
-      token_endpoint_authn_method:
-        description: Token endpoint authentication method configured for a client
-          application.
-        enum:
-        - client_secret_basic
-        - client_secret_post
-        - client_secret_jwt
-        - private_key_jwt
-        - self_signed_tls_client_auth
-        - tls_client_auth
-        - none
-        - unspecified
-        type: string
-        x-nullable: false
-      token_signature:
-        description: Token signature
-        type: string
-        x-nullable: false
-      true_client_ip:
-        description: Requester IP address obtained from True-Client-IP header.
-        type: string
-        x-nullable: false
-      user_agent:
-        description: A characteristic string that lets servers and network peers identify
-          the application, operating system, vendor, and/or version of the requesting
-          user agent.
-        type: string
-        x-nullable: false
-      user_id:
-        description: ID of the User in Identity Pool
-        type: string
-        x-nullable: false
-      user_pool_id:
-        description: ID of the Identity Pool
-        format: poolID
-        type: string
-        x-nullable: false
-      workspace_id:
-        description: ID of the authorization server (workspace) to which a resource
-          is tied.
-        format: serverID
-        type: string
-        x-nullable: false
-      x_forwarded_for:
-        description: Requester IP address obtained from X-Forwarded-For header.
-        type: string
-        x-nullable: false
-      x_real_ip:
-        description: Requester IP address obtained from X-Real-IP header.
-        type: string
-        x-nullable: false
+    type: object
+  RequestValidatedPayload:
+    properties:
+      access_request_data:
+        $ref: '#/definitions/AccessRequestData'
+      request_validated_data:
+        $ref: '#/definitions/RequestValidatedData'
     type: object
   RequestedAttribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -11695,6 +11606,16 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  RevokeTokensByPoolRequest:
+    properties:
+      users:
+        description: list of userIds (min 1, max 100)
+        items:
+          format: userID
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   RevokeWorkspaceRoleRequest:
     properties:
       identity_pool_id:
@@ -11773,6 +11694,12 @@ definitions:
     type: array
   RiskContext:
     properties:
+      analyzers:
+        additionalProperties:
+          format: double
+          type: number
+        type: object
+        x-nullable: false
       dbfp_fingerprint:
         type: string
         x-nullable: false
@@ -11780,57 +11707,6 @@ definitions:
         $ref: '#/definitions/RiskID'
       loa:
         $ref: '#/definitions/RiskLOA'
-    type: object
-  RiskEngineAuth:
-    properties:
-      api_key:
-        description: The Risk Engine API key.
-        type: string
-        x-nullable: false
-    required:
-    - api_key
-    type: object
-  RiskEngineSettings:
-    properties:
-      dbfp_gps_timeout:
-        description: Timeout for the GPS.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_timeout:
-        description: Timeout for the DBFP script.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      tenant_id:
-        description: Risk Engine TenantID
-        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
-        type: string
-        x-nullable: false
-      timeout:
-        description: Risk Engine timeout
-        example: 200ms
-        format: duration
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Risk Engine server
-        example: https://cyber-inference.mm-dev.acceptto.com/
-        type: string
-        x-nullable: false
-    required:
-    - url
-    - timeout
-    - dbfp_url
-    - dbfp_timeout
-    - dbfp_gps_timeout
     type: object
   RiskID:
     description: Risk engine transaction id
@@ -17493,6 +17369,10 @@ definitions:
         - arculix
         type: string
         x-nullable: false
+      failure_reason:
+        description: failure reason
+        type: string
+        x-nullable: false
       identifier:
         description: identifier
         type: string
@@ -18060,6 +17940,9 @@ definitions:
         type: boolean
         x-nullable: false
       update_organization:
+        type: boolean
+        x-nullable: false
+      update_organization_metadata:
         type: boolean
         x-nullable: false
       update_workspace:
@@ -20470,6 +20353,43 @@ paths:
       summary: Update organization
       tags:
       - organizations
+  /organizations/{wid}/metadata:
+    put:
+      description: Update organization metadata.
+      operationId: updateOrganizationMetadata
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Organization id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: OrganizationMetadata
+        schema:
+          $ref: '#/definitions/OrganizationMetadata'
+      responses:
+        "200":
+          $ref: '#/responses/OrganizationMetadata'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Update organization metadata
+      tags:
+      - organizations
   /policies:
     post:
       description: |-
@@ -20805,6 +20725,47 @@ paths:
       summary: Revoke identityPool role
       tags:
       - roles
+  /pools/{ipID}/tokens:
+    delete:
+      description: |-
+        Revoke tokens for given set of userIds (min 1, max 100 userIds can be specified).
+
+        Tokens includes access and refresh tokens but also authorization codes, authorization requests,
+        sso sessions and scopes grants.
+      operationId: revokeTokensByPool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Identity pool id
+        in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/RevokeTokensByPoolRequest'
+      responses:
+        "204":
+          description: ' tokens revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - admin: []
+      summary: Revoke tokens for users in pool
+      tags:
+      - tokens
   /pools/{ipID}/users/{userID}/roles:
     get:
       description: List user roles.
@@ -21373,6 +21334,18 @@ paths:
         name: organization_id
         type: string
       - description: |-
+          optional list audit events with a given affected user identity pool id
+          AffectedUserPoolID
+        in: query
+        name: affected_user_pool_id
+        type: string
+      - description: |-
+          optional list audit events with a given affected user id
+          AffectedUserID
+        in: query
+        name: affected_user_id
+        type: string
+      - description: |-
           Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
           EventSubject
         in: query
@@ -21381,7 +21354,7 @@ paths:
         name: event_subject
         type: array
       - description: |-
-          Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
+          Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked generated
           EventType
         in: query
         items:
@@ -29081,6 +29054,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/OrganizationResponse'
+  OrganizationMetadata:
+    description: Organization metadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationMetadata'
   Orgs:
     description: Orgs
     headers:

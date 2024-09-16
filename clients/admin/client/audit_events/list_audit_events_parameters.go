@@ -62,6 +62,20 @@ ListAuditEventsParams contains all the parameters to send to the API endpoint
 */
 type ListAuditEventsParams struct {
 
+	/* AffectedUserID.
+
+	     optional list audit events with a given affected user id
+	AffectedUserID
+	*/
+	AffectedUserID *string
+
+	/* AffectedUserPoolID.
+
+	     optional list audit events with a given affected user identity pool id
+	AffectedUserPoolID
+	*/
+	AffectedUserPoolID *string
+
 	/* AfterEventID.
 
 	     optional list audit events after a given event id
@@ -91,7 +105,7 @@ type ListAuditEventsParams struct {
 
 	/* EventAction.
 
-	     Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
+	     Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked generated
 	EventType
 	*/
 	EventAction []string
@@ -290,6 +304,28 @@ func (o *ListAuditEventsParams) WithHTTPClient(client *http.Client) *ListAuditEv
 // SetHTTPClient adds the HTTPClient to the list audit events params
 func (o *ListAuditEventsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithAffectedUserID adds the affectedUserID to the list audit events params
+func (o *ListAuditEventsParams) WithAffectedUserID(affectedUserID *string) *ListAuditEventsParams {
+	o.SetAffectedUserID(affectedUserID)
+	return o
+}
+
+// SetAffectedUserID adds the affectedUserId to the list audit events params
+func (o *ListAuditEventsParams) SetAffectedUserID(affectedUserID *string) {
+	o.AffectedUserID = affectedUserID
+}
+
+// WithAffectedUserPoolID adds the affectedUserPoolID to the list audit events params
+func (o *ListAuditEventsParams) WithAffectedUserPoolID(affectedUserPoolID *string) *ListAuditEventsParams {
+	o.SetAffectedUserPoolID(affectedUserPoolID)
+	return o
+}
+
+// SetAffectedUserPoolID adds the affectedUserPoolId to the list audit events params
+func (o *ListAuditEventsParams) SetAffectedUserPoolID(affectedUserPoolID *string) {
+	o.AffectedUserPoolID = affectedUserPoolID
 }
 
 // WithAfterEventID adds the afterEventID to the list audit events params
@@ -541,6 +577,40 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.AffectedUserID != nil {
+
+		// query param affected_user_id
+		var qrAffectedUserID string
+
+		if o.AffectedUserID != nil {
+			qrAffectedUserID = *o.AffectedUserID
+		}
+		qAffectedUserID := qrAffectedUserID
+		if qAffectedUserID != "" {
+
+			if err := r.SetQueryParam("affected_user_id", qAffectedUserID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AffectedUserPoolID != nil {
+
+		// query param affected_user_pool_id
+		var qrAffectedUserPoolID string
+
+		if o.AffectedUserPoolID != nil {
+			qrAffectedUserPoolID = *o.AffectedUserPoolID
+		}
+		qAffectedUserPoolID := qrAffectedUserPoolID
+		if qAffectedUserPoolID != "" {
+
+			if err := r.SetQueryParam("affected_user_pool_id", qAffectedUserPoolID); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.AfterEventID != nil {
 

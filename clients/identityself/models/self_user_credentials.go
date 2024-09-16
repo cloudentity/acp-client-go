@@ -28,6 +28,12 @@ type SelfUserCredentials struct {
 	// Format: date-time
 	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty" yaml:"expires_at,omitempty"`
 
+	// id
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
+
+	// some credentials might have name - like passkeys
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
 	// state
 	// Enum: [valid must_be_reset must_be_changed]
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
