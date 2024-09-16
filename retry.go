@@ -39,12 +39,11 @@ func NewAuthenticator(config clientcredentials.Config, client *http.Client) *htt
 func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err error) {
 	var (
 		reqBuf bytes.Buffer
-		reader = io.TeeReader(req.Body, &reqBuf)
+		reqReader = io.TeeReader(req.Body, &reqBuf)
 	)
 
 	defer req.Body.Close()
-	req.Body = io.NopCloser(reader)
-
+	req.Body = io.NopCloser(reqReader)
 	
 	if res, err = t.transport.Do(req); err != nil {
 		return res, err
@@ -53,11 +52,14 @@ func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err er
 	if res.StatusCode == http.StatusUnauthorized {
 		var (
 			resBuf bytes.Buffer
-			reader = io.TeeReader(res.Body, &resBuf)
-			decoder = json.NewDecoder(reader)
+			resReader = io.TeeReader(res.Body, &resBuf)
+			decoder = json.NewDecoder(resReader)
 			merr = &models.Error{}
 		)
-		
+
+		defer res.Body.Close()
+		res.Body = io.NopCloser(&resBuf)
+
 		if err = decoder.Decode(merr); err != nil {
 			return res, err
 		}
@@ -66,7 +68,7 @@ func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err er
 			t.renew()
 			req.Body = io.NopCloser(&reqBuf)
 			return t.transport.Do(req)	
-		}
+		} 
 	}
 
 	return res, nil
