@@ -37,19 +37,22 @@ func NewAuthenticator(config clientcredentials.Config, client *http.Client) *htt
 }
 
 func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err error) {
-	var (
-		reqBuf bytes.Buffer
-		reqReader = io.TeeReader(req.Body, &reqBuf)
-	)
 
-	defer req.Body.Close()
-	req.Body = io.NopCloser(reqReader)
+	if req.Body != nil {
+		var (
+			reqBuf bytes.Buffer
+			reqReader = io.TeeReader(req.Body, &reqBuf)
+		)
+	
+		defer req.Body.Close()
+		req.Body = io.NopCloser(reqReader)
+	}
 	
 	if res, err = t.transport.Do(req); err != nil {
 		return res, err
 	} 
 
-	if res.StatusCode == http.StatusUnauthorized {
+	if res.StatusCode == http.StatusUnauthorized && res.Body != nil {
 		var (
 			resBuf bytes.Buffer
 			resReader = io.TeeReader(res.Body, &resBuf)
@@ -66,7 +69,6 @@ func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err er
 
 		if merr.ErrorCode == ErrorInvalidAccessToken {
 			t.renew()
-			req.Body = io.NopCloser(&reqBuf)
 			return t.transport.Do(req)	
 		} 
 	}
