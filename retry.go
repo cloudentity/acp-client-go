@@ -70,7 +70,7 @@ func (t *Authenticator) RoundTrip(req *http.Request) (res *http.Response, err er
 		if merr.ErrorCode == ErrorInvalidAccessToken {
 			t.renew()
 			return t.transport.Do(req)	
-		} 
+		}
 	}
 
 	return res, nil
