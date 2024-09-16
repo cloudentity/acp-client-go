@@ -15,8 +15,8 @@ $(SWAGGERS):
 	rm -rf clients/$@
 	mkdir clients/$@
 
-	sed -i 's/flow: application/flow: accessCode/g' spec/$@.yaml
-	sed -i 's/flow: password/flow: accessCode/g' spec/$@.yaml
+	sed -i '' 's/flow: application/flow: accessCode/g' spec/$@.yaml
+	sed -i '' 's/flow: password/flow: accessCode/g' spec/$@.yaml
 	${swagger} generate client -f /go/src/spec/$@.yaml -A acp -t /go/src/clients/$@ --struct-tags=yaml
 
 .PHONY: generate-openbanking-uk

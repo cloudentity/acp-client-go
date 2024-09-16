@@ -1,8 +1,6 @@
 module github.com/cloudentity/acp-client-go
 
-go 1.21
-
-toolchain go1.21.3
+go 1.22.0
 
 require (
 	github.com/go-openapi/errors v0.20.4
@@ -15,6 +13,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/oauth2 v0.13.0
+	golang.org/x/tools v0.25.0
 	gopkg.in/square/go-jose.v2 v2.6.0
 )
 

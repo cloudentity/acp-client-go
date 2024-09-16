@@ -32,6 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	RevokeTokens(params *RevokeTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeTokensNoContent, error)
 
+	RevokeTokensByPool(params *RevokeTokensByPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeTokensByPoolNoContent, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -78,6 +80,50 @@ func (a *Client) RevokeTokens(params *RevokeTokensParams, authInfo runtime.Clien
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for revokeTokens: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RevokeTokensByPool revokes tokens for users in pool
+
+	Revoke tokens for given set of userIds (min 1, max 100 userIds can be specified).
+
+Tokens includes access and refresh tokens but also authorization codes, authorization requests,
+sso sessions and scopes grants.
+*/
+func (a *Client) RevokeTokensByPool(params *RevokeTokensByPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeTokensByPoolNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeTokensByPoolParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeTokensByPool",
+		Method:             "DELETE",
+		PathPattern:        "/pools/{ipID}/tokens",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeTokensByPoolReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeTokensByPoolNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeTokensByPool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

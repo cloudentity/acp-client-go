@@ -28,7 +28,7 @@ type TransientOTPRequest struct {
 	// mechanism
 	// Example: email
 	// Required: true
-	// Enum: [sms email arculix risk_engine]
+	// Enum: [sms email arculix]
 	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// one-time password
@@ -71,7 +71,7 @@ var transientOTPRequestTypeMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["sms","email","arculix","risk_engine"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["sms","email","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -89,9 +89,6 @@ const (
 
 	// TransientOTPRequestMechanismArculix captures enum value "arculix"
 	TransientOTPRequestMechanismArculix string = "arculix"
-
-	// TransientOTPRequestMechanismRiskEngine captures enum value "risk_engine"
-	TransientOTPRequestMechanismRiskEngine string = "risk_engine"
 )
 
 // prop value enum

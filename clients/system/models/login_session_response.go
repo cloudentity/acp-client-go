@@ -105,6 +105,9 @@ type LoginSessionResponse struct {
 	// requested grant type
 	RequestedGrantType string `json:"requested_grant_type,omitempty" yaml:"requested_grant_type,omitempty"`
 
+	// requested max age
+	RequestedMaxAge string `json:"requested_max_age,omitempty" yaml:"requested_max_age,omitempty"`
+
 	// requested redirect uri
 	RequestedRedirectURI string `json:"requested_redirect_uri,omitempty" yaml:"requested_redirect_uri,omitempty"`
 

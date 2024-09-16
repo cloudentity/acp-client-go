@@ -30,15 +30,23 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	BeginWebAuthnCredentialsGeneration(params *BeginWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BeginWebAuthnCredentialsGenerationOK, error)
+
 	ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error)
 
 	ChangePasswordV2(params *ChangePasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordV2NoContent, error)
 
 	ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error)
 
+	CompleteWebAuthnCredentialsGeneration(params *CompleteWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteWebAuthnCredentialsGenerationOK, error)
+
+	DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWebAuthnKeyNoContent, error)
+
 	GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error)
 
 	GetUserProfileV2(params *GetUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileV2OK, error)
+
+	NameWebAuthnKey(params *NameWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NameWebAuthnKeyNoContent, error)
 
 	ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error)
 
@@ -46,11 +54,56 @@ type ClientService interface {
 
 	SetTotpSecret(params *SetTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTotpSecretNoContent, error)
 
+	SetWebAuthn(params *SetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetWebAuthnNoContent, error)
+
 	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error)
 
 	UpdateUserProfileV2(params *UpdateUserProfileV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+	BeginWebAuthnCredentialsGeneration begins web authn credentials generation
+
+	Begin WebAuthn credentials generation
+
+This API requires authentication to happen within the last 5 minutes.
+*/
+func (a *Client) BeginWebAuthnCredentialsGeneration(params *BeginWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BeginWebAuthnCredentialsGenerationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBeginWebAuthnCredentialsGenerationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "beginWebAuthnCredentialsGeneration",
+		Method:             "POST",
+		PathPattern:        "/v2/self/webauthn/create/begin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BeginWebAuthnCredentialsGenerationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*BeginWebAuthnCredentialsGenerationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for beginWebAuthnCredentialsGeneration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -177,6 +230,92 @@ func (a *Client) ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runti
 }
 
 /*
+	CompleteWebAuthnCredentialsGeneration finishes web authn credentials generation
+
+	Finish WebAuthn credentials generation
+
+This API requires authentication to happen within the last 5 minutes.
+*/
+func (a *Client) CompleteWebAuthnCredentialsGeneration(params *CompleteWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteWebAuthnCredentialsGenerationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteWebAuthnCredentialsGenerationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "completeWebAuthnCredentialsGeneration",
+		Method:             "POST",
+		PathPattern:        "/v2/self/webauthn/create/complete",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CompleteWebAuthnCredentialsGenerationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CompleteWebAuthnCredentialsGenerationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for completeWebAuthnCredentialsGeneration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	DeleteWebAuthnKey deletes web authn key
+
+	Deletes WebAuthn key.
+
+NOTICE: it is forbidden to delete the last WebAuthn key.
+*/
+func (a *Client) DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWebAuthnKeyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteWebAuthnKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteWebAuthnKey",
+		Method:             "DELETE",
+		PathPattern:        "/v2/self/webauthn/{webAuthnCredentialID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteWebAuthnKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteWebAuthnKeyNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteWebAuthnKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	GetUserProfile selves get user profile
 
 	Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
@@ -259,6 +398,47 @@ func (a *Client) GetUserProfileV2(params *GetUserProfileV2Params, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getUserProfileV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+NameWebAuthnKey names web authn key
+
+Set name for WebAuthn key
+*/
+func (a *Client) NameWebAuthnKey(params *NameWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NameWebAuthnKeyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNameWebAuthnKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "nameWebAuthnKey",
+		Method:             "PUT",
+		PathPattern:        "/v2/self/webauthn/{webAuthnCredentialID}/name",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &NameWebAuthnKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NameWebAuthnKeyNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for nameWebAuthnKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -391,6 +571,49 @@ func (a *Client) SetTotpSecret(params *SetTotpSecretParams, authInfo runtime.Cli
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for setTotpSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	SetWebAuthn sets web authn
+
+	Set WebAuthn for a user who doesn't have one yet
+
+This API requires authentication to happen within the last 5 minutes.
+*/
+func (a *Client) SetWebAuthn(params *SetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetWebAuthnNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetWebAuthnParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setWebAuthn",
+		Method:             "POST",
+		PathPattern:        "/v2/self/set-webauthn",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetWebAuthnReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetWebAuthnNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

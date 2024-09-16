@@ -22,6 +22,9 @@ type RecoveryPayload struct {
 
 	// recovery methods
 	RecoveryMethods []interface{} `json:"recovery_methods" yaml:"recovery_methods"`
+
+	// recovery steps
+	RecoverySteps []interface{} `json:"recovery_steps" yaml:"recovery_steps"`
 }
 
 // Validate validates this recovery payload

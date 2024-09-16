@@ -498,6 +498,7 @@ definitions:
         - server
         - import
         - organization
+        - otp_inspect
         type: string
         x-nullable: false
       event_type:
@@ -527,6 +528,16 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
         x-nullable: false
       authorization_correlation_id:
         description: |-
@@ -3226,6 +3237,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -4671,8 +4685,6 @@ definitions:
         $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
@@ -4692,7 +4704,6 @@ definitions:
         - sms
         - email
         - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -4714,8 +4725,6 @@ definitions:
         $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -4810,7 +4819,7 @@ definitions:
     description: |-
       A Name represents an XML name (Local) annotated
       with a name space identifier (Space).
-      In tokens returned by Decoder.Token, the Space identifier
+      In tokens returned by [Decoder.Token], the Space identifier
       is given as a canonical URL, not the short prefix used
       in the document being parsed.
     properties:
@@ -5081,6 +5090,14 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+    type: object
+  OrganizationMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
         x-nullable: false
     type: object
   OrganizationResponse:
@@ -5642,57 +5659,6 @@ definitions:
     items:
       $ref: '#/definitions/Rfc6902PatchOperation'
     type: array
-  RiskEngineAuth:
-    properties:
-      api_key:
-        description: The Risk Engine API key.
-        type: string
-        x-nullable: false
-    required:
-    - api_key
-    type: object
-  RiskEngineSettings:
-    properties:
-      dbfp_gps_timeout:
-        description: Timeout for the GPS.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_timeout:
-        description: Timeout for the DBFP script.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      tenant_id:
-        description: Risk Engine TenantID
-        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
-        type: string
-        x-nullable: false
-      timeout:
-        description: Risk Engine timeout
-        example: 200ms
-        format: duration
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Risk Engine server
-        example: https://cyber-inference.mm-dev.acceptto.com/
-        type: string
-        x-nullable: false
-    required:
-    - url
-    - timeout
-    - dbfp_url
-    - dbfp_timeout
-    - dbfp_gps_timeout
-    type: object
   RiskID:
     description: Risk engine transaction id
     type: string
@@ -9458,6 +9424,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/OrganizationResponse'
+  OrganizationMetadata:
+    description: Organization metadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationMetadata'
   Orgs:
     description: Orgs
     headers:

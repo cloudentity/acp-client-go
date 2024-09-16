@@ -23,6 +23,9 @@ type Error struct {
 	// error
 	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
+	// error code
+	ErrorCode string `json:"error_code,omitempty" yaml:"error_code,omitempty"`
+
 	// status code
 	StatusCode int64 `json:"status_code,omitempty" yaml:"status_code,omitempty"`
 }

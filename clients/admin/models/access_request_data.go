@@ -23,6 +23,12 @@ type AccessRequestData struct {
 	// Actor claims
 	ActorClaims map[string]interface{} `json:"actor_claims,omitempty" yaml:"actor_claims,omitempty"`
 
+	// ID of the User in Identity Pool that is affected by an action
+	AffectedUserID string `json:"affected_user_id,omitempty" yaml:"affected_user_id,omitempty"`
+
+	// ID of the Identity Pool of the User that is affected by an action
+	AffectedUserPoolID string `json:"affected_user_pool_id,omitempty" yaml:"affected_user_pool_id,omitempty"`
+
 	// OAuth client application identifier.
 	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
@@ -65,6 +71,9 @@ type AccessRequestData struct {
 
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty" yaml:"public,omitempty"`
+
+	// True if user had to do login recovery during authentication
+	Recovery bool `json:"recovery,omitempty" yaml:"recovery,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`

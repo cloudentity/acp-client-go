@@ -61,6 +61,9 @@ type TenantDump struct {
 	// custom apps
 	CustomApps []*CustomApp `json:"custom_apps" yaml:"custom_apps"`
 
+	// feature flags
+	FeatureFlags []*Feature `json:"feature_flags" yaml:"feature_flags"`
+
 	// gateway api groups
 	GatewayAPIGroups []*GatewayAPIGroup `json:"gateway_api_groups" yaml:"gateway_api_groups"`
 
@@ -206,6 +209,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomApps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFeatureFlags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -685,6 +692,32 @@ func (m *TenantDump) validateCustomApps(formats strfmt.Registry) error {
 					return ve.ValidateName("custom_apps" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateFeatureFlags(formats strfmt.Registry) error {
+	if swag.IsZero(m.FeatureFlags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.FeatureFlags); i++ {
+		if swag.IsZero(m.FeatureFlags[i]) { // not required
+			continue
+		}
+
+		if m.FeatureFlags[i] != nil {
+			if err := m.FeatureFlags[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("feature_flags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("feature_flags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1493,6 +1526,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateFeatureFlags(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGatewayAPIGroups(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1955,6 +1992,31 @@ func (m *TenantDump) contextValidateCustomApps(ctx context.Context, formats strf
 					return ve.ValidateName("custom_apps" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateFeatureFlags(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.FeatureFlags); i++ {
+
+		if m.FeatureFlags[i] != nil {
+
+			if swag.IsZero(m.FeatureFlags[i]) { // not required
+				return nil
+			}
+
+			if err := m.FeatureFlags[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("feature_flags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("feature_flags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

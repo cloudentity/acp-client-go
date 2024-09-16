@@ -31,7 +31,7 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty" yaml:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization otp_inspect]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// event type
@@ -190,7 +190,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -301,6 +301,9 @@ const (
 
 	// AuditEventEventSubjectOrganization captures enum value "organization"
 	AuditEventEventSubjectOrganization string = "organization"
+
+	// AuditEventEventSubjectOtpInspect captures enum value "otp_inspect"
+	AuditEventEventSubjectOtpInspect string = "otp_inspect"
 )
 
 // prop value enum

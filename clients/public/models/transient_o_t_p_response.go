@@ -39,7 +39,7 @@ type TransientOTPResponse struct {
 	// mechanism
 	// Example: email
 	// Required: true
-	// Enum: [sms email arculix risk_engine]
+	// Enum: [sms email arculix]
 	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// tenant id
@@ -126,7 +126,7 @@ var transientOTPResponseTypeMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["sms","email","arculix","risk_engine"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["sms","email","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -144,9 +144,6 @@ const (
 
 	// TransientOTPResponseMechanismArculix captures enum value "arculix"
 	TransientOTPResponseMechanismArculix string = "arculix"
-
-	// TransientOTPResponseMechanismRiskEngine captures enum value "risk_engine"
-	TransientOTPResponseMechanismRiskEngine string = "risk_engine"
 )
 
 // prop value enum

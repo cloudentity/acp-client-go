@@ -33,7 +33,7 @@ type MFAMethod struct {
 	// mechanism
 	// Example: email
 	// Required: true
-	// Enum: [sms email arculix risk_engine]
+	// Enum: [sms email arculix]
 	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
@@ -107,7 +107,7 @@ var mFAMethodTypeMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["sms","email","arculix","risk_engine"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["sms","email","arculix"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -125,9 +125,6 @@ const (
 
 	// MFAMethodMechanismArculix captures enum value "arculix"
 	MFAMethodMechanismArculix string = "arculix"
-
-	// MFAMethodMechanismRiskEngine captures enum value "risk_engine"
-	MFAMethodMechanismRiskEngine string = "risk_engine"
 )
 
 // prop value enum
