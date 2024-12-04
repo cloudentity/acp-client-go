@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateSAMLIDPCreated) Code() int {
 }
 
 func (o *CreateSAMLIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated %s", 201, payload)
 }
 
 func (o *CreateSAMLIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated %s", 201, payload)
 }
 
 func (o *CreateSAMLIDPCreated) GetPayload() *models.SAMLIDP {
@@ -183,11 +186,13 @@ func (o *CreateSAMLIDPBadRequest) Code() int {
 }
 
 func (o *CreateSAMLIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateSAMLIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateSAMLIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateSAMLIDPUnauthorized) Code() int {
 }
 
 func (o *CreateSAMLIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateSAMLIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateSAMLIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateSAMLIDPForbidden) Code() int {
 }
 
 func (o *CreateSAMLIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateSAMLIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateSAMLIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateSAMLIDPNotFound) Code() int {
 }
 
 func (o *CreateSAMLIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateSAMLIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateSAMLIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateSAMLIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateSAMLIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateSAMLIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateSAMLIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateSAMLIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateSAMLIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateSAMLIDPTooManyRequests) GetPayload() *models.Error {

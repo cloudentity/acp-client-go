@@ -6,6 +6,7 @@ package international_standing_orders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *GetInternationalStandingOrderConsentsConsentIDReader) ReadResponse(resp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /international-standing-order-consents/{ConsentId}] GetInternationalStandingOrderConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -139,11 +140,13 @@ func (o *GetInternationalStandingOrderConsentsConsentIDOK) Code() int {
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) GetPayload() *models.OBWriteInternationalStandingOrderConsentResponse7 {
@@ -231,11 +234,13 @@ func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -316,11 +321,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) Code() int 
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -390,11 +395,13 @@ func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -475,11 +482,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) Code() int {
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -542,11 +549,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) Code() 
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -609,11 +616,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) Code() int
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -680,11 +687,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) Code() i
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -765,11 +772,13 @@ func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) Code
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

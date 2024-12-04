@@ -115,6 +115,7 @@ func (m *OBWriteDomesticStandingOrder3) contextValidateData(ctx context.Context,
 func (m *OBWriteDomesticStandingOrder3) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")
@@ -606,6 +607,10 @@ func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateCreditorAcc
 
 func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
+
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount")
@@ -619,6 +624,10 @@ func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateDebtorAccou
 }
 
 func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateFinalPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FinalPaymentAmount) { // not required
+		return nil
+	}
 
 	if err := m.FinalPaymentAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -647,6 +656,10 @@ func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateFirstPaymen
 }
 
 func (m *OBWriteDomesticStandingOrder3DataInitiation) contextValidateRecurringPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RecurringPaymentAmount) { // not required
+		return nil
+	}
 
 	if err := m.RecurringPaymentAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -836,6 +849,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) ContextVali
 func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -852,6 +866,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) contextVali
 func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -866,6 +881,10 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) contextVali
 }
 
 func (m *OBWriteDomesticStandingOrder3DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1052,6 +1071,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) ContextValida
 func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1068,6 +1088,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) contextValida
 func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1082,6 +1103,10 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) contextValida
 }
 
 func (m *OBWriteDomesticStandingOrder3DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1214,6 +1239,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationFinalPaymentAmount) ContextV
 func (m *OBWriteDomesticStandingOrder3DataInitiationFinalPaymentAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "FinalPaymentAmount" + "." + "Amount")
@@ -1230,6 +1256,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationFinalPaymentAmount) contextV
 func (m *OBWriteDomesticStandingOrder3DataInitiationFinalPaymentAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "FinalPaymentAmount" + "." + "Currency")
@@ -1362,6 +1389,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationFirstPaymentAmount) ContextV
 func (m *OBWriteDomesticStandingOrder3DataInitiationFirstPaymentAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "FirstPaymentAmount" + "." + "Amount")
@@ -1378,6 +1406,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationFirstPaymentAmount) contextV
 func (m *OBWriteDomesticStandingOrder3DataInitiationFirstPaymentAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "FirstPaymentAmount" + "." + "Currency")
@@ -1510,6 +1539,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationRecurringPaymentAmount) Cont
 func (m *OBWriteDomesticStandingOrder3DataInitiationRecurringPaymentAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "RecurringPaymentAmount" + "." + "Amount")
@@ -1526,6 +1556,7 @@ func (m *OBWriteDomesticStandingOrder3DataInitiationRecurringPaymentAmount) cont
 func (m *OBWriteDomesticStandingOrder3DataInitiationRecurringPaymentAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "RecurringPaymentAmount" + "." + "Currency")

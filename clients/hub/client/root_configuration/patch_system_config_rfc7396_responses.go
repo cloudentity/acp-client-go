@@ -6,6 +6,7 @@ package root_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *PatchSystemConfigRfc7396NoContent) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396NoContent) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NoContent ", 204)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NoContent", 204)
 }
 
 func (o *PatchSystemConfigRfc7396NoContent) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NoContent ", 204)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NoContent", 204)
 }
 
 func (o *PatchSystemConfigRfc7396NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *PatchSystemConfigRfc7396BadRequest) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396BadRequest %s", 400, payload)
 }
 
 func (o *PatchSystemConfigRfc7396BadRequest) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396BadRequest %s", 400, payload)
 }
 
 func (o *PatchSystemConfigRfc7396BadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *PatchSystemConfigRfc7396Unauthorized) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Unauthorized %s", 401, payload)
 }
 
 func (o *PatchSystemConfigRfc7396Unauthorized) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Unauthorized %s", 401, payload)
 }
 
 func (o *PatchSystemConfigRfc7396Unauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *PatchSystemConfigRfc7396Forbidden) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Forbidden %s", 403, payload)
 }
 
 func (o *PatchSystemConfigRfc7396Forbidden) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396Forbidden %s", 403, payload)
 }
 
 func (o *PatchSystemConfigRfc7396Forbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *PatchSystemConfigRfc7396NotFound) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NotFound %s", 404, payload)
 }
 
 func (o *PatchSystemConfigRfc7396NotFound) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396NotFound %s", 404, payload)
 }
 
 func (o *PatchSystemConfigRfc7396NotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *PatchSystemConfigRfc7396UnprocessableEntity) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396UnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchSystemConfigRfc7396UnprocessableEntity) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396UnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchSystemConfigRfc7396UnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *PatchSystemConfigRfc7396TooManyRequests) Code() int {
 }
 
 func (o *PatchSystemConfigRfc7396TooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396TooManyRequests %s", 429, payload)
 }
 
 func (o *PatchSystemConfigRfc7396TooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc7396][%d] patchSystemConfigRfc7396TooManyRequests %s", 429, payload)
 }
 
 func (o *PatchSystemConfigRfc7396TooManyRequests) GetPayload() *models.Error {

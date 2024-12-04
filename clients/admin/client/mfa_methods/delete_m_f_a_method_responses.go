@@ -6,6 +6,7 @@ package mfa_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteMFAMethodNoContent) Code() int {
 }
 
 func (o *DeleteMFAMethodNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNoContent ", 204)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNoContent", 204)
 }
 
 func (o *DeleteMFAMethodNoContent) String() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNoContent ", 204)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNoContent", 204)
 }
 
 func (o *DeleteMFAMethodNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteMFAMethodUnauthorized) Code() int {
 }
 
 func (o *DeleteMFAMethodUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteMFAMethodUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteMFAMethodUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteMFAMethodForbidden) Code() int {
 }
 
 func (o *DeleteMFAMethodForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodForbidden %s", 403, payload)
 }
 
 func (o *DeleteMFAMethodForbidden) String() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodForbidden %s", 403, payload)
 }
 
 func (o *DeleteMFAMethodForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteMFAMethodNotFound) Code() int {
 }
 
 func (o *DeleteMFAMethodNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNotFound %s", 404, payload)
 }
 
 func (o *DeleteMFAMethodNotFound) String() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNotFound %s", 404, payload)
 }
 
 func (o *DeleteMFAMethodNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteMFAMethodTooManyRequests) Code() int {
 }
 
 func (o *DeleteMFAMethodTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteMFAMethodTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteMFAMethodTooManyRequests) GetPayload() *models.Error {

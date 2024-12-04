@@ -2,6 +2,58 @@ basePath: /api/admin/default
 consumes:
 - application/json
 definitions:
+  ACR:
+    description: ACR
+    properties:
+      authorization_server_id:
+        description: An authorization server (workspace) identifier holding the ACR.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      disabled:
+        description: If set to `true`, the ACR is disabled and can't be used
+        type: boolean
+        x-nullable: false
+      id:
+        description: ACR unique identifier
+        format: acrID
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: General purpose metadata
+        type: object
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      value:
+        description: |-
+          ACR value
+          Must be unique within the server and contains only the following characters: `a-zA-Z0-9\/:=._-`
+        example: urn:secureauth:factor:password
+        format: acrValue
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - authorization_server_id
+    - value
+    type: object
+  ACRs:
+    properties:
+      acrs:
+        description: list of ACRs
+        items:
+          $ref: '#/definitions/ACR'
+        type: array
+        x-nullable: false
+    type: object
   API:
     properties:
       api_type:
@@ -118,6 +170,27 @@ definitions:
         description: Actor claims
         type: object
         x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
+      authentication_mechanisms:
+        description: The authentication mechanisms a user used to login.
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       client_id:
         description: OAuth client application identifier.
         format: clientID
@@ -186,6 +259,10 @@ definitions:
         description: Stores information if the client application is a public one.
         type: boolean
         x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
+        type: boolean
+        x-nullable: false
       remote_addr:
         description: Requester IP address obtained from system network socket information.
         type: string
@@ -248,6 +325,7 @@ definitions:
         x-nullable: false
       user_id:
         description: ID of the User in Identity Pool
+        format: userID
         type: string
         x-nullable: false
       user_pool_id:
@@ -277,6 +355,27 @@ definitions:
           type: object
         description: Actor claims
         type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
+      authentication_mechanisms:
+        description: The authentication mechanisms a user used to login.
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
         x-nullable: false
       client_id:
         description: OAuth client application identifier.
@@ -366,6 +465,10 @@ definitions:
         description: Stores information if the client application is a public one.
         type: boolean
         x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
+        type: boolean
+        x-nullable: false
       remote_addr:
         description: Requester IP address obtained from system network socket information.
         type: string
@@ -428,6 +531,7 @@ definitions:
         x-nullable: false
       user_id:
         description: ID of the User in Identity Pool
+        format: userID
         type: string
         x-nullable: false
       user_pool_id:
@@ -467,6 +571,8 @@ definitions:
         description: Block response modes
         type: boolean
         x-nullable: false
+      cookies_configuration:
+        $ref: '#/definitions/CookiesConfiguration'
       disable_dcr_client_certificate_bound_access_tokens:
         description: |-
           Disable certificate-bound access tokens for new DCR clients
@@ -599,34 +705,6 @@ definitions:
     - client_id
     - client_secret
     type: object
-  ArculixSettings:
-    properties:
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      faye_url:
-        description: URL to the Faye server.
-        example: https://faye.acceptto.net
-        type: string
-        x-nullable: false
-      token_endpoint:
-        description: URL to the OIDC server's token endpoint.
-        example: https://oidc.acceptto.net/ce-poc/oauth2/v1/token
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Arculix server.
-        example: https://m2m.acceptto.net
-        type: string
-        x-nullable: false
-    required:
-    - token_endpoint
-    - url
-    - faye_url
-    - dbfp_url
-    type: object
   Attr:
     properties:
       Space:
@@ -638,33 +716,24 @@ definitions:
     title: An Attr represents a key-value attribute within an XML element.
     type: object
   Attribute:
-    description: Authentication context attribute
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1
     properties:
-      description:
-        description: String represented display name of an attribute
+      FriendlyName:
         type: string
         x-nullable: false
-      labels:
-        description: Array of Strings represents attribute labels
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
         items:
-          format: label
-          type: string
+          $ref: '#/definitions/AttributeValue'
         type: array
         x-nullable: false
-      name:
-        description: String represented variable name of an attribute
-        type: string
-        x-nullable: false
-      type:
-        description: |-
-          The data type of an attribute
-
-          It stores information what kind of data is used as the value of the attribute.
-
-          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
-        format: type
-        type: string
-        x-nullable: false
+    title: Attribute represents the SAML element Attribute.
     type: object
   AttributeAuthorityDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -772,7 +841,7 @@ definitions:
     type: object
   Attributes:
     items:
-      $ref: '#/definitions/Attribute'
+      $ref: '#/definitions/AuthenticationContextAttribute'
     type: array
   AuditConsentKind:
     type: string
@@ -804,6 +873,10 @@ definitions:
         - sent
         - not_sent
         - executed
+        - reset_requested
+        - reset_completed
+        - add_requested
+        - add_completed
         example: created
         type: string
         x-nullable: false
@@ -840,7 +913,6 @@ definitions:
         - claims
         - otp
         - user
-        - selfuser
         - schema
         - pool
         - password
@@ -855,6 +927,9 @@ definitions:
         - server
         - import
         - organization
+        - otp_inspect
+        - totp
+        - webauthn
         example: client
         type: string
         x-nullable: false
@@ -888,6 +963,16 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
         x-nullable: false
       authorization_correlation_id:
         description: |-
@@ -952,6 +1037,14 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      request_correlation_id:
+        description: |-
+          Request correlation ID
+
+          Represents the correlation ID passed as X-Correlation-ID header to a HTTP request
+        format: requestCorrelationID
+        type: string
+        x-nullable: false
       risk_id:
         $ref: '#/definitions/RiskID'
       risk_loa:
@@ -991,6 +1084,7 @@ definitions:
         x-nullable: false
       user_id:
         description: ID of the User in Identity Pool
+        format: userID
         type: string
         x-nullable: false
       user_pool_id:
@@ -1010,9 +1104,9 @@ definitions:
       authorization_code_issued:
         $ref: '#/definitions/AccessRequestData'
       bruteforce_deleted:
-        $ref: '#/definitions/BruteForcePayload'
+        $ref: '#/definitions/BruteForceLimit'
       bruteforce_updated:
-        $ref: '#/definitions/BruteForcePayload'
+        $ref: '#/definitions/BruteForceLimit'
       claims_granted:
         $ref: '#/definitions/ClaimsGrantedPayload'
       client_consents_revoked:
@@ -1070,12 +1164,18 @@ definitions:
       login_failed:
         $ref: '#/definitions/LoginFailedPayload'
       organization_created:
-        $ref: '#/definitions/Organization'
+        $ref: '#/definitions/Org'
       organization_deleted:
-        $ref: '#/definitions/Organization'
+        $ref: '#/definitions/Org'
       organization_updated:
-        $ref: '#/definitions/Organization'
+        $ref: '#/definitions/Org'
       otp_accepted:
+        $ref: '#/definitions/OTPPayload'
+      otp_generated:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_failed:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_succeeded:
         $ref: '#/definitions/OTPPayload'
       otp_not_sent:
         $ref: '#/definitions/OTPPayload'
@@ -1086,15 +1186,15 @@ definitions:
       otp_sent:
         $ref: '#/definitions/OTPPayload'
       password_accepted:
-        $ref: '#/definitions/PasswordPayload'
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       password_confirmed:
-        $ref: '#/definitions/PasswordPayload'
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       password_rejected:
-        $ref: '#/definitions/PasswordPayload'
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       password_requested:
-        $ref: '#/definitions/PasswordPayload'
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       password_updated:
-        $ref: '#/definitions/PasswordPayload'
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       policy_authorized:
         $ref: '#/definitions/PolicyEvaluatedPayload'
       policy_unauthorized:
@@ -1143,6 +1243,10 @@ definitions:
         $ref: '#/definitions/TaskAuditPayload'
       tokens_revoked:
         $ref: '#/definitions/TokensRevokedPayload'
+      totp_reset_completed:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      totp_reset_requested:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
       user_authenticated:
         $ref: '#/definitions/UserAuthenticatedPayload'
       user_challenged:
@@ -1153,6 +1257,10 @@ definitions:
         $ref: '#/definitions/UserPayload'
       user_updated:
         $ref: '#/definitions/UserPayload'
+      webauthn_add_completed:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      webauthn_add_requested:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
     type: object
   AuditEvents:
     properties:
@@ -1335,11 +1443,40 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthenticationContextAttribute:
+    description: Authentication context attribute
+    properties:
+      description:
+        description: String represented display name of an attribute
+        type: string
+        x-nullable: false
+      labels:
+        description: Array of Strings represents attribute labels
+        items:
+          format: label
+          type: string
+        type: array
+        x-nullable: false
+      name:
+        description: String represented variable name of an attribute
+        type: string
+        x-nullable: false
+      type:
+        description: |-
+          The data type of an attribute
+
+          It stores information what kind of data is used as the value of the attribute.
+
+          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
+        format: type
+        type: string
+        x-nullable: false
+    type: object
   AuthenticationContextSettings:
     properties:
       attributes:
         items:
-          $ref: '#/definitions/Attribute'
+          $ref: '#/definitions/AuthenticationContextAttribute'
         type: array
         x-nullable: false
     type: object
@@ -2120,34 +2257,6 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  BruteForcePayload:
-    description: BruteForcePayload brute force payload
-    properties:
-      block_duration:
-        description: block duration
-        example: 1m0s
-        format: duration
-        type: string
-        x-nullable: false
-      max_attempts:
-        description: Max number of attempts
-        example: 5
-        format: int64
-        type: integer
-        x-nullable: false
-      protected_type:
-        $ref: '#/definitions/ProtectedType'
-      tenant_id:
-        description: tenant ID
-        example: default
-        type: string
-        x-nullable: false
-    required:
-    - block_duration
-    - max_attempts
-    - tenant_id
-    - protected_type
-    type: object
   CDRArrangement:
     properties:
       account_ids:
@@ -2728,6 +2837,15 @@ definitions:
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
         x-nullable: false
       description:
         description: Description of the client application.
@@ -3411,6 +3529,15 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
+        x-nullable: false
       description:
         description: Description of the client application.
         type: string
@@ -4081,6 +4208,15 @@ definitions:
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
         x-nullable: false
       description:
         description: Description of the client application.
@@ -5327,6 +5463,11 @@ definitions:
         x-nullable: false
     title: ContactPerson represents the SAML element ContactPerson.
     type: object
+  CookiesConfiguration:
+    properties:
+      same_site:
+        $ref: '#/definitions/SameSite'
+    type: object
   CreateClientAdminRequest:
     properties:
       app_url:
@@ -5545,6 +5686,15 @@ definitions:
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
         x-nullable: false
       description:
         description: Description of the client application.
@@ -6013,6 +6163,17 @@ definitions:
     type: object
   CreateOrganizationRequest:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -6065,11 +6226,26 @@ definitions:
         x-nullable: false
     type: object
   CredentialPayload:
+    description: CredentialPayload credential payload
     properties:
       credential_id:
+        description: credential id
+        type: string
+        x-nullable: false
+      credential_type:
+        description: credential type
+        enum:
+        - password
+        - webauthn
+        - totp
+        type: string
+        x-nullable: false
+      operation_type:
+        description: operation type
         type: string
         x-nullable: false
       user_id:
+        description: user id
         type: string
         x-nullable: false
     type: object
@@ -6872,6 +7048,10 @@ definitions:
     type: object
   Environment:
     properties:
+      acr:
+        description: ACR support
+        type: boolean
+        x-nullable: false
       add_fake_tenant_url_to_login_request_for_non_default_routing:
         description: add fake tenantUrl to query params for routing other than default
           (needed for backward compatibility with CIP for vanity domains)
@@ -6880,24 +7060,17 @@ definitions:
       admin_issuer_url:
         type: string
         x-nullable: false
-      admin_portal_face_lifting:
-        description: |-
-          Admin portal face lifting
-
-          Improve user experience by facelifting the basic components of Cloudentity.
-        type: boolean
-        x-nullable: false
       admin_workspace_access:
         description: admin workspace access
+        type: boolean
+        x-nullable: false
+      allow_identity_pool_otp_challenge_confirmation_via_web_page:
+        description: allow Identity Pool OTP Challenge confirmation via web page
         type: boolean
         x-nullable: false
       analytics_duration:
         format: duration
         type: string
-        x-nullable: false
-      arculix:
-        description: Arculix 2FA and MFA
-        type: boolean
         x-nullable: false
       audit_events_duration:
         format: duration
@@ -6976,8 +7149,8 @@ definitions:
         description: drop tokens on password reset
         type: boolean
         x-nullable: false
-      gateway_default_policy:
-        description: Gateway default policy
+      fake_data:
+        description: use fake data (such as ips) - needed for qa testing
         type: boolean
         x-nullable: false
       grpc_url:
@@ -6990,29 +7163,8 @@ definitions:
       has_google_image_search:
         type: boolean
         x-nullable: false
-      identifier_based_discovery:
-        description: |-
-          Identifier-based discovery
-
-          Enable users to provide their identifier first during user authentication and discover their preffered authentication provider.
-        type: boolean
-        x-nullable: false
       identity_assurance:
         description: identity assurance
-        type: boolean
-        x-nullable: false
-      identity_pool_mfa:
-        description: |-
-          Identity Pool MFA
-
-          Enable MFA for Identity Pool
-        type: boolean
-        x-nullable: false
-      identity_pool_totp:
-        description: |-
-          Identity Pool TOTP
-
-          Enable TOTP for Identity Pool
         type: boolean
         x-nullable: false
       image_proxy_url:
@@ -7036,6 +7188,10 @@ definitions:
         description: mark address as verified on any proof of possession of the address
         type: boolean
         x-nullable: false
+      new_onboarding:
+        description: new onboarding flow
+        type: boolean
+        x-nullable: false
       obbr:
         description: openbanking brasil
         type: boolean
@@ -7051,33 +7207,12 @@ definitions:
           Delineate a structured and hierarchical separation among your business customers' companies or partners. Enable Delegated Admin Portal.
         type: boolean
         x-nullable: false
-      permissions:
-        description: |-
-          Permissions
-
-          Control access to resources based on user permissions. Create permission systems.
-        type: boolean
-        x-nullable: false
       rar:
         description: rich authorization requests
         type: boolean
         x-nullable: false
       risk_engine:
         description: Risk engine
-        type: boolean
-        x-nullable: false
-      roles:
-        description: |-
-          Roles
-
-          Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
-        type: boolean
-        x-nullable: false
-      saml_v2:
-        description: |-
-          SAML Identity Provider V2
-
-          Enable SAML Identity Provider V2
         type: boolean
         x-nullable: false
       scope_transient_otp:
@@ -7094,10 +7229,6 @@ definitions:
           Self-service
 
           Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
-        type: boolean
-        x-nullable: false
-      simple_api_integration:
-        description: simple api integration
         type: boolean
         x-nullable: false
       swagger_ui:
@@ -7146,6 +7277,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -7164,7 +7298,7 @@ definitions:
     description: EventAddress event address
     properties:
       value:
-        description: address value
+        description: value
         type: string
         x-nullable: false
     type: object
@@ -7172,7 +7306,7 @@ definitions:
     description: EventIdentifier event identifier
     properties:
       value:
-        description: identifier value
+        description: value
         type: string
         x-nullable: false
     type: object
@@ -7187,6 +7321,38 @@ definitions:
         type: array
         x-nullable: false
       name:
+        type: string
+        x-nullable: false
+    type: object
+  ExtendedRoleResource:
+    properties:
+      identity_pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+      role:
+        enum:
+        - admin
+        - business_admin
+        - auditor
+        - manager
+        - user_manager
+        - member
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - tenant
+        - workspace
+        - identity_pool
+        type: string
+        x-nullable: false
+      workspace_id:
+        format: serverID
         type: string
         x-nullable: false
     type: object
@@ -8484,6 +8650,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -8522,6 +8689,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -8563,6 +8731,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -9198,6 +9367,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -9610,6 +9780,7 @@ definitions:
         type: string
         x-nullable: false
       user_id:
+        format: userID
         type: string
         x-nullable: false
     type: object
@@ -9680,6 +9851,7 @@ definitions:
         type: string
         x-nullable: false
       user_id:
+        format: userID
         type: string
         x-nullable: false
     type: object
@@ -9783,21 +9955,17 @@ definitions:
     type: object
   License:
     properties:
-      expiration_date:
-        description: License expiration date
+      end_date:
+        description: License end date
         example: "2023-03-01T09:02:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
-      license_type:
-        description: Type of license
-        enum:
-        - trial
-        - enterprise
-        example: trial
-        type: string
+      has_enterprise_idps_capability:
+        description: Is enterprise IDPs capability enabled
+        type: boolean
         x-nullable: false
-      start_time:
+      start_date:
         description: License start date
         example: "2023-03-01T09:02:27.127932Z"
         format: date-time
@@ -9863,8 +10031,6 @@ definitions:
         $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
@@ -9883,8 +10049,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9919,8 +10083,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -9946,12 +10108,8 @@ definitions:
     type: object
   MFASettings:
     properties:
-      arculix:
-        $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -10046,7 +10204,7 @@ definitions:
     description: |-
       A Name represents an XML name (Local) annotated
       with a name space identifier (Space).
-      In tokens returned by Decoder.Token, the Space identifier
+      In tokens returned by [Decoder.Token], the Space identifier
       is given as a canonical URL, not the short prefix used
       in the document being parsed.
     properties:
@@ -10301,6 +10459,12 @@ definitions:
       address:
         type: string
         x-nullable: false
+      failure_reason:
+        type: string
+        x-nullable: false
+      otp_id:
+        type: string
+        x-nullable: false
       purpose:
         type: string
         x-nullable: false
@@ -10308,8 +10472,10 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
         type: string
         x-nullable: false
     type: object
@@ -10509,6 +10675,17 @@ definitions:
     type: object
   Org:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -10708,8 +10885,27 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  OrganizationMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
   OrganizationResponse:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -10838,22 +11034,6 @@ definitions:
       name:
         description: name
         example: HIPAA
-        type: string
-        x-nullable: false
-    type: object
-  PasswordPayload:
-    description: PasswordPayload password payload
-    properties:
-      identifier:
-        description: identifier
-        type: string
-        x-nullable: false
-      operation_type:
-        description: operation type
-        type: string
-        x-nullable: false
-      user_id:
-        description: user ID
         type: string
         x-nullable: false
     type: object
@@ -11277,6 +11457,10 @@ definitions:
         items: {}
         type: array
         x-nullable: false
+      recovery_steps:
+        items: {}
+        type: array
+        x-nullable: false
     type: object
   RedirectURIs:
     description: |-
@@ -11339,14 +11523,8 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  RequestValidatedPayload:
+  RequestValidatedData:
     properties:
-      actor_claims:
-        additionalProperties:
-          type: object
-        description: Actor claims
-        type: object
-        x-nullable: false
       anonymous:
         type: boolean
         x-nullable: false
@@ -11354,175 +11532,31 @@ definitions:
         $ref: '#/definitions/API'
       claims:
         $ref: '#/definitions/JwtClaims'
-      client_id:
-        description: OAuth client application identifier.
-        format: clientID
-        type: string
-        x-nullable: false
-      client_name:
-        description: Human readable name of a client application
-        type: string
-        x-nullable: false
-      created_by_developer:
-        description: Stores information if the owner of the client application is
-          a developer.
-        type: boolean
-        x-nullable: false
-      dbfp:
-        description: Arculix DBFP `jwt` cookie.
-        type: string
-        x-nullable: false
       duration_ms:
         format: int64
         type: integer
         x-nullable: false
       gateway:
         $ref: '#/definitions/Gateway'
-      grant_type:
-        description: |-
-          Stores the information which grant type was selected to perfom a given action.
-          Matches one of allowed OAuth client grant types for a given client.
-        type: string
-        x-nullable: false
-      identity_pool_id:
-        description: ID of the Identity Pool
-        format: poolID
-        type: string
-        x-nullable: false
-      idp_id:
-        description: IDP identifier
-        format: idpID
-        type: string
-        x-nullable: false
-      idp_method:
-        description: IDP method
-        type: string
-        x-nullable: false
-      idp_subject:
-        description: Subject within the Identity Provider
-        format: subject
-        type: string
-        x-nullable: false
       invalid_token:
         type: boolean
-        x-nullable: false
-      latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
-        type: string
-        x-nullable: false
-      longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
-        type: string
-        x-nullable: false
-      may_act_claims:
-        additionalProperties:
-          type: object
-        description: May act claims
-        type: object
-        x-nullable: false
-      organization_id:
-        description: ID of the Organization
-        format: serverID
-        type: string
         x-nullable: false
       output:
         additionalProperties:
           type: string
         type: object
         x-nullable: false
-      public:
-        description: Stores information if the client application is a public one.
-        type: boolean
-        x-nullable: false
-      remote_addr:
-        description: Requester IP address obtained from system network socket information.
-        type: string
-        x-nullable: false
       result:
         $ref: '#/definitions/PolicyValidationResult'
-      risk_engine_context:
-        $ref: '#/definitions/RiskContext'
-      server_id:
-        description: ID of the authorization server (workspace) to which an access
-          request is tied.
-        format: serverID
-        type: string
-        x-nullable: false
       service:
         $ref: '#/definitions/Service'
-      session_id:
-        description: |-
-          Session id of a given subject. It's uniform across the authentication processes.
-          It can be used as a correlation ID between a different audit events.
-        format: loginID
-        type: string
-        x-nullable: false
-      subject:
-        description: |-
-          Identification of the principal that is the subject of authorization.
-          For the authorization grant, the subject typically identifies an authorized accessor for which the access token is being requested.
-          For client authentication, the subject is the client_id of the OAuth client.
-        format: subject
-        type: string
-        x-nullable: false
-      system:
-        description: Stores information if the client application is a system tenant's
-          application.
-        type: boolean
-        x-nullable: false
-      token_endpoint_authn_method:
-        description: Token endpoint authentication method configured for a client
-          application.
-        enum:
-        - client_secret_basic
-        - client_secret_post
-        - client_secret_jwt
-        - private_key_jwt
-        - self_signed_tls_client_auth
-        - tls_client_auth
-        - none
-        - unspecified
-        type: string
-        x-nullable: false
-      token_signature:
-        description: Token signature
-        type: string
-        x-nullable: false
-      true_client_ip:
-        description: Requester IP address obtained from True-Client-IP header.
-        type: string
-        x-nullable: false
-      user_agent:
-        description: A characteristic string that lets servers and network peers identify
-          the application, operating system, vendor, and/or version of the requesting
-          user agent.
-        type: string
-        x-nullable: false
-      user_id:
-        description: ID of the User in Identity Pool
-        type: string
-        x-nullable: false
-      user_pool_id:
-        description: ID of the Identity Pool
-        format: poolID
-        type: string
-        x-nullable: false
-      workspace_id:
-        description: ID of the authorization server (workspace) to which a resource
-          is tied.
-        format: serverID
-        type: string
-        x-nullable: false
-      x_forwarded_for:
-        description: Requester IP address obtained from X-Forwarded-For header.
-        type: string
-        x-nullable: false
-      x_real_ip:
-        description: Requester IP address obtained from X-Real-IP header.
-        type: string
-        x-nullable: false
+    type: object
+  RequestValidatedPayload:
+    properties:
+      access_request_data:
+        $ref: '#/definitions/AccessRequestData'
+      request_validated_data:
+        $ref: '#/definitions/RequestValidatedData'
     type: object
   RequestedAttribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -11609,6 +11643,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -11647,6 +11682,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -11695,6 +11731,16 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  RevokeTokensByPoolRequest:
+    properties:
+      users:
+        description: list of userIds (min 1, max 100)
+        items:
+          format: userID
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   RevokeWorkspaceRoleRequest:
     properties:
       identity_pool_id:
@@ -11704,6 +11750,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -11773,6 +11820,12 @@ definitions:
     type: array
   RiskContext:
     properties:
+      analyzers:
+        additionalProperties:
+          format: double
+          type: number
+        type: object
+        x-nullable: false
       dbfp_fingerprint:
         type: string
         x-nullable: false
@@ -11780,57 +11833,6 @@ definitions:
         $ref: '#/definitions/RiskID'
       loa:
         $ref: '#/definitions/RiskLOA'
-    type: object
-  RiskEngineAuth:
-    properties:
-      api_key:
-        description: The Risk Engine API key.
-        type: string
-        x-nullable: false
-    required:
-    - api_key
-    type: object
-  RiskEngineSettings:
-    properties:
-      dbfp_gps_timeout:
-        description: Timeout for the GPS.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_timeout:
-        description: Timeout for the DBFP script.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      tenant_id:
-        description: Risk Engine TenantID
-        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
-        type: string
-        x-nullable: false
-      timeout:
-        description: Risk Engine timeout
-        example: 200ms
-        format: duration
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Risk Engine server
-        example: https://cyber-inference.mm-dev.acceptto.com/
-        type: string
-        x-nullable: false
-    required:
-    - url
-    - timeout
-    - dbfp_url
-    - dbfp_timeout
-    - dbfp_gps_timeout
     type: object
   RiskID:
     description: Risk engine transaction id
@@ -11897,16 +11899,6 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
-      role:
-        enum:
-        - admin
-        - business_admin
-        - auditor
-        - manager
-        - user_manager
-        - member
-        type: string
-        x-nullable: false
       tenant_id:
         format: tenantID
         type: string
@@ -11927,7 +11919,7 @@ definitions:
     properties:
       resources:
         items:
-          $ref: '#/definitions/RoleResource'
+          $ref: '#/definitions/ExtendedRoleResource'
         type: array
         x-nullable: false
     type: object
@@ -11940,6 +11932,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -12534,6 +12527,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  SameSite:
+    type: string
   SchemaAuditPayload:
     properties:
       created_at:
@@ -13301,6 +13296,22 @@ definitions:
         $ref: '#/definitions/AdvancedConfiguration'
       authentication_context_settings:
         $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -13838,6 +13849,22 @@ definitions:
         $ref: '#/definitions/AdvancedConfiguration'
       authentication_context_settings:
         $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -14735,6 +14762,22 @@ definitions:
         $ref: '#/definitions/AdvancedConfiguration'
       authentication_context_settings:
         $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -16134,8 +16177,6 @@ definitions:
         x-nullable: false
       jwks:
         $ref: '#/definitions/ServerJWKs'
-      license:
-        $ref: '#/definitions/License'
       metadata:
         $ref: '#/definitions/TenantMetadata'
       name:
@@ -16298,6 +16339,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -16950,6 +16992,15 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
+        x-nullable: false
       description:
         description: Description of the client application.
         type: string
@@ -17484,13 +17535,16 @@ definitions:
     description: UserAuthenticatedPayload user authenticated payload
     properties:
       authn_method:
-        description: first factor method
+        description: authn method
         enum:
         - totp
         - password
         - otp
         - webauthn
-        - arculix
+        type: string
+        x-nullable: false
+      failure_reason:
+        description: failure reason
         type: string
         x-nullable: false
       identifier:
@@ -17498,17 +17552,16 @@ definitions:
         type: string
         x-nullable: false
       mfa:
-        description: second factor method
+        description: mfa
         enum:
         - totp
         - password
         - otp
         - webauthn
-        - arculix
         type: string
         x-nullable: false
       mfa_skipped:
-        description: m f a skipped
+        description: mfa skipped
         type: boolean
         x-nullable: false
       password_mode:
@@ -17524,6 +17577,30 @@ definitions:
     type: object
   UserCodeCharacterSet:
     type: string
+  UserIDAndIdentifierPayload:
+    description: UserIDAndIdentifierPayload user ID and identifier payload
+    properties:
+      code_id:
+        description: code id
+        type: string
+        x-nullable: false
+      failure_reason:
+        description: failure reason
+        type: string
+        x-nullable: false
+      identifier:
+        description: identifier
+        type: string
+        x-nullable: false
+      operation_type:
+        description: operation type
+        type: string
+        x-nullable: false
+      user_id:
+        description: user id
+        type: string
+        x-nullable: false
+    type: object
   UserOrganizationsResponse:
     properties:
       cursor:
@@ -17567,7 +17644,7 @@ definitions:
         type: string
         x-nullable: false
       update_details:
-        description: user update details
+        description: update details
         type: string
         x-nullable: false
       user_addresses:
@@ -17577,7 +17654,7 @@ definitions:
         type: array
         x-nullable: false
       user_id:
-        description: user ID
+        description: user id
         type: string
         x-nullable: false
       user_identifiers:
@@ -17960,6 +18037,9 @@ definitions:
       list_identity_pools:
         type: boolean
         x-nullable: false
+      manage_acrs:
+        type: boolean
+        x-nullable: false
       manage_admin_role:
         type: boolean
         x-nullable: false
@@ -18014,6 +18094,9 @@ definitions:
       manage_webhooks:
         type: boolean
         x-nullable: false
+      read_acrs:
+        type: boolean
+        x-nullable: false
       read_analytics:
         type: boolean
         x-nullable: false
@@ -18060,6 +18143,9 @@ definitions:
         type: boolean
         x-nullable: false
       update_organization:
+        type: boolean
+        x-nullable: false
+      update_organization_metadata:
         type: boolean
         x-nullable: false
       update_workspace:
@@ -18186,6 +18272,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -18267,7 +18354,18 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Admin API
+  description: |-
+    Cloudentity Admin API
+
+    The POST APIs support idempotency for safely retrying requests without accidentally performing the same operation twice.
+
+    To use idempotent requests:
+
+    1. Generate a unique idempotency key (32-255 characters long).
+    2. Include the key in the X-Idempotency-Key header of your POST request.
+    3. Retry failed requests with the same key within 1 minute.
+
+    Responses for replayed requests will include the X-Idempotent-Replayed: true header.
   title: Cloudentity API
   version: latest
 paths:
@@ -20011,6 +20109,26 @@ paths:
       summary: Search images
       tags:
       - images
+  /license:
+    get:
+      description: Get license.
+      operationId: getAdminLicense
+      responses:
+        "200":
+          $ref: '#/responses/LicenseResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get license
+      tags:
+      - license
   /mfa-methods:
     get:
       description: List MFA methods.
@@ -20470,6 +20588,43 @@ paths:
       summary: Update organization
       tags:
       - organizations
+  /organizations/{wid}/metadata:
+    put:
+      description: Update organization metadata.
+      operationId: updateOrganizationMetadata
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Organization id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: OrganizationMetadata
+        schema:
+          $ref: '#/definitions/OrganizationMetadata'
+      responses:
+        "200":
+          $ref: '#/responses/OrganizationMetadata'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Update organization metadata
+      tags:
+      - organizations
   /policies:
     post:
       description: |-
@@ -20805,6 +20960,47 @@ paths:
       summary: Revoke identityPool role
       tags:
       - roles
+  /pools/{ipID}/tokens:
+    delete:
+      description: |-
+        Revoke tokens for given set of userIds (min 1, max 100 userIds can be specified).
+
+        Tokens includes access and refresh tokens but also authorization codes, authorization requests,
+        sso sessions and scopes grants.
+      operationId: revokeTokensByPool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Identity pool id
+        in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/RevokeTokensByPoolRequest'
+      responses:
+        "204":
+          description: ' tokens revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - admin: []
+      summary: Revoke tokens for users in pool
+      tags:
+      - tokens
   /pools/{ipID}/users/{userID}/roles:
     get:
       description: List user roles.
@@ -20824,6 +21020,7 @@ paths:
         type: string
       - default: default
         description: User id
+        format: userID
         in: path
         name: userID
         required: true
@@ -21249,6 +21446,203 @@ paths:
       summary: Update authorization server
       tags:
       - servers
+  /servers/{wid}/acrs:
+    get:
+      description: List ACRs.
+      operationId: listACRs
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ACRs
+          schema:
+            $ref: '#/definitions/ACRs'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List ACRs
+      tags:
+      - ACRs
+    post:
+      description: 'Creates a new ACR.'
+      operationId: createACR
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: ACR
+        schema:
+          $ref: '#/definitions/ACR'
+      responses:
+        "201":
+          $ref: '#/responses/ACR'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Create ACR
+      tags:
+      - ACRs
+  /servers/{wid}/acrs/{acrID}:
+    delete:
+      description: Deletes the ACR.
+      operationId: deleteACR
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: ACR ID
+        in: path
+        name: acrID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' ACR has been deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Delete ACR
+      tags:
+      - ACRs
+    get:
+      description: Returns an ACR.
+      operationId: getACR
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: ACR ID
+        in: path
+        name: acrID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/ACR'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get ACR
+      tags:
+      - ACRs
+    put:
+      description: 'Updates the ACR.'
+      operationId: updateACR
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: ACR ID
+        in: path
+        name: acrID
+        required: true
+        type: string
+      - in: body
+        name: ACR
+        schema:
+          $ref: '#/definitions/ACR'
+      responses:
+        "200":
+          $ref: '#/responses/ACR'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Update ACR
+      tags:
+      - ACRs
   /servers/{wid}/apis:
     get:
       description: List APIs.
@@ -21292,7 +21686,7 @@ paths:
       - apis
   /servers/{wid}/audit-events:
     get:
-      description: Returns list of autit events.
+      description: Returns list of audit events.
       operationId: listAuditEvents
       parameters:
       - description: A server will only return requested resources if the resource
@@ -21373,6 +21767,18 @@ paths:
         name: organization_id
         type: string
       - description: |-
+          optional list audit events with a given affected user identity pool id
+          AffectedUserPoolID
+        in: query
+        name: affected_user_pool_id
+        type: string
+      - description: |-
+          optional list audit events with a given affected user id
+          AffectedUserID
+        in: query
+        name: affected_user_id
+        type: string
+      - description: |-
           Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
           EventSubject
         in: query
@@ -21381,7 +21787,7 @@ paths:
         name: event_subject
         type: array
       - description: |-
-          Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
+          Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked generated reset_requested reset_completed add_requested add_completed
           EventType
         in: query
         items:
@@ -28605,6 +29011,18 @@ paths:
 produces:
 - application/json
 responses:
+  ACR:
+    description: ACR
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/ACR'
   APIResponse:
     description: API
     headers:
@@ -29045,6 +29463,10 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/KeysResponse'
+  LicenseResponse:
+    description: License
+    schema:
+      $ref: '#/definitions/License'
   MFAMethodResponse:
     description: MFA method
     headers:
@@ -29081,6 +29503,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/OrganizationResponse'
+  OrganizationMetadata:
+    description: Organization metadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationMetadata'
   Orgs:
     description: Orgs
     headers:
@@ -29795,6 +30229,18 @@ responses:
     description: Internal server error
     schema:
       $ref: '#/definitions/Error'
+  listACRs:
+    description: ACRs
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/ACRs'
   listAuthorizationDetails:
     description: AuthorizationDetails
     headers:

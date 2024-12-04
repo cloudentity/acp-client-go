@@ -6,6 +6,7 @@ package themes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetThemeOK) Code() int {
 }
 
 func (o *GetThemeOK) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeOK %s", 200, payload)
 }
 
 func (o *GetThemeOK) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeOK %s", 200, payload)
 }
 
 func (o *GetThemeOK) GetPayload() *models.Theme {
@@ -187,11 +190,13 @@ func (o *GetThemeUnauthorized) Code() int {
 }
 
 func (o *GetThemeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeUnauthorized %s", 401, payload)
 }
 
 func (o *GetThemeUnauthorized) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeUnauthorized %s", 401, payload)
 }
 
 func (o *GetThemeUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetThemeForbidden) Code() int {
 }
 
 func (o *GetThemeForbidden) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeForbidden %s", 403, payload)
 }
 
 func (o *GetThemeForbidden) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeForbidden %s", 403, payload)
 }
 
 func (o *GetThemeForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetThemeNotFound) Code() int {
 }
 
 func (o *GetThemeNotFound) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeNotFound %s", 404, payload)
 }
 
 func (o *GetThemeNotFound) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeNotFound %s", 404, payload)
 }
 
 func (o *GetThemeNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetThemeTooManyRequests) Code() int {
 }
 
 func (o *GetThemeTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeTooManyRequests %s", 429, payload)
 }
 
 func (o *GetThemeTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}][%d] getThemeTooManyRequests %s", 429, payload)
 }
 
 func (o *GetThemeTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package account_access
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -74,7 +75,7 @@ func (o *DeleteAccountAccessConsentsConsentIDReader) ReadResponse(response runti
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /account-access-consents/{ConsentId}] DeleteAccountAccessConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -126,11 +127,11 @@ func (o *DeleteAccountAccessConsentsConsentIDNoContent) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent ", 204)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent", 204)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNoContent) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent ", 204)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent", 204)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -195,11 +196,13 @@ func (o *DeleteAccountAccessConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -273,11 +276,11 @@ func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -342,11 +345,13 @@ func (o *DeleteAccountAccessConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -420,11 +425,11 @@ func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -487,11 +492,11 @@ func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -558,11 +563,11 @@ func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -638,11 +643,13 @@ func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) Code() int {
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

@@ -22,7 +22,7 @@ type OBWriteFileConsentResponse4DataAuthorisation struct {
 
 	// Type of authorisation flow requested.
 	// Required: true
-	// Enum: [Any Single]
+	// Enum: ["Any","Single"]
 	AuthorisationType string `json:"AuthorisationType" yaml:"AuthorisationType"`
 
 	// Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format.

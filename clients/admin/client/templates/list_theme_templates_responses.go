@@ -6,6 +6,7 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListThemeTemplatesOK) Code() int {
 }
 
 func (o *ListThemeTemplatesOK) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesOK %s", 200, payload)
 }
 
 func (o *ListThemeTemplatesOK) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesOK %s", 200, payload)
 }
 
 func (o *ListThemeTemplatesOK) GetPayload() *models.TemplatePaths {
@@ -181,11 +184,13 @@ func (o *ListThemeTemplatesUnauthorized) Code() int {
 }
 
 func (o *ListThemeTemplatesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesUnauthorized %s", 401, payload)
 }
 
 func (o *ListThemeTemplatesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesUnauthorized %s", 401, payload)
 }
 
 func (o *ListThemeTemplatesUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListThemeTemplatesForbidden) Code() int {
 }
 
 func (o *ListThemeTemplatesForbidden) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesForbidden %s", 403, payload)
 }
 
 func (o *ListThemeTemplatesForbidden) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesForbidden %s", 403, payload)
 }
 
 func (o *ListThemeTemplatesForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListThemeTemplatesTooManyRequests) Code() int {
 }
 
 func (o *ListThemeTemplatesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListThemeTemplatesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates][%d] listThemeTemplatesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListThemeTemplatesTooManyRequests) GetPayload() *models.Error {

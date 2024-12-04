@@ -38,6 +38,9 @@ type WorkspacePermissionsResponse struct {
 	// list identity pools
 	ListIdentityPools bool `json:"list_identity_pools,omitempty" yaml:"list_identity_pools,omitempty"`
 
+	// manage acrs
+	ManageAcrs bool `json:"manage_acrs,omitempty" yaml:"manage_acrs,omitempty"`
+
 	// manage admin role
 	ManageAdminRole bool `json:"manage_admin_role,omitempty" yaml:"manage_admin_role,omitempty"`
 
@@ -92,6 +95,9 @@ type WorkspacePermissionsResponse struct {
 	// manage webhooks
 	ManageWebhooks bool `json:"manage_webhooks,omitempty" yaml:"manage_webhooks,omitempty"`
 
+	// read acrs
+	ReadAcrs bool `json:"read_acrs,omitempty" yaml:"read_acrs,omitempty"`
+
 	// read analytics
 	ReadAnalytics bool `json:"read_analytics,omitempty" yaml:"read_analytics,omitempty"`
 
@@ -139,6 +145,9 @@ type WorkspacePermissionsResponse struct {
 
 	// update organization
 	UpdateOrganization bool `json:"update_organization,omitempty" yaml:"update_organization,omitempty"`
+
+	// update organization metadata
+	UpdateOrganizationMetadata bool `json:"update_organization_metadata,omitempty" yaml:"update_organization_metadata,omitempty"`
 
 	// update workspace
 	UpdateWorkspace bool `json:"update_workspace,omitempty" yaml:"update_workspace,omitempty"`

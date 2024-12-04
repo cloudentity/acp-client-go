@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *FDXDynamicClientRegistrationGetOK) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationGetOK) Error() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetOK %s", 200, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetOK) String() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetOK %s", 200, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetOK) GetPayload() *models.FDXDynamicClientRegistrationResponse {
@@ -171,11 +174,13 @@ func (o *FDXDynamicClientRegistrationGetBadRequest) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationGetBadRequest) Error() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetBadRequest) String() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetBadRequest) GetPayload() *models.RFC6749Error {
@@ -239,11 +244,13 @@ func (o *FDXDynamicClientRegistrationGetUnauthorized) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationGetUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetUnauthorized) String() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetUnauthorized) GetPayload() *models.RFC6749Error {
@@ -307,11 +314,13 @@ func (o *FDXDynamicClientRegistrationGetForbidden) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationGetForbidden) Error() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetForbidden) String() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetForbidden) GetPayload() *models.RFC6749Error {
@@ -375,11 +384,13 @@ func (o *FDXDynamicClientRegistrationGetNotFound) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationGetNotFound) Error() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetNotFound) String() string {
-	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationGetNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationGetNotFound) GetPayload() *models.GenericError {

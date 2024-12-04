@@ -6,6 +6,7 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -163,11 +164,13 @@ func (o *ConsentsPostConsentsCreated) Code() int {
 }
 
 func (o *ConsentsPostConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsCreated %s", 201, payload)
 }
 
 func (o *ConsentsPostConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsCreated %s", 201, payload)
 }
 
 func (o *ConsentsPostConsentsCreated) GetPayload() *models.ResponseConsent {
@@ -238,11 +241,13 @@ func (o *ConsentsPostConsentsBadRequest) Code() int {
 }
 
 func (o *ConsentsPostConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsBadRequest %s", 400, payload)
 }
 
 func (o *ConsentsPostConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsBadRequest %s", 400, payload)
 }
 
 func (o *ConsentsPostConsentsBadRequest) GetPayload() *models.ResponseError {
@@ -306,11 +311,13 @@ func (o *ConsentsPostConsentsUnauthorized) Code() int {
 }
 
 func (o *ConsentsPostConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *ConsentsPostConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *ConsentsPostConsentsUnauthorized) GetPayload() *models.ResponseError {
@@ -374,11 +381,13 @@ func (o *ConsentsPostConsentsForbidden) Code() int {
 }
 
 func (o *ConsentsPostConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsForbidden %s", 403, payload)
 }
 
 func (o *ConsentsPostConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsForbidden %s", 403, payload)
 }
 
 func (o *ConsentsPostConsentsForbidden) GetPayload() *models.ResponseError {
@@ -442,11 +451,13 @@ func (o *ConsentsPostConsentsNotFound) Code() int {
 }
 
 func (o *ConsentsPostConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotFound %s", 404, payload)
 }
 
 func (o *ConsentsPostConsentsNotFound) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotFound %s", 404, payload)
 }
 
 func (o *ConsentsPostConsentsNotFound) GetPayload() *models.ResponseError {
@@ -510,11 +521,13 @@ func (o *ConsentsPostConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *ConsentsPostConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsMethodNotAllowed %s", 405, payload)
 }
 
 func (o *ConsentsPostConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsMethodNotAllowed %s", 405, payload)
 }
 
 func (o *ConsentsPostConsentsMethodNotAllowed) GetPayload() *models.ResponseError {
@@ -578,11 +591,13 @@ func (o *ConsentsPostConsentsNotAcceptable) Code() int {
 }
 
 func (o *ConsentsPostConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotAcceptable %s", 406, payload)
 }
 
 func (o *ConsentsPostConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsNotAcceptable %s", 406, payload)
 }
 
 func (o *ConsentsPostConsentsNotAcceptable) GetPayload() *models.ResponseError {
@@ -646,11 +661,13 @@ func (o *ConsentsPostConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *ConsentsPostConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *ConsentsPostConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *ConsentsPostConsentsUnsupportedMediaType) GetPayload() *models.ResponseError {
@@ -714,11 +731,13 @@ func (o *ConsentsPostConsentsUnprocessableEntity) Code() int {
 }
 
 func (o *ConsentsPostConsentsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ConsentsPostConsentsUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ConsentsPostConsentsUnprocessableEntity) GetPayload() *models.ResponseError {
@@ -782,11 +801,13 @@ func (o *ConsentsPostConsentsTooManyRequests) Code() int {
 }
 
 func (o *ConsentsPostConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *ConsentsPostConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *ConsentsPostConsentsTooManyRequests) GetPayload() *models.ResponseError {
@@ -850,11 +871,13 @@ func (o *ConsentsPostConsentsInternalServerError) Code() int {
 }
 
 func (o *ConsentsPostConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *ConsentsPostConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *ConsentsPostConsentsInternalServerError) GetPayload() *models.ResponseError {
@@ -922,11 +945,13 @@ func (o *ConsentsPostConsentsDefault) Code() int {
 }
 
 func (o *ConsentsPostConsentsDefault) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsents default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsents default %s", o._statusCode, payload)
 }
 
 func (o *ConsentsPostConsentsDefault) String() string {
-	return fmt.Sprintf("[POST /consents][%d] consentsPostConsents default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] consentsPostConsents default %s", o._statusCode, payload)
 }
 
 func (o *ConsentsPostConsentsDefault) GetPayload() *models.ResponseError {

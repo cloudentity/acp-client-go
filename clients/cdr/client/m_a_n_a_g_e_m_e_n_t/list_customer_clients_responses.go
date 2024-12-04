@@ -6,6 +6,7 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListCustomerClientsOK) Code() int {
 }
 
 func (o *ListCustomerClientsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsOK %s", 200, payload)
 }
 
 func (o *ListCustomerClientsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsOK %s", 200, payload)
 }
 
 func (o *ListCustomerClientsOK) GetPayload() *models.Clients {
@@ -171,11 +174,13 @@ func (o *ListCustomerClientsUnauthorized) Code() int {
 }
 
 func (o *ListCustomerClientsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsUnauthorized %s", 401, payload)
 }
 
 func (o *ListCustomerClientsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsUnauthorized %s", 401, payload)
 }
 
 func (o *ListCustomerClientsUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *ListCustomerClientsForbidden) Code() int {
 }
 
 func (o *ListCustomerClientsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsForbidden %s", 403, payload)
 }
 
 func (o *ListCustomerClientsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsForbidden %s", 403, payload)
 }
 
 func (o *ListCustomerClientsForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *ListCustomerClientsNotFound) Code() int {
 }
 
 func (o *ListCustomerClientsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsNotFound %s", 404, payload)
 }
 
 func (o *ListCustomerClientsNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsNotFound %s", 404, payload)
 }
 
 func (o *ListCustomerClientsNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *ListCustomerClientsTooManyRequests) Code() int {
 }
 
 func (o *ListCustomerClientsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListCustomerClientsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/cdr/customer-clients][%d] listCustomerClientsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListCustomerClientsTooManyRequests) GetPayload() *models.Error {

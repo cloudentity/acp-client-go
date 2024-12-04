@@ -6,6 +6,7 @@ package limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *SetRateLimitNoContent) Code() int {
 }
 
 func (o *SetRateLimitNoContent) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent ", 204)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent", 204)
 }
 
 func (o *SetRateLimitNoContent) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent ", 204)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent", 204)
 }
 
 func (o *SetRateLimitNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *SetRateLimitUnauthorized) Code() int {
 }
 
 func (o *SetRateLimitUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized %s", 401, payload)
 }
 
 func (o *SetRateLimitUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized %s", 401, payload)
 }
 
 func (o *SetRateLimitUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *SetRateLimitForbidden) Code() int {
 }
 
 func (o *SetRateLimitForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden %s", 403, payload)
 }
 
 func (o *SetRateLimitForbidden) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden %s", 403, payload)
 }
 
 func (o *SetRateLimitForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *SetRateLimitNotFound) Code() int {
 }
 
 func (o *SetRateLimitNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound %s", 404, payload)
 }
 
 func (o *SetRateLimitNotFound) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound %s", 404, payload)
 }
 
 func (o *SetRateLimitNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *SetRateLimitTooManyRequests) Code() int {
 }
 
 func (o *SetRateLimitTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *SetRateLimitTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *SetRateLimitTooManyRequests) GetPayload() *models.Error {

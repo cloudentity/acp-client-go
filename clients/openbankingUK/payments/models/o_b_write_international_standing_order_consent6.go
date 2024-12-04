@@ -116,6 +116,7 @@ func (m *OBWriteInternationalStandingOrderConsent6) contextValidateData(ctx cont
 func (m *OBWriteInternationalStandingOrderConsent6) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")
@@ -161,11 +162,11 @@ type OBWriteInternationalStandingOrderConsent6Data struct {
 
 	// Specifies the Open Banking service request types.
 	// Required: true
-	// Enum: [Create]
+	// Enum: ["Create"]
 	Permission string `json:"Permission"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: [No Yes]
+	// Enum: ["No","Yes"]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
@@ -356,6 +357,10 @@ func (m *OBWriteInternationalStandingOrderConsent6Data) ContextValidate(ctx cont
 
 func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Authorisation) { // not required
+		return nil
+	}
+
 	if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Authorisation")
@@ -383,6 +388,10 @@ func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateInitiatio
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SCASupportData) { // not required
+		return nil
+	}
 
 	if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -421,7 +430,7 @@ type OBWriteInternationalStandingOrderConsent6DataAuthorisation struct {
 
 	// Type of authorisation flow requested.
 	// Required: true
-	// Enum: [Any Single]
+	// Enum: ["Any","Single"]
 	AuthorisationType string `json:"AuthorisationType"`
 
 	// Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -961,6 +970,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) ContextValidat
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "ChargeBearer")
@@ -974,6 +987,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Creditor) { // not required
+		return nil
+	}
 
 	if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1003,6 +1020,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CreditorAgent) { // not required
+		return nil
+	}
+
 	if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent")
@@ -1016,6 +1037,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
 
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1145,6 +1170,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditor) Contex
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "Creditor" + "." + "PostalAddress")
@@ -1334,6 +1364,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount)
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -1350,6 +1381,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount)
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -1364,6 +1396,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount)
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1535,6 +1571,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) C
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "Name")
@@ -1550,6 +1590,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) c
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "PostalAddress")
@@ -1564,6 +1609,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) c
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1750,6 +1799,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) C
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1766,6 +1816,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) c
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1780,6 +1831,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) c
 }
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1913,6 +1968,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Amount")
@@ -1929,6 +1985,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Currency")
@@ -1967,7 +2024,7 @@ type OBWriteInternationalStandingOrderConsent6DataSCASupportData struct {
 
 	// Specifies a character string with a maximum length of 40 characters.
 	// Usage: This field indicates whether the PSU was subject to SCA performed by the TPP
-	// Enum: [CA SCA]
+	// Enum: ["CA","SCA"]
 	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty"`
 
 	// Specifies a character string with a maximum length of 140 characters.
@@ -1977,7 +2034,7 @@ type OBWriteInternationalStandingOrderConsent6DataSCASupportData struct {
 	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty"`
 
 	// This field allows a PISP to request specific SCA Exemption for a Payment Initiation
-	// Enum: [BillPayment ContactlessTravel EcommerceGoods EcommerceServices Kiosk Parking PartyToParty]
+	// Enum: ["BillPayment","ContactlessTravel","EcommerceGoods","EcommerceServices","Kiosk","Parking","PartyToParty"]
 	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty"`
 }
 

@@ -27,8 +27,14 @@ type OtpSettings struct {
 	// challenge
 	Challenge *OtpConfig `json:"challenge,omitempty" yaml:"challenge,omitempty"`
 
+	// enroll webauthn
+	EnrollWebauthn *OtpConfig `json:"enroll_webauthn,omitempty" yaml:"enroll_webauthn,omitempty"`
+
 	// reset password
 	ResetPassword *OtpConfig `json:"reset_password,omitempty" yaml:"reset_password,omitempty"`
+
+	// reset totp
+	ResetTotp *OtpConfig `json:"reset_totp,omitempty" yaml:"reset_totp,omitempty"`
 
 	// verify address
 	VerifyAddress *OtpConfig `json:"verify_address,omitempty" yaml:"verify_address,omitempty"`
@@ -50,7 +56,15 @@ func (m *OtpSettings) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEnrollWebauthn(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateResetPassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResetTotp(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -121,6 +135,25 @@ func (m *OtpSettings) validateChallenge(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *OtpSettings) validateEnrollWebauthn(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnrollWebauthn) { // not required
+		return nil
+	}
+
+	if m.EnrollWebauthn != nil {
+		if err := m.EnrollWebauthn.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("enroll_webauthn")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("enroll_webauthn")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OtpSettings) validateResetPassword(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResetPassword) { // not required
 		return nil
@@ -132,6 +165,25 @@ func (m *OtpSettings) validateResetPassword(formats strfmt.Registry) error {
 				return ve.ValidateName("reset_password")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("reset_password")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OtpSettings) validateResetTotp(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResetTotp) { // not required
+		return nil
+	}
+
+	if m.ResetTotp != nil {
+		if err := m.ResetTotp.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_totp")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_totp")
 			}
 			return err
 		}
@@ -175,7 +227,15 @@ func (m *OtpSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEnrollWebauthn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateResetPassword(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResetTotp(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -252,6 +312,27 @@ func (m *OtpSettings) contextValidateChallenge(ctx context.Context, formats strf
 	return nil
 }
 
+func (m *OtpSettings) contextValidateEnrollWebauthn(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EnrollWebauthn != nil {
+
+		if swag.IsZero(m.EnrollWebauthn) { // not required
+			return nil
+		}
+
+		if err := m.EnrollWebauthn.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("enroll_webauthn")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("enroll_webauthn")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OtpSettings) contextValidateResetPassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ResetPassword != nil {
@@ -265,6 +346,27 @@ func (m *OtpSettings) contextValidateResetPassword(ctx context.Context, formats 
 				return ve.ValidateName("reset_password")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("reset_password")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OtpSettings) contextValidateResetTotp(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ResetTotp != nil {
+
+		if swag.IsZero(m.ResetTotp) { // not required
+			return nil
+		}
+
+		if err := m.ResetTotp.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_totp")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_totp")
 			}
 			return err
 		}

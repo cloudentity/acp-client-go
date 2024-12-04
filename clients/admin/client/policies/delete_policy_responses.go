@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -108,11 +109,11 @@ func (o *DeletePolicyNoContent) Code() int {
 }
 
 func (o *DeletePolicyNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNoContent ", 204)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNoContent", 204)
 }
 
 func (o *DeletePolicyNoContent) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNoContent ", 204)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNoContent", 204)
 }
 
 func (o *DeletePolicyNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,11 +166,13 @@ func (o *DeletePolicyBadRequest) Code() int {
 }
 
 func (o *DeletePolicyBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyBadRequest %s", 400, payload)
 }
 
 func (o *DeletePolicyBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyBadRequest %s", 400, payload)
 }
 
 func (o *DeletePolicyBadRequest) GetPayload() *models.Error {
@@ -233,11 +236,13 @@ func (o *DeletePolicyUnauthorized) Code() int {
 }
 
 func (o *DeletePolicyUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyUnauthorized %s", 401, payload)
 }
 
 func (o *DeletePolicyUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyUnauthorized %s", 401, payload)
 }
 
 func (o *DeletePolicyUnauthorized) GetPayload() *models.Error {
@@ -301,11 +306,13 @@ func (o *DeletePolicyForbidden) Code() int {
 }
 
 func (o *DeletePolicyForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyForbidden %s", 403, payload)
 }
 
 func (o *DeletePolicyForbidden) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyForbidden %s", 403, payload)
 }
 
 func (o *DeletePolicyForbidden) GetPayload() *models.Error {
@@ -369,11 +376,13 @@ func (o *DeletePolicyNotFound) Code() int {
 }
 
 func (o *DeletePolicyNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNotFound %s", 404, payload)
 }
 
 func (o *DeletePolicyNotFound) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNotFound %s", 404, payload)
 }
 
 func (o *DeletePolicyNotFound) GetPayload() *models.Error {
@@ -437,11 +446,13 @@ func (o *DeletePolicyTooManyRequests) Code() int {
 }
 
 func (o *DeletePolicyTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *DeletePolicyTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *DeletePolicyTooManyRequests) GetPayload() *models.Error {

@@ -755,6 +755,7 @@ func (m *OBTransaction6) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *OBTransaction6) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -769,6 +770,10 @@ func (m *OBTransaction6) contextValidateAccountID(ctx context.Context, formats s
 }
 
 func (m *OBTransaction6) contextValidateAddressLine(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AddressLine) { // not required
+		return nil
+	}
 
 	if err := m.AddressLine.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -785,6 +790,7 @@ func (m *OBTransaction6) contextValidateAddressLine(ctx context.Context, formats
 func (m *OBTransaction6) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -801,6 +807,11 @@ func (m *OBTransaction6) contextValidateAmount(ctx context.Context, formats strf
 func (m *OBTransaction6) contextValidateBalance(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Balance != nil {
+
+		if swag.IsZero(m.Balance) { // not required
+			return nil
+		}
+
 		if err := m.Balance.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Balance")
@@ -817,6 +828,11 @@ func (m *OBTransaction6) contextValidateBalance(ctx context.Context, formats str
 func (m *OBTransaction6) contextValidateBankTransactionCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BankTransactionCode != nil {
+
+		if swag.IsZero(m.BankTransactionCode) { // not required
+			return nil
+		}
+
 		if err := m.BankTransactionCode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("BankTransactionCode")
@@ -833,6 +849,7 @@ func (m *OBTransaction6) contextValidateBankTransactionCode(ctx context.Context,
 func (m *OBTransaction6) contextValidateBookingDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BookingDateTime != nil {
+
 		if err := m.BookingDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("BookingDateTime")
@@ -849,6 +866,11 @@ func (m *OBTransaction6) contextValidateBookingDateTime(ctx context.Context, for
 func (m *OBTransaction6) contextValidateCardInstrument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CardInstrument != nil {
+
+		if swag.IsZero(m.CardInstrument) { // not required
+			return nil
+		}
+
 		if err := m.CardInstrument.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CardInstrument")
@@ -865,6 +887,11 @@ func (m *OBTransaction6) contextValidateCardInstrument(ctx context.Context, form
 func (m *OBTransaction6) contextValidateChargeAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeAmount != nil {
+
+		if swag.IsZero(m.ChargeAmount) { // not required
+			return nil
+		}
+
 		if err := m.ChargeAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeAmount")
@@ -881,6 +908,7 @@ func (m *OBTransaction6) contextValidateChargeAmount(ctx context.Context, format
 func (m *OBTransaction6) contextValidateCreditDebitIndicator(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditDebitIndicator != nil {
+
 		if err := m.CreditDebitIndicator.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditDebitIndicator")
@@ -897,6 +925,11 @@ func (m *OBTransaction6) contextValidateCreditDebitIndicator(ctx context.Context
 func (m *OBTransaction6) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
+		if swag.IsZero(m.CreditorAccount) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -913,6 +946,11 @@ func (m *OBTransaction6) contextValidateCreditorAccount(ctx context.Context, for
 func (m *OBTransaction6) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -929,6 +967,11 @@ func (m *OBTransaction6) contextValidateCreditorAgent(ctx context.Context, forma
 func (m *OBTransaction6) contextValidateCurrencyExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CurrencyExchange != nil {
+
+		if swag.IsZero(m.CurrencyExchange) { // not required
+			return nil
+		}
+
 		if err := m.CurrencyExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CurrencyExchange")
@@ -945,6 +988,11 @@ func (m *OBTransaction6) contextValidateCurrencyExchange(ctx context.Context, fo
 func (m *OBTransaction6) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -961,6 +1009,11 @@ func (m *OBTransaction6) contextValidateDebtorAccount(ctx context.Context, forma
 func (m *OBTransaction6) contextValidateDebtorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAgent != nil {
+
+		if swag.IsZero(m.DebtorAgent) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAgent")
@@ -977,6 +1030,11 @@ func (m *OBTransaction6) contextValidateDebtorAgent(ctx context.Context, formats
 func (m *OBTransaction6) contextValidateMerchantDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MerchantDetails != nil {
+
+		if swag.IsZero(m.MerchantDetails) { // not required
+			return nil
+		}
+
 		if err := m.MerchantDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MerchantDetails")
@@ -993,6 +1051,11 @@ func (m *OBTransaction6) contextValidateMerchantDetails(ctx context.Context, for
 func (m *OBTransaction6) contextValidateProprietaryBankTransactionCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ProprietaryBankTransactionCode != nil {
+
+		if swag.IsZero(m.ProprietaryBankTransactionCode) { // not required
+			return nil
+		}
+
 		if err := m.ProprietaryBankTransactionCode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ProprietaryBankTransactionCode")
@@ -1009,6 +1072,10 @@ func (m *OBTransaction6) contextValidateProprietaryBankTransactionCode(ctx conte
 func (m *OBTransaction6) contextValidateStatementReference(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.StatementReference); i++ {
+
+		if swag.IsZero(m.StatementReference[i]) { // not required
+			return nil
+		}
 
 		if err := m.StatementReference[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -1027,6 +1094,7 @@ func (m *OBTransaction6) contextValidateStatementReference(ctx context.Context, 
 func (m *OBTransaction6) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Status")
@@ -1042,6 +1110,10 @@ func (m *OBTransaction6) contextValidateStatus(ctx context.Context, formats strf
 
 func (m *OBTransaction6) contextValidateTransactionID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.TransactionID) { // not required
+		return nil
+	}
+
 	if err := m.TransactionID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("TransactionId")
@@ -1055,6 +1127,10 @@ func (m *OBTransaction6) contextValidateTransactionID(ctx context.Context, forma
 }
 
 func (m *OBTransaction6) contextValidateTransactionInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TransactionInformation) { // not required
+		return nil
+	}
 
 	if err := m.TransactionInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1070,6 +1146,10 @@ func (m *OBTransaction6) contextValidateTransactionInformation(ctx context.Conte
 
 func (m *OBTransaction6) contextValidateTransactionMutability(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.TransactionMutability) { // not required
+		return nil
+	}
+
 	if err := m.TransactionMutability.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("TransactionMutability")
@@ -1084,6 +1164,10 @@ func (m *OBTransaction6) contextValidateTransactionMutability(ctx context.Contex
 
 func (m *OBTransaction6) contextValidateTransactionReference(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.TransactionReference) { // not required
+		return nil
+	}
+
 	if err := m.TransactionReference.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("TransactionReference")
@@ -1097,6 +1181,10 @@ func (m *OBTransaction6) contextValidateTransactionReference(ctx context.Context
 }
 
 func (m *OBTransaction6) contextValidateValueDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ValueDateTime) { // not required
+		return nil
+	}
 
 	if err := m.ValueDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

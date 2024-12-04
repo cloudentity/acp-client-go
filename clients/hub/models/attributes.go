@@ -17,7 +17,7 @@ import (
 // Attributes attributes
 //
 // swagger:model Attributes
-type Attributes []*Attribute
+type Attributes []*AuthenticationContextAttribute
 
 // Validate validates this attributes
 func (m Attributes) Validate(formats strfmt.Registry) error {

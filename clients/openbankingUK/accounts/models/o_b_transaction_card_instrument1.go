@@ -21,12 +21,12 @@ import (
 type OBTransactionCardInstrument1 struct {
 
 	// The card authorisation type.
-	// Enum: [ConsumerDevice Contactless None PIN]
+	// Enum: ["ConsumerDevice","Contactless","None","PIN"]
 	AuthorisationType string `json:"AuthorisationType,omitempty"`
 
 	// Name of the card scheme.
 	// Required: true
-	// Enum: [AmericanExpress Diners Discover MasterCard VISA]
+	// Enum: ["AmericanExpress","Diners","Discover","MasterCard","VISA"]
 	CardSchemeName string `json:"CardSchemeName"`
 
 	// Identification assigned by an institution to identify the card instrument used in the transaction. This identification is known by the account owner, and may be masked.

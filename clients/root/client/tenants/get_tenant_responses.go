@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetTenantOK) Code() int {
 }
 
 func (o *GetTenantOK) Error() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK %s", 200, payload)
 }
 
 func (o *GetTenantOK) String() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK %s", 200, payload)
 }
 
 func (o *GetTenantOK) GetPayload() *models.Tenant {
@@ -171,11 +174,13 @@ func (o *GetTenantUnauthorized) Code() int {
 }
 
 func (o *GetTenantUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantUnauthorized) String() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetTenantForbidden) Code() int {
 }
 
 func (o *GetTenantForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden %s", 403, payload)
 }
 
 func (o *GetTenantForbidden) String() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden %s", 403, payload)
 }
 
 func (o *GetTenantForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetTenantNotFound) Code() int {
 }
 
 func (o *GetTenantNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound %s", 404, payload)
 }
 
 func (o *GetTenantNotFound) String() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound %s", 404, payload)
 }
 
 func (o *GetTenantNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetTenantTooManyRequests) Code() int {
 }
 
 func (o *GetTenantTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantTooManyRequests) GetPayload() *models.Error {

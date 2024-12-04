@@ -10,6 +10,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/cloudentity/acp-client-go/clients/admin/client/a_c_rs"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/apis"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/audit_events"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/authorization_details"
@@ -24,6 +25,7 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/admin/client/idps"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/images"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/keys"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/license"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/mfa_methods"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/openbanking"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/organizations"
@@ -88,6 +90,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 
 	cli := new(Acp)
 	cli.Transport = transport
+	cli.AcRs = a_c_rs.New(transport, formats)
 	cli.Apis = apis.New(transport, formats)
 	cli.AuditEvents = audit_events.New(transport, formats)
 	cli.AuthorizationDetails = authorization_details.New(transport, formats)
@@ -102,6 +105,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Idps = idps.New(transport, formats)
 	cli.Images = images.New(transport, formats)
 	cli.Keys = keys.New(transport, formats)
+	cli.License = license.New(transport, formats)
 	cli.MfaMethods = mfa_methods.New(transport, formats)
 	cli.Openbanking = openbanking.New(transport, formats)
 	cli.Organizations = organizations.New(transport, formats)
@@ -166,6 +170,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Acp is a client for acp
 type Acp struct {
+	AcRs a_c_rs.ClientService
+
 	Apis apis.ClientService
 
 	AuditEvents audit_events.ClientService
@@ -193,6 +199,8 @@ type Acp struct {
 	Images images.ClientService
 
 	Keys keys.ClientService
+
+	License license.ClientService
 
 	MfaMethods mfa_methods.ClientService
 
@@ -240,6 +248,7 @@ type Acp struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AcRs.SetTransport(transport)
 	c.Apis.SetTransport(transport)
 	c.AuditEvents.SetTransport(transport)
 	c.AuthorizationDetails.SetTransport(transport)
@@ -254,6 +263,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Idps.SetTransport(transport)
 	c.Images.SetTransport(transport)
 	c.Keys.SetTransport(transport)
+	c.License.SetTransport(transport)
 	c.MfaMethods.SetTransport(transport)
 	c.Openbanking.SetTransport(transport)
 	c.Organizations.SetTransport(transport)

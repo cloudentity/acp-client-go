@@ -6,6 +6,7 @@ package authorization_details
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *UpdateAuthorizationDetailOK) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailOK) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailOK %s", 200, payload)
 }
 
 func (o *UpdateAuthorizationDetailOK) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailOK %s", 200, payload)
 }
 
 func (o *UpdateAuthorizationDetailOK) GetPayload() *models.AuthorizationDetailWithServiceID {
@@ -205,11 +208,13 @@ func (o *UpdateAuthorizationDetailBadRequest) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAuthorizationDetailBadRequest) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAuthorizationDetailBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *UpdateAuthorizationDetailUnauthorized) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAuthorizationDetailUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAuthorizationDetailUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *UpdateAuthorizationDetailForbidden) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailForbidden) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *UpdateAuthorizationDetailForbidden) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *UpdateAuthorizationDetailForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *UpdateAuthorizationDetailNotFound) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailNotFound) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *UpdateAuthorizationDetailNotFound) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *UpdateAuthorizationDetailNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *UpdateAuthorizationDetailConflict) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailConflict) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailConflict %s", 409, payload)
 }
 
 func (o *UpdateAuthorizationDetailConflict) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailConflict %s", 409, payload)
 }
 
 func (o *UpdateAuthorizationDetailConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *UpdateAuthorizationDetailUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAuthorizationDetailUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAuthorizationDetailUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *UpdateAuthorizationDetailTooManyRequests) Code() int {
 }
 
 func (o *UpdateAuthorizationDetailTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAuthorizationDetailTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /authorization-details/{authorizationDetailID}][%d] updateAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAuthorizationDetailTooManyRequests) GetPayload() *models.Error {

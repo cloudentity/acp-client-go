@@ -6,6 +6,7 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *RevokeTokensNoContent) Code() int {
 }
 
 func (o *RevokeTokensNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNoContent", 204)
 }
 
 func (o *RevokeTokensNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNoContent", 204)
 }
 
 func (o *RevokeTokensNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *RevokeTokensUnauthorized) Code() int {
 }
 
 func (o *RevokeTokensUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeTokensUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeTokensUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *RevokeTokensForbidden) Code() int {
 }
 
 func (o *RevokeTokensForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensForbidden %s", 403, payload)
 }
 
 func (o *RevokeTokensForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensForbidden %s", 403, payload)
 }
 
 func (o *RevokeTokensForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *RevokeTokensNotFound) Code() int {
 }
 
 func (o *RevokeTokensNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNotFound %s", 404, payload)
 }
 
 func (o *RevokeTokensNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensNotFound %s", 404, payload)
 }
 
 func (o *RevokeTokensNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *RevokeTokensUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeTokensUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeTokensUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/tokens][%d] revokeTokensUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeTokensUnprocessableEntity) GetPayload() *models.Error {

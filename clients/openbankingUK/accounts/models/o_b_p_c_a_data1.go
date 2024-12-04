@@ -156,6 +156,10 @@ func (m *OBPCAData1) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *OBPCAData1) contextValidateCreditInterest(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CreditInterest) { // not required
+		return nil
+	}
+
 	if err := m.CreditInterest.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CreditInterest")
@@ -169,6 +173,10 @@ func (m *OBPCAData1) contextValidateCreditInterest(ctx context.Context, formats 
 }
 
 func (m *OBPCAData1) contextValidateOtherFeesCharges(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OtherFeesCharges) { // not required
+		return nil
+	}
 
 	if err := m.OtherFeesCharges.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -184,6 +192,10 @@ func (m *OBPCAData1) contextValidateOtherFeesCharges(ctx context.Context, format
 
 func (m *OBPCAData1) contextValidateOverdraft(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Overdraft) { // not required
+		return nil
+	}
+
 	if err := m.Overdraft.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Overdraft")
@@ -197,6 +209,10 @@ func (m *OBPCAData1) contextValidateOverdraft(ctx context.Context, formats strfm
 }
 
 func (m *OBPCAData1) contextValidateProductDetails(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ProductDetails) { // not required
+		return nil
+	}
 
 	if err := m.ProductDetails.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -309,6 +325,11 @@ func (m *OBPCAData1CreditInterest) contextValidateTierBandSet(ctx context.Contex
 	for i := 0; i < len(m.TierBandSet); i++ {
 
 		if m.TierBandSet[i] != nil {
+
+			if swag.IsZero(m.TierBandSet[i]) { // not required
+				return nil
+			}
+
 			if err := m.TierBandSet[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("CreditInterest" + "." + "TierBandSet" + "." + strconv.Itoa(i))
@@ -350,13 +371,13 @@ type OBPCAData1CreditInterestTierBandSetItems0 struct {
 	// CalculationMethod
 	//
 	// Methods of calculating interest
-	// Enum: [Compound SimpleInterest]
+	// Enum: ["Compound","SimpleInterest"]
 	CalculationMethod string `json:"CalculationMethod,omitempty"`
 
 	// Destination
 	//
 	// Describes whether accrued interest is payable only to the PCA or to another bank account
-	// Enum: [PayAway SelfCredit]
+	// Enum: ["PayAway","SelfCredit"]
 	Destination string `json:"Destination,omitempty"`
 
 	// Notes
@@ -384,7 +405,7 @@ type OBPCAData1CreditInterestTierBandSetItems0 struct {
 	// 3. Whole
 	// The same interest rate is applied irrespective of the PCA balance
 	// Required: true
-	// Enum: [Tiered Whole]
+	// Enum: ["Tiered","Whole"]
 	TierBandMethod *string `json:"TierBandMethod"`
 }
 
@@ -617,6 +638,11 @@ func (m *OBPCAData1CreditInterestTierBandSetItems0) contextValidateTierBand(ctx 
 	for i := 0; i < len(m.TierBand); i++ {
 
 		if m.TierBand[i] != nil {
+
+			if swag.IsZero(m.TierBand[i]) { // not required
+				return nil
+			}
+
 			if err := m.TierBand[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("TierBand" + "." + strconv.Itoa(i))
@@ -668,7 +694,7 @@ type OBPCAData1CreditInterestTierBandSetItems0TierBandItems0 struct {
 	//
 	// How often is interest applied to the PCA for this tier/band i.e. how often the financial institution pays accumulated interest to the customer's PCA.
 	// Required: true
-	// Enum: [PerAcademicTerm Daily HalfYearly Monthly Other Quarterly PerStatementDate Weekly Yearly]
+	// Enum: ["PerAcademicTerm","Daily","HalfYearly","Monthly","Other","Quarterly","PerStatementDate","Weekly","Yearly"]
 	ApplicationFrequency *string `json:"ApplicationFrequency"`
 
 	// BankInterestRate
@@ -680,26 +706,26 @@ type OBPCAData1CreditInterestTierBandSetItems0TierBandItems0 struct {
 	// BankInterestRateType
 	//
 	// Interest rate types, other than AER, which financial institutions may use to describe the annual interest rate payable to the PCA.
-	// Enum: [LinkedBaseRate Gross Net Other]
+	// Enum: ["LinkedBaseRate","Gross","Net","Other"]
 	BankInterestRateType string `json:"BankInterestRateType,omitempty"`
 
 	// CalculationFrequency
 	//
 	// How often is credit interest calculated for the account.
-	// Enum: [PerAcademicTerm Daily HalfYearly Monthly Other Quarterly PerStatementDate Weekly Yearly]
+	// Enum: ["PerAcademicTerm","Daily","HalfYearly","Monthly","Other","Quarterly","PerStatementDate","Weekly","Yearly"]
 	CalculationFrequency string `json:"CalculationFrequency,omitempty"`
 
 	// DepositInterestAppliedCoverage
 	//
 	// Amount on which Interest applied.
-	// Enum: [Tiered Whole]
+	// Enum: ["Tiered","Whole"]
 	DepositInterestAppliedCoverage string `json:"DepositInterestAppliedCoverage,omitempty"`
 
 	// FixedVariableInterestRateType
 	//
 	// Type of interest rate, Fixed or Variable
 	// Required: true
-	// Enum: [Fixed Variable]
+	// Enum: ["Fixed","Variable"]
 	FixedVariableInterestRateType *string `json:"FixedVariableInterestRateType"`
 
 	// Identification
@@ -1231,6 +1257,11 @@ func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) ContextValidat
 func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -1247,6 +1278,11 @@ func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) contextValidat
 func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherBankInterestType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherBankInterestType != nil {
+
+		if swag.IsZero(m.OtherBankInterestType) { // not required
+			return nil
+		}
+
 		if err := m.OtherBankInterestType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherBankInterestType")
@@ -1263,6 +1299,11 @@ func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) contextValidat
 func (m *OBPCAData1CreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -1792,6 +1833,11 @@ func (m *OBPCAData1OtherFeesCharges) contextValidateFeeChargeCap(ctx context.Con
 	for i := 0; i < len(m.FeeChargeCap); i++ {
 
 		if m.FeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.FeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeesCharges" + "." + "FeeChargeCap" + "." + strconv.Itoa(i))
@@ -1812,6 +1858,11 @@ func (m *OBPCAData1OtherFeesCharges) contextValidateFeeChargeDetail(ctx context.
 	for i := 0; i < len(m.FeeChargeDetail); i++ {
 
 		if m.FeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.FeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeesCharges" + "." + "FeeChargeDetail" + "." + strconv.Itoa(i))
@@ -1853,7 +1904,7 @@ type OBPCAData1OtherFeesChargesFeeChargeCapItems0 struct {
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -1878,7 +1929,7 @@ type OBPCAData1OtherFeesChargesFeeChargeCapItems0 struct {
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -2146,6 +2197,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeCapItems0) contextValidateOtherFeeTy
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -2312,13 +2368,13 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0 struct {
 	//
 	// How frequently the fee/charge is applied to the account
 	// Required: true
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	ApplicationFrequency *string `json:"ApplicationFrequency"`
 
 	// CalculationFrequency
 	//
 	// How frequently the fee/charge is calculated
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	CalculationFrequency string `json:"CalculationFrequency,omitempty"`
 
 	// FeeAmount
@@ -2334,7 +2390,7 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0 struct {
 	//
 	// Categorisation of fees and charges into standard categories.
 	// Required: true
-	// Enum: [Other Servicing]
+	// Enum: ["Other","Servicing"]
 	FeeCategory *string `json:"FeeCategory"`
 
 	// FeeChargeCap
@@ -2351,14 +2407,14 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0 struct {
 	// FeeRateType
 	//
 	// Rate type for Fee/Charge (where it is charged in terms of a rate rather than an amount)
-	// Enum: [LinkedBaseRate Gross Net Other]
+	// Enum: ["LinkedBaseRate","Gross","Net","Other"]
 	FeeRateType string `json:"FeeRateType,omitempty"`
 
 	// FeeType
 	//
 	// Fee/Charge Type
 	// Required: true
-	// Enum: [ServiceCAccountFee ServiceCAccountFeeMonthly ServiceCOther Other]
+	// Enum: ["ServiceCAccountFee","ServiceCAccountFeeMonthly","ServiceCOther","Other"]
 	FeeType *string `json:"FeeType"`
 
 	// Notes
@@ -3010,6 +3066,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) ContextValidate(ctx co
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateFeeApplicableRange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeApplicableRange != nil {
+
+		if swag.IsZero(m.FeeApplicableRange) { // not required
+			return nil
+		}
+
 		if err := m.FeeApplicableRange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeApplicableRange")
@@ -3028,6 +3089,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateFeeChar
 	for i := 0; i < len(m.FeeChargeCap); i++ {
 
 		if m.FeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.FeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("FeeChargeCap" + "." + strconv.Itoa(i))
@@ -3046,6 +3112,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateFeeChar
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -3062,6 +3133,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherAp
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -3078,6 +3154,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherCa
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherFeeCategoryType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeCategoryType != nil {
+
+		if swag.IsZero(m.OtherFeeCategoryType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeCategoryType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeCategoryType")
@@ -3094,6 +3175,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherFe
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -3110,6 +3196,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherFe
 func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -3278,7 +3369,7 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0FeeChargeCapItems0 struct {
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -3303,7 +3394,7 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0FeeChargeCapItems0 struct {
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -3571,6 +3662,11 @@ func (m *OBPCAData1OtherFeesChargesFeeChargeDetailItems0FeeChargeCapItems0) cont
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -4256,7 +4352,7 @@ type OBPCAData1OtherFeesChargesFeeChargeDetailItems0OtherFeeType struct {
 	//
 	// Categorisation of fees and charges into standard categories.
 	// Required: true
-	// Enum: [Other Servicing]
+	// Enum: ["Other","Servicing"]
 	FeeCategory *string `json:"FeeCategory"`
 
 	// Name
@@ -4520,6 +4616,11 @@ func (m *OBPCAData1Overdraft) contextValidateOverdraftTierBandSet(ctx context.Co
 	for i := 0; i < len(m.OverdraftTierBandSet); i++ {
 
 		if m.OverdraftTierBandSet[i] != nil {
+
+			if swag.IsZero(m.OverdraftTierBandSet[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftTierBandSet[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Overdraft" + "." + "OverdraftTierBandSet" + "." + strconv.Itoa(i))
@@ -4596,7 +4697,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0 struct {
 	// OverdraftType
 	//
 	// An overdraft can either be 'committed' which means that the facility cannot be withdrawn without reasonable notification before it's agreed end date, or 'on demand' which means that the financial institution can demand repayment at any point in time.
-	// Enum: [Committed OnDemand Other]
+	// Enum: ["Committed","OnDemand","Other"]
 	OverdraftType string `json:"OverdraftType,omitempty"`
 
 	// TierBandMethod
@@ -4606,7 +4707,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0 struct {
 	// 'Tiered' Where different charges/rates are applied dependent on overdraft maximum and minimum balance amount tiers defined by the lending financial organisation
 	// 'Banded' Where different charges/rates are applied dependent on overdraft maximum and minimum balance amount bands defined by a government organisation.
 	// Required: true
-	// Enum: [Tiered Whole Banded]
+	// Enum: ["Tiered","Whole","Banded"]
 	TierBandMethod *string `json:"TierBandMethod"`
 }
 
@@ -4869,6 +4970,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0) contextValidateOverdraft
 	for i := 0; i < len(m.OverdraftFeesCharges); i++ {
 
 		if m.OverdraftFeesCharges[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeesCharges" + "." + strconv.Itoa(i))
@@ -4889,6 +4995,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0) contextValidateOverdraft
 	for i := 0; i < len(m.OverdraftTierBand); i++ {
 
 		if m.OverdraftTierBand[i] != nil {
+
+			if swag.IsZero(m.OverdraftTierBand[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftTierBand[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftTierBand" + "." + strconv.Itoa(i))
@@ -5040,6 +5151,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -5060,6 +5176,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 	for i := 0; i < len(m.OverdraftFeeChargeDetail); i++ {
 
 		if m.OverdraftFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -5101,7 +5222,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -5126,7 +5247,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -5399,6 +5520,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -5565,13 +5691,13 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	//
 	// Frequency at which the overdraft charge is applied to the account
 	// Required: true
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	ApplicationFrequency *string `json:"ApplicationFrequency"`
 
 	// CalculationFrequency
 	//
 	// How often is the overdraft fee/charge calculated for the account.
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	CalculationFrequency string `json:"CalculationFrequency,omitempty"`
 
 	// FeeAmount
@@ -5589,14 +5715,14 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	// FeeRateType
 	//
 	// Rate type for overdraft fee/charge (where it is charged in terms of a rate rather than an amount)
-	// Enum: [LinkedBaseRate Gross Net Other]
+	// Enum: ["LinkedBaseRate","Gross","Net","Other"]
 	FeeRateType string `json:"FeeRateType,omitempty"`
 
 	// FeeType
 	//
 	// Overdraft fee type
 	// Required: true
-	// Enum: [ArrangedOverdraft EmergencyBorrowing BorrowingItem OverdraftRenewal AnnualReview OverdraftSetup Surcharge TempOverdraft UnauthorisedBorrowing UnauthorisedPaidTrans Other UnauthorisedUnpaidTrans]
+	// Enum: ["ArrangedOverdraft","EmergencyBorrowing","BorrowingItem","OverdraftRenewal","AnnualReview","OverdraftSetup","Surcharge","TempOverdraft","UnauthorisedBorrowing","UnauthorisedPaidTrans","Other","UnauthorisedUnpaidTrans"]
 	FeeType *string `json:"FeeType"`
 
 	// IncrementalBorrowingAmount
@@ -6191,6 +6317,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -6207,6 +6338,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -6223,6 +6359,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -6239,6 +6380,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -6255,6 +6401,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOverdraftFeeChargeCap(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OverdraftFeeChargeCap != nil {
+
+		if swag.IsZero(m.OverdraftFeeChargeCap) { // not required
+			return nil
+		}
+
 		if err := m.OverdraftFeeChargeCap.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OverdraftFeeChargeCap")
@@ -6800,7 +6951,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -6825,7 +6976,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0Over
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -7098,6 +7249,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + "OtherFeeType" + "." + strconv.Itoa(i))
@@ -7292,7 +7448,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0 struct
 	// OverdraftInterestChargingCoverage
 	//
 	// Interest charged on whole amount or tiered/banded
-	// Enum: [Tiered Whole]
+	// Enum: ["Tiered","Whole"]
 	OverdraftInterestChargingCoverage string `json:"OverdraftInterestChargingCoverage,omitempty"`
 
 	// RepresentativeAPR
@@ -7529,6 +7685,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0) c
 	for i := 0; i < len(m.OverdraftFeesCharges); i++ {
 
 		if m.OverdraftFeesCharges[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeesCharges" + "." + strconv.Itoa(i))
@@ -7680,6 +7841,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -7700,6 +7866,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 	for i := 0; i < len(m.OverdraftFeeChargeDetail); i++ {
 
 		if m.OverdraftFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -7741,7 +7912,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -7766,7 +7937,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -8039,6 +8210,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -8205,13 +8381,13 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	//
 	// Frequency at which the overdraft charge is applied to the account
 	// Required: true
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	ApplicationFrequency *string `json:"ApplicationFrequency"`
 
 	// CalculationFrequency
 	//
 	// How often is the overdraft fee/charge calculated for the account.
-	// Enum: [AccountClosing AccountOpening AcademicTerm ChargingPeriod Daily PerItem Monthly OnAccountAnniversary Other PerHour PerOccurrence PerSheet PerTransaction PerTransactionAmount PerTransactionPercentage Quarterly SixMonthly StatementMonthly Weekly Yearly]
+	// Enum: ["AccountClosing","AccountOpening","AcademicTerm","ChargingPeriod","Daily","PerItem","Monthly","OnAccountAnniversary","Other","PerHour","PerOccurrence","PerSheet","PerTransaction","PerTransactionAmount","PerTransactionPercentage","Quarterly","SixMonthly","StatementMonthly","Weekly","Yearly"]
 	CalculationFrequency string `json:"CalculationFrequency,omitempty"`
 
 	// FeeAmount
@@ -8229,14 +8405,14 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	// FeeRateType
 	//
 	// Rate type for overdraft fee/charge (where it is charged in terms of a rate rather than an amount)
-	// Enum: [LinkedBaseRate Gross Net Other]
+	// Enum: ["LinkedBaseRate","Gross","Net","Other"]
 	FeeRateType string `json:"FeeRateType,omitempty"`
 
 	// FeeType
 	//
 	// Overdraft fee type
 	// Required: true
-	// Enum: [ArrangedOverdraft EmergencyBorrowing BorrowingItem OverdraftRenewal AnnualReview OverdraftSetup Surcharge TempOverdraft UnauthorisedBorrowing UnauthorisedPaidTrans Other UnauthorisedUnpaidTrans]
+	// Enum: ["ArrangedOverdraft","EmergencyBorrowing","BorrowingItem","OverdraftRenewal","AnnualReview","OverdraftSetup","Surcharge","TempOverdraft","UnauthorisedBorrowing","UnauthorisedPaidTrans","Other","UnauthorisedUnpaidTrans"]
 	FeeType *string `json:"FeeType"`
 
 	// IncrementalBorrowingAmount
@@ -8831,6 +9007,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -8847,6 +9028,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -8863,6 +9049,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -8879,6 +9070,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -8895,6 +9091,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOverdraftFeeChargeCap(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OverdraftFeeChargeCap != nil {
+
+		if swag.IsZero(m.OverdraftFeeChargeCap) { // not required
+			return nil
+		}
+
 		if err := m.OverdraftFeeChargeCap.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OverdraftFeeChargeCap")
@@ -9440,7 +9641,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	// CappingPeriod
 	//
 	// Period e.g. day, week, month etc. for which the fee/charge is capped
-	// Enum: [AcademicTerm Day Half Year Month Quarter Week Year]
+	// Enum: ["AcademicTerm","Day","Half Year","Month","Quarter","Week","Year"]
 	CappingPeriod string `json:"CappingPeriod,omitempty"`
 
 	// FeeCapAmount
@@ -9465,7 +9666,7 @@ type OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Overdra
 	//
 	// Indicates that this is the minimum/ maximum fee/charge that can be applied by the financial institution
 	// Required: true
-	// Enum: [Minimum Maximum]
+	// Enum: ["Minimum","Maximum"]
 	MinMaxType *string `json:"MinMaxType"`
 
 	// Notes
@@ -9738,6 +9939,11 @@ func (m *OBPCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + "OtherFeeType" + "." + strconv.Itoa(i))

@@ -6,6 +6,7 @@ package audit_events
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *ListAuditEventsOK) Code() int {
 }
 
 func (o *ListAuditEventsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK %s", 200, payload)
 }
 
 func (o *ListAuditEventsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK %s", 200, payload)
 }
 
 func (o *ListAuditEventsOK) GetPayload() *models.AuditEvents {
@@ -193,11 +196,13 @@ func (o *ListAuditEventsBadRequest) Code() int {
 }
 
 func (o *ListAuditEventsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsBadRequest %s", 400, payload)
 }
 
 func (o *ListAuditEventsBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsBadRequest %s", 400, payload)
 }
 
 func (o *ListAuditEventsBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *ListAuditEventsUnauthorized) Code() int {
 }
 
 func (o *ListAuditEventsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsUnauthorized %s", 401, payload)
 }
 
 func (o *ListAuditEventsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsUnauthorized %s", 401, payload)
 }
 
 func (o *ListAuditEventsUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *ListAuditEventsForbidden) Code() int {
 }
 
 func (o *ListAuditEventsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsForbidden %s", 403, payload)
 }
 
 func (o *ListAuditEventsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsForbidden %s", 403, payload)
 }
 
 func (o *ListAuditEventsForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *ListAuditEventsNotFound) Code() int {
 }
 
 func (o *ListAuditEventsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsNotFound %s", 404, payload)
 }
 
 func (o *ListAuditEventsNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsNotFound %s", 404, payload)
 }
 
 func (o *ListAuditEventsNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *ListAuditEventsTooManyRequests) Code() int {
 }
 
 func (o *ListAuditEventsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListAuditEventsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListAuditEventsTooManyRequests) GetPayload() *models.Error {

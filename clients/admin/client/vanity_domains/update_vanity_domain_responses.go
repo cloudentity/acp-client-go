@@ -6,6 +6,7 @@ package vanity_domains
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *UpdateVanityDomainOK) Code() int {
 }
 
 func (o *UpdateVanityDomainOK) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainOK %s", 200, payload)
 }
 
 func (o *UpdateVanityDomainOK) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainOK %s", 200, payload)
 }
 
 func (o *UpdateVanityDomainOK) GetPayload() *models.VanityDomain {
@@ -199,11 +202,13 @@ func (o *UpdateVanityDomainUnauthorized) Code() int {
 }
 
 func (o *UpdateVanityDomainUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateVanityDomainUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateVanityDomainUnauthorized) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *UpdateVanityDomainForbidden) Code() int {
 }
 
 func (o *UpdateVanityDomainForbidden) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainForbidden %s", 403, payload)
 }
 
 func (o *UpdateVanityDomainForbidden) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainForbidden %s", 403, payload)
 }
 
 func (o *UpdateVanityDomainForbidden) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *UpdateVanityDomainNotFound) Code() int {
 }
 
 func (o *UpdateVanityDomainNotFound) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainNotFound %s", 404, payload)
 }
 
 func (o *UpdateVanityDomainNotFound) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainNotFound %s", 404, payload)
 }
 
 func (o *UpdateVanityDomainNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *UpdateVanityDomainConflict) Code() int {
 }
 
 func (o *UpdateVanityDomainConflict) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainConflict %s", 409, payload)
 }
 
 func (o *UpdateVanityDomainConflict) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainConflict %s", 409, payload)
 }
 
 func (o *UpdateVanityDomainConflict) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *UpdateVanityDomainUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateVanityDomainUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateVanityDomainUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateVanityDomainUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *UpdateVanityDomainTooManyRequests) Code() int {
 }
 
 func (o *UpdateVanityDomainTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateVanityDomainTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateVanityDomainTooManyRequests) GetPayload() *models.Error {

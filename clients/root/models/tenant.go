@@ -25,9 +25,6 @@ type Tenant struct {
 	// jwks
 	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
-	// license
-	License *License `json:"license,omitempty" yaml:"license,omitempty"`
-
 	// metadata
 	Metadata TenantMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
@@ -51,10 +48,6 @@ func (m *Tenant) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateJwks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLicense(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,25 +80,6 @@ func (m *Tenant) validateJwks(formats strfmt.Registry) error {
 				return ve.ValidateName("jwks")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jwks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Tenant) validateLicense(formats strfmt.Registry) error {
-	if swag.IsZero(m.License) { // not required
-		return nil
-	}
-
-	if m.License != nil {
-		if err := m.License.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("license")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("license")
 			}
 			return err
 		}
@@ -179,10 +153,6 @@ func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateLicense(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateMetadata(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -214,27 +184,6 @@ func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 				return ve.ValidateName("jwks")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jwks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Tenant) contextValidateLicense(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.License != nil {
-
-		if swag.IsZero(m.License) { // not required
-			return nil
-		}
-
-		if err := m.License.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("license")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("license")
 			}
 			return err
 		}

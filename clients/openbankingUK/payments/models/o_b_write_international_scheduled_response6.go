@@ -145,6 +145,11 @@ func (m *OBWriteInternationalScheduledResponse6) contextValidateData(ctx context
 func (m *OBWriteInternationalScheduledResponse6) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBWriteInternationalScheduledResponse6) contextValidateLinks(ctx contex
 func (m *OBWriteInternationalScheduledResponse6) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -249,7 +259,7 @@ type OBWriteInternationalScheduledResponse6Data struct {
 
 	// Specifies the status of the payment order resource.
 	// Required: true
-	// Enum: [Cancelled InitiationCompleted InitiationFailed InitiationPending]
+	// Enum: ["Cancelled","InitiationCompleted","InitiationFailed","InitiationPending"]
 	Status string `json:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -604,6 +614,11 @@ func (m *OBWriteInternationalScheduledResponse6Data) contextValidateCharges(ctx 
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Charges" + "." + strconv.Itoa(i))
@@ -622,6 +637,11 @@ func (m *OBWriteInternationalScheduledResponse6Data) contextValidateCharges(ctx 
 func (m *OBWriteInternationalScheduledResponse6Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Debtor")
@@ -636,6 +656,10 @@ func (m *OBWriteInternationalScheduledResponse6Data) contextValidateDebtor(ctx c
 }
 
 func (m *OBWriteInternationalScheduledResponse6Data) contextValidateExchangeRateInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ExchangeRateInformation) { // not required
+		return nil
+	}
 
 	if err := m.ExchangeRateInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -665,6 +689,10 @@ func (m *OBWriteInternationalScheduledResponse6Data) contextValidateInitiation(c
 
 func (m *OBWriteInternationalScheduledResponse6Data) contextValidateMultiAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.MultiAuthorisation) { // not required
+		return nil
+	}
+
 	if err := m.MultiAuthorisation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "MultiAuthorisation")
@@ -678,6 +706,10 @@ func (m *OBWriteInternationalScheduledResponse6Data) contextValidateMultiAuthori
 }
 
 func (m *OBWriteInternationalScheduledResponse6Data) contextValidateRefund(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Refund) { // not required
+		return nil
+	}
 
 	if err := m.Refund.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -842,6 +874,7 @@ func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) ContextValidat
 func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -858,6 +891,7 @@ func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) contextValidat
 func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeBearer != nil {
+
 		if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeBearer")
@@ -874,6 +908,7 @@ func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) contextValidat
 func (m *OBWriteInternationalScheduledResponse6DataChargesItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")
@@ -927,7 +962,7 @@ type OBWriteInternationalScheduledResponse6DataExchangeRateInformation struct {
 
 	// Specifies the type used to complete the currency exchange.
 	// Required: true
-	// Enum: [Actual Agreed Indicative]
+	// Enum: ["Actual","Agreed","Indicative"]
 	RateType string `json:"RateType"`
 
 	// Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
@@ -1142,7 +1177,7 @@ type OBWriteInternationalScheduledResponse6DataInitiation struct {
 	InstructionIdentification string `json:"InstructionIdentification"`
 
 	// Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
-	// Enum: [Normal Urgent]
+	// Enum: ["Normal","Urgent"]
 	InstructionPriority string `json:"InstructionPriority,omitempty"`
 
 	// local instrument
@@ -1588,6 +1623,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) ContextValidate(c
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "ChargeBearer")
@@ -1601,6 +1640,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateCh
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Creditor) { // not required
+		return nil
+	}
 
 	if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1630,6 +1673,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateCr
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CreditorAgent) { // not required
+		return nil
+	}
+
 	if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent")
@@ -1644,6 +1691,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateCr
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
+
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount")
@@ -1657,6 +1708,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateDe
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateExchangeRateInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ExchangeRateInformation) { // not required
+		return nil
+	}
 
 	if err := m.ExchangeRateInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1686,6 +1741,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateIn
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
+
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "LocalInstrument")
@@ -1699,6 +1758,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateLo
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RemittanceInformation) { // not required
+		return nil
+	}
 
 	if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1814,6 +1877,11 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditor) ContextVa
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "Creditor" + "." + "PostalAddress")
@@ -2003,6 +2071,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) Co
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -2019,6 +2088,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) co
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -2033,6 +2103,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) co
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -2206,6 +2280,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) Cont
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Identification) { // not required
+		return nil
+	}
+
 	if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "Identification")
@@ -2219,6 +2297,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) cont
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
 
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -2235,6 +2317,11 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) cont
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "PostalAddress")
@@ -2249,6 +2336,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) cont
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiationCreditorAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -2435,6 +2526,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) Cont
 func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -2451,6 +2543,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) cont
 func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -2465,6 +2558,10 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) cont
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -2511,7 +2608,7 @@ type OBWriteInternationalScheduledResponse6DataInitiationExchangeRateInformation
 
 	// Specifies the type used to complete the currency exchange.
 	// Required: true
-	// Enum: [Actual Agreed Indicative]
+	// Enum: ["Actual","Agreed","Indicative"]
 	RateType string `json:"RateType"`
 
 	// Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
@@ -2742,6 +2839,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationInstructedAmount) C
 func (m *OBWriteInternationalScheduledResponse6DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Amount")
@@ -2758,6 +2856,7 @@ func (m *OBWriteInternationalScheduledResponse6DataInitiationInstructedAmount) c
 func (m *OBWriteInternationalScheduledResponse6DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Currency")
@@ -2906,7 +3005,7 @@ type OBWriteInternationalScheduledResponse6DataMultiAuthorisation struct {
 
 	// Specifies the status of the authorisation flow in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingFurtherAuthorisation Rejected]
+	// Enum: ["Authorised","AwaitingFurtherAuthorisation","Rejected"]
 	Status string `json:"Status"`
 }
 
@@ -3149,6 +3248,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefund) contextValidateAccoun
 
 func (m *OBWriteInternationalScheduledResponse6DataRefund) contextValidateAgent(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Agent) { // not required
+		return nil
+	}
+
 	if err := m.Agent.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Refund" + "." + "Agent")
@@ -3162,6 +3265,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefund) contextValidateAgent(
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataRefund) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Creditor) { // not required
+		return nil
+	}
 
 	if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -3351,6 +3458,7 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) ContextValidat
 func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Refund" + "." + "Account" + "." + "Identification")
@@ -3367,6 +3475,7 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) contextValidat
 func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Refund" + "." + "Account" + "." + "SchemeName")
@@ -3381,6 +3490,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) contextValidat
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataRefundAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -3554,6 +3667,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) ContextValidate(
 
 func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Identification) { // not required
+		return nil
+	}
+
 	if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Refund" + "." + "Agent" + "." + "Identification")
@@ -3567,6 +3684,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateI
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
 
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -3583,6 +3704,11 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateN
 func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Refund" + "." + "Agent" + "." + "PostalAddress")
@@ -3597,6 +3723,10 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateP
 }
 
 func (m *OBWriteInternationalScheduledResponse6DataRefundAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -3712,6 +3842,11 @@ func (m *OBWriteInternationalScheduledResponse6DataRefundCreditor) ContextValida
 func (m *OBWriteInternationalScheduledResponse6DataRefundCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Refund" + "." + "Creditor" + "." + "PostalAddress")

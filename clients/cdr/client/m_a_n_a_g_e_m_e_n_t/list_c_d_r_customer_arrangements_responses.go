@@ -6,6 +6,7 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ListCDRCustomerArrangementsOK) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsOK %s", 200, payload)
 }
 
 func (o *ListCDRCustomerArrangementsOK) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsOK %s", 200, payload)
 }
 
 func (o *ListCDRCustomerArrangementsOK) GetPayload() *models.CDRArrangements {
@@ -183,11 +186,13 @@ func (o *ListCDRCustomerArrangementsBadRequest) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsBadRequest %s", 400, payload)
 }
 
 func (o *ListCDRCustomerArrangementsBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsBadRequest %s", 400, payload)
 }
 
 func (o *ListCDRCustomerArrangementsBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ListCDRCustomerArrangementsUnauthorized) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnauthorized %s", 401, payload)
 }
 
 func (o *ListCDRCustomerArrangementsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnauthorized %s", 401, payload)
 }
 
 func (o *ListCDRCustomerArrangementsUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ListCDRCustomerArrangementsForbidden) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsForbidden %s", 403, payload)
 }
 
 func (o *ListCDRCustomerArrangementsForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsForbidden %s", 403, payload)
 }
 
 func (o *ListCDRCustomerArrangementsForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ListCDRCustomerArrangementsNotFound) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsNotFound %s", 404, payload)
 }
 
 func (o *ListCDRCustomerArrangementsNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsNotFound %s", 404, payload)
 }
 
 func (o *ListCDRCustomerArrangementsNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ListCDRCustomerArrangementsUnprocessableEntity) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ListCDRCustomerArrangementsUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ListCDRCustomerArrangementsUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ListCDRCustomerArrangementsTooManyRequests) Code() int {
 }
 
 func (o *ListCDRCustomerArrangementsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListCDRCustomerArrangementsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/customer-arrangements][%d] listCDRCustomerArrangementsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListCDRCustomerArrangementsTooManyRequests) GetPayload() *models.Error {

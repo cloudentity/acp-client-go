@@ -312,6 +312,10 @@ func (m *OBPostalAddress6) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *OBPostalAddress6) contextValidateAddressType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AddressType) { // not required
+		return nil
+	}
+
 	if err := m.AddressType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("AddressType")
@@ -325,6 +329,10 @@ func (m *OBPostalAddress6) contextValidateAddressType(ctx context.Context, forma
 }
 
 func (m *OBPostalAddress6) contextValidateBuildingNumber(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BuildingNumber) { // not required
+		return nil
+	}
 
 	if err := m.BuildingNumber.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -340,6 +348,10 @@ func (m *OBPostalAddress6) contextValidateBuildingNumber(ctx context.Context, fo
 
 func (m *OBPostalAddress6) contextValidatePostCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.PostCode) { // not required
+		return nil
+	}
+
 	if err := m.PostCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("PostCode")
@@ -354,6 +366,10 @@ func (m *OBPostalAddress6) contextValidatePostCode(ctx context.Context, formats 
 
 func (m *OBPostalAddress6) contextValidateStreetName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.StreetName) { // not required
+		return nil
+	}
+
 	if err := m.StreetName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("StreetName")
@@ -367,6 +383,10 @@ func (m *OBPostalAddress6) contextValidateStreetName(ctx context.Context, format
 }
 
 func (m *OBPostalAddress6) contextValidateTownName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TownName) { // not required
+		return nil
+	}
 
 	if err := m.TownName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -6,6 +6,7 @@ package root_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *ImportSystemConfigNoContent) Code() int {
 }
 
 func (o *ImportSystemConfigNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNoContent ", 204)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNoContent", 204)
 }
 
 func (o *ImportSystemConfigNoContent) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNoContent ", 204)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNoContent", 204)
 }
 
 func (o *ImportSystemConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *ImportSystemConfigBadRequest) Code() int {
 }
 
 func (o *ImportSystemConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigBadRequest %s", 400, payload)
 }
 
 func (o *ImportSystemConfigBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigBadRequest %s", 400, payload)
 }
 
 func (o *ImportSystemConfigBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *ImportSystemConfigUnauthorized) Code() int {
 }
 
 func (o *ImportSystemConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSystemConfigUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSystemConfigUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *ImportSystemConfigForbidden) Code() int {
 }
 
 func (o *ImportSystemConfigForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigForbidden %s", 403, payload)
 }
 
 func (o *ImportSystemConfigForbidden) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigForbidden %s", 403, payload)
 }
 
 func (o *ImportSystemConfigForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *ImportSystemConfigNotFound) Code() int {
 }
 
 func (o *ImportSystemConfigNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNotFound %s", 404, payload)
 }
 
 func (o *ImportSystemConfigNotFound) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigNotFound %s", 404, payload)
 }
 
 func (o *ImportSystemConfigNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *ImportSystemConfigUnprocessableEntity) Code() int {
 }
 
 func (o *ImportSystemConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSystemConfigUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSystemConfigUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *ImportSystemConfigTooManyRequests) Code() int {
 }
 
 func (o *ImportSystemConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSystemConfigTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/promote/config][%d] importSystemConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSystemConfigTooManyRequests) GetPayload() *models.Error {

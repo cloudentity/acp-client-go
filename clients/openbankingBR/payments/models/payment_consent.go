@@ -214,6 +214,7 @@ func (m *PaymentConsent) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *PaymentConsent) contextValidateDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Details != nil {
+
 		if err := m.Details.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("details")

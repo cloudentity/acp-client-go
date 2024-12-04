@@ -26,7 +26,7 @@ type VerifyPasswordResponseData struct {
 
 	// state
 	// Required: true
-	// Enum: [valid must_be_reset must_be_changed]
+	// Enum: ["valid","must_be_reset","must_be_changed"]
 	State string `json:"state" yaml:"state"`
 }
 

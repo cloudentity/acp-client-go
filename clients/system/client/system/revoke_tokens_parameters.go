@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/cloudentity/acp-client-go/clients/system/models"
 )
 
 // NewRevokeTokensParams creates a new RevokeTokensParams object,
@@ -60,6 +62,9 @@ RevokeTokensParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type RevokeTokensParams struct {
+
+	// Request.
+	Request *models.RevokeTokenRequest
 
 	/* ConsentID.
 
@@ -139,6 +144,17 @@ func (o *RevokeTokensParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithRequest adds the request to the revoke tokens params
+func (o *RevokeTokensParams) WithRequest(request *models.RevokeTokenRequest) *RevokeTokensParams {
+	o.SetRequest(request)
+	return o
+}
+
+// SetRequest adds the request to the revoke tokens params
+func (o *RevokeTokensParams) SetRequest(request *models.RevokeTokenRequest) {
+	o.Request = request
+}
+
 // WithConsentID adds the consentID to the revoke tokens params
 func (o *RevokeTokensParams) WithConsentID(consentID *string) *RevokeTokensParams {
 	o.SetConsentID(consentID)
@@ -168,6 +184,11 @@ func (o *RevokeTokensParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+	if o.Request != nil {
+		if err := r.SetBodyParam(o.Request); err != nil {
+			return err
+		}
+	}
 
 	if o.ConsentID != nil {
 

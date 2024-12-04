@@ -81,6 +81,7 @@ type ListUserRolesParams struct {
 
 	   User id
 
+	   Format: userID
 	   Default: "default"
 	*/
 	UserID string

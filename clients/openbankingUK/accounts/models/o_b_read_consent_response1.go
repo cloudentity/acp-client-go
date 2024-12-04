@@ -162,6 +162,11 @@ func (m *OBReadConsentResponse1) contextValidateData(ctx context.Context, format
 func (m *OBReadConsentResponse1) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -178,6 +183,11 @@ func (m *OBReadConsentResponse1) contextValidateLinks(ctx context.Context, forma
 func (m *OBReadConsentResponse1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -239,7 +249,7 @@ type OBReadConsentResponse1Data struct {
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingAuthorisation Rejected Revoked]
+	// Enum: ["Authorised","AwaitingAuthorisation","Rejected","Revoked"]
 	Status string `json:"Status"`
 
 	// status update date time
@@ -518,6 +528,7 @@ func (m *OBReadConsentResponse1Data) ContextValidate(ctx context.Context, format
 func (m *OBReadConsentResponse1Data) contextValidateCreationDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreationDateTime != nil {
+
 		if err := m.CreationDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "CreationDateTime")
@@ -534,6 +545,7 @@ func (m *OBReadConsentResponse1Data) contextValidateCreationDateTime(ctx context
 func (m *OBReadConsentResponse1Data) contextValidateStatusUpdateDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.StatusUpdateDateTime != nil {
+
 		if err := m.StatusUpdateDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "StatusUpdateDateTime")

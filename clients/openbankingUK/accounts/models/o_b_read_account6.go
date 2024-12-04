@@ -143,6 +143,11 @@ func (m *OBReadAccount6) contextValidateData(ctx context.Context, formats strfmt
 func (m *OBReadAccount6) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBReadAccount6) contextValidateLinks(ctx context.Context, formats strfm
 func (m *OBReadAccount6) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -258,6 +268,11 @@ func (m *OBReadAccount6Data) contextValidateAccount(ctx context.Context, formats
 	for i := 0; i < len(m.Account); i++ {
 
 		if m.Account[i] != nil {
+
+			if swag.IsZero(m.Account[i]) { // not required
+				return nil
+			}
+
 			if err := m.Account[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Account" + "." + strconv.Itoa(i))

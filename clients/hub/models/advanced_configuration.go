@@ -27,6 +27,9 @@ type AdvancedConfiguration struct {
 	// Block response modes
 	BlockResponseModes bool `json:"block_response_modes,omitempty" yaml:"block_response_modes,omitempty"`
 
+	// cookies configuration
+	CookiesConfiguration *CookiesConfiguration `json:"cookies_configuration,omitempty" yaml:"cookies_configuration,omitempty"`
+
 	// Disable certificate-bound access tokens for new DCR clients
 	//
 	// If true, new DCR clients are created with CertificateBoundAccessToken disabled.
@@ -78,6 +81,10 @@ type AdvancedConfiguration struct {
 func (m *AdvancedConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCookiesConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDisallowedResponseModes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -85,6 +92,25 @@ func (m *AdvancedConfiguration) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AdvancedConfiguration) validateCookiesConfiguration(formats strfmt.Registry) error {
+	if swag.IsZero(m.CookiesConfiguration) { // not required
+		return nil
+	}
+
+	if m.CookiesConfiguration != nil {
+		if err := m.CookiesConfiguration.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cookies_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cookies_configuration")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -109,6 +135,10 @@ func (m *AdvancedConfiguration) validateDisallowedResponseModes(formats strfmt.R
 func (m *AdvancedConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCookiesConfiguration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDisallowedResponseModes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -116,6 +146,27 @@ func (m *AdvancedConfiguration) ContextValidate(ctx context.Context, formats str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AdvancedConfiguration) contextValidateCookiesConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CookiesConfiguration != nil {
+
+		if swag.IsZero(m.CookiesConfiguration) { // not required
+			return nil
+		}
+
+		if err := m.CookiesConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cookies_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cookies_configuration")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

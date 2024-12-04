@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *TokenOK) Code() int {
 }
 
 func (o *TokenOK) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK %s", 200, payload)
 }
 
 func (o *TokenOK) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK %s", 200, payload)
 }
 
 func (o *TokenOK) GetPayload() *models.TokenResponse {
@@ -193,11 +196,13 @@ func (o *TokenBadRequest) Code() int {
 }
 
 func (o *TokenBadRequest) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest %s", 400, payload)
 }
 
 func (o *TokenBadRequest) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenBadRequest %s", 400, payload)
 }
 
 func (o *TokenBadRequest) GetPayload() *models.GenericError {
@@ -261,11 +266,13 @@ func (o *TokenUnauthorized) Code() int {
 }
 
 func (o *TokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized %s", 401, payload)
 }
 
 func (o *TokenUnauthorized) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized %s", 401, payload)
 }
 
 func (o *TokenUnauthorized) GetPayload() *models.GenericError {
@@ -329,11 +336,13 @@ func (o *TokenNotFound) Code() int {
 }
 
 func (o *TokenNotFound) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound %s", 404, payload)
 }
 
 func (o *TokenNotFound) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound %s", 404, payload)
 }
 
 func (o *TokenNotFound) GetPayload() *models.GenericError {
@@ -397,11 +406,13 @@ func (o *TokenPreconditionFailed) Code() int {
 }
 
 func (o *TokenPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed %s", 412, payload)
 }
 
 func (o *TokenPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed %s", 412, payload)
 }
 
 func (o *TokenPreconditionFailed) GetPayload() *models.GenericError {
@@ -465,11 +476,13 @@ func (o *TokenTooManyRequests) Code() int {
 }
 
 func (o *TokenTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests %s", 429, payload)
 }
 
 func (o *TokenTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests %s", 429, payload)
 }
 
 func (o *TokenTooManyRequests) GetPayload() *models.GenericError {

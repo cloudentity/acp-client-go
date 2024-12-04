@@ -209,6 +209,10 @@ func (m *OBWriteFileConsent3Data) ContextValidate(ctx context.Context, formats s
 
 func (m *OBWriteFileConsent3Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Authorisation) { // not required
+		return nil
+	}
+
 	if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Authorisation")
@@ -236,6 +240,10 @@ func (m *OBWriteFileConsent3Data) contextValidateInitiation(ctx context.Context,
 }
 
 func (m *OBWriteFileConsent3Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SCASupportData) { // not required
+		return nil
+	}
 
 	if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -274,7 +282,7 @@ type OBWriteFileConsent3DataAuthorisation struct {
 
 	// Type of authorisation flow requested.
 	// Required: true
-	// Enum: [Any Single]
+	// Enum: ["Any","Single"]
 	AuthorisationType string `json:"AuthorisationType"`
 
 	// Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -610,6 +618,10 @@ func (m *OBWriteFileConsent3DataInitiation) ContextValidate(ctx context.Context,
 
 func (m *OBWriteFileConsent3DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
+
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount")
@@ -624,6 +636,10 @@ func (m *OBWriteFileConsent3DataInitiation) contextValidateDebtorAccount(ctx con
 
 func (m *OBWriteFileConsent3DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
+
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "LocalInstrument")
@@ -637,6 +653,10 @@ func (m *OBWriteFileConsent3DataInitiation) contextValidateLocalInstrument(ctx c
 }
 
 func (m *OBWriteFileConsent3DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RemittanceInformation) { // not required
+		return nil
+	}
 
 	if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -823,6 +843,7 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) ContextValidate(ctx con
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -839,6 +860,7 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateIdentifi
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -853,6 +875,10 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSchemeNa
 }
 
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -983,7 +1009,7 @@ type OBWriteFileConsent3DataSCASupportData struct {
 
 	// Specifies a character string with a maximum length of 40 characters.
 	// Usage: This field indicates whether the PSU was subject to SCA performed by the TPP
-	// Enum: [CA SCA]
+	// Enum: ["CA","SCA"]
 	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty"`
 
 	// Specifies a character string with a maximum length of 140 characters.
@@ -993,7 +1019,7 @@ type OBWriteFileConsent3DataSCASupportData struct {
 	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty"`
 
 	// This field allows a PISP to request specific SCA Exemption for a Payment Initiation
-	// Enum: [BillPayment ContactlessTravel EcommerceGoods EcommerceServices Kiosk Parking PartyToParty]
+	// Enum: ["BillPayment","ContactlessTravel","EcommerceGoods","EcommerceServices","Kiosk","Parking","PartyToParty"]
 	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty"`
 }
 

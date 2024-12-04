@@ -115,6 +115,7 @@ func (m *OBWriteDomestic2) contextValidateData(ctx context.Context, formats strf
 func (m *OBWriteDomestic2) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")
@@ -526,6 +527,11 @@ func (m *OBWriteDomestic2DataInitiation) contextValidateCreditorAccount(ctx cont
 func (m *OBWriteDomestic2DataInitiation) contextValidateCreditorPostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorPostalAddress != nil {
+
+		if swag.IsZero(m.CreditorPostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.CreditorPostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorPostalAddress")
@@ -540,6 +546,10 @@ func (m *OBWriteDomestic2DataInitiation) contextValidateCreditorPostalAddress(ct
 }
 
 func (m *OBWriteDomestic2DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
 
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -569,6 +579,10 @@ func (m *OBWriteDomestic2DataInitiation) contextValidateInstructedAmount(ctx con
 
 func (m *OBWriteDomestic2DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
+
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "LocalInstrument")
@@ -582,6 +596,10 @@ func (m *OBWriteDomestic2DataInitiation) contextValidateLocalInstrument(ctx cont
 }
 
 func (m *OBWriteDomestic2DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RemittanceInformation) { // not required
+		return nil
+	}
 
 	if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -771,6 +789,7 @@ func (m *OBWriteDomestic2DataInitiationCreditorAccount) ContextValidate(ctx cont
 func (m *OBWriteDomestic2DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -787,6 +806,7 @@ func (m *OBWriteDomestic2DataInitiationCreditorAccount) contextValidateIdentific
 func (m *OBWriteDomestic2DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -801,6 +821,10 @@ func (m *OBWriteDomestic2DataInitiationCreditorAccount) contextValidateSchemeNam
 }
 
 func (m *OBWriteDomestic2DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -987,6 +1011,7 @@ func (m *OBWriteDomestic2DataInitiationDebtorAccount) ContextValidate(ctx contex
 func (m *OBWriteDomestic2DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1003,6 +1028,7 @@ func (m *OBWriteDomestic2DataInitiationDebtorAccount) contextValidateIdentificat
 func (m *OBWriteDomestic2DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1017,6 +1043,10 @@ func (m *OBWriteDomestic2DataInitiationDebtorAccount) contextValidateSchemeName(
 }
 
 func (m *OBWriteDomestic2DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1150,6 +1180,7 @@ func (m *OBWriteDomestic2DataInitiationInstructedAmount) ContextValidate(ctx con
 func (m *OBWriteDomestic2DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Amount")
@@ -1166,6 +1197,7 @@ func (m *OBWriteDomestic2DataInitiationInstructedAmount) contextValidateAmount(c
 func (m *OBWriteDomestic2DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Currency")

@@ -6,6 +6,7 @@ package tenant_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *ImportTenantConfigNoContent) Code() int {
 }
 
 func (o *ImportTenantConfigNoContent) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNoContent ", 204)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNoContent", 204)
 }
 
 func (o *ImportTenantConfigNoContent) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNoContent ", 204)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNoContent", 204)
 }
 
 func (o *ImportTenantConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *ImportTenantConfigBadRequest) Code() int {
 }
 
 func (o *ImportTenantConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigBadRequest %s", 400, payload)
 }
 
 func (o *ImportTenantConfigBadRequest) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigBadRequest %s", 400, payload)
 }
 
 func (o *ImportTenantConfigBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *ImportTenantConfigUnauthorized) Code() int {
 }
 
 func (o *ImportTenantConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ImportTenantConfigUnauthorized) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ImportTenantConfigUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *ImportTenantConfigForbidden) Code() int {
 }
 
 func (o *ImportTenantConfigForbidden) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigForbidden %s", 403, payload)
 }
 
 func (o *ImportTenantConfigForbidden) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigForbidden %s", 403, payload)
 }
 
 func (o *ImportTenantConfigForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *ImportTenantConfigNotFound) Code() int {
 }
 
 func (o *ImportTenantConfigNotFound) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNotFound %s", 404, payload)
 }
 
 func (o *ImportTenantConfigNotFound) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigNotFound %s", 404, payload)
 }
 
 func (o *ImportTenantConfigNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *ImportTenantConfigUnprocessableEntity) Code() int {
 }
 
 func (o *ImportTenantConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportTenantConfigUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportTenantConfigUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *ImportTenantConfigTooManyRequests) Code() int {
 }
 
 func (o *ImportTenantConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportTenantConfigTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/promote/config][%d] importTenantConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportTenantConfigTooManyRequests) GetPayload() *models.Error {

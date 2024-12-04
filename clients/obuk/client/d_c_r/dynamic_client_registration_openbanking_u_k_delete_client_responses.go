@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) Code() int
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent ", 204)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent", 204)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) String() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent ", 204)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent", 204)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) Code() in
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) GetPayload() *models.RFC6749Error {
@@ -227,11 +230,13 @@ func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) Code() 
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) GetPayload() *models.RFC6749Error {
@@ -295,11 +300,13 @@ func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) Code() int
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) String() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) GetPayload() *models.RFC6749Error {
@@ -363,11 +370,13 @@ func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) Code() int 
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) String() string {
-	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) GetPayload() *models.GenericError {

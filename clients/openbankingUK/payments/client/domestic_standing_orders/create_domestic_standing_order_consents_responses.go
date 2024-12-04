@@ -6,6 +6,7 @@ package domestic_standing_orders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,7 +87,7 @@ func (o *CreateDomesticStandingOrderConsentsReader) ReadResponse(response runtim
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /domestic-standing-order-consents] CreateDomesticStandingOrderConsents", response, response.Code())
 	}
 }
 
@@ -145,11 +146,13 @@ func (o *CreateDomesticStandingOrderConsentsCreated) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsCreated) GetPayload() *models.OBWriteDomesticStandingOrderConsentResponse6 {
@@ -237,11 +240,13 @@ func (o *CreateDomesticStandingOrderConsentsBadRequest) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -322,11 +327,11 @@ func (o *CreateDomesticStandingOrderConsentsUnauthorized) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized", 401)
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized", 401)
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -396,11 +401,13 @@ func (o *CreateDomesticStandingOrderConsentsForbidden) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -481,11 +488,11 @@ func (o *CreateDomesticStandingOrderConsentsNotFound) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound ", 404)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound", 404)
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotFound) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound ", 404)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound", 404)
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -548,11 +555,11 @@ func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -615,11 +622,11 @@ func (o *CreateDomesticStandingOrderConsentsNotAcceptable) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable", 406)
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable", 406)
 }
 
 func (o *CreateDomesticStandingOrderConsentsNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -682,11 +689,11 @@ func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -753,11 +760,11 @@ func (o *CreateDomesticStandingOrderConsentsTooManyRequests) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests", 429)
 }
 
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests", 429)
 }
 
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -838,11 +845,13 @@ func (o *CreateDomesticStandingOrderConsentsInternalServerError) Code() int {
 }
 
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {

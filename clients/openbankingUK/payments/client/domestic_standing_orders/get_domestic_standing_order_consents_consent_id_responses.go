@@ -6,6 +6,7 @@ package domestic_standing_orders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *GetDomesticStandingOrderConsentsConsentIDReader) ReadResponse(response 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /domestic-standing-order-consents/{ConsentId}] GetDomesticStandingOrderConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -139,11 +140,13 @@ func (o *GetDomesticStandingOrderConsentsConsentIDOK) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDOK) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDOK) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDOK) GetPayload() *models.OBWriteDomesticStandingOrderConsentResponse6 {
@@ -231,11 +234,13 @@ func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -316,11 +321,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -390,11 +395,13 @@ func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -475,11 +482,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -542,11 +549,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -609,11 +616,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -680,11 +687,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) Code() int {
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -765,11 +772,13 @@ func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) Code() in
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

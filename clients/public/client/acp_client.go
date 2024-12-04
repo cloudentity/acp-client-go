@@ -14,6 +14,7 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/public/client/consents"
 	"github.com/cloudentity/acp-client-go/clients/public/client/environment"
 	"github.com/cloudentity/acp-client-go/clients/public/client/sessions"
+	"github.com/cloudentity/acp-client-go/clients/public/client/tokens"
 	"github.com/cloudentity/acp-client-go/clients/public/client/transient_otp"
 )
 
@@ -63,6 +64,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Consents = consents.New(transport, formats)
 	cli.Environment = environment.New(transport, formats)
 	cli.Sessions = sessions.New(transport, formats)
+	cli.Tokens = tokens.New(transport, formats)
 	cli.TransientOtp = transient_otp.New(transport, formats)
 	return cli
 }
@@ -116,6 +118,8 @@ type Acp struct {
 
 	Sessions sessions.ClientService
 
+	Tokens tokens.ClientService
+
 	TransientOtp transient_otp.ClientService
 
 	Transport runtime.ClientTransport
@@ -128,5 +132,6 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Consents.SetTransport(transport)
 	c.Environment.SetTransport(transport)
 	c.Sessions.SetTransport(transport)
+	c.Tokens.SetTransport(transport)
 	c.TransientOtp.SetTransport(transport)
 }

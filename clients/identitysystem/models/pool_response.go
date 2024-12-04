@@ -78,7 +78,7 @@ type PoolResponse struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp webauthn arculix]
+	// Enum: ["totp","password","otp","webauthn"]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
@@ -89,7 +89,7 @@ type PoolResponse struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp webauthn arculix]
+	// Enum: ["totp","password","otp","webauthn"]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// The minimal risk engine loa score value to skip the 2FA
@@ -256,7 +256,7 @@ var poolResponseTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -277,9 +277,6 @@ const (
 
 	// PoolResponsePreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponsePreferredAuthenticationMechanismWebauthn string = "webauthn"
-
-	// PoolResponsePreferredAuthenticationMechanismArculix captures enum value "arculix"
-	PoolResponsePreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum
@@ -324,7 +321,7 @@ var poolResponseTypeSecondFactorPreferredAuthenticationMechanismPropEnum []inter
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -345,9 +342,6 @@ const (
 
 	// PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
-
-	// PoolResponseSecondFactorPreferredAuthenticationMechanismArculix captures enum value "arculix"
-	PoolResponseSecondFactorPreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum

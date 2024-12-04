@@ -27,7 +27,7 @@ type RoleResource struct {
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: [tenant workspace identity_pool]
+	// Enum: ["tenant","workspace","identity_pool"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// workspace id

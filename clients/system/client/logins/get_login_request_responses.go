@@ -6,6 +6,7 @@ package logins
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetLoginRequestOK) Code() int {
 }
 
 func (o *GetLoginRequestOK) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestOK %s", 200, payload)
 }
 
 func (o *GetLoginRequestOK) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestOK %s", 200, payload)
 }
 
 func (o *GetLoginRequestOK) GetPayload() *models.LoginSessionResponse {
@@ -177,11 +180,13 @@ func (o *GetLoginRequestBadRequest) Code() int {
 }
 
 func (o *GetLoginRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest %s", 400, payload)
 }
 
 func (o *GetLoginRequestBadRequest) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestBadRequest %s", 400, payload)
 }
 
 func (o *GetLoginRequestBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *GetLoginRequestUnauthorized) Code() int {
 }
 
 func (o *GetLoginRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetLoginRequestUnauthorized) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetLoginRequestUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *GetLoginRequestForbidden) Code() int {
 }
 
 func (o *GetLoginRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestForbidden %s", 403, payload)
 }
 
 func (o *GetLoginRequestForbidden) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestForbidden %s", 403, payload)
 }
 
 func (o *GetLoginRequestForbidden) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *GetLoginRequestNotFound) Code() int {
 }
 
 func (o *GetLoginRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestNotFound %s", 404, payload)
 }
 
 func (o *GetLoginRequestNotFound) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestNotFound %s", 404, payload)
 }
 
 func (o *GetLoginRequestNotFound) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *GetLoginRequestTooManyRequests) Code() int {
 }
 
 func (o *GetLoginRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetLoginRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logins/{login}][%d] getLoginRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetLoginRequestTooManyRequests) GetPayload() *models.Error {

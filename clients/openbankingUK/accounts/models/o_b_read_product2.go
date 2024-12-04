@@ -145,6 +145,11 @@ func (m *OBReadProduct2) contextValidateData(ctx context.Context, formats strfmt
 func (m *OBReadProduct2) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBReadProduct2) contextValidateLinks(ctx context.Context, formats strfm
 func (m *OBReadProduct2) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -260,6 +270,11 @@ func (m *OBReadProduct2Data) contextValidateProduct(ctx context.Context, formats
 	for i := 0; i < len(m.Product); i++ {
 
 		if m.Product[i] != nil {
+
+			if swag.IsZero(m.Product[i]) { // not required
+				return nil
+			}
+
 			if err := m.Product[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Product" + "." + strconv.Itoa(i))
@@ -328,7 +343,7 @@ type OBReadProduct2DataProductItems0 struct {
 
 	// Product type : Personal Current Account, Business Current Account
 	// Required: true
-	// Enum: [BusinessCurrentAccount CommercialCreditCard Other PersonalCurrentAccount SMELoan]
+	// Enum: ["BusinessCurrentAccount","CommercialCreditCard","Other","PersonalCurrentAccount","SMELoan"]
 	ProductType *string `json:"ProductType"`
 
 	// Any secondary Identification which  supports Product Identifier to uniquely identify the current account banking products.
@@ -609,6 +624,7 @@ func (m *OBReadProduct2DataProductItems0) ContextValidate(ctx context.Context, f
 func (m *OBReadProduct2DataProductItems0) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -625,6 +641,11 @@ func (m *OBReadProduct2DataProductItems0) contextValidateAccountID(ctx context.C
 func (m *OBReadProduct2DataProductItems0) contextValidateBCA(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BCA != nil {
+
+		if swag.IsZero(m.BCA) { // not required
+			return nil
+		}
+
 		if err := m.BCA.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("BCA")
@@ -641,6 +662,11 @@ func (m *OBReadProduct2DataProductItems0) contextValidateBCA(ctx context.Context
 func (m *OBReadProduct2DataProductItems0) contextValidateOtherProductType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherProductType != nil {
+
+		if swag.IsZero(m.OtherProductType) { // not required
+			return nil
+		}
+
 		if err := m.OtherProductType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType")
@@ -657,6 +683,11 @@ func (m *OBReadProduct2DataProductItems0) contextValidateOtherProductType(ctx co
 func (m *OBReadProduct2DataProductItems0) contextValidatePCA(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PCA != nil {
+
+		if swag.IsZero(m.PCA) { // not required
+			return nil
+		}
+
 		if err := m.PCA.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PCA")
@@ -961,6 +992,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) ContextValidate(ctx co
 func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateCreditInterest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditInterest != nil {
+
+		if swag.IsZero(m.CreditInterest) { // not required
+			return nil
+		}
+
 		if err := m.CreditInterest.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "CreditInterest")
@@ -977,6 +1013,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateCreditI
 func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateLoanInterest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoanInterest != nil {
+
+		if swag.IsZero(m.LoanInterest) { // not required
+			return nil
+		}
+
 		if err := m.LoanInterest.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "LoanInterest")
@@ -995,6 +1036,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateOtherFe
 	for i := 0; i < len(m.OtherFeesCharges); i++ {
 
 		if m.OtherFeesCharges[i] != nil {
+
+			if swag.IsZero(m.OtherFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "OtherFeesCharges" + "." + strconv.Itoa(i))
@@ -1013,6 +1059,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateOtherFe
 func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateOverdraft(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Overdraft != nil {
+
+		if swag.IsZero(m.Overdraft) { // not required
+			return nil
+		}
+
 		if err := m.Overdraft.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Overdraft")
@@ -1029,6 +1080,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateOverdra
 func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateProductDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ProductDetails != nil {
+
+		if swag.IsZero(m.ProductDetails) { // not required
+			return nil
+		}
+
 		if err := m.ProductDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "ProductDetails")
@@ -1045,6 +1101,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateProduct
 func (m *OBReadProduct2DataProductItems0OtherProductType) contextValidateRepayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Repayment != nil {
+
+		if swag.IsZero(m.Repayment) { // not required
+			return nil
+		}
+
 		if err := m.Repayment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment")
@@ -1153,6 +1214,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterest) contextV
 	for i := 0; i < len(m.TierBandSet); i++ {
 
 		if m.TierBandSet[i] != nil {
+
+			if swag.IsZero(m.TierBandSet[i]) { // not required
+				return nil
+			}
+
 			if err := m.TierBandSet[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "CreditInterest" + "." + "TierBandSet" + "." + strconv.Itoa(i))
@@ -1196,7 +1262,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetIte
 
 	// Describes whether accrued interest is payable only to the BCA or to another bank account
 	// Required: true
-	// Enum: [INOT INPA INSC]
+	// Enum: ["INOT","INPA","INSC"]
 	Destination *string `json:"Destination"`
 
 	// notes
@@ -1221,7 +1287,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetIte
 	// 3. Whole
 	// The same interest rate is applied irrespective of the product holder's account balance
 	// Required: true
-	// Enum: [INBA INTI INWH]
+	// Enum: ["INBA","INTI","INWH"]
 	TierBandMethod *string `json:"TierBandMethod"`
 }
 
@@ -1491,6 +1557,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0) contextValidateCalculationMethod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CalculationMethod) { // not required
+		return nil
+	}
+
 	if err := m.CalculationMethod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CalculationMethod")
@@ -1506,6 +1576,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0) contextValidateOtherCalculationMethod(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationMethod != nil {
+
+		if swag.IsZero(m.OtherCalculationMethod) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationMethod.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationMethod")
@@ -1522,6 +1597,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0) contextValidateOtherDestination(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherDestination != nil {
+
+		if swag.IsZero(m.OtherDestination) { // not required
+			return nil
+		}
+
 		if err := m.OtherDestination.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherDestination")
@@ -1540,6 +1620,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 	for i := 0; i < len(m.TierBand); i++ {
 
 		if m.TierBand[i] != nil {
+
+			if swag.IsZero(m.TierBand[i]) { // not required
+				return nil
+			}
+
 			if err := m.TierBand[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("TierBand" + "." + strconv.Itoa(i))
@@ -1586,7 +1671,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetIte
 
 	// How often is interest applied to the Product for this tier/band i.e. how often the financial institution pays accumulated interest to the customer's account.
 	// Required: true
-	// Enum: [FQAT FQDY FQHY FQMY FQOT FQQY FQSD FQWY FQYY]
+	// Enum: ["FQAT","FQDY","FQHY","FQMY","FQOT","FQQY","FQSD","FQWY","FQYY"]
 	ApplicationFrequency *string `json:"ApplicationFrequency"`
 
 	// Bank Interest for the product
@@ -1594,15 +1679,15 @@ type OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetIte
 	BankInterestRate string `json:"BankInterestRate,omitempty"`
 
 	// Interest rate types, other than AER, which financial institutions may use to describe the annual interest rate payable to the account holder's account.
-	// Enum: [INBB INFR INGR INLR INNE INOT]
+	// Enum: ["INBB","INFR","INGR","INLR","INNE","INOT"]
 	BankInterestRateType string `json:"BankInterestRateType,omitempty"`
 
 	// How often is credit interest calculated for the account.
-	// Enum: [FQAT FQDY FQHY FQMY FQOT FQQY FQSD FQWY FQYY]
+	// Enum: ["FQAT","FQDY","FQHY","FQMY","FQOT","FQQY","FQSD","FQWY","FQYY"]
 	CalculationFrequency string `json:"CalculationFrequency,omitempty"`
 
 	// Amount on which Interest applied.
-	// Enum: [INBA INTI INWH]
+	// Enum: ["INBA","INTI","INWH"]
 	DepositInterestAppliedCoverage string `json:"DepositInterestAppliedCoverage,omitempty"`
 
 	// fixed variable interest rate type
@@ -2124,6 +2209,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0) contextValidateFixedVariableInterestRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FixedVariableInterestRateType != nil {
+
 		if err := m.FixedVariableInterestRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FixedVariableInterestRateType")
@@ -2140,6 +2226,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -2156,6 +2247,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherBankInterestType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherBankInterestType != nil {
+
+		if swag.IsZero(m.OtherBankInterestType) { // not required
+			return nil
+		}
+
 		if err := m.OtherBankInterestType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherBankInterestType")
@@ -2172,6 +2268,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -2331,6 +2432,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherBankInterestType" + "." + "Code")
@@ -2346,6 +2451,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherBankInterestType" + "." + "Description")
@@ -2362,6 +2468,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeCreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherBankInterestType" + "." + "Name")
@@ -2497,6 +2604,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterest) contextVal
 	for i := 0; i < len(m.LoanInterestTierBandSet); i++ {
 
 		if m.LoanInterestTierBandSet[i] != nil {
+
+			if swag.IsZero(m.LoanInterestTierBandSet[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestTierBandSet[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "LoanInterest" + "." + "LoanInterestTierBandSet" + "." + strconv.Itoa(i))
@@ -2566,7 +2678,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTier
 	// 3. Whole
 	// The same interest rate is applied irrespective of the SME Loan balance
 	// Required: true
-	// Enum: [INBA INTI INWH]
+	// Enum: ["INBA","INTI","INWH"]
 	TierBandMethod *string `json:"TierBandMethod"`
 }
 
@@ -2821,6 +2933,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0) contextValidateCalculationMethod(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CalculationMethod != nil {
+
 		if err := m.CalculationMethod.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CalculationMethod")
@@ -2839,6 +2952,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeesCharges); i++ {
 
 		if m.LoanInterestFeesCharges[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeesCharges" + "." + strconv.Itoa(i))
@@ -2859,6 +2977,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestTierBand); i++ {
 
 		if m.LoanInterestTierBand[i] != nil {
+
+			if swag.IsZero(m.LoanInterestTierBand[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestTierBand[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestTierBand" + "." + strconv.Itoa(i))
@@ -2877,6 +3000,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0) contextValidateOtherCalculationMethod(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationMethod != nil {
+
+		if swag.IsZero(m.OtherCalculationMethod) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationMethod.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationMethod")
@@ -3022,6 +3150,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeeChargeCap); i++ {
 
 		if m.LoanInterestFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeeChargeCap" + "." + strconv.Itoa(i))
@@ -3042,6 +3175,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeeChargeDetail); i++ {
 
 		if m.LoanInterestFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -3339,6 +3477,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -3353,6 +3495,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -3366,6 +3512,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -3382,6 +3532,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -3400,6 +3551,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -3561,6 +3717,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -3576,6 +3736,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -3592,6 +3753,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -3994,6 +4156,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -4010,6 +4173,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CalculationFrequency != nil {
+
 		if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CalculationFrequency")
@@ -4025,6 +4189,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeAmount")
@@ -4039,6 +4207,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -4052,6 +4224,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -4068,6 +4244,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -4084,6 +4261,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -4100,6 +4282,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -4116,6 +4303,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -4132,6 +4324,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -4185,16 +4382,16 @@ type OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTier
 	LoanProviderInterestRate string `json:"LoanProviderInterestRate,omitempty"`
 
 	// Interest rate types, other than APR, which financial institutions may use to describe the annual interest rate payable for the SME Loan.
-	// Enum: [INBB INFR INGR INLR INNE INOT]
+	// Enum: ["INBB","INFR","INGR","INLR","INNE","INOT"]
 	LoanProviderInterestRateType string `json:"LoanProviderInterestRateType,omitempty"`
 
 	// The unit of period (days, weeks, months etc.) of the Maximum Term
-	// Enum: [PACT PDAY PHYR PMTH PQTR PWEK PYER]
+	// Enum: ["PACT","PDAY","PHYR","PMTH","PQTR","PWEK","PYER"]
 	MaxTermPeriod string `json:"MaxTermPeriod,omitempty"`
 
 	// The unit of period (days, weeks, months etc.) of the Minimum Term
 	// Required: true
-	// Enum: [PACT PDAY PHYR PMTH PQTR PWEK PYER]
+	// Enum: ["PACT","PDAY","PHYR","PMTH","PQTR","PWEK","PYER"]
 	MinTermPeriod *string `json:"MinTermPeriod"`
 
 	// notes
@@ -4646,6 +4843,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0) contextValidateFixedVariableInterestRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FixedVariableInterestRateType != nil {
+
 		if err := m.FixedVariableInterestRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FixedVariableInterestRateType")
@@ -4664,6 +4862,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeesCharges); i++ {
 
 		if m.LoanInterestFeesCharges[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeesCharges" + "." + strconv.Itoa(i))
@@ -4682,6 +4885,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0) contextValidateOtherLoanProviderInterestRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherLoanProviderInterestRateType != nil {
+
+		if swag.IsZero(m.OtherLoanProviderInterestRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherLoanProviderInterestRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherLoanProviderInterestRateType")
@@ -4827,6 +5035,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeeChargeCap); i++ {
 
 		if m.LoanInterestFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeeChargeCap" + "." + strconv.Itoa(i))
@@ -4847,6 +5060,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.LoanInterestFeeChargeDetail); i++ {
 
 		if m.LoanInterestFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.LoanInterestFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.LoanInterestFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("LoanInterestFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -5144,6 +5362,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -5158,6 +5380,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -5171,6 +5397,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -5187,6 +5417,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -5205,6 +5436,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -5366,6 +5602,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -5381,6 +5621,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -5397,6 +5638,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -5799,6 +6041,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -5815,6 +6058,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CalculationFrequency != nil {
+
 		if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CalculationFrequency")
@@ -5830,6 +6074,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeAmount")
@@ -5844,6 +6092,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -5857,6 +6109,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -5873,6 +6129,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -5889,6 +6146,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -5905,6 +6167,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -5921,6 +6188,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -5937,6 +6209,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0LoanInterestFeesChargesItems0LoanInterestFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -6096,6 +6373,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0OtherLoanProviderInterestRateType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherLoanProviderInterestRateType" + "." + "Code")
@@ -6111,6 +6392,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0OtherLoanProviderInterestRateType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherLoanProviderInterestRateType" + "." + "Description")
@@ -6127,6 +6409,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterest
 func (m *OBReadProduct2DataProductItems0OtherProductTypeLoanInterestLoanInterestTierBandSetItems0LoanInterestTierBandItems0OtherLoanProviderInterestRateType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherLoanProviderInterestRateType" + "." + "Name")
@@ -6180,7 +6463,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0 struc
 	TariffName string `json:"TariffName,omitempty"`
 
 	// TariffType which defines the fee and charges.
-	// Enum: [TTEL TTMX TTOT]
+	// Enum: ["TTEL","TTMX","TTOT"]
 	TariffType string `json:"TariffType,omitempty"`
 }
 
@@ -6380,6 +6663,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0) 
 	for i := 0; i < len(m.FeeChargeCap); i++ {
 
 		if m.FeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.FeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("FeeChargeCap" + "." + strconv.Itoa(i))
@@ -6400,6 +6688,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0) 
 	for i := 0; i < len(m.FeeChargeDetail); i++ {
 
 		if m.FeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.FeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("FeeChargeDetail" + "." + strconv.Itoa(i))
@@ -6418,6 +6711,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0) 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0) contextValidateOtherTariffType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherTariffType != nil {
+
+		if swag.IsZero(m.OtherTariffType) { // not required
+			return nil
+		}
+
 		if err := m.OtherTariffType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherTariffType")
@@ -6713,6 +7011,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -6727,6 +7029,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -6740,6 +7046,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -6756,6 +7066,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -6774,6 +7085,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -6935,6 +7251,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -6950,6 +7270,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -6966,6 +7287,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -7493,6 +7815,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -7508,6 +7831,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CalculationFrequency) { // not required
+		return nil
+	}
+
 	if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CalculationFrequency")
@@ -7521,6 +7848,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
 
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -7537,6 +7868,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeApplicableRange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeApplicableRange != nil {
+
+		if swag.IsZero(m.FeeApplicableRange) { // not required
+			return nil
+		}
+
 		if err := m.FeeApplicableRange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeApplicableRange")
@@ -7553,6 +7889,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeCategory(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeCategory != nil {
+
 		if err := m.FeeCategory.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeCategory")
@@ -7571,6 +7908,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 	for i := 0; i < len(m.FeeChargeCap); i++ {
 
 		if m.FeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.FeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.FeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("FeeChargeCap" + "." + strconv.Itoa(i))
@@ -7588,6 +7930,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -7601,6 +7947,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -7617,6 +7967,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -7633,6 +7984,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -7649,6 +8005,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -7665,6 +8026,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateOtherFeeCategoryType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeCategoryType != nil {
+
+		if swag.IsZero(m.OtherFeeCategoryType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeCategoryType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeCategoryType")
@@ -7681,6 +8047,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -7697,6 +8068,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -8111,6 +8487,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -8125,6 +8505,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -8138,6 +8522,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -8154,6 +8542,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -8172,6 +8561,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -8333,6 +8727,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -8348,6 +8746,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -8364,6 +8763,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Fe
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -8523,6 +8923,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Ot
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0OtherTariffType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherTariffType" + "." + "Code")
@@ -8538,6 +8942,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Ot
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0OtherTariffType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherTariffType" + "." + "Description")
@@ -8554,6 +8959,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0Ot
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOtherFeesChargesItems0OtherTariffType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherTariffType" + "." + "Name")
@@ -8689,6 +9095,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraft) contextValida
 	for i := 0; i < len(m.OverdraftTierBandSet); i++ {
 
 		if m.OverdraftTierBandSet[i] != nil {
+
+			if swag.IsZero(m.OverdraftTierBandSet[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftTierBandSet[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "Overdraft" + "." + "OverdraftTierBandSet" + "." + strconv.Itoa(i))
@@ -8751,7 +9162,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSe
 	OverdraftTierBand []*OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0 `json:"OverdraftTierBand"`
 
 	// An overdraft can either be 'committed' which means that the facility cannot be withdrawn without reasonable notification before it's agreed end date, or 'on demand' which means that the financial institution can demand repayment at any point in time.
-	// Enum: [OVCO OVOD OVOT]
+	// Enum: ["OVCO","OVOD","OVOT"]
 	OverdraftType string `json:"OverdraftType,omitempty"`
 
 	// The methodology of how overdraft is charged. It can be:
@@ -8759,7 +9170,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSe
 	// 'Tiered' Where different charges/rates are applied dependent on overdraft maximum and minimum balance amount tiers defined by the lending financial organisation
 	// 'Banded' Where different charges/rates are applied dependent on overdraft maximum and minimum balance amount bands defined by a government organisation.
 	// Required: true
-	// Enum: [INBA INTI INWH]
+	// Enum: ["INBA","INTI","INWH"]
 	TierBandMethod *string `json:"TierBandMethod"`
 }
 
@@ -9022,6 +9433,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeesCharges); i++ {
 
 		if m.OverdraftFeesCharges[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeesCharges" + "." + strconv.Itoa(i))
@@ -9042,6 +9458,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftTierBand); i++ {
 
 		if m.OverdraftTierBand[i] != nil {
+
+			if swag.IsZero(m.OverdraftTierBand[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftTierBand[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftTierBand" + "." + strconv.Itoa(i))
@@ -9189,6 +9610,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -9209,6 +9635,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeDetail); i++ {
 
 		if m.OverdraftFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -9506,6 +9937,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -9520,6 +9955,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -9533,6 +9972,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -9549,6 +9992,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -9567,6 +10011,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -9728,6 +10177,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -9743,6 +10196,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -9759,6 +10213,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -10221,6 +10676,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -10236,6 +10692,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CalculationFrequency) { // not required
+		return nil
+	}
+
 	if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CalculationFrequency")
@@ -10249,6 +10709,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
 
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -10264,6 +10728,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -10277,6 +10745,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -10293,6 +10765,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -10307,6 +10780,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateIncrementalBorrowingAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.IncrementalBorrowingAmount) { // not required
+		return nil
+	}
 
 	if err := m.IncrementalBorrowingAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -10323,6 +10800,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -10339,6 +10821,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -10355,6 +10842,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -10371,6 +10863,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -10389,6 +10886,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -10686,6 +11188,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -10700,6 +11206,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -10713,6 +11223,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -10729,6 +11243,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -10747,6 +11262,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -10908,6 +11428,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -10923,6 +11447,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -10939,6 +11464,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -10982,7 +11508,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSe
 	AgreementLengthMin int64 `json:"AgreementLengthMin,omitempty"`
 
 	// Specifies the period of a fixed length overdraft agreement
-	// Enum: [PACT PDAY PHYR PMTH PQTR PWEK PYER]
+	// Enum: ["PACT","PDAY","PHYR","PMTH","PQTR","PWEK","PYER"]
 	AgreementPeriod string `json:"AgreementPeriod,omitempty"`
 
 	// Indicates whether the advertised overdraft rate is guaranteed to be offered to a borrower by the bank e.g. if its part of a government scheme, or whether the rate may vary dependent on the applicants circumstances.
@@ -11005,7 +11531,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSe
 	OverdraftFeesCharges []*OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0 `json:"OverdraftFeesCharges"`
 
 	// Refers to which interest rate is applied when interests are tiered. For example, if an overdraft balance is 2k and the interest tiers are:- 0-500 0.1%, 500-1000 0.2%, 1000-10000 0.5%, then the applicable interest rate could either be 0.5% of the entire balance (since the account balance sits in the top interest tier) or (0.1%*500)+(0.2%*500)+(0.5%*1000). In the 1st situation, we say the interest is applied to the Whole of the account balance,  and in the 2nd that it is Tiered.
-	// Enum: [INBA INTI INWH]
+	// Enum: ["INBA","INTI","INWH"]
 	OverdraftInterestChargingCoverage string `json:"OverdraftInterestChargingCoverage,omitempty"`
 
 	// Maximum value of Overdraft Tier/Band
@@ -11280,6 +11806,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeesCharges); i++ {
 
 		if m.OverdraftFeesCharges[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeesCharges[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeesCharges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeesCharges" + "." + strconv.Itoa(i))
@@ -11427,6 +11958,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -11447,6 +11983,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeDetail); i++ {
 
 		if m.OverdraftFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -11744,6 +12285,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -11758,6 +12303,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -11771,6 +12320,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -11787,6 +12340,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -11805,6 +12359,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -11966,6 +12525,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -11981,6 +12544,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -11997,6 +12561,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -12459,6 +13024,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -12474,6 +13040,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CalculationFrequency) { // not required
+		return nil
+	}
+
 	if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CalculationFrequency")
@@ -12487,6 +13057,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
 
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -12502,6 +13076,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -12515,6 +13093,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -12531,6 +13113,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -12545,6 +13128,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateIncrementalBorrowingAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.IncrementalBorrowingAmount) { // not required
+		return nil
+	}
 
 	if err := m.IncrementalBorrowingAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -12561,6 +13148,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -12577,6 +13169,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -12593,6 +13190,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -12609,6 +13211,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -12627,6 +13234,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OverdraftFeeChargeCap); i++ {
 
 		if m.OverdraftFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.OverdraftFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.OverdraftFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OverdraftFeeChargeCap" + "." + strconv.Itoa(i))
@@ -12924,6 +13536,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -12938,6 +13554,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -12951,6 +13571,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -12967,6 +13591,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -12985,6 +13610,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -13146,6 +13776,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -13161,6 +13795,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -13177,6 +13812,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBa
 func (m *OBReadProduct2DataProductItems0OtherProductTypeOverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OverdraftFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -13217,7 +13853,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeProductDetails struct {
 	FeeFreeLength int64 `json:"FeeFreeLength,omitempty"`
 
 	// The unit of period (days, weeks, months etc.) of the promotional length
-	// Enum: [PACT PDAY PHYR PMTH PQTR PWEK PYER]
+	// Enum: ["PACT","PDAY","PHYR","PMTH","PQTR","PWEK","PYER"]
 	FeeFreeLengthPeriod string `json:"FeeFreeLengthPeriod,omitempty"`
 
 	// The maximum relevant charges that could accrue as defined fully in Part 7 of the CMA order
@@ -13425,6 +14061,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeProductDetails) ContextV
 func (m *OBReadProduct2DataProductItems0OtherProductTypeProductDetails) contextValidateOtherSegment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherSegment != nil {
+
+		if swag.IsZero(m.OtherSegment) { // not required
+			return nil
+		}
+
 		if err := m.OtherSegment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "ProductDetails" + "." + "OtherSegment")
@@ -13462,7 +14103,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeProductDetails) Unmarsha
 type OBReadProduct2DataProductItems0OtherProductTypeRepayment struct {
 
 	// The repayment is for paying just the interest only or both interest and capital or bullet amount or balance to date etc
-	// Enum: [RABD RABL RACI RAFC RAIO RALT USOT]
+	// Enum: ["RABD","RABL","RACI","RAFC","RAIO","RALT","USOT"]
 	AmountType string `json:"AmountType,omitempty"`
 
 	// notes
@@ -13481,14 +14122,14 @@ type OBReadProduct2DataProductItems0OtherProductTypeRepayment struct {
 	RepaymentFeeCharges *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCharges `json:"RepaymentFeeCharges,omitempty"`
 
 	// Repayment frequency
-	// Enum: [SMDA SMFL SMFO SMHY SMMO SMOT SMQU SMWE SMYE]
+	// Enum: ["SMDA","SMFL","SMFO","SMHY","SMMO","SMOT","SMQU","SMWE","SMYE"]
 	RepaymentFrequency string `json:"RepaymentFrequency,omitempty"`
 
 	// repayment holiday
 	RepaymentHoliday []*OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentHolidayItems0 `json:"RepaymentHoliday"`
 
 	// Repayment type
-	// Enum: [USBA USBU USCI USCS USER USFA USFB USFI USIO USOT USPF USRW USSL]
+	// Enum: ["USBA","USBU","USCI","USCS","USER","USFA","USFB","USFI","USIO","USOT","USPF","USRW","USSL"]
 	RepaymentType string `json:"RepaymentType,omitempty"`
 }
 
@@ -13888,6 +14529,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) ContextValida
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValidateOtherAmountType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherAmountType != nil {
+
+		if swag.IsZero(m.OtherAmountType) { // not required
+			return nil
+		}
+
 		if err := m.OtherAmountType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherAmountType")
@@ -13904,6 +14550,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValida
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValidateOtherRepaymentFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherRepaymentFrequency != nil {
+
+		if swag.IsZero(m.OtherRepaymentFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherRepaymentFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentFrequency")
@@ -13920,6 +14571,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValida
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValidateOtherRepaymentType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherRepaymentType != nil {
+
+		if swag.IsZero(m.OtherRepaymentType) { // not required
+			return nil
+		}
+
 		if err := m.OtherRepaymentType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentType")
@@ -13936,6 +14592,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValida
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValidateRepaymentFeeCharges(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RepaymentFeeCharges != nil {
+
+		if swag.IsZero(m.RepaymentFeeCharges) { // not required
+			return nil
+		}
+
 		if err := m.RepaymentFeeCharges.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "RepaymentFeeCharges")
@@ -13954,6 +14615,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepayment) contextValida
 	for i := 0; i < len(m.RepaymentHoliday); i++ {
 
 		if m.RepaymentHoliday[i] != nil {
+
+			if swag.IsZero(m.RepaymentHoliday[i]) { // not required
+				return nil
+			}
+
 			if err := m.RepaymentHoliday[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "RepaymentHoliday" + "." + strconv.Itoa(i))
@@ -14115,6 +14781,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherAmountType" + "." + "Code")
@@ -14130,6 +14800,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherAmountType" + "." + "Description")
@@ -14146,6 +14817,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherAmountType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherAmountType" + "." + "Name")
@@ -14305,6 +14977,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentF
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentFrequency) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentFrequency" + "." + "Code")
@@ -14320,6 +14996,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentF
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentFrequency) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentFrequency" + "." + "Description")
@@ -14336,6 +15013,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentF
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentFrequency) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentFrequency" + "." + "Name")
@@ -14495,6 +15173,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentT
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentType" + "." + "Code")
@@ -14510,6 +15192,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentT
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentType" + "." + "Description")
@@ -14526,6 +15209,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentT
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentOtherRepaymentType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "OtherRepaymentType" + "." + "Name")
@@ -14671,6 +15355,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 	for i := 0; i < len(m.RepaymentFeeChargeCap); i++ {
 
 		if m.RepaymentFeeChargeCap[i] != nil {
+
+			if swag.IsZero(m.RepaymentFeeChargeCap[i]) { // not required
+				return nil
+			}
+
 			if err := m.RepaymentFeeChargeCap[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "RepaymentFeeCharges" + "." + "RepaymentFeeChargeCap" + "." + strconv.Itoa(i))
@@ -14691,6 +15380,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 	for i := 0; i < len(m.RepaymentFeeChargeDetail); i++ {
 
 		if m.RepaymentFeeChargeDetail[i] != nil {
+
+			if swag.IsZero(m.RepaymentFeeChargeDetail[i]) { // not required
+				return nil
+			}
+
 			if err := m.RepaymentFeeChargeDetail[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherProductType" + "." + "Repayment" + "." + "RepaymentFeeCharges" + "." + "RepaymentFeeChargeDetail" + "." + strconv.Itoa(i))
@@ -14988,6 +15682,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0) contextValidateCappingPeriod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CappingPeriod) { // not required
+		return nil
+	}
+
 	if err := m.CappingPeriod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CappingPeriod")
@@ -15002,6 +15700,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0) contextValidateFeeCapAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeCapAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeCapAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeCapAmount")
@@ -15015,6 +15717,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0) contextValidateFeeCapOccurrence(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeCapOccurrence) { // not required
+		return nil
+	}
 
 	if err := m.FeeCapOccurrence.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -15031,6 +15737,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0) contextValidateMinMaxType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MinMaxType != nil {
+
 		if err := m.MinMaxType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MinMaxType")
@@ -15049,6 +15756,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 	for i := 0; i < len(m.OtherFeeType); i++ {
 
 		if m.OtherFeeType[i] != nil {
+
+			if swag.IsZero(m.OtherFeeType[i]) { // not required
+				return nil
+			}
+
 			if err := m.OtherFeeType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OtherFeeType" + "." + strconv.Itoa(i))
@@ -15210,6 +15922,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0OtherFeeTypeItems0) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -15225,6 +15941,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0OtherFeeTypeItems0) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -15241,6 +15958,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeCapItems0OtherFeeTypeItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -15643,6 +16361,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ApplicationFrequency != nil {
+
 		if err := m.ApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ApplicationFrequency")
@@ -15659,6 +16378,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CalculationFrequency != nil {
+
 		if err := m.CalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CalculationFrequency")
@@ -15674,6 +16394,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateFeeAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeAmount) { // not required
+		return nil
+	}
+
 	if err := m.FeeAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeAmount")
@@ -15688,6 +16412,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateFeeRate(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.FeeRate) { // not required
+		return nil
+	}
+
 	if err := m.FeeRate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("FeeRate")
@@ -15701,6 +16429,10 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 }
 
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateFeeRateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeeRateType) { // not required
+		return nil
+	}
 
 	if err := m.FeeRateType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -15717,6 +16449,7 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeType != nil {
+
 		if err := m.FeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeType")
@@ -15733,6 +16466,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateOtherApplicationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherApplicationFrequency != nil {
+
+		if swag.IsZero(m.OtherApplicationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherApplicationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherApplicationFrequency")
@@ -15749,6 +16487,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateOtherCalculationFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherCalculationFrequency != nil {
+
+		if swag.IsZero(m.OtherCalculationFrequency) { // not required
+			return nil
+		}
+
 		if err := m.OtherCalculationFrequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherCalculationFrequency")
@@ -15765,6 +16508,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateOtherFeeRateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeRateType != nil {
+
+		if swag.IsZero(m.OtherFeeRateType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeRateType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeRateType")
@@ -15781,6 +16529,11 @@ func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeCha
 func (m *OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentFeeChargesRepaymentFeeChargeDetailItems0) contextValidateOtherFeeType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtherFeeType != nil {
+
+		if swag.IsZero(m.OtherFeeType) { // not required
+			return nil
+		}
+
 		if err := m.OtherFeeType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("OtherFeeType")
@@ -15821,7 +16574,7 @@ type OBReadProduct2DataProductItems0OtherProductTypeRepaymentRepaymentHolidayIte
 	MaxHolidayLength int64 `json:"MaxHolidayLength,omitempty"`
 
 	// The unit of period (days, weeks, months etc.) of the repayment holiday
-	// Enum: [PACT PDAY PHYR PMTH PQTR PWEK PYER]
+	// Enum: ["PACT","PDAY","PHYR","PMTH","PQTR","PWEK","PYER"]
 	MaxHolidayPeriod string `json:"MaxHolidayPeriod,omitempty"`
 
 	// notes

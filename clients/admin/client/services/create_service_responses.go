@@ -6,6 +6,7 @@ package services
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreateServiceCreated) Code() int {
 }
 
 func (o *CreateServiceCreated) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceCreated %s", 201, payload)
 }
 
 func (o *CreateServiceCreated) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceCreated %s", 201, payload)
 }
 
 func (o *CreateServiceCreated) GetPayload() *models.ServiceWithAudience {
@@ -205,11 +208,13 @@ func (o *CreateServiceBadRequest) Code() int {
 }
 
 func (o *CreateServiceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest %s", 400, payload)
 }
 
 func (o *CreateServiceBadRequest) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest %s", 400, payload)
 }
 
 func (o *CreateServiceBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreateServiceUnauthorized) Code() int {
 }
 
 func (o *CreateServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized %s", 401, payload)
 }
 
 func (o *CreateServiceUnauthorized) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized %s", 401, payload)
 }
 
 func (o *CreateServiceUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreateServiceForbidden) Code() int {
 }
 
 func (o *CreateServiceForbidden) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceForbidden %s", 403, payload)
 }
 
 func (o *CreateServiceForbidden) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceForbidden %s", 403, payload)
 }
 
 func (o *CreateServiceForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreateServiceNotFound) Code() int {
 }
 
 func (o *CreateServiceNotFound) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceNotFound %s", 404, payload)
 }
 
 func (o *CreateServiceNotFound) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceNotFound %s", 404, payload)
 }
 
 func (o *CreateServiceNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreateServiceConflict) Code() int {
 }
 
 func (o *CreateServiceConflict) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceConflict %s", 409, payload)
 }
 
 func (o *CreateServiceConflict) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceConflict %s", 409, payload)
 }
 
 func (o *CreateServiceConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreateServiceUnprocessableEntity) Code() int {
 }
 
 func (o *CreateServiceUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateServiceUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateServiceUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreateServiceTooManyRequests) Code() int {
 }
 
 func (o *CreateServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateServiceTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateServiceTooManyRequests) GetPayload() *models.Error {

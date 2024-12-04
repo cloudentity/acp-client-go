@@ -456,6 +456,11 @@ func (m *OBAccount6) contextValidateAccount(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Account); i++ {
 
 		if m.Account[i] != nil {
+
+			if swag.IsZero(m.Account[i]) { // not required
+				return nil
+			}
+
 			if err := m.Account[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Account" + "." + strconv.Itoa(i))
@@ -474,6 +479,7 @@ func (m *OBAccount6) contextValidateAccount(ctx context.Context, formats strfmt.
 func (m *OBAccount6) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -490,6 +496,7 @@ func (m *OBAccount6) contextValidateAccountID(ctx context.Context, formats strfm
 func (m *OBAccount6) contextValidateAccountSubType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountSubType != nil {
+
 		if err := m.AccountSubType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountSubType")
@@ -506,6 +513,7 @@ func (m *OBAccount6) contextValidateAccountSubType(ctx context.Context, formats 
 func (m *OBAccount6) contextValidateAccountType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountType != nil {
+
 		if err := m.AccountType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountType")
@@ -522,6 +530,7 @@ func (m *OBAccount6) contextValidateAccountType(ctx context.Context, formats str
 func (m *OBAccount6) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")
@@ -537,6 +546,10 @@ func (m *OBAccount6) contextValidateCurrency(ctx context.Context, formats strfmt
 
 func (m *OBAccount6) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
 	if err := m.Description.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Description")
@@ -550,6 +563,10 @@ func (m *OBAccount6) contextValidateDescription(ctx context.Context, formats str
 }
 
 func (m *OBAccount6) contextValidateMaturityDate(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.MaturityDate) { // not required
+		return nil
+	}
 
 	if err := m.MaturityDate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -565,6 +582,10 @@ func (m *OBAccount6) contextValidateMaturityDate(ctx context.Context, formats st
 
 func (m *OBAccount6) contextValidateNickname(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Nickname) { // not required
+		return nil
+	}
+
 	if err := m.Nickname.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Nickname")
@@ -578,6 +599,10 @@ func (m *OBAccount6) contextValidateNickname(ctx context.Context, formats strfmt
 }
 
 func (m *OBAccount6) contextValidateOpeningDate(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OpeningDate) { // not required
+		return nil
+	}
 
 	if err := m.OpeningDate.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -594,6 +619,11 @@ func (m *OBAccount6) contextValidateOpeningDate(ctx context.Context, formats str
 func (m *OBAccount6) contextValidateServicer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Servicer != nil {
+
+		if swag.IsZero(m.Servicer) { // not required
+			return nil
+		}
+
 		if err := m.Servicer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Servicer")
@@ -609,6 +639,10 @@ func (m *OBAccount6) contextValidateServicer(ctx context.Context, formats strfmt
 
 func (m *OBAccount6) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Status")
@@ -623,6 +657,10 @@ func (m *OBAccount6) contextValidateStatus(ctx context.Context, formats strfmt.R
 
 func (m *OBAccount6) contextValidateStatusUpdateDateTime(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.StatusUpdateDateTime) { // not required
+		return nil
+	}
+
 	if err := m.StatusUpdateDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("StatusUpdateDateTime")
@@ -636,6 +674,10 @@ func (m *OBAccount6) contextValidateStatusUpdateDateTime(ctx context.Context, fo
 }
 
 func (m *OBAccount6) contextValidateSwitchStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SwitchStatus) { // not required
+		return nil
+	}
 
 	if err := m.SwitchStatus.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -824,6 +866,7 @@ func (m *OBAccount6AccountItems0) ContextValidate(ctx context.Context, formats s
 func (m *OBAccount6AccountItems0) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Identification")
@@ -838,6 +881,10 @@ func (m *OBAccount6AccountItems0) contextValidateIdentification(ctx context.Cont
 }
 
 func (m *OBAccount6AccountItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
 
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -854,6 +901,7 @@ func (m *OBAccount6AccountItems0) contextValidateName(ctx context.Context, forma
 func (m *OBAccount6AccountItems0) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")
@@ -868,6 +916,10 @@ func (m *OBAccount6AccountItems0) contextValidateSchemeName(ctx context.Context,
 }
 
 func (m *OBAccount6AccountItems0) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

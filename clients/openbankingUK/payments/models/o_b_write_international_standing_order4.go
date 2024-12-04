@@ -115,6 +115,7 @@ func (m *OBWriteInternationalStandingOrder4) contextValidateData(ctx context.Con
 func (m *OBWriteInternationalStandingOrder4) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")
@@ -691,6 +692,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiation) ContextValidate(ctx c
 
 func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "ChargeBearer")
@@ -704,6 +709,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateCharge
 }
 
 func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Creditor) { // not required
+		return nil
+	}
 
 	if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -733,6 +742,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateCredit
 
 func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CreditorAgent) { // not required
+		return nil
+	}
+
 	if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent")
@@ -746,6 +759,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateCredit
 }
 
 func (m *OBWriteInternationalStandingOrder4DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
 
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -875,6 +892,11 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditor) ContextValida
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "Creditor" + "." + "PostalAddress")
@@ -1064,6 +1086,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) Contex
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -1080,6 +1103,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) contex
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -1094,6 +1118,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) contex
 }
 
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1265,6 +1293,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) ContextV
 
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "Name")
@@ -1280,6 +1312,11 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) contextV
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAgent" + "." + "PostalAddress")
@@ -1294,6 +1331,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) contextV
 }
 
 func (m *OBWriteInternationalStandingOrder4DataInitiationCreditorAgent) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1480,6 +1521,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) ContextV
 func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1496,6 +1538,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) contextV
 func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1510,6 +1553,10 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) contextV
 }
 
 func (m *OBWriteInternationalStandingOrder4DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1643,6 +1690,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationInstructedAmount) Conte
 func (m *OBWriteInternationalStandingOrder4DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Amount")
@@ -1659,6 +1707,7 @@ func (m *OBWriteInternationalStandingOrder4DataInitiationInstructedAmount) conte
 func (m *OBWriteInternationalStandingOrder4DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Currency")

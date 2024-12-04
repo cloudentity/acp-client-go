@@ -143,6 +143,11 @@ func (m *OBReadParty3) contextValidateData(ctx context.Context, formats strfmt.R
 func (m *OBReadParty3) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBReadParty3) contextValidateLinks(ctx context.Context, formats strfmt.
 func (m *OBReadParty3) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -258,6 +268,11 @@ func (m *OBReadParty3Data) contextValidateParty(ctx context.Context, formats str
 	for i := 0; i < len(m.Party); i++ {
 
 		if m.Party[i] != nil {
+
+			if swag.IsZero(m.Party[i]) { // not required
+				return nil
+			}
+
 			if err := m.Party[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Party" + "." + strconv.Itoa(i))

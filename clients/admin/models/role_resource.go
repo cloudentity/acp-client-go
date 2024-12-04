@@ -23,15 +23,11 @@ type RoleResource struct {
 	// identity pool id
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
-	// role
-	// Enum: [admin business_admin auditor manager user_manager member]
-	Role string `json:"role,omitempty" yaml:"role,omitempty"`
-
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: [tenant workspace identity_pool]
+	// Enum: ["tenant","workspace","identity_pool"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// workspace id
@@ -42,10 +38,6 @@ type RoleResource struct {
 func (m *RoleResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateRole(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -53,60 +45,6 @@ func (m *RoleResource) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-var roleResourceTypeRolePropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["admin","business_admin","auditor","manager","user_manager","member"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		roleResourceTypeRolePropEnum = append(roleResourceTypeRolePropEnum, v)
-	}
-}
-
-const (
-
-	// RoleResourceRoleAdmin captures enum value "admin"
-	RoleResourceRoleAdmin string = "admin"
-
-	// RoleResourceRoleBusinessAdmin captures enum value "business_admin"
-	RoleResourceRoleBusinessAdmin string = "business_admin"
-
-	// RoleResourceRoleAuditor captures enum value "auditor"
-	RoleResourceRoleAuditor string = "auditor"
-
-	// RoleResourceRoleManager captures enum value "manager"
-	RoleResourceRoleManager string = "manager"
-
-	// RoleResourceRoleUserManager captures enum value "user_manager"
-	RoleResourceRoleUserManager string = "user_manager"
-
-	// RoleResourceRoleMember captures enum value "member"
-	RoleResourceRoleMember string = "member"
-)
-
-// prop value enum
-func (m *RoleResource) validateRoleEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, roleResourceTypeRolePropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *RoleResource) validateRole(formats strfmt.Registry) error {
-	if swag.IsZero(m.Role) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateRoleEnum("role", "body", m.Role); err != nil {
-		return err
-	}
-
 	return nil
 }
 

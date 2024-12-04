@@ -6,6 +6,7 @@ package services
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *ImportSpecificationFromTextOK) Code() int {
 }
 
 func (o *ImportSpecificationFromTextOK) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK %s", 200, payload)
 }
 
 func (o *ImportSpecificationFromTextOK) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK %s", 200, payload)
 }
 
 func (o *ImportSpecificationFromTextOK) GetPayload() *models.ImportServiceConfigurationResult {
@@ -205,11 +208,13 @@ func (o *ImportSpecificationFromTextBadRequest) Code() int {
 }
 
 func (o *ImportSpecificationFromTextBadRequest) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest %s", 400, payload)
 }
 
 func (o *ImportSpecificationFromTextBadRequest) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest %s", 400, payload)
 }
 
 func (o *ImportSpecificationFromTextBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *ImportSpecificationFromTextUnauthorized) Code() int {
 }
 
 func (o *ImportSpecificationFromTextUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSpecificationFromTextUnauthorized) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSpecificationFromTextUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *ImportSpecificationFromTextForbidden) Code() int {
 }
 
 func (o *ImportSpecificationFromTextForbidden) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden %s", 403, payload)
 }
 
 func (o *ImportSpecificationFromTextForbidden) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden %s", 403, payload)
 }
 
 func (o *ImportSpecificationFromTextForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *ImportSpecificationFromTextNotFound) Code() int {
 }
 
 func (o *ImportSpecificationFromTextNotFound) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound %s", 404, payload)
 }
 
 func (o *ImportSpecificationFromTextNotFound) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound %s", 404, payload)
 }
 
 func (o *ImportSpecificationFromTextNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *ImportSpecificationFromTextConflict) Code() int {
 }
 
 func (o *ImportSpecificationFromTextConflict) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict %s", 409, payload)
 }
 
 func (o *ImportSpecificationFromTextConflict) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict %s", 409, payload)
 }
 
 func (o *ImportSpecificationFromTextConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *ImportSpecificationFromTextUnprocessableEntity) Code() int {
 }
 
 func (o *ImportSpecificationFromTextUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSpecificationFromTextUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSpecificationFromTextUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *ImportSpecificationFromTextTooManyRequests) Code() int {
 }
 
 func (o *ImportSpecificationFromTextTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSpecificationFromTextTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSpecificationFromTextTooManyRequests) GetPayload() *models.Error {

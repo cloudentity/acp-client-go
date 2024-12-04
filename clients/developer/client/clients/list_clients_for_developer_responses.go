@@ -6,6 +6,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListClientsForDeveloperOK) Code() int {
 }
 
 func (o *ListClientsForDeveloperOK) Error() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK %s", 200, payload)
 }
 
 func (o *ListClientsForDeveloperOK) String() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK %s", 200, payload)
 }
 
 func (o *ListClientsForDeveloperOK) GetPayload() *models.ClientsForDeveloper {
@@ -171,11 +174,13 @@ func (o *ListClientsForDeveloperUnauthorized) Code() int {
 }
 
 func (o *ListClientsForDeveloperUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized %s", 401, payload)
 }
 
 func (o *ListClientsForDeveloperUnauthorized) String() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized %s", 401, payload)
 }
 
 func (o *ListClientsForDeveloperUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *ListClientsForDeveloperForbidden) Code() int {
 }
 
 func (o *ListClientsForDeveloperForbidden) Error() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden %s", 403, payload)
 }
 
 func (o *ListClientsForDeveloperForbidden) String() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden %s", 403, payload)
 }
 
 func (o *ListClientsForDeveloperForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *ListClientsForDeveloperNotFound) Code() int {
 }
 
 func (o *ListClientsForDeveloperNotFound) Error() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound %s", 404, payload)
 }
 
 func (o *ListClientsForDeveloperNotFound) String() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound %s", 404, payload)
 }
 
 func (o *ListClientsForDeveloperNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *ListClientsForDeveloperTooManyRequests) Code() int {
 }
 
 func (o *ListClientsForDeveloperTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests %s", 429, payload)
 }
 
 func (o *ListClientsForDeveloperTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests %s", 429, payload)
 }
 
 func (o *ListClientsForDeveloperTooManyRequests) GetPayload() *models.Error {

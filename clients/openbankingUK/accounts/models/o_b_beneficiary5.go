@@ -216,6 +216,10 @@ func (m *OBBeneficiary5) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *OBBeneficiary5) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AccountID) { // not required
+		return nil
+	}
+
 	if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("AccountId")
@@ -230,6 +234,10 @@ func (m *OBBeneficiary5) contextValidateAccountID(ctx context.Context, formats s
 
 func (m *OBBeneficiary5) contextValidateBeneficiaryID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.BeneficiaryID) { // not required
+		return nil
+	}
+
 	if err := m.BeneficiaryID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("BeneficiaryId")
@@ -243,6 +251,10 @@ func (m *OBBeneficiary5) contextValidateBeneficiaryID(ctx context.Context, forma
 }
 
 func (m *OBBeneficiary5) contextValidateBeneficiaryType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BeneficiaryType) { // not required
+		return nil
+	}
 
 	if err := m.BeneficiaryType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -259,6 +271,11 @@ func (m *OBBeneficiary5) contextValidateBeneficiaryType(ctx context.Context, for
 func (m *OBBeneficiary5) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
+		if swag.IsZero(m.CreditorAccount) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -275,6 +292,11 @@ func (m *OBBeneficiary5) contextValidateCreditorAccount(ctx context.Context, for
 func (m *OBBeneficiary5) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -289,6 +311,10 @@ func (m *OBBeneficiary5) contextValidateCreditorAgent(ctx context.Context, forma
 }
 
 func (m *OBBeneficiary5) contextValidateReference(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Reference) { // not required
+		return nil
+	}
 
 	if err := m.Reference.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

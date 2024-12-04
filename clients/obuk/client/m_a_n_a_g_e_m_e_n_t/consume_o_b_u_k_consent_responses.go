@@ -6,6 +6,7 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *ConsumeOBUKConsentOK) Code() int {
 }
 
 func (o *ConsumeOBUKConsentOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentOK %s", 200, payload)
 }
 
 func (o *ConsumeOBUKConsentOK) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentOK %s", 200, payload)
 }
 
 func (o *ConsumeOBUKConsentOK) GetPayload() *models.UKConsent {
@@ -177,11 +180,13 @@ func (o *ConsumeOBUKConsentBadRequest) Code() int {
 }
 
 func (o *ConsumeOBUKConsentBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentBadRequest %s", 400, payload)
 }
 
 func (o *ConsumeOBUKConsentBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentBadRequest %s", 400, payload)
 }
 
 func (o *ConsumeOBUKConsentBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *ConsumeOBUKConsentUnauthorized) Code() int {
 }
 
 func (o *ConsumeOBUKConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentUnauthorized %s", 401, payload)
 }
 
 func (o *ConsumeOBUKConsentUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentUnauthorized %s", 401, payload)
 }
 
 func (o *ConsumeOBUKConsentUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *ConsumeOBUKConsentForbidden) Code() int {
 }
 
 func (o *ConsumeOBUKConsentForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentForbidden %s", 403, payload)
 }
 
 func (o *ConsumeOBUKConsentForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentForbidden %s", 403, payload)
 }
 
 func (o *ConsumeOBUKConsentForbidden) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *ConsumeOBUKConsentNotFound) Code() int {
 }
 
 func (o *ConsumeOBUKConsentNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentNotFound %s", 404, payload)
 }
 
 func (o *ConsumeOBUKConsentNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentNotFound %s", 404, payload)
 }
 
 func (o *ConsumeOBUKConsentNotFound) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *ConsumeOBUKConsentTooManyRequests) Code() int {
 }
 
 func (o *ConsumeOBUKConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *ConsumeOBUKConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOBUKConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *ConsumeOBUKConsentTooManyRequests) GetPayload() *models.Error {

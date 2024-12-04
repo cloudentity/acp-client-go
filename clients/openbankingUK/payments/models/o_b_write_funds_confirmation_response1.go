@@ -143,6 +143,11 @@ func (m *OBWriteFundsConfirmationResponse1) contextValidateData(ctx context.Cont
 func (m *OBWriteFundsConfirmationResponse1) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBWriteFundsConfirmationResponse1) contextValidateLinks(ctx context.Con
 func (m *OBWriteFundsConfirmationResponse1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -248,6 +258,10 @@ func (m *OBWriteFundsConfirmationResponse1Data) ContextValidate(ctx context.Cont
 }
 
 func (m *OBWriteFundsConfirmationResponse1Data) contextValidateFundsAvailableResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FundsAvailableResult) { // not required
+		return nil
+	}
 
 	if err := m.FundsAvailableResult.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

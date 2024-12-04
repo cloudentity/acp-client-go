@@ -116,6 +116,7 @@ func (m *OBActiveOrHistoricCurrencyAndAmount1) ContextValidate(ctx context.Conte
 func (m *OBActiveOrHistoricCurrencyAndAmount1) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -132,6 +133,7 @@ func (m *OBActiveOrHistoricCurrencyAndAmount1) contextValidateAmount(ctx context
 func (m *OBActiveOrHistoricCurrencyAndAmount1) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

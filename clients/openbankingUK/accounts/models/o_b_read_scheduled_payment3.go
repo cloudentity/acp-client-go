@@ -143,6 +143,11 @@ func (m *OBReadScheduledPayment3) contextValidateData(ctx context.Context, forma
 func (m *OBReadScheduledPayment3) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBReadScheduledPayment3) contextValidateLinks(ctx context.Context, form
 func (m *OBReadScheduledPayment3) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -258,6 +268,11 @@ func (m *OBReadScheduledPayment3Data) contextValidateScheduledPayment(ctx contex
 	for i := 0; i < len(m.ScheduledPayment); i++ {
 
 		if m.ScheduledPayment[i] != nil {
+
+			if swag.IsZero(m.ScheduledPayment[i]) { // not required
+				return nil
+			}
+
 			if err := m.ScheduledPayment[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "ScheduledPayment" + "." + strconv.Itoa(i))

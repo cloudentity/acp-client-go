@@ -45,6 +45,8 @@ definitions:
         description: Block response modes
         type: boolean
         x-nullable: false
+      cookies_configuration:
+        $ref: '#/definitions/CookiesConfiguration'
       disable_dcr_client_certificate_bound_access_tokens:
         description: |-
           Disable certificate-bound access tokens for new DCR clients
@@ -177,34 +179,6 @@ definitions:
     - client_id
     - client_secret
     type: object
-  ArculixSettings:
-    properties:
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      faye_url:
-        description: URL to the Faye server.
-        example: https://faye.acceptto.net
-        type: string
-        x-nullable: false
-      token_endpoint:
-        description: URL to the OIDC server's token endpoint.
-        example: https://oidc.acceptto.net/ce-poc/oauth2/v1/token
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Arculix server.
-        example: https://m2m.acceptto.net
-        type: string
-        x-nullable: false
-    required:
-    - token_endpoint
-    - url
-    - faye_url
-    - dbfp_url
-    type: object
   Attr:
     properties:
       Space:
@@ -216,33 +190,24 @@ definitions:
     title: An Attr represents a key-value attribute within an XML element.
     type: object
   Attribute:
-    description: Authentication context attribute
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1
     properties:
-      description:
-        description: String represented display name of an attribute
+      FriendlyName:
         type: string
         x-nullable: false
-      labels:
-        description: Array of Strings represents attribute labels
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
         items:
-          format: label
-          type: string
+          $ref: '#/definitions/AttributeValue'
         type: array
         x-nullable: false
-      name:
-        description: String represented variable name of an attribute
-        type: string
-        x-nullable: false
-      type:
-        description: |-
-          The data type of an attribute
-
-          It stores information what kind of data is used as the value of the attribute.
-
-          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
-        format: type
-        type: string
-        x-nullable: false
+    title: Attribute represents the SAML element Attribute.
     type: object
   AttributeAuthorityDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -350,7 +315,7 @@ definitions:
     type: object
   Attributes:
     items:
-      $ref: '#/definitions/Attribute'
+      $ref: '#/definitions/AuthenticationContextAttribute'
     type: array
   Auth0Credentials:
     description: Auth0 IDP specific credentials
@@ -398,11 +363,40 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthenticationContextAttribute:
+    description: Authentication context attribute
+    properties:
+      description:
+        description: String represented display name of an attribute
+        type: string
+        x-nullable: false
+      labels:
+        description: Array of Strings represents attribute labels
+        items:
+          format: label
+          type: string
+        type: array
+        x-nullable: false
+      name:
+        description: String represented variable name of an attribute
+        type: string
+        x-nullable: false
+      type:
+        description: |-
+          The data type of an attribute
+
+          It stores information what kind of data is used as the value of the attribute.
+
+          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
+        format: type
+        type: string
+        x-nullable: false
+    type: object
   AuthenticationContextSettings:
     properties:
       attributes:
         items:
-          $ref: '#/definitions/Attribute'
+          $ref: '#/definitions/AuthenticationContextAttribute'
         type: array
         x-nullable: false
     type: object
@@ -413,7 +407,6 @@ definitions:
       - password
       - otp
       - webauthn
-      - arculix
       type: string
     type: array
   AuthnAuthorityDescriptor:
@@ -942,6 +935,11 @@ definitions:
         x-nullable: false
     title: ContactPerson represents the SAML element ContactPerson.
     type: object
+  CookiesConfiguration:
+    properties:
+      same_site:
+        $ref: '#/definitions/SameSite'
+    type: object
   CustomCredentials:
     description: Custom IDP specific credentials
     type: object
@@ -1234,6 +1232,9 @@ definitions:
         type: object
         x-nullable: false
       error:
+        type: string
+        x-nullable: false
+      error_code:
         type: string
         x-nullable: false
       status_code:
@@ -2090,29 +2091,6 @@ definitions:
       party:
         $ref: '#/definitions/FDXParty'
     type: object
-  License:
-    properties:
-      expiration_date:
-        description: License expiration date
-        example: "2023-03-01T09:02:27.127932Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      license_type:
-        description: Type of license
-        enum:
-        - trial
-        - enterprise
-        example: trial
-        type: string
-        x-nullable: false
-      start_time:
-        description: License start date
-        example: "2023-03-01T09:02:27.127932Z"
-        format: date-time
-        type: string
-        x-nullable: false
-    type: object
   LocalizedName:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.2.4
@@ -2143,19 +2121,13 @@ definitions:
         $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
   MFASettings:
     properties:
-      arculix:
-        $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -2250,7 +2222,7 @@ definitions:
     description: |-
       A Name represents an XML name (Local) annotated
       with a name space identifier (Space).
-      In tokens returned by Decoder.Token, the Space identifier
+      In tokens returned by [Decoder.Token], the Space identifier
       is given as a canonical URL, not the short prefix used
       in the document being parsed.
     properties:
@@ -2490,7 +2462,11 @@ definitions:
         $ref: '#/definitions/OtpConfig'
       challenge:
         $ref: '#/definitions/OtpConfig'
+      enroll_webauthn:
+        $ref: '#/definitions/OtpConfig'
       reset_password:
+        $ref: '#/definitions/OtpConfig'
+      reset_totp:
         $ref: '#/definitions/OtpConfig'
       verify_address:
         $ref: '#/definitions/OtpConfig'
@@ -2797,57 +2773,6 @@ definitions:
   Rfc7396PatchOperation:
     additionalProperties:
       type: object
-    type: object
-  RiskEngineAuth:
-    properties:
-      api_key:
-        description: The Risk Engine API key.
-        type: string
-        x-nullable: false
-    required:
-    - api_key
-    type: object
-  RiskEngineSettings:
-    properties:
-      dbfp_gps_timeout:
-        description: Timeout for the GPS.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_timeout:
-        description: Timeout for the DBFP script.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      tenant_id:
-        description: Risk Engine TenantID
-        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
-        type: string
-        x-nullable: false
-      timeout:
-        description: Risk Engine timeout
-        example: 200ms
-        format: duration
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Risk Engine server
-        example: https://cyber-inference.mm-dev.acceptto.com/
-        type: string
-        x-nullable: false
-    required:
-    - url
-    - timeout
-    - dbfp_url
-    - dbfp_timeout
-    - dbfp_gps_timeout
     type: object
   RiskLOA:
     description: Risk engine level of assurance
@@ -3192,6 +3117,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  SameSite:
+    type: string
   ScopeClaimFormat:
     type: string
   ScopePrivacyInformation:
@@ -4196,6 +4123,15 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
+        x-nullable: false
       description:
         description: Description of the client application.
         type: string
@@ -4888,8 +4824,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -5025,7 +4959,6 @@ definitions:
         - password
         - otp
         - webauthn
-        - arculix
         example: password
         type: string
         x-nullable: false
@@ -5040,7 +4973,6 @@ definitions:
         - password
         - otp
         - webauthn
-        - arculix
         example: password
         type: string
         x-nullable: false
@@ -5197,6 +5129,22 @@ definitions:
         $ref: '#/definitions/AdvancedConfiguration'
       authentication_context_settings:
         $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -5824,8 +5772,6 @@ definitions:
         $ref: '#/definitions/TreeFeatures'
       jwks:
         $ref: '#/definitions/ServerJWKs'
-      license:
-        $ref: '#/definitions/License'
       metadata:
         $ref: '#/definitions/TenantMetadata'
       mfa_methods:
@@ -6046,7 +5992,18 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Hub API
+  description: |-
+    Cloudentity Hub API
+
+    The POST APIs support idempotency for safely retrying requests without accidentally performing the same operation twice.
+
+    To use idempotent requests:
+
+    1. Generate a unique idempotency key (32-255 characters long).
+    2. Include the key in the X-Idempotency-Key header of your POST request.
+    3. Retry failed requests with the same key within 1 minute.
+
+    Responses for replayed requests will include the X-Idempotent-Replayed: true header.
   title: Cloudentity API
   version: latest
 paths:

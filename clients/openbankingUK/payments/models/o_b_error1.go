@@ -16,7 +16,7 @@ import (
 
 // OBError1 o b error1
 //
-// Min Properties: 1
+// MinProperties: 1
 //
 // swagger:model OBError1
 type OBError1 struct {

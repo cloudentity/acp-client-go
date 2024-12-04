@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DynamicClientRegistrationOpenbankingUKCreated) Code() int {
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKCreated) Error() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKCreated %s", 201, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKCreated) String() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKCreated %s", 201, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKCreated) GetPayload() *models.OpenbankingUKDynamicClientRegistrationResponse {
@@ -171,11 +174,13 @@ func (o *DynamicClientRegistrationOpenbankingUKBadRequest) Code() int {
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKBadRequest) Error() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKBadRequest) String() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKBadRequest) GetPayload() *models.RFC6749Error {
@@ -239,11 +244,13 @@ func (o *DynamicClientRegistrationOpenbankingUKUnauthorized) Code() int {
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKUnauthorized) String() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKUnauthorized) GetPayload() *models.RFC6749Error {
@@ -307,11 +314,13 @@ func (o *DynamicClientRegistrationOpenbankingUKForbidden) Code() int {
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKForbidden) Error() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKForbidden) String() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKForbidden) GetPayload() *models.RFC6749Error {
@@ -375,11 +384,13 @@ func (o *DynamicClientRegistrationOpenbankingUKNotFound) Code() int {
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKNotFound) Error() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKNotFound) String() string {
-	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /openbankinguk/dcr/v3.2/register][%d] dynamicClientRegistrationOpenbankingUKNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationOpenbankingUKNotFound) GetPayload() *models.GenericError {

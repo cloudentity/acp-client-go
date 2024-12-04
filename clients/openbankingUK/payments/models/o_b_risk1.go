@@ -35,7 +35,7 @@ type OBRisk1 struct {
 	MerchantCustomerIdentification string `json:"MerchantCustomerIdentification,omitempty"`
 
 	// Specifies the payment context
-	// Enum: [BillPayment EcommerceGoods EcommerceServices Other PartyToParty]
+	// Enum: ["BillPayment","EcommerceGoods","EcommerceServices","Other","PartyToParty"]
 	PaymentContextCode string `json:"PaymentContextCode,omitempty"`
 }
 
@@ -180,6 +180,10 @@ func (m *OBRisk1) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 }
 
 func (m *OBRisk1) contextValidateDeliveryAddress(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DeliveryAddress) { // not required
+		return nil
+	}
 
 	if err := m.DeliveryAddress.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -443,6 +447,10 @@ func (m *OBRisk1DeliveryAddress) ContextValidate(ctx context.Context, formats st
 
 func (m *OBRisk1DeliveryAddress) contextValidateBuildingNumber(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.BuildingNumber) { // not required
+		return nil
+	}
+
 	if err := m.BuildingNumber.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("DeliveryAddress" + "." + "BuildingNumber")
@@ -456,6 +464,10 @@ func (m *OBRisk1DeliveryAddress) contextValidateBuildingNumber(ctx context.Conte
 }
 
 func (m *OBRisk1DeliveryAddress) contextValidateCountrySubDivision(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CountrySubDivision) { // not required
+		return nil
+	}
 
 	if err := m.CountrySubDivision.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -471,6 +483,10 @@ func (m *OBRisk1DeliveryAddress) contextValidateCountrySubDivision(ctx context.C
 
 func (m *OBRisk1DeliveryAddress) contextValidatePostCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.PostCode) { // not required
+		return nil
+	}
+
 	if err := m.PostCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("DeliveryAddress" + "." + "PostCode")
@@ -484,6 +500,10 @@ func (m *OBRisk1DeliveryAddress) contextValidatePostCode(ctx context.Context, fo
 }
 
 func (m *OBRisk1DeliveryAddress) contextValidateStreetName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StreetName) { // not required
+		return nil
+	}
 
 	if err := m.StreetName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -500,6 +520,7 @@ func (m *OBRisk1DeliveryAddress) contextValidateStreetName(ctx context.Context, 
 func (m *OBRisk1DeliveryAddress) contextValidateTownName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TownName != nil {
+
 		if err := m.TownName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DeliveryAddress" + "." + "TownName")

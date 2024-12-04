@@ -6,6 +6,7 @@ package brute_force_limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *SetBruteForceLimitCreated) Code() int {
 }
 
 func (o *SetBruteForceLimitCreated) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitCreated %s", 201, payload)
 }
 
 func (o *SetBruteForceLimitCreated) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitCreated %s", 201, payload)
 }
 
 func (o *SetBruteForceLimitCreated) GetPayload() *models.BruteForceLimit {
@@ -205,11 +208,13 @@ func (o *SetBruteForceLimitBadRequest) Code() int {
 }
 
 func (o *SetBruteForceLimitBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitBadRequest %s", 400, payload)
 }
 
 func (o *SetBruteForceLimitBadRequest) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitBadRequest %s", 400, payload)
 }
 
 func (o *SetBruteForceLimitBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *SetBruteForceLimitUnauthorized) Code() int {
 }
 
 func (o *SetBruteForceLimitUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnauthorized %s", 401, payload)
 }
 
 func (o *SetBruteForceLimitUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnauthorized %s", 401, payload)
 }
 
 func (o *SetBruteForceLimitUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *SetBruteForceLimitForbidden) Code() int {
 }
 
 func (o *SetBruteForceLimitForbidden) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitForbidden %s", 403, payload)
 }
 
 func (o *SetBruteForceLimitForbidden) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitForbidden %s", 403, payload)
 }
 
 func (o *SetBruteForceLimitForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *SetBruteForceLimitNotFound) Code() int {
 }
 
 func (o *SetBruteForceLimitNotFound) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitNotFound %s", 404, payload)
 }
 
 func (o *SetBruteForceLimitNotFound) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitNotFound %s", 404, payload)
 }
 
 func (o *SetBruteForceLimitNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *SetBruteForceLimitConflict) Code() int {
 }
 
 func (o *SetBruteForceLimitConflict) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitConflict %s", 409, payload)
 }
 
 func (o *SetBruteForceLimitConflict) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitConflict %s", 409, payload)
 }
 
 func (o *SetBruteForceLimitConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *SetBruteForceLimitUnprocessableEntity) Code() int {
 }
 
 func (o *SetBruteForceLimitUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetBruteForceLimitUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetBruteForceLimitUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *SetBruteForceLimitTooManyRequests) Code() int {
 }
 
 func (o *SetBruteForceLimitTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *SetBruteForceLimitTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *SetBruteForceLimitTooManyRequests) GetPayload() *models.Error {

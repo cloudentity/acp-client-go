@@ -6,6 +6,7 @@ package account_access
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -74,7 +75,7 @@ func (o *GetAccountAccessConsentsConsentIDReader) ReadResponse(response runtime.
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /account-access-consents/{ConsentId}] GetAccountAccessConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -128,11 +129,13 @@ func (o *GetAccountAccessConsentsConsentIDOK) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDOK) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDOK) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDOK) GetPayload() *models.OBReadConsentResponse1 {
@@ -208,11 +211,13 @@ func (o *GetAccountAccessConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -286,11 +291,11 @@ func (o *GetAccountAccessConsentsConsentIDUnauthorized) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetAccountAccessConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetAccountAccessConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -355,11 +360,13 @@ func (o *GetAccountAccessConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -433,11 +440,11 @@ func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -500,11 +507,11 @@ func (o *GetAccountAccessConsentsConsentIDNotAcceptable) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -571,11 +578,11 @@ func (o *GetAccountAccessConsentsConsentIDTooManyRequests) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -651,11 +658,13 @@ func (o *GetAccountAccessConsentsConsentIDInternalServerError) Code() int {
 }
 
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

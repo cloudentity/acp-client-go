@@ -6,6 +6,7 @@ package scopes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteScopeNoContent) Code() int {
 }
 
 func (o *DeleteScopeNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent ", 204)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent", 204)
 }
 
 func (o *DeleteScopeNoContent) String() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent ", 204)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent", 204)
 }
 
 func (o *DeleteScopeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteScopeUnauthorized) Code() int {
 }
 
 func (o *DeleteScopeUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteScopeUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteScopeUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteScopeForbidden) Code() int {
 }
 
 func (o *DeleteScopeForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden %s", 403, payload)
 }
 
 func (o *DeleteScopeForbidden) String() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden %s", 403, payload)
 }
 
 func (o *DeleteScopeForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteScopeNotFound) Code() int {
 }
 
 func (o *DeleteScopeNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound %s", 404, payload)
 }
 
 func (o *DeleteScopeNotFound) String() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound %s", 404, payload)
 }
 
 func (o *DeleteScopeNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteScopeTooManyRequests) Code() int {
 }
 
 func (o *DeleteScopeTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteScopeTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteScopeTooManyRequests) GetPayload() *models.Error {

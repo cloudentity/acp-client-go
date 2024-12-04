@@ -6,6 +6,7 @@ package services
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetServiceOK) Code() int {
 }
 
 func (o *GetServiceOK) Error() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK %s", 200, payload)
 }
 
 func (o *GetServiceOK) String() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK %s", 200, payload)
 }
 
 func (o *GetServiceOK) GetPayload() *models.ServiceWithScopesResponse {
@@ -187,11 +190,13 @@ func (o *GetServiceUnauthorized) Code() int {
 }
 
 func (o *GetServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized %s", 401, payload)
 }
 
 func (o *GetServiceUnauthorized) String() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized %s", 401, payload)
 }
 
 func (o *GetServiceUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetServiceForbidden) Code() int {
 }
 
 func (o *GetServiceForbidden) Error() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden %s", 403, payload)
 }
 
 func (o *GetServiceForbidden) String() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden %s", 403, payload)
 }
 
 func (o *GetServiceForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetServiceNotFound) Code() int {
 }
 
 func (o *GetServiceNotFound) Error() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound %s", 404, payload)
 }
 
 func (o *GetServiceNotFound) String() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound %s", 404, payload)
 }
 
 func (o *GetServiceNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetServiceTooManyRequests) Code() int {
 }
 
 func (o *GetServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetServiceTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetServiceTooManyRequests) GetPayload() *models.Error {

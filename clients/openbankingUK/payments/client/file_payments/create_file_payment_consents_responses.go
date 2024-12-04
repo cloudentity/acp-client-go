@@ -6,6 +6,7 @@ package file_payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,7 +87,7 @@ func (o *CreateFilePaymentConsentsReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /file-payment-consents] CreateFilePaymentConsents", response, response.Code())
 	}
 }
 
@@ -145,11 +146,13 @@ func (o *CreateFilePaymentConsentsCreated) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateFilePaymentConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateFilePaymentConsentsCreated) GetPayload() *models.OBWriteFileConsentResponse4 {
@@ -237,11 +240,13 @@ func (o *CreateFilePaymentConsentsBadRequest) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateFilePaymentConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateFilePaymentConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -322,11 +327,11 @@ func (o *CreateFilePaymentConsentsUnauthorized) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized", 401)
 }
 
 func (o *CreateFilePaymentConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized", 401)
 }
 
 func (o *CreateFilePaymentConsentsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -396,11 +401,13 @@ func (o *CreateFilePaymentConsentsForbidden) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateFilePaymentConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateFilePaymentConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -481,11 +488,11 @@ func (o *CreateFilePaymentConsentsNotFound) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound ", 404)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound", 404)
 }
 
 func (o *CreateFilePaymentConsentsNotFound) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound ", 404)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound", 404)
 }
 
 func (o *CreateFilePaymentConsentsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -548,11 +555,11 @@ func (o *CreateFilePaymentConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateFilePaymentConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateFilePaymentConsentsMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -615,11 +622,11 @@ func (o *CreateFilePaymentConsentsNotAcceptable) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable", 406)
 }
 
 func (o *CreateFilePaymentConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable", 406)
 }
 
 func (o *CreateFilePaymentConsentsNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -682,11 +689,11 @@ func (o *CreateFilePaymentConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateFilePaymentConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateFilePaymentConsentsUnsupportedMediaType) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -753,11 +760,11 @@ func (o *CreateFilePaymentConsentsTooManyRequests) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests", 429)
 }
 
 func (o *CreateFilePaymentConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests", 429)
 }
 
 func (o *CreateFilePaymentConsentsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -838,11 +845,13 @@ func (o *CreateFilePaymentConsentsInternalServerError) Code() int {
 }
 
 func (o *CreateFilePaymentConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateFilePaymentConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateFilePaymentConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {

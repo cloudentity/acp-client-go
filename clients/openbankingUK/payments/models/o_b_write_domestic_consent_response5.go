@@ -177,6 +177,11 @@ func (m *OBWriteDomesticConsentResponse5) contextValidateData(ctx context.Contex
 func (m *OBWriteDomesticConsentResponse5) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -193,6 +198,11 @@ func (m *OBWriteDomesticConsentResponse5) contextValidateLinks(ctx context.Conte
 func (m *OBWriteDomesticConsentResponse5) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -209,6 +219,7 @@ func (m *OBWriteDomesticConsentResponse5) contextValidateMeta(ctx context.Contex
 func (m *OBWriteDomesticConsentResponse5) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")
@@ -290,7 +301,7 @@ type OBWriteDomesticConsentResponse5Data struct {
 	Initiation OBWriteDomesticConsentResponse5DataInitiation `json:"Initiation"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: [No Yes]
+	// Enum: ["No","Yes"]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
@@ -298,7 +309,7 @@ type OBWriteDomesticConsentResponse5Data struct {
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingAuthorisation Consumed Rejected]
+	// Enum: ["Authorised","AwaitingAuthorisation","Consumed","Rejected"]
 	Status string `json:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -666,6 +677,10 @@ func (m *OBWriteDomesticConsentResponse5Data) ContextValidate(ctx context.Contex
 
 func (m *OBWriteDomesticConsentResponse5Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Authorisation) { // not required
+		return nil
+	}
+
 	if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Authorisation")
@@ -683,6 +698,11 @@ func (m *OBWriteDomesticConsentResponse5Data) contextValidateCharges(ctx context
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Charges" + "." + strconv.Itoa(i))
@@ -701,6 +721,11 @@ func (m *OBWriteDomesticConsentResponse5Data) contextValidateCharges(ctx context
 func (m *OBWriteDomesticConsentResponse5Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Debtor")
@@ -729,6 +754,10 @@ func (m *OBWriteDomesticConsentResponse5Data) contextValidateInitiation(ctx cont
 }
 
 func (m *OBWriteDomesticConsentResponse5Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SCASupportData) { // not required
+		return nil
+	}
 
 	if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -767,7 +796,7 @@ type OBWriteDomesticConsentResponse5DataAuthorisation struct {
 
 	// Type of authorisation flow requested.
 	// Required: true
-	// Enum: [Any Single]
+	// Enum: ["Any","Single"]
 	AuthorisationType string `json:"AuthorisationType"`
 
 	// Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -1006,6 +1035,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) ContextValidate(ctx c
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -1022,6 +1052,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateAmount
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeBearer != nil {
+
 		if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeBearer")
@@ -1038,6 +1069,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateCharge
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")
@@ -1338,6 +1370,11 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorA
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorPostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorPostalAddress != nil {
+
+		if swag.IsZero(m.CreditorPostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.CreditorPostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorPostalAddress")
@@ -1352,6 +1389,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorP
 }
 
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
 
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1381,6 +1422,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateInstructe
 
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
+
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "LocalInstrument")
@@ -1394,6 +1439,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateLocalInst
 }
 
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RemittanceInformation) { // not required
+		return nil
+	}
 
 	if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1583,6 +1632,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) ContextVa
 func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "Identification")
@@ -1599,6 +1649,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) contextVa
 func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "CreditorAccount" + "." + "SchemeName")
@@ -1613,6 +1664,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) contextVa
 }
 
 func (m *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1799,6 +1854,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) ContextVali
 func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1815,6 +1871,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) contextVali
 func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1829,6 +1886,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) contextVali
 }
 
 func (m *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1962,6 +2023,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) ContextV
 func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Amount")
@@ -1978,6 +2040,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextV
 func (m *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "InstructedAmount" + "." + "Currency")
@@ -2108,7 +2171,7 @@ type OBWriteDomesticConsentResponse5DataSCASupportData struct {
 
 	// Specifies a character string with a maximum length of 40 characters.
 	// Usage: This field indicates whether the PSU was subject to SCA performed by the TPP
-	// Enum: [CA SCA]
+	// Enum: ["CA","SCA"]
 	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty"`
 
 	// Specifies a character string with a maximum length of 140 characters.
@@ -2118,7 +2181,7 @@ type OBWriteDomesticConsentResponse5DataSCASupportData struct {
 	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty"`
 
 	// This field allows a PISP to request specific SCA Exemption for a Payment Initiation
-	// Enum: [BillPayment ContactlessTravel EcommerceGoods EcommerceServices Kiosk Parking PartyToParty]
+	// Enum: ["BillPayment","ContactlessTravel","EcommerceGoods","EcommerceServices","Kiosk","Parking","PartyToParty"]
 	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty"`
 }
 

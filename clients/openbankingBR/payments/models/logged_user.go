@@ -77,6 +77,7 @@ func (m *LoggedUser) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *LoggedUser) contextValidateDocument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Document != nil {
+
 		if err := m.Document.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("document")

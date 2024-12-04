@@ -38,7 +38,7 @@ type OBWriteInternationalScheduledConsentResponse6DataExchangeRateInformation st
 
 	// Specifies the type used to complete the currency exchange.
 	// Required: true
-	// Enum: [Actual Agreed Indicative]
+	// Enum: ["Actual","Agreed","Indicative"]
 	RateType string `json:"RateType" yaml:"RateType"`
 
 	// Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.

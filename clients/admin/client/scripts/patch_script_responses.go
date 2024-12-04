@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *PatchScriptOK) Code() int {
 }
 
 func (o *PatchScriptOK) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptOK %s", 200, payload)
 }
 
 func (o *PatchScriptOK) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptOK %s", 200, payload)
 }
 
 func (o *PatchScriptOK) GetPayload() *models.Script {
@@ -193,11 +196,13 @@ func (o *PatchScriptBadRequest) Code() int {
 }
 
 func (o *PatchScriptBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptBadRequest %s", 400, payload)
 }
 
 func (o *PatchScriptBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptBadRequest %s", 400, payload)
 }
 
 func (o *PatchScriptBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *PatchScriptUnauthorized) Code() int {
 }
 
 func (o *PatchScriptUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptUnauthorized %s", 401, payload)
 }
 
 func (o *PatchScriptUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptUnauthorized %s", 401, payload)
 }
 
 func (o *PatchScriptUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *PatchScriptForbidden) Code() int {
 }
 
 func (o *PatchScriptForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptForbidden %s", 403, payload)
 }
 
 func (o *PatchScriptForbidden) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptForbidden %s", 403, payload)
 }
 
 func (o *PatchScriptForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *PatchScriptNotFound) Code() int {
 }
 
 func (o *PatchScriptNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptNotFound %s", 404, payload)
 }
 
 func (o *PatchScriptNotFound) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptNotFound %s", 404, payload)
 }
 
 func (o *PatchScriptNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *PatchScriptTooManyRequests) Code() int {
 }
 
 func (o *PatchScriptTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchScriptTooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /servers/{wid}/scripts/{script}][%d] patchScriptTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchScriptTooManyRequests) GetPayload() *models.Error {

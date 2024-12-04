@@ -24,7 +24,7 @@ type Rfc6902PatchOperation struct {
 	// the actual operation to be performed against the target (current) configuration.
 	// For a detailed description of available operations,
 	// see the [Operations #4 section of the RFC6902 specification](https://datatracker.ietf.org/doc/html/rfc6902#section-4).
-	// Enum: [add remove replace move copy test]
+	// Enum: ["add","remove","replace","move","copy","test"]
 	Op string `json:"op,omitempty" yaml:"op,omitempty"`
 
 	// String containing a JSON-Pointer value ([RFC6901](https://datatracker.ietf.org/doc/html/rfc6901))

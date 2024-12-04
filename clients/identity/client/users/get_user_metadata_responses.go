@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetUserMetadataOK) Code() int {
 }
 
 func (o *GetUserMetadataOK) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataOK %s", 200, payload)
 }
 
 func (o *GetUserMetadataOK) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataOK %s", 200, payload)
 }
 
 func (o *GetUserMetadataOK) GetPayload() *models.UserMetadataWithSchema {
@@ -193,11 +196,13 @@ func (o *GetUserMetadataBadRequest) Code() int {
 }
 
 func (o *GetUserMetadataBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataBadRequest %s", 400, payload)
 }
 
 func (o *GetUserMetadataBadRequest) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataBadRequest %s", 400, payload)
 }
 
 func (o *GetUserMetadataBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetUserMetadataUnauthorized) Code() int {
 }
 
 func (o *GetUserMetadataUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserMetadataUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserMetadataUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetUserMetadataForbidden) Code() int {
 }
 
 func (o *GetUserMetadataForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataForbidden %s", 403, payload)
 }
 
 func (o *GetUserMetadataForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataForbidden %s", 403, payload)
 }
 
 func (o *GetUserMetadataForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetUserMetadataNotFound) Code() int {
 }
 
 func (o *GetUserMetadataNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataNotFound %s", 404, payload)
 }
 
 func (o *GetUserMetadataNotFound) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataNotFound %s", 404, payload)
 }
 
 func (o *GetUserMetadataNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetUserMetadataTooManyRequests) Code() int {
 }
 
 func (o *GetUserMetadataTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataTooManyRequests %s", 429, payload)
 }
 
 func (o *GetUserMetadataTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}/metadata/{metadataType}][%d] getUserMetadataTooManyRequests %s", 429, payload)
 }
 
 func (o *GetUserMetadataTooManyRequests) GetPayload() *models.Error {

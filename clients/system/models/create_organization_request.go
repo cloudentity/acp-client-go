@@ -7,16 +7,22 @@ package models
 
 import (
 	"context"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // CreateOrganizationRequest create organization request
 //
 // swagger:model CreateOrganizationRequest
 type CreateOrganizationRequest struct {
+
+	// allowed authentication mechanisms
+	AuthenticationMechanisms []string `json:"authentication_mechanisms" yaml:"authentication_mechanisms"`
 
 	// Your organization's label color in a HEX format.
 	// Example: #007FFF
@@ -56,6 +62,10 @@ type CreateOrganizationRequest struct {
 func (m *CreateOrganizationRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthenticationMechanisms(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
@@ -63,6 +73,42 @@ func (m *CreateOrganizationRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var createOrganizationRequestAuthenticationMechanismsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		createOrganizationRequestAuthenticationMechanismsItemsEnum = append(createOrganizationRequestAuthenticationMechanismsItemsEnum, v)
+	}
+}
+
+func (m *CreateOrganizationRequest) validateAuthenticationMechanismsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, createOrganizationRequestAuthenticationMechanismsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *CreateOrganizationRequest) validateAuthenticationMechanisms(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationMechanisms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthenticationMechanisms); i++ {
+
+		// value enum
+		if err := m.validateAuthenticationMechanismsItemsEnum("authentication_mechanisms"+"."+strconv.Itoa(i), "body", m.AuthenticationMechanisms[i]); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 

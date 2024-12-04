@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *UserinfoOK) Code() int {
 }
 
 func (o *UserinfoOK) Error() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK %s", 200, payload)
 }
 
 func (o *UserinfoOK) String() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK %s", 200, payload)
 }
 
 func (o *UserinfoOK) GetPayload() *models.UserinfoResponse {
@@ -165,11 +168,13 @@ func (o *UserinfoUnauthorized) Code() int {
 }
 
 func (o *UserinfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized %s", 401, payload)
 }
 
 func (o *UserinfoUnauthorized) String() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized %s", 401, payload)
 }
 
 func (o *UserinfoUnauthorized) GetPayload() *models.GenericError {
@@ -233,11 +238,13 @@ func (o *UserinfoNotFound) Code() int {
 }
 
 func (o *UserinfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound %s", 404, payload)
 }
 
 func (o *UserinfoNotFound) String() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound %s", 404, payload)
 }
 
 func (o *UserinfoNotFound) GetPayload() *models.GenericError {
@@ -301,11 +308,13 @@ func (o *UserinfoTooManyRequests) Code() int {
 }
 
 func (o *UserinfoTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests %s", 429, payload)
 }
 
 func (o *UserinfoTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests %s", 429, payload)
 }
 
 func (o *UserinfoTooManyRequests) GetPayload() *models.GenericError {

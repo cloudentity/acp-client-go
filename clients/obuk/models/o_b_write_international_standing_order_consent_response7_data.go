@@ -56,11 +56,11 @@ type OBWriteInternationalStandingOrderConsentResponse7Data struct {
 
 	// Specifies the Open Banking service request types.
 	// Required: true
-	// Enum: [Create]
+	// Enum: ["Create"]
 	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: [No Yes]
+	// Enum: ["No","Yes"]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
@@ -68,7 +68,7 @@ type OBWriteInternationalStandingOrderConsentResponse7Data struct {
 
 	// Specifies the status of resource in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingAuthorisation Consumed Rejected]
+	// Enum: ["Authorised","AwaitingAuthorisation","Consumed","Rejected"]
 	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.

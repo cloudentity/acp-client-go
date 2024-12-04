@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateTenantCreated) Code() int {
 }
 
 func (o *CreateTenantCreated) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated %s", 201, payload)
 }
 
 func (o *CreateTenantCreated) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated %s", 201, payload)
 }
 
 func (o *CreateTenantCreated) GetPayload() *models.TenantCreated {
@@ -183,11 +186,13 @@ func (o *CreateTenantBadRequest) Code() int {
 }
 
 func (o *CreateTenantBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest %s", 400, payload)
 }
 
 func (o *CreateTenantBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest %s", 400, payload)
 }
 
 func (o *CreateTenantBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateTenantUnauthorized) Code() int {
 }
 
 func (o *CreateTenantUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTenantUnauthorized) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTenantUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateTenantForbidden) Code() int {
 }
 
 func (o *CreateTenantForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden %s", 403, payload)
 }
 
 func (o *CreateTenantForbidden) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden %s", 403, payload)
 }
 
 func (o *CreateTenantForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateTenantConflict) Code() int {
 }
 
 func (o *CreateTenantConflict) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict %s", 409, payload)
 }
 
 func (o *CreateTenantConflict) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict %s", 409, payload)
 }
 
 func (o *CreateTenantConflict) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateTenantUnprocessableEntity) Code() int {
 }
 
 func (o *CreateTenantUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateTenantUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateTenantUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateTenantTooManyRequests) Code() int {
 }
 
 func (o *CreateTenantTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateTenantTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateTenantTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package domestic_payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *CreateDomesticPaymentConsentsReader) ReadResponse(response runtime.Clie
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /domestic-payment-consents] CreateDomesticPaymentConsents", response, response.Code())
 	}
 }
 
@@ -139,11 +140,13 @@ func (o *CreateDomesticPaymentConsentsCreated) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsCreated) GetPayload() *models.OBWriteDomesticConsentResponse5 {
@@ -231,11 +234,13 @@ func (o *CreateDomesticPaymentConsentsBadRequest) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -316,11 +321,11 @@ func (o *CreateDomesticPaymentConsentsUnauthorized) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnauthorized", 401)
 }
 
 func (o *CreateDomesticPaymentConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnauthorized", 401)
 }
 
 func (o *CreateDomesticPaymentConsentsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -390,11 +395,13 @@ func (o *CreateDomesticPaymentConsentsForbidden) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -475,11 +482,11 @@ func (o *CreateDomesticPaymentConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateDomesticPaymentConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateDomesticPaymentConsentsMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -542,11 +549,11 @@ func (o *CreateDomesticPaymentConsentsNotAcceptable) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsNotAcceptable", 406)
 }
 
 func (o *CreateDomesticPaymentConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsNotAcceptable", 406)
 }
 
 func (o *CreateDomesticPaymentConsentsNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -609,11 +616,11 @@ func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -680,11 +687,11 @@ func (o *CreateDomesticPaymentConsentsTooManyRequests) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsTooManyRequests", 429)
 }
 
 func (o *CreateDomesticPaymentConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsTooManyRequests", 429)
 }
 
 func (o *CreateDomesticPaymentConsentsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -765,11 +772,13 @@ func (o *CreateDomesticPaymentConsentsInternalServerError) Code() int {
 }
 
 func (o *CreateDomesticPaymentConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticPaymentConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {
