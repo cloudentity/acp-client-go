@@ -24,7 +24,7 @@ type Role struct {
 	Resource *RoleResource `json:"resource,omitempty" yaml:"resource,omitempty"`
 
 	// role
-	// Enum: [admin business_admin auditor manager user_manager member]
+	// Enum: ["admin","business_admin","auditor","manager","user_manager","member"]
 	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// subject

@@ -10,6 +10,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/cloudentity/acp-client-go/clients/system/client/audit_events"
 	"github.com/cloudentity/acp-client-go/clients/system/client/clients"
 	"github.com/cloudentity/acp-client-go/clients/system/client/consents"
 	"github.com/cloudentity/acp-client-go/clients/system/client/gateways"
@@ -17,8 +18,10 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/system/client/organizations"
 	"github.com/cloudentity/acp-client-go/clients/system/client/post_authn"
 	"github.com/cloudentity/acp-client-go/clients/system/client/scopes"
+	"github.com/cloudentity/acp-client-go/clients/system/client/servers"
 	"github.com/cloudentity/acp-client-go/clients/system/client/system"
 	"github.com/cloudentity/acp-client-go/clients/system/client/tenants"
+	"github.com/cloudentity/acp-client-go/clients/system/client/tokens"
 )
 
 // Default acp HTTP client.
@@ -63,6 +66,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 
 	cli := new(Acp)
 	cli.Transport = transport
+	cli.AuditEvents = audit_events.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
 	cli.Consents = consents.New(transport, formats)
 	cli.Gateways = gateways.New(transport, formats)
@@ -70,8 +74,10 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Organizations = organizations.New(transport, formats)
 	cli.PostAuthn = post_authn.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
+	cli.Servers = servers.New(transport, formats)
 	cli.System = system.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
+	cli.Tokens = tokens.New(transport, formats)
 	return cli
 }
 
@@ -116,6 +122,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Acp is a client for acp
 type Acp struct {
+	AuditEvents audit_events.ClientService
+
 	Clients clients.ClientService
 
 	Consents consents.ClientService
@@ -130,9 +138,13 @@ type Acp struct {
 
 	Scopes scopes.ClientService
 
+	Servers servers.ClientService
+
 	System system.ClientService
 
 	Tenants tenants.ClientService
+
+	Tokens tokens.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -140,6 +152,7 @@ type Acp struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AuditEvents.SetTransport(transport)
 	c.Clients.SetTransport(transport)
 	c.Consents.SetTransport(transport)
 	c.Gateways.SetTransport(transport)
@@ -147,6 +160,8 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Organizations.SetTransport(transport)
 	c.PostAuthn.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
+	c.Servers.SetTransport(transport)
 	c.System.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
+	c.Tokens.SetTransport(transport)
 }

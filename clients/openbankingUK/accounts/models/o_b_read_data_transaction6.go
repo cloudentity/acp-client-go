@@ -82,6 +82,11 @@ func (m *OBReadDataTransaction6) contextValidateTransaction(ctx context.Context,
 	for i := 0; i < len(m.Transaction); i++ {
 
 		if m.Transaction[i] != nil {
+
+			if swag.IsZero(m.Transaction[i]) { // not required
+				return nil
+			}
+
 			if err := m.Transaction[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Transaction" + "." + strconv.Itoa(i))

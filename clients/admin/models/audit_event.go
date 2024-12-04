@@ -22,7 +22,7 @@ type AuditEvent struct {
 
 	// Name of an action that was performed for a given event subject.
 	// Example: created
-	// Enum: [authenticated challenged authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
+	// Enum: ["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed","reset_requested","reset_completed","add_requested","add_completed"]
 	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// Additional audit event context.
@@ -33,7 +33,7 @@ type AuditEvent struct {
 
 	// Resource or entity that is a subject of a given audit event.
 	// Example: client
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
+	// Enum: ["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect","totp","webauthn"]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// metadata
@@ -87,7 +87,7 @@ var auditEventTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed","reset_requested","reset_completed","add_requested","add_completed"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -165,6 +165,18 @@ const (
 
 	// AuditEventActionExecuted captures enum value "executed"
 	AuditEventActionExecuted string = "executed"
+
+	// AuditEventActionResetRequested captures enum value "reset_requested"
+	AuditEventActionResetRequested string = "reset_requested"
+
+	// AuditEventActionResetCompleted captures enum value "reset_completed"
+	AuditEventActionResetCompleted string = "reset_completed"
+
+	// AuditEventActionAddRequested captures enum value "add_requested"
+	AuditEventActionAddRequested string = "add_requested"
+
+	// AuditEventActionAddCompleted captures enum value "add_completed"
+	AuditEventActionAddCompleted string = "add_completed"
 )
 
 // prop value enum
@@ -192,7 +204,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect","totp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -259,9 +271,6 @@ const (
 	// AuditEventEventSubjectUser captures enum value "user"
 	AuditEventEventSubjectUser string = "user"
 
-	// AuditEventEventSubjectSelfuser captures enum value "selfuser"
-	AuditEventEventSubjectSelfuser string = "selfuser"
-
 	// AuditEventEventSubjectSchema captures enum value "schema"
 	AuditEventEventSubjectSchema string = "schema"
 
@@ -303,6 +312,15 @@ const (
 
 	// AuditEventEventSubjectOrganization captures enum value "organization"
 	AuditEventEventSubjectOrganization string = "organization"
+
+	// AuditEventEventSubjectOtpInspect captures enum value "otp_inspect"
+	AuditEventEventSubjectOtpInspect string = "otp_inspect"
+
+	// AuditEventEventSubjectTotp captures enum value "totp"
+	AuditEventEventSubjectTotp string = "totp"
+
+	// AuditEventEventSubjectWebauthn captures enum value "webauthn"
+	AuditEventEventSubjectWebauthn string = "webauthn"
 )
 
 // prop value enum

@@ -142,6 +142,10 @@ func (m *OBOtherCodeType12) ContextValidate(ctx context.Context, formats strfmt.
 
 func (m *OBOtherCodeType12) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -157,6 +161,7 @@ func (m *OBOtherCodeType12) contextValidateCode(ctx context.Context, formats str
 func (m *OBOtherCodeType12) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -173,6 +178,7 @@ func (m *OBOtherCodeType12) contextValidateDescription(ctx context.Context, form
 func (m *OBOtherCodeType12) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")

@@ -146,6 +146,7 @@ func (m *Identification) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *Identification) contextValidatePersonType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PersonType != nil {
+
 		if err := m.PersonType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("personType")

@@ -143,6 +143,11 @@ func (m *OBReadBeneficiary5) contextValidateData(ctx context.Context, formats st
 func (m *OBReadBeneficiary5) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBReadBeneficiary5) contextValidateLinks(ctx context.Context, formats s
 func (m *OBReadBeneficiary5) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -258,6 +268,11 @@ func (m *OBReadBeneficiary5Data) contextValidateBeneficiary(ctx context.Context,
 	for i := 0; i < len(m.Beneficiary); i++ {
 
 		if m.Beneficiary[i] != nil {
+
+			if swag.IsZero(m.Beneficiary[i]) { // not required
+				return nil
+			}
+
 			if err := m.Beneficiary[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Beneficiary" + "." + strconv.Itoa(i))

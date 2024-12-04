@@ -70,6 +70,10 @@ func (m *OBPartyRelationships1) ContextValidate(ctx context.Context, formats str
 
 func (m *OBPartyRelationships1) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Account) { // not required
+		return nil
+	}
+
 	if err := m.Account.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Account")

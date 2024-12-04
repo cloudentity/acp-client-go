@@ -20,35 +20,42 @@ import (
 // swagger:model License
 type License struct {
 
-	// License expiration date
+	// capabilities
+	Capabilities Capabilities `json:"capabilities,omitempty" yaml:"capabilities,omitempty"`
+
+	// License end date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	ExpirationDate strfmt.DateTime `json:"expiration_date,omitempty" yaml:"expiration_date,omitempty"`
-
-	// Type of license
-	// Example: trial
-	// Enum: [trial enterprise]
-	LicenseType string `json:"license_type,omitempty" yaml:"license_type,omitempty"`
+	EndDate strfmt.DateTime `json:"end_date,omitempty" yaml:"end_date,omitempty"`
 
 	// License start date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	StartTime strfmt.DateTime `json:"start_time,omitempty" yaml:"start_time,omitempty"`
+	StartDate strfmt.DateTime `json:"start_date,omitempty" yaml:"start_date,omitempty"`
+
+	// Type of license
+	// Example: trial
+	// Enum: ["trial","enterprise"]
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this license
 func (m *License) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateExpirationDate(formats); err != nil {
+	if err := m.validateCapabilities(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLicenseType(formats); err != nil {
+	if err := m.validateEndDate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateStartTime(formats); err != nil {
+	if err := m.validateStartDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,19 +65,50 @@ func (m *License) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *License) validateExpirationDate(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExpirationDate) { // not required
+func (m *License) validateCapabilities(formats strfmt.Registry) error {
+	if swag.IsZero(m.Capabilities) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("expiration_date", "body", "date-time", m.ExpirationDate.String(), formats); err != nil {
+	if m.Capabilities != nil {
+		if err := m.Capabilities.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("capabilities")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("capabilities")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *License) validateEndDate(formats strfmt.Registry) error {
+	if swag.IsZero(m.EndDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("end_date", "body", "date-time", m.EndDate.String(), formats); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var licenseTypeLicenseTypePropEnum []interface{}
+func (m *License) validateStartDate(formats strfmt.Registry) error {
+	if swag.IsZero(m.StartDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("start_date", "body", "date-time", m.StartDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var licenseTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -78,54 +116,69 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		licenseTypeLicenseTypePropEnum = append(licenseTypeLicenseTypePropEnum, v)
+		licenseTypeTypePropEnum = append(licenseTypeTypePropEnum, v)
 	}
 }
 
 const (
 
-	// LicenseLicenseTypeTrial captures enum value "trial"
-	LicenseLicenseTypeTrial string = "trial"
+	// LicenseTypeTrial captures enum value "trial"
+	LicenseTypeTrial string = "trial"
 
-	// LicenseLicenseTypeEnterprise captures enum value "enterprise"
-	LicenseLicenseTypeEnterprise string = "enterprise"
+	// LicenseTypeEnterprise captures enum value "enterprise"
+	LicenseTypeEnterprise string = "enterprise"
 )
 
 // prop value enum
-func (m *License) validateLicenseTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, licenseTypeLicenseTypePropEnum, true); err != nil {
+func (m *License) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, licenseTypeTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *License) validateLicenseType(formats strfmt.Registry) error {
-	if swag.IsZero(m.LicenseType) { // not required
+func (m *License) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
 
 	// value enum
-	if err := m.validateLicenseTypeEnum("license_type", "body", m.LicenseType); err != nil {
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *License) validateStartTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.StartTime) { // not required
+// ContextValidate validate this license based on the context it is used
+func (m *License) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCapabilities(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *License) contextValidateCapabilities(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Capabilities) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("start_time", "body", "date-time", m.StartTime.String(), formats); err != nil {
+	if err := m.Capabilities.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("capabilities")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("capabilities")
+		}
 		return err
 	}
 
-	return nil
-}
-
-// ContextValidate validates this license based on context it is used
-func (m *License) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -155,6 +155,7 @@ func (m *OBTransactionCashBalance) contextValidateAmount(ctx context.Context, fo
 func (m *OBTransactionCashBalance) contextValidateCreditDebitIndicator(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditDebitIndicator != nil {
+
 		if err := m.CreditDebitIndicator.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditDebitIndicator")
@@ -171,6 +172,7 @@ func (m *OBTransactionCashBalance) contextValidateCreditDebitIndicator(ctx conte
 func (m *OBTransactionCashBalance) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")
@@ -303,6 +305,7 @@ func (m *OBTransactionCashBalanceAmount) ContextValidate(ctx context.Context, fo
 func (m *OBTransactionCashBalanceAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Amount")
@@ -319,6 +322,7 @@ func (m *OBTransactionCashBalanceAmount) contextValidateAmount(ctx context.Conte
 func (m *OBTransactionCashBalanceAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Currency")

@@ -526,6 +526,7 @@ func (m *OBStandingOrder6) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *OBStandingOrder6) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -542,6 +543,11 @@ func (m *OBStandingOrder6) contextValidateAccountID(ctx context.Context, formats
 func (m *OBStandingOrder6) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
+		if swag.IsZero(m.CreditorAccount) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -558,6 +564,11 @@ func (m *OBStandingOrder6) contextValidateCreditorAccount(ctx context.Context, f
 func (m *OBStandingOrder6) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -574,6 +585,11 @@ func (m *OBStandingOrder6) contextValidateCreditorAgent(ctx context.Context, for
 func (m *OBStandingOrder6) contextValidateFinalPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FinalPaymentAmount != nil {
+
+		if swag.IsZero(m.FinalPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.FinalPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FinalPaymentAmount")
@@ -588,6 +604,10 @@ func (m *OBStandingOrder6) contextValidateFinalPaymentAmount(ctx context.Context
 }
 
 func (m *OBStandingOrder6) contextValidateFinalPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FinalPaymentDateTime) { // not required
+		return nil
+	}
 
 	if err := m.FinalPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -604,6 +624,11 @@ func (m *OBStandingOrder6) contextValidateFinalPaymentDateTime(ctx context.Conte
 func (m *OBStandingOrder6) contextValidateFirstPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FirstPaymentAmount != nil {
+
+		if swag.IsZero(m.FirstPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.FirstPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FirstPaymentAmount")
@@ -618,6 +643,10 @@ func (m *OBStandingOrder6) contextValidateFirstPaymentAmount(ctx context.Context
 }
 
 func (m *OBStandingOrder6) contextValidateFirstPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FirstPaymentDateTime) { // not required
+		return nil
+	}
 
 	if err := m.FirstPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -634,6 +663,7 @@ func (m *OBStandingOrder6) contextValidateFirstPaymentDateTime(ctx context.Conte
 func (m *OBStandingOrder6) contextValidateFrequency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Frequency != nil {
+
 		if err := m.Frequency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Frequency")
@@ -650,6 +680,11 @@ func (m *OBStandingOrder6) contextValidateFrequency(ctx context.Context, formats
 func (m *OBStandingOrder6) contextValidateLastPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LastPaymentAmount != nil {
+
+		if swag.IsZero(m.LastPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.LastPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("LastPaymentAmount")
@@ -664,6 +699,10 @@ func (m *OBStandingOrder6) contextValidateLastPaymentAmount(ctx context.Context,
 }
 
 func (m *OBStandingOrder6) contextValidateLastPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LastPaymentDateTime) { // not required
+		return nil
+	}
 
 	if err := m.LastPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -680,6 +719,11 @@ func (m *OBStandingOrder6) contextValidateLastPaymentDateTime(ctx context.Contex
 func (m *OBStandingOrder6) contextValidateNextPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextPaymentAmount != nil {
+
+		if swag.IsZero(m.NextPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.NextPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("NextPaymentAmount")
@@ -695,6 +739,10 @@ func (m *OBStandingOrder6) contextValidateNextPaymentAmount(ctx context.Context,
 
 func (m *OBStandingOrder6) contextValidateNextPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.NextPaymentDateTime) { // not required
+		return nil
+	}
+
 	if err := m.NextPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("NextPaymentDateTime")
@@ -708,6 +756,10 @@ func (m *OBStandingOrder6) contextValidateNextPaymentDateTime(ctx context.Contex
 }
 
 func (m *OBStandingOrder6) contextValidateNumberOfPayments(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.NumberOfPayments) { // not required
+		return nil
+	}
 
 	if err := m.NumberOfPayments.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -723,6 +775,10 @@ func (m *OBStandingOrder6) contextValidateNumberOfPayments(ctx context.Context, 
 
 func (m *OBStandingOrder6) contextValidateReference(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Reference) { // not required
+		return nil
+	}
+
 	if err := m.Reference.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Reference")
@@ -737,6 +793,10 @@ func (m *OBStandingOrder6) contextValidateReference(ctx context.Context, formats
 
 func (m *OBStandingOrder6) contextValidateStandingOrderID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.StandingOrderID) { // not required
+		return nil
+	}
+
 	if err := m.StandingOrderID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("StandingOrderId")
@@ -750,6 +810,10 @@ func (m *OBStandingOrder6) contextValidateStandingOrderID(ctx context.Context, f
 }
 
 func (m *OBStandingOrder6) contextValidateStandingOrderStatusCode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.StandingOrderStatusCode) { // not required
+		return nil
+	}
 
 	if err := m.StandingOrderStatusCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

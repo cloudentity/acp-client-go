@@ -6,6 +6,7 @@ package features
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *SetTenantFeatureNoContent) Code() int {
 }
 
 func (o *SetTenantFeatureNoContent) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent ", 204)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent", 204)
 }
 
 func (o *SetTenantFeatureNoContent) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent ", 204)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent", 204)
 }
 
 func (o *SetTenantFeatureNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *SetTenantFeatureBadRequest) Code() int {
 }
 
 func (o *SetTenantFeatureBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest %s", 400, payload)
 }
 
 func (o *SetTenantFeatureBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest %s", 400, payload)
 }
 
 func (o *SetTenantFeatureBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *SetTenantFeatureUnauthorized) Code() int {
 }
 
 func (o *SetTenantFeatureUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized %s", 401, payload)
 }
 
 func (o *SetTenantFeatureUnauthorized) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized %s", 401, payload)
 }
 
 func (o *SetTenantFeatureUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *SetTenantFeatureForbidden) Code() int {
 }
 
 func (o *SetTenantFeatureForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden %s", 403, payload)
 }
 
 func (o *SetTenantFeatureForbidden) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden %s", 403, payload)
 }
 
 func (o *SetTenantFeatureForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *SetTenantFeatureNotFound) Code() int {
 }
 
 func (o *SetTenantFeatureNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound %s", 404, payload)
 }
 
 func (o *SetTenantFeatureNotFound) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound %s", 404, payload)
 }
 
 func (o *SetTenantFeatureNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *SetTenantFeatureUnprocessableEntity) Code() int {
 }
 
 func (o *SetTenantFeatureUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTenantFeatureUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTenantFeatureUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *SetTenantFeatureTooManyRequests) Code() int {
 }
 
 func (o *SetTenantFeatureTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTenantFeatureTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTenantFeatureTooManyRequests) GetPayload() *models.Error {

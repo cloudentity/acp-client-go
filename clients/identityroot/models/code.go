@@ -50,7 +50,7 @@ type Code struct {
 	// type
 	// Example: active
 	// Required: true
-	// Enum: [activation reset_password challenge verify_address authentication]
+	// Enum: ["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]
 	Type string `json:"type" yaml:"type"`
 
 	// user id
@@ -177,7 +177,7 @@ var codeTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address","authentication"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -192,6 +192,12 @@ const (
 
 	// CodeTypeResetPassword captures enum value "reset_password"
 	CodeTypeResetPassword string = "reset_password"
+
+	// CodeTypeResetTotp captures enum value "reset_totp"
+	CodeTypeResetTotp string = "reset_totp"
+
+	// CodeTypeEnrollWebauthn captures enum value "enroll_webauthn"
+	CodeTypeEnrollWebauthn string = "enroll_webauthn"
 
 	// CodeTypeChallenge captures enum value "challenge"
 	CodeTypeChallenge string = "challenge"

@@ -6,6 +6,7 @@ package o_t_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -128,11 +129,11 @@ func (o *RequestAddressVerificationNoContent) Code() int {
 }
 
 func (o *RequestAddressVerificationNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNoContent", 204)
 }
 
 func (o *RequestAddressVerificationNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNoContent", 204)
 }
 
 func (o *RequestAddressVerificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -192,11 +193,13 @@ func (o *RequestAddressVerificationBadRequest) Code() int {
 }
 
 func (o *RequestAddressVerificationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationBadRequest %s", 400, payload)
 }
 
 func (o *RequestAddressVerificationBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationBadRequest %s", 400, payload)
 }
 
 func (o *RequestAddressVerificationBadRequest) GetPayload() *models.Error {
@@ -260,11 +263,13 @@ func (o *RequestAddressVerificationUnauthorized) Code() int {
 }
 
 func (o *RequestAddressVerificationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnauthorized %s", 401, payload)
 }
 
 func (o *RequestAddressVerificationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnauthorized %s", 401, payload)
 }
 
 func (o *RequestAddressVerificationUnauthorized) GetPayload() *models.Error {
@@ -328,11 +333,13 @@ func (o *RequestAddressVerificationNotFound) Code() int {
 }
 
 func (o *RequestAddressVerificationNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNotFound %s", 404, payload)
 }
 
 func (o *RequestAddressVerificationNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNotFound %s", 404, payload)
 }
 
 func (o *RequestAddressVerificationNotFound) GetPayload() *models.Error {
@@ -396,11 +403,13 @@ func (o *RequestAddressVerificationConflict) Code() int {
 }
 
 func (o *RequestAddressVerificationConflict) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict %s", 409, payload)
 }
 
 func (o *RequestAddressVerificationConflict) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict %s", 409, payload)
 }
 
 func (o *RequestAddressVerificationConflict) GetPayload() *models.Error {
@@ -464,11 +473,13 @@ func (o *RequestAddressVerificationPreconditionFailed) Code() int {
 }
 
 func (o *RequestAddressVerificationPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationPreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestAddressVerificationPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationPreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestAddressVerificationPreconditionFailed) GetPayload() *models.Error {
@@ -532,11 +543,13 @@ func (o *RequestAddressVerificationUnprocessableEntity) Code() int {
 }
 
 func (o *RequestAddressVerificationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestAddressVerificationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestAddressVerificationUnprocessableEntity) GetPayload() *models.Error {
@@ -600,11 +613,13 @@ func (o *RequestAddressVerificationTooManyRequests) Code() int {
 }
 
 func (o *RequestAddressVerificationTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationTooManyRequests %s", 429, payload)
 }
 
 func (o *RequestAddressVerificationTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationTooManyRequests %s", 429, payload)
 }
 
 func (o *RequestAddressVerificationTooManyRequests) GetPayload() *models.Error {

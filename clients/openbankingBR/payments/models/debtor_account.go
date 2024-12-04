@@ -178,6 +178,7 @@ func (m *DebtorAccount) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *DebtorAccount) contextValidateAccountType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountType != nil {
+
 		if err := m.AccountType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountType")

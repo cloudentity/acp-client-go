@@ -64,7 +64,7 @@ RequestResetTotpParams contains all the parameters to send to the API endpoint
 type RequestResetTotpParams struct {
 
 	// RequestResetTotp.
-	RequestResetTotp *models.RequestResetCredential
+	RequestResetTotp *models.RequestAddOrResetCredential
 
 	/* CodeTypeInMessage.
 
@@ -157,13 +157,13 @@ func (o *RequestResetTotpParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestResetTotp adds the requestResetTotp to the request reset totp params
-func (o *RequestResetTotpParams) WithRequestResetTotp(requestResetTotp *models.RequestResetCredential) *RequestResetTotpParams {
+func (o *RequestResetTotpParams) WithRequestResetTotp(requestResetTotp *models.RequestAddOrResetCredential) *RequestResetTotpParams {
 	o.SetRequestResetTotp(requestResetTotp)
 	return o
 }
 
 // SetRequestResetTotp adds the requestResetTotp to the request reset totp params
-func (o *RequestResetTotpParams) SetRequestResetTotp(requestResetTotp *models.RequestResetCredential) {
+func (o *RequestResetTotpParams) SetRequestResetTotp(requestResetTotp *models.RequestAddOrResetCredential) {
 	o.RequestResetTotp = requestResetTotp
 }
 

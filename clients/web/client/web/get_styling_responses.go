@@ -6,6 +6,7 @@ package web
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetStylingOK) Code() int {
 }
 
 func (o *GetStylingOK) Error() string {
-	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK %s", 200, payload)
 }
 
 func (o *GetStylingOK) String() string {
-	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK %s", 200, payload)
 }
 
 func (o *GetStylingOK) GetPayload() *models.Styling {
@@ -153,11 +156,13 @@ func (o *GetStylingNotFound) Code() int {
 }
 
 func (o *GetStylingNotFound) Error() string {
-	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound %s", 404, payload)
 }
 
 func (o *GetStylingNotFound) String() string {
-	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound %s", 404, payload)
 }
 
 func (o *GetStylingNotFound) GetPayload() *models.Error {

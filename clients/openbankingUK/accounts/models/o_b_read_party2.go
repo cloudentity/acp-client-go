@@ -142,6 +142,11 @@ func (m *OBReadParty2) contextValidateData(ctx context.Context, formats strfmt.R
 func (m *OBReadParty2) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -158,6 +163,11 @@ func (m *OBReadParty2) contextValidateLinks(ctx context.Context, formats strfmt.
 func (m *OBReadParty2) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -248,6 +258,11 @@ func (m *OBReadParty2Data) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *OBReadParty2Data) contextValidateParty(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Party != nil {
+
+		if swag.IsZero(m.Party) { // not required
+			return nil
+		}
+
 		if err := m.Party.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Party")

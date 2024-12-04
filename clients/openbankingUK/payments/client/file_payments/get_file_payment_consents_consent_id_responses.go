@@ -6,6 +6,7 @@ package file_payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *GetFilePaymentConsentsConsentIDReader) ReadResponse(response runtime.Cl
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /file-payment-consents/{ConsentId}] GetFilePaymentConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -139,11 +140,13 @@ func (o *GetFilePaymentConsentsConsentIDOK) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDOK) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDOK) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDOK) GetPayload() *models.OBWriteFileConsentResponse4 {
@@ -231,11 +234,13 @@ func (o *GetFilePaymentConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -316,11 +321,11 @@ func (o *GetFilePaymentConsentsConsentIDUnauthorized) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetFilePaymentConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetFilePaymentConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -390,11 +395,13 @@ func (o *GetFilePaymentConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -475,11 +482,11 @@ func (o *GetFilePaymentConsentsConsentIDNotFound) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotFound) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -542,11 +549,11 @@ func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -609,11 +616,11 @@ func (o *GetFilePaymentConsentsConsentIDNotAcceptable) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetFilePaymentConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -680,11 +687,11 @@ func (o *GetFilePaymentConsentsConsentIDTooManyRequests) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetFilePaymentConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetFilePaymentConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -765,11 +772,13 @@ func (o *GetFilePaymentConsentsConsentIDInternalServerError) Code() int {
 }
 
 func (o *GetFilePaymentConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetFilePaymentConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

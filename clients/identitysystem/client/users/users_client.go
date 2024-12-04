@@ -9,12 +9,38 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
+	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new users API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
+}
+
+// New creates a new users API client with basic auth credentials.
+// It takes the following parameters:
+// - host: http host (github.com).
+// - basePath: any base path for the API client ("/v1", "/v3").
+// - scheme: http scheme ("http", "https").
+// - user: user for basic authentication header.
+// - password: password for basic authentication header.
+func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
+	transport := httptransport.New(host, basePath, []string{scheme})
+	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
+	return &Client{transport: transport, formats: strfmt.Default}
+}
+
+// New creates a new users API client with a bearer token for authentication.
+// It takes the following parameters:
+// - host: http host (github.com).
+// - basePath: any base path for the API client ("/v1", "/v3").
+// - scheme: http scheme ("http", "https").
+// - bearerToken: bearer token for Bearer authentication header.
+func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
+	transport := httptransport.New(host, basePath, []string{scheme})
+	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
+	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -25,7 +51,7 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption is the option for Client methods
+// ClientOption may be used to customize the behavior of Client methods.
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
@@ -34,17 +60,23 @@ type ClientService interface {
 
 	ActivateSelfRegisteredUserUsingExtendedCode(params *ActivateSelfRegisteredUserUsingExtendedCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ActivateSelfRegisteredUserUsingExtendedCodeCreated, error)
 
+	BeginWebAuthnCredentialsGeneration(params *BeginWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BeginWebAuthnCredentialsGenerationOK, error)
+
 	ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error)
 
 	ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeTotpSecretNoContent, error)
+
+	CompleteAddWebAuthn(params *CompleteAddWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteAddWebAuthnNoContent, error)
 
 	CompleteResetPassword(params *CompleteResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetPasswordNoContent, error)
 
 	CompleteResetTotp(params *CompleteResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetTotpNoContent, error)
 
-	CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetWebAuthnNoContent, error)
+	CompleteWebAuthnCredentialsGeneration(params *CompleteWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteWebAuthnCredentialsGenerationOK, error)
 
 	ConfirmResetPassword(params *ConfirmResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConfirmResetPasswordNoContent, error)
+
+	DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWebAuthnKeyNoContent, error)
 
 	GenerateActivationCode(params *GenerateActivationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateActivationCodeCreated, error)
 
@@ -52,11 +84,13 @@ type ClientService interface {
 
 	GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeForUserCreated, error)
 
+	NameWebAuthnKey(params *NameWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NameWebAuthnKeyNoContent, error)
+
+	RequestAddWebAuthn(params *RequestAddWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestAddWebAuthnNoContent, error)
+
 	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
 
 	RequestResetTotp(params *RequestResetTotpParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetTotpNoContent, error)
-
-	RequestResetWebAuthn(params *RequestResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetWebAuthnNoContent, error)
 
 	SelfRegisterUser(params *SelfRegisterUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfRegisterUserCreated, error)
 
@@ -194,6 +228,47 @@ func (a *Client) ActivateSelfRegisteredUserUsingExtendedCode(params *ActivateSel
 }
 
 /*
+BeginWebAuthnCredentialsGeneration begins web authn credentials generation
+
+Begin WebAuthn credentials generation
+*/
+func (a *Client) BeginWebAuthnCredentialsGeneration(params *BeginWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BeginWebAuthnCredentialsGenerationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBeginWebAuthnCredentialsGenerationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "beginWebAuthnCredentialsGeneration",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/webauthn/create/begin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BeginWebAuthnCredentialsGenerationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*BeginWebAuthnCredentialsGenerationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for beginWebAuthnCredentialsGeneration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	ChangePassword changes password
 
 	Changes user password if the provided password matches the current user password.
@@ -278,6 +353,53 @@ func (a *Client) ChangeTotpSecret(params *ChangeTotpSecretParams, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for changeTotpSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CompleteAddWebAuthn completes add web authn
+
+	Adds webauthn for user if the provided OTP is valid. It's the second and final step of the
+
+flow to add webauthn.
+Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+After a successful webauthn add, OTP gets invalidated, so it cannot be reused.
+Endpoint is protected by Brute Force mechanism.
+*/
+func (a *Client) CompleteAddWebAuthn(params *CompleteAddWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteAddWebAuthnNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteAddWebAuthnParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "completeAddWebAuthn",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/webauthn/add/complete",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CompleteAddWebAuthnReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CompleteAddWebAuthnNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for completeAddWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -376,30 +498,24 @@ func (a *Client) CompleteResetTotp(params *CompleteResetTotpParams, authInfo run
 }
 
 /*
-	CompleteResetWebAuthn completes reset web authn
+CompleteWebAuthnCredentialsGeneration finishes web authn credentials generation
 
-	Resets WebAuthn for user if the provided OTP is valid. It's the second and final step of the
-
-flow to reset the WebAuthn.
-Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
-Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
-After a successful WebAuthn reset, OTP gets invalidated, so it cannot be reused.
-Endpoint is protected by Brute Force mechanism.
+Finish WebAuthn credentials generation
 */
-func (a *Client) CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetWebAuthnNoContent, error) {
+func (a *Client) CompleteWebAuthnCredentialsGeneration(params *CompleteWebAuthnCredentialsGenerationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteWebAuthnCredentialsGenerationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCompleteResetWebAuthnParams()
+		params = NewCompleteWebAuthnCredentialsGenerationParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "completeResetWebAuthn",
+		ID:                 "completeWebAuthnCredentialsGeneration",
 		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/webauthn/reset/complete",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/webauthn/create/complete",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CompleteResetWebAuthnReader{formats: a.formats},
+		Reader:             &CompleteWebAuthnCredentialsGenerationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -412,13 +528,13 @@ func (a *Client) CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CompleteResetWebAuthnNoContent)
+	success, ok := result.(*CompleteWebAuthnCredentialsGenerationOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for completeResetWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for completeWebAuthnCredentialsGeneration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -466,6 +582,47 @@ func (a *Client) ConfirmResetPassword(params *ConfirmResetPasswordParams, authIn
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for confirmResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DeleteWebAuthnKey deletes web authn key
+
+Deletes WebAuthn key.
+*/
+func (a *Client) DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWebAuthnKeyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteWebAuthnKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteWebAuthnKey",
+		Method:             "DELETE",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteWebAuthnKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteWebAuthnKeyNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteWebAuthnKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -525,11 +682,11 @@ Invalidates previously generated OTPs for action associated with the type.
 Code is valid for specific period of time configured in Identity Pool.
 
 Keep in mind that `address` attribute for different code types may be optional and may not mean the same:
-for `reset_password`, `authentication` and `challenge` it is optional, but if provided must be user's address (verified or unverified)
+for `reset_password`, `reset_totp`, `enroll_webauthn`, `authentication` and `challenge` it is optional, but if provided must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
-For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
+For `activation`, `reset_password`, `reset_totp`, `enroll_webauthn` and `challenge` there is only one active code for a user (generating new one invalidates previous)
 For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
 */
 func (a *Client) GenerateCode(params *GenerateCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeCreated, error) {
@@ -580,11 +737,11 @@ Either userID or identifier (must be user's identifier) must be provided for mos
 Exceptions are: reset password and challenge if address is user's verified address
 
 Keep in mind that `address` attribute for different code types may be optional and may not mean the same:
-for `reset_password`, `authentication` and `challenge` it is not mandatory, but if provided must be user's address (verified or unverified)
+for `reset_password`, `reset_totp`, `enroll_webauthn`, `authentication` and `challenge` it is not mandatory, but if provided must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
-For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
+For `activation`, `reset_password`, `reset_totp`, `enroll_webauthn` and `challenge` there is only one active code for a user (generating new one invalidates previous)
 For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
 */
 func (a *Client) GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeForUserCreated, error) {
@@ -620,6 +777,97 @@ func (a *Client) GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for generateCodeForUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+NameWebAuthnKey names web authn key
+
+Set name for WebAuthn key
+*/
+func (a *Client) NameWebAuthnKey(params *NameWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NameWebAuthnKeyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNameWebAuthnKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "nameWebAuthnKey",
+		Method:             "PUT",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &NameWebAuthnKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NameWebAuthnKeyNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for nameWebAuthnKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RequestAddWebAuthn requests add web authn
+
+	Sends OTP for adding new webauthn key. It's first out of two steps of the add webauthn flow.
+
+Address must be a valid email or mobile which is marked as verified address for the user.
+For validating unverified address userID or identifier must be provided.
+If userID is provided then identifier must not be set.
+When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
+Regardless if the address points to some user or not, the request ends successfully to
+prevent email/mobile enumeration.
+Invalidates previously generated OTPs for adding webauthn key.
+Add webauthn OTP is valid for a specific period of time configured in Identity Pool.
+*/
+func (a *Client) RequestAddWebAuthn(params *RequestAddWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestAddWebAuthnNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestAddWebAuthnParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "requestAddWebAuthn",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/webauthn/add/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestAddWebAuthnReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RequestAddWebAuthnNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for requestAddWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -722,58 +970,6 @@ func (a *Client) RequestResetTotp(params *RequestResetTotpParams, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for requestResetTotp: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	RequestResetWebAuthn requests reset web authn
-
-	Sends OTP for WebAuthn reset. It's first out of two steps of the reset WebAuthn flow.
-
-Address must be a valid email or mobile which is marked as verified address for the user.
-For validating unverified address userID or identifier must be provided.
-If userID is provided then identifier must not be set.
-When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
-Regardless if the address points to some user or not, the request ends successfully to
-prevent email/mobile enumeration.
-Invalidates previously generated OTPs for WebAuthn reset.
-Reset WebAuthn OTP is valid for a specific period of time configured in Identity Pool.
-
-REFACTORED: input field name has been renamed from `identifier` to `address`; new field `identifier` has been added and described in documentation
-*/
-func (a *Client) RequestResetWebAuthn(params *RequestResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetWebAuthnNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewRequestResetWebAuthnParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "requestResetWebAuthn",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/webauthn/reset/request",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &RequestResetWebAuthnReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*RequestResetWebAuthnNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for requestResetWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

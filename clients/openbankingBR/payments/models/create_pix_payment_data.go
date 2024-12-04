@@ -334,6 +334,7 @@ func (m *CreatePixPaymentData) ContextValidate(ctx context.Context, formats strf
 func (m *CreatePixPaymentData) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditorAccount")
@@ -350,6 +351,7 @@ func (m *CreatePixPaymentData) contextValidateCreditorAccount(ctx context.Contex
 func (m *CreatePixPaymentData) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LocalInstrument != nil {
+
 		if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("localInstrument")
@@ -366,6 +368,7 @@ func (m *CreatePixPaymentData) contextValidateLocalInstrument(ctx context.Contex
 func (m *CreatePixPaymentData) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payment != nil {
+
 		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payment")

@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *SetGatewayConfigurationOK) Code() int {
 }
 
 func (o *SetGatewayConfigurationOK) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationOK %s", 200, payload)
 }
 
 func (o *SetGatewayConfigurationOK) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationOK %s", 200, payload)
 }
 
 func (o *SetGatewayConfigurationOK) GetPayload() *models.SetGatewayConfigurationResponse {
@@ -183,11 +186,13 @@ func (o *SetGatewayConfigurationUnauthorized) Code() int {
 }
 
 func (o *SetGatewayConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *SetGatewayConfigurationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *SetGatewayConfigurationUnauthorized) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *SetGatewayConfigurationForbidden) Code() int {
 }
 
 func (o *SetGatewayConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationForbidden %s", 403, payload)
 }
 
 func (o *SetGatewayConfigurationForbidden) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationForbidden %s", 403, payload)
 }
 
 func (o *SetGatewayConfigurationForbidden) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *SetGatewayConfigurationNotFound) Code() int {
 }
 
 func (o *SetGatewayConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationNotFound %s", 404, payload)
 }
 
 func (o *SetGatewayConfigurationNotFound) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationNotFound %s", 404, payload)
 }
 
 func (o *SetGatewayConfigurationNotFound) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *SetGatewayConfigurationConflict) Code() int {
 }
 
 func (o *SetGatewayConfigurationConflict) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationConflict %s", 409, payload)
 }
 
 func (o *SetGatewayConfigurationConflict) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationConflict %s", 409, payload)
 }
 
 func (o *SetGatewayConfigurationConflict) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *SetGatewayConfigurationUnprocessableEntity) Code() int {
 }
 
 func (o *SetGatewayConfigurationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetGatewayConfigurationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetGatewayConfigurationUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *SetGatewayConfigurationTooManyRequests) Code() int {
 }
 
 func (o *SetGatewayConfigurationTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *SetGatewayConfigurationTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *SetGatewayConfigurationTooManyRequests) GetPayload() *models.Error {

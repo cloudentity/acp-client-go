@@ -6,6 +6,7 @@ package pagamentos
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -152,11 +153,13 @@ func (o *PaymentsPostConsentsCreated) Code() int {
 }
 
 func (o *PaymentsPostConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated %s", 201, payload)
 }
 
 func (o *PaymentsPostConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated %s", 201, payload)
 }
 
 func (o *PaymentsPostConsentsCreated) GetPayload() interface{} {
@@ -231,11 +234,13 @@ func (o *PaymentsPostConsentsBadRequest) Code() int {
 }
 
 func (o *PaymentsPostConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest %s", 400, payload)
 }
 
 func (o *PaymentsPostConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest %s", 400, payload)
 }
 
 func (o *PaymentsPostConsentsBadRequest) GetPayload() *models.ResponseError {
@@ -312,11 +317,13 @@ func (o *PaymentsPostConsentsUnauthorized) Code() int {
 }
 
 func (o *PaymentsPostConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *PaymentsPostConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *PaymentsPostConsentsUnauthorized) GetPayload() *models.ResponseError {
@@ -393,11 +400,13 @@ func (o *PaymentsPostConsentsForbidden) Code() int {
 }
 
 func (o *PaymentsPostConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden %s", 403, payload)
 }
 
 func (o *PaymentsPostConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden %s", 403, payload)
 }
 
 func (o *PaymentsPostConsentsForbidden) GetPayload() *models.ResponseError {
@@ -474,11 +483,13 @@ func (o *PaymentsPostConsentsNotFound) Code() int {
 }
 
 func (o *PaymentsPostConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound %s", 404, payload)
 }
 
 func (o *PaymentsPostConsentsNotFound) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound %s", 404, payload)
 }
 
 func (o *PaymentsPostConsentsNotFound) GetPayload() *models.ResponseError {
@@ -555,11 +566,13 @@ func (o *PaymentsPostConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *PaymentsPostConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed %s", 405, payload)
 }
 
 func (o *PaymentsPostConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed %s", 405, payload)
 }
 
 func (o *PaymentsPostConsentsMethodNotAllowed) GetPayload() *models.ResponseError {
@@ -636,11 +649,13 @@ func (o *PaymentsPostConsentsNotAcceptable) Code() int {
 }
 
 func (o *PaymentsPostConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable %s", 406, payload)
 }
 
 func (o *PaymentsPostConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable %s", 406, payload)
 }
 
 func (o *PaymentsPostConsentsNotAcceptable) GetPayload() *models.ResponseError {
@@ -717,11 +732,13 @@ func (o *PaymentsPostConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *PaymentsPostConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *PaymentsPostConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *PaymentsPostConsentsUnsupportedMediaType) GetPayload() *models.ResponseError {
@@ -798,11 +815,13 @@ func (o *PaymentsPostConsentsUnprocessableEntity) Code() int {
 }
 
 func (o *PaymentsPostConsentsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PaymentsPostConsentsUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PaymentsPostConsentsUnprocessableEntity) GetPayload() interface{} {
@@ -882,11 +901,13 @@ func (o *PaymentsPostConsentsTooManyRequests) Code() int {
 }
 
 func (o *PaymentsPostConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *PaymentsPostConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *PaymentsPostConsentsTooManyRequests) GetPayload() *models.ResponseError {
@@ -970,11 +991,13 @@ func (o *PaymentsPostConsentsInternalServerError) Code() int {
 }
 
 func (o *PaymentsPostConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *PaymentsPostConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *PaymentsPostConsentsInternalServerError) GetPayload() *models.ResponseError {
@@ -1049,11 +1072,13 @@ func (o *PaymentsPostConsentsDefault) Code() int {
 }
 
 func (o *PaymentsPostConsentsDefault) Error() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default %s", o._statusCode, payload)
 }
 
 func (o *PaymentsPostConsentsDefault) String() string {
-	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default %s", o._statusCode, payload)
 }
 
 func (o *PaymentsPostConsentsDefault) GetPayload() *models.ResponseError {

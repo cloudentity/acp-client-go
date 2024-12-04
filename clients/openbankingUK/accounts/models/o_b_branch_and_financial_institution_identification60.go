@@ -156,6 +156,10 @@ func (m *OBBranchAndFinancialInstitutionIdentification60) ContextValidate(ctx co
 
 func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Identification) { // not required
+		return nil
+	}
+
 	if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Identification")
@@ -169,6 +173,10 @@ func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidateIdentif
 }
 
 func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
 
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -185,6 +193,11 @@ func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidateName(ct
 func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PostalAddress")
@@ -199,6 +212,10 @@ func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidatePostalA
 }
 
 func (m *OBBranchAndFinancialInstitutionIdentification60) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SchemeName) { // not required
+		return nil
+	}
 
 	if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -47,7 +47,7 @@ type TreeService struct {
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Service type
-	// Enum: [oauth2 oidc system user openbanking]
+	// Enum: ["oauth2","oidc","system","user","openbanking"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// The date of service update

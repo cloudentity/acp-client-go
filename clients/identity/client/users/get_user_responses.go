@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetUserOK) Code() int {
 }
 
 func (o *GetUserOK) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK %s", 200, payload)
 }
 
 func (o *GetUserOK) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK %s", 200, payload)
 }
 
 func (o *GetUserOK) GetPayload() *models.UserWithData {
@@ -187,11 +190,13 @@ func (o *GetUserUnauthorized) Code() int {
 }
 
 func (o *GetUserUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetUserForbidden) Code() int {
 }
 
 func (o *GetUserForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden %s", 403, payload)
 }
 
 func (o *GetUserForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden %s", 403, payload)
 }
 
 func (o *GetUserForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetUserNotFound) Code() int {
 }
 
 func (o *GetUserNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound %s", 404, payload)
 }
 
 func (o *GetUserNotFound) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound %s", 404, payload)
 }
 
 func (o *GetUserNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetUserTooManyRequests) Code() int {
 }
 
 func (o *GetUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests %s", 429, payload)
 }
 
 func (o *GetUserTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests %s", 429, payload)
 }
 
 func (o *GetUserTooManyRequests) GetPayload() *models.Error {

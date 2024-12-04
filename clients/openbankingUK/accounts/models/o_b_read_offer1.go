@@ -145,6 +145,11 @@ func (m *OBReadOffer1) contextValidateData(ctx context.Context, formats strfmt.R
 func (m *OBReadOffer1) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBReadOffer1) contextValidateLinks(ctx context.Context, formats strfmt.
 func (m *OBReadOffer1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -260,6 +270,11 @@ func (m *OBReadOffer1Data) contextValidateOffer(ctx context.Context, formats str
 	for i := 0; i < len(m.Offer); i++ {
 
 		if m.Offer[i] != nil {
+
+			if swag.IsZero(m.Offer[i]) { // not required
+				return nil
+			}
+
 			if err := m.Offer[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Offer" + "." + strconv.Itoa(i))
@@ -325,7 +340,7 @@ type OBReadOffer1DataOfferItems0 struct {
 	OfferID string `json:"OfferId,omitempty"`
 
 	// Offer type, in a coded form.
-	// Enum: [BalanceTransfer LimitIncrease MoneyTransfer Other PromotionalRate]
+	// Enum: ["BalanceTransfer","LimitIncrease","MoneyTransfer","Other","PromotionalRate"]
 	OfferType string `json:"OfferType,omitempty"`
 
 	// Rate associated with the offer type.
@@ -644,6 +659,7 @@ func (m *OBReadOffer1DataOfferItems0) ContextValidate(ctx context.Context, forma
 func (m *OBReadOffer1DataOfferItems0) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -660,6 +676,11 @@ func (m *OBReadOffer1DataOfferItems0) contextValidateAccountID(ctx context.Conte
 func (m *OBReadOffer1DataOfferItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
+		if swag.IsZero(m.Amount) { // not required
+			return nil
+		}
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -676,6 +697,11 @@ func (m *OBReadOffer1DataOfferItems0) contextValidateAmount(ctx context.Context,
 func (m *OBReadOffer1DataOfferItems0) contextValidateFee(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fee != nil {
+
+		if swag.IsZero(m.Fee) { // not required
+			return nil
+		}
+
 		if err := m.Fee.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Fee")
@@ -808,6 +834,7 @@ func (m *OBReadOffer1DataOfferItems0Amount) ContextValidate(ctx context.Context,
 func (m *OBReadOffer1DataOfferItems0Amount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Amount")
@@ -824,6 +851,7 @@ func (m *OBReadOffer1DataOfferItems0Amount) contextValidateAmount(ctx context.Co
 func (m *OBReadOffer1DataOfferItems0Amount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Currency")
@@ -956,6 +984,7 @@ func (m *OBReadOffer1DataOfferItems0Fee) ContextValidate(ctx context.Context, fo
 func (m *OBReadOffer1DataOfferItems0Fee) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Fee" + "." + "Amount")
@@ -972,6 +1001,7 @@ func (m *OBReadOffer1DataOfferItems0Fee) contextValidateAmount(ctx context.Conte
 func (m *OBReadOffer1DataOfferItems0Fee) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Fee" + "." + "Currency")

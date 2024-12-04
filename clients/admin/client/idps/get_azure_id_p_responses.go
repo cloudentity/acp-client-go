@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetAzureIDPOK) Code() int {
 }
 
 func (o *GetAzureIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK %s", 200, payload)
 }
 
 func (o *GetAzureIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK %s", 200, payload)
 }
 
 func (o *GetAzureIDPOK) GetPayload() *models.AzureIDP {
@@ -171,11 +174,13 @@ func (o *GetAzureIDPUnauthorized) Code() int {
 }
 
 func (o *GetAzureIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetAzureIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetAzureIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetAzureIDPForbidden) Code() int {
 }
 
 func (o *GetAzureIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPForbidden %s", 403, payload)
 }
 
 func (o *GetAzureIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPForbidden %s", 403, payload)
 }
 
 func (o *GetAzureIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetAzureIDPNotFound) Code() int {
 }
 
 func (o *GetAzureIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPNotFound %s", 404, payload)
 }
 
 func (o *GetAzureIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPNotFound %s", 404, payload)
 }
 
 func (o *GetAzureIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetAzureIDPTooManyRequests) Code() int {
 }
 
 func (o *GetAzureIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAzureIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAzureIDPTooManyRequests) GetPayload() *models.Error {

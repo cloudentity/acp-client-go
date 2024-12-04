@@ -144,6 +144,11 @@ func (m *OBReadDirectDebit2) contextValidateData(ctx context.Context, formats st
 func (m *OBReadDirectDebit2) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -160,6 +165,11 @@ func (m *OBReadDirectDebit2) contextValidateLinks(ctx context.Context, formats s
 func (m *OBReadDirectDebit2) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -259,6 +269,11 @@ func (m *OBReadDirectDebit2Data) contextValidateDirectDebit(ctx context.Context,
 	for i := 0; i < len(m.DirectDebit); i++ {
 
 		if m.DirectDebit[i] != nil {
+
+			if swag.IsZero(m.DirectDebit[i]) { // not required
+				return nil
+			}
+
 			if err := m.DirectDebit[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "DirectDebit" + "." + strconv.Itoa(i))
@@ -547,6 +562,7 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) ContextValidate(ctx context.Co
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -562,6 +578,10 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateAccountID(ctx c
 
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateDirectDebitID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DirectDebitID) { // not required
+		return nil
+	}
+
 	if err := m.DirectDebitID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("DirectDebitId")
@@ -575,6 +595,10 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateDirectDebitID(c
 }
 
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateDirectDebitStatusCode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DirectDebitStatusCode) { // not required
+		return nil
+	}
 
 	if err := m.DirectDebitStatusCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -591,6 +615,7 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateDirectDebitStat
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateMandateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MandateIdentification != nil {
+
 		if err := m.MandateIdentification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MandateIdentification")
@@ -607,6 +632,7 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateMandateIdentifi
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")
@@ -623,6 +649,11 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidateName(ctx contex
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidatePreviousPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PreviousPaymentAmount != nil {
+
+		if swag.IsZero(m.PreviousPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.PreviousPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PreviousPaymentAmount")
@@ -637,6 +668,10 @@ func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidatePreviousPayment
 }
 
 func (m *OBReadDirectDebit2DataDirectDebitItems0) contextValidatePreviousPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PreviousPaymentDateTime) { // not required
+		return nil
+	}
 
 	if err := m.PreviousPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

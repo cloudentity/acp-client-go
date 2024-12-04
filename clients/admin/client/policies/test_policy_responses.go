@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *TestPolicyOK) Code() int {
 }
 
 func (o *TestPolicyOK) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK %s", 200, payload)
 }
 
 func (o *TestPolicyOK) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK %s", 200, payload)
 }
 
 func (o *TestPolicyOK) GetPayload() *models.TestPolicyResponse {
@@ -205,11 +208,13 @@ func (o *TestPolicyBadRequest) Code() int {
 }
 
 func (o *TestPolicyBadRequest) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest %s", 400, payload)
 }
 
 func (o *TestPolicyBadRequest) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest %s", 400, payload)
 }
 
 func (o *TestPolicyBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *TestPolicyUnauthorized) Code() int {
 }
 
 func (o *TestPolicyUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized %s", 401, payload)
 }
 
 func (o *TestPolicyUnauthorized) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized %s", 401, payload)
 }
 
 func (o *TestPolicyUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *TestPolicyForbidden) Code() int {
 }
 
 func (o *TestPolicyForbidden) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden %s", 403, payload)
 }
 
 func (o *TestPolicyForbidden) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden %s", 403, payload)
 }
 
 func (o *TestPolicyForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *TestPolicyNotFound) Code() int {
 }
 
 func (o *TestPolicyNotFound) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound %s", 404, payload)
 }
 
 func (o *TestPolicyNotFound) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound %s", 404, payload)
 }
 
 func (o *TestPolicyNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *TestPolicyConflict) Code() int {
 }
 
 func (o *TestPolicyConflict) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict %s", 409, payload)
 }
 
 func (o *TestPolicyConflict) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict %s", 409, payload)
 }
 
 func (o *TestPolicyConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *TestPolicyUnprocessableEntity) Code() int {
 }
 
 func (o *TestPolicyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *TestPolicyUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *TestPolicyUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *TestPolicyTooManyRequests) Code() int {
 }
 
 func (o *TestPolicyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *TestPolicyTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *TestPolicyTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetServerConsentOK) Code() int {
 }
 
 func (o *GetServerConsentOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentOK %s", 200, payload)
 }
 
 func (o *GetServerConsentOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentOK %s", 200, payload)
 }
 
 func (o *GetServerConsentOK) GetPayload() *models.ServerConsentResponse {
@@ -171,11 +174,13 @@ func (o *GetServerConsentUnauthorized) Code() int {
 }
 
 func (o *GetServerConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentUnauthorized %s", 401, payload)
 }
 
 func (o *GetServerConsentUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentUnauthorized %s", 401, payload)
 }
 
 func (o *GetServerConsentUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetServerConsentForbidden) Code() int {
 }
 
 func (o *GetServerConsentForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentForbidden %s", 403, payload)
 }
 
 func (o *GetServerConsentForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentForbidden %s", 403, payload)
 }
 
 func (o *GetServerConsentForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetServerConsentNotFound) Code() int {
 }
 
 func (o *GetServerConsentNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentNotFound %s", 404, payload)
 }
 
 func (o *GetServerConsentNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentNotFound %s", 404, payload)
 }
 
 func (o *GetServerConsentNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetServerConsentTooManyRequests) Code() int {
 }
 
 func (o *GetServerConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *GetServerConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *GetServerConsentTooManyRequests) GetPayload() *models.Error {

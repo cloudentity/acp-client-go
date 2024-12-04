@@ -145,6 +145,11 @@ func (m *OBWriteFileResponse3) contextValidateData(ctx context.Context, formats 
 func (m *OBWriteFileResponse3) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBWriteFileResponse3) contextValidateLinks(ctx context.Context, formats
 func (m *OBWriteFileResponse3) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -231,7 +241,7 @@ type OBWriteFileResponse3Data struct {
 
 	// Specifies the status of the payment order resource.
 	// Required: true
-	// Enum: [InitiationCompleted InitiationFailed InitiationPending]
+	// Enum: ["InitiationCompleted","InitiationFailed","InitiationPending"]
 	Status string `json:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -501,6 +511,11 @@ func (m *OBWriteFileResponse3Data) contextValidateCharges(ctx context.Context, f
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Charges" + "." + strconv.Itoa(i))
@@ -519,6 +534,11 @@ func (m *OBWriteFileResponse3Data) contextValidateCharges(ctx context.Context, f
 func (m *OBWriteFileResponse3Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Debtor")
@@ -547,6 +567,10 @@ func (m *OBWriteFileResponse3Data) contextValidateInitiation(ctx context.Context
 }
 
 func (m *OBWriteFileResponse3Data) contextValidateMultiAuthorisation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.MultiAuthorisation) { // not required
+		return nil
+	}
 
 	if err := m.MultiAuthorisation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -711,6 +735,7 @@ func (m *OBWriteFileResponse3DataChargesItems0) ContextValidate(ctx context.Cont
 func (m *OBWriteFileResponse3DataChargesItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -727,6 +752,7 @@ func (m *OBWriteFileResponse3DataChargesItems0) contextValidateAmount(ctx contex
 func (m *OBWriteFileResponse3DataChargesItems0) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeBearer != nil {
+
 		if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeBearer")
@@ -743,6 +769,7 @@ func (m *OBWriteFileResponse3DataChargesItems0) contextValidateChargeBearer(ctx 
 func (m *OBWriteFileResponse3DataChargesItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")
@@ -1004,6 +1031,10 @@ func (m *OBWriteFileResponse3DataInitiation) ContextValidate(ctx context.Context
 
 func (m *OBWriteFileResponse3DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
+
 	if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount")
@@ -1018,6 +1049,10 @@ func (m *OBWriteFileResponse3DataInitiation) contextValidateDebtorAccount(ctx co
 
 func (m *OBWriteFileResponse3DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
+
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Data" + "." + "Initiation" + "." + "LocalInstrument")
@@ -1031,6 +1066,10 @@ func (m *OBWriteFileResponse3DataInitiation) contextValidateLocalInstrument(ctx 
 }
 
 func (m *OBWriteFileResponse3DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RemittanceInformation) { // not required
+		return nil
+	}
 
 	if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1217,6 +1256,7 @@ func (m *OBWriteFileResponse3DataInitiationDebtorAccount) ContextValidate(ctx co
 func (m *OBWriteFileResponse3DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "Identification")
@@ -1233,6 +1273,7 @@ func (m *OBWriteFileResponse3DataInitiationDebtorAccount) contextValidateIdentif
 func (m *OBWriteFileResponse3DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data" + "." + "Initiation" + "." + "DebtorAccount" + "." + "SchemeName")
@@ -1247,6 +1288,10 @@ func (m *OBWriteFileResponse3DataInitiationDebtorAccount) contextValidateSchemeN
 }
 
 func (m *OBWriteFileResponse3DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1395,7 +1440,7 @@ type OBWriteFileResponse3DataMultiAuthorisation struct {
 
 	// Specifies the status of the authorisation flow in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingFurtherAuthorisation Rejected]
+	// Enum: ["Authorised","AwaitingFurtherAuthorisation","Rejected"]
 	Status string `json:"Status"`
 }
 

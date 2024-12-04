@@ -161,6 +161,10 @@ func (m *OBCashAccount51) ContextValidate(ctx context.Context, formats strfmt.Re
 
 func (m *OBCashAccount51) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Name")
@@ -176,6 +180,7 @@ func (m *OBCashAccount51) contextValidateName(ctx context.Context, formats strfm
 func (m *OBCashAccount51) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")
@@ -190,6 +195,10 @@ func (m *OBCashAccount51) contextValidateSchemeName(ctx context.Context, formats
 }
 
 func (m *OBCashAccount51) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

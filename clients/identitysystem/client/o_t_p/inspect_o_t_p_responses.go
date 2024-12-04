@@ -6,6 +6,7 @@ package o_t_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *InspectOTPOK) Code() int {
 }
 
 func (o *InspectOTPOK) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPOK %s", 200, payload)
 }
 
 func (o *InspectOTPOK) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPOK %s", 200, payload)
 }
 
 func (o *InspectOTPOK) GetPayload() *models.InspectOTPUserOperationalData {
@@ -181,11 +184,13 @@ func (o *InspectOTPUnauthorized) Code() int {
 }
 
 func (o *InspectOTPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnauthorized %s", 401, payload)
 }
 
 func (o *InspectOTPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnauthorized %s", 401, payload)
 }
 
 func (o *InspectOTPUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *InspectOTPPreconditionFailed) Code() int {
 }
 
 func (o *InspectOTPPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPPreconditionFailed %s", 412, payload)
 }
 
 func (o *InspectOTPPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPPreconditionFailed %s", 412, payload)
 }
 
 func (o *InspectOTPPreconditionFailed) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *InspectOTPUnprocessableEntity) Code() int {
 }
 
 func (o *InspectOTPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *InspectOTPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *InspectOTPUnprocessableEntity) GetPayload() *models.Error {

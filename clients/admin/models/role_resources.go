@@ -20,7 +20,7 @@ import (
 type RoleResources struct {
 
 	// resources
-	Resources []*RoleResource `json:"resources" yaml:"resources"`
+	Resources []*ExtendedRoleResource `json:"resources" yaml:"resources"`
 }
 
 // Validate validates this role resources

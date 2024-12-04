@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *ListIDPsForIdentityPoolOK) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolOK) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolOK %s", 200, payload)
 }
 
 func (o *ListIDPsForIdentityPoolOK) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolOK %s", 200, payload)
 }
 
 func (o *ListIDPsForIdentityPoolOK) GetPayload() *models.IDPsResponse {
@@ -193,11 +196,13 @@ func (o *ListIDPsForIdentityPoolBadRequest) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolBadRequest) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolBadRequest %s", 400, payload)
 }
 
 func (o *ListIDPsForIdentityPoolBadRequest) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolBadRequest %s", 400, payload)
 }
 
 func (o *ListIDPsForIdentityPoolBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *ListIDPsForIdentityPoolUnauthorized) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolUnauthorized %s", 401, payload)
 }
 
 func (o *ListIDPsForIdentityPoolUnauthorized) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolUnauthorized %s", 401, payload)
 }
 
 func (o *ListIDPsForIdentityPoolUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *ListIDPsForIdentityPoolForbidden) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolForbidden) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolForbidden %s", 403, payload)
 }
 
 func (o *ListIDPsForIdentityPoolForbidden) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolForbidden %s", 403, payload)
 }
 
 func (o *ListIDPsForIdentityPoolForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *ListIDPsForIdentityPoolNotFound) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolNotFound) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolNotFound %s", 404, payload)
 }
 
 func (o *ListIDPsForIdentityPoolNotFound) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolNotFound %s", 404, payload)
 }
 
 func (o *ListIDPsForIdentityPoolNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *ListIDPsForIdentityPoolTooManyRequests) Code() int {
 }
 
 func (o *ListIDPsForIdentityPoolTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *ListIDPsForIdentityPoolTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/idps][%d] listIdPsForIdentityPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *ListIDPsForIdentityPoolTooManyRequests) GetPayload() *models.Error {

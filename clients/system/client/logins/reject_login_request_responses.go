@@ -6,6 +6,7 @@ package logins
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RejectLoginRequestOK) Code() int {
 }
 
 func (o *RejectLoginRequestOK) Error() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestOK %s", 200, payload)
 }
 
 func (o *RejectLoginRequestOK) String() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestOK %s", 200, payload)
 }
 
 func (o *RejectLoginRequestOK) GetPayload() *models.LoginRejected {
@@ -171,11 +174,13 @@ func (o *RejectLoginRequestUnauthorized) Code() int {
 }
 
 func (o *RejectLoginRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestUnauthorized %s", 401, payload)
 }
 
 func (o *RejectLoginRequestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestUnauthorized %s", 401, payload)
 }
 
 func (o *RejectLoginRequestUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *RejectLoginRequestForbidden) Code() int {
 }
 
 func (o *RejectLoginRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestForbidden %s", 403, payload)
 }
 
 func (o *RejectLoginRequestForbidden) String() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestForbidden %s", 403, payload)
 }
 
 func (o *RejectLoginRequestForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *RejectLoginRequestNotFound) Code() int {
 }
 
 func (o *RejectLoginRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestNotFound %s", 404, payload)
 }
 
 func (o *RejectLoginRequestNotFound) String() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestNotFound %s", 404, payload)
 }
 
 func (o *RejectLoginRequestNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *RejectLoginRequestTooManyRequests) Code() int {
 }
 
 func (o *RejectLoginRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectLoginRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /logins/{login}/reject][%d] rejectLoginRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectLoginRequestTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *RotateKeyOK) Code() int {
 }
 
 func (o *RotateKeyOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK %s", 200, payload)
 }
 
 func (o *RotateKeyOK) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK %s", 200, payload)
 }
 
 func (o *RotateKeyOK) GetPayload() *models.ServerJWK {
@@ -193,11 +196,13 @@ func (o *RotateKeyBadRequest) Code() int {
 }
 
 func (o *RotateKeyBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest %s", 400, payload)
 }
 
 func (o *RotateKeyBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest %s", 400, payload)
 }
 
 func (o *RotateKeyBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *RotateKeyUnauthorized) Code() int {
 }
 
 func (o *RotateKeyUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized %s", 401, payload)
 }
 
 func (o *RotateKeyUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized %s", 401, payload)
 }
 
 func (o *RotateKeyUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *RotateKeyForbidden) Code() int {
 }
 
 func (o *RotateKeyForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden %s", 403, payload)
 }
 
 func (o *RotateKeyForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden %s", 403, payload)
 }
 
 func (o *RotateKeyForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *RotateKeyNotFound) Code() int {
 }
 
 func (o *RotateKeyNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound %s", 404, payload)
 }
 
 func (o *RotateKeyNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound %s", 404, payload)
 }
 
 func (o *RotateKeyNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *RotateKeyTooManyRequests) Code() int {
 }
 
 func (o *RotateKeyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *RotateKeyTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *RotateKeyTooManyRequests) GetPayload() *models.Error {

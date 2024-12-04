@@ -6,6 +6,7 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *PatchConsentGrantsSystemCreated) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemCreated) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemCreated %s", 201, payload)
 }
 
 func (o *PatchConsentGrantsSystemCreated) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemCreated %s", 201, payload)
 }
 
 func (o *PatchConsentGrantsSystemCreated) GetPayload() *models.ConsentGrantPatchResponse {
@@ -183,11 +186,13 @@ func (o *PatchConsentGrantsSystemUnauthorized) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnauthorized %s", 401, payload)
 }
 
 func (o *PatchConsentGrantsSystemUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnauthorized %s", 401, payload)
 }
 
 func (o *PatchConsentGrantsSystemUnauthorized) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *PatchConsentGrantsSystemForbidden) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemForbidden %s", 403, payload)
 }
 
 func (o *PatchConsentGrantsSystemForbidden) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemForbidden %s", 403, payload)
 }
 
 func (o *PatchConsentGrantsSystemForbidden) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *PatchConsentGrantsSystemNotFound) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemNotFound %s", 404, payload)
 }
 
 func (o *PatchConsentGrantsSystemNotFound) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemNotFound %s", 404, payload)
 }
 
 func (o *PatchConsentGrantsSystemNotFound) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *PatchConsentGrantsSystemConflict) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemConflict) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemConflict %s", 409, payload)
 }
 
 func (o *PatchConsentGrantsSystemConflict) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemConflict %s", 409, payload)
 }
 
 func (o *PatchConsentGrantsSystemConflict) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *PatchConsentGrantsSystemUnprocessableEntity) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchConsentGrantsSystemUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchConsentGrantsSystemUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *PatchConsentGrantsSystemTooManyRequests) Code() int {
 }
 
 func (o *PatchConsentGrantsSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchConsentGrantsSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchConsentGrantsSystemTooManyRequests) GetPayload() *models.Error {

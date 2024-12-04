@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DynamicClientRegistrationUpdateClientOK) Code() int {
 }
 
 func (o *DynamicClientRegistrationUpdateClientOK) Error() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientOK %s", 200, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientOK) String() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientOK %s", 200, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientOK) GetPayload() *models.DynamicClientRegistrationResponse {
@@ -171,11 +174,13 @@ func (o *DynamicClientRegistrationUpdateClientBadRequest) Code() int {
 }
 
 func (o *DynamicClientRegistrationUpdateClientBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientBadRequest) String() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientBadRequest) GetPayload() *models.RFC6749Error {
@@ -239,11 +244,13 @@ func (o *DynamicClientRegistrationUpdateClientUnauthorized) Code() int {
 }
 
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) GetPayload() *models.RFC6749Error {
@@ -307,11 +314,13 @@ func (o *DynamicClientRegistrationUpdateClientForbidden) Code() int {
 }
 
 func (o *DynamicClientRegistrationUpdateClientForbidden) Error() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientForbidden) String() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientForbidden) GetPayload() *models.RFC6749Error {
@@ -375,11 +384,13 @@ func (o *DynamicClientRegistrationUpdateClientNotFound) Code() int {
 }
 
 func (o *DynamicClientRegistrationUpdateClientNotFound) Error() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientNotFound) String() string {
-	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationUpdateClientNotFound) GetPayload() *models.GenericError {

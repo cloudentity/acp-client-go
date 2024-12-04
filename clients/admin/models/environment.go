@@ -20,26 +20,24 @@ import (
 // swagger:model Environment
 type Environment struct {
 
+	// ACR support
+	Acr bool `json:"acr,omitempty" yaml:"acr,omitempty"`
+
 	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
 	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty" yaml:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
 
 	// admin issuer url
 	AdminIssuerURL string `json:"admin_issuer_url,omitempty" yaml:"admin_issuer_url,omitempty"`
 
-	// Admin portal face lifting
-	//
-	// Improve user experience by facelifting the basic components of Cloudentity.
-	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty" yaml:"admin_portal_face_lifting,omitempty"`
-
 	// admin workspace access
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty" yaml:"admin_workspace_access,omitempty"`
+
+	// allow Identity Pool OTP Challenge confirmation via web page
+	AllowIdentityPoolOtpChallengeConfirmationViaWebPage bool `json:"allow_identity_pool_otp_challenge_confirmation_via_web_page,omitempty" yaml:"allow_identity_pool_otp_challenge_confirmation_via_web_page,omitempty"`
 
 	// analytics duration
 	// Format: duration
 	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty" yaml:"analytics_duration,omitempty"`
-
-	// Arculix 2FA and MFA
-	Arculix bool `json:"arculix,omitempty" yaml:"arculix,omitempty"`
 
 	// audit events duration
 	// Format: duration
@@ -102,8 +100,8 @@ type Environment struct {
 	// drop tokens on password reset
 	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty" yaml:"drop_tokens_on_password_reset,omitempty"`
 
-	// Gateway default policy
-	GatewayDefaultPolicy bool `json:"gateway_default_policy,omitempty" yaml:"gateway_default_policy,omitempty"`
+	// use fake data (such as ips) - needed for qa testing
+	FakeData bool `json:"fake_data,omitempty" yaml:"fake_data,omitempty"`
 
 	// grpc url
 	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
@@ -114,23 +112,8 @@ type Environment struct {
 	// has google image search
 	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
 
-	// Identifier-based discovery
-	//
-	// Enable users to provide their identifier first during user authentication and discover their preffered authentication provider.
-	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty" yaml:"identifier_based_discovery,omitempty"`
-
 	// identity assurance
 	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
-
-	// Identity Pool MFA
-	//
-	// Enable MFA for Identity Pool
-	IdentityPoolMfa bool `json:"identity_pool_mfa,omitempty" yaml:"identity_pool_mfa,omitempty"`
-
-	// Identity Pool TOTP
-	//
-	// Enable TOTP for Identity Pool
-	IdentityPoolTotp bool `json:"identity_pool_totp,omitempty" yaml:"identity_pool_totp,omitempty"`
 
 	// image proxy url
 	ImageProxyURL string `json:"image_proxy_url,omitempty" yaml:"image_proxy_url,omitempty"`
@@ -147,6 +130,9 @@ type Environment struct {
 	// mark address as verified on any proof of possession of the address
 	MarkAddressAsVerifiedOnAnyProofOfPossession bool `json:"mark_address_as_verified_on_any_proof_of_possession,omitempty" yaml:"mark_address_as_verified_on_any_proof_of_possession,omitempty"`
 
+	// new onboarding flow
+	NewOnboarding bool `json:"new_onboarding,omitempty" yaml:"new_onboarding,omitempty"`
+
 	// openbanking brasil
 	Obbr bool `json:"obbr,omitempty" yaml:"obbr,omitempty"`
 
@@ -158,26 +144,11 @@ type Environment struct {
 	// Delineate a structured and hierarchical separation among your business customers' companies or partners. Enable Delegated Admin Portal.
 	Organizations bool `json:"organizations,omitempty" yaml:"organizations,omitempty"`
 
-	// Permissions
-	//
-	// Control access to resources based on user permissions. Create permission systems.
-	Permissions bool `json:"permissions,omitempty" yaml:"permissions,omitempty"`
-
 	// rich authorization requests
 	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 
 	// Risk engine
 	RiskEngine bool `json:"risk_engine,omitempty" yaml:"risk_engine,omitempty"`
-
-	// Roles
-	//
-	// Control access to Cloudentity based on user roles. Invite tenant admins, workspace admins, or business admins.
-	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
-
-	// SAML Identity Provider V2
-	//
-	// Enable SAML Identity Provider V2
-	SamlV2 bool `json:"saml_v2,omitempty" yaml:"saml_v2,omitempty"`
 
 	// scope transient_otp
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
@@ -189,9 +160,6 @@ type Environment struct {
 	//
 	// Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
 	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
-
-	// simple api integration
-	SimpleAPIIntegration bool `json:"simple_api_integration,omitempty" yaml:"simple_api_integration,omitempty"`
 
 	// swagger ui
 	SwaggerUI bool `json:"swagger_ui,omitempty" yaml:"swagger_ui,omitempty"`

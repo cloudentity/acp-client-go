@@ -7,6 +7,7 @@ package f_d_x
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -100,11 +101,13 @@ func (o *FdxConsentIntrospectOK) Code() int {
 }
 
 func (o *FdxConsentIntrospectOK) Error() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *FdxConsentIntrospectOK) String() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *FdxConsentIntrospectOK) GetPayload() *FdxConsentIntrospectOKBody {
@@ -168,11 +171,13 @@ func (o *FdxConsentIntrospectUnauthorized) Code() int {
 }
 
 func (o *FdxConsentIntrospectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *FdxConsentIntrospectUnauthorized) String() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *FdxConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -236,11 +241,13 @@ func (o *FdxConsentIntrospectNotFound) Code() int {
 }
 
 func (o *FdxConsentIntrospectNotFound) Error() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *FdxConsentIntrospectNotFound) String() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *FdxConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -304,11 +311,13 @@ func (o *FdxConsentIntrospectTooManyRequests) Code() int {
 }
 
 func (o *FdxConsentIntrospectTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *FdxConsentIntrospectTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *FdxConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

@@ -64,7 +64,7 @@ RequestResetPasswordParams contains all the parameters to send to the API endpoi
 type RequestResetPasswordParams struct {
 
 	// RequestResetPassword.
-	RequestResetPassword *models.RequestResetCredential
+	RequestResetPassword *models.RequestAddOrResetCredential
 
 	/* CodeTypeInMessage.
 
@@ -157,13 +157,13 @@ func (o *RequestResetPasswordParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestResetPassword adds the requestResetPassword to the request reset password params
-func (o *RequestResetPasswordParams) WithRequestResetPassword(requestResetPassword *models.RequestResetCredential) *RequestResetPasswordParams {
+func (o *RequestResetPasswordParams) WithRequestResetPassword(requestResetPassword *models.RequestAddOrResetCredential) *RequestResetPasswordParams {
 	o.SetRequestResetPassword(requestResetPassword)
 	return o
 }
 
 // SetRequestResetPassword adds the requestResetPassword to the request reset password params
-func (o *RequestResetPasswordParams) SetRequestResetPassword(requestResetPassword *models.RequestResetCredential) {
+func (o *RequestResetPasswordParams) SetRequestResetPassword(requestResetPassword *models.RequestAddOrResetCredential) {
 	o.RequestResetPassword = requestResetPassword
 }
 

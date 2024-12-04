@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *BackchannelAuthenticationOK) Code() int {
 }
 
 func (o *BackchannelAuthenticationOK) Error() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK %s", 200, payload)
 }
 
 func (o *BackchannelAuthenticationOK) String() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK %s", 200, payload)
 }
 
 func (o *BackchannelAuthenticationOK) GetPayload() *models.BackchannelAuthenticationResponse {
@@ -159,11 +162,13 @@ func (o *BackchannelAuthenticationBadRequest) Code() int {
 }
 
 func (o *BackchannelAuthenticationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest %s", 400, payload)
 }
 
 func (o *BackchannelAuthenticationBadRequest) String() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest %s", 400, payload)
 }
 
 func (o *BackchannelAuthenticationBadRequest) GetPayload() *models.BackchannelAuthenticationError {
@@ -227,11 +232,13 @@ func (o *BackchannelAuthenticationUnauthorized) Code() int {
 }
 
 func (o *BackchannelAuthenticationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized %s", 401, payload)
 }
 
 func (o *BackchannelAuthenticationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized %s", 401, payload)
 }
 
 func (o *BackchannelAuthenticationUnauthorized) GetPayload() *models.BackchannelAuthenticationError {

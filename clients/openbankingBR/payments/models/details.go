@@ -182,6 +182,7 @@ func (m *Details) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 func (m *Details) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditorAccount")
@@ -198,6 +199,7 @@ func (m *Details) contextValidateCreditorAccount(ctx context.Context, formats st
 func (m *Details) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LocalInstrument != nil {
+
 		if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("localInstrument")

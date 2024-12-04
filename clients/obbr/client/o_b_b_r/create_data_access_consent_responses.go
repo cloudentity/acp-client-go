@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -133,11 +134,13 @@ func (o *CreateDataAccessConsentCreated) Code() int {
 }
 
 func (o *CreateDataAccessConsentCreated) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentCreated %s", 201, payload)
 }
 
 func (o *CreateDataAccessConsentCreated) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentCreated %s", 201, payload)
 }
 
 func (o *CreateDataAccessConsentCreated) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
@@ -201,11 +204,13 @@ func (o *CreateDataAccessConsentBadRequest) Code() int {
 }
 
 func (o *CreateDataAccessConsentBadRequest) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentBadRequest %s", 400, payload)
 }
 
 func (o *CreateDataAccessConsentBadRequest) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentBadRequest %s", 400, payload)
 }
 
 func (o *CreateDataAccessConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -269,11 +274,13 @@ func (o *CreateDataAccessConsentUnauthorized) Code() int {
 }
 
 func (o *CreateDataAccessConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDataAccessConsentUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDataAccessConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -337,11 +344,13 @@ func (o *CreateDataAccessConsentForbidden) Code() int {
 }
 
 func (o *CreateDataAccessConsentForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentForbidden %s", 403, payload)
 }
 
 func (o *CreateDataAccessConsentForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentForbidden %s", 403, payload)
 }
 
 func (o *CreateDataAccessConsentForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -405,11 +414,13 @@ func (o *CreateDataAccessConsentMethodNotAllowed) Code() int {
 }
 
 func (o *CreateDataAccessConsentMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDataAccessConsentMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDataAccessConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -473,11 +484,13 @@ func (o *CreateDataAccessConsentNotAcceptable) Code() int {
 }
 
 func (o *CreateDataAccessConsentNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDataAccessConsentNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDataAccessConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -541,11 +554,13 @@ func (o *CreateDataAccessConsentUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateDataAccessConsentUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDataAccessConsentUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDataAccessConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -609,11 +624,13 @@ func (o *CreateDataAccessConsentUnprocessableEntity) Code() int {
 }
 
 func (o *CreateDataAccessConsentUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateDataAccessConsentUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateDataAccessConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -677,11 +694,13 @@ func (o *CreateDataAccessConsentTooManyRequests) Code() int {
 }
 
 func (o *CreateDataAccessConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDataAccessConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDataAccessConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -745,11 +764,13 @@ func (o *CreateDataAccessConsentInternalServerError) Code() int {
 }
 
 func (o *CreateDataAccessConsentInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDataAccessConsentInternalServerError) String() string {
-	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/consents/v1/consents][%d] createDataAccessConsentInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDataAccessConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {

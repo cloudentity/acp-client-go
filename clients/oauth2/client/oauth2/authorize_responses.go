@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -96,11 +97,11 @@ func (o *AuthorizeFound) Code() int {
 }
 
 func (o *AuthorizeFound) Error() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound ", 302)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound", 302)
 }
 
 func (o *AuthorizeFound) String() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound ", 302)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound", 302)
 }
 
 func (o *AuthorizeFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -153,11 +154,13 @@ func (o *AuthorizeUnauthorized) Code() int {
 }
 
 func (o *AuthorizeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized %s", 401, payload)
 }
 
 func (o *AuthorizeUnauthorized) String() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized %s", 401, payload)
 }
 
 func (o *AuthorizeUnauthorized) GetPayload() *models.GenericError {
@@ -221,11 +224,13 @@ func (o *AuthorizeNotFound) Code() int {
 }
 
 func (o *AuthorizeNotFound) Error() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound %s", 404, payload)
 }
 
 func (o *AuthorizeNotFound) String() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound %s", 404, payload)
 }
 
 func (o *AuthorizeNotFound) GetPayload() *models.GenericError {
@@ -289,11 +294,13 @@ func (o *AuthorizeTooManyRequests) Code() int {
 }
 
 func (o *AuthorizeTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests %s", 429, payload)
 }
 
 func (o *AuthorizeTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests %s", 429, payload)
 }
 
 func (o *AuthorizeTooManyRequests) GetPayload() *models.GenericError {

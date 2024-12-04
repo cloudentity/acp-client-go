@@ -21,6 +21,9 @@ import (
 // swagger:model SelfUserWithDataV2
 type SelfUserWithDataV2 struct {
 
+	// allowed authentication mechanisms that user can use
+	AllowedAuthenticationMechanisms []string `json:"allowed_authentication_mechanisms" yaml:"allowed_authentication_mechanisms"`
+
 	// authentication mechanisms
 	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty" yaml:"authentication_mechanisms,omitempty"`
 
@@ -50,7 +53,7 @@ type SelfUserWithDataV2 struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp webauthn arculix]
+	// Enum: ["totp","password","otp","webauthn"]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// second factor authentication mechanisms
@@ -58,7 +61,7 @@ type SelfUserWithDataV2 struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp webauthn arculix]
+	// Enum: ["totp","password","otp","webauthn"]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// verifiable addresses
@@ -68,6 +71,10 @@ type SelfUserWithDataV2 struct {
 // Validate validates this self user with data v2
 func (m *SelfUserWithDataV2) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAllowedAuthenticationMechanisms(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAuthenticationMechanisms(formats); err != nil {
 		res = append(res, err)
@@ -108,6 +115,42 @@ func (m *SelfUserWithDataV2) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var selfUserWithDataV2AllowedAuthenticationMechanismsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		selfUserWithDataV2AllowedAuthenticationMechanismsItemsEnum = append(selfUserWithDataV2AllowedAuthenticationMechanismsItemsEnum, v)
+	}
+}
+
+func (m *SelfUserWithDataV2) validateAllowedAuthenticationMechanismsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, selfUserWithDataV2AllowedAuthenticationMechanismsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *SelfUserWithDataV2) validateAllowedAuthenticationMechanisms(formats strfmt.Registry) error {
+	if swag.IsZero(m.AllowedAuthenticationMechanisms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AllowedAuthenticationMechanisms); i++ {
+
+		// value enum
+		if err := m.validateAllowedAuthenticationMechanismsItemsEnum("allowed_authentication_mechanisms"+"."+strconv.Itoa(i), "body", m.AllowedAuthenticationMechanisms[i]); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -229,7 +272,7 @@ var selfUserWithDataV2TypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -250,9 +293,6 @@ const (
 
 	// SelfUserWithDataV2PreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	SelfUserWithDataV2PreferredAuthenticationMechanismWebauthn string = "webauthn"
-
-	// SelfUserWithDataV2PreferredAuthenticationMechanismArculix captures enum value "arculix"
-	SelfUserWithDataV2PreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum
@@ -297,7 +337,7 @@ var selfUserWithDataV2TypeSecondFactorPreferredAuthenticationMechanismPropEnum [
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn","arculix"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -318,9 +358,6 @@ const (
 
 	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
-
-	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismArculix captures enum value "arculix"
-	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismArculix string = "arculix"
 )
 
 // prop value enum

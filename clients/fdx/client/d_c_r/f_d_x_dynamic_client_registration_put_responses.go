@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *FDXDynamicClientRegistrationPutOK) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationPutOK) Error() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutOK %s", 200, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutOK) String() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutOK %s", 200, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutOK) GetPayload() *models.FDXDynamicClientRegistrationResponse {
@@ -171,11 +174,13 @@ func (o *FDXDynamicClientRegistrationPutBadRequest) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationPutBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutBadRequest) String() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutBadRequest) GetPayload() *models.RFC6749Error {
@@ -239,11 +244,13 @@ func (o *FDXDynamicClientRegistrationPutUnauthorized) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationPutUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutUnauthorized) GetPayload() *models.RFC6749Error {
@@ -307,11 +314,13 @@ func (o *FDXDynamicClientRegistrationPutForbidden) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationPutForbidden) Error() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutForbidden) String() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutForbidden) GetPayload() *models.RFC6749Error {
@@ -375,11 +384,13 @@ func (o *FDXDynamicClientRegistrationPutNotFound) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationPutNotFound) Error() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutNotFound) String() string {
-	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationPutNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationPutNotFound) GetPayload() *models.GenericError {

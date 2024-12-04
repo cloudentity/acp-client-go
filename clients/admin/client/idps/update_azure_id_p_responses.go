@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateAzureIDPOK) Code() int {
 }
 
 func (o *UpdateAzureIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK %s", 200, payload)
 }
 
 func (o *UpdateAzureIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK %s", 200, payload)
 }
 
 func (o *UpdateAzureIDPOK) GetPayload() *models.AzureIDP {
@@ -183,11 +186,13 @@ func (o *UpdateAzureIDPBadRequest) Code() int {
 }
 
 func (o *UpdateAzureIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAzureIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAzureIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateAzureIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateAzureIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAzureIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAzureIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateAzureIDPForbidden) Code() int {
 }
 
 func (o *UpdateAzureIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateAzureIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateAzureIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateAzureIDPNotFound) Code() int {
 }
 
 func (o *UpdateAzureIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateAzureIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateAzureIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateAzureIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAzureIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAzureIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateAzureIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateAzureIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAzureIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAzureIDPTooManyRequests) GetPayload() *models.Error {

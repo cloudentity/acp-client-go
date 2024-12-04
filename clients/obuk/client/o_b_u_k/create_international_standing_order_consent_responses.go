@@ -6,6 +6,7 @@ package o_b_u_k
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -127,11 +128,13 @@ func (o *CreateInternationalStandingOrderConsentCreated) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentCreated) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated %s", 201, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentCreated) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated %s", 201, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentCreated) GetPayload() *models.InternationalStandingOrderConsentResponse {
@@ -195,11 +198,13 @@ func (o *CreateInternationalStandingOrderConsentBadRequest) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentBadRequest) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest %s", 400, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentBadRequest) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest %s", 400, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentBadRequest) GetPayload() *models.ErrorResponse {
@@ -263,11 +268,13 @@ func (o *CreateInternationalStandingOrderConsentUnauthorized) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized %s", 401, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized %s", 401, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentUnauthorized) GetPayload() *models.ErrorResponse {
@@ -331,11 +338,13 @@ func (o *CreateInternationalStandingOrderConsentForbidden) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden %s", 403, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden %s", 403, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentForbidden) GetPayload() *models.ErrorResponse {
@@ -399,11 +408,13 @@ func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) GetPayload() *models.ErrorResponse {
@@ -467,11 +478,13 @@ func (o *CreateInternationalStandingOrderConsentNotAcceptable) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentNotAcceptable) GetPayload() *models.ErrorResponse {
@@ -535,11 +548,13 @@ func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) Code() int
 }
 
 func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) GetPayload() *models.ErrorResponse {
@@ -603,11 +618,13 @@ func (o *CreateInternationalStandingOrderConsentTooManyRequests) Code() int {
 }
 
 func (o *CreateInternationalStandingOrderConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentTooManyRequests) GetPayload() *models.ErrorResponse {
@@ -671,11 +688,13 @@ func (o *CreateInternationalStandingOrderConsentInternalServerError) Code() int 
 }
 
 func (o *CreateInternationalStandingOrderConsentInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError %s", 500, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentInternalServerError) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError %s", 500, payload)
 }
 
 func (o *CreateInternationalStandingOrderConsentInternalServerError) GetPayload() *models.ErrorResponse {

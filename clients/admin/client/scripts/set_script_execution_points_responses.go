@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *SetScriptExecutionPointsOK) Code() int {
 }
 
 func (o *SetScriptExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK %s", 200, payload)
 }
 
 func (o *SetScriptExecutionPointsOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK %s", 200, payload)
 }
 
 func (o *SetScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
@@ -205,11 +208,13 @@ func (o *SetScriptExecutionPointsBadRequest) Code() int {
 }
 
 func (o *SetScriptExecutionPointsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest %s", 400, payload)
 }
 
 func (o *SetScriptExecutionPointsBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest %s", 400, payload)
 }
 
 func (o *SetScriptExecutionPointsBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *SetScriptExecutionPointsUnauthorized) Code() int {
 }
 
 func (o *SetScriptExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *SetScriptExecutionPointsUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *SetScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *SetScriptExecutionPointsForbidden) Code() int {
 }
 
 func (o *SetScriptExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *SetScriptExecutionPointsForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *SetScriptExecutionPointsForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *SetScriptExecutionPointsNotFound) Code() int {
 }
 
 func (o *SetScriptExecutionPointsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound %s", 404, payload)
 }
 
 func (o *SetScriptExecutionPointsNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound %s", 404, payload)
 }
 
 func (o *SetScriptExecutionPointsNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *SetScriptExecutionPointsConflict) Code() int {
 }
 
 func (o *SetScriptExecutionPointsConflict) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict %s", 409, payload)
 }
 
 func (o *SetScriptExecutionPointsConflict) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict %s", 409, payload)
 }
 
 func (o *SetScriptExecutionPointsConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *SetScriptExecutionPointsUnprocessableEntity) Code() int {
 }
 
 func (o *SetScriptExecutionPointsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetScriptExecutionPointsUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetScriptExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *SetScriptExecutionPointsTooManyRequests) Code() int {
 }
 
 func (o *SetScriptExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *SetScriptExecutionPointsTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *SetScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {

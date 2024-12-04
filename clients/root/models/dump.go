@@ -19,11 +19,14 @@ import (
 // swagger:model Dump
 type Dump struct {
 
+	// acrs
+	Acrs []*ACR `json:"acrs" yaml:"acrs"`
+
 	// apis
 	Apis []*API `json:"apis" yaml:"apis"`
 
 	// audit events
-	AuditEvents []*AuditEvent `json:"audit_events" yaml:"audit_events"`
+	AuditEvents []*InternalAuditEvent `json:"audit_events" yaml:"audit_events"`
 
 	// authorization details
 	AuthorizationDetails []*AuthorizationDetail `json:"authorization_details" yaml:"authorization_details"`
@@ -158,6 +161,10 @@ type Dump struct {
 // Validate validates this dump
 func (m *Dump) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAcrs(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateApis(formats); err != nil {
 		res = append(res, err)
@@ -342,6 +349,32 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Dump) validateAcrs(formats strfmt.Registry) error {
+	if swag.IsZero(m.Acrs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Acrs); i++ {
+		if swag.IsZero(m.Acrs[i]) { // not required
+			continue
+		}
+
+		if m.Acrs[i] != nil {
+			if err := m.Acrs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("acrs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("acrs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -1510,6 +1543,10 @@ func (m *Dump) validateWebhooks(formats strfmt.Registry) error {
 func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAcrs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1693,6 +1730,31 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Dump) contextValidateAcrs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Acrs); i++ {
+
+		if m.Acrs[i] != nil {
+
+			if swag.IsZero(m.Acrs[i]) { // not required
+				return nil
+			}
+
+			if err := m.Acrs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("acrs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("acrs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

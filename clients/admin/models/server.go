@@ -32,7 +32,7 @@ type Server struct {
 	// the athorization server. To validate an opaque token, the recipient must call the server that
 	// issued the token.
 	// Example: jwt
-	// Enum: [jwt opaque]
+	// Enum: ["jwt","opaque"]
 	AccessTokenStrategy string `json:"access_token_strategy,omitempty" yaml:"access_token_strategy,omitempty"`
 
 	// Access token time to live
@@ -48,6 +48,10 @@ type Server struct {
 
 	// authentication context settings
 	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty" yaml:"authentication_context_settings,omitempty"`
+
+	// allowed authentication mechanisms for users in the identity pools
+	// Example: ["password","totp","otp","webauthn"]
+	AuthenticationMechanisms []string `json:"authentication_mechanisms" yaml:"authentication_mechanisms"`
 
 	// Authorization code time to live
 	//
@@ -202,7 +206,7 @@ type Server struct {
 	//
 	// It is used only as an input parameter for the Create Authorization Server API.
 	// Example: rsa
-	// Enum: [rsa ecdsa ps]
+	// Enum: ["rsa","ecdsa","ps"]
 	KeyType string `json:"key_type,omitempty" yaml:"key_type,omitempty"`
 
 	// legal entity
@@ -235,7 +239,7 @@ type Server struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br openbanking_br_unico cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
+	// Enum: ["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","openbanking_br_unico","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]
 	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -293,7 +297,7 @@ type Server struct {
 
 	// Define the format of a subject
 	// When set to hash sub value is a one way hash of idp id and idp sub
-	// Enum: [hash legacy]
+	// Enum: ["hash","legacy"]
 	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// Salt used to hash `subject` when the `pairwise` subject type is used.
@@ -352,7 +356,7 @@ type Server struct {
 	// It is an internal property used to recognize if the server is created for an admin portal,
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
-	// Enum: [admin developer system regular organization]
+	// Enum: ["admin","developer","system","regular","organization"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// server version to track internal changes
@@ -377,6 +381,10 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAuthenticationContextSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthenticationMechanisms(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -601,6 +609,42 @@ func (m *Server) validateAuthenticationContextSettings(formats strfmt.Registry) 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var serverAuthenticationMechanismsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverAuthenticationMechanismsItemsEnum = append(serverAuthenticationMechanismsItemsEnum, v)
+	}
+}
+
+func (m *Server) validateAuthenticationMechanismsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverAuthenticationMechanismsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Server) validateAuthenticationMechanisms(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationMechanisms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthenticationMechanisms); i++ {
+
+		// value enum
+		if err := m.validateAuthenticationMechanismsItemsEnum("authentication_mechanisms"+"."+strconv.Itoa(i), "body", m.AuthenticationMechanisms[i]); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

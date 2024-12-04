@@ -6,6 +6,7 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetPoolOK) Code() int {
 }
 
 func (o *GetPoolOK) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK %s", 200, payload)
 }
 
 func (o *GetPoolOK) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK %s", 200, payload)
 }
 
 func (o *GetPoolOK) GetPayload() *models.PoolResponse {
@@ -187,11 +190,13 @@ func (o *GetPoolUnauthorized) Code() int {
 }
 
 func (o *GetPoolUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized %s", 401, payload)
 }
 
 func (o *GetPoolUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized %s", 401, payload)
 }
 
 func (o *GetPoolUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetPoolForbidden) Code() int {
 }
 
 func (o *GetPoolForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden %s", 403, payload)
 }
 
 func (o *GetPoolForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden %s", 403, payload)
 }
 
 func (o *GetPoolForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetPoolNotFound) Code() int {
 }
 
 func (o *GetPoolNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound %s", 404, payload)
 }
 
 func (o *GetPoolNotFound) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound %s", 404, payload)
 }
 
 func (o *GetPoolNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetPoolTooManyRequests) Code() int {
 }
 
 func (o *GetPoolTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *GetPoolTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *GetPoolTooManyRequests) GetPayload() *models.Error {

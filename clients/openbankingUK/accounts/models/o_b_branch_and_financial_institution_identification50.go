@@ -115,6 +115,7 @@ func (m *OBBranchAndFinancialInstitutionIdentification50) ContextValidate(ctx co
 func (m *OBBranchAndFinancialInstitutionIdentification50) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Identification")
@@ -131,6 +132,7 @@ func (m *OBBranchAndFinancialInstitutionIdentification50) contextValidateIdentif
 func (m *OBBranchAndFinancialInstitutionIdentification50) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")

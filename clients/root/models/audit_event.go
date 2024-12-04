@@ -20,33 +20,35 @@ import (
 // swagger:model AuditEvent
 type AuditEvent struct {
 
-	// action
-	// Enum: [authenticated challenged authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
+	// Name of an action that was performed for a given event subject.
+	// Example: created
+	// Enum: ["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed","reset_requested","reset_completed","add_requested","add_completed"]
 	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
-	// event id
+	// Additional audit event context.
+	Context map[string]string `json:"context,omitempty" yaml:"context,omitempty"`
+
+	// Event ID - unique audit event identifier.
 	EventID string `json:"event_id,omitempty" yaml:"event_id,omitempty"`
 
-	// event payload
-	EventPayload interface{} `json:"event_payload,omitempty" yaml:"event_payload,omitempty"`
-
-	// event subject
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server import organization]
+	// Resource or entity that is a subject of a given audit event.
+	// Example: client
+	// Enum: ["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect","totp","webauthn"]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
-
-	// event type
-	EventType AuditEventType `json:"event_type,omitempty" yaml:"event_type,omitempty"`
 
 	// metadata
 	Metadata *AuditEventMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
-	// server id
+	// payload
+	Payload *AuditEventPayloads `json:"payload,omitempty" yaml:"payload,omitempty"`
+
+	// Server ID.
 	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
-	// tenant id
+	// Tenant ID.
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
-	// timestamp
+	// Time when the event took place.
 	// Format: date-time
 	Timestamp strfmt.DateTime `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
 }
@@ -63,11 +65,11 @@ func (m *AuditEvent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateEventType(formats); err != nil {
+	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateMetadata(formats); err != nil {
+	if err := m.validatePayload(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,7 +87,7 @@ var auditEventTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed","reset_requested","reset_completed","add_requested","add_completed"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -163,6 +165,18 @@ const (
 
 	// AuditEventActionExecuted captures enum value "executed"
 	AuditEventActionExecuted string = "executed"
+
+	// AuditEventActionResetRequested captures enum value "reset_requested"
+	AuditEventActionResetRequested string = "reset_requested"
+
+	// AuditEventActionResetCompleted captures enum value "reset_completed"
+	AuditEventActionResetCompleted string = "reset_completed"
+
+	// AuditEventActionAddRequested captures enum value "add_requested"
+	AuditEventActionAddRequested string = "add_requested"
+
+	// AuditEventActionAddCompleted captures enum value "add_completed"
+	AuditEventActionAddCompleted string = "add_completed"
 )
 
 // prop value enum
@@ -190,7 +204,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect","totp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -257,9 +271,6 @@ const (
 	// AuditEventEventSubjectUser captures enum value "user"
 	AuditEventEventSubjectUser string = "user"
 
-	// AuditEventEventSubjectSelfuser captures enum value "selfuser"
-	AuditEventEventSubjectSelfuser string = "selfuser"
-
 	// AuditEventEventSubjectSchema captures enum value "schema"
 	AuditEventEventSubjectSchema string = "schema"
 
@@ -301,6 +312,15 @@ const (
 
 	// AuditEventEventSubjectOrganization captures enum value "organization"
 	AuditEventEventSubjectOrganization string = "organization"
+
+	// AuditEventEventSubjectOtpInspect captures enum value "otp_inspect"
+	AuditEventEventSubjectOtpInspect string = "otp_inspect"
+
+	// AuditEventEventSubjectTotp captures enum value "totp"
+	AuditEventEventSubjectTotp string = "totp"
+
+	// AuditEventEventSubjectWebauthn captures enum value "webauthn"
+	AuditEventEventSubjectWebauthn string = "webauthn"
 )
 
 // prop value enum
@@ -318,23 +338,6 @@ func (m *AuditEvent) validateEventSubject(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateEventSubjectEnum("event_subject", "body", m.EventSubject); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AuditEvent) validateEventType(formats strfmt.Registry) error {
-	if swag.IsZero(m.EventType) { // not required
-		return nil
-	}
-
-	if err := m.EventType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("event_type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("event_type")
-		}
 		return err
 	}
 
@@ -360,6 +363,25 @@ func (m *AuditEvent) validateMetadata(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AuditEvent) validatePayload(formats strfmt.Registry) error {
+	if swag.IsZero(m.Payload) { // not required
+		return nil
+	}
+
+	if m.Payload != nil {
+		if err := m.Payload.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payload")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEvent) validateTimestamp(formats strfmt.Registry) error {
 	if swag.IsZero(m.Timestamp) { // not required
 		return nil
@@ -376,35 +398,17 @@ func (m *AuditEvent) validateTimestamp(formats strfmt.Registry) error {
 func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateEventType(ctx, formats); err != nil {
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+	if err := m.contextValidatePayload(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AuditEvent) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.EventType) { // not required
-		return nil
-	}
-
-	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("event_type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("event_type")
-		}
-		return err
-	}
-
 	return nil
 }
 
@@ -421,6 +425,27 @@ func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt
 				return ve.ValidateName("metadata")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEvent) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Payload != nil {
+
+		if swag.IsZero(m.Payload) { // not required
+			return nil
+		}
+
+		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payload")
 			}
 			return err
 		}

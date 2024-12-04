@@ -6,6 +6,7 @@ package images
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *SearchImagesOK) Code() int {
 }
 
 func (o *SearchImagesOK) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesOK %s", 200, payload)
 }
 
 func (o *SearchImagesOK) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesOK %s", 200, payload)
 }
 
 func (o *SearchImagesOK) GetPayload() *models.Images {
@@ -177,11 +180,13 @@ func (o *SearchImagesBadRequest) Code() int {
 }
 
 func (o *SearchImagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesBadRequest %s", 400, payload)
 }
 
 func (o *SearchImagesBadRequest) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesBadRequest %s", 400, payload)
 }
 
 func (o *SearchImagesBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *SearchImagesUnauthorized) Code() int {
 }
 
 func (o *SearchImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesUnauthorized %s", 401, payload)
 }
 
 func (o *SearchImagesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesUnauthorized %s", 401, payload)
 }
 
 func (o *SearchImagesUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *SearchImagesForbidden) Code() int {
 }
 
 func (o *SearchImagesForbidden) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesForbidden %s", 403, payload)
 }
 
 func (o *SearchImagesForbidden) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesForbidden %s", 403, payload)
 }
 
 func (o *SearchImagesForbidden) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *SearchImagesNotFound) Code() int {
 }
 
 func (o *SearchImagesNotFound) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesNotFound %s", 404, payload)
 }
 
 func (o *SearchImagesNotFound) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesNotFound %s", 404, payload)
 }
 
 func (o *SearchImagesNotFound) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *SearchImagesTooManyRequests) Code() int {
 }
 
 func (o *SearchImagesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesTooManyRequests %s", 429, payload)
 }
 
 func (o *SearchImagesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /images][%d] searchImagesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /images][%d] searchImagesTooManyRequests %s", 429, payload)
 }
 
 func (o *SearchImagesTooManyRequests) GetPayload() *models.Error {

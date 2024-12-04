@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *ChangeTotpSecretNoContent) Code() int {
 }
 
 func (o *ChangeTotpSecretNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNoContent", 204)
 }
 
 func (o *ChangeTotpSecretNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNoContent", 204)
 }
 
 func (o *ChangeTotpSecretNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *ChangeTotpSecretBadRequest) Code() int {
 }
 
 func (o *ChangeTotpSecretBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretBadRequest %s", 400, payload)
 }
 
 func (o *ChangeTotpSecretBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretBadRequest %s", 400, payload)
 }
 
 func (o *ChangeTotpSecretBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *ChangeTotpSecretUnauthorized) Code() int {
 }
 
 func (o *ChangeTotpSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnauthorized %s", 401, payload)
 }
 
 func (o *ChangeTotpSecretUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnauthorized %s", 401, payload)
 }
 
 func (o *ChangeTotpSecretUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *ChangeTotpSecretForbidden) Code() int {
 }
 
 func (o *ChangeTotpSecretForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretForbidden %s", 403, payload)
 }
 
 func (o *ChangeTotpSecretForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretForbidden %s", 403, payload)
 }
 
 func (o *ChangeTotpSecretForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *ChangeTotpSecretNotFound) Code() int {
 }
 
 func (o *ChangeTotpSecretNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNotFound %s", 404, payload)
 }
 
 func (o *ChangeTotpSecretNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretNotFound %s", 404, payload)
 }
 
 func (o *ChangeTotpSecretNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *ChangeTotpSecretPreconditionFailed) Code() int {
 }
 
 func (o *ChangeTotpSecretPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretPreconditionFailed %s", 412, payload)
 }
 
 func (o *ChangeTotpSecretPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretPreconditionFailed %s", 412, payload)
 }
 
 func (o *ChangeTotpSecretPreconditionFailed) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *ChangeTotpSecretUnprocessableEntity) Code() int {
 }
 
 func (o *ChangeTotpSecretUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ChangeTotpSecretUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ChangeTotpSecretUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *ChangeTotpSecretTooManyRequests) Code() int {
 }
 
 func (o *ChangeTotpSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *ChangeTotpSecretTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/totp/change][%d] changeTotpSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *ChangeTotpSecretTooManyRequests) GetPayload() *models.Error {

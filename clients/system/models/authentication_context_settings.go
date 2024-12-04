@@ -20,7 +20,7 @@ import (
 type AuthenticationContextSettings struct {
 
 	// attributes
-	Attributes []*Attribute `json:"attributes" yaml:"attributes"`
+	Attributes []*AuthenticationContextAttribute `json:"attributes" yaml:"attributes"`
 }
 
 // Validate validates this authentication context settings

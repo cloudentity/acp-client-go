@@ -6,6 +6,7 @@ package international_payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *GetInternationalPaymentConsentsConsentIDReader) ReadResponse(response r
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /international-payment-consents/{ConsentId}] GetInternationalPaymentConsentsConsentId", response, response.Code())
 	}
 }
 
@@ -139,11 +140,13 @@ func (o *GetInternationalPaymentConsentsConsentIDOK) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDOK) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDOK) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdOK %s", 200, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDOK) GetPayload() *models.OBWriteInternationalConsentResponse6 {
@@ -231,11 +234,13 @@ func (o *GetInternationalPaymentConsentsConsentIDBadRequest) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -316,11 +321,11 @@ func (o *GetInternationalPaymentConsentsConsentIDUnauthorized) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdUnauthorized", 401)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -390,11 +395,13 @@ func (o *GetInternationalPaymentConsentsConsentIDForbidden) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDForbidden) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -475,11 +482,11 @@ func (o *GetInternationalPaymentConsentsConsentIDNotFound) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotFound) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotFound ", 404)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotFound", 404)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -542,11 +549,11 @@ func (o *GetInternationalPaymentConsentsConsentIDMethodNotAllowed) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdMethodNotAllowed ", 405)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdMethodNotAllowed", 405)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -609,11 +616,11 @@ func (o *GetInternationalPaymentConsentsConsentIDNotAcceptable) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotAcceptable ", 406)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdNotAcceptable", 406)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -680,11 +687,11 @@ func (o *GetInternationalPaymentConsentsConsentIDTooManyRequests) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdTooManyRequests", 429)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -765,11 +772,13 @@ func (o *GetInternationalPaymentConsentsConsentIDInternalServerError) Code() int
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /international-payment-consents/{ConsentId}][%d] getInternationalPaymentConsentsConsentIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalPaymentConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {

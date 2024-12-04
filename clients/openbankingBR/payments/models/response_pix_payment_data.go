@@ -525,6 +525,7 @@ func (m *ResponsePixPaymentData) ContextValidate(ctx context.Context, formats st
 func (m *ResponsePixPaymentData) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditorAccount")
@@ -541,6 +542,7 @@ func (m *ResponsePixPaymentData) contextValidateCreditorAccount(ctx context.Cont
 func (m *ResponsePixPaymentData) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LocalInstrument != nil {
+
 		if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("localInstrument")
@@ -557,6 +559,7 @@ func (m *ResponsePixPaymentData) contextValidateLocalInstrument(ctx context.Cont
 func (m *ResponsePixPaymentData) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payment != nil {
+
 		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payment")
@@ -571,6 +574,10 @@ func (m *ResponsePixPaymentData) contextValidatePayment(ctx context.Context, for
 }
 
 func (m *ResponsePixPaymentData) contextValidateRejectionReason(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RejectionReason) { // not required
+		return nil
+	}
 
 	if err := m.RejectionReason.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -587,6 +594,7 @@ func (m *ResponsePixPaymentData) contextValidateRejectionReason(ctx context.Cont
 func (m *ResponsePixPaymentData) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

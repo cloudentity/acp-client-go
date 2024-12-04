@@ -329,6 +329,10 @@ func (m *OBPostalAddress6) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *OBPostalAddress6) contextValidateAddressType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AddressType) { // not required
+		return nil
+	}
+
 	if err := m.AddressType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("AddressType")
@@ -342,6 +346,10 @@ func (m *OBPostalAddress6) contextValidateAddressType(ctx context.Context, forma
 }
 
 func (m *OBPostalAddress6) contextValidateBuildingNumber(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BuildingNumber) { // not required
+		return nil
+	}
 
 	if err := m.BuildingNumber.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -357,6 +365,10 @@ func (m *OBPostalAddress6) contextValidateBuildingNumber(ctx context.Context, fo
 
 func (m *OBPostalAddress6) contextValidateCountry(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Country) { // not required
+		return nil
+	}
+
 	if err := m.Country.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Country")
@@ -370,6 +382,10 @@ func (m *OBPostalAddress6) contextValidateCountry(ctx context.Context, formats s
 }
 
 func (m *OBPostalAddress6) contextValidateCountrySubDivision(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CountrySubDivision) { // not required
+		return nil
+	}
 
 	if err := m.CountrySubDivision.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -385,6 +401,10 @@ func (m *OBPostalAddress6) contextValidateCountrySubDivision(ctx context.Context
 
 func (m *OBPostalAddress6) contextValidateDepartment(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Department) { // not required
+		return nil
+	}
+
 	if err := m.Department.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Department")
@@ -398,6 +418,10 @@ func (m *OBPostalAddress6) contextValidateDepartment(ctx context.Context, format
 }
 
 func (m *OBPostalAddress6) contextValidatePostCode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PostCode) { // not required
+		return nil
+	}
 
 	if err := m.PostCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -413,6 +437,10 @@ func (m *OBPostalAddress6) contextValidatePostCode(ctx context.Context, formats 
 
 func (m *OBPostalAddress6) contextValidateStreetName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.StreetName) { // not required
+		return nil
+	}
+
 	if err := m.StreetName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("StreetName")
@@ -427,6 +455,10 @@ func (m *OBPostalAddress6) contextValidateStreetName(ctx context.Context, format
 
 func (m *OBPostalAddress6) contextValidateSubDepartment(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SubDepartment) { // not required
+		return nil
+	}
+
 	if err := m.SubDepartment.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("SubDepartment")
@@ -440,6 +472,10 @@ func (m *OBPostalAddress6) contextValidateSubDepartment(ctx context.Context, for
 }
 
 func (m *OBPostalAddress6) contextValidateTownName(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TownName) { // not required
+		return nil
+	}
 
 	if err := m.TownName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

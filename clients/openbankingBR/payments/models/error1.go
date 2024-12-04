@@ -175,6 +175,7 @@ func (m *Error1) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 func (m *Error1) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Code != nil {
+
 		if err := m.Code.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("code")

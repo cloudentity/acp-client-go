@@ -6,6 +6,7 @@ package account_access
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -80,7 +81,7 @@ func (o *CreateAccountAccessConsentsReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /account-access-consents] CreateAccountAccessConsents", response, response.Code())
 	}
 }
 
@@ -134,11 +135,13 @@ func (o *CreateAccountAccessConsentsCreated) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsCreated) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateAccountAccessConsentsCreated) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated %s", 201, payload)
 }
 
 func (o *CreateAccountAccessConsentsCreated) GetPayload() *models.OBReadConsentResponse1 {
@@ -214,11 +217,13 @@ func (o *CreateAccountAccessConsentsBadRequest) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateAccountAccessConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest %s", 400, payload)
 }
 
 func (o *CreateAccountAccessConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
@@ -292,11 +297,11 @@ func (o *CreateAccountAccessConsentsUnauthorized) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized", 401)
 }
 
 func (o *CreateAccountAccessConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized", 401)
 }
 
 func (o *CreateAccountAccessConsentsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -361,11 +366,13 @@ func (o *CreateAccountAccessConsentsForbidden) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateAccountAccessConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden %s", 403, payload)
 }
 
 func (o *CreateAccountAccessConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
@@ -439,11 +446,11 @@ func (o *CreateAccountAccessConsentsMethodNotAllowed) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateAccountAccessConsentsMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed ", 405)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed", 405)
 }
 
 func (o *CreateAccountAccessConsentsMethodNotAllowed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -506,11 +513,11 @@ func (o *CreateAccountAccessConsentsNotAcceptable) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable", 406)
 }
 
 func (o *CreateAccountAccessConsentsNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable ", 406)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable", 406)
 }
 
 func (o *CreateAccountAccessConsentsNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -573,11 +580,11 @@ func (o *CreateAccountAccessConsentsUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType ", 415)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType", 415)
 }
 
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -644,11 +651,11 @@ func (o *CreateAccountAccessConsentsTooManyRequests) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests", 429)
 }
 
 func (o *CreateAccountAccessConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests", 429)
 }
 
 func (o *CreateAccountAccessConsentsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -724,11 +731,13 @@ func (o *CreateAccountAccessConsentsInternalServerError) Code() int {
 }
 
 func (o *CreateAccountAccessConsentsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAccountAccessConsentsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAccountAccessConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {

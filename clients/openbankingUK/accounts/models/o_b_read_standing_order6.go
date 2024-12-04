@@ -143,6 +143,11 @@ func (m *OBReadStandingOrder6) contextValidateData(ctx context.Context, formats 
 func (m *OBReadStandingOrder6) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -159,6 +164,11 @@ func (m *OBReadStandingOrder6) contextValidateLinks(ctx context.Context, formats
 func (m *OBReadStandingOrder6) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -258,6 +268,11 @@ func (m *OBReadStandingOrder6Data) contextValidateStandingOrder(ctx context.Cont
 	for i := 0; i < len(m.StandingOrder); i++ {
 
 		if m.StandingOrder[i] != nil {
+
+			if swag.IsZero(m.StandingOrder[i]) { // not required
+				return nil
+			}
+
 			if err := m.StandingOrder[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "StandingOrder" + "." + strconv.Itoa(i))

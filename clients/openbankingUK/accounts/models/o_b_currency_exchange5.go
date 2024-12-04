@@ -197,6 +197,10 @@ func (m *OBCurrencyExchange5) ContextValidate(ctx context.Context, formats strfm
 
 func (m *OBCurrencyExchange5) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.InstructedAmount) { // not required
+		return nil
+	}
+
 	if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("InstructedAmount")
@@ -328,6 +332,7 @@ func (m *OBCurrencyExchange5InstructedAmount) ContextValidate(ctx context.Contex
 func (m *OBCurrencyExchange5InstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount" + "." + "Amount")
@@ -344,6 +349,7 @@ func (m *OBCurrencyExchange5InstructedAmount) contextValidateAmount(ctx context.
 func (m *OBCurrencyExchange5InstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount" + "." + "Currency")

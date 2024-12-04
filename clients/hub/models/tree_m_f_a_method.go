@@ -30,7 +30,7 @@ type TreeMFAMethod struct {
 	// mechanism
 	// Example: email
 	// Required: true
-	// Enum: [sms email arculix risk_engine]
+	// Enum: ["sms","email"]
 	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
@@ -95,7 +95,7 @@ var treeMFAMethodTypeMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["sms","email","arculix","risk_engine"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["sms","email"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -110,12 +110,6 @@ const (
 
 	// TreeMFAMethodMechanismEmail captures enum value "email"
 	TreeMFAMethodMechanismEmail string = "email"
-
-	// TreeMFAMethodMechanismArculix captures enum value "arculix"
-	TreeMFAMethodMechanismArculix string = "arculix"
-
-	// TreeMFAMethodMechanismRiskEngine captures enum value "risk_engine"
-	TreeMFAMethodMechanismRiskEngine string = "risk_engine"
 )
 
 // prop value enum

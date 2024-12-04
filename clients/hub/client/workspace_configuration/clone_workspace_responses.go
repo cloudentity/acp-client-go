@@ -6,6 +6,7 @@ package workspace_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *CloneWorkspaceNoContent) Code() int {
 }
 
 func (o *CloneWorkspaceNoContent) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNoContent ", 204)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNoContent", 204)
 }
 
 func (o *CloneWorkspaceNoContent) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNoContent ", 204)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNoContent", 204)
 }
 
 func (o *CloneWorkspaceNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *CloneWorkspaceBadRequest) Code() int {
 }
 
 func (o *CloneWorkspaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceBadRequest %s", 400, payload)
 }
 
 func (o *CloneWorkspaceBadRequest) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceBadRequest %s", 400, payload)
 }
 
 func (o *CloneWorkspaceBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *CloneWorkspaceUnauthorized) Code() int {
 }
 
 func (o *CloneWorkspaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnauthorized %s", 401, payload)
 }
 
 func (o *CloneWorkspaceUnauthorized) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnauthorized %s", 401, payload)
 }
 
 func (o *CloneWorkspaceUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *CloneWorkspaceForbidden) Code() int {
 }
 
 func (o *CloneWorkspaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceForbidden %s", 403, payload)
 }
 
 func (o *CloneWorkspaceForbidden) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceForbidden %s", 403, payload)
 }
 
 func (o *CloneWorkspaceForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *CloneWorkspaceNotFound) Code() int {
 }
 
 func (o *CloneWorkspaceNotFound) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNotFound %s", 404, payload)
 }
 
 func (o *CloneWorkspaceNotFound) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceNotFound %s", 404, payload)
 }
 
 func (o *CloneWorkspaceNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *CloneWorkspaceUnprocessableEntity) Code() int {
 }
 
 func (o *CloneWorkspaceUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CloneWorkspaceUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CloneWorkspaceUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *CloneWorkspaceTooManyRequests) Code() int {
 }
 
 func (o *CloneWorkspaceTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceTooManyRequests %s", 429, payload)
 }
 
 func (o *CloneWorkspaceTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /{tid}/workspaces/{wid}/clone][%d] cloneWorkspaceTooManyRequests %s", 429, payload)
 }
 
 func (o *CloneWorkspaceTooManyRequests) GetPayload() *models.Error {

@@ -36,7 +36,7 @@ type IdentityPoolRoleSubject struct {
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: [identity_pool_user idp]
+	// Enum: ["identity_pool_user","idp"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// idp user workspace id

@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetScriptDebugOK) Code() int {
 }
 
 func (o *GetScriptDebugOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugOK %s", 200, payload)
 }
 
 func (o *GetScriptDebugOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugOK %s", 200, payload)
 }
 
 func (o *GetScriptDebugOK) GetPayload() *models.ScriptDebug {
@@ -187,11 +190,13 @@ func (o *GetScriptDebugUnauthorized) Code() int {
 }
 
 func (o *GetScriptDebugUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *GetScriptDebugUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *GetScriptDebugUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetScriptDebugForbidden) Code() int {
 }
 
 func (o *GetScriptDebugForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *GetScriptDebugForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *GetScriptDebugForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetScriptDebugNotFound) Code() int {
 }
 
 func (o *GetScriptDebugNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *GetScriptDebugNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *GetScriptDebugNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetScriptDebugTooManyRequests) Code() int {
 }
 
 func (o *GetScriptDebugTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *GetScriptDebugTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}/debug][%d] getScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *GetScriptDebugTooManyRequests) GetPayload() *models.Error {

@@ -145,6 +145,11 @@ func (m *OBReadBalance1) contextValidateData(ctx context.Context, formats strfmt
 func (m *OBReadBalance1) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBReadBalance1) contextValidateLinks(ctx context.Context, formats strfm
 func (m *OBReadBalance1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -269,6 +279,11 @@ func (m *OBReadBalance1Data) contextValidateBalance(ctx context.Context, formats
 	for i := 0; i < len(m.Balance); i++ {
 
 		if m.Balance[i] != nil {
+
+			if swag.IsZero(m.Balance[i]) { // not required
+				return nil
+			}
+
 			if err := m.Balance[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "Balance" + "." + strconv.Itoa(i))
@@ -532,6 +547,7 @@ func (m *OBReadBalance1DataBalanceItems0) ContextValidate(ctx context.Context, f
 func (m *OBReadBalance1DataBalanceItems0) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -548,6 +564,7 @@ func (m *OBReadBalance1DataBalanceItems0) contextValidateAccountID(ctx context.C
 func (m *OBReadBalance1DataBalanceItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -564,6 +581,7 @@ func (m *OBReadBalance1DataBalanceItems0) contextValidateAmount(ctx context.Cont
 func (m *OBReadBalance1DataBalanceItems0) contextValidateCreditDebitIndicator(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditDebitIndicator != nil {
+
 		if err := m.CreditDebitIndicator.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditDebitIndicator")
@@ -582,6 +600,11 @@ func (m *OBReadBalance1DataBalanceItems0) contextValidateCreditLine(ctx context.
 	for i := 0; i < len(m.CreditLine); i++ {
 
 		if m.CreditLine[i] != nil {
+
+			if swag.IsZero(m.CreditLine[i]) { // not required
+				return nil
+			}
+
 			if err := m.CreditLine[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("CreditLine" + "." + strconv.Itoa(i))
@@ -600,6 +623,7 @@ func (m *OBReadBalance1DataBalanceItems0) contextValidateCreditLine(ctx context.
 func (m *OBReadBalance1DataBalanceItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")
@@ -732,6 +756,7 @@ func (m *OBReadBalance1DataBalanceItems0Amount) ContextValidate(ctx context.Cont
 func (m *OBReadBalance1DataBalanceItems0Amount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Amount")
@@ -748,6 +773,7 @@ func (m *OBReadBalance1DataBalanceItems0Amount) contextValidateAmount(ctx contex
 func (m *OBReadBalance1DataBalanceItems0Amount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Currency")
@@ -793,7 +819,7 @@ type OBReadBalance1DataBalanceItems0CreditLineItems0 struct {
 	Included *bool `json:"Included"`
 
 	// Limit type, in a coded form.
-	// Enum: [Available Credit Emergency Pre-Agreed Temporary]
+	// Enum: ["Available","Credit","Emergency","Pre-Agreed","Temporary"]
 	Type string `json:"Type,omitempty"`
 }
 
@@ -915,6 +941,11 @@ func (m *OBReadBalance1DataBalanceItems0CreditLineItems0) ContextValidate(ctx co
 func (m *OBReadBalance1DataBalanceItems0CreditLineItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
+		if swag.IsZero(m.Amount) { // not required
+			return nil
+		}
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -1047,6 +1078,7 @@ func (m *OBReadBalance1DataBalanceItems0CreditLineItems0Amount) ContextValidate(
 func (m *OBReadBalance1DataBalanceItems0CreditLineItems0Amount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Amount")
@@ -1063,6 +1095,7 @@ func (m *OBReadBalance1DataBalanceItems0CreditLineItems0Amount) contextValidateA
 func (m *OBReadBalance1DataBalanceItems0CreditLineItems0Amount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount" + "." + "Currency")

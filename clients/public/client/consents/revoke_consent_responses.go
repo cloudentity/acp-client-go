@@ -6,6 +6,7 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *RevokeConsentOK) Code() int {
 }
 
 func (o *RevokeConsentOK) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK %s", 200, payload)
 }
 
 func (o *RevokeConsentOK) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK %s", 200, payload)
 }
 
 func (o *RevokeConsentOK) GetPayload() *models.ConsentGrant {
@@ -177,11 +180,13 @@ func (o *RevokeConsentUnauthorized) Code() int {
 }
 
 func (o *RevokeConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeConsentUnauthorized) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeConsentUnauthorized) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *RevokeConsentForbidden) Code() int {
 }
 
 func (o *RevokeConsentForbidden) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden %s", 403, payload)
 }
 
 func (o *RevokeConsentForbidden) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden %s", 403, payload)
 }
 
 func (o *RevokeConsentForbidden) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *RevokeConsentNotFound) Code() int {
 }
 
 func (o *RevokeConsentNotFound) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound %s", 404, payload)
 }
 
 func (o *RevokeConsentNotFound) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound %s", 404, payload)
 }
 
 func (o *RevokeConsentNotFound) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *RevokeConsentUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeConsentUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeConsentUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeConsentUnprocessableEntity) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *RevokeConsentTooManyRequests) Code() int {
 }
 
 func (o *RevokeConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeConsentTooManyRequests) GetPayload() *models.Error {

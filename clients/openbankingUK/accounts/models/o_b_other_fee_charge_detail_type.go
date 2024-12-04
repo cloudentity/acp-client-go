@@ -178,6 +178,10 @@ func (m *OBOtherFeeChargeDetailType) ContextValidate(ctx context.Context, format
 
 func (m *OBOtherFeeChargeDetailType) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Code) { // not required
+		return nil
+	}
+
 	if err := m.Code.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("Code")
@@ -193,6 +197,7 @@ func (m *OBOtherFeeChargeDetailType) contextValidateCode(ctx context.Context, fo
 func (m *OBOtherFeeChargeDetailType) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Description != nil {
+
 		if err := m.Description.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Description")
@@ -209,6 +214,7 @@ func (m *OBOtherFeeChargeDetailType) contextValidateDescription(ctx context.Cont
 func (m *OBOtherFeeChargeDetailType) contextValidateFeeCategory(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FeeCategory != nil {
+
 		if err := m.FeeCategory.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FeeCategory")
@@ -225,6 +231,7 @@ func (m *OBOtherFeeChargeDetailType) contextValidateFeeCategory(ctx context.Cont
 func (m *OBOtherFeeChargeDetailType) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Name != nil {
+
 		if err := m.Name.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Name")

@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateSAMLV2IDPOK) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPOK %s", 200, payload)
 }
 
 func (o *UpdateSAMLV2IDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPOK %s", 200, payload)
 }
 
 func (o *UpdateSAMLV2IDPOK) GetPayload() *models.SAMLV2IDP {
@@ -183,11 +186,13 @@ func (o *UpdateSAMLV2IDPBadRequest) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateSAMLV2IDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateSAMLV2IDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateSAMLV2IDPUnauthorized) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateSAMLV2IDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateSAMLV2IDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateSAMLV2IDPForbidden) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateSAMLV2IDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateSAMLV2IDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateSAMLV2IDPNotFound) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateSAMLV2IDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateSAMLV2IDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateSAMLV2IDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateSAMLV2IDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateSAMLV2IDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateSAMLV2IDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateSAMLV2IDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateSAMLV2IDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml_v2/{iid}][%d] updateSAMLV2IdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateSAMLV2IDPTooManyRequests) GetPayload() *models.Error {

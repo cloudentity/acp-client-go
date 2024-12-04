@@ -6,6 +6,7 @@ package openbanking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -122,11 +123,11 @@ func (o *GetOpenbankingPackageOK) Code() int {
 }
 
 func (o *GetOpenbankingPackageOK) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageOK", 200)
 }
 
 func (o *GetOpenbankingPackageOK) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageOK", 200)
 }
 
 func (o *GetOpenbankingPackageOK) GetPayload() io.Writer {
@@ -195,11 +196,13 @@ func (o *GetOpenbankingPackageBadRequest) Code() int {
 }
 
 func (o *GetOpenbankingPackageBadRequest) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageBadRequest %s", 400, payload)
 }
 
 func (o *GetOpenbankingPackageBadRequest) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageBadRequest %s", 400, payload)
 }
 
 func (o *GetOpenbankingPackageBadRequest) GetPayload() *models.Error {
@@ -263,11 +266,13 @@ func (o *GetOpenbankingPackageUnauthorized) Code() int {
 }
 
 func (o *GetOpenbankingPackageUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageUnauthorized %s", 401, payload)
 }
 
 func (o *GetOpenbankingPackageUnauthorized) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageUnauthorized %s", 401, payload)
 }
 
 func (o *GetOpenbankingPackageUnauthorized) GetPayload() *models.Error {
@@ -331,11 +336,13 @@ func (o *GetOpenbankingPackageForbidden) Code() int {
 }
 
 func (o *GetOpenbankingPackageForbidden) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageForbidden %s", 403, payload)
 }
 
 func (o *GetOpenbankingPackageForbidden) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageForbidden %s", 403, payload)
 }
 
 func (o *GetOpenbankingPackageForbidden) GetPayload() *models.Error {
@@ -399,11 +406,13 @@ func (o *GetOpenbankingPackageNotFound) Code() int {
 }
 
 func (o *GetOpenbankingPackageNotFound) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageNotFound %s", 404, payload)
 }
 
 func (o *GetOpenbankingPackageNotFound) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageNotFound %s", 404, payload)
 }
 
 func (o *GetOpenbankingPackageNotFound) GetPayload() *models.Error {
@@ -467,11 +476,13 @@ func (o *GetOpenbankingPackageTooManyRequests) Code() int {
 }
 
 func (o *GetOpenbankingPackageTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageTooManyRequests %s", 429, payload)
 }
 
 func (o *GetOpenbankingPackageTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /openbanking/{wid}/package][%d] getOpenbankingPackageTooManyRequests %s", 429, payload)
 }
 
 func (o *GetOpenbankingPackageTooManyRequests) GetPayload() *models.Error {

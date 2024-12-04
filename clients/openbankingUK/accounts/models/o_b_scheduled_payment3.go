@@ -328,6 +328,7 @@ func (m *OBScheduledPayment3) ContextValidate(ctx context.Context, formats strfm
 func (m *OBScheduledPayment3) contextValidateAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountID != nil {
+
 		if err := m.AccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AccountId")
@@ -344,6 +345,11 @@ func (m *OBScheduledPayment3) contextValidateAccountID(ctx context.Context, form
 func (m *OBScheduledPayment3) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
+		if swag.IsZero(m.CreditorAccount) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -360,6 +366,11 @@ func (m *OBScheduledPayment3) contextValidateCreditorAccount(ctx context.Context
 func (m *OBScheduledPayment3) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -374,6 +385,10 @@ func (m *OBScheduledPayment3) contextValidateCreditorAgent(ctx context.Context, 
 }
 
 func (m *OBScheduledPayment3) contextValidateDebtorReference(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorReference) { // not required
+		return nil
+	}
 
 	if err := m.DebtorReference.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -390,6 +405,7 @@ func (m *OBScheduledPayment3) contextValidateDebtorReference(ctx context.Context
 func (m *OBScheduledPayment3) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")
@@ -404,6 +420,10 @@ func (m *OBScheduledPayment3) contextValidateInstructedAmount(ctx context.Contex
 }
 
 func (m *OBScheduledPayment3) contextValidateReference(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Reference) { // not required
+		return nil
+	}
 
 	if err := m.Reference.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -420,6 +440,7 @@ func (m *OBScheduledPayment3) contextValidateReference(ctx context.Context, form
 func (m *OBScheduledPayment3) contextValidateScheduledPaymentDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ScheduledPaymentDateTime != nil {
+
 		if err := m.ScheduledPaymentDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ScheduledPaymentDateTime")
@@ -434,6 +455,10 @@ func (m *OBScheduledPayment3) contextValidateScheduledPaymentDateTime(ctx contex
 }
 
 func (m *OBScheduledPayment3) contextValidateScheduledPaymentID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ScheduledPaymentID) { // not required
+		return nil
+	}
 
 	if err := m.ScheduledPaymentID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -450,6 +475,7 @@ func (m *OBScheduledPayment3) contextValidateScheduledPaymentID(ctx context.Cont
 func (m *OBScheduledPayment3) contextValidateScheduledType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ScheduledType != nil {
+
 		if err := m.ScheduledType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ScheduledType")

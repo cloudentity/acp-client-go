@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) Code() int {
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeCreated %s", 201, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeCreated %s", 201, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) GetPayload() *models.UserWithData {
@@ -199,11 +202,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) Code() int {
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeBadRequest %s", 400, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeBadRequest %s", 400, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) Code() int {
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnauthorized %s", 401, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnauthorized %s", 401, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) Code() int {
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeNotFound %s", 404, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeNotFound %s", 404, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) Code() i
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodePreconditionFailed %s", 412, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodePreconditionFailed %s", 412, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) Code() 
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) Code() int 
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeTooManyRequests %s", 429, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeTooManyRequests %s", 429, payload)
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) GetPayload() *models.Error {

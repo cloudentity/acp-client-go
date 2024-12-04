@@ -6,6 +6,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,11 +117,11 @@ func (o *RevokeTenantRoleNoContent) Code() int {
 }
 
 func (o *RevokeTenantRoleNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNoContent", 204)
 }
 
 func (o *RevokeTenantRoleNoContent) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNoContent", 204)
 }
 
 func (o *RevokeTenantRoleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -180,11 +181,13 @@ func (o *RevokeTenantRoleUnauthorized) Code() int {
 }
 
 func (o *RevokeTenantRoleUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeTenantRoleUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeTenantRoleUnauthorized) GetPayload() *models.Error {
@@ -248,11 +251,13 @@ func (o *RevokeTenantRoleForbidden) Code() int {
 }
 
 func (o *RevokeTenantRoleForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleForbidden %s", 403, payload)
 }
 
 func (o *RevokeTenantRoleForbidden) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleForbidden %s", 403, payload)
 }
 
 func (o *RevokeTenantRoleForbidden) GetPayload() *models.Error {
@@ -316,11 +321,13 @@ func (o *RevokeTenantRoleNotFound) Code() int {
 }
 
 func (o *RevokeTenantRoleNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNotFound %s", 404, payload)
 }
 
 func (o *RevokeTenantRoleNotFound) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleNotFound %s", 404, payload)
 }
 
 func (o *RevokeTenantRoleNotFound) GetPayload() *models.Error {
@@ -384,11 +391,13 @@ func (o *RevokeTenantRoleUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeTenantRoleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeTenantRoleUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RevokeTenantRoleUnprocessableEntity) GetPayload() *models.Error {
@@ -452,11 +461,13 @@ func (o *RevokeTenantRoleTooManyRequests) Code() int {
 }
 
 func (o *RevokeTenantRoleTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeTenantRoleTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/roles/revoke][%d] revokeTenantRoleTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeTenantRoleTooManyRequests) GetPayload() *models.Error {

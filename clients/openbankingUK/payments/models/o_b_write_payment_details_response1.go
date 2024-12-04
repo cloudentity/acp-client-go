@@ -145,6 +145,11 @@ func (m *OBWritePaymentDetailsResponse1) contextValidateData(ctx context.Context
 func (m *OBWritePaymentDetailsResponse1) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -161,6 +166,11 @@ func (m *OBWritePaymentDetailsResponse1) contextValidateLinks(ctx context.Contex
 func (m *OBWritePaymentDetailsResponse1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -260,6 +270,11 @@ func (m *OBWritePaymentDetailsResponse1Data) contextValidatePaymentStatus(ctx co
 	for i := 0; i < len(m.PaymentStatus); i++ {
 
 		if m.PaymentStatus[i] != nil {
+
+			if swag.IsZero(m.PaymentStatus[i]) { // not required
+				return nil
+			}
+
 			if err := m.PaymentStatus[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Data" + "." + "PaymentStatus" + "." + strconv.Itoa(i))
@@ -306,7 +321,7 @@ type OBWritePaymentDetailsResponse1DataPaymentStatusItems0 struct {
 
 	// Status of a transfe, as assigned by the transaction administrator.
 	// Required: true
-	// Enum: [Accepted AcceptedCancellationRequest AcceptedCreditSettlementCompleted AcceptedCustomerProfile AcceptedFundsChecked AcceptedSettlementCompleted AcceptedSettlementInProcess AcceptedTechnicalValidation AcceptedWithChange AcceptedWithoutPosting Cancelled NoCancellationProcess PartiallyAcceptedCancellationRequest PartiallyAcceptedTechnicalCorrect PaymentCancelled Pending PendingCancellationRequest Received Rejected RejectedCancellationRequest]
+	// Enum: ["Accepted","AcceptedCancellationRequest","AcceptedCreditSettlementCompleted","AcceptedCustomerProfile","AcceptedFundsChecked","AcceptedSettlementCompleted","AcceptedSettlementInProcess","AcceptedTechnicalValidation","AcceptedWithChange","AcceptedWithoutPosting","Cancelled","NoCancellationProcess","PartiallyAcceptedCancellationRequest","PartiallyAcceptedTechnicalCorrect","PaymentCancelled","Pending","PendingCancellationRequest","Received","Rejected","RejectedCancellationRequest"]
 	Status *string `json:"Status"`
 
 	// status detail
@@ -509,6 +524,11 @@ func (m *OBWritePaymentDetailsResponse1DataPaymentStatusItems0) ContextValidate(
 func (m *OBWritePaymentDetailsResponse1DataPaymentStatusItems0) contextValidateStatusDetail(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.StatusDetail != nil {
+
+		if swag.IsZero(m.StatusDetail) { // not required
+			return nil
+		}
+
 		if err := m.StatusDetail.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("StatusDetail")
@@ -555,7 +575,7 @@ type OBWritePaymentDetailsResponse1DataPaymentStatusItems0StatusDetail struct {
 	Status *string `json:"Status"`
 
 	// Reason Code provided for the status of a transfer.
-	// Enum: [Cancelled PendingFailingSettlement PendingSettlement Proprietary ProprietaryRejection Suspended Unmatched]
+	// Enum: ["Cancelled","PendingFailingSettlement","PendingSettlement","Proprietary","ProprietaryRejection","Suspended","Unmatched"]
 	StatusReason string `json:"StatusReason,omitempty"`
 
 	// Reason provided for the status of a transfer.
@@ -712,6 +732,10 @@ func (m *OBWritePaymentDetailsResponse1DataPaymentStatusItems0StatusDetail) Cont
 }
 
 func (m *OBWritePaymentDetailsResponse1DataPaymentStatusItems0StatusDetail) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
 
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

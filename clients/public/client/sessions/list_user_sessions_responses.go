@@ -6,6 +6,7 @@ package sessions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListUserSessionsOK) Code() int {
 }
 
 func (o *ListUserSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsOK %s", 200, payload)
 }
 
 func (o *ListUserSessionsOK) String() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsOK %s", 200, payload)
 }
 
 func (o *ListUserSessionsOK) GetPayload() *models.ListUserSessions {
@@ -171,11 +174,13 @@ func (o *ListUserSessionsUnauthorized) Code() int {
 }
 
 func (o *ListUserSessionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListUserSessionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListUserSessionsUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *ListUserSessionsForbidden) Code() int {
 }
 
 func (o *ListUserSessionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsForbidden %s", 403, payload)
 }
 
 func (o *ListUserSessionsForbidden) String() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsForbidden %s", 403, payload)
 }
 
 func (o *ListUserSessionsForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *ListUserSessionsNotFound) Code() int {
 }
 
 func (o *ListUserSessionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsNotFound %s", 404, payload)
 }
 
 func (o *ListUserSessionsNotFound) String() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsNotFound %s", 404, payload)
 }
 
 func (o *ListUserSessionsNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *ListUserSessionsTooManyRequests) Code() int {
 }
 
 func (o *ListUserSessionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListUserSessionsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sso/sessions][%d] listUserSessionsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListUserSessionsTooManyRequests) GetPayload() *models.Error {
