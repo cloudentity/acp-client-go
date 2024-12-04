@@ -582,6 +582,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -692,10 +695,6 @@ definitions:
     type: object
   PublicEnvironment:
     properties:
-      identity_pool_mfa:
-        description: If Identity Pool MFA is enabled
-        type: boolean
-        x-nullable: false
       self_service:
         description: If self-service is enabled
         type: boolean
@@ -769,8 +768,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -811,8 +808,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -869,7 +864,18 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Public API
+  description: |-
+    Cloudentity Public API
+
+    The POST APIs support idempotency for safely retrying requests without accidentally performing the same operation twice.
+
+    To use idempotent requests:
+
+    1. Generate a unique idempotency key (32-255 characters long).
+    2. Include the key in the X-Idempotency-Key header of your POST request.
+    3. Retry failed requests with the same key within 1 minute.
+
+    Responses for replayed requests will include the X-Idempotent-Replayed: true header.
   title: Cloudentity API
   version: latest
 paths:
@@ -1270,6 +1276,39 @@ paths:
       summary: Delete user session
       tags:
       - sessions
+  /tokens:
+    delete:
+      description: |-
+        Revokes tokens associated with the subject in the provided access token.
+
+        Tokens includes access, refresh tokens and sso sessions.
+
+        The optional `revoke_current_token` query parameter can be used to specify whether to revoke the current token as well (default: false).
+
+        If `revoke_current_token` is set to `true`, all access tokens, refresh tokens, and SSO session will also be revoked.
+        If `revoke_current_token` is set to `false`, the current access token, corresponding refresh token, and SSO session will remain active.
+      operationId: revokeTokens
+      parameters:
+      - default: false
+        description: Optional flag to revoke current token
+        in: query
+        name: revoke_current_token
+        type: boolean
+      responses:
+        "204":
+          description: ' Tokens have been revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - default:
+        - manage_tokens
+      summary: Revoke tokens
+      tags:
+      - tokens
 produces:
 - application/json
 responses:

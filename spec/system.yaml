@@ -2,6 +2,49 @@ basePath: /api/system/default
 consumes:
 - application/json
 definitions:
+  ACR:
+    description: ACR
+    properties:
+      authorization_server_id:
+        description: An authorization server (workspace) identifier holding the ACR.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      disabled:
+        description: If set to `true`, the ACR is disabled and can't be used
+        type: boolean
+        x-nullable: false
+      id:
+        description: ACR unique identifier
+        format: acrID
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: General purpose metadata
+        type: object
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      value:
+        description: |-
+          ACR value
+          Must be unique within the server and contains only the following characters: `a-zA-Z0-9\/:=._-`
+        example: urn:secureauth:factor:password
+        format: acrValue
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - authorization_server_id
+    - value
+    type: object
   API:
     properties:
       api_type:
@@ -211,6 +254,398 @@ definitions:
     required:
     - subject
     type: object
+  AccessRequestData:
+    properties:
+      actor_claims:
+        additionalProperties:
+          type: object
+        description: Actor claims
+        type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
+      authentication_mechanisms:
+        description: The authentication mechanisms a user used to login.
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        description: OAuth client application identifier.
+        format: clientID
+        type: string
+        x-nullable: false
+      client_name:
+        description: Human readable name of a client application
+        type: string
+        x-nullable: false
+      created_by_developer:
+        description: Stores information if the owner of the client application is
+          a developer.
+        type: boolean
+        x-nullable: false
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
+      grant_type:
+        description: |-
+          Stores the information which grant type was selected to perfom a given action.
+          Matches one of allowed OAuth client grant types for a given client.
+        type: string
+        x-nullable: false
+      identity_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
+        type: string
+        x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: Subject within the Identity Provider
+        format: subject
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      may_act_claims:
+        additionalProperties:
+          type: object
+        description: May act claims
+        type: object
+        x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
+        x-nullable: false
+      public:
+        description: Stores information if the client application is a public one.
+        type: boolean
+        x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
+        type: boolean
+        x-nullable: false
+      remote_addr:
+        description: Requester IP address obtained from system network socket information.
+        type: string
+        x-nullable: false
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
+      server_id:
+        description: ID of the authorization server (workspace) to which an access
+          request is tied.
+        format: serverID
+        type: string
+        x-nullable: false
+      session_id:
+        description: |-
+          Session id of a given subject. It's uniform across the authentication processes.
+          It can be used as a correlation ID between a different audit events.
+        format: loginID
+        type: string
+        x-nullable: false
+      subject:
+        description: |-
+          Identification of the principal that is the subject of authorization.
+          For the authorization grant, the subject typically identifies an authorized accessor for which the access token is being requested.
+          For client authentication, the subject is the client_id of the OAuth client.
+        format: subject
+        type: string
+        x-nullable: false
+      system:
+        description: Stores information if the client application is a system tenant's
+          application.
+        type: boolean
+        x-nullable: false
+      token_endpoint_authn_method:
+        description: Token endpoint authentication method configured for a client
+          application.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        - unspecified
+        type: string
+        x-nullable: false
+      token_signature:
+        description: Token signature
+        type: string
+        x-nullable: false
+      true_client_ip:
+        description: Requester IP address obtained from True-Client-IP header.
+        type: string
+        x-nullable: false
+      user_agent:
+        description: A characteristic string that lets servers and network peers identify
+          the application, operating system, vendor, and/or version of the requesting
+          user agent.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
+        type: string
+        x-nullable: false
+      workspace_id:
+        description: ID of the authorization server (workspace) to which a resource
+          is tied.
+        format: serverID
+        type: string
+        x-nullable: false
+      x_forwarded_for:
+        description: Requester IP address obtained from X-Forwarded-For header.
+        type: string
+        x-nullable: false
+      x_real_ip:
+        description: Requester IP address obtained from X-Real-IP header.
+        type: string
+        x-nullable: false
+    type: object
+  AccessRequestDataWithError:
+    properties:
+      actor_claims:
+        additionalProperties:
+          type: object
+        description: Actor claims
+        type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
+        x-nullable: false
+      authentication_mechanisms:
+        description: The authentication mechanisms a user used to login.
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        description: OAuth client application identifier.
+        format: clientID
+        type: string
+        x-nullable: false
+      client_name:
+        description: Human readable name of a client application
+        type: string
+        x-nullable: false
+      created_by_developer:
+        description: Stores information if the owner of the client application is
+          a developer.
+        type: boolean
+        x-nullable: false
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
+      error:
+        description: High level error name (request_forbidden, access_denied, invalid_request).
+        type: string
+        x-nullable: false
+      error_cause:
+        description: Error root cause (invalid_pkce, invalid_state, user_policy_failed).
+        type: string
+        x-nullable: false
+      error_description:
+        description: Human readable error description
+        type: string
+        x-nullable: false
+      error_hint:
+        description: Error hint
+        type: string
+        x-nullable: false
+      external_error:
+        description: External error
+        type: boolean
+        x-nullable: false
+      grant_type:
+        description: |-
+          Stores the information which grant type was selected to perfom a given action.
+          Matches one of allowed OAuth client grant types for a given client.
+        type: string
+        x-nullable: false
+      identity_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
+        type: string
+        x-nullable: false
+      idp_id:
+        description: IDP identifier
+        format: idpID
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IDP method
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: Subject within the Identity Provider
+        format: subject
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      may_act_claims:
+        additionalProperties:
+          type: object
+        description: May act claims
+        type: object
+        x-nullable: false
+      organization_id:
+        description: ID of the Organization
+        format: serverID
+        type: string
+        x-nullable: false
+      public:
+        description: Stores information if the client application is a public one.
+        type: boolean
+        x-nullable: false
+      recovery:
+        description: True if user had to do login recovery during authentication
+        type: boolean
+        x-nullable: false
+      remote_addr:
+        description: Requester IP address obtained from system network socket information.
+        type: string
+        x-nullable: false
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
+      server_id:
+        description: ID of the authorization server (workspace) to which an access
+          request is tied.
+        format: serverID
+        type: string
+        x-nullable: false
+      session_id:
+        description: |-
+          Session id of a given subject. It's uniform across the authentication processes.
+          It can be used as a correlation ID between a different audit events.
+        format: loginID
+        type: string
+        x-nullable: false
+      subject:
+        description: |-
+          Identification of the principal that is the subject of authorization.
+          For the authorization grant, the subject typically identifies an authorized accessor for which the access token is being requested.
+          For client authentication, the subject is the client_id of the OAuth client.
+        format: subject
+        type: string
+        x-nullable: false
+      system:
+        description: Stores information if the client application is a system tenant's
+          application.
+        type: boolean
+        x-nullable: false
+      token_endpoint_authn_method:
+        description: Token endpoint authentication method configured for a client
+          application.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        - unspecified
+        type: string
+        x-nullable: false
+      token_signature:
+        description: Token signature
+        type: string
+        x-nullable: false
+      true_client_ip:
+        description: Requester IP address obtained from True-Client-IP header.
+        type: string
+        x-nullable: false
+      user_agent:
+        description: A characteristic string that lets servers and network peers identify
+          the application, operating system, vendor, and/or version of the requesting
+          user agent.
+        type: string
+        x-nullable: false
+      user_id:
+        description: ID of the User in Identity Pool
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: ID of the Identity Pool
+        format: poolID
+        type: string
+        x-nullable: false
+      workspace_id:
+        description: ID of the authorization server (workspace) to which a resource
+          is tied.
+        format: serverID
+        type: string
+        x-nullable: false
+      x_forwarded_for:
+        description: Requester IP address obtained from X-Forwarded-For header.
+        type: string
+        x-nullable: false
+      x_real_ip:
+        description: Requester IP address obtained from X-Real-IP header.
+        type: string
+        x-nullable: false
+    type: object
   AdvancedConfiguration:
     properties:
       acr_values:
@@ -228,6 +663,8 @@ definitions:
         description: Block response modes
         type: boolean
         x-nullable: false
+      cookies_configuration:
+        $ref: '#/definitions/CookiesConfiguration'
       disable_dcr_client_certificate_bound_access_tokens:
         description: |-
           Disable certificate-bound access tokens for new DCR clients
@@ -360,34 +797,6 @@ definitions:
     - client_id
     - client_secret
     type: object
-  ArculixSettings:
-    properties:
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      faye_url:
-        description: URL to the Faye server.
-        example: https://faye.acceptto.net
-        type: string
-        x-nullable: false
-      token_endpoint:
-        description: URL to the OIDC server's token endpoint.
-        example: https://oidc.acceptto.net/ce-poc/oauth2/v1/token
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Arculix server.
-        example: https://m2m.acceptto.net
-        type: string
-        x-nullable: false
-    required:
-    - token_endpoint
-    - url
-    - faye_url
-    - dbfp_url
-    type: object
   Attr:
     properties:
       Space:
@@ -399,33 +808,24 @@ definitions:
     title: An Attr represents a key-value attribute within an XML element.
     type: object
   Attribute:
-    description: Authentication context attribute
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1
     properties:
-      description:
-        description: String represented display name of an attribute
+      FriendlyName:
         type: string
         x-nullable: false
-      labels:
-        description: Array of Strings represents attribute labels
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
         items:
-          format: label
-          type: string
+          $ref: '#/definitions/AttributeValue'
         type: array
         x-nullable: false
-      name:
-        description: String represented variable name of an attribute
-        type: string
-        x-nullable: false
-      type:
-        description: |-
-          The data type of an attribute
-
-          It stores information what kind of data is used as the value of the attribute.
-
-          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
-        format: type
-        type: string
-        x-nullable: false
+    title: Attribute represents the SAML element Attribute.
     type: object
   AttributeAuthorityDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -533,11 +933,14 @@ definitions:
     type: object
   Attributes:
     items:
-      $ref: '#/definitions/Attribute'
+      $ref: '#/definitions/AuthenticationContextAttribute'
     type: array
+  AuditConsentKind:
+    type: string
   AuditEvent:
     properties:
       action:
+        description: Name of an action that was performed for a given event subject.
         enum:
         - authenticated
         - challenged
@@ -562,16 +965,26 @@ definitions:
         - sent
         - not_sent
         - executed
+        - reset_requested
+        - reset_completed
+        - add_requested
+        - add_completed
+        example: created
         type: string
         x-nullable: false
+      context:
+        additionalProperties:
+          type: string
+        description: Additional audit event context.
+        type: object
+        x-nullable: false
       event_id:
+        description: Event ID - unique audit event identifier.
         format: eventID
         type: string
         x-nullable: false
-      event_payload:
-        type: object
-        x-nullable: false
       event_subject:
+        description: Resource or entity that is a subject of a given audit event.
         enum:
         - request
         - gateway_request
@@ -592,7 +1005,6 @@ definitions:
         - claims
         - otp
         - user
-        - selfuser
         - schema
         - pool
         - password
@@ -607,21 +1019,28 @@ definitions:
         - server
         - import
         - organization
+        - otp_inspect
+        - totp
+        - webauthn
+        example: client
         type: string
         x-nullable: false
-      event_type:
-        $ref: '#/definitions/AuditEventType'
       metadata:
         $ref: '#/definitions/AuditEventMetadata'
+      payload:
+        $ref: '#/definitions/AuditEventPayloads'
       server_id:
+        description: Server ID.
         format: serverID
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant ID.
         format: tenantID
         type: string
         x-nullable: false
       timestamp:
+        description: Time when the event took place.
         format: date-time
         type: string
         x-nullable: false
@@ -636,6 +1055,16 @@ definitions:
 
           It's only populated if the token has been issued in token exchange delegation flow.
         type: object
+        x-nullable: false
+      affected_user_id:
+        description: ID of the User in Identity Pool that is affected by an action
+        format: userID
+        type: string
+        x-nullable: false
+      affected_user_pool_id:
+        description: ID of the Identity Pool of the User that is affected by an action
+        format: poolID
+        type: string
         x-nullable: false
       authorization_correlation_id:
         description: |-
@@ -700,6 +1129,14 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      request_correlation_id:
+        description: |-
+          Request correlation ID
+
+          Represents the correlation ID passed as X-Correlation-ID header to a HTTP request
+        format: requestCorrelationID
+        type: string
+        x-nullable: false
       risk_id:
         $ref: '#/definitions/RiskID'
       risk_loa:
@@ -739,6 +1176,7 @@ definitions:
         x-nullable: false
       user_id:
         description: ID of the User in Identity Pool
+        format: userID
         type: string
         x-nullable: false
       user_pool_id:
@@ -747,8 +1185,185 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  AuditEventPayloads:
+    properties:
+      access_token_denied:
+        $ref: '#/definitions/AccessRequestDataWithError'
+      access_token_issued:
+        $ref: '#/definitions/AccessRequestData'
+      authorization_code_denied:
+        $ref: '#/definitions/AccessRequestDataWithError'
+      authorization_code_issued:
+        $ref: '#/definitions/AccessRequestData'
+      bruteforce_deleted:
+        $ref: '#/definitions/BruteForceLimit'
+      bruteforce_updated:
+        $ref: '#/definitions/BruteForceLimit'
+      claims_granted:
+        $ref: '#/definitions/ClaimsGrantedPayload'
+      client_consents_revoked:
+        $ref: '#/definitions/ClientConsentsAuditEventPayload'
+      client_created:
+        $ref: '#/definitions/ClientAuditPayload'
+      client_deleted:
+        $ref: '#/definitions/ClientAuditPayload'
+      client_updated:
+        $ref: '#/definitions/ClientAuditPayload'
+      consent_accepted:
+        $ref: '#/definitions/ConsentAuditEventPayload'
+      consent_created:
+        $ref: '#/definitions/ConsentAuditEventPayload'
+      consent_notified:
+        $ref: '#/definitions/ConsentNotifiedPayload'
+      consent_rejected:
+        $ref: '#/definitions/ConsentAuditEventPayload'
+      consent_revoked:
+        $ref: '#/definitions/ConsentAuditEventPayload'
+      consent_updated:
+        $ref: '#/definitions/ConsentAuditEventPayload'
+      credential_created:
+        $ref: '#/definitions/CredentialPayload'
+      credential_updated:
+        $ref: '#/definitions/CredentialPayload'
+      customer_consents_revoked:
+        $ref: '#/definitions/CustomerConsentsAuditEventPayload'
+      dcr_created:
+        $ref: '#/definitions/DCRCreatedEventPayload'
+      dcr_rejected:
+        $ref: '#/definitions/DCRRejectedEventPayload'
+      gateway_policy_authorized:
+        $ref: '#/definitions/RequestValidatedPayload'
+      gateway_policy_unauthorized:
+        $ref: '#/definitions/RequestValidatedPayload'
+      gateway_request_authorized:
+        $ref: '#/definitions/RequestValidatedPayload'
+      gateway_request_unauthorized:
+        $ref: '#/definitions/RequestValidatedPayload'
+      import_created:
+        $ref: '#/definitions/ConfigImportEventPayload'
+      import_failed:
+        $ref: '#/definitions/ConfigImportEventPayload'
+      jit_created:
+        $ref: '#/definitions/JITCreatedPayload'
+      jit_failed:
+        $ref: '#/definitions/JITFailedPayload'
+      jit_updated:
+        $ref: '#/definitions/JITUpdatedPayload'
+      login_accepted:
+        $ref: '#/definitions/LoginPayload'
+      login_attempted:
+        $ref: '#/definitions/LoginPayload'
+      login_failed:
+        $ref: '#/definitions/LoginFailedPayload'
+      organization_created:
+        $ref: '#/definitions/Org'
+      organization_deleted:
+        $ref: '#/definitions/Org'
+      organization_updated:
+        $ref: '#/definitions/Org'
+      otp_accepted:
+        $ref: '#/definitions/OTPPayload'
+      otp_generated:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_failed:
+        $ref: '#/definitions/OTPPayload'
+      otp_inspect_succeeded:
+        $ref: '#/definitions/OTPPayload'
+      otp_not_sent:
+        $ref: '#/definitions/OTPPayload'
+      otp_rejected:
+        $ref: '#/definitions/OTPPayload'
+      otp_requested:
+        $ref: '#/definitions/OTPPayload'
+      otp_sent:
+        $ref: '#/definitions/OTPPayload'
+      password_accepted:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      password_confirmed:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      password_rejected:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      password_requested:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      password_updated:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      policy_authorized:
+        $ref: '#/definitions/PolicyEvaluatedPayload'
+      policy_unauthorized:
+        $ref: '#/definitions/PolicyEvaluatedPayload'
+      pool_created:
+        $ref: '#/definitions/PoolAuditPayload'
+      pool_deleted:
+        $ref: '#/definitions/PoolAuditPayload'
+      pool_updated:
+        $ref: '#/definitions/PoolAuditPayload'
+      recovery_confirmed:
+        $ref: '#/definitions/RecoveryPayload'
+      role_granted:
+        $ref: '#/definitions/RoleGrantAuditPayload'
+      role_revoked:
+        $ref: '#/definitions/RoleGrantAuditPayload'
+      saml_assertion_denied:
+        $ref: '#/definitions/AccessRequestDataWithError'
+      saml_assertion_issued:
+        $ref: '#/definitions/AccessRequestData'
+      schema_created:
+        $ref: '#/definitions/SchemaAuditPayload'
+      schema_deleted:
+        $ref: '#/definitions/SchemaAuditPayload'
+      schema_updated:
+        $ref: '#/definitions/SchemaAuditPayload'
+      scopes_granted:
+        $ref: '#/definitions/ScopesGrantedPayload'
+      script_executed:
+        $ref: '#/definitions/ScriptExecutionAuditPayload'
+      server_created:
+        $ref: '#/definitions/ServerAuditPayload'
+      server_deleted:
+        $ref: '#/definitions/ServerAuditPayload'
+      server_updated:
+        $ref: '#/definitions/ServerAuditPayload'
+      service_created:
+        $ref: '#/definitions/ServiceAuditPayload'
+      service_deleted:
+        $ref: '#/definitions/ServiceAuditPayload'
+      service_updated:
+        $ref: '#/definitions/ServiceAuditPayload'
+      task_failed:
+        $ref: '#/definitions/TaskAuditPayload'
+      task_succeeded:
+        $ref: '#/definitions/TaskAuditPayload'
+      tokens_revoked:
+        $ref: '#/definitions/TokensRevokedPayload'
+      totp_reset_completed:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      totp_reset_requested:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      user_authenticated:
+        $ref: '#/definitions/UserAuthenticatedPayload'
+      user_challenged:
+        $ref: '#/definitions/UserAuthenticatedPayload'
+      user_created:
+        $ref: '#/definitions/UserPayload'
+      user_deleted:
+        $ref: '#/definitions/UserPayload'
+      user_updated:
+        $ref: '#/definitions/UserPayload'
+      webauthn_add_completed:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+      webauthn_add_requested:
+        $ref: '#/definitions/UserIDAndIdentifierPayload'
+    type: object
   AuditEventType:
     type: string
+  AuditEvents:
+    properties:
+      audit_events:
+        items:
+          $ref: '#/definitions/AuditEvent'
+        type: array
+        x-nullable: false
+    type: object
   Auth0Credentials:
     description: Auth0 IDP specific credentials
     properties:
@@ -795,14 +1410,48 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthenticationContextAttribute:
+    description: Authentication context attribute
+    properties:
+      description:
+        description: String represented display name of an attribute
+        type: string
+        x-nullable: false
+      labels:
+        description: Array of Strings represents attribute labels
+        items:
+          format: label
+          type: string
+        type: array
+        x-nullable: false
+      name:
+        description: String represented variable name of an attribute
+        type: string
+        x-nullable: false
+      type:
+        description: |-
+          The data type of an attribute
+
+          It stores information what kind of data is used as the value of the attribute.
+
+          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
+        format: type
+        type: string
+        x-nullable: false
+    type: object
   AuthenticationContextSettings:
     properties:
       attributes:
         items:
-          $ref: '#/definitions/Attribute'
+          $ref: '#/definitions/AuthenticationContextAttribute'
         type: array
         x-nullable: false
     type: object
+  AuthenticationMechanisms:
+    description: AuthenticationMechanisms authentication mechanisms
+    items:
+      type: string
+    type: array
   AuthnAuthorityDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.5
@@ -1066,6 +1715,56 @@ definitions:
         description: Directory ID from your Microsoft Azure application settings
         type: string
         x-nullable: false
+    type: object
+  BRConsentPayload:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        description: Client application identifier.
+        example: '"cauqo9c9vpbs0aj2b2v0"'
+        format: clientID
+        type: string
+        x-nullable: false
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      idempotency_key:
+        type: string
+        x-nullable: false
+      request_hash:
+        type: string
+        x-nullable: false
+      server_id:
+        description: Server / Workspace identifier.
+        example: '"server"'
+        format: serverID
+        type: string
+        x-nullable: false
+      spec:
+        type: string
+        x-nullable: false
+      spec_version:
+        $ref: '#/definitions/SpecVersion'
+      status:
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier.
+        example: '"tenant"'
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
     type: object
   BruteForceLimit:
     properties:
@@ -1416,6 +2115,15 @@ definitions:
       claim type, one of: id_token, access_token, saml_assertion
       example: id_token
     type: string
+  ClaimsGrantedPayload:
+    properties:
+      new_claim_grants:
+        description: List of claims to grant.
+        items:
+          $ref: '#/definitions/ClaimGrant'
+        type: array
+        x-nullable: false
+    type: object
   ClaimsRequests:
     properties:
       extra:
@@ -1659,6 +2367,15 @@ definitions:
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
         x-nullable: false
       description:
         description: Description of the client application.
@@ -2123,6 +2840,644 @@ definitions:
     - authorization_server_id
     title: Defines a client application and its properties.
     type: object
+  ClientAuditPayload:
+    properties:
+      app_url:
+        description: Application URL
+        type: string
+        x-nullable: false
+      application_type:
+        default: web
+        description: |-
+          The client application type.
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Apply security measures according to the type of your application.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience).
+
+          Typically, the audience is a single resource server or a list of resource servers.
+
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
+      authorization_encrypted_response_alg:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP-256
+        type: string
+        x-nullable: false
+      authorization_encrypted_response_enc:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A128CBC-HS256
+        type: string
+        x-nullable: false
+      authorization_server_id:
+        description: An authorization server (workspace) identifier holding the client
+          application.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      authorization_signed_response_alg:
+        description: |-
+          Algorithm used for signing authorization responses.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
+        example: RS256
+        type: string
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_logout_session_required:
+        description: Boolean value specifying whether the RP requires that a sid (session
+          ID) claim be included in the Logout Token to identify the RP session with
+          the OP when the backchannel_logout_uri is used.
+        type: boolean
+        x-nullable: false
+      backchannel_logout_uri:
+        description: RP URL that will cause the RP to log itself out when sent a Logout
+          Token by the OP.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
+        type: boolean
+        x-nullable: false
+      client_id:
+        description: |-
+          OAuth client application identifier
+
+          If not provided, a random client ID is generated.
+        format: clientID
+        type: string
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          The client identifier time of issue.
+
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human-readable name of a client application.
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The client secret expiration time.
+
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_status:
+        description: |-
+          Defines whether the client application is active or not.
+
+          Only clients with the `Active` status can preform authorization, authentication, and PAR requests.
+        enum:
+        - active
+        - inactive
+        type: string
+        x-nullable: false
+      client_uri:
+        description: URI of a client application.
+        type: string
+        x-nullable: false
+      created_at:
+        description: Date when the client application was created.
+        example: "2022-04-07T19:17:31.323187Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
+        x-nullable: false
+      description:
+        description: Description of the client application.
+        type: string
+        x-nullable: false
+      developer_id:
+        description: Optional developer owner of the client application.
+        format: subject
+        type: string
+        x-nullable: false
+      developer_metadata:
+        $ref: '#/definitions/Metadata'
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
+        x-nullable: false
+      dynamically_registered:
+        type: boolean
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types.
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
+          type: string
+        type: array
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application.
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      introspection_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          An introspection endpoint authentication method configured for the client application (read-only).
+
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI.
+        type: string
+        x-nullable: false
+      metadata:
+        $ref: '#/definitions/Metadata'
+      organisation_id:
+        description: |-
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
+
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used.
+        type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        $ref: '#/definitions/RedirectURIs'
+      request_object_encryption_alg:
+        description: Optional JWE alg algorithm the client is declaring that it may
+          use for encrypting Request Objects
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP
+        type: string
+        x-nullable: false
+      request_object_encryption_enc:
+        description: |-
+          Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A256GCM
+        type: string
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
+      revocation_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          A revocation endpoint authentication method configured for the client application (read-only).
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      scope:
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
+        type: string
+        x-nullable: false
+      software_statement:
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
+        type: string
+        x-nullable: false
+      software_statement_payload:
+        $ref: '#/definitions/Metadata'
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      system:
+        description: Defines whether the client application is a system tenant's application
+          or not.
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        description: ID of a tenant where the client application is added
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        - unspecified
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: ES256
+        description: |-
+          Signing algorithm for the token endpoint
+
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        - HS256
+        - ""
+        example: ES256
+        type: string
+        x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      token_ttls:
+        $ref: '#/definitions/TokenTTLs'
+      tos_uri:
+        description: Terms of Service URL.
+        type: string
+        x-nullable: false
+      trusted:
+        description: |-
+          Defines whether the client application is trusted or not.
+
+          For trusted clients, consent pages are skipped during the authorization process.
+        type: boolean
+        x-nullable: false
+      updated_at:
+        description: Date when the client application was updated.
+        example: "2022-05-08T01:11:51.1262916Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      use_custom_token_ttls:
+        description: If enabled the client application will be able to set its own
+          token TTLs.
+        type: boolean
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is a JWT serialized and signed with JWS.
+
+          If omitted, then by default, UserInfo Response returns the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - authorization_server_id
+    type: object
+  ClientConsentsAuditEventPayload:
+    properties:
+      client_id:
+        description: client id
+        format: clientID
+        type: string
+        x-nullable: false
+      number_revoked:
+        description: number of consents revoked
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
   ClientInfo:
     properties:
       client_name:
@@ -2389,6 +3744,18 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  ConfigImportEventPayload:
+    properties:
+      error_message:
+        type: string
+        x-nullable: false
+      tenant_id:
+        type: string
+        x-nullable: false
+      workspace_id:
+        type: string
+        x-nullable: false
+    type: object
   Confirmation:
     properties:
       jkt:
@@ -2566,6 +3933,24 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+    type: object
+  ConsentAuditEventPayload:
+    properties:
+      consent:
+        $ref: '#/definitions/ConsentPayload'
+    type: object
+  ConsentDetails:
+    properties:
+      br:
+        $ref: '#/definitions/BRConsentPayload'
+      cdr:
+        $ref: '#/definitions/CDRArrangement'
+      cdr_previous:
+        $ref: '#/definitions/CDRArrangement'
+      fdx:
+        $ref: '#/definitions/FDXConsent'
+      uk:
+        $ref: '#/definitions/UKConsentPayload'
     type: object
   ConsentGrant:
     properties:
@@ -2783,6 +4168,37 @@ definitions:
         example: 1
         format: int64
         type: integer
+        x-nullable: false
+    type: object
+  ConsentNotifiedPayload:
+    properties:
+      notification_type:
+        description: 'Type of notification, specifies what the client was notified
+          of , e.g.: revocation'
+        type: string
+        x-nullable: false
+      payload:
+        description: payload of the request sent to the notification endpoint
+        type: string
+        x-nullable: false
+      uri:
+        description: uri that was notified of the revocation
+        type: string
+        x-nullable: false
+    type: object
+  ConsentPayload:
+    properties:
+      details:
+        $ref: '#/definitions/ConsentDetails'
+      id:
+        description: consent id
+        type: string
+        x-nullable: false
+      kind:
+        $ref: '#/definitions/AuditConsentKind'
+      type:
+        description: 'Type of a consent, specifies the subject of consent, e.g.: domestic_payment'
+        type: string
         x-nullable: false
     type: object
   ConsentRevokedEvent:
@@ -3004,8 +4420,24 @@ definitions:
         x-nullable: false
     title: ContactPerson represents the SAML element ContactPerson.
     type: object
+  CookiesConfiguration:
+    properties:
+      same_site:
+        $ref: '#/definitions/SameSite'
+    type: object
   CreateOrganizationRequest:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -3054,6 +4486,30 @@ definitions:
         description: The id of the organization template that should be used to create
           the new organization
         format: serverID
+        type: string
+        x-nullable: false
+    type: object
+  CredentialPayload:
+    description: CredentialPayload credential payload
+    properties:
+      credential_id:
+        description: credential id
+        type: string
+        x-nullable: false
+      credential_type:
+        description: credential type
+        enum:
+        - password
+        - webauthn
+        - totp
+        type: string
+        x-nullable: false
+      operation_type:
+        description: operation type
+        type: string
+        x-nullable: false
+      user_id:
+        description: user id
         type: string
         x-nullable: false
     type: object
@@ -3167,6 +4623,166 @@ definitions:
 
           If not provided, the `generic` type is set.
         format: customIDPType
+        type: string
+        x-nullable: false
+    type: object
+  CustomerConsentsAuditEventPayload:
+    properties:
+      customer_id:
+        description: customer id
+        type: string
+        x-nullable: false
+      number_revoked:
+        description: number of consents revoked
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  DCRCreatedEventPayload:
+    properties:
+      client_details:
+        $ref: '#/definitions/DCRDetails'
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      remote_addr:
+        description: Requester IP address obtained from system network socket information.
+        type: string
+        x-nullable: false
+      true_client_ip:
+        description: Requester IP address obtained from True-Client-IP header.
+        type: string
+        x-nullable: false
+      user_agent:
+        description: A characteristic string that lets servers and network peers identify
+          the application, operating system, vendor, and/or version of the requesting
+          user agent.
+        type: string
+        x-nullable: false
+      x_forwarded_for:
+        description: Requester IP address obtained from X-Forwarded-For header.
+        type: string
+        x-nullable: false
+      x_real_ip:
+        description: Requester IP address obtained from X-Real-IP header.
+        type: string
+        x-nullable: false
+    type: object
+  DCRDetails:
+    properties:
+      certificate_bound_access_token:
+        type: boolean
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      client_name:
+        type: string
+        x-nullable: false
+      grant_types:
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
+          type: string
+        type: array
+        x-nullable: false
+      scopes:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      software_statement_provided:
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        - unspecified
+        type: string
+        x-nullable: false
+    type: object
+  DCRRejectedEventPayload:
+    properties:
+      dbfp:
+        description: Arculix DBFP `jwt` cookie.
+        type: string
+        x-nullable: false
+      error:
+        description: High level error name (request_forbidden, access_denied, invalid_request).
+        type: string
+        x-nullable: false
+      error_cause:
+        description: Error root cause (invalid_pkce, invalid_state, user_policy_failed).
+        type: string
+        x-nullable: false
+      error_description:
+        description: Human readable error description
+        type: string
+        x-nullable: false
+      error_hint:
+        description: Error hint
+        type: string
+        x-nullable: false
+      external_error:
+        description: External error
+        type: boolean
+        x-nullable: false
+      latitude:
+        description: The visitor's latitude obtained from cf-iplatitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      longitude:
+        description: The visitor's longitude obtained from cf-iplongitude cloudflare
+          header
+        type: string
+        x-nullable: false
+      remote_addr:
+        description: Requester IP address obtained from system network socket information.
+        type: string
+        x-nullable: false
+      true_client_ip:
+        description: Requester IP address obtained from True-Client-IP header.
+        type: string
+        x-nullable: false
+      user_agent:
+        description: A characteristic string that lets servers and network peers identify
+          the application, operating system, vendor, and/or version of the requesting
+          user agent.
+        type: string
+        x-nullable: false
+      x_forwarded_for:
+        description: Requester IP address obtained from X-Forwarded-For header.
+        type: string
+        x-nullable: false
+      x_real_ip:
+        description: Requester IP address obtained from X-Real-IP header.
         type: string
         x-nullable: false
     type: object
@@ -3430,9 +5046,28 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
+        x-nullable: false
+    type: object
+  EventAddress:
+    description: EventAddress event address
+    properties:
+      value:
+        description: value
+        type: string
+        x-nullable: false
+    type: object
+  EventIdentifier:
+    description: EventIdentifier event identifier
+    properties:
+      value:
+        description: value
+        type: string
         x-nullable: false
     type: object
   ExchangeError:
@@ -3763,6 +5398,29 @@ definitions:
         example: ACCOUNT
         type: string
         x-nullable: false
+    type: object
+  Feature:
+    properties:
+      enabled:
+        description: Feature flag state that overrides global features configuration
+        example: true
+        type: boolean
+        x-nullable: false
+      flag:
+        description: Name of the feature flag
+        example: visualizer
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of your tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - flag
+    - enabled
+    - tenant_id
     type: object
   FilePaymentConsentFileResource:
     properties:
@@ -4436,6 +6094,25 @@ definitions:
     type: object
   IDPDomain:
     type: string
+  IDPPayload:
+    properties:
+      id:
+        description: Unique identifierof IDP.
+        format: idpID
+        type: string
+        x-nullable: false
+      mappings:
+        $ref: '#/definitions/Mappings'
+      method:
+        description: Defines the type of an IDP, e.g. google, saml
+        format: idpMethod
+        type: string
+        x-nullable: false
+      name:
+        description: Display name of IDP.
+        type: string
+        x-nullable: false
+    type: object
   IDPSSODescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.3
@@ -4761,6 +6438,103 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  InternalAuditEvent:
+    properties:
+      action:
+        enum:
+        - authenticated
+        - challenged
+        - authorized
+        - unauthorized
+        - created
+        - updated
+        - deleted
+        - generated
+        - requested
+        - confirmed
+        - accepted
+        - rejected
+        - revoked
+        - notified
+        - issued
+        - denied
+        - granted
+        - attempted
+        - failed
+        - succeeded
+        - sent
+        - not_sent
+        - executed
+        - reset_requested
+        - reset_completed
+        - add_requested
+        - add_completed
+        type: string
+        x-nullable: false
+      event_id:
+        format: eventID
+        type: string
+        x-nullable: false
+      event_payload:
+        type: object
+        x-nullable: false
+      event_subject:
+        enum:
+        - request
+        - gateway_request
+        - gateway_policy
+        - policy
+        - client
+        - credential
+        - login
+        - post_authn
+        - recovery
+        - consent
+        - client_consents
+        - customer_consents
+        - authorization_code
+        - access_token
+        - saml_assertion
+        - scopes
+        - claims
+        - otp
+        - user
+        - schema
+        - pool
+        - password
+        - bruteforce
+        - dcr
+        - script
+        - role
+        - task
+        - jit
+        - tokens
+        - service
+        - server
+        - import
+        - organization
+        - otp_inspect
+        - totp
+        - webauthn
+        type: string
+        x-nullable: false
+      event_type:
+        $ref: '#/definitions/AuditEventType'
+      metadata:
+        $ref: '#/definitions/AuditEventMetadata'
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      timestamp:
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
   IntrospectResponse:
     properties:
       acr:
@@ -4894,6 +6668,45 @@ definitions:
     type: object
   JITAdressVerificationMode:
     type: string
+  JITCreatedPayload:
+    properties:
+      admin_role_type:
+        type: string
+        x-nullable: false
+      idp:
+        $ref: '#/definitions/IDPPayload'
+      pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+    type: object
+  JITFailedPayload:
+    properties:
+      error:
+        type: string
+        x-nullable: false
+      idp:
+        $ref: '#/definitions/IDPPayload'
+      idp_sub:
+        format: subject
+        type: string
+        x-nullable: false
+      pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+      user_mapping:
+        $ref: '#/definitions/JITUser'
+      user_to_provision:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
   JITProvisioning:
     properties:
       admin_role_type:
@@ -4925,6 +6738,22 @@ definitions:
         x-nullable: false
       provisioning:
         $ref: '#/definitions/JITProvisioning'
+    type: object
+  JITUpdatedPayload:
+    properties:
+      idp:
+        $ref: '#/definitions/IDPPayload'
+      new_account_linked:
+        type: boolean
+        x-nullable: false
+      pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
     type: object
   JITUser:
     properties:
@@ -4978,6 +6807,10 @@ definitions:
     type: object
   JobID:
     type: string
+  JwtClaims:
+    additionalProperties:
+      type: object
+    type: object
   KSAConsent:
     properties:
       client_id:
@@ -5045,29 +6878,6 @@ definitions:
       party:
         $ref: '#/definitions/FDXParty'
     type: object
-  License:
-    properties:
-      expiration_date:
-        description: License expiration date
-        example: "2023-03-01T09:02:27.127932Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      license_type:
-        description: Type of license
-        enum:
-        - trial
-        - enterprise
-        example: trial
-        type: string
-        x-nullable: false
-      start_time:
-        description: License start date
-        example: "2023-03-01T09:02:27.127932Z"
-        format: date-time
-        type: string
-        x-nullable: false
-    type: object
   LocalizedName:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.2.4
@@ -5101,6 +6911,35 @@ definitions:
         example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&6consent_verified=false&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
         type: string
         x-nullable: false
+    type: object
+  LoginFailedPayload:
+    properties:
+      cause:
+        type: string
+        x-nullable: false
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      error_description:
+        type: string
+        x-nullable: false
+      error_hint:
+        type: string
+        x-nullable: false
+      idp:
+        $ref: '#/definitions/IDPPayload'
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  LoginPayload:
+    properties:
+      idp:
+        $ref: '#/definitions/IDPPayload'
     type: object
   LoginRejected:
     properties:
@@ -5241,6 +7080,10 @@ definitions:
         description: requested grant type
         type: string
         x-nullable: false
+      requested_max_age:
+        description: requested max age
+        type: string
+        x-nullable: false
       requested_redirect_uri:
         description: requested redirect uri
         type: string
@@ -5287,8 +7130,6 @@ definitions:
         $ref: '#/definitions/ArculixAuth'
       email:
         $ref: '#/definitions/EmailAuth'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineAuth'
       sms:
         $ref: '#/definitions/SMSAuth'
     type: object
@@ -5307,8 +7148,6 @@ definitions:
         enum:
         - sms
         - email
-        - arculix
-        - risk_engine
         example: email
         type: string
         x-nullable: false
@@ -5326,12 +7165,8 @@ definitions:
     type: object
   MFASettings:
     properties:
-      arculix:
-        $ref: '#/definitions/ArculixSettings'
       email:
         $ref: '#/definitions/EmailSettings'
-      risk_engine:
-        $ref: '#/definitions/RiskEngineSettings'
       sms:
         $ref: '#/definitions/SMSSettings'
     type: object
@@ -5426,7 +7261,7 @@ definitions:
     description: |-
       A Name represents an XML name (Local) annotated
       with a name space identifier (Space).
-      In tokens returned by Decoder.Token, the Space identifier
+      In tokens returned by [Decoder.Token], the Space identifier
       is given as a canonical URL, not the short prefix used
       in the document being parsed.
     properties:
@@ -5601,6 +7436,31 @@ definitions:
     - length
     - expiration
     type: object
+  OTPPayload:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      failure_reason:
+        type: string
+        x-nullable: false
+      otp_id:
+        type: string
+        x-nullable: false
+      purpose:
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - sms
+        - email
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+    type: object
   OktaCredentials:
     description: Okta IDP specific credentials
     properties:
@@ -5670,6 +7530,17 @@ definitions:
     type: object
   Org:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -5746,8 +7617,27 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  OrganizationMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
   OrganizationResponse:
     properties:
+      authentication_mechanisms:
+        description: allowed authentication mechanisms
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your organization's label color in a HEX format.
@@ -5976,6 +7866,27 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  PolicyEvaluatedPayload:
+    properties:
+      output:
+        additionalProperties:
+          type: string
+        description: Policy output
+        type: object
+        x-nullable: false
+      policy:
+        $ref: '#/definitions/PolicyPayload'
+      recovery:
+        description: An array of recovery methods that take place when a policy validation
+          fails.
+        items: {}
+        type: array
+        x-nullable: false
+      result:
+        description: The result of policy validation.
+        type: string
+        x-nullable: false
+    type: object
   PolicyExecutionPoint:
     properties:
       policy_id:
@@ -6012,6 +7923,36 @@ definitions:
           `api` type are available.
         example: scope_client_assignment
         format: policyExecutionPoint
+        type: string
+        x-nullable: false
+    type: object
+  PolicyPayload:
+    properties:
+      execution_point_type:
+        description: String representation of the policy execution point type
+        format: policyExecutionPoint
+        type: string
+        x-nullable: false
+      key:
+        description: |-
+          Unique key, derived from execution point, of protected resource where the policy is assigned.
+
+          Example key for policy in default tenant, default server protecting scope email for machine access.
+          default/default/scope/email/machine
+        format: policyKey
+        type: string
+        x-nullable: false
+      policy_id:
+        description: Policy id
+        format: policyID
+        type: string
+        x-nullable: false
+      type:
+        description: |-
+          Define a type of your policy
+
+          ACP is provided with the following policy types: user, developer, machine, dcr, api.
+        format: policyType
         type: string
         x-nullable: false
     type: object
@@ -6061,6 +8002,23 @@ definitions:
       result:
         description: String representation of the policy validation result
         type: string
+        x-nullable: false
+    type: object
+  PoolAuditPayload:
+    properties:
+      authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      description:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      pool_id:
+        type: string
+        x-nullable: false
+      public_registration_allowed:
+        type: boolean
         x-nullable: false
     type: object
   PostAuthnAborted:
@@ -6178,6 +8136,23 @@ definitions:
     properties:
       type:
         type: string
+        x-nullable: false
+    type: object
+  RecoveryPayload:
+    properties:
+      amr:
+        items:
+          format: amr
+          type: string
+        type: array
+        x-nullable: false
+      recovery_methods:
+        items: {}
+        type: array
+        x-nullable: false
+      recovery_steps:
+        items: {}
+        type: array
         x-nullable: false
     type: object
   RecurringJob:
@@ -6319,6 +8294,41 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+    type: object
+  RequestValidatedData:
+    properties:
+      anonymous:
+        type: boolean
+        x-nullable: false
+      api:
+        $ref: '#/definitions/API'
+      claims:
+        $ref: '#/definitions/JwtClaims'
+      duration_ms:
+        format: int64
+        type: integer
+        x-nullable: false
+      gateway:
+        $ref: '#/definitions/Gateway'
+      invalid_token:
+        type: boolean
+        x-nullable: false
+      output:
+        additionalProperties:
+          type: string
+        type: object
+        x-nullable: false
+      result:
+        $ref: '#/definitions/PolicyValidationResult'
+      service:
+        $ref: '#/definitions/Service'
+    type: object
+  RequestValidatedPayload:
+    properties:
+      access_request_data:
+        $ref: '#/definitions/AccessRequestData'
+      request_validated_data:
+        $ref: '#/definitions/RequestValidatedData'
     type: object
   RequestedAttribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -6472,6 +8482,32 @@ definitions:
     type: string
   RevocationReason:
     type: string
+  RevokeTokenRequest:
+    properties:
+      idp_id:
+        description: optional idp id - if provided subjects will be recalculated if
+          server is using hashed subject type
+        format: idpID
+        type: string
+        x-nullable: false
+      subjects:
+        description: list of subjects (min 1, max 100)
+        items:
+          format: subject
+          type: string
+        type: array
+        x-nullable: false
+    type: object
+  RevokeTokensByPoolRequest:
+    properties:
+      users:
+        description: list of userIds (min 1, max 100)
+        items:
+          format: userID
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   Rfc6902PatchOperation:
     properties:
       op:
@@ -6506,56 +8542,21 @@ definitions:
     items:
       $ref: '#/definitions/Rfc6902PatchOperation'
     type: array
-  RiskEngineAuth:
+  RiskContext:
     properties:
-      api_key:
-        description: The Risk Engine API key.
+      analyzers:
+        additionalProperties:
+          format: double
+          type: number
+        type: object
+        x-nullable: false
+      dbfp_fingerprint:
         type: string
         x-nullable: false
-    required:
-    - api_key
-    type: object
-  RiskEngineSettings:
-    properties:
-      dbfp_gps_timeout:
-        description: Timeout for the GPS.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_timeout:
-        description: Timeout for the DBFP script.
-        example: 1s
-        format: duration
-        type: string
-        x-nullable: false
-      dbfp_url:
-        description: URL to the DBFP script.
-        example: https://dbfp.acceptto.com/bfp.js
-        type: string
-        x-nullable: false
-      tenant_id:
-        description: Risk Engine TenantID
-        example: 04ab95bd-5f5d-411f-bf3d-c56b01880190"
-        type: string
-        x-nullable: false
-      timeout:
-        description: Risk Engine timeout
-        example: 200ms
-        format: duration
-        type: string
-        x-nullable: false
-      url:
-        description: URL to the Risk Engine server
-        example: https://cyber-inference.mm-dev.acceptto.com/
-        type: string
-        x-nullable: false
-    required:
-    - url
-    - timeout
-    - dbfp_url
-    - dbfp_timeout
-    - dbfp_gps_timeout
+      id:
+        $ref: '#/definitions/RiskID'
+      loa:
+        $ref: '#/definitions/RiskLOA'
     type: object
   RiskID:
     description: Risk engine transaction id
@@ -6616,6 +8617,23 @@ definitions:
         x-nullable: false
     title: RoleDescriptor represents the SAML element RoleDescriptor.
     type: object
+  RoleGrantAuditPayload:
+    properties:
+      resource:
+        $ref: '#/definitions/RoleResource'
+      role:
+        enum:
+        - admin
+        - business_admin
+        - auditor
+        - manager
+        - user_manager
+        - member
+        type: string
+        x-nullable: false
+      subject:
+        $ref: '#/definitions/RoleSubject'
+    type: object
   RoleResource:
     properties:
       identity_pool_id:
@@ -6647,6 +8665,7 @@ definitions:
         x-nullable: false
       identity_pool_user_id:
         description: identity pool user id
+        format: userID
         type: string
         x-nullable: false
       idp_id:
@@ -6974,6 +8993,31 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  SameSite:
+    type: string
+  SchemaAuditPayload:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      schema_id:
+        type: string
+        x-nullable: false
+      system:
+        type: boolean
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
   Scope:
     properties:
       authorization_server_id:
@@ -7233,6 +9277,10 @@ definitions:
         description: requested grant type
         type: string
         x-nullable: false
+      requested_max_age:
+        description: requested max age
+        type: string
+        x-nullable: false
       requested_redirect_uri:
         description: requested redirect uri
         type: string
@@ -7342,6 +9390,15 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  ScopesGrantedPayload:
+    properties:
+      new_scope_grants:
+        description: List of scopes to grant.
+        items:
+          $ref: '#/definitions/ScopeGrant'
+        type: array
+        x-nullable: false
+    type: object
   ScopesWithServices:
     properties:
       scopes:
@@ -7389,6 +9446,57 @@ definitions:
     required:
     - tenant_id
     - authorization_server_id
+    type: object
+  ScriptExecutionAuditPayload:
+    properties:
+      caught_err:
+        type: string
+        x-nullable: false
+      duration:
+        format: duration
+        type: string
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      executed_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      execution_point:
+        enum:
+        - post_authn_ctx
+        - allowed_idp_ids
+        - token_minting
+        - client_token_minting
+        type: string
+        x-nullable: false
+      input:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      log_level:
+        type: string
+        x-nullable: false
+      output:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      script_id:
+        format: scriptID
+        type: string
+        x-nullable: false
+      script_name:
+        type: string
+        x-nullable: false
+      stderr:
+        type: string
+        x-nullable: false
+      stdout:
+        type: string
+        x-nullable: false
     type: object
   ScriptExecutionPoint:
     properties:
@@ -7626,6 +9734,508 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  ServerAuditPayload:
+    properties:
+      access_token_strategy:
+        default: jwt
+        description: |-
+          Access token strategy
+
+          You can choose to go either with `JWT` or `opaque` tokens.
+
+          The content of JSON Web Tokens is readable and it is possible to be decoded by anyone that
+          has a secret or a public key in their possession.
+
+          Opaque tokens are in a proprietary form that contains an identifier to information stored on
+          the athorization server. To validate an opaque token, the recipient must call the server that
+          issued the token.
+        enum:
+        - jwt
+        - opaque
+        example: jwt
+        type: string
+        x-nullable: false
+      access_token_ttl:
+        default: 1h0m0s
+        description: |-
+          Access token time to live
+
+          After an access token reaches its time to live, it expires and it cannot be used to
+          authenticate the client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      advanced:
+        $ref: '#/definitions/AdvancedConfiguration'
+      authentication_context_settings:
+        $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
+      authorization_code_ttl:
+        description: |-
+          Authorization code time to live
+
+          After an authorization code reaches its time to live, it expires and it cannot be used to
+          authorize the request to the `/token` endpoint.
+        example: 10m0s
+        format: duration
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_modes_supported:
+        default:
+        - poll
+        - ping
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      backchannel_user_code_parameter_supported:
+        default: false
+        type: boolean
+        x-nullable: false
+      cdr:
+        $ref: '#/definitions/CDRConfiguration'
+      color:
+        default: '#007FFF'
+        description: Your server's label color in a HEX format.
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      consent_id_namespace:
+        description: |-
+          Namespace used when creating Open Banking Brasil consent IDs
+
+          Consent IDs will have the form of urn:<consent_id_namespace>:<uid> when this is set.
+          If this is empty, the tenant id is used by default
+        type: string
+        x-nullable: false
+      cookie_max_age:
+        description: |-
+          Cookie max age
+
+          Defines how long a cookie can live until it expires.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      custom_issuer_url:
+        description: |-
+          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+          token.
+
+          If not provided, it is built dynamically based on the server's URL.
+        example: http://example.com/default/default
+        type: string
+        x-nullable: false
+      description:
+        description: Display description of the workspace
+        example: Server description
+        type: string
+        x-nullable: false
+      device_authorization:
+        $ref: '#/definitions/DeviceAuthorizationConfiguration'
+      dynamic_client_registration:
+        $ref: '#/definitions/DynamicClientRegistrationSettings'
+      dynamic_scope_separator:
+        default: .
+        description: |-
+          You can use this property to define a separator that is used for dynamic scopes.
+
+          For example, the default separator is `.`, so the scope could look like the following:
+          `users.*`.
+
+          For Open Banking Brazil compliant servers, the `:` separator should be used.
+        format: dynamicScopeSeparator
+        type: string
+        x-nullable: false
+      enable_idp_discovery:
+        description: |-
+          Deprecated: Use IDPDiscovery instead
+
+          If enabled, IDP discovery automatically redirects the user to their own IDP and does not
+          display IDPs of other users while the users accesses the server/application.
+        example: false
+        type: boolean
+        x-nullable: false
+      enable_legacy_clients_with_no_software_statement:
+        description: |-
+          Deprecated
+
+          If enabled, it is possible to manually register clients withouth the use of software
+          statements.
+
+          This flag is enabled, when the `enable_trust_anchor` flag is set to `false`. You can disable
+          it using API, but it cannot be manually enabled.
+        type: boolean
+        x-nullable: false
+      enable_quick_access:
+        description: If enabled, the server is visible on the Quick Access tab on
+          the login page.
+        type: boolean
+        x-nullable: false
+      enable_trust_anchor:
+        default: false
+        description: |-
+          If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
+
+          when registering a client application with the use of the Dynamic Client Registration (DCR).
+
+          In public key infrastructure (PKI), trust anchors are certification authorities. They are
+          represented by a certificate that is used to verify the signature of a certificate issued by
+          a particular trust anchor.
+        type: boolean
+        x-nullable: false
+      enforce_id_token_encryption:
+        description: When enabled, the authorization server will enforce encrypted
+          id tokens it issues
+        type: boolean
+        x-nullable: false
+      enforce_pkce:
+        default: false
+        description: |-
+          Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
+          private and public clients.
+
+          PKCE is an OAuth security extension that prevents malicious applications or codes that
+          intercepted authorization code from exchanging it for an access token.
+        example: false
+        type: boolean
+        x-nullable: false
+      enforce_pkce_for_public_clients:
+        default: false
+        description: |-
+          Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for
+          public clients.
+
+          Public clients, like mobile applications or JavaScript-based applications, by their design,
+          cannot store client secrets securely. For such clients, even encrypting the client secret
+          inside the application’s code is not a reliable way of protecting secrets as the application
+          can be decompiled and the client secret can be extracted while it is decrypted in the memory
+          of the application.
+
+          For those reasons, ACP supports the use of PKCE as an addition to the authorization code
+          grant flow to provide a secure alternative to the implicit grant flow.
+        example: false
+        type: boolean
+        x-nullable: false
+      fdx:
+        $ref: '#/definitions/FDXConfiguration'
+      grant_types:
+        default:
+        - authorization_code
+        - implicit
+        - client_credentials
+        - refresh_token
+        description: An array that defines which of the OAuth 2.0 grant types are
+          enabled for the authorization server.
+        example:
+        - authorization_code
+        - implicit
+        - refresh_token
+        - client_credentials
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: |-
+          Unique identifier of an authorization server (workspace)
+
+          If not provided, a random ID is generated.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      id_token_ttl:
+        description: |-
+          ID token time to live
+
+          After an ID token reaches its time to live, it expires and it cannot be used to provide
+          user profile information to a client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      identity_assurance:
+        $ref: '#/definitions/IdentityAssuranceConfiguration'
+      idp_discovery:
+        $ref: '#/definitions/IDPDiscovery'
+      issuer_id:
+        description: |-
+          Issuer ID that will be used to set `iss` claim on signed messages
+
+          If issuer_id is not set then default issuer_url will be used
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      key_type:
+        default: ecdsa
+        description: |-
+          Determines which type of asymmetric algorithms (RSA or ECDSA) is used to generate keys for signing access and
+          ID tokens.
+
+          It is used only as an input parameter for the Create Authorization Server API.
+        enum:
+        - rsa
+        - ecdsa
+        - ps
+        example: rsa
+        type: string
+        x-nullable: false
+      legal_entity:
+        $ref: '#/definitions/LegalEntity'
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      metadata:
+        $ref: '#/definitions/ServerMetadata'
+      name:
+        description: |-
+          Display name of the workspace
+
+          If not provided, a random ID is generated.
+        example: default
+        type: string
+        x-nullable: false
+      obbr:
+        $ref: '#/definitions/OBBRConfiguration'
+      organization:
+        $ref: '#/definitions/OrganizationConfiguration'
+      parent_id:
+        description: Optional ID of a parent server
+        format: serverID
+        type: string
+        x-nullable: false
+      profile:
+        default: default
+        description: |-
+          The profile of a server
+
+          ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
+          specific configuration patterns. For example, you can instantly create an Open Banking
+          compliant workspace that has all of the required mechanisms and settings already in place.
+        enum:
+        - default
+        - demo
+        - workforce
+        - consumer
+        - partners
+        - third_party
+        - fapi_advanced
+        - fapi_rw
+        - fapi_ro
+        - openbanking_uk_fapi_advanced
+        - openbanking_uk
+        - openbanking_br
+        - openbanking_br_unico
+        - cdr_australia
+        - cdr_australia_fapi_rw
+        - fdx
+        - openbanking_ksa
+        - fapi_20_security
+        - fapi_20_message_signing
+        - connect_id
+        example: default
+        type: string
+        x-nullable: false
+      pushed_authorization_request_ttl:
+        description: |-
+          Custom pushed authentication request TTL
+          If not provided, TTL is set to 60 seconds.
+        format: duration
+        type: string
+        x-nullable: false
+      refresh_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Refresh token time to live
+
+          After a refresh token reaches its time to live, it expires and it cannot be used to obtain
+          new access tokens for a client application.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the authorization server
+          accepts authorization request data only via PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
+      saml:
+        $ref: '#/definitions/SAMLConfiguration'
+      scope_claim_formats:
+        default:
+        - scp_array
+        description: formats of the scope claim that will be included in the access
+          token
+        example:
+        - scp_array
+        - scope_space_separated
+        items:
+          $ref: '#/definitions/ScopeClaimFormat'
+        type: array
+        x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
+      sso:
+        $ref: '#/definitions/SSOConfiguration'
+      styling:
+        $ref: '#/definitions/Styling'
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
+        type: string
+        x-nullable: false
+      subject_identifier_types:
+        default:
+        - public
+        - pairwise
+        description: |-
+          An array that defines supported subject identifier types.
+
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          `public` identifiers provide the same `sub` claim value to all client applications.
+          `pairwise` identifiers provide different `sub` claim values to each client application. With
+          this approach, it makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        example:
+        - public
+        - pairwise
+        items:
+          enum:
+          - public
+          - pairwise
+          type: string
+        type: array
+        x-nullable: false
+      template:
+        description: If true this workspace can be used as a template when creating
+          a new ones.
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        description: ID of a tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      token_endpoint_auth_methods:
+        default:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        description: |-
+          An array that lists all of the supported token endpoint authentication methods for the
+          authorization server.
+        items:
+          enum:
+          - client_secret_basic
+          - client_secret_post
+          - client_secret_jwt
+          - private_key_jwt
+          - self_signed_tls_client_auth
+          - tls_client_auth
+          - none
+          - unspecified
+          type: string
+        type: array
+        x-nullable: false
+      token_endpoint_auth_signing_alg_values:
+        description: |-
+          Token endpoint auth signing supported alg values
+
+          Supported algorithms: HS256, RS256, ES256, PS256
+
+          At least one algorithm must be set.
+
+          The default values depends on the server security profile.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      token_endpoint_authn_methods:
+        description: 'Deprecated: Use TokenEndpointAuthMethods instead'
+        items:
+          enum:
+          - client_secret_basic
+          - client_secret_post
+          - client_secret_jwt
+          - private_key_jwt
+          - self_signed_tls_client_auth
+          - tls_client_auth
+          - none
+          - unspecified
+          type: string
+        type: array
+        x-nullable: false
+      trust_anchor_configuration:
+        $ref: '#/definitions/TrustAnchorConfiguration'
+      type:
+        default: regular
+        description: |-
+          Server type
+
+          It is an internal property used to recognize if the server is created for an admin portal,
+          a developer portal, or if it is a system or a regular workspace.
+        enum:
+        - admin
+        - developer
+        - system
+        - regular
+        - organization
+        example: regular
+        type: string
+        x-nullable: false
+      version:
+        default: 3
+        description: |-
+          server version to track internal changes
+          version that is currently the latest: 3
+        format: int64
+        type: integer
+        x-nullable: false
+    required:
+    - tenant_id
+    type: object
   ServerConsent:
     properties:
       client_id:
@@ -7687,6 +10297,22 @@ definitions:
         $ref: '#/definitions/AdvancedConfiguration'
       authentication_context_settings:
         $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -8499,6 +11125,61 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  ServiceAuditPayload:
+    properties:
+      custom_audience:
+        description: Custom service audience
+        example: https://api.example.com
+        type: string
+        x-nullable: false
+      description:
+        description: Service description
+        example: Service description
+        type: string
+        x-nullable: false
+      gateway_id:
+        description: Gateway identifier
+        example: gateway-1
+        format: gatewayID
+        type: string
+        x-nullable: false
+      id:
+        description: A unique identifier of a service
+        example: service-1
+        format: serviceID
+        type: string
+        x-nullable: false
+      name:
+        description: Service name
+        example: My service
+        type: string
+        x-nullable: false
+      system:
+        description: '`true` when the service is a system service'
+        example: false
+        type: boolean
+        x-nullable: false
+      type:
+        default: user
+        description: Service type
+        enum:
+        - oauth2
+        - oidc
+        - system
+        - user
+        - openbanking
+        type: string
+        x-nullable: false
+      updated_at:
+        description: The date of service update
+        format: date-time
+        type: string
+        x-nullable: false
+      with_specification:
+        description: '`true` when the service has the OpenAPI 3.0 specification'
+        type: boolean
+        x-nullable: false
+    type: object
   ServiceConnectedToGateway:
     properties:
       api_group_id:
@@ -8901,6 +11582,18 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  TaskAuditPayload:
+    properties:
+      attributes:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+    type: object
   Template:
     description: Custom Branding template
     properties:
@@ -8950,8 +11643,6 @@ definitions:
         x-nullable: false
       jwks:
         $ref: '#/definitions/ServerJWKs'
-      license:
-        $ref: '#/definitions/License'
       metadata:
         $ref: '#/definitions/TenantMetadata'
       name:
@@ -8972,6 +11663,11 @@ definitions:
     type: object
   TenantDump:
     properties:
+      acrs:
+        items:
+          $ref: '#/definitions/ACR'
+        type: array
+        x-nullable: false
       apis:
         items:
           $ref: '#/definitions/API'
@@ -8979,7 +11675,7 @@ definitions:
         x-nullable: false
       audit_events:
         items:
-          $ref: '#/definitions/AuditEvent'
+          $ref: '#/definitions/InternalAuditEvent'
         type: array
         x-nullable: false
       authorization_details:
@@ -9040,6 +11736,11 @@ definitions:
       custom_apps:
         items:
           $ref: '#/definitions/CustomApp'
+        type: array
+        x-nullable: false
+      feature_flags:
+        items:
+          $ref: '#/definitions/Feature'
         type: array
         x-nullable: false
       gateway_api_groups:
@@ -9288,6 +11989,19 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  TokensRevokedPayload:
+    properties:
+      consent_id:
+        description: consent ID for which the token has been revoked (populated only
+          if type equals consent)
+        type: string
+        x-nullable: false
+      type:
+        description: entity type for which token has been revoked
+        example: consent
+        type: string
+        x-nullable: false
+    type: object
   TrustAnchorConfiguration:
     properties:
       jwks:
@@ -9297,6 +12011,56 @@ definitions:
           the Software Statement
         type: string
         x-nullable: false
+    type: object
+  UKConsentPayload:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        description: Client application identifier.
+        example: '"cauqo9c9vpbs0aj2b2v0"'
+        format: clientID
+        type: string
+        x-nullable: false
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      idempotency_key:
+        type: string
+        x-nullable: false
+      request_hash:
+        type: string
+        x-nullable: false
+      server_id:
+        description: Server / Workspace identifier.
+        example: '"server"'
+        format: serverID
+        type: string
+        x-nullable: false
+      spec:
+        type: string
+        x-nullable: false
+      spec_version:
+        $ref: '#/definitions/SpecVersion'
+      status:
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier.
+        example: '"tenant"'
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
     type: object
   UserAttributeMapping:
     properties:
@@ -9373,8 +12137,76 @@ definitions:
     items:
       $ref: '#/definitions/UserAttributeMapping'
     type: array
+  UserAuthenticatedPayload:
+    description: UserAuthenticatedPayload user authenticated payload
+    properties:
+      authn_method:
+        description: authn method
+        enum:
+        - totp
+        - password
+        - otp
+        - webauthn
+        type: string
+        x-nullable: false
+      failure_reason:
+        description: failure reason
+        type: string
+        x-nullable: false
+      identifier:
+        description: identifier
+        type: string
+        x-nullable: false
+      mfa:
+        description: mfa
+        enum:
+        - totp
+        - password
+        - otp
+        - webauthn
+        type: string
+        x-nullable: false
+      mfa_skipped:
+        description: mfa skipped
+        type: boolean
+        x-nullable: false
+      password_mode:
+        description: password mode
+        type: boolean
+        x-nullable: false
+      success:
+        description: success
+        type: boolean
+        x-nullable: false
+    required:
+    - success
+    type: object
   UserCodeCharacterSet:
     type: string
+  UserIDAndIdentifierPayload:
+    description: UserIDAndIdentifierPayload user ID and identifier payload
+    properties:
+      code_id:
+        description: code id
+        type: string
+        x-nullable: false
+      failure_reason:
+        description: failure reason
+        type: string
+        x-nullable: false
+      identifier:
+        description: identifier
+        type: string
+        x-nullable: false
+      operation_type:
+        description: operation type
+        type: string
+        x-nullable: false
+      user_id:
+        description: user id
+        type: string
+        x-nullable: false
+    type: object
   UserOrganizationsResponse:
     properties:
       cursor:
@@ -9382,6 +12214,59 @@ definitions:
       organizations:
         items:
           $ref: '#/definitions/OrganizationResponse'
+        type: array
+        x-nullable: false
+    type: object
+  UserPayload:
+    description: UserPayload user payload
+    properties:
+      address:
+        description: address
+        type: string
+        x-nullable: false
+      identifier:
+        description: identifier
+        type: string
+        x-nullable: false
+      identifiers:
+        description: identifiers
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        description: payload
+        type: object
+        x-nullable: false
+      status:
+        description: status
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      update_details:
+        description: update details
+        type: string
+        x-nullable: false
+      user_addresses:
+        description: user addresses
+        items:
+          $ref: '#/definitions/EventAddress'
+        type: array
+        x-nullable: false
+      user_id:
+        description: user id
+        type: string
+        x-nullable: false
+      user_identifiers:
+        description: user identifiers
+        items:
+          $ref: '#/definitions/EventIdentifier'
         type: array
         x-nullable: false
     type: object
@@ -9682,10 +12567,50 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity System API
+  description: |-
+    Cloudentity System API
+
+    The POST APIs support idempotency for safely retrying requests without accidentally performing the same operation twice.
+
+    To use idempotent requests:
+
+    1. Generate a unique idempotency key (32-255 characters long).
+    2. Include the key in the X-Idempotency-Key header of your POST request.
+    3. Retry failed requests with the same key within 1 minute.
+
+    Responses for replayed requests will include the X-Idempotent-Replayed: true header.
   title: Cloudentity API
   version: latest
 paths:
+  /client/{cid}:
+    get:
+      description: If client has been created by a developer, client's secret will
+        be empty.
+      operationId: getClient
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/Client'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - view_clients
+      summary: Get client.
+      tags:
+      - clients
   /clients/{wid}:
     get:
       description: 'This API lists clients by server'
@@ -10432,6 +13357,48 @@ paths:
       summary: Update organization
       tags:
       - organizations
+  /pools/{ipID}/tokens:
+    delete:
+      description: |-
+        Revoke tokens for given set of userIds (min 1, max 100 userIds can be specified).
+
+        Tokens includes access and refresh tokens but also authorization codes, authorization requests,
+        sso sessions and scopes grants.
+      operationId: revokeTokensByPool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Identity pool id
+        in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/RevokeTokensByPoolRequest'
+      responses:
+        "204":
+          description: ' tokens revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - revoke_tokens
+      summary: Revoke tokens for users in pool
+      tags:
+      - tokens
   /post-authn/{login}:
     get:
       description: This API is used by a postAuthn page to make a decision if user
@@ -10643,9 +13610,238 @@ paths:
       summary: List scopes for authorization server
       tags:
       - scopes
+  /servers/{wid}:
+    delete:
+      description: Delete authorization server.
+      operationId: deleteAuthorizationServer
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Authorization server has been deleted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_servers
+      summary: Delete authorization server
+      tags:
+      - servers
+  /servers/{wid}/audit-events:
+    get:
+      description: Returns list of audit events.
+      operationId: listAuditEvents
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: admin
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: |-
+          optional list audit events with a given client id
+          ClientID
+        in: query
+        name: client_id
+        type: string
+      - description: |-
+          optional list audit events with a given subject
+          Subject
+        in: query
+        name: subject
+        type: string
+      - description: |-
+          optional list audit events with a given ip address
+          IP
+        in: query
+        name: ip
+        type: string
+      - description: |-
+          optional list audit events with a given session id
+
+          it can be used as a correlation id for listing all login related audit events
+          SessionID
+        in: query
+        name: session_id
+        type: string
+      - description: optional list audit events with a given authorization correlation
+          id
+        in: query
+        name: authorization_correlation_id
+        type: string
+      - description: |-
+          optional list audit events with a given IDP subject
+          IDPSubject
+        in: query
+        name: idp_subject
+        type: string
+      - description: |-
+          optional list audit events with a given IDP id
+          IDPID
+        in: query
+        name: idp_id
+        type: string
+      - description: |-
+          optional list audit events with a given user identity pool id
+          UserPoolID
+        in: query
+        name: user_pool_id
+        type: string
+      - description: |-
+          optional list audit events with a given user id
+          UserID
+        in: query
+        name: user_id
+        type: string
+      - description: |-
+          optional list audit events with a given IDP method
+          IDPMethod
+        in: query
+        name: idp_method
+        type: string
+      - description: optional organization id
+        in: query
+        name: organization_id
+        type: string
+      - description: |-
+          optional list audit events with a given affected user identity pool id
+          AffectedUserPoolID
+        in: query
+        name: affected_user_pool_id
+        type: string
+      - description: |-
+          optional list audit events with a given affected user id
+          AffectedUserID
+        in: query
+        name: affected_user_id
+        type: string
+      - description: |-
+          Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
+          EventSubject
+        in: query
+        items:
+          type: string
+        name: event_subject
+        type: array
+      - description: |-
+          Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked generated reset_requested reset_completed add_requested add_completed
+          EventType
+        in: query
+        items:
+          type: string
+        name: event_action
+        type: array
+      - description: |-
+          list all events after a given time
+          TimestampFrom
+        format: date-time
+        in: query
+        name: timestamp_from
+        type: string
+      - description: |-
+          list all events before a given time
+          TimestampTo
+        format: date-time
+        in: query
+        name: timestamp_to
+        type: string
+      - description: |-
+          optional list events before a given event id
+          BeforeEventID
+        in: query
+        name: before_event_id
+        type: string
+      - description: |-
+          optional list audit events after a given event id
+          AfterEventID
+        in: query
+        name: after_event_id
+        type: string
+      - description: |-
+          optional sort audit events by a given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order audit events by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results, min 1, max 100
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      responses:
+        "200":
+          $ref: '#/responses/AuditEventsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - view_audit_events
+      summary: List audit events
+      tags:
+      - auditEvents
   /servers/{wid}/tokens:
     delete:
-      description: Revokes tokens issued for consent id provided in the query param.
+      description: |-
+        This API can be utilized for one of the following purposes:
+
+        Revoke by consent ID**: If a `consent_id` is provided in the query parameter,
+        the tokens issued for that consent ID will be revoked. This option takes precedence
+        over subject-based revocation.
+
+        Subject-based revocation**: If no `consent_id` is provided, the API will revoke
+        tokens for the specified set of subjects provided in the body.
+
+        #Subject-based revocation:
+
+        Tokens will be revoked for the specified set of subjects, which can include access tokens,
+        refresh tokens, authorization codes, authorization requests, SSO sessions, and scope grants.
+
+        Additionally, if an optional `idp_id` is provided, the subject values will be recalculated
+        if the server is using hashed subject types.
       operationId: revokeTokens
       parameters:
       - default: default
@@ -10658,6 +13854,10 @@ paths:
         in: query
         name: consent_id
         type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/RevokeTokenRequest'
       responses:
         "204":
           description: ' Tokens removed'
@@ -10678,6 +13878,22 @@ paths:
 produces:
 - application/json
 responses:
+  AuditEventsResponse:
+    description: AuditEvents
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/AuditEvents'
+  Client:
+    description: Client
+    schema:
+      $ref: '#/definitions/Client'
   Clients:
     description: Clients
     schema:
@@ -10730,6 +13946,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/OrganizationResponse'
+  OrganizationMetadata:
+    description: Organization metadata
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/OrganizationMetadata'
   Orgs:
     description: Orgs
     headers:
@@ -10883,7 +14111,7 @@ schemes:
 securityDefinitions:
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: accessCode
+    flow: application
     scopes:
       introspect_tokens: introspect_tokens
       manage_configuration: manage_configuration
@@ -10894,6 +14122,7 @@ securityDefinitions:
       push_gateway_requests: push_gateway_requests
       read_configuration: read_configuration
       read_gateway_configuration: read_gateway_configuration
+      view_audit_events: view_audit_events
       view_clients: view_clients
       view_consents: view_consents
       write_gateway_configuration: write_gateway_configuration

@@ -532,6 +532,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -6260,6 +6263,15 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
+        x-nullable: false
       description:
         description: Description of the client application.
         type: string
@@ -6864,6 +6876,15 @@ definitions:
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
+        x-nullable: false
+      default_acr_values:
+        description: |-
+          default ACR values
+          list of ACR values that will be implicitly requested for the client if not explicitly specified
+        items:
+          format: acrValue
+          type: string
+        type: array
         x-nullable: false
       description:
         description: Description of the client application.
@@ -10722,7 +10743,7 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: accessCode
+    flow: application
     scopes:
       accounts: accounts
       consents: consents
@@ -10731,7 +10752,7 @@ securityDefinitions:
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: accessCode
+    flow: application
     scopes:
       manage_openbanking_consents: manage_openbanking_consents
     tokenUrl: /default/system/oauth2/token

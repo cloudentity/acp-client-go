@@ -46,6 +46,9 @@ definitions:
       error:
         type: string
         x-nullable: false
+      error_code:
+        type: string
+        x-nullable: false
       status_code:
         format: int64
         type: integer
@@ -81,24 +84,7 @@ paths:
       operationId: tenantSingleAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -119,23 +105,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -156,22 +125,16 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -194,24 +157,7 @@ paths:
       operationId: tenantAggregatedAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -232,23 +178,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -269,33 +198,24 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       - default: grant_type
-        description: |-
-          Group by
-          grant_type AccessTokensByGrantType
+        description: Group by
         enum:
         - grant_type
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: grant_type AccessTokensByGrantType
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -318,24 +238,7 @@ paths:
       operationId: tenantSingleFaasMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -356,23 +259,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -393,21 +279,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -425,20 +297,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -461,24 +319,7 @@ paths:
       operationId: tenantAggregatedFaasMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -499,23 +340,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -536,21 +360,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -568,31 +378,14 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
       - default: function
-        description: |-
-          Group by
-          function FaasByFunction
+        description: Group by
         enum:
         - function
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: function FaasByFunction
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -615,24 +408,7 @@ paths:
       operationId: tenantSingleGatewayRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -653,23 +429,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -690,14 +449,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
+        description: Function
         enum:
         - count
         - sum
@@ -708,13 +460,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -737,24 +482,7 @@ paths:
       operationId: tenantAggregatedGatewayRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -775,23 +503,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -812,14 +523,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
+        description: Function
         enum:
         - count
         - sum
@@ -830,24 +534,14 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
       - default: result
-        description: |-
-          Group by
-          result GatewayRequestsByResult
+        description: Group by
         enum:
         - result
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: result GatewayRequestsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -870,24 +564,7 @@ paths:
       operationId: tenantSingleHttpRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -908,23 +585,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -945,21 +605,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -977,20 +623,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -1013,24 +645,7 @@ paths:
       operationId: tenantAggregatedHttpRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1051,23 +666,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1088,21 +686,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -1120,26 +704,8 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       - default: api
-        description: |-
-          Group by
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
+        description: Group by
         enum:
         - api
         - code
@@ -1148,10 +714,6 @@ paths:
         name: group
         required: true
         type: string
-        x-go-enum-desc: |-
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -1174,24 +736,7 @@ paths:
       operationId: tenantSingleOTPOperationMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1212,23 +757,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1249,15 +777,12 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count OTPOperationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count OTPOperationsCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -1280,24 +805,7 @@ paths:
       operationId: tenantAggregatedOTPOperationMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1318,23 +826,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1355,26 +846,20 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count OTPOperationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count OTPOperationsCount
       - default: operation
-        description: |-
-          Group by
-          operation OTPOperationsByResult
+        description: Group by
         enum:
         - operation
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: operation OTPOperationsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -1397,24 +882,7 @@ paths:
       operationId: tenantSinglePolicyValidationMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1435,23 +903,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1472,15 +923,12 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count PolicyValidationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count PolicyValidationsCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -1503,24 +951,7 @@ paths:
       operationId: tenantAggregatedPolicyValidationMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1541,23 +972,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1578,26 +992,20 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count PolicyValidationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count PolicyValidationsCount
       - default: result
-        description: |-
-          Group by
-          result PolicyValidationsByResult
+        description: Group by
         enum:
         - result
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: result PolicyValidationsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -1626,24 +1034,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1664,23 +1055,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1701,22 +1075,16 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -1745,24 +1113,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1783,23 +1134,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1820,33 +1154,24 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       - default: grant_type
-        description: |-
-          Group by
-          grant_type AccessTokensByGrantType
+        description: Group by
         enum:
         - grant_type
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: grant_type AccessTokensByGrantType
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -1875,24 +1200,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -1913,23 +1221,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -1950,14 +1241,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
+        description: Function
         enum:
         - count
         - sum
@@ -1968,13 +1252,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -2003,24 +1280,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2041,23 +1301,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2078,14 +1321,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
+        description: Function
         enum:
         - count
         - sum
@@ -2096,24 +1332,14 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count GatewayRequestsCount
-          sum GatewayRequestsSum
-          p50 GatewayRequestsP50
-          p75 GatewayRequestsP75
-          p95 GatewayRequestsP95
-          p99 GatewayRequestsP99
       - default: result
-        description: |-
-          Group by
-          result GatewayRequestsByResult
+        description: Group by
         enum:
         - result
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: result GatewayRequestsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -2142,24 +1368,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2180,23 +1389,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2217,21 +1409,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -2249,20 +1427,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -2291,24 +1455,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2329,23 +1476,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2366,21 +1496,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -2398,26 +1514,8 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       - default: api
-        description: |-
-          Group by
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
+        description: Group by
         enum:
         - api
         - code
@@ -2426,10 +1524,6 @@ paths:
         name: group
         required: true
         type: string
-        x-go-enum-desc: |-
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -2458,24 +1552,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2496,23 +1573,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2533,15 +1593,12 @@ paths:
         name: if-match
         type: string
       - default: average
-        description: |-
-          Function
-          average LOAAverage
+        description: Function
         enum:
         - average
         in: query
         name: function
         type: string
-        x-go-enum-desc: average LOAAverage
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -2570,24 +1627,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2608,23 +1648,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2645,15 +1668,12 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count OTPOperationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count OTPOperationsCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -2682,24 +1702,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2720,23 +1723,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2757,26 +1743,20 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count OTPOperationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count OTPOperationsCount
       - default: operation
-        description: |-
-          Group by
-          operation OTPOperationsByResult
+        description: Group by
         enum:
         - operation
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: operation OTPOperationsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -2805,24 +1785,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2843,23 +1806,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2880,15 +1826,12 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count PolicyValidationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count PolicyValidationsCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -2917,24 +1860,7 @@ paths:
         required: true
         type: string
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -2955,23 +1881,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -2992,26 +1901,20 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count PolicyValidationsCount
+        description: Function
         enum:
         - count
         in: query
         name: function
         type: string
-        x-go-enum-desc: count PolicyValidationsCount
       - default: result
-        description: |-
-          Group by
-          result PolicyValidationsByResult
+        description: Group by
         enum:
         - result
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: result PolicyValidationsByResult
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -3034,24 +1937,7 @@ paths:
       operationId: systemTenantSingleAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3072,23 +1958,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3115,22 +1984,16 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -3143,7 +2006,7 @@ paths:
         "429":
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
-      - setup: []
+      - admin: []
       summary: Query access tokens
       tags:
       - Metrics
@@ -3153,24 +2016,7 @@ paths:
       operationId: systemTenantAggregatedAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3191,23 +2037,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3234,33 +2063,24 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       - default: grant_type
-        description: |-
-          Group by
-          grant_type AccessTokensByGrantType
+        description: Group by
         enum:
         - grant_type
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: grant_type AccessTokensByGrantType
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -3273,7 +2093,7 @@ paths:
         "429":
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
-      - setup: []
+      - admin: []
       summary: Query access tokens by group
       tags:
       - Metrics
@@ -3283,24 +2103,7 @@ paths:
       operationId: systemTenantSingleFaasMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3321,23 +2124,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3364,21 +2150,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -3396,20 +2168,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -3432,24 +2190,7 @@ paths:
       operationId: systemTenantAggregatedFaasMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3470,23 +2211,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3513,21 +2237,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -3545,31 +2255,14 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count FaasCount
-          sum FaasSum
-          p50 FaasP50
-          p75 FaasP75
-          p95 FaasP95
-          p99 FaasP99
-          le1 FaasLe1
-          le10 FaasLe10
-          le50 FaasLe50
-          le100 FaasLe100
-          le500 FaasLe500
-          le1000 FaasLe1000
-          leinf FaasLeinf
       - default: function
-        description: |-
-          Group by
-          function FaasByFunction
+        description: Group by
         enum:
         - function
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: function FaasByFunction
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -3592,24 +2285,7 @@ paths:
       operationId: systemTenantSingleHttpRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3630,23 +2306,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3673,21 +2332,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -3705,20 +2350,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -3741,24 +2372,7 @@ paths:
       operationId: systemTenantAggregatedHttpRequestMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3779,23 +2393,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3822,21 +2419,7 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
+        description: Function
         enum:
         - count
         - sum
@@ -3854,26 +2437,8 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count HTTPRequestsCount
-          sum HTTPRequestsSum
-          p50 HTTPRequestsP50
-          p75 HTTPRequestsP75
-          p95 HTTPRequestsP95
-          p99 HTTPRequestsP99
-          le1 HTTPRequestsLe1
-          le10 HTTPRequestsLe10
-          le50 HTTPRequestsLe50
-          le100 HTTPRequestsLe100
-          le500 HTTPRequestsLe500
-          le1000 HTTPRequestsLe1000
-          leinf HTTPRequestsLeinf
       - default: api
-        description: |-
-          Group by
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
+        description: Group by
         enum:
         - api
         - code
@@ -3882,10 +2447,6 @@ paths:
         name: group
         required: true
         type: string
-        x-go-enum-desc: |-
-          api HTTPRequestsByAPI
-          code HTTPRequestsByCode
-          category HTTPRequestsByCategory
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -3908,24 +2469,7 @@ paths:
       operationId: systemWorkspaceSingleAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -3946,23 +2490,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -3995,22 +2522,16 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -4033,24 +2554,7 @@ paths:
       operationId: systemWorkspaceAggregatedAccessTokenMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -4071,23 +2575,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -4120,33 +2607,24 @@ paths:
         name: if-match
         type: string
       - default: count
-        description: |-
-          Function
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
+        description: Function
         enum:
         - count
+        - count_recovery
+        - recovery_friction
         - unique
         - unique_clients
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count AccessTokensCount
-          unique AccessTokensUnique
-          unique_clients AccessTokensUniqueClients
       - default: grant_type
-        description: |-
-          Group by
-          grant_type AccessTokensByGrantType
+        description: Group by
         enum:
         - grant_type
         in: path
         name: group
         required: true
         type: string
-        x-go-enum-desc: grant_type AccessTokensByGrantType
       responses:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
@@ -4169,24 +2647,7 @@ paths:
       operationId: systemTenantSingleUsersMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -4207,23 +2668,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -4250,11 +2694,7 @@ paths:
         name: if-match
         type: string
       - default: count_all
-        description: |-
-          Function
-          count_all AllUsersCount
-          count_standard StandardUsersCount
-          count_jit JITUsersCount
+        description: Function
         enum:
         - count_all
         - count_standard
@@ -4262,10 +2702,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count_all AllUsersCount
-          count_standard StandardUsersCount
-          count_jit JITUsersCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
@@ -4288,24 +2724,7 @@ paths:
       operationId: tenantSingleUsersMetrics
       parameters:
       - default: auto
-        description: |-
-          Bucket
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
+        description: Bucket
         enum:
         - auto
         - all
@@ -4326,23 +2745,6 @@ paths:
         in: query
         name: bucket
         type: string
-        x-go-enum-desc: |-
-          auto BucketAuto
-          all BucketAll
-          1m Bucket1m
-          5m Bucket5m
-          15m Bucket15m
-          30m Bucket30m
-          1h Bucket1h
-          3h Bucket3h
-          6h Bucket6h
-          12h Bucket12h
-          1d Bucket1d
-          1w Bucket1w
-          1M Bucket1M
-          3M Bucket3M
-          6M Bucket6M
-          1Y Bucket1Y
       - description: Origin
         format: date-time
         in: query
@@ -4363,11 +2765,7 @@ paths:
         name: if-match
         type: string
       - default: count_all
-        description: |-
-          Function
-          count_all AllUsersCount
-          count_standard StandardUsersCount
-          count_jit JITUsersCount
+        description: Function
         enum:
         - count_all
         - count_standard
@@ -4375,10 +2773,6 @@ paths:
         in: query
         name: function
         type: string
-        x-go-enum-desc: |-
-          count_all AllUsersCount
-          count_standard StandardUsersCount
-          count_jit JITUsersCount
       responses:
         "200":
           $ref: '#/responses/DataPoints'
