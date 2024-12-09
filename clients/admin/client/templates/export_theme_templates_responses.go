@@ -6,7 +6,6 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -117,11 +116,11 @@ func (o *ExportThemeTemplatesOK) Code() int {
 }
 
 func (o *ExportThemeTemplatesOK) Error() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesOK", 200)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesOK  %+v", 200, o.Payload)
 }
 
 func (o *ExportThemeTemplatesOK) String() string {
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesOK", 200)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesOK  %+v", 200, o.Payload)
 }
 
 func (o *ExportThemeTemplatesOK) GetPayload() io.Writer {
@@ -190,13 +189,11 @@ func (o *ExportThemeTemplatesUnauthorized) Code() int {
 }
 
 func (o *ExportThemeTemplatesUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ExportThemeTemplatesUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ExportThemeTemplatesUnauthorized) GetPayload() *models.Error {
@@ -260,13 +257,11 @@ func (o *ExportThemeTemplatesForbidden) Code() int {
 }
 
 func (o *ExportThemeTemplatesForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ExportThemeTemplatesForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ExportThemeTemplatesForbidden) GetPayload() *models.Error {
@@ -330,13 +325,11 @@ func (o *ExportThemeTemplatesNotFound) Code() int {
 }
 
 func (o *ExportThemeTemplatesNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ExportThemeTemplatesNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ExportThemeTemplatesNotFound) GetPayload() *models.Error {
@@ -400,13 +393,11 @@ func (o *ExportThemeTemplatesTooManyRequests) Code() int {
 }
 
 func (o *ExportThemeTemplatesTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ExportThemeTemplatesTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /theme/{themeID}/templates/zip][%d] exportThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ExportThemeTemplatesTooManyRequests) GetPayload() *models.Error {

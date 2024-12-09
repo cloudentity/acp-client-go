@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpdateConsentCreated) Code() int {
 }
 
 func (o *UpdateConsentCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentCreated %s", 201, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentCreated  %+v", 201, o.Payload)
 }
 
 func (o *UpdateConsentCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentCreated %s", 201, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentCreated  %+v", 201, o.Payload)
 }
 
 func (o *UpdateConsentCreated) GetPayload() *models.Consent {
@@ -202,13 +199,11 @@ func (o *UpdateConsentUnauthorized) Code() int {
 }
 
 func (o *UpdateConsentUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateConsentUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateConsentUnauthorized) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpdateConsentForbidden) Code() int {
 }
 
 func (o *UpdateConsentForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateConsentForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateConsentForbidden) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpdateConsentNotFound) Code() int {
 }
 
 func (o *UpdateConsentNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateConsentNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateConsentNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpdateConsentConflict) Code() int {
 }
 
 func (o *UpdateConsentConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateConsentConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateConsentConflict) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpdateConsentUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateConsentUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateConsentUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateConsentUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpdateConsentTooManyRequests) Code() int {
 }
 
 func (o *UpdateConsentTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateConsentTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /consents/{consent}][%d] updateConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateConsentTooManyRequests) GetPayload() *models.Error {

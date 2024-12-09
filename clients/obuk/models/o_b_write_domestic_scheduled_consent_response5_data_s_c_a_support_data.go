@@ -22,7 +22,7 @@ type OBWriteDomesticScheduledConsentResponse5DataSCASupportData struct {
 
 	// Specifies a character string with a maximum length of 40 characters.
 	// Usage: This field indicates whether the PSU was subject to SCA performed by the TPP
-	// Enum: ["CA","SCA"]
+	// Enum: [CA SCA]
 	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty" yaml:"AppliedAuthenticationApproach,omitempty"`
 
 	// Specifies a character string with a maximum length of 140 characters.
@@ -32,7 +32,7 @@ type OBWriteDomesticScheduledConsentResponse5DataSCASupportData struct {
 	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty" yaml:"ReferencePaymentOrderId,omitempty"`
 
 	// This field allows a PISP to request specific SCA Exemption for a Payment Initiation
-	// Enum: ["BillPayment","ContactlessTravel","EcommerceGoods","EcommerceServices","Kiosk","Parking","PartyToParty"]
+	// Enum: [BillPayment ContactlessTravel EcommerceGoods EcommerceServices Kiosk Parking PartyToParty]
 	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty" yaml:"RequestedSCAExemptionType,omitempty"`
 }
 

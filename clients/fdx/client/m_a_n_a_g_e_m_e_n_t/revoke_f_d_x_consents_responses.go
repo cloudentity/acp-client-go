@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *RevokeFDXConsentsOK) Code() int {
 }
 
 func (o *RevokeFDXConsentsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *RevokeFDXConsentsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *RevokeFDXConsentsOK) GetPayload() *models.ConsentsRemovedResponse {
@@ -180,13 +177,11 @@ func (o *RevokeFDXConsentsBadRequest) Code() int {
 }
 
 func (o *RevokeFDXConsentsBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeFDXConsentsBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeFDXConsentsBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *RevokeFDXConsentsUnauthorized) Code() int {
 }
 
 func (o *RevokeFDXConsentsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeFDXConsentsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeFDXConsentsUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *RevokeFDXConsentsForbidden) Code() int {
 }
 
 func (o *RevokeFDXConsentsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeFDXConsentsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeFDXConsentsForbidden) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *RevokeFDXConsentsNotFound) Code() int {
 }
 
 func (o *RevokeFDXConsentsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeFDXConsentsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeFDXConsentsNotFound) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *RevokeFDXConsentsTooManyRequests) Code() int {
 }
 
 func (o *RevokeFDXConsentsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeFDXConsentsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents][%d] revokeFDXConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeFDXConsentsTooManyRequests) GetPayload() *models.Error {

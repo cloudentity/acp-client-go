@@ -6,7 +6,6 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +96,11 @@ func (o *RevokeClientAccessNoContent) Code() int {
 }
 
 func (o *RevokeClientAccessNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent", 204)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent ", 204)
 }
 
 func (o *RevokeClientAccessNoContent) String() string {
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent", 204)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent ", 204)
 }
 
 func (o *RevokeClientAccessNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,13 +153,11 @@ func (o *RevokeClientAccessUnauthorized) Code() int {
 }
 
 func (o *RevokeClientAccessUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeClientAccessUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeClientAccessUnauthorized) GetPayload() *models.Error {
@@ -224,13 +221,11 @@ func (o *RevokeClientAccessForbidden) Code() int {
 }
 
 func (o *RevokeClientAccessForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeClientAccessForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeClientAccessForbidden) GetPayload() *models.Error {
@@ -294,13 +289,11 @@ func (o *RevokeClientAccessTooManyRequests) Code() int {
 }
 
 func (o *RevokeClientAccessTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeClientAccessTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeClientAccessTooManyRequests) GetPayload() *models.Error {

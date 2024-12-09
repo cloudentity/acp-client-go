@@ -6,7 +6,6 @@ package custom_apps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *DeleteCustomAppNoContent) Code() int {
 }
 
 func (o *DeleteCustomAppNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNoContent ", 204)
 }
 
 func (o *DeleteCustomAppNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNoContent ", 204)
 }
 
 func (o *DeleteCustomAppNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *DeleteCustomAppBadRequest) Code() int {
 }
 
 func (o *DeleteCustomAppBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteCustomAppBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteCustomAppBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *DeleteCustomAppUnauthorized) Code() int {
 }
 
 func (o *DeleteCustomAppUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteCustomAppUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteCustomAppUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *DeleteCustomAppForbidden) Code() int {
 }
 
 func (o *DeleteCustomAppForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteCustomAppForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteCustomAppForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *DeleteCustomAppNotFound) Code() int {
 }
 
 func (o *DeleteCustomAppNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteCustomAppNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteCustomAppNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *DeleteCustomAppTooManyRequests) Code() int {
 }
 
 func (o *DeleteCustomAppTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteCustomAppTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/custom-apps/{customAppID}][%d] deleteCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteCustomAppTooManyRequests) GetPayload() *models.Error {

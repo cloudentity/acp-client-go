@@ -6,7 +6,6 @@ package mfa_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -122,13 +121,11 @@ func (o *CreateMFAMethodCreated) Code() int {
 }
 
 func (o *CreateMFAMethodCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateMFAMethodCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateMFAMethodCreated) GetPayload() *models.MFAMethod {
@@ -192,13 +189,11 @@ func (o *CreateMFAMethodBadRequest) Code() int {
 }
 
 func (o *CreateMFAMethodBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateMFAMethodBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateMFAMethodBadRequest) GetPayload() *models.Error {
@@ -262,13 +257,11 @@ func (o *CreateMFAMethodUnauthorized) Code() int {
 }
 
 func (o *CreateMFAMethodUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateMFAMethodUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateMFAMethodUnauthorized) GetPayload() *models.Error {
@@ -332,13 +325,11 @@ func (o *CreateMFAMethodForbidden) Code() int {
 }
 
 func (o *CreateMFAMethodForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateMFAMethodForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateMFAMethodForbidden) GetPayload() *models.Error {
@@ -402,13 +393,11 @@ func (o *CreateMFAMethodNotFound) Code() int {
 }
 
 func (o *CreateMFAMethodNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateMFAMethodNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateMFAMethodNotFound) GetPayload() *models.Error {
@@ -472,13 +461,11 @@ func (o *CreateMFAMethodConflict) Code() int {
 }
 
 func (o *CreateMFAMethodConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateMFAMethodConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateMFAMethodConflict) GetPayload() *models.Error {
@@ -542,13 +529,11 @@ func (o *CreateMFAMethodUnprocessableEntity) Code() int {
 }
 
 func (o *CreateMFAMethodUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateMFAMethodUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateMFAMethodUnprocessableEntity) GetPayload() *models.Error {
@@ -612,13 +597,11 @@ func (o *CreateMFAMethodTooManyRequests) Code() int {
 }
 
 func (o *CreateMFAMethodTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateMFAMethodTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateMFAMethodTooManyRequests) GetPayload() *models.Error {

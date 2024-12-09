@@ -26,7 +26,7 @@ type Licenses struct {
 	DefaultLicenseDuration strfmt.Duration `json:"default_license_duration,omitempty" yaml:"default_license_duration,omitempty"`
 
 	// DefaultLicenseType is the default license type for new tenants
-	// Enum: ["trial","enterprise"]
+	// Enum: [trial enterprise]
 	DefaultLicenseType string `json:"default_license_type,omitempty" yaml:"default_license_type,omitempty"`
 
 	// Is licensing mechanism enabled

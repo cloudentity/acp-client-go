@@ -35,13 +35,13 @@ type SelfUserCredentials struct {
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// state
-	// Enum: ["valid","must_be_reset","must_be_changed"]
+	// Enum: [valid must_be_reset must_be_changed]
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	// type
 	// Example: password
 	// Required: true
-	// Enum: ["password","webauthn","totp"]
+	// Enum: [password webauthn totp]
 	Type string `json:"type" yaml:"type"`
 
 	// updated at

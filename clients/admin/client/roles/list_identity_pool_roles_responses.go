@@ -6,7 +6,6 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *ListIdentityPoolRolesOK) Code() int {
 }
 
 func (o *ListIdentityPoolRolesOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesOK  %+v", 200, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesOK  %+v", 200, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesOK) GetPayload() *models.IdentityPoolRolesResponse {
@@ -190,13 +187,11 @@ func (o *ListIdentityPoolRolesUnauthorized) Code() int {
 }
 
 func (o *ListIdentityPoolRolesUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *ListIdentityPoolRolesForbidden) Code() int {
 }
 
 func (o *ListIdentityPoolRolesForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *ListIdentityPoolRolesNotFound) Code() int {
 }
 
 func (o *ListIdentityPoolRolesNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *ListIdentityPoolRolesTooManyRequests) Code() int {
 }
 
 func (o *ListIdentityPoolRolesTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /pools/{ipID}/roles][%d] listIdentityPoolRolesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListIdentityPoolRolesTooManyRequests) GetPayload() *models.Error {

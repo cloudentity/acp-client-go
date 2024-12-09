@@ -6,7 +6,6 @@ package workspaces
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetWorkspaceOK) Code() int {
 }
 
 func (o *GetWorkspaceOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceOK %s", 200, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceOK %s", 200, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceOK) GetPayload() *models.ServerResponse {
@@ -190,13 +187,11 @@ func (o *GetWorkspaceUnauthorized) Code() int {
 }
 
 func (o *GetWorkspaceUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetWorkspaceForbidden) Code() int {
 }
 
 func (o *GetWorkspaceForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetWorkspaceNotFound) Code() int {
 }
 
 func (o *GetWorkspaceNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetWorkspaceTooManyRequests) Code() int {
 }
 
 func (o *GetWorkspaceTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /workspaces/{wid}][%d] getWorkspaceTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceTooManyRequests) GetPayload() *models.Error {

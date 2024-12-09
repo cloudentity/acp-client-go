@@ -6,7 +6,6 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,13 +85,11 @@ func (o *JwksOK) Code() int {
 }
 
 func (o *JwksOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK %s", 200, payload)
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
 }
 
 func (o *JwksOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK %s", 200, payload)
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
 }
 
 func (o *JwksOK) GetPayload() *models.ClientJWKs {
@@ -156,13 +153,11 @@ func (o *JwksNotFound) Code() int {
 }
 
 func (o *JwksNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound  %+v", 404, o.Payload)
 }
 
 func (o *JwksNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound  %+v", 404, o.Payload)
 }
 
 func (o *JwksNotFound) GetPayload() *models.GenericError {

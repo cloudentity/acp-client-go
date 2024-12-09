@@ -39,7 +39,7 @@ type TransientOTPResponse struct {
 	// mechanism
 	// Example: email
 	// Required: true
-	// Enum: ["sms","email"]
+	// Enum: [sms email]
 	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// tenant id

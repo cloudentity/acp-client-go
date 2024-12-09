@@ -66,7 +66,7 @@ type TreePool struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp webauthn]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
@@ -77,7 +77,7 @@ type TreePool struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp webauthn]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// The minimal risk engine loa score value to skip the 2FA

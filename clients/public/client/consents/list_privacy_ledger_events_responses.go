@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *ListPrivacyLedgerEventsOK) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsOK) GetPayload() *models.PrivacyLedgerEvents {
@@ -174,13 +171,11 @@ func (o *ListPrivacyLedgerEventsUnauthorized) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *ListPrivacyLedgerEventsForbidden) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *ListPrivacyLedgerEventsNotFound) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *ListPrivacyLedgerEventsTooManyRequests) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsTooManyRequests) GetPayload() *models.Error {

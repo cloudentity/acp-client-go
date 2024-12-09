@@ -6,7 +6,6 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteWorkspacePoolNoContent) Code() int {
 }
 
 func (o *DeleteWorkspacePoolNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNoContent", 204)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNoContent ", 204)
 }
 
 func (o *DeleteWorkspacePoolNoContent) String() string {
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNoContent", 204)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNoContent ", 204)
 }
 
 func (o *DeleteWorkspacePoolNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteWorkspacePoolUnauthorized) Code() int {
 }
 
 func (o *DeleteWorkspacePoolUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteWorkspacePoolForbidden) Code() int {
 }
 
 func (o *DeleteWorkspacePoolForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteWorkspacePoolNotFound) Code() int {
 }
 
 func (o *DeleteWorkspacePoolNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteWorkspacePoolTooManyRequests) Code() int {
 }
 
 func (o *DeleteWorkspacePoolTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /admin/workspace/{wid}/pools/{ipID}][%d] deleteWorkspacePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteWorkspacePoolTooManyRequests) GetPayload() *models.Error {

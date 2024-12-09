@@ -27,7 +27,7 @@ type HashConfig struct {
 	Bcrypt *BcryptConfig `json:"bcrypt,omitempty" yaml:"bcrypt,omitempty"`
 
 	// method
-	// Enum: ["bcrypt","pbkdf2","argon2","sha"]
+	// Enum: [bcrypt pbkdf2 argon2 sha]
 	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// pbkdf2

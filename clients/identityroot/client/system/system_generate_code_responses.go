@@ -6,7 +6,6 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *SystemGenerateCodeCreated) Code() int {
 }
 
 func (o *SystemGenerateCodeCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemGenerateCodeCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemGenerateCodeCreated) GetPayload() *models.Codes {
@@ -180,13 +177,11 @@ func (o *SystemGenerateCodeBadRequest) Code() int {
 }
 
 func (o *SystemGenerateCodeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemGenerateCodeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemGenerateCodeBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *SystemGenerateCodeUnauthorized) Code() int {
 }
 
 func (o *SystemGenerateCodeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemGenerateCodeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemGenerateCodeUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *SystemGenerateCodeNotFound) Code() int {
 }
 
 func (o *SystemGenerateCodeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemGenerateCodeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemGenerateCodeNotFound) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *SystemGenerateCodeUnprocessableEntity) Code() int {
 }
 
 func (o *SystemGenerateCodeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemGenerateCodeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemGenerateCodeUnprocessableEntity) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *SystemGenerateCodeTooManyRequests) Code() int {
 }
 
 func (o *SystemGenerateCodeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemGenerateCodeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemGenerateCodeTooManyRequests) GetPayload() *models.Error {

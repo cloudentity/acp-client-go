@@ -6,7 +6,6 @@ package apis
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpdateAPIOK) Code() int {
 }
 
 func (o *UpdateAPIOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAPIOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAPIOK) GetPayload() *models.API {
@@ -202,13 +199,11 @@ func (o *UpdateAPIBadRequest) Code() int {
 }
 
 func (o *UpdateAPIBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateAPIBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateAPIBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpdateAPIUnauthorized) Code() int {
 }
 
 func (o *UpdateAPIUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateAPIUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateAPIUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpdateAPIForbidden) Code() int {
 }
 
 func (o *UpdateAPIForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateAPIForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateAPIForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpdateAPINotFound) Code() int {
 }
 
 func (o *UpdateAPINotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAPINotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAPINotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpdateAPIUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAPIUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateAPIUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateAPIUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpdateAPITooManyRequests) Code() int {
 }
 
 func (o *UpdateAPITooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateAPITooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateAPITooManyRequests) GetPayload() *models.Error {

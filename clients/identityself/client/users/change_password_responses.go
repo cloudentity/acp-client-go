@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -129,11 +128,11 @@ func (o *ChangePasswordNoContent) Code() int {
 }
 
 func (o *ChangePasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent", 204)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent", 204)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -193,13 +192,11 @@ func (o *ChangePasswordBadRequest) Code() int {
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) GetPayload() *models.Error {
@@ -263,13 +260,11 @@ func (o *ChangePasswordUnauthorized) Code() int {
 }
 
 func (o *ChangePasswordUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) GetPayload() *models.Error {
@@ -333,13 +328,11 @@ func (o *ChangePasswordForbidden) Code() int {
 }
 
 func (o *ChangePasswordForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) GetPayload() *models.Error {
@@ -403,13 +396,11 @@ func (o *ChangePasswordNotFound) Code() int {
 }
 
 func (o *ChangePasswordNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) GetPayload() *models.Error {
@@ -473,13 +464,11 @@ func (o *ChangePasswordPreconditionFailed) Code() int {
 }
 
 func (o *ChangePasswordPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) GetPayload() *models.Error {
@@ -543,13 +532,11 @@ func (o *ChangePasswordUnprocessableEntity) Code() int {
 }
 
 func (o *ChangePasswordUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -613,13 +600,11 @@ func (o *ChangePasswordTooManyRequests) Code() int {
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) GetPayload() *models.Error {

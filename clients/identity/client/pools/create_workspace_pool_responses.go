@@ -6,7 +6,6 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreateWorkspacePoolCreated) Code() int {
 }
 
 func (o *CreateWorkspacePoolCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateWorkspacePoolCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateWorkspacePoolCreated) GetPayload() *models.PoolResponse {
@@ -208,13 +205,11 @@ func (o *CreateWorkspacePoolBadRequest) Code() int {
 }
 
 func (o *CreateWorkspacePoolBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateWorkspacePoolBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateWorkspacePoolBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreateWorkspacePoolUnauthorized) Code() int {
 }
 
 func (o *CreateWorkspacePoolUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateWorkspacePoolUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateWorkspacePoolUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreateWorkspacePoolForbidden) Code() int {
 }
 
 func (o *CreateWorkspacePoolForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateWorkspacePoolForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateWorkspacePoolForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreateWorkspacePoolNotFound) Code() int {
 }
 
 func (o *CreateWorkspacePoolNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateWorkspacePoolNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateWorkspacePoolNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreateWorkspacePoolConflict) Code() int {
 }
 
 func (o *CreateWorkspacePoolConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateWorkspacePoolConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateWorkspacePoolConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreateWorkspacePoolUnprocessableEntity) Code() int {
 }
 
 func (o *CreateWorkspacePoolUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateWorkspacePoolUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateWorkspacePoolUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreateWorkspacePoolTooManyRequests) Code() int {
 }
 
 func (o *CreateWorkspacePoolTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateWorkspacePoolTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/workspace/{wid}/pools][%d] createWorkspacePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateWorkspacePoolTooManyRequests) GetPayload() *models.Error {

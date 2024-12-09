@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *GetOBConsentsOK) Code() int {
 }
 
 func (o *GetOBConsentsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOBConsentsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOBConsentsOK) GetPayload() *models.OBUKConsents {
@@ -180,13 +177,11 @@ func (o *GetOBConsentsBadRequest) Code() int {
 }
 
 func (o *GetOBConsentsBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOBConsentsBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOBConsentsBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *GetOBConsentsUnauthorized) Code() int {
 }
 
 func (o *GetOBConsentsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetOBConsentsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetOBConsentsUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *GetOBConsentsForbidden) Code() int {
 }
 
 func (o *GetOBConsentsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetOBConsentsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetOBConsentsForbidden) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *GetOBConsentsNotFound) Code() int {
 }
 
 func (o *GetOBConsentsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOBConsentsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOBConsentsNotFound) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *GetOBConsentsTooManyRequests) Code() int {
 }
 
 func (o *GetOBConsentsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetOBConsentsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetOBConsentsTooManyRequests) GetPayload() *models.Error {

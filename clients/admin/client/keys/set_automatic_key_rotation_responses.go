@@ -6,7 +6,6 @@ package keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *SetAutomaticKeyRotationOK) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationOK) GetPayload() *models.AutomaticKeyRotation {
@@ -196,13 +193,11 @@ func (o *SetAutomaticKeyRotationBadRequest) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *SetAutomaticKeyRotationUnauthorized) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *SetAutomaticKeyRotationForbidden) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *SetAutomaticKeyRotationNotFound) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationNotFound) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *SetAutomaticKeyRotationTooManyRequests) Code() int {
 }
 
 func (o *SetAutomaticKeyRotationTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetAutomaticKeyRotationTooManyRequests) GetPayload() *models.Error {

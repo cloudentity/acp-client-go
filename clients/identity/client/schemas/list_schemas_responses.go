@@ -6,7 +6,6 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *ListSchemasOK) Code() int {
 }
 
 func (o *ListSchemasOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK  %+v", 200, o.Payload)
 }
 
 func (o *ListSchemasOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK  %+v", 200, o.Payload)
 }
 
 func (o *ListSchemasOK) GetPayload() *models.Schemas {
@@ -168,13 +165,11 @@ func (o *ListSchemasUnauthorized) Code() int {
 }
 
 func (o *ListSchemasUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListSchemasUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListSchemasUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *ListSchemasForbidden) Code() int {
 }
 
 func (o *ListSchemasForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListSchemasForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListSchemasForbidden) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *ListSchemasTooManyRequests) Code() int {
 }
 
 func (o *ListSchemasTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListSchemasTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListSchemasTooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *CheckWorkspacePermissionsOK) Code() int {
 }
 
 func (o *CheckWorkspacePermissionsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsOK  %+v", 200, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsOK  %+v", 200, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsOK) GetPayload() *models.WorkspacePermissionsResponse {
@@ -190,13 +187,11 @@ func (o *CheckWorkspacePermissionsUnauthorized) Code() int {
 }
 
 func (o *CheckWorkspacePermissionsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *CheckWorkspacePermissionsForbidden) Code() int {
 }
 
 func (o *CheckWorkspacePermissionsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *CheckWorkspacePermissionsNotFound) Code() int {
 }
 
 func (o *CheckWorkspacePermissionsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *CheckWorkspacePermissionsTooManyRequests) Code() int {
 }
 
 func (o *CheckWorkspacePermissionsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/permissions][%d] checkWorkspacePermissionsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CheckWorkspacePermissionsTooManyRequests) GetPayload() *models.Error {

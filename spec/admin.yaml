@@ -13086,9 +13086,6 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
-      value:
-        type: string
-        x-nullable: false
     required:
     - id
     - server_id

@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *ListUserConsentsSystemOK) Code() int {
 }
 
 func (o *ListUserConsentsSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserConsentsSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserConsentsSystemOK) GetPayload() *models.ConsentsWithGrants {
@@ -174,13 +171,11 @@ func (o *ListUserConsentsSystemUnauthorized) Code() int {
 }
 
 func (o *ListUserConsentsSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserConsentsSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserConsentsSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *ListUserConsentsSystemForbidden) Code() int {
 }
 
 func (o *ListUserConsentsSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserConsentsSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserConsentsSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *ListUserConsentsSystemNotFound) Code() int {
 }
 
 func (o *ListUserConsentsSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserConsentsSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserConsentsSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *ListUserConsentsSystemTooManyRequests) Code() int {
 }
 
 func (o *ListUserConsentsSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserConsentsSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserConsentsSystemTooManyRequests) GetPayload() *models.Error {

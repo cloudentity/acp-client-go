@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *UpdateSAMLIDPOK) Code() int {
 }
 
 func (o *UpdateSAMLIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateSAMLIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateSAMLIDPOK) GetPayload() *models.SAMLIDP {
@@ -186,13 +183,11 @@ func (o *UpdateSAMLIDPBadRequest) Code() int {
 }
 
 func (o *UpdateSAMLIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSAMLIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSAMLIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *UpdateSAMLIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateSAMLIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateSAMLIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateSAMLIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *UpdateSAMLIDPForbidden) Code() int {
 }
 
 func (o *UpdateSAMLIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateSAMLIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateSAMLIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *UpdateSAMLIDPNotFound) Code() int {
 }
 
 func (o *UpdateSAMLIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSAMLIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSAMLIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *UpdateSAMLIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateSAMLIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateSAMLIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *UpdateSAMLIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateSAMLIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateSAMLIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateSAMLIDPTooManyRequests) GetPayload() *models.Error {

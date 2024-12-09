@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetSAMLIDPOK) Code() int {
 }
 
 func (o *GetSAMLIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetSAMLIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetSAMLIDPOK) GetPayload() *models.SAMLIDP {
@@ -174,13 +171,11 @@ func (o *GetSAMLIDPUnauthorized) Code() int {
 }
 
 func (o *GetSAMLIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetSAMLIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetSAMLIDPUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetSAMLIDPForbidden) Code() int {
 }
 
 func (o *GetSAMLIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetSAMLIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetSAMLIDPForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetSAMLIDPNotFound) Code() int {
 }
 
 func (o *GetSAMLIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetSAMLIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetSAMLIDPNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetSAMLIDPTooManyRequests) Code() int {
 }
 
 func (o *GetSAMLIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetSAMLIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetSAMLIDPTooManyRequests) GetPayload() *models.Error {

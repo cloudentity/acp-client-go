@@ -6,7 +6,6 @@ package custom_apps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetCustomAppOK) Code() int {
 }
 
 func (o *GetCustomAppOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCustomAppOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCustomAppOK) GetPayload() *models.CustomAppResponse {
@@ -190,13 +187,11 @@ func (o *GetCustomAppUnauthorized) Code() int {
 }
 
 func (o *GetCustomAppUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCustomAppUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCustomAppUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetCustomAppForbidden) Code() int {
 }
 
 func (o *GetCustomAppForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetCustomAppForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetCustomAppForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetCustomAppNotFound) Code() int {
 }
 
 func (o *GetCustomAppNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCustomAppNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCustomAppNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetCustomAppTooManyRequests) Code() int {
 }
 
 func (o *GetCustomAppTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetCustomAppTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps/{customAppID}][%d] getCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetCustomAppTooManyRequests) GetPayload() *models.Error {

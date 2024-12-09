@@ -6,7 +6,6 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *TestScriptOK) Code() int {
 }
 
 func (o *TestScriptOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
 }
 
 func (o *TestScriptOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
 }
 
 func (o *TestScriptOK) GetPayload() *models.ScriptExecutionResult {
@@ -208,13 +205,11 @@ func (o *TestScriptBadRequest) Code() int {
 }
 
 func (o *TestScriptBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *TestScriptBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *TestScriptBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *TestScriptUnauthorized) Code() int {
 }
 
 func (o *TestScriptUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *TestScriptUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *TestScriptUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *TestScriptForbidden) Code() int {
 }
 
 func (o *TestScriptForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
 }
 
 func (o *TestScriptForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
 }
 
 func (o *TestScriptForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *TestScriptNotFound) Code() int {
 }
 
 func (o *TestScriptNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestScriptNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestScriptNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *TestScriptConflict) Code() int {
 }
 
 func (o *TestScriptConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
 }
 
 func (o *TestScriptConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
 }
 
 func (o *TestScriptConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *TestScriptUnprocessableEntity) Code() int {
 }
 
 func (o *TestScriptUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *TestScriptUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *TestScriptUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *TestScriptTooManyRequests) Code() int {
 }
 
 func (o *TestScriptTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *TestScriptTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *TestScriptTooManyRequests) GetPayload() *models.Error {

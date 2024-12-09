@@ -6,7 +6,6 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *ListWorkspacePoolsOK) Code() int {
 }
 
 func (o *ListWorkspacePoolsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListWorkspacePoolsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListWorkspacePoolsOK) GetPayload() *models.Pools {
@@ -168,13 +165,11 @@ func (o *ListWorkspacePoolsUnauthorized) Code() int {
 }
 
 func (o *ListWorkspacePoolsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListWorkspacePoolsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListWorkspacePoolsUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *ListWorkspacePoolsForbidden) Code() int {
 }
 
 func (o *ListWorkspacePoolsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListWorkspacePoolsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListWorkspacePoolsForbidden) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *ListWorkspacePoolsTooManyRequests) Code() int {
 }
 
 func (o *ListWorkspacePoolsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListWorkspacePoolsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/pools][%d] listWorkspacePoolsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListWorkspacePoolsTooManyRequests) GetPayload() *models.Error {

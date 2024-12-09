@@ -6,7 +6,6 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *ListServersBindingsOK) Code() int {
 }
 
 func (o *ListServersBindingsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListServersBindingsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListServersBindingsOK) GetPayload() *models.ServersBindingsResponse {
@@ -190,13 +187,11 @@ func (o *ListServersBindingsUnauthorized) Code() int {
 }
 
 func (o *ListServersBindingsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListServersBindingsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListServersBindingsUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *ListServersBindingsForbidden) Code() int {
 }
 
 func (o *ListServersBindingsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListServersBindingsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListServersBindingsForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *ListServersBindingsNotFound) Code() int {
 }
 
 func (o *ListServersBindingsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListServersBindingsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListServersBindingsNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *ListServersBindingsTooManyRequests) Code() int {
 }
 
 func (o *ListServersBindingsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListServersBindingsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers-bindings][%d] listServersBindingsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListServersBindingsTooManyRequests) GetPayload() *models.Error {

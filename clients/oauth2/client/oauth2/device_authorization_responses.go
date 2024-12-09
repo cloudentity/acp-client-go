@@ -6,7 +6,6 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *DeviceAuthorizationOK) Code() int {
 }
 
 func (o *DeviceAuthorizationOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationOK %s", 200, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationOK  %+v", 200, o.Payload)
 }
 
 func (o *DeviceAuthorizationOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationOK %s", 200, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationOK  %+v", 200, o.Payload)
 }
 
 func (o *DeviceAuthorizationOK) GetPayload() *models.DeviceResponse {
@@ -180,13 +177,11 @@ func (o *DeviceAuthorizationBadRequest) Code() int {
 }
 
 func (o *DeviceAuthorizationBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeviceAuthorizationBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeviceAuthorizationBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *DeviceAuthorizationUnauthorized) Code() int {
 }
 
 func (o *DeviceAuthorizationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeviceAuthorizationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeviceAuthorizationUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *DeviceAuthorizationMethodNotAllowed) Code() int {
 }
 
 func (o *DeviceAuthorizationMethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeviceAuthorizationMethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeviceAuthorizationMethodNotAllowed) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *DeviceAuthorizationRequestEntityTooLarge) Code() int {
 }
 
 func (o *DeviceAuthorizationRequestEntityTooLarge) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationRequestEntityTooLarge %s", 413, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationRequestEntityTooLarge  %+v", 413, o.Payload)
 }
 
 func (o *DeviceAuthorizationRequestEntityTooLarge) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationRequestEntityTooLarge %s", 413, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationRequestEntityTooLarge  %+v", 413, o.Payload)
 }
 
 func (o *DeviceAuthorizationRequestEntityTooLarge) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *DeviceAuthorizationTooManyRequests) Code() int {
 }
 
 func (o *DeviceAuthorizationTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeviceAuthorizationTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeviceAuthorizationTooManyRequests) GetPayload() *models.Error {

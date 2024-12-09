@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *GetUserProfileOK) Code() int {
 }
 
 func (o *GetUserProfileOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK %s", 200, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserProfileOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK %s", 200, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserProfileOK) GetPayload() *models.SelfUserWithData {
@@ -196,13 +193,11 @@ func (o *GetUserProfileUnauthorized) Code() int {
 }
 
 func (o *GetUserProfileUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetUserProfileUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetUserProfileUnauthorized) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *GetUserProfileForbidden) Code() int {
 }
 
 func (o *GetUserProfileForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetUserProfileForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetUserProfileForbidden) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *GetUserProfileNotFound) Code() int {
 }
 
 func (o *GetUserProfileNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserProfileNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserProfileNotFound) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *GetUserProfilePreconditionFailed) Code() int {
 }
 
 func (o *GetUserProfilePreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GetUserProfilePreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GetUserProfilePreconditionFailed) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *GetUserProfileTooManyRequests) Code() int {
 }
 
 func (o *GetUserProfileTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetUserProfileTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetUserProfileTooManyRequests) GetPayload() *models.Error {

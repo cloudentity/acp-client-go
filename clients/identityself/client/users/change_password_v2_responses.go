@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -129,11 +128,11 @@ func (o *ChangePasswordV2NoContent) Code() int {
 }
 
 func (o *ChangePasswordV2NoContent) Error() string {
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NoContent", 204)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NoContent ", 204)
 }
 
 func (o *ChangePasswordV2NoContent) String() string {
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NoContent", 204)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NoContent ", 204)
 }
 
 func (o *ChangePasswordV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -193,13 +192,11 @@ func (o *ChangePasswordV2BadRequest) Code() int {
 }
 
 func (o *ChangePasswordV2BadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordV2BadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordV2BadRequest) GetPayload() *models.Error {
@@ -263,13 +260,11 @@ func (o *ChangePasswordV2Unauthorized) Code() int {
 }
 
 func (o *ChangePasswordV2Unauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordV2Unauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordV2Unauthorized) GetPayload() *models.Error {
@@ -333,13 +328,11 @@ func (o *ChangePasswordV2Forbidden) Code() int {
 }
 
 func (o *ChangePasswordV2Forbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordV2Forbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordV2Forbidden) GetPayload() *models.Error {
@@ -403,13 +396,11 @@ func (o *ChangePasswordV2NotFound) Code() int {
 }
 
 func (o *ChangePasswordV2NotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordV2NotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2NotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordV2NotFound) GetPayload() *models.Error {
@@ -473,13 +464,11 @@ func (o *ChangePasswordV2PreconditionFailed) Code() int {
 }
 
 func (o *ChangePasswordV2PreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2PreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordV2PreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2PreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordV2PreconditionFailed) GetPayload() *models.Error {
@@ -543,13 +532,11 @@ func (o *ChangePasswordV2UnprocessableEntity) Code() int {
 }
 
 func (o *ChangePasswordV2UnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordV2UnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordV2UnprocessableEntity) GetPayload() *models.Error {
@@ -613,13 +600,11 @@ func (o *ChangePasswordV2TooManyRequests) Code() int {
 }
 
 func (o *ChangePasswordV2TooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordV2TooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /v2/self/change-password][%d] changePasswordV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordV2TooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package logins
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *RejectScopeGrantRequestOK) Code() int {
 }
 
 func (o *RejectScopeGrantRequestOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK %s", 200, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK %s", 200, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestOK) GetPayload() *models.ScopeGrantRejected {
@@ -174,13 +171,11 @@ func (o *RejectScopeGrantRequestUnauthorized) Code() int {
 }
 
 func (o *RejectScopeGrantRequestUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *RejectScopeGrantRequestForbidden) Code() int {
 }
 
 func (o *RejectScopeGrantRequestForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *RejectScopeGrantRequestNotFound) Code() int {
 }
 
 func (o *RejectScopeGrantRequestNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *RejectScopeGrantRequestTooManyRequests) Code() int {
 }
 
 func (o *RejectScopeGrantRequestTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RejectScopeGrantRequestTooManyRequests) GetPayload() *models.Error {

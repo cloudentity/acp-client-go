@@ -35,7 +35,7 @@ type ScriptExecutionAuditPayload struct {
 	ExecutedAt strfmt.DateTime `json:"executed_at,omitempty" yaml:"executed_at,omitempty"`
 
 	// execution point
-	// Enum: ["post_authn_ctx","allowed_idp_ids","token_minting","client_token_minting"]
+	// Enum: [post_authn_ctx allowed_idp_ids token_minting client_token_minting]
 	ExecutionPoint string `json:"execution_point,omitempty" yaml:"execution_point,omitempty"`
 
 	// input

@@ -116,7 +116,7 @@ type AccessRequestDataWithError struct {
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Token endpoint authentication method configured for a client application.
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthnMethod string `json:"token_endpoint_authn_method,omitempty" yaml:"token_endpoint_authn_method,omitempty"`
 
 	// Token signature

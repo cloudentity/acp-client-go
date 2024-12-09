@@ -6,7 +6,6 @@ package apis
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteAPINoContent) Code() int {
 }
 
 func (o *DeleteAPINoContent) Error() string {
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNoContent", 204)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNoContent ", 204)
 }
 
 func (o *DeleteAPINoContent) String() string {
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNoContent", 204)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNoContent ", 204)
 }
 
 func (o *DeleteAPINoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteAPIUnauthorized) Code() int {
 }
 
 func (o *DeleteAPIUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteAPIUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteAPIUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteAPIForbidden) Code() int {
 }
 
 func (o *DeleteAPIForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteAPIForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteAPIForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteAPINotFound) Code() int {
 }
 
 func (o *DeleteAPINotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteAPINotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteAPINotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteAPITooManyRequests) Code() int {
 }
 
 func (o *DeleteAPITooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteAPITooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteAPITooManyRequests) GetPayload() *models.Error {

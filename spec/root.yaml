@@ -8553,9 +8553,6 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
-      value:
-        type: string
-        x-nullable: false
     required:
     - id
     - server_id
@@ -12295,6 +12292,11 @@ paths:
         description: Include data in export
         in: query
         name: with_data
+        type: boolean
+      - default: false
+        description: Include credentials in export
+        in: query
+        name: with_credentials
         type: boolean
       responses:
         "200":

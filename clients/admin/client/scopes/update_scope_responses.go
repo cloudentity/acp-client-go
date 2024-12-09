@@ -6,7 +6,6 @@ package scopes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpdateScopeOK) Code() int {
 }
 
 func (o *UpdateScopeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateScopeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateScopeOK) GetPayload() *models.ScopeWithServiceID {
@@ -202,13 +199,11 @@ func (o *UpdateScopeBadRequest) Code() int {
 }
 
 func (o *UpdateScopeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateScopeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateScopeBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpdateScopeUnauthorized) Code() int {
 }
 
 func (o *UpdateScopeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateScopeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateScopeUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpdateScopeForbidden) Code() int {
 }
 
 func (o *UpdateScopeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateScopeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateScopeForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpdateScopeNotFound) Code() int {
 }
 
 func (o *UpdateScopeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateScopeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateScopeNotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpdateScopeUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateScopeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateScopeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateScopeUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpdateScopeTooManyRequests) Code() int {
 }
 
 func (o *UpdateScopeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateScopeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateScopeTooManyRequests) GetPayload() *models.Error {

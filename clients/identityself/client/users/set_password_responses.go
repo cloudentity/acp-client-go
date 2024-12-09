@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -129,11 +128,11 @@ func (o *SetPasswordNoContent) Code() int {
 }
 
 func (o *SetPasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNoContent", 204)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNoContent ", 204)
 }
 
 func (o *SetPasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNoContent", 204)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNoContent ", 204)
 }
 
 func (o *SetPasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -193,13 +192,11 @@ func (o *SetPasswordBadRequest) Code() int {
 }
 
 func (o *SetPasswordBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetPasswordBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetPasswordBadRequest) GetPayload() *models.Error {
@@ -263,13 +260,11 @@ func (o *SetPasswordUnauthorized) Code() int {
 }
 
 func (o *SetPasswordUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetPasswordUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetPasswordUnauthorized) GetPayload() *models.Error {
@@ -333,13 +328,11 @@ func (o *SetPasswordForbidden) Code() int {
 }
 
 func (o *SetPasswordForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetPasswordForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetPasswordForbidden) GetPayload() *models.Error {
@@ -403,13 +396,11 @@ func (o *SetPasswordNotFound) Code() int {
 }
 
 func (o *SetPasswordNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetPasswordNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetPasswordNotFound) GetPayload() *models.Error {
@@ -473,13 +464,11 @@ func (o *SetPasswordPreconditionFailed) Code() int {
 }
 
 func (o *SetPasswordPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SetPasswordPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SetPasswordPreconditionFailed) GetPayload() *models.Error {
@@ -543,13 +532,11 @@ func (o *SetPasswordUnprocessableEntity) Code() int {
 }
 
 func (o *SetPasswordUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetPasswordUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetPasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -613,13 +600,11 @@ func (o *SetPasswordTooManyRequests) Code() int {
 }
 
 func (o *SetPasswordTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetPasswordTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /v2/self/set-password][%d] setPasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetPasswordTooManyRequests) GetPayload() *models.Error {

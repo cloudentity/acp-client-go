@@ -31,14 +31,14 @@ type GrantTenantRoleRequest struct {
 
 	// role
 	// Example: admin
-	// Enum: ["admin","business_admin","auditor","member"]
+	// Enum: [admin business_admin auditor member]
 	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: ["identity_pool_user","idp"]
+	// Enum: [identity_pool_user idp]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// idp user workspace id

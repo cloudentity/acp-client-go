@@ -70,6 +70,12 @@ type ExportConfigurationParams struct {
 	*/
 	Tid *string
 
+	/* WithCredentials.
+
+	   Include credentials in export
+	*/
+	WithCredentials *bool
+
 	/* WithData.
 
 	   Include data in export
@@ -102,12 +108,15 @@ func (o *ExportConfigurationParams) SetDefaults() {
 	var (
 		tidDefault = string("default")
 
+		withCredentialsDefault = bool(false)
+
 		withDataDefault = bool(false)
 	)
 
 	val := ExportConfigurationParams{
-		Tid:      &tidDefault,
-		WithData: &withDataDefault,
+		Tid:             &tidDefault,
+		WithCredentials: &withCredentialsDefault,
+		WithData:        &withDataDefault,
 	}
 
 	val.timeout = o.timeout
@@ -160,6 +169,17 @@ func (o *ExportConfigurationParams) SetTid(tid *string) {
 	o.Tid = tid
 }
 
+// WithWithCredentials adds the withCredentials to the export configuration params
+func (o *ExportConfigurationParams) WithWithCredentials(withCredentials *bool) *ExportConfigurationParams {
+	o.SetWithCredentials(withCredentials)
+	return o
+}
+
+// SetWithCredentials adds the withCredentials to the export configuration params
+func (o *ExportConfigurationParams) SetWithCredentials(withCredentials *bool) {
+	o.WithCredentials = withCredentials
+}
+
 // WithWithData adds the withData to the export configuration params
 func (o *ExportConfigurationParams) WithWithData(withData *bool) *ExportConfigurationParams {
 	o.SetWithData(withData)
@@ -202,6 +222,23 @@ func (o *ExportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if qTid != "" {
 
 			if err := r.SetQueryParam("tid", qTid); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.WithCredentials != nil {
+
+		// query param with_credentials
+		var qrWithCredentials bool
+
+		if o.WithCredentials != nil {
+			qrWithCredentials = *o.WithCredentials
+		}
+		qWithCredentials := swag.FormatBool(qrWithCredentials)
+		if qWithCredentials != "" {
+
+			if err := r.SetQueryParam("with_credentials", qWithCredentials); err != nil {
 				return err
 			}
 		}

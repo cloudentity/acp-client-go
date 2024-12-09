@@ -21,7 +21,7 @@ import (
 type JITProvisioning struct {
 
 	// Admin role assigned to the provisioned user if JIT is enabled (available only for admin workspaces only)
-	// Enum: ["admin","business_admin","auditor","member"]
+	// Enum: [admin business_admin auditor member]
 	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
 
 	// identifier salt

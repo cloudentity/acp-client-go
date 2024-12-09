@@ -59,7 +59,7 @@ type OBWriteFileConsentResponse4Data struct {
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
-	// Enum: ["Authorised","AwaitingAuthorisation","AwaitingUpload","Consumed","Rejected"]
+	// Enum: [Authorised AwaitingAuthorisation AwaitingUpload Consumed Rejected]
 	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the consent resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.

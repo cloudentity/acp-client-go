@@ -6,7 +6,6 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +96,11 @@ func (o *RevokeOK) Code() int {
 }
 
 func (o *RevokeOK) Error() string {
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK", 200)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK ", 200)
 }
 
 func (o *RevokeOK) String() string {
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK", 200)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK ", 200)
 }
 
 func (o *RevokeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,13 +153,11 @@ func (o *RevokeUnauthorized) Code() int {
 }
 
 func (o *RevokeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeUnauthorized) GetPayload() *models.GenericError {
@@ -224,13 +221,11 @@ func (o *RevokeNotFound) Code() int {
 }
 
 func (o *RevokeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeNotFound) GetPayload() *models.GenericError {
@@ -294,13 +289,11 @@ func (o *RevokeTooManyRequests) Code() int {
 }
 
 func (o *RevokeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeTooManyRequests) GetPayload() *models.GenericError {

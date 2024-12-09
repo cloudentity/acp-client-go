@@ -6,7 +6,6 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *DeleteAuthorizationServerNoContent) Code() int {
 }
 
 func (o *DeleteAuthorizationServerNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
 }
 
 func (o *DeleteAuthorizationServerNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
 }
 
 func (o *DeleteAuthorizationServerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *DeleteAuthorizationServerBadRequest) Code() int {
 }
 
 func (o *DeleteAuthorizationServerBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *DeleteAuthorizationServerUnauthorized) Code() int {
 }
 
 func (o *DeleteAuthorizationServerUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *DeleteAuthorizationServerForbidden) Code() int {
 }
 
 func (o *DeleteAuthorizationServerForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *DeleteAuthorizationServerNotFound) Code() int {
 }
 
 func (o *DeleteAuthorizationServerNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *DeleteAuthorizationServerTooManyRequests) Code() int {
 }
 
 func (o *DeleteAuthorizationServerTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteAuthorizationServerTooManyRequests) GetPayload() *models.Error {

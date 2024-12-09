@@ -53,7 +53,7 @@ type Service struct {
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Service type
-	// Enum: ["oauth2","oidc","system","user","openbanking"]
+	// Enum: [oauth2 oidc system user openbanking]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// The date of service update

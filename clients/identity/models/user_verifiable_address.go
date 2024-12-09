@@ -38,13 +38,13 @@ type UserVerifiableAddress struct {
 
 	// preferred contact method
 	// Example: sms
-	// Enum: ["sms","voice"]
+	// Enum: [sms voice]
 	PreferredContactMethod string `json:"preferred_contact_method,omitempty" yaml:"preferred_contact_method,omitempty"`
 
 	// status
 	// Example: active
 	// Required: true
-	// Enum: ["active","inactive"]
+	// Enum: [active inactive]
 	Status string `json:"status" yaml:"status"`
 
 	// tenant id
@@ -55,7 +55,7 @@ type UserVerifiableAddress struct {
 	// type
 	// Example: mobile
 	// Required: true
-	// Enum: ["email","mobile"]
+	// Enum: [email mobile]
 	Type string `json:"type" yaml:"type"`
 
 	// updated at

@@ -5093,6 +5093,25 @@ definitions:
     additionalProperties:
       $ref: '#/definitions/TreeScript'
     type: object
+  TreeSecret:
+    properties:
+      created_at:
+        description: Time when the secret was created
+        format: date-time
+        type: string
+        x-nullable: false
+      secret:
+        description: Value of a secret
+        example: cat
+        type: string
+        x-nullable: false
+    required:
+    - secret
+    type: object
+  TreeSecrets:
+    additionalProperties:
+      $ref: '#/definitions/TreeSecret'
+    type: object
   TreeServer:
     properties:
       access_token_strategy:
@@ -5515,6 +5534,8 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      secrets:
+        $ref: '#/definitions/TreeSecrets'
       server_consent:
         $ref: '#/definitions/TreeServerConsent'
       servers_bindings:

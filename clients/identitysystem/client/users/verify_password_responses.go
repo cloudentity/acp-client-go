@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *VerifyPasswordOK) Code() int {
 }
 
 func (o *VerifyPasswordOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordOK  %+v", 200, o.Payload)
 }
 
 func (o *VerifyPasswordOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordOK  %+v", 200, o.Payload)
 }
 
 func (o *VerifyPasswordOK) GetPayload() *models.VerifyPasswordResponseData {
@@ -168,13 +165,11 @@ func (o *VerifyPasswordUnauthorized) Code() int {
 }
 
 func (o *VerifyPasswordUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyPasswordUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyPasswordUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *VerifyPasswordPreconditionFailed) Code() int {
 }
 
 func (o *VerifyPasswordPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *VerifyPasswordPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *VerifyPasswordPreconditionFailed) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *VerifyPasswordUnprocessableEntity) Code() int {
 }
 
 func (o *VerifyPasswordUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *VerifyPasswordUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *VerifyPasswordUnprocessableEntity) GetPayload() *models.Error {
