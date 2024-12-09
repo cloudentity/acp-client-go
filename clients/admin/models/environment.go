@@ -112,6 +112,9 @@ type Environment struct {
 	// has google image search
 	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
 
+	// allow managing secrets using hub APIs
+	HubManageSecrets bool `json:"hub_manage_secrets,omitempty" yaml:"hub_manage_secrets,omitempty"`
+
 	// identity assurance
 	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
 

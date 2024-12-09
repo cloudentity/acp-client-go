@@ -7163,6 +7163,10 @@ definitions:
       has_google_image_search:
         type: boolean
         x-nullable: false
+      hub_manage_secrets:
+        description: allow managing secrets using hub APIs
+        type: boolean
+        x-nullable: false
       identity_assurance:
         description: identity assurance
         type: boolean
