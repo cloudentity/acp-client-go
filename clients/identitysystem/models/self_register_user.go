@@ -24,6 +24,9 @@ type SelfRegisterUser struct {
 	// Required: true
 	Identifier string `json:"identifier" yaml:"identifier"`
 
+	// otp address
+	OtpAddress string `json:"otp_address,omitempty" yaml:"otp_address,omitempty"`
+
 	// password
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 

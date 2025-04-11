@@ -7,6 +7,9 @@ definitions:
       code:
         type: string
         x-nullable: false
+      otp_address:
+        type: string
+        x-nullable: false
       password:
         type: string
         x-nullable: false
@@ -52,6 +55,12 @@ definitions:
       address:
         format: verifiableAddress
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:
@@ -135,6 +144,8 @@ definitions:
       - totp
       - password
       - otp
+      - email_otp
+      - sms_otp
       - webauthn
       type: string
     type: array
@@ -223,6 +234,21 @@ definitions:
       Specification: §5.8.4. Authenticator Transport Enumeration (https://www.w3.org/TR/webauthn/#enumdef-authenticatortransport)
     title: AuthenticatorTransport represents the IDL enum with the same name.
     type: string
+  BaseVerifyOTP:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      identifier:
+        example: sample@email.com/+48123456789
+        type: string
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    type: object
   BcryptConfig:
     properties:
       cost:
@@ -731,6 +757,57 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Group:
+    properties:
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: groupID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      parent_id:
+        format: groupID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - user_pool_id
+    type: object
+  GroupMember:
+    properties:
+      group_id:
+        format: groupID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+    type: object
+  Groups:
+    items:
+      $ref: '#/definitions/Group'
+    type: array
   Hash:
     properties:
       config:
@@ -745,12 +822,15 @@ definitions:
         $ref: '#/definitions/Argon2Config'
       bcrypt:
         $ref: '#/definitions/BcryptConfig'
+      md5:
+        $ref: '#/definitions/MD5Config'
       method:
         enum:
         - bcrypt
         - pbkdf2
         - argon2
         - sha
+        - md5
         type: string
         x-nullable: false
       pbkdf2:
@@ -784,6 +864,17 @@ definitions:
     type: object
   InspectOTPUserOperationalData:
     properties:
+      code_type:
+        enum:
+        - activation
+        - reset_password
+        - reset_totp
+        - enroll_webauthn
+        - challenge
+        - verify_address
+        - authentication
+        type: string
+        x-nullable: false
       password_set:
         type: boolean
         x-nullable: false
@@ -793,6 +884,47 @@ definitions:
     required:
     - user_id
     - password_set
+    - code_type
+    type: object
+  InternalGroup:
+    properties:
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: groupID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      path:
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - user_pool_id
+    type: object
+  MD5Config:
+    properties:
+      salt:
+        type: string
+        x-nullable: false
+      salt_after_digest_in_hash:
+        type: boolean
+        x-nullable: false
+      salt_length:
+        format: int64
+        type: integer
+        x-nullable: false
     type: object
   NameWebAuthnKey:
     properties:
@@ -869,7 +1001,14 @@ definitions:
         default: false
         description: Indicates if user is required to alter their credentials during
           their initial authentication. Currently, it is enforced only for password
-          credentials.
+          credentials, but it may change any time.
+        type: boolean
+        x-nullable: false
+      must_be_reset:
+        default: false
+        description: |-
+          Indicates if user is required to reset their credentials before first authentication. Currently, it is enforced only for password credentials, but it may change any time.
+          This flag takes precedence over MustBeChanged.
         type: boolean
         x-nullable: false
       password:
@@ -928,6 +1067,12 @@ definitions:
       address:
         format: verifiableAddress
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:
@@ -1114,6 +1259,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1121,6 +1268,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -1128,6 +1277,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1220,6 +1371,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1227,6 +1380,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -1234,6 +1389,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1405,6 +1562,12 @@ definitions:
     required:
     - address
     type: object
+  ResetCredentialsSettings:
+    properties:
+      do_not_allow_users_to_self_reset_credentials:
+        type: boolean
+        x-nullable: false
+    type: object
   Rfc6902PatchOperation:
     properties:
       op:
@@ -1501,6 +1664,9 @@ definitions:
   SelfRegisterUser:
     properties:
       identifier:
+        type: string
+        x-nullable: false
+      otp_address:
         type: string
         x-nullable: false
       password:
@@ -1684,6 +1850,16 @@ definitions:
           $ref: '#/definitions/Code'
         type: array
         x-nullable: false
+      group_members:
+        items:
+          $ref: '#/definitions/GroupMember'
+        type: array
+        x-nullable: false
+      groups:
+        items:
+          $ref: '#/definitions/InternalGroup'
+        type: array
+        x-nullable: false
       pools:
         items:
           $ref: '#/definitions/Pool'
@@ -1767,6 +1943,12 @@ definitions:
       address:
         format: verifiableAddress
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:
@@ -2022,6 +2204,12 @@ definitions:
         format: verifiableAddressID
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       preferred_contact_method:
         enum:
         - sms
@@ -2233,6 +2421,33 @@ definitions:
     required:
     - id
     - state
+    type: object
+  VerifyPasswordResponseDataV2:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      result:
+        enum:
+        - password_correct
+        - password_incorrect
+        - password_expired
+        - no_password
+        - user_not_found
+        type: string
+        x-nullable: false
+      state:
+        enum:
+        - valid
+        - must_be_reset
+        - must_be_changed
+        type: string
+        x-nullable: false
+    required:
+    - id
+    - state
+    - result
     type: object
   WebAuthnCredentials:
     properties:
@@ -2594,6 +2809,353 @@ paths:
       summary: Update Identity Pool
       tags:
       - Pools
+  /system/pools/{ipID}/groups:
+    get:
+      description: |-
+        Retrieve the top level list of groups from the specified identity pool.
+
+        If query param parent_id is set, the response will contain top level list of groups that are children of the specified group.
+
+        If query param with_nested_groups is set to true, the response will contain a list of groups with all nested groups (also nested groups of nested groups etc.)
+
+        Results are sorted by group `name`. No other sorting is supported.
+      operationId: listGroups
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: query
+        name: parent_id
+        type: string
+      - description: |-
+          optional list groups after given id
+          AfterGroupID
+        in: query
+        name: after_group_id
+        type: string
+      - description: |-
+          optional list groups before given id
+          BeforeGroupID
+        in: query
+        name: before_group_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format - parameter must be url-encoded
+          supported parameters:
+          `name` - limits group set to groups that have name starting or ending with provided value (case insensitive)
+        in: query
+        name: query
+        type: string
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/GroupsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List groups
+      tags:
+      - Groups
+    post:
+      operationId: createGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewGroup
+        schema:
+          $ref: '#/definitions/Group'
+      responses:
+        "201":
+          $ref: '#/responses/GroupResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Create group
+      tags:
+      - Groups
+  /system/pools/{ipID}/groups/{groupID}:
+    delete:
+      description: Delete a group.
+      operationId: deleteGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Group has been deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Delete group
+      tags:
+      - Groups
+    get:
+      description: Retrieve a group details.
+      operationId: getGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GroupResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Get group details
+      tags:
+      - Groups
+    put:
+      operationId: updateGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: body
+        name: UpdateGroup
+        schema:
+          $ref: '#/definitions/Group'
+      responses:
+        "200":
+          $ref: '#/responses/GroupResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Update group
+      tags:
+      - Groups
+  /system/pools/{ipID}/groups/{groupID}/users:
+    get:
+      description: |-
+        Retrieve the list of users under specific group.
+
+        If query param with_nested_groups is set to true, the response will contain a list of users in that group and all nested groups
+
+        Results are sorted by user ID. No other sorting is supported.
+
+        This endpoint follows eventual consistency and may temporarily omit newly created users under high load.
+      operationId: listUsersInGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - description: |-
+          optional list users after given id
+          AfterUserID
+        in: query
+        name: after_user_id
+        type: string
+      - description: |-
+          optional list users before given id
+          BeforeUserID
+        in: query
+        name: before_user_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/UsersResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List users in group
+      tags:
+      - Groups
+  /system/pools/{ipID}/groups/{groupID}/users/{userID}:
+    delete:
+      operationId: removeUserFromGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' OK'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Removes user from group
+      tags:
+      - Groups
+    put:
+      operationId: addUserToGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' OK'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Add user to a specific group
+      tags:
+      - Groups
   /system/pools/{ipID}/user/activate:
     post:
       description: |-
@@ -2642,6 +3204,45 @@ paths:
       - system:
         - identity
       summary: Activate User Using Extended Code
+      tags:
+      - Users
+  /system/pools/{ipID}/user/authentication-code/verify:
+    post:
+      description: |-
+        Verifies user's Authentication Code.
+        Either identifier (must be user's identifier), user id or extended code must be provided.
+        If the code is valid it is removed and a successful response is returned.
+        Endpoint is protected by Brute Force mechanism.
+        This endpoint is meant for integration when external system requests and verifies authentication code.
+      operationId: verifyAuthenticationCode
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: VerifyAuthenticationCode
+        schema:
+          $ref: '#/definitions/BaseVerifyOTP'
+      responses:
+        "200":
+          $ref: '#/responses/UserIDResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Verify User's Authentication Code
       tags:
       - Users
   /system/pools/{ipID}/user/code/generate:
@@ -2970,8 +3571,50 @@ paths:
       summary: Request Reset Password
       tags:
       - Users
+  /system/pools/{ipID}/user/password/v2/verify:
+    post:
+      description: |-
+        Verifies user's password.
+        Either identifier (must be user's identifier) or user ID must be provided.
+        Endpoint is protected by Brute Force mechanism.
+        This endpoint is meant for integration when external system verifies user's password.
+        If returned user ID is empty it means user has not been found.
+
+        REFACTORED: input field name has been changed from `id` to `userID`; field `id` stays for backward compatibility and overrides `userID` if not empty
+      operationId: verifyPasswordV2
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: VerifyPassword
+        schema:
+          $ref: '#/definitions/VerifyPassword'
+      responses:
+        "200":
+          $ref: '#/responses/VerifyPasswordResponseV2'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Verify User's Password
+      tags:
+      - Users
   /system/pools/{ipID}/user/password/verify:
     post:
+      deprecated: true
       description: |-
         Verifies user's password.
         Either identifier (must be user's identifier) or user ID must be provided.
@@ -3017,6 +3660,7 @@ paths:
         Payload and password are optional.
         Sets payload and metadata schemas to ones from Identity Pool.
         Sets user status to New
+        If OTP address is set it must be either email or mobile and must not be same type as identifier.
         If payload is provided it must be valid against payload schema.
         Request fails if self registration for Identity Pool is not allowed.
         If identifier is someone's verified address or identifier endpoint returns that user ID and end successfully
@@ -3977,13 +4621,63 @@ paths:
       summary: Update Verifiable Address
       tags:
       - Users
-  /system/pools/{ipID}/users/{userID}/change_password:
+  /system/pools/{ipID}/users/{userID}/change-password:
     post:
       description: |-
         Changes user password if the provided password matches the current user password.
         Fails if the current password is not set. For setting a password for user use the reset password flow.
         Endpoint is protected by Brute Force mechanism.
       operationId: changePassword
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: ChangePassword
+        schema:
+          $ref: '#/definitions/ChangePassword'
+      responses:
+        "204":
+          $ref: '#/responses/ChangePasswordResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Change Password
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/change_password:
+    post:
+      deprecated: true
+      description: |-
+        Changes user password if the provided password matches the current user password.
+        Fails if the current password is not set. For setting a password for user use the reset password flow.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: deprecatedChangePassword
       parameters:
       - description: A server will only return requested resources if the resource
           matches one of the listed ETag value
@@ -4082,6 +4776,117 @@ paths:
       summary: Generate code of a specific type
       tags:
       - Users
+  /system/pools/{ipID}/users/{userID}/groups:
+    get:
+      description: |-
+        Retrieve the list of groups that user belongs to.
+        If query param with_parent_groups is set to true, the response will contain a list of groups and all parent groups
+
+        Results are sorted by group `name`. No other sorting is supported.
+      operationId: listUserGroups
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - description: |-
+          optional list groups after given id
+          AfterUserID
+        in: query
+        name: after_group_id
+        type: string
+      - description: |-
+          optional list groups before given id
+          BeforeUserID
+        in: query
+        name: before_group_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format like {"name":"admin"} - parameter must be url-encoded
+          supported parameters:
+          `name` - limits group set to groups that have name starting or ending with provided value (case insensitive)
+        in: query
+        name: query
+        type: string
+      - in: query
+        name: with_parent_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/GroupsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: List user groups
+      tags:
+      - Groups
+  /system/pools/{ipID}/users/{userID}/groups/{groupID}:
+    get:
+      description: |-
+        Checks if user is in the group.
+        Fails with 404 if user is not in the group.
+        If query param with_nested_groups is set to true, it will check if user is in requested group or any nested group.
+      operationId: isUserInGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "204":
+          description: ' User is in group'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Check if user is in group
+      tags:
+      - Groups
   /system/pools/{ipID}/users/{userID}/identifiers/add:
     post:
       description: |-
@@ -4819,6 +5624,16 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/Codes'
+  GroupIDResponse:
+    description: Group ID
+  GroupResponse:
+    description: Group
+    schema:
+      $ref: '#/definitions/Group'
+  GroupsResponse:
+    description: Groups
+    schema:
+      $ref: '#/definitions/Groups'
   InspectOTPResponse:
     description: OTP
     headers:
@@ -5001,6 +5816,10 @@ responses:
     description: Password correct
     schema:
       $ref: '#/definitions/VerifyPasswordResponseData'
+  VerifyPasswordResponseV2:
+    description: Verify password response
+    schema:
+      $ref: '#/definitions/VerifyPasswordResponseDataV2'
   WebAuthnCredentialBeginResponse:
     description: User WebAuthn credential data
     schema:

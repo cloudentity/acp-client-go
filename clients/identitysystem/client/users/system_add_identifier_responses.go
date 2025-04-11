@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *SystemAddIdentifierOK) Code() int {
 }
 
 func (o *SystemAddIdentifierOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemAddIdentifierOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemAddIdentifierOK) GetPayload() *models.UserIdentifier {
@@ -202,13 +199,11 @@ func (o *SystemAddIdentifierUnauthorized) Code() int {
 }
 
 func (o *SystemAddIdentifierUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemAddIdentifierUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemAddIdentifierUnauthorized) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *SystemAddIdentifierForbidden) Code() int {
 }
 
 func (o *SystemAddIdentifierForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemAddIdentifierForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemAddIdentifierForbidden) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *SystemAddIdentifierNotFound) Code() int {
 }
 
 func (o *SystemAddIdentifierNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemAddIdentifierNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemAddIdentifierNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *SystemAddIdentifierConflict) Code() int {
 }
 
 func (o *SystemAddIdentifierConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemAddIdentifierConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemAddIdentifierConflict) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *SystemAddIdentifierPreconditionFailed) Code() int {
 }
 
 func (o *SystemAddIdentifierPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemAddIdentifierPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemAddIdentifierPreconditionFailed) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *SystemAddIdentifierUnprocessableEntity) Code() int {
 }
 
 func (o *SystemAddIdentifierUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemAddIdentifierUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemAddIdentifierUnprocessableEntity) GetPayload() *models.Error {

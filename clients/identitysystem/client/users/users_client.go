@@ -9,38 +9,12 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new users API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new users API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new users API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -51,7 +25,7 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
@@ -77,6 +51,8 @@ type ClientService interface {
 	ConfirmResetPassword(params *ConfirmResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConfirmResetPasswordNoContent, error)
 
 	DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWebAuthnKeyNoContent, error)
+
+	DeprecatedChangePassword(params *DeprecatedChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeprecatedChangePasswordNoContent, error)
 
 	GenerateActivationCode(params *GenerateActivationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateActivationCodeCreated, error)
 
@@ -120,7 +96,11 @@ type ClientService interface {
 
 	SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateVerifiableAddressOK, error)
 
+	VerifyAuthenticationCode(params *VerifyAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyAuthenticationCodeOK, error)
+
 	VerifyPassword(params *VerifyPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordOK, error)
+
+	VerifyPasswordV2(params *VerifyPasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -284,7 +264,7 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "changePassword",
 		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/change_password",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/change-password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -623,6 +603,50 @@ func (a *Client) DeleteWebAuthnKey(params *DeleteWebAuthnKeyParams, authInfo run
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for deleteWebAuthnKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	DeprecatedChangePassword changes password
+
+	Changes user password if the provided password matches the current user password.
+
+Fails if the current password is not set. For setting a password for user use the reset password flow.
+Endpoint is protected by Brute Force mechanism.
+*/
+func (a *Client) DeprecatedChangePassword(params *DeprecatedChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeprecatedChangePasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeprecatedChangePasswordParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deprecatedChangePassword",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/change_password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeprecatedChangePasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeprecatedChangePasswordNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deprecatedChangePassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -981,6 +1005,7 @@ func (a *Client) RequestResetTotp(params *RequestResetTotpParams, authInfo runti
 Payload and password are optional.
 Sets payload and metadata schemas to ones from Identity Pool.
 Sets user status to New
+If OTP address is set it must be either email or mobile and must not be same type as identifier.
 If payload is provided it must be valid against payload schema.
 Request fails if self registration for Identity Pool is not allowed.
 If identifier is someone's verified address or identifier endpoint returns that user ID and end successfully
@@ -1625,6 +1650,52 @@ func (a *Client) SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAdd
 }
 
 /*
+	VerifyAuthenticationCode verifies user s authentication code
+
+	Verifies user's Authentication Code.
+
+Either identifier (must be user's identifier), user id or extended code must be provided.
+If the code is valid it is removed and a successful response is returned.
+Endpoint is protected by Brute Force mechanism.
+This endpoint is meant for integration when external system requests and verifies authentication code.
+*/
+func (a *Client) VerifyAuthenticationCode(params *VerifyAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyAuthenticationCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyAuthenticationCodeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "verifyAuthenticationCode",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/authentication-code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyAuthenticationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VerifyAuthenticationCodeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for verifyAuthenticationCode: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	VerifyPassword verifies user s password
 
 	Verifies user's password.
@@ -1668,6 +1739,54 @@ func (a *Client) VerifyPassword(params *VerifyPasswordParams, authInfo runtime.C
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for verifyPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	VerifyPasswordV2 verifies user s password
+
+	Verifies user's password.
+
+Either identifier (must be user's identifier) or user ID must be provided.
+Endpoint is protected by Brute Force mechanism.
+This endpoint is meant for integration when external system verifies user's password.
+If returned user ID is empty it means user has not been found.
+
+REFACTORED: input field name has been changed from `id` to `userID`; field `id` stays for backward compatibility and overrides `userID` if not empty
+*/
+func (a *Client) VerifyPasswordV2(params *VerifyPasswordV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyPasswordV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "verifyPasswordV2",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/password/v2/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyPasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VerifyPasswordV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for verifyPasswordV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

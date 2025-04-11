@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *RequestResetTotpNoContent) Code() int {
 }
 
 func (o *RequestResetTotpNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpNoContent ", 204)
 }
 
 func (o *RequestResetTotpNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpNoContent ", 204)
 }
 
 func (o *RequestResetTotpNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *RequestResetTotpBadRequest) Code() int {
 }
 
 func (o *RequestResetTotpBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RequestResetTotpBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RequestResetTotpBadRequest) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *RequestResetTotpUnauthorized) Code() int {
 }
 
 func (o *RequestResetTotpUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RequestResetTotpUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RequestResetTotpUnauthorized) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *RequestResetTotpPreconditionFailed) Code() int {
 }
 
 func (o *RequestResetTotpPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *RequestResetTotpPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *RequestResetTotpPreconditionFailed) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *RequestResetTotpUnprocessableEntity) Code() int {
 }
 
 func (o *RequestResetTotpUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RequestResetTotpUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/request][%d] requestResetTotpUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RequestResetTotpUnprocessableEntity) GetPayload() *models.Error {

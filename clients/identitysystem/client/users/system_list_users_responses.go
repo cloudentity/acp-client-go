@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *SystemListUsersOK) Code() int {
 }
 
 func (o *SystemListUsersOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersOK %s", 200, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemListUsersOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersOK %s", 200, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemListUsersOK) GetPayload() *models.Users {
@@ -186,13 +183,11 @@ func (o *SystemListUsersBadRequest) Code() int {
 }
 
 func (o *SystemListUsersBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemListUsersBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemListUsersBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *SystemListUsersUnauthorized) Code() int {
 }
 
 func (o *SystemListUsersUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemListUsersUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemListUsersUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *SystemListUsersForbidden) Code() int {
 }
 
 func (o *SystemListUsersForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemListUsersForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemListUsersForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *SystemListUsersNotFound) Code() int {
 }
 
 func (o *SystemListUsersNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemListUsersNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemListUsersNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *SystemListUsersUnprocessableEntity) Code() int {
 }
 
 func (o *SystemListUsersUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemListUsersUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemListUsersUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *SystemListUsersTooManyRequests) Code() int {
 }
 
 func (o *SystemListUsersTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemListUsersTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemListUsersTooManyRequests) GetPayload() *models.Error {

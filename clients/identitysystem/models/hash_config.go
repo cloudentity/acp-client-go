@@ -26,8 +26,11 @@ type HashConfig struct {
 	// bcrypt
 	Bcrypt *BcryptConfig `json:"bcrypt,omitempty" yaml:"bcrypt,omitempty"`
 
+	// md5
+	Md5 *MD5Config `json:"md5,omitempty" yaml:"md5,omitempty"`
+
 	// method
-	// Enum: ["bcrypt","pbkdf2","argon2","sha"]
+	// Enum: [bcrypt pbkdf2 argon2 sha md5]
 	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// pbkdf2
@@ -46,6 +49,10 @@ func (m *HashConfig) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBcrypt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMd5(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -105,11 +112,30 @@ func (m *HashConfig) validateBcrypt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *HashConfig) validateMd5(formats strfmt.Registry) error {
+	if swag.IsZero(m.Md5) { // not required
+		return nil
+	}
+
+	if m.Md5 != nil {
+		if err := m.Md5.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("md5")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("md5")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var hashConfigTypeMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["bcrypt","pbkdf2","argon2","sha"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["bcrypt","pbkdf2","argon2","sha","md5"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -130,6 +156,9 @@ const (
 
 	// HashConfigMethodSha captures enum value "sha"
 	HashConfigMethodSha string = "sha"
+
+	// HashConfigMethodMd5 captures enum value "md5"
+	HashConfigMethodMd5 string = "md5"
 )
 
 // prop value enum
@@ -203,6 +232,10 @@ func (m *HashConfig) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMd5(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePbkdf2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -251,6 +284,27 @@ func (m *HashConfig) contextValidateBcrypt(ctx context.Context, formats strfmt.R
 				return ve.ValidateName("bcrypt")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("bcrypt")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *HashConfig) contextValidateMd5(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Md5 != nil {
+
+		if swag.IsZero(m.Md5) { // not required
+			return nil
+		}
+
+		if err := m.Md5.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("md5")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("md5")
 			}
 			return err
 		}

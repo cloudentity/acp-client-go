@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -105,11 +104,11 @@ func (o *CompleteResetPasswordNoContent) Code() int {
 }
 
 func (o *CompleteResetPasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordNoContent ", 204)
 }
 
 func (o *CompleteResetPasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordNoContent ", 204)
 }
 
 func (o *CompleteResetPasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -169,13 +168,11 @@ func (o *CompleteResetPasswordUnauthorized) Code() int {
 }
 
 func (o *CompleteResetPasswordUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteResetPasswordUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteResetPasswordUnauthorized) GetPayload() *models.Error {
@@ -239,13 +236,11 @@ func (o *CompleteResetPasswordPreconditionFailed) Code() int {
 }
 
 func (o *CompleteResetPasswordPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteResetPasswordPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteResetPasswordPreconditionFailed) GetPayload() *models.Error {
@@ -309,13 +304,11 @@ func (o *CompleteResetPasswordUnprocessableEntity) Code() int {
 }
 
 func (o *CompleteResetPasswordUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteResetPasswordUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteResetPasswordUnprocessableEntity) GetPayload() *models.Error {

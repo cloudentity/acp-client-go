@@ -78,18 +78,21 @@ type PoolResponse struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty" yaml:"public_registration_allowed,omitempty"`
+
+	// reset credentials settings
+	ResetCredentialsSettings *ResetCredentialsSettings `json:"reset_credentials_settings,omitempty" yaml:"reset_credentials_settings,omitempty"`
 
 	// second factor authentication mechanisms
 	SecondFactorAuthenticationMechanisms AuthenticationMechanisms `json:"second_factor_authentication_mechanisms,omitempty" yaml:"second_factor_authentication_mechanisms,omitempty"`
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// The minimal risk engine loa score value to skip the 2FA
@@ -136,6 +139,10 @@ func (m *PoolResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePreferredAuthenticationMechanism(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResetCredentialsSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -256,7 +263,7 @@ var poolResponseTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -274,6 +281,12 @@ const (
 
 	// PoolResponsePreferredAuthenticationMechanismOtp captures enum value "otp"
 	PoolResponsePreferredAuthenticationMechanismOtp string = "otp"
+
+	// PoolResponsePreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	PoolResponsePreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// PoolResponsePreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	PoolResponsePreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// PoolResponsePreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponsePreferredAuthenticationMechanismWebauthn string = "webauthn"
@@ -300,6 +313,25 @@ func (m *PoolResponse) validatePreferredAuthenticationMechanism(formats strfmt.R
 	return nil
 }
 
+func (m *PoolResponse) validateResetCredentialsSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResetCredentialsSettings) { // not required
+		return nil
+	}
+
+	if m.ResetCredentialsSettings != nil {
+		if err := m.ResetCredentialsSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_credentials_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_credentials_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *PoolResponse) validateSecondFactorAuthenticationMechanisms(formats strfmt.Registry) error {
 	if swag.IsZero(m.SecondFactorAuthenticationMechanisms) { // not required
 		return nil
@@ -321,7 +353,7 @@ var poolResponseTypeSecondFactorPreferredAuthenticationMechanismPropEnum []inter
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -339,6 +371,12 @@ const (
 
 	// PoolResponseSecondFactorPreferredAuthenticationMechanismOtp captures enum value "otp"
 	PoolResponseSecondFactorPreferredAuthenticationMechanismOtp string = "otp"
+
+	// PoolResponseSecondFactorPreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	PoolResponseSecondFactorPreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// PoolResponseSecondFactorPreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	PoolResponseSecondFactorPreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	PoolResponseSecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
@@ -391,6 +429,10 @@ func (m *PoolResponse) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidatePasswordSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResetCredentialsSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -473,6 +515,27 @@ func (m *PoolResponse) contextValidatePasswordSettings(ctx context.Context, form
 				return ve.ValidateName("password_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("password_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PoolResponse) contextValidateResetCredentialsSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ResetCredentialsSettings != nil {
+
+		if swag.IsZero(m.ResetCredentialsSettings) { // not required
+			return nil
+		}
+
+		if err := m.ResetCredentialsSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_credentials_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_credentials_settings")
 			}
 			return err
 		}

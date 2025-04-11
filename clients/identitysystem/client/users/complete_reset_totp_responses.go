@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +96,11 @@ func (o *CompleteResetTotpNoContent) Code() int {
 }
 
 func (o *CompleteResetTotpNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpNoContent ", 204)
 }
 
 func (o *CompleteResetTotpNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpNoContent ", 204)
 }
 
 func (o *CompleteResetTotpNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,13 +153,11 @@ func (o *CompleteResetTotpUnauthorized) Code() int {
 }
 
 func (o *CompleteResetTotpUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteResetTotpUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteResetTotpUnauthorized) GetPayload() *models.Error {
@@ -224,13 +221,11 @@ func (o *CompleteResetTotpPreconditionFailed) Code() int {
 }
 
 func (o *CompleteResetTotpPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteResetTotpPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteResetTotpPreconditionFailed) GetPayload() *models.Error {
@@ -294,13 +289,11 @@ func (o *CompleteResetTotpUnprocessableEntity) Code() int {
 }
 
 func (o *CompleteResetTotpUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteResetTotpUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/totp/reset/complete][%d] completeResetTotpUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteResetTotpUnprocessableEntity) GetPayload() *models.Error {

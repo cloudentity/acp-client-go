@@ -24,6 +24,9 @@ type ActivateSelfRegisteredUser struct {
 	// Required: true
 	Code string `json:"code" yaml:"code"`
 
+	// otp address
+	OtpAddress string `json:"otp_address,omitempty" yaml:"otp_address,omitempty"`
+
 	// password
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 

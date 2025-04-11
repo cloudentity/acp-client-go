@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,6 +19,11 @@ import (
 //
 // swagger:model InspectOTPUserOperationalData
 type InspectOTPUserOperationalData struct {
+
+	// code type
+	// Required: true
+	// Enum: [activation reset_password reset_totp enroll_webauthn challenge verify_address authentication]
+	CodeType string `json:"code_type" yaml:"code_type"`
 
 	// password set
 	// Required: true
@@ -32,6 +38,10 @@ type InspectOTPUserOperationalData struct {
 func (m *InspectOTPUserOperationalData) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCodeType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePasswordSet(formats); err != nil {
 		res = append(res, err)
 	}
@@ -43,6 +53,64 @@ func (m *InspectOTPUserOperationalData) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var inspectOTPUserOperationalDataTypeCodeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		inspectOTPUserOperationalDataTypeCodeTypePropEnum = append(inspectOTPUserOperationalDataTypeCodeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// InspectOTPUserOperationalDataCodeTypeActivation captures enum value "activation"
+	InspectOTPUserOperationalDataCodeTypeActivation string = "activation"
+
+	// InspectOTPUserOperationalDataCodeTypeResetPassword captures enum value "reset_password"
+	InspectOTPUserOperationalDataCodeTypeResetPassword string = "reset_password"
+
+	// InspectOTPUserOperationalDataCodeTypeResetTotp captures enum value "reset_totp"
+	InspectOTPUserOperationalDataCodeTypeResetTotp string = "reset_totp"
+
+	// InspectOTPUserOperationalDataCodeTypeEnrollWebauthn captures enum value "enroll_webauthn"
+	InspectOTPUserOperationalDataCodeTypeEnrollWebauthn string = "enroll_webauthn"
+
+	// InspectOTPUserOperationalDataCodeTypeChallenge captures enum value "challenge"
+	InspectOTPUserOperationalDataCodeTypeChallenge string = "challenge"
+
+	// InspectOTPUserOperationalDataCodeTypeVerifyAddress captures enum value "verify_address"
+	InspectOTPUserOperationalDataCodeTypeVerifyAddress string = "verify_address"
+
+	// InspectOTPUserOperationalDataCodeTypeAuthentication captures enum value "authentication"
+	InspectOTPUserOperationalDataCodeTypeAuthentication string = "authentication"
+)
+
+// prop value enum
+func (m *InspectOTPUserOperationalData) validateCodeTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, inspectOTPUserOperationalDataTypeCodeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *InspectOTPUserOperationalData) validateCodeType(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("code_type", "body", m.CodeType); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateCodeTypeEnum("code_type", "body", m.CodeType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

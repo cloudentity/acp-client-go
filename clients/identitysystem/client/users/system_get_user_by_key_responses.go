@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *SystemGetUserByKeyOK) Code() int {
 }
 
 func (o *SystemGetUserByKeyOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemGetUserByKeyOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyOK %s", 200, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemGetUserByKeyOK) GetPayload() *models.UserWithData {
@@ -196,13 +193,11 @@ func (o *SystemGetUserByKeyUnauthorized) Code() int {
 }
 
 func (o *SystemGetUserByKeyUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemGetUserByKeyUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemGetUserByKeyUnauthorized) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *SystemGetUserByKeyForbidden) Code() int {
 }
 
 func (o *SystemGetUserByKeyForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemGetUserByKeyForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemGetUserByKeyForbidden) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *SystemGetUserByKeyNotFound) Code() int {
 }
 
 func (o *SystemGetUserByKeyNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemGetUserByKeyNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemGetUserByKeyNotFound) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *SystemGetUserByKeyPreconditionFailed) Code() int {
 }
 
 func (o *SystemGetUserByKeyPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemGetUserByKeyPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemGetUserByKeyPreconditionFailed) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *SystemGetUserByKeyTooManyRequests) Code() int {
 }
 
 func (o *SystemGetUserByKeyTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemGetUserByKeyTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/by_key][%d] systemGetUserByKeyTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemGetUserByKeyTooManyRequests) GetPayload() *models.Error {

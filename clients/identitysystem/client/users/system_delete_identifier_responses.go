@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -117,11 +116,11 @@ func (o *SystemDeleteIdentifierNoContent) Code() int {
 }
 
 func (o *SystemDeleteIdentifierNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNoContent ", 204)
 }
 
 func (o *SystemDeleteIdentifierNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNoContent ", 204)
 }
 
 func (o *SystemDeleteIdentifierNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -181,13 +180,11 @@ func (o *SystemDeleteIdentifierUnauthorized) Code() int {
 }
 
 func (o *SystemDeleteIdentifierUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierUnauthorized) GetPayload() *models.Error {
@@ -251,13 +248,11 @@ func (o *SystemDeleteIdentifierForbidden) Code() int {
 }
 
 func (o *SystemDeleteIdentifierForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierForbidden) GetPayload() *models.Error {
@@ -321,13 +316,11 @@ func (o *SystemDeleteIdentifierNotFound) Code() int {
 }
 
 func (o *SystemDeleteIdentifierNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierNotFound) GetPayload() *models.Error {
@@ -391,13 +384,11 @@ func (o *SystemDeleteIdentifierPreconditionFailed) Code() int {
 }
 
 func (o *SystemDeleteIdentifierPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierPreconditionFailed) GetPayload() *models.Error {
@@ -461,13 +452,11 @@ func (o *SystemDeleteIdentifierTooManyRequests) Code() int {
 }
 
 func (o *SystemDeleteIdentifierTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemDeleteIdentifierTooManyRequests) GetPayload() *models.Error {

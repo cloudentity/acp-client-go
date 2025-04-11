@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +96,11 @@ func (o *CompleteAddWebAuthnNoContent) Code() int {
 }
 
 func (o *CompleteAddWebAuthnNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnNoContent ", 204)
 }
 
 func (o *CompleteAddWebAuthnNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnNoContent", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnNoContent ", 204)
 }
 
 func (o *CompleteAddWebAuthnNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,13 +153,11 @@ func (o *CompleteAddWebAuthnUnauthorized) Code() int {
 }
 
 func (o *CompleteAddWebAuthnUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnUnauthorized) GetPayload() *models.Error {
@@ -224,13 +221,11 @@ func (o *CompleteAddWebAuthnPreconditionFailed) Code() int {
 }
 
 func (o *CompleteAddWebAuthnPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnPreconditionFailed) GetPayload() *models.Error {
@@ -294,13 +289,11 @@ func (o *CompleteAddWebAuthnUnprocessableEntity) Code() int {
 }
 
 func (o *CompleteAddWebAuthnUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/complete][%d] completeAddWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddWebAuthnUnprocessableEntity) GetPayload() *models.Error {

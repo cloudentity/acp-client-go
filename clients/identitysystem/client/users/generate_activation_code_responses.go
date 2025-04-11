@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *GenerateActivationCodeCreated) Code() int {
 }
 
 func (o *GenerateActivationCodeCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *GenerateActivationCodeCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *GenerateActivationCodeCreated) GetPayload() *models.CodeID {
@@ -202,13 +199,11 @@ func (o *GenerateActivationCodeBadRequest) Code() int {
 }
 
 func (o *GenerateActivationCodeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GenerateActivationCodeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GenerateActivationCodeBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *GenerateActivationCodeUnauthorized) Code() int {
 }
 
 func (o *GenerateActivationCodeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GenerateActivationCodeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GenerateActivationCodeUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *GenerateActivationCodeNotFound) Code() int {
 }
 
 func (o *GenerateActivationCodeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GenerateActivationCodeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GenerateActivationCodeNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *GenerateActivationCodePreconditionFailed) Code() int {
 }
 
 func (o *GenerateActivationCodePreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GenerateActivationCodePreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GenerateActivationCodePreconditionFailed) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *GenerateActivationCodeUnprocessableEntity) Code() int {
 }
 
 func (o *GenerateActivationCodeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GenerateActivationCodeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GenerateActivationCodeUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *GenerateActivationCodeTooManyRequests) Code() int {
 }
 
 func (o *GenerateActivationCodeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GenerateActivationCodeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GenerateActivationCodeTooManyRequests) GetPayload() *models.Error {

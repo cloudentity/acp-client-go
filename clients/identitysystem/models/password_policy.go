@@ -39,7 +39,7 @@ type PasswordPolicy struct {
 	SpecialCharacters uint64 `json:"special_characters,omitempty" yaml:"special_characters,omitempty"`
 
 	// strength
-	// Enum: ["any","weak","fair","strong","very_strong"]
+	// Enum: [any weak fair strong very_strong]
 	Strength string `json:"strength,omitempty" yaml:"strength,omitempty"`
 }
 
