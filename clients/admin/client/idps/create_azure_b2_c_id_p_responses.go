@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *CreateAzureB2CIDPCreated) Code() int {
 }
 
 func (o *CreateAzureB2CIDPCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPCreated) GetPayload() *models.AzureB2CIDP {
@@ -186,13 +183,11 @@ func (o *CreateAzureB2CIDPBadRequest) Code() int {
 }
 
 func (o *CreateAzureB2CIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *CreateAzureB2CIDPUnauthorized) Code() int {
 }
 
 func (o *CreateAzureB2CIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *CreateAzureB2CIDPForbidden) Code() int {
 }
 
 func (o *CreateAzureB2CIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *CreateAzureB2CIDPNotFound) Code() int {
 }
 
 func (o *CreateAzureB2CIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *CreateAzureB2CIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateAzureB2CIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *CreateAzureB2CIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateAzureB2CIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAzureB2CIDPTooManyRequests) GetPayload() *models.Error {

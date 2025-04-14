@@ -6,7 +6,6 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *SystemListSchemasOK) Code() int {
 }
 
 func (o *SystemListSchemasOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasOK %s", 200, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemListSchemasOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasOK %s", 200, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemListSchemasOK) GetPayload() *models.Schemas {
@@ -168,13 +165,11 @@ func (o *SystemListSchemasUnauthorized) Code() int {
 }
 
 func (o *SystemListSchemasUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemListSchemasUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemListSchemasUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *SystemListSchemasForbidden) Code() int {
 }
 
 func (o *SystemListSchemasForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemListSchemasForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemListSchemasForbidden) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *SystemListSchemasTooManyRequests) Code() int {
 }
 
 func (o *SystemListSchemasTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemListSchemasTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /system/schemas][%d] systemListSchemasTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemListSchemasTooManyRequests) GetPayload() *models.Error {

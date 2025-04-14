@@ -21,8 +21,14 @@ type JITCreatedPayload struct {
 	// admin role type
 	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
 
+	// authentication flow control
+	AuthenticationFlowControl PreProvisioningAuthenticationFlowControl `json:"authentication_flow_control,omitempty" yaml:"authentication_flow_control,omitempty"`
+
 	// idp
 	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
+
+	// mode
+	Mode ProvisioningMode `json:"mode,omitempty" yaml:"mode,omitempty"`
 
 	// pool id
 	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
@@ -35,13 +41,38 @@ type JITCreatedPayload struct {
 func (m *JITCreatedPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthenticationFlowControl(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIdp(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMode(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *JITCreatedPayload) validateAuthenticationFlowControl(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationFlowControl) { // not required
+		return nil
+	}
+
+	if err := m.AuthenticationFlowControl.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_flow_control")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("authentication_flow_control")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -64,17 +95,60 @@ func (m *JITCreatedPayload) validateIdp(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *JITCreatedPayload) validateMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if err := m.Mode.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this j i t created payload based on the context it is used
 func (m *JITCreatedPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthenticationFlowControl(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMode(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *JITCreatedPayload) contextValidateAuthenticationFlowControl(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AuthenticationFlowControl) { // not required
+		return nil
+	}
+
+	if err := m.AuthenticationFlowControl.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_flow_control")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("authentication_flow_control")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -94,6 +168,24 @@ func (m *JITCreatedPayload) contextValidateIdp(ctx context.Context, formats strf
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *JITCreatedPayload) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if err := m.Mode.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
+		return err
 	}
 
 	return nil

@@ -6,7 +6,6 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *BindServerThemeOK) Code() int {
 }
 
 func (o *BindServerThemeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *BindServerThemeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *BindServerThemeOK) GetPayload() *models.ServerToTheme {
@@ -190,13 +187,11 @@ func (o *BindServerThemeUnauthorized) Code() int {
 }
 
 func (o *BindServerThemeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *BindServerThemeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *BindServerThemeUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *BindServerThemeForbidden) Code() int {
 }
 
 func (o *BindServerThemeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *BindServerThemeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *BindServerThemeForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *BindServerThemeNotFound) Code() int {
 }
 
 func (o *BindServerThemeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *BindServerThemeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *BindServerThemeNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *BindServerThemeTooManyRequests) Code() int {
 }
 
 func (o *BindServerThemeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *BindServerThemeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *BindServerThemeTooManyRequests) GetPayload() *models.Error {

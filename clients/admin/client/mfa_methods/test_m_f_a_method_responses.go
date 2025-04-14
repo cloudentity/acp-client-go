@@ -6,7 +6,6 @@ package mfa_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *TestMFAMethodOK) Code() int {
 }
 
 func (o *TestMFAMethodOK) Error() string {
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodOK", 200)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodOK ", 200)
 }
 
 func (o *TestMFAMethodOK) String() string {
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodOK", 200)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodOK ", 200)
 }
 
 func (o *TestMFAMethodOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *TestMFAMethodBadRequest) Code() int {
 }
 
 func (o *TestMFAMethodBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *TestMFAMethodBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *TestMFAMethodBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *TestMFAMethodUnauthorized) Code() int {
 }
 
 func (o *TestMFAMethodUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *TestMFAMethodUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *TestMFAMethodUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *TestMFAMethodForbidden) Code() int {
 }
 
 func (o *TestMFAMethodForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodForbidden  %+v", 403, o.Payload)
 }
 
 func (o *TestMFAMethodForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodForbidden  %+v", 403, o.Payload)
 }
 
 func (o *TestMFAMethodForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *TestMFAMethodNotFound) Code() int {
 }
 
 func (o *TestMFAMethodNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestMFAMethodNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestMFAMethodNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *TestMFAMethodTooManyRequests) Code() int {
 }
 
 func (o *TestMFAMethodTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *TestMFAMethodTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /mfa-methods/{mfaID}/test][%d] testMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *TestMFAMethodTooManyRequests) GetPayload() *models.Error {

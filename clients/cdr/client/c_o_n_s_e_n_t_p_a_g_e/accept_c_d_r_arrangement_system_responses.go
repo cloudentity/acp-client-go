@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *AcceptCDRArrangementSystemOK) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemOK) GetPayload() *models.ConsentAccepted {
@@ -180,13 +177,11 @@ func (o *AcceptCDRArrangementSystemBadRequest) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *AcceptCDRArrangementSystemUnauthorized) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *AcceptCDRArrangementSystemForbidden) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemForbidden) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *AcceptCDRArrangementSystemNotFound) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemNotFound) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *AcceptCDRArrangementSystemTooManyRequests) Code() int {
 }
 
 func (o *AcceptCDRArrangementSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptCDRArrangementSystemTooManyRequests) GetPayload() *models.Error {

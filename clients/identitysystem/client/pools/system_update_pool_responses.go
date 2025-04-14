@@ -6,7 +6,6 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *SystemUpdatePoolOK) Code() int {
 }
 
 func (o *SystemUpdatePoolOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemUpdatePoolOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolOK  %+v", 200, o.Payload)
 }
 
 func (o *SystemUpdatePoolOK) GetPayload() *models.PoolResponse {
@@ -208,13 +205,11 @@ func (o *SystemUpdatePoolBadRequest) Code() int {
 }
 
 func (o *SystemUpdatePoolBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemUpdatePoolBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemUpdatePoolBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *SystemUpdatePoolUnauthorized) Code() int {
 }
 
 func (o *SystemUpdatePoolUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemUpdatePoolUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemUpdatePoolUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *SystemUpdatePoolForbidden) Code() int {
 }
 
 func (o *SystemUpdatePoolForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemUpdatePoolForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemUpdatePoolForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *SystemUpdatePoolNotFound) Code() int {
 }
 
 func (o *SystemUpdatePoolNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemUpdatePoolNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemUpdatePoolNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *SystemUpdatePoolConflict) Code() int {
 }
 
 func (o *SystemUpdatePoolConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemUpdatePoolConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemUpdatePoolConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *SystemUpdatePoolUnprocessableEntity) Code() int {
 }
 
 func (o *SystemUpdatePoolUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemUpdatePoolUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemUpdatePoolUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *SystemUpdatePoolTooManyRequests) Code() int {
 }
 
 func (o *SystemUpdatePoolTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemUpdatePoolTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}][%d] systemUpdatePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemUpdatePoolTooManyRequests) GetPayload() *models.Error {

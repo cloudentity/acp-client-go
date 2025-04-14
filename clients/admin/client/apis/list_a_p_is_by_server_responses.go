@@ -6,7 +6,6 @@ package apis
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -107,13 +106,11 @@ func (o *ListAPIsByServerOK) Code() int {
 }
 
 func (o *ListAPIsByServerOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
 
 func (o *ListAPIsByServerOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
 
 func (o *ListAPIsByServerOK) GetPayload() *models.ServerAPIs {
@@ -184,13 +181,11 @@ func (o *ListAPIsByServerUnauthorized) Code() int {
 }
 
 func (o *ListAPIsByServerUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListAPIsByServerUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListAPIsByServerUnauthorized) GetPayload() *models.Error {
@@ -254,13 +249,11 @@ func (o *ListAPIsByServerForbidden) Code() int {
 }
 
 func (o *ListAPIsByServerForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListAPIsByServerForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListAPIsByServerForbidden) GetPayload() *models.Error {
@@ -324,13 +317,11 @@ func (o *ListAPIsByServerTooManyRequests) Code() int {
 }
 
 func (o *ListAPIsByServerTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListAPIsByServerTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListAPIsByServerTooManyRequests) GetPayload() *models.Error {

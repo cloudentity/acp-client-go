@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetKSAConsentSystemOK) Code() int {
 }
 
 func (o *GetKSAConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKSAConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKSAConsentSystemOK) GetPayload() *models.GetKSAConsentResponse {
@@ -174,13 +171,11 @@ func (o *GetKSAConsentSystemUnauthorized) Code() int {
 }
 
 func (o *GetKSAConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetKSAConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetKSAConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetKSAConsentSystemForbidden) Code() int {
 }
 
 func (o *GetKSAConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetKSAConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetKSAConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetKSAConsentSystemNotFound) Code() int {
 }
 
 func (o *GetKSAConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKSAConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKSAConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetKSAConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *GetKSAConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetKSAConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /ksa/consent/{login}][%d] getKSAConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetKSAConsentSystemTooManyRequests) GetPayload() *models.Error {

@@ -66,18 +66,21 @@ type TreePool struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty" yaml:"public_registration_allowed,omitempty"`
+
+	// reset credentials settings
+	ResetCredentialsSettings *ResetCredentialsSettings `json:"reset_credentials_settings,omitempty" yaml:"reset_credentials_settings,omitempty"`
 
 	// second factor authentication mechanisms
 	SecondFactorAuthenticationMechanisms AuthenticationMechanisms `json:"second_factor_authentication_mechanisms,omitempty" yaml:"second_factor_authentication_mechanisms,omitempty"`
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// The minimal risk engine loa score value to skip the 2FA
@@ -116,6 +119,10 @@ func (m *TreePool) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePreferredAuthenticationMechanism(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResetCredentialsSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -232,7 +239,7 @@ var treePoolTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -250,6 +257,12 @@ const (
 
 	// TreePoolPreferredAuthenticationMechanismOtp captures enum value "otp"
 	TreePoolPreferredAuthenticationMechanismOtp string = "otp"
+
+	// TreePoolPreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	TreePoolPreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// TreePoolPreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	TreePoolPreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// TreePoolPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	TreePoolPreferredAuthenticationMechanismWebauthn string = "webauthn"
@@ -276,6 +289,25 @@ func (m *TreePool) validatePreferredAuthenticationMechanism(formats strfmt.Regis
 	return nil
 }
 
+func (m *TreePool) validateResetCredentialsSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResetCredentialsSettings) { // not required
+		return nil
+	}
+
+	if m.ResetCredentialsSettings != nil {
+		if err := m.ResetCredentialsSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_credentials_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_credentials_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *TreePool) validateSecondFactorAuthenticationMechanisms(formats strfmt.Registry) error {
 	if swag.IsZero(m.SecondFactorAuthenticationMechanisms) { // not required
 		return nil
@@ -297,7 +329,7 @@ var treePoolTypeSecondFactorPreferredAuthenticationMechanismPropEnum []interface
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -315,6 +347,12 @@ const (
 
 	// TreePoolSecondFactorPreferredAuthenticationMechanismOtp captures enum value "otp"
 	TreePoolSecondFactorPreferredAuthenticationMechanismOtp string = "otp"
+
+	// TreePoolSecondFactorPreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	TreePoolSecondFactorPreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// TreePoolSecondFactorPreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	TreePoolSecondFactorPreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// TreePoolSecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	TreePoolSecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"
@@ -358,6 +396,10 @@ func (m *TreePool) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	}
 
 	if err := m.contextValidatePasswordSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResetCredentialsSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -440,6 +482,27 @@ func (m *TreePool) contextValidatePasswordSettings(ctx context.Context, formats 
 				return ve.ValidateName("password_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("password_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TreePool) contextValidateResetCredentialsSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ResetCredentialsSettings != nil {
+
+		if swag.IsZero(m.ResetCredentialsSettings) { // not required
+			return nil
+		}
+
+		if err := m.ResetCredentialsSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("reset_credentials_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("reset_credentials_settings")
 			}
 			return err
 		}

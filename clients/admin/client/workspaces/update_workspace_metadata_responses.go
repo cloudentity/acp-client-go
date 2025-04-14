@@ -6,7 +6,6 @@ package workspaces
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *UpdateWorkspaceMetadataOK) Code() int {
 }
 
 func (o *UpdateWorkspaceMetadataOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataOK) GetPayload() *models.WorkspaceMetadata {
@@ -190,13 +187,11 @@ func (o *UpdateWorkspaceMetadataUnauthorized) Code() int {
 }
 
 func (o *UpdateWorkspaceMetadataUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *UpdateWorkspaceMetadataForbidden) Code() int {
 }
 
 func (o *UpdateWorkspaceMetadataForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *UpdateWorkspaceMetadataNotFound) Code() int {
 }
 
 func (o *UpdateWorkspaceMetadataNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *UpdateWorkspaceMetadataTooManyRequests) Code() int {
 }
 
 func (o *UpdateWorkspaceMetadataTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /workspaces/{wid}/metadata][%d] updateWorkspaceMetadataTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateWorkspaceMetadataTooManyRequests) GetPayload() *models.Error {

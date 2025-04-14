@@ -6,7 +6,6 @@ package a_c_rs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreateACRCreated) Code() int {
 }
 
 func (o *CreateACRCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateACRCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateACRCreated) GetPayload() *models.ACR {
@@ -208,13 +205,11 @@ func (o *CreateACRBadRequest) Code() int {
 }
 
 func (o *CreateACRBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateACRBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateACRBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreateACRUnauthorized) Code() int {
 }
 
 func (o *CreateACRUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateACRUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateACRUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreateACRForbidden) Code() int {
 }
 
 func (o *CreateACRForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateACRForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateACRForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreateACRNotFound) Code() int {
 }
 
 func (o *CreateACRNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateACRNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateACRNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreateACRConflict) Code() int {
 }
 
 func (o *CreateACRConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateACRConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateACRConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreateACRUnprocessableEntity) Code() int {
 }
 
 func (o *CreateACRUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateACRUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateACRUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreateACRTooManyRequests) Code() int {
 }
 
 func (o *CreateACRTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateACRTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/acrs][%d] createACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateACRTooManyRequests) GetPayload() *models.Error {

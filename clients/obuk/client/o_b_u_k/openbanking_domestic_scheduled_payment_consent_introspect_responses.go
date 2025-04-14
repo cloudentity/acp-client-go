@@ -7,7 +7,6 @@ package o_b_u_k
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -101,13 +100,11 @@ func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectOK) Code() int {
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectOK) GetPayload() *OpenbankingDomesticScheduledPaymentConsentIntrospectOKBody {
@@ -171,13 +168,11 @@ func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectUnauthorized) Code(
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -241,13 +236,11 @@ func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectNotFound) Code() in
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -311,13 +304,11 @@ func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests) Co
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect][%d] openbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingDomesticScheduledPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

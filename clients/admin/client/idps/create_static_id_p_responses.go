@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *CreateStaticIDPCreated) Code() int {
 }
 
 func (o *CreateStaticIDPCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateStaticIDPCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateStaticIDPCreated) GetPayload() *models.StaticIDP {
@@ -186,13 +183,11 @@ func (o *CreateStaticIDPBadRequest) Code() int {
 }
 
 func (o *CreateStaticIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateStaticIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateStaticIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *CreateStaticIDPUnauthorized) Code() int {
 }
 
 func (o *CreateStaticIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateStaticIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateStaticIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *CreateStaticIDPForbidden) Code() int {
 }
 
 func (o *CreateStaticIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateStaticIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateStaticIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *CreateStaticIDPNotFound) Code() int {
 }
 
 func (o *CreateStaticIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateStaticIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateStaticIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *CreateStaticIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateStaticIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateStaticIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *CreateStaticIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateStaticIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateStaticIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateStaticIDPTooManyRequests) GetPayload() *models.Error {

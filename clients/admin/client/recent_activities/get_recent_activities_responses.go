@@ -6,7 +6,6 @@ package recent_activities
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -107,13 +106,11 @@ func (o *GetRecentActivitiesOK) Code() int {
 }
 
 func (o *GetRecentActivitiesOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetRecentActivitiesOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetRecentActivitiesOK) GetPayload() *models.RecentActivities {
@@ -184,13 +181,11 @@ func (o *GetRecentActivitiesUnauthorized) Code() int {
 }
 
 func (o *GetRecentActivitiesUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetRecentActivitiesUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetRecentActivitiesUnauthorized) GetPayload() *models.Error {
@@ -254,13 +249,11 @@ func (o *GetRecentActivitiesForbidden) Code() int {
 }
 
 func (o *GetRecentActivitiesForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetRecentActivitiesForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetRecentActivitiesForbidden) GetPayload() *models.Error {
@@ -324,13 +317,11 @@ func (o *GetRecentActivitiesTooManyRequests) Code() int {
 }
 
 func (o *GetRecentActivitiesTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetRecentActivitiesTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetRecentActivitiesTooManyRequests) GetPayload() *models.Error {

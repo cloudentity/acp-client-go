@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *CreateOktaIDPCreated) Code() int {
 }
 
 func (o *CreateOktaIDPCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateOktaIDPCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateOktaIDPCreated) GetPayload() *models.OktaIDP {
@@ -186,13 +183,11 @@ func (o *CreateOktaIDPBadRequest) Code() int {
 }
 
 func (o *CreateOktaIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateOktaIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateOktaIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *CreateOktaIDPUnauthorized) Code() int {
 }
 
 func (o *CreateOktaIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOktaIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOktaIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *CreateOktaIDPForbidden) Code() int {
 }
 
 func (o *CreateOktaIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOktaIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOktaIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *CreateOktaIDPNotFound) Code() int {
 }
 
 func (o *CreateOktaIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOktaIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOktaIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *CreateOktaIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateOktaIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateOktaIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *CreateOktaIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateOktaIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateOktaIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateOktaIDPTooManyRequests) GetPayload() *models.Error {

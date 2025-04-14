@@ -6,7 +6,6 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -122,13 +121,11 @@ func (o *SystemCreateSchemaCreated) Code() int {
 }
 
 func (o *SystemCreateSchemaCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemCreateSchemaCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemCreateSchemaCreated) GetPayload() *models.Schema {
@@ -192,13 +189,11 @@ func (o *SystemCreateSchemaBadRequest) Code() int {
 }
 
 func (o *SystemCreateSchemaBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemCreateSchemaBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemCreateSchemaBadRequest) GetPayload() *models.Error {
@@ -262,13 +257,11 @@ func (o *SystemCreateSchemaUnauthorized) Code() int {
 }
 
 func (o *SystemCreateSchemaUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemCreateSchemaUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemCreateSchemaUnauthorized) GetPayload() *models.Error {
@@ -332,13 +325,11 @@ func (o *SystemCreateSchemaForbidden) Code() int {
 }
 
 func (o *SystemCreateSchemaForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemCreateSchemaForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemCreateSchemaForbidden) GetPayload() *models.Error {
@@ -402,13 +393,11 @@ func (o *SystemCreateSchemaNotFound) Code() int {
 }
 
 func (o *SystemCreateSchemaNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemCreateSchemaNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemCreateSchemaNotFound) GetPayload() *models.Error {
@@ -472,13 +461,11 @@ func (o *SystemCreateSchemaConflict) Code() int {
 }
 
 func (o *SystemCreateSchemaConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemCreateSchemaConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemCreateSchemaConflict) GetPayload() *models.Error {
@@ -542,13 +529,11 @@ func (o *SystemCreateSchemaUnprocessableEntity) Code() int {
 }
 
 func (o *SystemCreateSchemaUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemCreateSchemaUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemCreateSchemaUnprocessableEntity) GetPayload() *models.Error {
@@ -612,13 +597,11 @@ func (o *SystemCreateSchemaTooManyRequests) Code() int {
 }
 
 func (o *SystemCreateSchemaTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemCreateSchemaTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/schemas][%d] systemCreateSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemCreateSchemaTooManyRequests) GetPayload() *models.Error {

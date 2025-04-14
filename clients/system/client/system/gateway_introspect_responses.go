@@ -6,7 +6,6 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -92,13 +91,11 @@ func (o *GatewayIntrospectOK) Code() int {
 }
 
 func (o *GatewayIntrospectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *GatewayIntrospectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *GatewayIntrospectOK) GetPayload() *models.IntrospectResponse {
@@ -162,13 +159,11 @@ func (o *GatewayIntrospectBadRequest) Code() int {
 }
 
 func (o *GatewayIntrospectBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GatewayIntrospectBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GatewayIntrospectBadRequest) GetPayload() *models.Error {
@@ -232,13 +227,11 @@ func (o *GatewayIntrospectUnprocessableEntity) Code() int {
 }
 
 func (o *GatewayIntrospectUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GatewayIntrospectUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GatewayIntrospectUnprocessableEntity) GetPayload() *models.Error {

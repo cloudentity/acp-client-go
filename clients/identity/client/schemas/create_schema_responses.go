@@ -6,7 +6,6 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -122,13 +121,11 @@ func (o *CreateSchemaCreated) Code() int {
 }
 
 func (o *CreateSchemaCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateSchemaCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateSchemaCreated) GetPayload() *models.Schema {
@@ -192,13 +189,11 @@ func (o *CreateSchemaBadRequest) Code() int {
 }
 
 func (o *CreateSchemaBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateSchemaBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateSchemaBadRequest) GetPayload() *models.Error {
@@ -262,13 +257,11 @@ func (o *CreateSchemaUnauthorized) Code() int {
 }
 
 func (o *CreateSchemaUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateSchemaUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateSchemaUnauthorized) GetPayload() *models.Error {
@@ -332,13 +325,11 @@ func (o *CreateSchemaForbidden) Code() int {
 }
 
 func (o *CreateSchemaForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateSchemaForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateSchemaForbidden) GetPayload() *models.Error {
@@ -402,13 +393,11 @@ func (o *CreateSchemaNotFound) Code() int {
 }
 
 func (o *CreateSchemaNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateSchemaNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateSchemaNotFound) GetPayload() *models.Error {
@@ -472,13 +461,11 @@ func (o *CreateSchemaConflict) Code() int {
 }
 
 func (o *CreateSchemaConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateSchemaConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateSchemaConflict) GetPayload() *models.Error {
@@ -542,13 +529,11 @@ func (o *CreateSchemaUnprocessableEntity) Code() int {
 }
 
 func (o *CreateSchemaUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateSchemaUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateSchemaUnprocessableEntity) GetPayload() *models.Error {
@@ -612,13 +597,11 @@ func (o *CreateSchemaTooManyRequests) Code() int {
 }
 
 func (o *CreateSchemaTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateSchemaTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateSchemaTooManyRequests) GetPayload() *models.Error {

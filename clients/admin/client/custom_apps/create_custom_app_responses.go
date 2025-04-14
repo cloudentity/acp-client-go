@@ -6,7 +6,6 @@ package custom_apps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreateCustomAppCreated) Code() int {
 }
 
 func (o *CreateCustomAppCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateCustomAppCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateCustomAppCreated) GetPayload() *models.CustomAppResponse {
@@ -208,13 +205,11 @@ func (o *CreateCustomAppBadRequest) Code() int {
 }
 
 func (o *CreateCustomAppBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateCustomAppBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateCustomAppBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreateCustomAppUnauthorized) Code() int {
 }
 
 func (o *CreateCustomAppUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateCustomAppUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateCustomAppUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreateCustomAppForbidden) Code() int {
 }
 
 func (o *CreateCustomAppForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateCustomAppForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateCustomAppForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreateCustomAppNotFound) Code() int {
 }
 
 func (o *CreateCustomAppNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateCustomAppNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateCustomAppNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreateCustomAppConflict) Code() int {
 }
 
 func (o *CreateCustomAppConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateCustomAppConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateCustomAppConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreateCustomAppUnprocessableEntity) Code() int {
 }
 
 func (o *CreateCustomAppUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCustomAppUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCustomAppUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreateCustomAppTooManyRequests) Code() int {
 }
 
 func (o *CreateCustomAppTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateCustomAppTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/custom-apps][%d] createCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateCustomAppTooManyRequests) GetPayload() *models.Error {

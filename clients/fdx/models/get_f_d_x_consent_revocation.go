@@ -22,12 +22,12 @@ type GetFDXConsentRevocation struct {
 
 	// Consent revocation initiator
 	// Example: DATA_RECIPIENT
-	// Enum: ["DATA_ACCESS_PLATFORM","DATA_PROVIDER","DATA_RECIPIENT","INDIVIDUAL","MERCHANT","VENDOR"]
+	// Enum: [DATA_ACCESS_PLATFORM DATA_PROVIDER DATA_RECIPIENT INDIVIDUAL MERCHANT VENDOR]
 	Initiator string `json:"initiator,omitempty" yaml:"initiator,omitempty"`
 
 	// Consent revocation reason
 	// Example: BUSINESS_RULE
-	// Enum: ["BUSINESS_RULE","USER_ACTION"]
+	// Enum: [BUSINESS_RULE USER_ACTION]
 	Reason string `json:"reason,omitempty" yaml:"reason,omitempty"`
 
 	// status

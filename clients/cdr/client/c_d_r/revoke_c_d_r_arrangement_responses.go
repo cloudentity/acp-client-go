@@ -6,7 +6,6 @@ package c_d_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +114,11 @@ func (o *RevokeCDRArrangementNoContent) Code() int {
 }
 
 func (o *RevokeCDRArrangementNoContent) Error() string {
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNoContent", 204)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNoContent ", 204)
 }
 
 func (o *RevokeCDRArrangementNoContent) String() string {
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNoContent", 204)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNoContent ", 204)
 }
 
 func (o *RevokeCDRArrangementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,13 +171,11 @@ func (o *RevokeCDRArrangementBadRequest) Code() int {
 }
 
 func (o *RevokeCDRArrangementBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeCDRArrangementBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeCDRArrangementBadRequest) GetPayload() *models.CDRErrorResponse {
@@ -242,13 +239,11 @@ func (o *RevokeCDRArrangementUnauthorized) Code() int {
 }
 
 func (o *RevokeCDRArrangementUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeCDRArrangementUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeCDRArrangementUnauthorized) GetPayload() *models.CDRErrorResponse {
@@ -312,13 +307,11 @@ func (o *RevokeCDRArrangementForbidden) Code() int {
 }
 
 func (o *RevokeCDRArrangementForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeCDRArrangementForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeCDRArrangementForbidden) GetPayload() *models.CDRErrorResponse {
@@ -382,13 +375,11 @@ func (o *RevokeCDRArrangementNotFound) Code() int {
 }
 
 func (o *RevokeCDRArrangementNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeCDRArrangementNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeCDRArrangementNotFound) GetPayload() *models.CDRErrorResponse {
@@ -452,13 +443,11 @@ func (o *RevokeCDRArrangementUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeCDRArrangementUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeCDRArrangementUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeCDRArrangementUnprocessableEntity) GetPayload() *models.CDRErrorResponse {
@@ -522,13 +511,11 @@ func (o *RevokeCDRArrangementTooManyRequests) Code() int {
 }
 
 func (o *RevokeCDRArrangementTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeCDRArrangementTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /arrangements/revoke][%d] revokeCDRArrangementTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeCDRArrangementTooManyRequests) GetPayload() *models.CDRErrorResponse {

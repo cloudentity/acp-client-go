@@ -41,7 +41,7 @@ type CustomApp struct {
 
 	// Type of the custom app
 	// Example: post-authn
-	// Enum: ["post-authn"]
+	// Enum: [post-authn]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// url of the CustomApp

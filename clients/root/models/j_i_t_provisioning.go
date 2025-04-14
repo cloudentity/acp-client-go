@@ -21,7 +21,7 @@ import (
 type JITProvisioning struct {
 
 	// Admin role assigned to the provisioned user if JIT is enabled (available only for admin workspaces only)
-	// Enum: ["admin","business_admin","auditor","member"]
+	// Enum: [admin business_admin auditor member]
 	AdminRoleType string `json:"admin_role_type,omitempty" yaml:"admin_role_type,omitempty"`
 
 	// identifier salt
@@ -32,6 +32,9 @@ type JITProvisioning struct {
 
 	// pool id
 	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
+
+	// pre provisioning
+	PreProvisioning *PreProvisioningConfiguration `json:"pre_provisioning,omitempty" yaml:"pre_provisioning,omitempty"`
 
 	// user
 	User *JITUser `json:"user,omitempty" yaml:"user,omitempty"`
@@ -46,6 +49,10 @@ func (m *JITProvisioning) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreProvisioning(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -124,6 +131,25 @@ func (m *JITProvisioning) validateMode(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *JITProvisioning) validatePreProvisioning(formats strfmt.Registry) error {
+	if swag.IsZero(m.PreProvisioning) { // not required
+		return nil
+	}
+
+	if m.PreProvisioning != nil {
+		if err := m.PreProvisioning.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pre_provisioning")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pre_provisioning")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *JITProvisioning) validateUser(formats strfmt.Registry) error {
 	if swag.IsZero(m.User) { // not required
 		return nil
@@ -151,6 +177,10 @@ func (m *JITProvisioning) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePreProvisioning(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateUser(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -174,6 +204,27 @@ func (m *JITProvisioning) contextValidateMode(ctx context.Context, formats strfm
 			return ce.ValidateName("mode")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *JITProvisioning) contextValidatePreProvisioning(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PreProvisioning != nil {
+
+		if swag.IsZero(m.PreProvisioning) { // not required
+			return nil
+		}
+
+		if err := m.PreProvisioning.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pre_provisioning")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pre_provisioning")
+			}
+			return err
+		}
 	}
 
 	return nil

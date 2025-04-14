@@ -24,20 +24,23 @@ type AddUserVerifiableAddress struct {
 	// Required: true
 	Address string `json:"address" yaml:"address"`
 
+	// general purpose metadata
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	// preferred contact method
 	// Example: sms
-	// Enum: ["sms","voice"]
+	// Enum: [sms voice]
 	PreferredContactMethod string `json:"preferred_contact_method,omitempty" yaml:"preferred_contact_method,omitempty"`
 
 	// status
 	// Example: active
-	// Enum: ["active","inactive"]
+	// Enum: [active inactive]
 	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// type
 	// Example: mobile
 	// Required: true
-	// Enum: ["email","mobile"]
+	// Enum: [email mobile]
 	Type string `json:"type" yaml:"type"`
 
 	// verified

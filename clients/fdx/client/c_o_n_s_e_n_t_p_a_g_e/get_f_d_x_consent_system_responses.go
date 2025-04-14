@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetFDXConsentSystemOK) Code() int {
 }
 
 func (o *GetFDXConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetFDXConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetFDXConsentSystemOK) GetPayload() *models.GetFDXConsentResponse {
@@ -174,13 +171,11 @@ func (o *GetFDXConsentSystemUnauthorized) Code() int {
 }
 
 func (o *GetFDXConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetFDXConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetFDXConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetFDXConsentSystemForbidden) Code() int {
 }
 
 func (o *GetFDXConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetFDXConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetFDXConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetFDXConsentSystemNotFound) Code() int {
 }
 
 func (o *GetFDXConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetFDXConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetFDXConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetFDXConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *GetFDXConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetFDXConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /fdx/fdx/{login}][%d] getFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetFDXConsentSystemTooManyRequests) GetPayload() *models.Error {

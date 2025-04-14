@@ -22,7 +22,7 @@ type TreeAPI struct {
 
 	// api type
 	// Example: rest
-	// Enum: ["rest","graphql"]
+	// Enum: [rest graphql]
 	APIType string `json:"api_type,omitempty" yaml:"api_type,omitempty"`
 
 	// if false it is not possible to assign a policy

@@ -24,7 +24,7 @@ type LicenseTypeWithDefaultCapabilities struct {
 	Capabilities Capabilities `json:"capabilities,omitempty" yaml:"capabilities,omitempty"`
 
 	// LicenseType
-	// Enum: ["trial","enterprise"]
+	// Enum: [trial enterprise]
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 }
 

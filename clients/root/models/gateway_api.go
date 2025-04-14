@@ -21,7 +21,7 @@ import (
 type GatewayAPI struct {
 
 	// api type
-	// Enum: ["rest","graphql"]
+	// Enum: [rest graphql]
 	APIType string `json:"api_type,omitempty" yaml:"api_type,omitempty"`
 
 	// graphql schema

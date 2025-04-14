@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/cloudentity/acp-client-go/clients/identity/client/b2_b_users"
+	"github.com/cloudentity/acp-client-go/clients/identity/client/groups"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/o_t_p"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/permissions"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/pools"
@@ -61,6 +62,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli := new(Acp)
 	cli.Transport = transport
 	cli.B2bUsers = b2_b_users.New(transport, formats)
+	cli.Groups = groups.New(transport, formats)
 	cli.Otp = o_t_p.New(transport, formats)
 	cli.Permissions = permissions.New(transport, formats)
 	cli.Pools = pools.New(transport, formats)
@@ -112,6 +114,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type Acp struct {
 	B2bUsers b2_b_users.ClientService
 
+	Groups groups.ClientService
+
 	Otp o_t_p.ClientService
 
 	Permissions permissions.ClientService
@@ -129,6 +133,7 @@ type Acp struct {
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.B2bUsers.SetTransport(transport)
+	c.Groups.SetTransport(transport)
 	c.Otp.SetTransport(transport)
 	c.Permissions.SetTransport(transport)
 	c.Pools.SetTransport(transport)

@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetWorkspaceIDPOK) Code() int {
 }
 
 func (o *GetWorkspaceIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceIDPOK) GetPayload() *models.WorkspaceIDP {
@@ -174,13 +171,11 @@ func (o *GetWorkspaceIDPUnauthorized) Code() int {
 }
 
 func (o *GetWorkspaceIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceIDPUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetWorkspaceIDPForbidden) Code() int {
 }
 
 func (o *GetWorkspaceIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceIDPForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetWorkspaceIDPNotFound) Code() int {
 }
 
 func (o *GetWorkspaceIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceIDPNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetWorkspaceIDPTooManyRequests) Code() int {
 }
 
 func (o *GetWorkspaceIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}][%d] getWorkspaceIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceIDPTooManyRequests) GetPayload() *models.Error {

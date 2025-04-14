@@ -30,12 +30,12 @@ type SAMLV2Settings struct {
 	//
 	// Format used in the NameIDPolicy for authentication requests
 	// Example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-	// Enum: ["urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:1.1:nameid-format:transient","urn:oasis:names:tc:SAML:1.1:nameid-format:persistent"]
+	// Enum: [urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified urn:oasis:names:tc:SAML:2.0:nameid-format:transient urn:oasis:names:tc:SAML:2.0:nameid-format:persistent]
 	NameIDFormat string `json:"name_id_format,omitempty" yaml:"name_id_format,omitempty"`
 
 	// SAML signing method
 	// Example: rsa-sha-256
-	// Enum: ["rsa-sha-256","rsa-sha-512","rsa-sha-1"]
+	// Enum: [rsa-sha-256 rsa-sha-512 rsa-sha-1]
 	SigningMethod string `json:"signing_method,omitempty" yaml:"signing_method,omitempty"`
 
 	// SAML Assertion attribute that will be mapped to the Subject
@@ -66,7 +66,7 @@ var sAMLV2SettingsTypeNameIDFormatPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:1.1:nameid-format:transient","urn:oasis:names:tc:SAML:1.1:nameid-format:persistent"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:2.0:nameid-format:transient","urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -82,11 +82,11 @@ const (
 	// SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
 	SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified string = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
 
-	// SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatTransient captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:transient"
-	SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatTransient string = "urn:oasis:names:tc:SAML:1.1:nameid-format:transient"
+	// SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient string = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
 
-	// SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatPersistent captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:persistent"
-	SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatPersistent string = "urn:oasis:names:tc:SAML:1.1:nameid-format:persistent"
+	// SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+	SAMLV2SettingsNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent string = "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
 )
 
 // prop value enum

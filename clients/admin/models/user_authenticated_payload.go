@@ -21,7 +21,7 @@ import (
 type UserAuthenticatedPayload struct {
 
 	// authn method
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	AuthnMethod string `json:"authn_method,omitempty" yaml:"authn_method,omitempty"`
 
 	// failure reason
@@ -31,7 +31,7 @@ type UserAuthenticatedPayload struct {
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// mfa
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	Mfa string `json:"mfa,omitempty" yaml:"mfa,omitempty"`
 
 	// mfa skipped
@@ -71,7 +71,7 @@ var userAuthenticatedPayloadTypeAuthnMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -89,6 +89,12 @@ const (
 
 	// UserAuthenticatedPayloadAuthnMethodOtp captures enum value "otp"
 	UserAuthenticatedPayloadAuthnMethodOtp string = "otp"
+
+	// UserAuthenticatedPayloadAuthnMethodEmailOtp captures enum value "email_otp"
+	UserAuthenticatedPayloadAuthnMethodEmailOtp string = "email_otp"
+
+	// UserAuthenticatedPayloadAuthnMethodSmsOtp captures enum value "sms_otp"
+	UserAuthenticatedPayloadAuthnMethodSmsOtp string = "sms_otp"
 
 	// UserAuthenticatedPayloadAuthnMethodWebauthn captures enum value "webauthn"
 	UserAuthenticatedPayloadAuthnMethodWebauthn string = "webauthn"
@@ -119,7 +125,7 @@ var userAuthenticatedPayloadTypeMfaPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -137,6 +143,12 @@ const (
 
 	// UserAuthenticatedPayloadMfaOtp captures enum value "otp"
 	UserAuthenticatedPayloadMfaOtp string = "otp"
+
+	// UserAuthenticatedPayloadMfaEmailOtp captures enum value "email_otp"
+	UserAuthenticatedPayloadMfaEmailOtp string = "email_otp"
+
+	// UserAuthenticatedPayloadMfaSmsOtp captures enum value "sms_otp"
+	UserAuthenticatedPayloadMfaSmsOtp string = "sms_otp"
 
 	// UserAuthenticatedPayloadMfaWebauthn captures enum value "webauthn"
 	UserAuthenticatedPayloadMfaWebauthn string = "webauthn"

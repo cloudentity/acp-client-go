@@ -6,7 +6,6 @@ package o_b_u_k
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -128,13 +127,11 @@ func (o *GetFilePaymentConsentRequestOK) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestOK) GetPayload() *models.FilePaymentConsentResponse {
@@ -198,13 +195,11 @@ func (o *GetFilePaymentConsentRequestBadRequest) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
@@ -268,13 +263,11 @@ func (o *GetFilePaymentConsentRequestUnauthorized) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
@@ -338,13 +331,11 @@ func (o *GetFilePaymentConsentRequestForbidden) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestForbidden) GetPayload() *models.ErrorResponse {
@@ -408,13 +399,11 @@ func (o *GetFilePaymentConsentRequestMethodNotAllowed) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestMethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestMethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
@@ -478,13 +467,11 @@ func (o *GetFilePaymentConsentRequestNotAcceptable) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestNotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestNotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
@@ -548,13 +535,11 @@ func (o *GetFilePaymentConsentRequestUnsupportedMediaType) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestUnsupportedMediaType) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestUnsupportedMediaType) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
@@ -618,13 +603,11 @@ func (o *GetFilePaymentConsentRequestTooManyRequests) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
@@ -688,13 +671,11 @@ func (o *GetFilePaymentConsentRequestInternalServerError) Code() int {
 }
 
 func (o *GetFilePaymentConsentRequestInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/file-payment-consents/{consentID}][%d] getFilePaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetFilePaymentConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {

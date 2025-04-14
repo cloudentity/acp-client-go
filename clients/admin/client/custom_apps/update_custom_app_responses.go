@@ -6,7 +6,6 @@ package custom_apps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpdateCustomAppOK) Code() int {
 }
 
 func (o *UpdateCustomAppOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCustomAppOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCustomAppOK) GetPayload() *models.CustomAppResponse {
@@ -202,13 +199,11 @@ func (o *UpdateCustomAppBadRequest) Code() int {
 }
 
 func (o *UpdateCustomAppBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateCustomAppBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateCustomAppBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpdateCustomAppUnauthorized) Code() int {
 }
 
 func (o *UpdateCustomAppUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateCustomAppUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateCustomAppUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpdateCustomAppForbidden) Code() int {
 }
 
 func (o *UpdateCustomAppForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateCustomAppForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateCustomAppForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpdateCustomAppNotFound) Code() int {
 }
 
 func (o *UpdateCustomAppNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCustomAppNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCustomAppNotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpdateCustomAppUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateCustomAppUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateCustomAppUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateCustomAppUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpdateCustomAppTooManyRequests) Code() int {
 }
 
 func (o *UpdateCustomAppTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateCustomAppTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/custom-apps/{customAppID}][%d] updateCustomAppTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateCustomAppTooManyRequests) GetPayload() *models.Error {

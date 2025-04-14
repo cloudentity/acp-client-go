@@ -6,7 +6,6 @@ package organizations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *ListUserOrganizationsOK) Code() int {
 }
 
 func (o *ListUserOrganizationsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserOrganizationsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserOrganizationsOK) GetPayload() *models.UserOrganizationsResponse {
@@ -190,13 +187,11 @@ func (o *ListUserOrganizationsUnauthorized) Code() int {
 }
 
 func (o *ListUserOrganizationsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserOrganizationsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserOrganizationsUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *ListUserOrganizationsForbidden) Code() int {
 }
 
 func (o *ListUserOrganizationsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserOrganizationsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserOrganizationsForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *ListUserOrganizationsNotFound) Code() int {
 }
 
 func (o *ListUserOrganizationsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserOrganizationsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserOrganizationsNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *ListUserOrganizationsTooManyRequests) Code() int {
 }
 
 func (o *ListUserOrganizationsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserOrganizationsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /user/organizations][%d] listUserOrganizationsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserOrganizationsTooManyRequests) GetPayload() *models.Error {

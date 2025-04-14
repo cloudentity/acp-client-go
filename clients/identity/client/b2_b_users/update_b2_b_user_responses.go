@@ -6,7 +6,6 @@ package b2_b_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -122,13 +121,11 @@ func (o *UpdateB2BUserOK) Code() int {
 }
 
 func (o *UpdateB2BUserOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateB2BUserOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateB2BUserOK) GetPayload() *models.BaseUserWithData {
@@ -192,13 +189,11 @@ func (o *UpdateB2BUserBadRequest) Code() int {
 }
 
 func (o *UpdateB2BUserBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateB2BUserBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateB2BUserBadRequest) GetPayload() *models.Error {
@@ -262,13 +257,11 @@ func (o *UpdateB2BUserUnauthorized) Code() int {
 }
 
 func (o *UpdateB2BUserUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateB2BUserUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateB2BUserUnauthorized) GetPayload() *models.Error {
@@ -332,13 +325,11 @@ func (o *UpdateB2BUserForbidden) Code() int {
 }
 
 func (o *UpdateB2BUserForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateB2BUserForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateB2BUserForbidden) GetPayload() *models.Error {
@@ -402,13 +393,11 @@ func (o *UpdateB2BUserNotFound) Code() int {
 }
 
 func (o *UpdateB2BUserNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateB2BUserNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateB2BUserNotFound) GetPayload() *models.Error {
@@ -472,13 +461,11 @@ func (o *UpdateB2BUserConflict) Code() int {
 }
 
 func (o *UpdateB2BUserConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateB2BUserConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateB2BUserConflict) GetPayload() *models.Error {
@@ -542,13 +529,11 @@ func (o *UpdateB2BUserUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateB2BUserUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateB2BUserUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateB2BUserUnprocessableEntity) GetPayload() *models.Error {
@@ -612,13 +597,11 @@ func (o *UpdateB2BUserTooManyRequests) Code() int {
 }
 
 func (o *UpdateB2BUserTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateB2BUserTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /admin/b2b/pools/{ipID}/users/{userID}][%d] updateB2BUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateB2BUserTooManyRequests) GetPayload() *models.Error {

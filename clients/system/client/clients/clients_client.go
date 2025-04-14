@@ -9,38 +9,12 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new clients API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new clients API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new clients API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -51,7 +25,7 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
@@ -59,6 +33,10 @@ type ClientService interface {
 	GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientOK, error)
 
 	ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsSystemOK, error)
+
+	RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error)
+
+	RotateClientSecret(params *RotateClientSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -142,6 +120,96 @@ func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo run
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listClientsSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RevokeRotatedClientSecrets revokes rotated secrets
+
+Revoke all rotated client's secrets.
+*/
+func (a *Client) RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeRotatedClientSecretsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeRotatedClientSecrets",
+		Method:             "POST",
+		PathPattern:        "/client/{cid}/revokeRotatedSecrets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeRotatedClientSecretsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeRotatedClientSecretsNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeRotatedClientSecrets: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RotateClientSecret rotates client s secret
+
+	Generate a new client secret, move old secret to rotated secrets list and return
+
+new client secret as a response. The max number of client rotated secrets is 2.
+The rotated secrets over the limit are dropped.
+
+It is possible to set expiration time for rotated secrets. When the `AutoRevokeAfter` parameter
+is set to a value greater than zero, rotated secrets that reach their expiry time are revoked.
+The `AutoRevokeAfter` parameter accepts values in the go-openapi duration format, for example,
+`1s`, `5m`, `2h`.
+*/
+func (a *Client) RotateClientSecret(params *RotateClientSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRotateClientSecretParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "rotateClientSecret",
+		Method:             "POST",
+		PathPattern:        "/client/{cid}/rotateSecret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RotateClientSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RotateClientSecretOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for rotateClientSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -7,7 +7,6 @@ package o_b_u_k
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -101,13 +100,11 @@ func (o *OpenbankingAccountAccessConsentIntrospectOK) Code() int {
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectOK) GetPayload() *OpenbankingAccountAccessConsentIntrospectOKBody {
@@ -171,13 +168,11 @@ func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) Code() int {
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -241,13 +236,11 @@ func (o *OpenbankingAccountAccessConsentIntrospectNotFound) Code() int {
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -311,13 +304,11 @@ func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) Code() int {
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

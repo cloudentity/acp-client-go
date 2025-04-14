@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -137,13 +136,11 @@ func (o *SystemCreateUserCreated) Code() int {
 }
 
 func (o *SystemCreateUserCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemCreateUserCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserCreated  %+v", 201, o.Payload)
 }
 
 func (o *SystemCreateUserCreated) GetPayload() *models.UserWithData {
@@ -214,13 +211,11 @@ func (o *SystemCreateUserBadRequest) Code() int {
 }
 
 func (o *SystemCreateUserBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemCreateUserBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SystemCreateUserBadRequest) GetPayload() *models.Error {
@@ -284,13 +279,11 @@ func (o *SystemCreateUserUnauthorized) Code() int {
 }
 
 func (o *SystemCreateUserUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemCreateUserUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemCreateUserUnauthorized) GetPayload() *models.Error {
@@ -354,13 +347,11 @@ func (o *SystemCreateUserForbidden) Code() int {
 }
 
 func (o *SystemCreateUserForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemCreateUserForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemCreateUserForbidden) GetPayload() *models.Error {
@@ -424,13 +415,11 @@ func (o *SystemCreateUserNotFound) Code() int {
 }
 
 func (o *SystemCreateUserNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemCreateUserNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemCreateUserNotFound) GetPayload() *models.Error {
@@ -494,13 +483,11 @@ func (o *SystemCreateUserConflict) Code() int {
 }
 
 func (o *SystemCreateUserConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemCreateUserConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserConflict  %+v", 409, o.Payload)
 }
 
 func (o *SystemCreateUserConflict) GetPayload() *models.Error {
@@ -564,13 +551,11 @@ func (o *SystemCreateUserPreconditionFailed) Code() int {
 }
 
 func (o *SystemCreateUserPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemCreateUserPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *SystemCreateUserPreconditionFailed) GetPayload() *models.Error {
@@ -634,13 +619,11 @@ func (o *SystemCreateUserUnprocessableEntity) Code() int {
 }
 
 func (o *SystemCreateUserUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemCreateUserUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SystemCreateUserUnprocessableEntity) GetPayload() *models.Error {
@@ -704,13 +687,11 @@ func (o *SystemCreateUserTooManyRequests) Code() int {
 }
 
 func (o *SystemCreateUserTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemCreateUserTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemCreateUserTooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *SystemDeletePoolNoContent) Code() int {
 }
 
 func (o *SystemDeletePoolNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNoContent", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNoContent ", 204)
 }
 
 func (o *SystemDeletePoolNoContent) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNoContent", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNoContent ", 204)
 }
 
 func (o *SystemDeletePoolNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *SystemDeletePoolUnauthorized) Code() int {
 }
 
 func (o *SystemDeletePoolUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemDeletePoolUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SystemDeletePoolUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *SystemDeletePoolForbidden) Code() int {
 }
 
 func (o *SystemDeletePoolForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemDeletePoolForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SystemDeletePoolForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *SystemDeletePoolNotFound) Code() int {
 }
 
 func (o *SystemDeletePoolNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemDeletePoolNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SystemDeletePoolNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *SystemDeletePoolTooManyRequests) Code() int {
 }
 
 func (o *SystemDeletePoolTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemDeletePoolTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}][%d] systemDeletePoolTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SystemDeletePoolTooManyRequests) GetPayload() *models.Error {

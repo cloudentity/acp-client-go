@@ -6,7 +6,6 @@ package organizations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreateOrganizationCreated) Code() int {
 }
 
 func (o *CreateOrganizationCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateOrganizationCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateOrganizationCreated) GetPayload() *models.OrganizationResponse {
@@ -208,13 +205,11 @@ func (o *CreateOrganizationBadRequest) Code() int {
 }
 
 func (o *CreateOrganizationBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateOrganizationBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateOrganizationBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreateOrganizationUnauthorized) Code() int {
 }
 
 func (o *CreateOrganizationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOrganizationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOrganizationUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreateOrganizationForbidden) Code() int {
 }
 
 func (o *CreateOrganizationForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOrganizationForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOrganizationForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreateOrganizationNotFound) Code() int {
 }
 
 func (o *CreateOrganizationNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOrganizationNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOrganizationNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreateOrganizationConflict) Code() int {
 }
 
 func (o *CreateOrganizationConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateOrganizationConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateOrganizationConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreateOrganizationUnprocessableEntity) Code() int {
 }
 
 func (o *CreateOrganizationUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateOrganizationUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateOrganizationUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreateOrganizationTooManyRequests) Code() int {
 }
 
 func (o *CreateOrganizationTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateOrganizationTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /organizations][%d] createOrganizationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /organizations][%d] createOrganizationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateOrganizationTooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *GetGoogleIDPClientOK) Code() int {
 }
 
 func (o *GetGoogleIDPClientOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientOK  %+v", 200, o.Payload)
 }
 
 func (o *GetGoogleIDPClientOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientOK  %+v", 200, o.Payload)
 }
 
 func (o *GetGoogleIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -196,13 +193,11 @@ func (o *GetGoogleIDPClientBadRequest) Code() int {
 }
 
 func (o *GetGoogleIDPClientBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetGoogleIDPClientBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetGoogleIDPClientBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *GetGoogleIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetGoogleIDPClientUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetGoogleIDPClientUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetGoogleIDPClientUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *GetGoogleIDPClientForbidden) Code() int {
 }
 
 func (o *GetGoogleIDPClientForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetGoogleIDPClientForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetGoogleIDPClientForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *GetGoogleIDPClientNotFound) Code() int {
 }
 
 func (o *GetGoogleIDPClientNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetGoogleIDPClientNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetGoogleIDPClientNotFound) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *GetGoogleIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetGoogleIDPClientTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetGoogleIDPClientTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}/client][%d] getGoogleIdPClientTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetGoogleIDPClientTooManyRequests) GetPayload() *models.Error {

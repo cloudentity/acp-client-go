@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *RevokeOBBRConsentNoContent) Code() int {
 }
 
 func (o *RevokeOBBRConsentNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNoContent ", 204)
 }
 
 func (o *RevokeOBBRConsentNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNoContent ", 204)
 }
 
 func (o *RevokeOBBRConsentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *RevokeOBBRConsentBadRequest) Code() int {
 }
 
 func (o *RevokeOBBRConsentBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeOBBRConsentBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RevokeOBBRConsentBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *RevokeOBBRConsentUnauthorized) Code() int {
 }
 
 func (o *RevokeOBBRConsentUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeOBBRConsentUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeOBBRConsentUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *RevokeOBBRConsentForbidden) Code() int {
 }
 
 func (o *RevokeOBBRConsentForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeOBBRConsentForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeOBBRConsentForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *RevokeOBBRConsentNotFound) Code() int {
 }
 
 func (o *RevokeOBBRConsentNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeOBBRConsentNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeOBBRConsentNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *RevokeOBBRConsentTooManyRequests) Code() int {
 }
 
 func (o *RevokeOBBRConsentTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeOBBRConsentTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] revokeOBBRConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeOBBRConsentTooManyRequests) GetPayload() *models.Error {

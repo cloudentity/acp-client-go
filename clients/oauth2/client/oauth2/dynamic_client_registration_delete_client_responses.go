@@ -6,7 +6,6 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DynamicClientRegistrationDeleteClientNoContent) Code() int {
 }
 
 func (o *DynamicClientRegistrationDeleteClientNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNoContent", 204)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNoContent ", 204)
 }
 
 func (o *DynamicClientRegistrationDeleteClientNoContent) String() string {
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNoContent", 204)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNoContent ", 204)
 }
 
 func (o *DynamicClientRegistrationDeleteClientNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DynamicClientRegistrationDeleteClientBadRequest) Code() int {
 }
 
 func (o *DynamicClientRegistrationDeleteClientBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientBadRequest) GetPayload() *models.RFC6749Error {
@@ -230,13 +227,11 @@ func (o *DynamicClientRegistrationDeleteClientUnauthorized) Code() int {
 }
 
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) GetPayload() *models.RFC6749Error {
@@ -300,13 +295,11 @@ func (o *DynamicClientRegistrationDeleteClientForbidden) Code() int {
 }
 
 func (o *DynamicClientRegistrationDeleteClientForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientForbidden) GetPayload() *models.RFC6749Error {
@@ -370,13 +363,11 @@ func (o *DynamicClientRegistrationDeleteClientNotFound) Code() int {
 }
 
 func (o *DynamicClientRegistrationDeleteClientNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DynamicClientRegistrationDeleteClientNotFound) GetPayload() *models.GenericError {

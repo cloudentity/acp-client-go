@@ -41,6 +41,9 @@ type PoolPermissionsResponse struct {
 	// get identity pool
 	GetIdentityPool bool `json:"get_identity_pool,omitempty" yaml:"get_identity_pool,omitempty"`
 
+	// manage identity pool groups
+	ManageIdentityPoolGroups bool `json:"manage_identity_pool_groups,omitempty" yaml:"manage_identity_pool_groups,omitempty"`
+
 	// manage identity pool users
 	ManageIdentityPoolUsers bool `json:"manage_identity_pool_users,omitempty" yaml:"manage_identity_pool_users,omitempty"`
 
@@ -58,6 +61,9 @@ type PoolPermissionsResponse struct {
 
 	// manage user passwords
 	ManageUserPasswords bool `json:"manage_user_passwords,omitempty" yaml:"manage_user_passwords,omitempty"`
+
+	// read identity pool groups
+	ReadIdentityPoolGroups bool `json:"read_identity_pool_groups,omitempty" yaml:"read_identity_pool_groups,omitempty"`
 
 	// read identity pool users
 	ReadIdentityPoolUsers bool `json:"read_identity_pool_users,omitempty" yaml:"read_identity_pool_users,omitempty"`

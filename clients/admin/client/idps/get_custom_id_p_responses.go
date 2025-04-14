@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetCustomIDPOK) Code() int {
 }
 
 func (o *GetCustomIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCustomIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCustomIDPOK) GetPayload() *models.CustomIDP {
@@ -174,13 +171,11 @@ func (o *GetCustomIDPUnauthorized) Code() int {
 }
 
 func (o *GetCustomIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCustomIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCustomIDPUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetCustomIDPForbidden) Code() int {
 }
 
 func (o *GetCustomIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetCustomIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetCustomIDPForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetCustomIDPNotFound) Code() int {
 }
 
 func (o *GetCustomIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCustomIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCustomIDPNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetCustomIDPTooManyRequests) Code() int {
 }
 
 func (o *GetCustomIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetCustomIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/custom/{iid}][%d] getCustomIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetCustomIDPTooManyRequests) GetPayload() *models.Error {

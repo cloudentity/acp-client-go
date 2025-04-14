@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *SetPasswordStateNoContent) Code() int {
 }
 
 func (o *SetPasswordStateNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNoContent", 204)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNoContent ", 204)
 }
 
 func (o *SetPasswordStateNoContent) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNoContent", 204)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNoContent ", 204)
 }
 
 func (o *SetPasswordStateNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *SetPasswordStateBadRequest) Code() int {
 }
 
 func (o *SetPasswordStateBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetPasswordStateBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetPasswordStateBadRequest) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *SetPasswordStateUnauthorized) Code() int {
 }
 
 func (o *SetPasswordStateUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetPasswordStateUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetPasswordStateUnauthorized) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *SetPasswordStateNotFound) Code() int {
 }
 
 func (o *SetPasswordStateNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetPasswordStateNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetPasswordStateNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *SetPasswordStateUnprocessableEntity) Code() int {
 }
 
 func (o *SetPasswordStateUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetPasswordStateUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}/password/state][%d] setPasswordStateUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetPasswordStateUnprocessableEntity) GetPayload() *models.Error {

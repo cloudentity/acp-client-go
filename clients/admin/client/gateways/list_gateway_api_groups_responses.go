@@ -6,7 +6,6 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -107,13 +106,11 @@ func (o *ListGatewayAPIGroupsOK) Code() int {
 }
 
 func (o *ListGatewayAPIGroupsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsOK) GetPayload() *models.GatewayAPIGroups {
@@ -184,13 +181,11 @@ func (o *ListGatewayAPIGroupsUnauthorized) Code() int {
 }
 
 func (o *ListGatewayAPIGroupsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsUnauthorized) GetPayload() *models.Error {
@@ -254,13 +249,11 @@ func (o *ListGatewayAPIGroupsForbidden) Code() int {
 }
 
 func (o *ListGatewayAPIGroupsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsForbidden) GetPayload() *models.Error {
@@ -324,13 +317,11 @@ func (o *ListGatewayAPIGroupsTooManyRequests) Code() int {
 }
 
 func (o *ListGatewayAPIGroupsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListGatewayAPIGroupsTooManyRequests) GetPayload() *models.Error {

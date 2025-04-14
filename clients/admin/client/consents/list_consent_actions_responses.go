@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -107,13 +106,11 @@ func (o *ListConsentActionsOK) Code() int {
 }
 
 func (o *ListConsentActionsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListConsentActionsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListConsentActionsOK) GetPayload() *models.ConsentActions {
@@ -184,13 +181,11 @@ func (o *ListConsentActionsUnauthorized) Code() int {
 }
 
 func (o *ListConsentActionsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListConsentActionsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListConsentActionsUnauthorized) GetPayload() *models.Error {
@@ -254,13 +249,11 @@ func (o *ListConsentActionsForbidden) Code() int {
 }
 
 func (o *ListConsentActionsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListConsentActionsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListConsentActionsForbidden) GetPayload() *models.Error {
@@ -324,13 +317,11 @@ func (o *ListConsentActionsTooManyRequests) Code() int {
 }
 
 func (o *ListConsentActionsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListConsentActionsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListConsentActionsTooManyRequests) GetPayload() *models.Error {

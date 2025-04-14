@@ -41,7 +41,7 @@ type EmailSettings struct {
 
 	// Email provider.
 	// Example: embedded
-	// Enum: ["smtp","embedded"]
+	// Enum: [smtp embedded]
 	Provider string `json:"provider,omitempty" yaml:"provider,omitempty"`
 }
 

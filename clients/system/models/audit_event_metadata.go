@@ -34,13 +34,25 @@ type AuditEventMetadata struct {
 	// Represents the correlation ID used for the OAuth2 authorization code grant flow.
 	AuthorizationCorrelationID string `json:"authorization_correlation_id,omitempty" yaml:"authorization_correlation_id,omitempty"`
 
+	// City
+	City string `json:"city,omitempty" yaml:"city,omitempty"`
+
 	// Access request client ID related to an audit event.
 	//
 	// May be empty when the access is incorrect or missing.
 	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
+	// Country code
+	CountryCode string `json:"country_code,omitempty" yaml:"country_code,omitempty"`
+
 	// DBFP jwt fingerprint
 	DbfpFingerprint string `json:"dbfp_fingerprint,omitempty" yaml:"dbfp_fingerprint,omitempty"`
+
+	// Device type based on the user agent (computer, tablet, phone, console, wearable, tv)
+	DeviceType string `json:"device_type,omitempty" yaml:"device_type,omitempty"`
+
+	// ID of the Group in Identity Pool
+	GroupID string `json:"group_id,omitempty" yaml:"group_id,omitempty"`
 
 	// ID of the Identity Pool
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
@@ -56,10 +68,16 @@ type AuditEventMetadata struct {
 	// May be empty when the access is incorrect or missing.
 	IdpSubject string `json:"idp_subject,omitempty" yaml:"idp_subject,omitempty"`
 
-	// Audit event IP address.
+	// IP address.
 	//
 	// It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
 	IP string `json:"ip,omitempty" yaml:"ip,omitempty"`
+
+	// Latitude
+	Latitude float64 `json:"latitude,omitempty" yaml:"latitude,omitempty"`
+
+	// Longitude
+	Longitude float64 `json:"longitude,omitempty" yaml:"longitude,omitempty"`
 
 	// Access request may act claims.
 	//

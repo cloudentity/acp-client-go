@@ -6,7 +6,6 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *UnbindServerThemeOK) Code() int {
 }
 
 func (o *UnbindServerThemeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *UnbindServerThemeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *UnbindServerThemeOK) GetPayload() *models.ServerToTheme {
@@ -190,13 +187,11 @@ func (o *UnbindServerThemeUnauthorized) Code() int {
 }
 
 func (o *UnbindServerThemeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UnbindServerThemeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UnbindServerThemeUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *UnbindServerThemeForbidden) Code() int {
 }
 
 func (o *UnbindServerThemeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UnbindServerThemeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UnbindServerThemeForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *UnbindServerThemeNotFound) Code() int {
 }
 
 func (o *UnbindServerThemeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UnbindServerThemeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UnbindServerThemeNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *UnbindServerThemeTooManyRequests) Code() int {
 }
 
 func (o *UnbindServerThemeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UnbindServerThemeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UnbindServerThemeTooManyRequests) GetPayload() *models.Error {

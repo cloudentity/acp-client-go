@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteUserVerifiableAddressNoContent) Code() int {
 }
 
 func (o *DeleteUserVerifiableAddressNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNoContent", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNoContent ", 204)
 }
 
 func (o *DeleteUserVerifiableAddressNoContent) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNoContent", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNoContent ", 204)
 }
 
 func (o *DeleteUserVerifiableAddressNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteUserVerifiableAddressUnauthorized) Code() int {
 }
 
 func (o *DeleteUserVerifiableAddressUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteUserVerifiableAddressForbidden) Code() int {
 }
 
 func (o *DeleteUserVerifiableAddressForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteUserVerifiableAddressNotFound) Code() int {
 }
 
 func (o *DeleteUserVerifiableAddressNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteUserVerifiableAddressTooManyRequests) Code() int {
 }
 
 func (o *DeleteUserVerifiableAddressTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteUserVerifiableAddressTooManyRequests) GetPayload() *models.Error {

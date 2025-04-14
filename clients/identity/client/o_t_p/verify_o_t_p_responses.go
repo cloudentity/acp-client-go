@@ -6,7 +6,6 @@ package o_t_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *VerifyOTPOK) Code() int {
 }
 
 func (o *VerifyOTPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPOK %s", 200, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPOK  %+v", 200, o.Payload)
 }
 
 func (o *VerifyOTPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPOK %s", 200, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPOK  %+v", 200, o.Payload)
 }
 
 func (o *VerifyOTPOK) GetPayload() *models.UserID {
@@ -168,13 +165,11 @@ func (o *VerifyOTPUnauthorized) Code() int {
 }
 
 func (o *VerifyOTPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyOTPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyOTPUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *VerifyOTPPreconditionFailed) Code() int {
 }
 
 func (o *VerifyOTPPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *VerifyOTPPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *VerifyOTPPreconditionFailed) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *VerifyOTPUnprocessableEntity) Code() int {
 }
 
 func (o *VerifyOTPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *VerifyOTPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/otp/verify][%d] verifyOTPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *VerifyOTPUnprocessableEntity) GetPayload() *models.Error {

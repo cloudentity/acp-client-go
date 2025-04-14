@@ -6,7 +6,6 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetGatewayConfigurationOK) Code() int {
 }
 
 func (o *GetGatewayConfigurationOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK %s", 200, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK  %+v", 200, o.Payload)
 }
 
 func (o *GetGatewayConfigurationOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK %s", 200, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK  %+v", 200, o.Payload)
 }
 
 func (o *GetGatewayConfigurationOK) GetPayload() *models.GatewayConfiguration {
@@ -174,13 +171,11 @@ func (o *GetGatewayConfigurationUnauthorized) Code() int {
 }
 
 func (o *GetGatewayConfigurationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetGatewayConfigurationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetGatewayConfigurationUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetGatewayConfigurationForbidden) Code() int {
 }
 
 func (o *GetGatewayConfigurationForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetGatewayConfigurationForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetGatewayConfigurationForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetGatewayConfigurationNotFound) Code() int {
 }
 
 func (o *GetGatewayConfigurationNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetGatewayConfigurationNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetGatewayConfigurationNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetGatewayConfigurationTooManyRequests) Code() int {
 }
 
 func (o *GetGatewayConfigurationTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetGatewayConfigurationTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetGatewayConfigurationTooManyRequests) GetPayload() *models.Error {

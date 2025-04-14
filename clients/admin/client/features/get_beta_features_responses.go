@@ -6,7 +6,6 @@ package features
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetBetaFeaturesOK) Code() int {
 }
 
 func (o *GetBetaFeaturesOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetBetaFeaturesOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetBetaFeaturesOK) GetPayload() *models.FeaturesResponse {
@@ -174,13 +171,11 @@ func (o *GetBetaFeaturesUnauthorized) Code() int {
 }
 
 func (o *GetBetaFeaturesUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetBetaFeaturesUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetBetaFeaturesUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetBetaFeaturesForbidden) Code() int {
 }
 
 func (o *GetBetaFeaturesForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetBetaFeaturesForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetBetaFeaturesForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetBetaFeaturesNotFound) Code() int {
 }
 
 func (o *GetBetaFeaturesNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetBetaFeaturesNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetBetaFeaturesNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetBetaFeaturesTooManyRequests) Code() int {
 }
 
 func (o *GetBetaFeaturesTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetBetaFeaturesTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /beta-features][%d] getBetaFeaturesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetBetaFeaturesTooManyRequests) GetPayload() *models.Error {

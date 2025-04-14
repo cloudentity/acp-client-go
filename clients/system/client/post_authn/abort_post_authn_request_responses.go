@@ -6,7 +6,6 @@ package post_authn
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *AbortPostAuthnRequestOK) Code() int {
 }
 
 func (o *AbortPostAuthnRequestOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestOK %s", 200, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestOK %s", 200, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestOK) GetPayload() *models.PostAuthnAborted {
@@ -174,13 +171,11 @@ func (o *AbortPostAuthnRequestUnauthorized) Code() int {
 }
 
 func (o *AbortPostAuthnRequestUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *AbortPostAuthnRequestForbidden) Code() int {
 }
 
 func (o *AbortPostAuthnRequestForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *AbortPostAuthnRequestNotFound) Code() int {
 }
 
 func (o *AbortPostAuthnRequestNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *AbortPostAuthnRequestTooManyRequests) Code() int {
 }
 
 func (o *AbortPostAuthnRequestTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/abort][%d] abortPostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AbortPostAuthnRequestTooManyRequests) GetPayload() *models.Error {

@@ -9,38 +9,12 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new clients API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new clients API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new clients API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -51,37 +25,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
-
-// This client is generated with a few options you might find useful for your swagger spec.
-//
-// Feel free to add you own set of options.
-
-// WithContentType allows the client to force the Content-Type header
-// to negotiate a specific Consumer from the server.
-//
-// You may use this option to set arbitrary extensions to your MIME media type.
-func WithContentType(mime string) ClientOption {
-	return func(r *runtime.ClientOperation) {
-		r.ConsumesMediaTypes = []string{mime}
-	}
-}
-
-// WithContentTypeApplicationJSON sets the Content-Type header to "application/json".
-func WithContentTypeApplicationJSON(r *runtime.ClientOperation) {
-	r.ConsumesMediaTypes = []string{"application/json"}
-}
-
-// WithContentTypeApplicationXML sets the Content-Type header to "application/xml".
-func WithContentTypeApplicationXML(r *runtime.ClientOperation) {
-	r.ConsumesMediaTypes = []string{"application/xml"}
-}
-
-// WithContentTypeMultipartFormData sets the Content-Type header to "multipart/form-data".
-func WithContentTypeMultipartFormData(r *runtime.ClientOperation) {
-	r.ConsumesMediaTypes = []string{"multipart/form-data"}
-}
 
 // ClientService is the interface for Client methods
 type ClientService interface {
@@ -98,6 +43,8 @@ type ClientService interface {
 	ImportSAMLMetadataFromText(params *ImportSAMLMetadataFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromTextNoContent, error)
 
 	ImportSAMLMetadataFromURL(params *ImportSAMLMetadataFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromURLNoContent, error)
+
+	ImportSAMLMetadataManually(params *ImportSAMLMetadataManuallyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataManuallyNoContent, error)
 
 	ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error)
 
@@ -397,6 +344,45 @@ func (a *Client) ImportSAMLMetadataFromURL(params *ImportSAMLMetadataFromURLPara
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for importSAMLMetadataFromURL: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ImportSAMLMetadataManually sets saml metadata manually
+*/
+func (a *Client) ImportSAMLMetadataManually(params *ImportSAMLMetadataManuallyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataManuallyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportSAMLMetadataManuallyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importSAMLMetadataManually",
+		Method:             "POST",
+		PathPattern:        "/clients/{cid}/saml/metadata/import/manual",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportSAMLMetadataManuallyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportSAMLMetadataManuallyNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importSAMLMetadataManually: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

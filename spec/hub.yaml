@@ -31,7 +31,8 @@ definitions:
   AdvancedConfiguration:
     properties:
       acr_values:
-        description: Configurable ACR values to enforce during auth flow
+        description: Deprecated ACR values to enforce during auth flow (use new ACR
+          feature instead)
         items:
           type: string
         type: array
@@ -164,6 +165,37 @@ definitions:
     - organization_name
     - proxy_name
     - environment_name
+    type: object
+  AppleCredentials:
+    description: Apple IDP specific credentials
+    properties:
+      private_key:
+        description: base64 encoded private key in .p8 format
+        type: string
+        x-nullable: false
+    type: object
+  AppleSettings:
+    description: Apple IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      team_id:
+        description: team id
+        type: string
+        x-nullable: false
     type: object
   ArculixAuth:
     properties:
@@ -406,6 +438,8 @@ definitions:
       - totp
       - password
       - otp
+      - email_otp
+      - sms_otp
       - webauthn
       type: string
     type: array
@@ -1075,7 +1109,7 @@ definitions:
   EmailAuth:
     properties:
       auth:
-        description: 'SMTP auth mechanism: crammd5 or plain'
+        description: 'SMTP auth mechanism: crammd5, plain or login'
         example: plain
         type: string
         x-nullable: false
@@ -1515,6 +1549,44 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  GoogleWorkspaceCredentials:
+    description: GoogleWorkspace IDP specific credentials
+    properties:
+      client_secret:
+        description: Application secret from your GoogleWorkspace application settings
+        type: string
+        x-nullable: false
+    type: object
+  GoogleWorkspaceSettings:
+    description: GoogleWorkspace IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      hosted_domains:
+        description: List of domains permitted for user authentication
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
+    type: object
   GraphQLField:
     properties:
       can_have_policy:
@@ -1573,9 +1645,18 @@ definitions:
           Currently it is only available for Identity Pool IDP.
         type: boolean
         x-nullable: false
+      use_embedded:
+        description: |-
+          Indicates whether the embedded configuration, which functions out of the box, should be used
+
+          This may only apply to specific IDPs, such as LinkedIn.
+        type: boolean
+        x-nullable: false
     type: object
   IDPCredentials:
     properties:
+      apple:
+        $ref: '#/definitions/AppleCredentials'
       auth0:
         $ref: '#/definitions/Auth0Credentials'
       azure:
@@ -1592,8 +1673,16 @@ definitions:
         $ref: '#/definitions/GithubCredentials'
       google:
         $ref: '#/definitions/GoogleCredentials'
+      google_workspace:
+        $ref: '#/definitions/GoogleWorkspaceCredentials'
       intelli_trust:
         $ref: '#/definitions/IntelliTrustCredentials'
+      linkedin:
+        $ref: '#/definitions/LinkedInCredentials'
+      meta:
+        $ref: '#/definitions/MetaCredentials'
+      microsoft:
+        $ref: '#/definitions/MicrosoftCredentials'
       oidc:
         $ref: '#/definitions/OIDCCredentials'
       okta:
@@ -1604,6 +1693,8 @@ definitions:
         $ref: '#/definitions/SAMLV2Credentials'
       static:
         $ref: '#/definitions/StaticCredentials'
+      x:
+        $ref: '#/definitions/XCredentials'
     type: object
   IDPDiscovery:
     properties:
@@ -1753,6 +1844,8 @@ definitions:
     type: object
   IDPSettings:
     properties:
+      apple:
+        $ref: '#/definitions/AppleSettings'
       auth0:
         $ref: '#/definitions/Auth0Settings'
       azure:
@@ -1769,8 +1862,16 @@ definitions:
         $ref: '#/definitions/GithubSettings'
       google:
         $ref: '#/definitions/GoogleSettings'
+      google_workspace:
+        $ref: '#/definitions/GoogleWorkspaceSettings'
       intelli_trust:
         $ref: '#/definitions/IntelliTrustSettings'
+      linkedin:
+        $ref: '#/definitions/LinkedInSettings'
+      meta:
+        $ref: '#/definitions/MetaSettings'
+      microsoft:
+        $ref: '#/definitions/MicrosoftSettings'
       oidc:
         $ref: '#/definitions/OIDCSettings'
       okta:
@@ -1781,6 +1882,8 @@ definitions:
         $ref: '#/definitions/SAMLV2Settings'
       static:
         $ref: '#/definitions/StaticSettings'
+      x:
+        $ref: '#/definitions/XSettings'
     type: object
   IDPTokenExchangeSettings:
     properties:
@@ -2003,6 +2106,8 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      pre_provisioning:
+        $ref: '#/definitions/PreProvisioningConfiguration'
       user:
         $ref: '#/definitions/JITUser'
     type: object
@@ -2090,6 +2195,43 @@ definitions:
     properties:
       party:
         $ref: '#/definitions/FDXParty'
+    type: object
+  LinkedInCredentials:
+    description: LinkedIn IDP specific credentials
+    properties:
+      client_secret:
+        description: OAuth client application secret
+        type: string
+        x-nullable: false
+    type: object
+  LinkedInSettings:
+    description: LinkedIn IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      get_user_info:
+        description: If enabled, users' data is collected by calling the `userinfo`
+          endpoint.
+        type: boolean
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   LocalizedName:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
@@ -2214,9 +2356,82 @@ definitions:
       $ref: '#/definitions/Mapping'
     title: An array of mappings
     type: array
+  MetaCredentials:
+    description: Meta IDP specific credentials
+    properties:
+      client_secret:
+        description: OAuth client application secret
+        type: string
+        x-nullable: false
+    type: object
+  MetaSettings:
+    description: Meta IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   Metadata:
     additionalProperties:
       type: object
+    type: object
+  MicrosoftCredentials:
+    description: Microsoft IDP specific credentials
+    properties:
+      client_secret:
+        description: Application secret from your Microsoft application settings
+        type: string
+        x-nullable: false
+    type: object
+  MicrosoftSettings:
+    description: Microsoft IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      get_user:
+        description: |-
+          If enabled, users' data is collected from the Microsoft Graph API
+
+          You can only get user's data if you are entitled to call the Microsoft Graph API.
+        type: boolean
+        x-nullable: false
+      graph_user_attributes:
+        description: An array of user attributes fetched from the Microsoft Graph
+          API
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   Name:
     description: |-
@@ -2290,6 +2505,7 @@ definitions:
         enum:
         - client_secret
         - private_key_jwt
+        - none
         type: string
         x-nullable: false
       client_id:
@@ -2320,6 +2536,10 @@ definitions:
       send_login_hint:
         description: Whether to send the identifier as a `login_hint` parameter to
           the IDP
+        type: boolean
+        x-nullable: false
+      use_pkce:
+        description: Use PKCE
         type: boolean
         x-nullable: false
     type: object
@@ -2594,6 +2814,13 @@ definitions:
       jws_payload:
         $ref: '#/definitions/JWSPayloadSettings'
     type: object
+  PreProvisioningAuthenticationFlowControl:
+    type: string
+  PreProvisioningConfiguration:
+    properties:
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
+    type: object
   PrivateKeyJWTCredentials:
     description: PrivateKeyJWT authentication settings
     properties:
@@ -2686,6 +2913,12 @@ definitions:
         type: array
         x-nullable: false
     title: RequestedAttribute represents the SAML RequestedAttribute object.
+    type: object
+  ResetCredentialsSettings:
+    properties:
+      do_not_allow_users_to_self_reset_credentials:
+        type: boolean
+        x-nullable: false
     type: object
   ResponseModes:
     items:
@@ -2815,10 +3048,46 @@ definitions:
     type: object
   SAMLConfiguration:
     properties:
+      organization_display_name:
+        description: Organization display name
+        type: string
+        x-nullable: false
+      organization_name:
+        description: Organization name
+        type: string
+        x-nullable: false
+      organization_url:
+        description: Organization URL
+        type: string
+        x-nullable: false
+      signing_hash_algorithms:
+        default:
+        - sha-256
+        description: Allowed SAML Assertion signing hash algorithms.
+        example:
+        - sha-256
+        items:
+          enum:
+          - sha-1
+          - sha-256
+          - sha-512
+          type: string
+        type: array
+        x-nullable: false
       subject_name_id:
         description: |-
           Allows to change default subject name id.
-          The default one will be 'uid', even if the value is empty.
+
+          The default one will be idp's subject, even if the value is empty.
+        type: string
+        x-nullable: false
+      subject_name_id_format:
+        description: Allows to set the subject name id format
+        enum:
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         type: string
         x-nullable: false
     type: object
@@ -2944,8 +3213,8 @@ definitions:
         enum:
         - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
-        - urn:oasis:names:tc:SAML:1.1:nameid-format:transient
-        - urn:oasis:names:tc:SAML:1.1:nameid-format:persistent
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         type: string
         x-nullable: false
@@ -3732,10 +4001,37 @@ definitions:
         x-nullable: false
       security:
         $ref: '#/definitions/SecureOptions'
+      translations:
+        $ref: '#/definitions/TenantTranslationsSettings'
       well_known:
         additionalProperties:
           type: object
         type: object
+        x-nullable: false
+      workforce:
+        $ref: '#/definitions/WorkforceSettings'
+    type: object
+  TenantTranslationsSettings:
+    properties:
+      default_locale:
+        description: Default locale
+        format: locale
+        type: string
+        x-nullable: false
+      disabled_translations:
+        description: Disabled built-in translations
+        items:
+          format: locale
+          type: string
+        type: array
+        x-nullable: false
+      enabled:
+        description: Are translations enabled
+        type: boolean
+        x-nullable: false
+      selector_enabled:
+        description: Is locale selector enabled in templates
+        type: boolean
         x-nullable: false
     type: object
   Token:
@@ -4066,6 +4362,13 @@ definitions:
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
+        x-nullable: false
       client_id_issued_at:
         description: |-
           The client identifier time of issue.
@@ -4370,9 +4673,50 @@ definitions:
         minLength: 32
         type: array
         x-nullable: false
+      saml_allowed_attributes:
+        description: Allowed SAML attributes
+        items:
+          type: string
+        type: array
+        x-nullable: false
       saml_metadata:
         $ref: '#/definitions/EntityDescriptor'
+      saml_metadata_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      saml_metadata_url:
+        type: string
+        x-nullable: false
+      saml_override_attributes:
+        description: If true, then only attributes defined in saml_attributes will
+          be used to build the SAML assertion
+        type: boolean
+        x-nullable: false
       saml_service_provider_id:
+        type: string
+        x-nullable: false
+      saml_signing_hash:
+        default: sha-256
+        description: SAML Assertion signing hash algorithm.
+        enum:
+        - sha-1
+        - sha-256
+        - sha-512
+        example: sha-256
+        type: string
+        x-nullable: false
+      saml_subject_name_id:
+        description: Allows to override the subject name id.
+        type: string
+        x-nullable: false
+      saml_subject_name_id_format:
+        description: Allows to override the subject name id format
+        enum:
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         type: string
         x-nullable: false
       scope:
@@ -4958,6 +5302,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -4965,6 +5311,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -4972,6 +5320,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -5136,11 +5486,15 @@ definitions:
         - totp
         - otp
         - webauthn
+        - sms_otp
+        - email_otp
         items:
           enum:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -5793,6 +6147,8 @@ definitions:
         $ref: '#/definitions/Styling'
       themes:
         $ref: '#/definitions/TreeThemes'
+      translations:
+        $ref: '#/definitions/TreeTranslations'
       url:
         description: optional custom tenant url. If not provided the server url is
           used instead
@@ -5824,6 +6180,40 @@ definitions:
   TreeThemes:
     additionalProperties:
       $ref: '#/definitions/TreeTheme'
+    type: object
+  TreeTranslation:
+    properties:
+      built_in_exists:
+        description: built-in exists
+        type: boolean
+        x-nullable: false
+      content:
+        additionalProperties:
+          type: object
+        description: content of the translation
+        type: object
+        x-nullable: false
+      created_at:
+        description: timestamp when the translation was created
+        format: date-time
+        type: string
+        x-nullable: false
+      enabled:
+        type: boolean
+        x-nullable: false
+      is_built_in:
+        description: Is built-in translation
+        type: boolean
+        x-nullable: false
+      updated_at:
+        description: timestamp when the translation was last updated
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  TreeTranslations:
+    additionalProperties:
+      $ref: '#/definitions/TreeTranslation'
     type: object
   TreeWebhook:
     properties:
@@ -5970,6 +6360,15 @@ definitions:
         x-nullable: false
     title: Configuration of a policy validator
     type: object
+  WorkforceSettings:
+    properties:
+      manifest_url:
+        type: string
+        x-nullable: false
+      url:
+        type: string
+        x-nullable: false
+    type: object
   X509Certificate:
     description: X509Certificate represents the XMLSEC object of the same name
     properties:
@@ -5989,6 +6388,28 @@ definitions:
         x-nullable: false
       XMLName:
         $ref: '#/definitions/Name'
+    type: object
+  XCredentials:
+    description: X IDP specific credentials
+    type: object
+  XSettings:
+    description: X IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
     type: object
 host: localhost:8443
 info:

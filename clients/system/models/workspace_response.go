@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -20,6 +21,13 @@ import (
 // swagger:model WorkspaceResponse
 type WorkspaceResponse struct {
 
+	// authentication context settings
+	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty" yaml:"authentication_context_settings,omitempty"`
+
+	// allowed authentication mechanisms for users in the identity pools
+	// Example: ["password","totp","otp","webauthn"]
+	AuthenticationMechanisms []string `json:"authentication_mechanisms" yaml:"authentication_mechanisms"`
+
 	// Your server's label color in a HEX format.
 	// Example: #007FFF
 	Color string `json:"color,omitempty" yaml:"color,omitempty"`
@@ -31,6 +39,9 @@ type WorkspaceResponse struct {
 	// Unique identifier of an workspace
 	// Example: default
 	ID string `json:"id,omitempty" yaml:"id,omitempty"`
+
+	// idp discovery
+	IdpDiscovery *IDPDiscovery `json:"idp_discovery,omitempty" yaml:"idp_discovery,omitempty"`
 
 	// issuer url
 	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
@@ -56,11 +67,17 @@ type WorkspaceResponse struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: ["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","openbanking_br_unico","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br openbanking_br_unico cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
 	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
+	// settings
+	Settings *ServerSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
+
+	// sso
+	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
+
 	// Subject format
-	// Enum: ["hash","legacy"]
+	// Enum: [hash legacy]
 	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// Subject identifier algorithm salt
@@ -77,7 +94,7 @@ type WorkspaceResponse struct {
 	// It is an internal property used to recognize if the server is created for an admin portal,
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
-	// Enum: ["admin","developer","system","regular","organization"]
+	// Enum: [admin developer system regular organization]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
@@ -85,11 +102,31 @@ type WorkspaceResponse struct {
 func (m *WorkspaceResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthenticationContextSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthenticationMechanisms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdpDiscovery(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateProfile(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSso(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -104,6 +141,80 @@ func (m *WorkspaceResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WorkspaceResponse) validateAuthenticationContextSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationContextSettings) { // not required
+		return nil
+	}
+
+	if m.AuthenticationContextSettings != nil {
+		if err := m.AuthenticationContextSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication_context_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+var workspaceResponseAuthenticationMechanismsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		workspaceResponseAuthenticationMechanismsItemsEnum = append(workspaceResponseAuthenticationMechanismsItemsEnum, v)
+	}
+}
+
+func (m *WorkspaceResponse) validateAuthenticationMechanismsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, workspaceResponseAuthenticationMechanismsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WorkspaceResponse) validateAuthenticationMechanisms(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationMechanisms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthenticationMechanisms); i++ {
+
+		// value enum
+		if err := m.validateAuthenticationMechanismsItemsEnum("authentication_mechanisms"+"."+strconv.Itoa(i), "body", m.AuthenticationMechanisms[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WorkspaceResponse) validateIdpDiscovery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdpDiscovery) { // not required
+		return nil
+	}
+
+	if m.IdpDiscovery != nil {
+		if err := m.IdpDiscovery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("idp_discovery")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("idp_discovery")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -222,6 +333,44 @@ func (m *WorkspaceResponse) validateProfile(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WorkspaceResponse) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WorkspaceResponse) validateSso(formats strfmt.Registry) error {
+	if swag.IsZero(m.Sso) { // not required
+		return nil
+	}
+
+	if m.Sso != nil {
+		if err := m.Sso.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var workspaceResponseTypeSubjectFormatPropEnum []interface{}
 
 func init() {
@@ -319,13 +468,71 @@ func (m *WorkspaceResponse) validateType(formats strfmt.Registry) error {
 func (m *WorkspaceResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthenticationContextSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdpDiscovery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSso(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WorkspaceResponse) contextValidateAuthenticationContextSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AuthenticationContextSettings != nil {
+
+		if swag.IsZero(m.AuthenticationContextSettings) { // not required
+			return nil
+		}
+
+		if err := m.AuthenticationContextSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication_context_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WorkspaceResponse) contextValidateIdpDiscovery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IdpDiscovery != nil {
+
+		if swag.IsZero(m.IdpDiscovery) { // not required
+			return nil
+		}
+
+		if err := m.IdpDiscovery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("idp_discovery")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("idp_discovery")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -342,6 +549,48 @@ func (m *WorkspaceResponse) contextValidateMetadata(ctx context.Context, formats
 				return ve.ValidateName("metadata")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WorkspaceResponse) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WorkspaceResponse) contextValidateSso(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Sso != nil {
+
+		if swag.IsZero(m.Sso) { // not required
+			return nil
+		}
+
+		if err := m.Sso.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso")
 			}
 			return err
 		}

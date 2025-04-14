@@ -6,7 +6,6 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetAuthorizationServerOK) Code() int {
 }
 
 func (o *GetAuthorizationServerOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAuthorizationServerOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAuthorizationServerOK) GetPayload() *models.ServerResponse {
@@ -190,13 +187,11 @@ func (o *GetAuthorizationServerUnauthorized) Code() int {
 }
 
 func (o *GetAuthorizationServerUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAuthorizationServerUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAuthorizationServerUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetAuthorizationServerForbidden) Code() int {
 }
 
 func (o *GetAuthorizationServerForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAuthorizationServerForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAuthorizationServerForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetAuthorizationServerNotFound) Code() int {
 }
 
 func (o *GetAuthorizationServerNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAuthorizationServerNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAuthorizationServerNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetAuthorizationServerTooManyRequests) Code() int {
 }
 
 func (o *GetAuthorizationServerTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetAuthorizationServerTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetAuthorizationServerTooManyRequests) GetPayload() *models.Error {

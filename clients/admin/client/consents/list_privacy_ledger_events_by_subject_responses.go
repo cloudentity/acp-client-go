@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *ListPrivacyLedgerEventsBySubjectOK) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK %s", 200, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK  %+v", 200, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK %s", 200, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK  %+v", 200, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectOK) GetPayload() *models.PrivacyLedgerEvents {
@@ -190,13 +187,11 @@ func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *ListPrivacyLedgerEventsBySubjectForbidden) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *ListPrivacyLedgerEventsBySubjectNotFound) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) Code() int {
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) GetPayload() *models.Error {

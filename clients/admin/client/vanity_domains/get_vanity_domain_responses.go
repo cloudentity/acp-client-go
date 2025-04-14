@@ -6,7 +6,6 @@ package vanity_domains
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetVanityDomainOK) Code() int {
 }
 
 func (o *GetVanityDomainOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK %s", 200, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK  %+v", 200, o.Payload)
 }
 
 func (o *GetVanityDomainOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK %s", 200, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK  %+v", 200, o.Payload)
 }
 
 func (o *GetVanityDomainOK) GetPayload() *models.VanityDomain {
@@ -190,13 +187,11 @@ func (o *GetVanityDomainUnauthorized) Code() int {
 }
 
 func (o *GetVanityDomainUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetVanityDomainUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetVanityDomainUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetVanityDomainForbidden) Code() int {
 }
 
 func (o *GetVanityDomainForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetVanityDomainForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetVanityDomainForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetVanityDomainNotFound) Code() int {
 }
 
 func (o *GetVanityDomainNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetVanityDomainNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetVanityDomainNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetVanityDomainTooManyRequests) Code() int {
 }
 
 func (o *GetVanityDomainTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetVanityDomainTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetVanityDomainTooManyRequests) GetPayload() *models.Error {

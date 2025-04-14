@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *CreateAzureIDPCreated) Code() int {
 }
 
 func (o *CreateAzureIDPCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAzureIDPCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAzureIDPCreated) GetPayload() *models.AzureIDP {
@@ -186,13 +183,11 @@ func (o *CreateAzureIDPBadRequest) Code() int {
 }
 
 func (o *CreateAzureIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAzureIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAzureIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *CreateAzureIDPUnauthorized) Code() int {
 }
 
 func (o *CreateAzureIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAzureIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAzureIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *CreateAzureIDPForbidden) Code() int {
 }
 
 func (o *CreateAzureIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAzureIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAzureIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *CreateAzureIDPNotFound) Code() int {
 }
 
 func (o *CreateAzureIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAzureIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAzureIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *CreateAzureIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateAzureIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAzureIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *CreateAzureIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateAzureIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAzureIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAzureIDPTooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package webhooks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteWebhookNoContent) Code() int {
 }
 
 func (o *DeleteWebhookNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNoContent ", 204)
 }
 
 func (o *DeleteWebhookNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNoContent ", 204)
 }
 
 func (o *DeleteWebhookNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteWebhookUnauthorized) Code() int {
 }
 
 func (o *DeleteWebhookUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteWebhookUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteWebhookUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteWebhookForbidden) Code() int {
 }
 
 func (o *DeleteWebhookForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteWebhookForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteWebhookForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteWebhookNotFound) Code() int {
 }
 
 func (o *DeleteWebhookNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteWebhookNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteWebhookNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteWebhookTooManyRequests) Code() int {
 }
 
 func (o *DeleteWebhookTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteWebhookTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteWebhookTooManyRequests) GetPayload() *models.Error {

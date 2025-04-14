@@ -6,7 +6,6 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -134,13 +133,11 @@ func (o *GetPaymentConsentDeprecatedOK) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedOK) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
@@ -204,13 +201,11 @@ func (o *GetPaymentConsentDeprecatedBadRequest) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -274,13 +269,11 @@ func (o *GetPaymentConsentDeprecatedUnauthorized) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -344,13 +337,11 @@ func (o *GetPaymentConsentDeprecatedForbidden) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -414,13 +405,11 @@ func (o *GetPaymentConsentDeprecatedMethodNotAllowed) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedMethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedMethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -484,13 +473,11 @@ func (o *GetPaymentConsentDeprecatedNotAcceptable) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedNotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedNotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -554,13 +541,11 @@ func (o *GetPaymentConsentDeprecatedUnsupportedMediaType) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedUnsupportedMediaType) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnsupportedMediaType) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -624,13 +609,11 @@ func (o *GetPaymentConsentDeprecatedUnprocessableEntity) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -694,13 +677,11 @@ func (o *GetPaymentConsentDeprecatedTooManyRequests) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -764,13 +745,11 @@ func (o *GetPaymentConsentDeprecatedInternalServerError) Code() int {
 }
 
 func (o *GetPaymentConsentDeprecatedInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetPaymentConsentDeprecatedInternalServerError) GetPayload() *models.OBBRErrorResponse {

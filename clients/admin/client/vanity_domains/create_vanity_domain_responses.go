@@ -6,7 +6,6 @@ package vanity_domains
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreateVanityDomainOK) Code() int {
 }
 
 func (o *CreateVanityDomainOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK %s", 200, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateVanityDomainOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK %s", 200, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateVanityDomainOK) GetPayload() *models.VanityDomain {
@@ -208,13 +205,11 @@ func (o *CreateVanityDomainBadRequest) Code() int {
 }
 
 func (o *CreateVanityDomainBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateVanityDomainBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateVanityDomainBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreateVanityDomainUnauthorized) Code() int {
 }
 
 func (o *CreateVanityDomainUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateVanityDomainUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateVanityDomainUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreateVanityDomainForbidden) Code() int {
 }
 
 func (o *CreateVanityDomainForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateVanityDomainForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateVanityDomainForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreateVanityDomainNotFound) Code() int {
 }
 
 func (o *CreateVanityDomainNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateVanityDomainNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateVanityDomainNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreateVanityDomainConflict) Code() int {
 }
 
 func (o *CreateVanityDomainConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateVanityDomainConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateVanityDomainConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreateVanityDomainUnprocessableEntity) Code() int {
 }
 
 func (o *CreateVanityDomainUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateVanityDomainUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateVanityDomainUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreateVanityDomainTooManyRequests) Code() int {
 }
 
 func (o *CreateVanityDomainTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateVanityDomainTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateVanityDomainTooManyRequests) GetPayload() *models.Error {

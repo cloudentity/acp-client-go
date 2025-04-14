@@ -96,6 +96,15 @@ type AuditEventPayloads struct {
 	// gateway request unauthorized
 	GatewayRequestUnauthorized *RequestValidatedPayload `json:"gateway_request_unauthorized,omitempty" yaml:"gateway_request_unauthorized,omitempty"`
 
+	// group created
+	GroupCreated *Group `json:"group_created,omitempty" yaml:"group_created,omitempty"`
+
+	// group deleted
+	GroupDeleted *Group `json:"group_deleted,omitempty" yaml:"group_deleted,omitempty"`
+
+	// group updated
+	GroupUpdated *Group `json:"group_updated,omitempty" yaml:"group_updated,omitempty"`
+
 	// import created
 	ImportCreated *ConfigImportEventPayload `json:"import_created,omitempty" yaml:"import_created,omitempty"`
 
@@ -104,6 +113,9 @@ type AuditEventPayloads struct {
 
 	// jit created
 	JitCreated *JITCreatedPayload `json:"jit_created,omitempty" yaml:"jit_created,omitempty"`
+
+	// jit denied
+	JitDenied *JITDeniedPayload `json:"jit_denied,omitempty" yaml:"jit_denied,omitempty"`
 
 	// jit failed
 	JitFailed *JITFailedPayload `json:"jit_failed,omitempty" yaml:"jit_failed,omitempty"`
@@ -186,6 +198,9 @@ type AuditEventPayloads struct {
 	// recovery confirmed
 	RecoveryConfirmed *RecoveryPayload `json:"recovery_confirmed,omitempty" yaml:"recovery_confirmed,omitempty"`
 
+	// risk calculated
+	RiskCalculated *RiskPayload `json:"risk_calculated,omitempty" yaml:"risk_calculated,omitempty"`
+
 	// role granted
 	RoleGranted *RoleGrantAuditPayload `json:"role_granted,omitempty" yaml:"role_granted,omitempty"`
 
@@ -246,6 +261,9 @@ type AuditEventPayloads struct {
 	// totp reset requested
 	TotpResetRequested *UserIDAndIdentifierPayload `json:"totp_reset_requested,omitempty" yaml:"totp_reset_requested,omitempty"`
 
+	// user added to group
+	UserAddedToGroup *UserInGroupPayload `json:"user_added_to_group,omitempty" yaml:"user_added_to_group,omitempty"`
+
 	// user authenticated
 	UserAuthenticated *UserAuthenticatedPayload `json:"user_authenticated,omitempty" yaml:"user_authenticated,omitempty"`
 
@@ -257,6 +275,9 @@ type AuditEventPayloads struct {
 
 	// user deleted
 	UserDeleted *UserPayload `json:"user_deleted,omitempty" yaml:"user_deleted,omitempty"`
+
+	// user removed from group
+	UserRemovedFromGroup *UserInGroupPayload `json:"user_removed_from_group,omitempty" yaml:"user_removed_from_group,omitempty"`
 
 	// user updated
 	UserUpdated *UserPayload `json:"user_updated,omitempty" yaml:"user_updated,omitempty"`
@@ -376,6 +397,18 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGroupCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroupDeleted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroupUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateImportCreated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -385,6 +418,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateJitCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateJitDenied(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -496,6 +533,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRiskCalculated(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRoleGranted(formats); err != nil {
 		res = append(res, err)
 	}
@@ -576,6 +617,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUserAddedToGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUserAuthenticated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -589,6 +634,10 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUserDeleted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserRemovedFromGroup(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1104,6 +1153,63 @@ func (m *AuditEventPayloads) validateGatewayRequestUnauthorized(formats strfmt.R
 	return nil
 }
 
+func (m *AuditEventPayloads) validateGroupCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.GroupCreated) { // not required
+		return nil
+	}
+
+	if m.GroupCreated != nil {
+		if err := m.GroupCreated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGroupDeleted(formats strfmt.Registry) error {
+	if swag.IsZero(m.GroupDeleted) { // not required
+		return nil
+	}
+
+	if m.GroupDeleted != nil {
+		if err := m.GroupDeleted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGroupUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.GroupUpdated) { // not required
+		return nil
+	}
+
+	if m.GroupUpdated != nil {
+		if err := m.GroupUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateImportCreated(formats strfmt.Registry) error {
 	if swag.IsZero(m.ImportCreated) { // not required
 		return nil
@@ -1153,6 +1259,25 @@ func (m *AuditEventPayloads) validateJitCreated(formats strfmt.Registry) error {
 				return ve.ValidateName("jit_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jit_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateJitDenied(formats strfmt.Registry) error {
+	if swag.IsZero(m.JitDenied) { // not required
+		return nil
+	}
+
+	if m.JitDenied != nil {
+		if err := m.JitDenied.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit_denied")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit_denied")
 			}
 			return err
 		}
@@ -1674,6 +1799,25 @@ func (m *AuditEventPayloads) validateRecoveryConfirmed(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *AuditEventPayloads) validateRiskCalculated(formats strfmt.Registry) error {
+	if swag.IsZero(m.RiskCalculated) { // not required
+		return nil
+	}
+
+	if m.RiskCalculated != nil {
+		if err := m.RiskCalculated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_calculated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_calculated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateRoleGranted(formats strfmt.Registry) error {
 	if swag.IsZero(m.RoleGranted) { // not required
 		return nil
@@ -2054,6 +2198,25 @@ func (m *AuditEventPayloads) validateTotpResetRequested(formats strfmt.Registry)
 	return nil
 }
 
+func (m *AuditEventPayloads) validateUserAddedToGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserAddedToGroup) { // not required
+		return nil
+	}
+
+	if m.UserAddedToGroup != nil {
+		if err := m.UserAddedToGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_added_to_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_added_to_group")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateUserAuthenticated(formats strfmt.Registry) error {
 	if swag.IsZero(m.UserAuthenticated) { // not required
 		return nil
@@ -2122,6 +2285,25 @@ func (m *AuditEventPayloads) validateUserDeleted(formats strfmt.Registry) error 
 				return ve.ValidateName("user_deleted")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("user_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateUserRemovedFromGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserRemovedFromGroup) { // not required
+		return nil
+	}
+
+	if m.UserRemovedFromGroup != nil {
+		if err := m.UserRemovedFromGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_removed_from_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_removed_from_group")
 			}
 			return err
 		}
@@ -2295,6 +2477,18 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGroupCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGroupDeleted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGroupUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateImportCreated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2304,6 +2498,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateJitCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateJitDenied(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2415,6 +2613,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRiskCalculated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRoleGranted(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2495,6 +2697,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateUserAddedToGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateUserAuthenticated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2508,6 +2714,10 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateUserDeleted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserRemovedFromGroup(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -3075,6 +3285,69 @@ func (m *AuditEventPayloads) contextValidateGatewayRequestUnauthorized(ctx conte
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateGroupCreated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GroupCreated != nil {
+
+		if swag.IsZero(m.GroupCreated) { // not required
+			return nil
+		}
+
+		if err := m.GroupCreated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGroupDeleted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GroupDeleted != nil {
+
+		if swag.IsZero(m.GroupDeleted) { // not required
+			return nil
+		}
+
+		if err := m.GroupDeleted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGroupUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GroupUpdated != nil {
+
+		if swag.IsZero(m.GroupUpdated) { // not required
+			return nil
+		}
+
+		if err := m.GroupUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateImportCreated(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ImportCreated != nil {
@@ -3130,6 +3403,27 @@ func (m *AuditEventPayloads) contextValidateJitCreated(ctx context.Context, form
 				return ve.ValidateName("jit_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jit_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateJitDenied(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.JitDenied != nil {
+
+		if swag.IsZero(m.JitDenied) { // not required
+			return nil
+		}
+
+		if err := m.JitDenied.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit_denied")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit_denied")
 			}
 			return err
 		}
@@ -3705,6 +3999,27 @@ func (m *AuditEventPayloads) contextValidateRecoveryConfirmed(ctx context.Contex
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateRiskCalculated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RiskCalculated != nil {
+
+		if swag.IsZero(m.RiskCalculated) { // not required
+			return nil
+		}
+
+		if err := m.RiskCalculated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("risk_calculated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("risk_calculated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateRoleGranted(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RoleGranted != nil {
@@ -4125,6 +4440,27 @@ func (m *AuditEventPayloads) contextValidateTotpResetRequested(ctx context.Conte
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateUserAddedToGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserAddedToGroup != nil {
+
+		if swag.IsZero(m.UserAddedToGroup) { // not required
+			return nil
+		}
+
+		if err := m.UserAddedToGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_added_to_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_added_to_group")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateUserAuthenticated(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.UserAuthenticated != nil {
@@ -4201,6 +4537,27 @@ func (m *AuditEventPayloads) contextValidateUserDeleted(ctx context.Context, for
 				return ve.ValidateName("user_deleted")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("user_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserRemovedFromGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserRemovedFromGroup != nil {
+
+		if swag.IsZero(m.UserRemovedFromGroup) { // not required
+			return nil
+		}
+
+		if err := m.UserRemovedFromGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_removed_from_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_removed_from_group")
 			}
 			return err
 		}

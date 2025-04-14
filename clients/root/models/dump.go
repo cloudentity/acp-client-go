@@ -76,6 +76,9 @@ type Dump struct {
 	// idps
 	Idps IDPs `json:"idps,omitempty" yaml:"idps,omitempty"`
 
+	// licenses
+	Licenses []*TenantLicense `json:"licenses" yaml:"licenses"`
+
 	// mfa methods
 	MfaMethods []*MFAMethod `json:"mfa_methods" yaml:"mfa_methods"`
 
@@ -150,6 +153,9 @@ type Dump struct {
 
 	// themes
 	Themes []*Theme `json:"themes" yaml:"themes"`
+
+	// translations
+	Translations []*Translation `json:"translations" yaml:"translations"`
 
 	// vanity domains
 	VanityDomains []*VanityDomain `json:"vanity_domains" yaml:"vanity_domains"`
@@ -235,6 +241,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIdps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLicenses(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -335,6 +345,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateThemes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTranslations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -832,6 +846,32 @@ func (m *Dump) validateIdps(formats strfmt.Registry) error {
 			return ce.ValidateName("idps")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *Dump) validateLicenses(formats strfmt.Registry) error {
+	if swag.IsZero(m.Licenses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Licenses); i++ {
+		if swag.IsZero(m.Licenses[i]) { // not required
+			continue
+		}
+
+		if m.Licenses[i] != nil {
+			if err := m.Licenses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("licenses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("licenses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -1487,6 +1527,32 @@ func (m *Dump) validateThemes(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Dump) validateTranslations(formats strfmt.Registry) error {
+	if swag.IsZero(m.Translations) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Translations); i++ {
+		if swag.IsZero(m.Translations[i]) { // not required
+			continue
+		}
+
+		if m.Translations[i] != nil {
+			if err := m.Translations[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("translations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("translations" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) validateVanityDomains(formats strfmt.Registry) error {
 	if swag.IsZero(m.VanityDomains) { // not required
 		return nil
@@ -1619,6 +1685,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLicenses(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMfaMethods(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1716,6 +1786,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateThemes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTranslations(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2192,6 +2266,31 @@ func (m *Dump) contextValidateIdps(ctx context.Context, formats strfmt.Registry)
 			return ce.ValidateName("idps")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateLicenses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Licenses); i++ {
+
+		if m.Licenses[i] != nil {
+
+			if swag.IsZero(m.Licenses[i]) { // not required
+				return nil
+			}
+
+			if err := m.Licenses[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("licenses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("licenses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -2812,6 +2911,31 @@ func (m *Dump) contextValidateThemes(ctx context.Context, formats strfmt.Registr
 					return ve.ValidateName("themes" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("themes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateTranslations(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Translations); i++ {
+
+		if m.Translations[i] != nil {
+
+			if swag.IsZero(m.Translations[i]) { // not required
+				return nil
+			}
+
+			if err := m.Translations[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("translations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("translations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

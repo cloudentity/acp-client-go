@@ -34,6 +34,8 @@ definitions:
       - totp
       - password
       - otp
+      - email_otp
+      - sms_otp
       - webauthn
       type: string
     type: array
@@ -131,6 +133,16 @@ definitions:
           $ref: '#/definitions/Code'
         type: array
         x-nullable: false
+      group_members:
+        items:
+          $ref: '#/definitions/GroupMember'
+        type: array
+        x-nullable: false
+      groups:
+        items:
+          $ref: '#/definitions/InternalGroup'
+        type: array
+        x-nullable: false
       pools:
         items:
           $ref: '#/definitions/Pool'
@@ -179,6 +191,25 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  GroupMember:
+    properties:
+      group_id:
+        format: groupID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+    type: object
   Hash:
     properties:
       config:
@@ -193,18 +224,61 @@ definitions:
         $ref: '#/definitions/Argon2Config'
       bcrypt:
         $ref: '#/definitions/BcryptConfig'
+      md5:
+        $ref: '#/definitions/MD5Config'
       method:
         enum:
         - bcrypt
         - pbkdf2
         - argon2
         - sha
+        - md5
         type: string
         x-nullable: false
       pbkdf2:
         $ref: '#/definitions/PBKDF2Config'
       sha:
         $ref: '#/definitions/SHAConfig'
+    type: object
+  InternalGroup:
+    properties:
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: groupID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      path:
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - user_pool_id
+    type: object
+  MD5Config:
+    properties:
+      salt:
+        type: string
+        x-nullable: false
+      salt_after_digest_in_hash:
+        type: boolean
+        x-nullable: false
+      salt_length:
+        format: int64
+        type: integer
+        x-nullable: false
     type: object
   OtpConfig:
     properties:
@@ -361,6 +435,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -368,6 +444,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -375,6 +453,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -427,6 +507,12 @@ definitions:
         x-nullable: false
     required:
     - type
+    type: object
+  ResetCredentialsSettings:
+    properties:
+      do_not_allow_users_to_self_reset_credentials:
+        type: boolean
+        x-nullable: false
     type: object
   Rfc6902PatchOperation:
     properties:
@@ -869,6 +955,12 @@ definitions:
       id:
         format: verifiableAddressID
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:

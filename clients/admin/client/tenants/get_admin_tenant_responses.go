@@ -6,7 +6,6 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetAdminTenantOK) Code() int {
 }
 
 func (o *GetAdminTenantOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantOK %s", 200, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAdminTenantOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantOK %s", 200, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAdminTenantOK) GetPayload() *models.Tenant {
@@ -174,13 +171,11 @@ func (o *GetAdminTenantUnauthorized) Code() int {
 }
 
 func (o *GetAdminTenantUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAdminTenantUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAdminTenantUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetAdminTenantForbidden) Code() int {
 }
 
 func (o *GetAdminTenantForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAdminTenantForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAdminTenantForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetAdminTenantNotFound) Code() int {
 }
 
 func (o *GetAdminTenantNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAdminTenantNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAdminTenantNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetAdminTenantTooManyRequests) Code() int {
 }
 
 func (o *GetAdminTenantTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetAdminTenantTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetAdminTenantTooManyRequests) GetPayload() *models.Error {

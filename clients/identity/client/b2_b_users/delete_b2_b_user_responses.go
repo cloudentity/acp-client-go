@@ -6,7 +6,6 @@ package b2_b_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteB2BUserNoContent) Code() int {
 }
 
 func (o *DeleteB2BUserNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNoContent", 204)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNoContent ", 204)
 }
 
 func (o *DeleteB2BUserNoContent) String() string {
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNoContent", 204)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNoContent ", 204)
 }
 
 func (o *DeleteB2BUserNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteB2BUserUnauthorized) Code() int {
 }
 
 func (o *DeleteB2BUserUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteB2BUserUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteB2BUserUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteB2BUserForbidden) Code() int {
 }
 
 func (o *DeleteB2BUserForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteB2BUserForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteB2BUserForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteB2BUserNotFound) Code() int {
 }
 
 func (o *DeleteB2BUserNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteB2BUserNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteB2BUserNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteB2BUserTooManyRequests) Code() int {
 }
 
 func (o *DeleteB2BUserTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteB2BUserTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /admin/b2b/pools/{ipID}/users/{userID}][%d] deleteB2BUserTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteB2BUserTooManyRequests) GetPayload() *models.Error {

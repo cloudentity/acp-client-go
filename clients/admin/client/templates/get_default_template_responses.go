@@ -6,7 +6,6 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *GetDefaultTemplateOK) Code() int {
 }
 
 func (o *GetDefaultTemplateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateOK %s", 200, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDefaultTemplateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateOK %s", 200, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDefaultTemplateOK) GetPayload() *models.Template {
@@ -196,13 +193,11 @@ func (o *GetDefaultTemplateBadRequest) Code() int {
 }
 
 func (o *GetDefaultTemplateBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetDefaultTemplateBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetDefaultTemplateBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *GetDefaultTemplateUnauthorized) Code() int {
 }
 
 func (o *GetDefaultTemplateUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetDefaultTemplateUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetDefaultTemplateUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *GetDefaultTemplateForbidden) Code() int {
 }
 
 func (o *GetDefaultTemplateForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDefaultTemplateForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDefaultTemplateForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *GetDefaultTemplateNotFound) Code() int {
 }
 
 func (o *GetDefaultTemplateNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetDefaultTemplateNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetDefaultTemplateNotFound) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *GetDefaultTemplateTooManyRequests) Code() int {
 }
 
 func (o *GetDefaultTemplateTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDefaultTemplateTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /themes/template/{fsPath}][%d] getDefaultTemplateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDefaultTemplateTooManyRequests) GetPayload() *models.Error {

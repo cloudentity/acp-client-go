@@ -9,38 +9,12 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new idps API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new idps API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new idps API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -51,11 +25,13 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	CreateAppleIDP(params *CreateAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAppleIDPCreated, error)
+
 	CreateAuth0IDP(params *CreateAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAuth0IDPCreated, error)
 
 	CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureB2CIDPCreated, error)
@@ -72,9 +48,17 @@ type ClientService interface {
 
 	CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleIDPCreated, error)
 
+	CreateGoogleWorkspaceIDP(params *CreateGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleWorkspaceIDPCreated, error)
+
 	CreateIdentityPoolIDP(params *CreateIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIdentityPoolIDPCreated, error)
 
 	CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error)
+
+	CreateLinkedInIDP(params *CreateLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLinkedInIDPCreated, error)
+
+	CreateMetaIDP(params *CreateMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateMetaIDPCreated, error)
+
+	CreateMicrosoftIDP(params *CreateMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateMicrosoftIDPCreated, error)
 
 	CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOIDCIDPCreated, error)
 
@@ -90,7 +74,13 @@ type ClientService interface {
 
 	CreateWorkspaceIDP(params *CreateWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateWorkspaceIDPCreated, error)
 
+	CreateXIDP(params *CreateXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateXIDPCreated, error)
+
 	DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteIDPNoContent, error)
+
+	GetAppleIDP(params *GetAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppleIDPOK, error)
+
+	GetAppleIDPClient(params *GetAppleIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppleIDPClientOK, error)
 
 	GetAuth0IDP(params *GetAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuth0IDPOK, error)
 
@@ -132,6 +122,10 @@ type ClientService interface {
 
 	GetGoogleIDPClient(params *GetGoogleIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleIDPClientOK, error)
 
+	GetGoogleWorkspaceIDP(params *GetGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleWorkspaceIDPOK, error)
+
+	GetGoogleWorkspaceIDPClient(params *GetGoogleWorkspaceIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleWorkspaceIDPClientOK, error)
+
 	GetIdentityPoolIDP(params *GetIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIdentityPoolIDPOK, error)
 
 	GetIdentityPoolIDPClient(params *GetIdentityPoolIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIdentityPoolIDPClientOK, error)
@@ -139,6 +133,18 @@ type ClientService interface {
 	GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error)
 
 	GetIntelliTrustIDPClient(params *GetIntelliTrustIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPClientOK, error)
+
+	GetLinkedInIDP(params *GetLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLinkedInIDPOK, error)
+
+	GetLinkedInIDPClient(params *GetLinkedInIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLinkedInIDPClientOK, error)
+
+	GetMetaIDP(params *GetMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetaIDPOK, error)
+
+	GetMetaIDPClient(params *GetMetaIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetaIDPClientOK, error)
+
+	GetMicrosoftIDP(params *GetMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMicrosoftIDPOK, error)
+
+	GetMicrosoftIDPClient(params *GetMicrosoftIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMicrosoftIDPClientOK, error)
 
 	GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOIDCIDPOK, error)
 
@@ -168,9 +174,15 @@ type ClientService interface {
 
 	GetWorkspaceIDPClient(params *GetWorkspaceIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceIDPClientOK, error)
 
+	GetXIDP(params *GetXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetXIDPOK, error)
+
+	GetXIDPClient(params *GetXIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetXIDPClientOK, error)
+
 	ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error)
 
 	ListIDPsForIdentityPool(params *ListIDPsForIdentityPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsForIdentityPoolOK, error)
+
+	UpdateAppleIDP(params *UpdateAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAppleIDPOK, error)
 
 	UpdateAuth0IDP(params *UpdateAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuth0IDPOK, error)
 
@@ -192,9 +204,17 @@ type ClientService interface {
 
 	UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleIDPOK, error)
 
+	UpdateGoogleWorkspaceIDP(params *UpdateGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleWorkspaceIDPOK, error)
+
 	UpdateIdentityPoolIDP(params *UpdateIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIdentityPoolIDPOK, error)
 
 	UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIntelliTrustIDPOK, error)
+
+	UpdateLinkedInIDP(params *UpdateLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateLinkedInIDPOK, error)
+
+	UpdateMetaIDP(params *UpdateMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateMetaIDPOK, error)
+
+	UpdateMicrosoftIDP(params *UpdateMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateMicrosoftIDPOK, error)
 
 	UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOIDCIDPOK, error)
 
@@ -210,7 +230,50 @@ type ClientService interface {
 
 	UpdateWorkspaceIDP(params *UpdateWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateWorkspaceIDPOK, error)
 
+	UpdateXIDP(params *UpdateXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateXIDPOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+CreateAppleIDP creates apple ID p
+
+Create Apple IDP.
+*/
+func (a *Client) CreateAppleIDP(params *CreateAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAppleIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateAppleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createAppleIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/apple",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateAppleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateAppleIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createAppleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -542,6 +605,47 @@ func (a *Client) CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime
 }
 
 /*
+CreateGoogleWorkspaceIDP creates google workspace ID p
+
+Create GoogleWorkspace IDP.
+*/
+func (a *Client) CreateGoogleWorkspaceIDP(params *CreateGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleWorkspaceIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateGoogleWorkspaceIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createGoogleWorkspaceIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/google_workspace",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateGoogleWorkspaceIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateGoogleWorkspaceIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createGoogleWorkspaceIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 CreateIdentityPoolIDP creates identity pool ID p
 
 Create IdentityPool IDP.
@@ -620,6 +724,129 @@ func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, auth
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for createIntelliTrustIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreateLinkedInIDP creates linked in ID p
+
+Create LinkedIn IDP.
+*/
+func (a *Client) CreateLinkedInIDP(params *CreateLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLinkedInIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateLinkedInIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createLinkedInIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/linkedin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateLinkedInIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateLinkedInIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createLinkedInIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreateMetaIDP creates meta ID p
+
+Create Meta IDP.
+*/
+func (a *Client) CreateMetaIDP(params *CreateMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateMetaIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateMetaIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createMetaIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/meta",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateMetaIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateMetaIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createMetaIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreateMicrosoftIDP creates microsoft ID p
+
+Create Microsoft IDP.
+*/
+func (a *Client) CreateMicrosoftIDP(params *CreateMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateMicrosoftIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateMicrosoftIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createMicrosoftIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/microsoft",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateMicrosoftIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateMicrosoftIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createMicrosoftIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -911,6 +1138,47 @@ func (a *Client) CreateWorkspaceIDP(params *CreateWorkspaceIDPParams, authInfo r
 }
 
 /*
+CreateXIDP creates x ID p
+
+Create X IDP.
+*/
+func (a *Client) CreateXIDP(params *CreateXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateXIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateXIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createXIDP",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/idps/x",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateXIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateXIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createXIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	DeleteIDP deletes ID p
 
 	Deletes an IDP of your choice
@@ -952,6 +1220,86 @@ func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthI
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for deleteIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetAppleIDP gets apple ID p
+
+Get Apple IDP.
+*/
+func (a *Client) GetAppleIDP(params *GetAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppleIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getAppleIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/apple/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAppleIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAppleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetAppleIDPClient returns apple ID p client
+*/
+func (a *Client) GetAppleIDPClient(params *GetAppleIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppleIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppleIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getAppleIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/apple/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppleIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAppleIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAppleIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -1756,6 +2104,86 @@ func (a *Client) GetGoogleIDPClient(params *GetGoogleIDPClientParams, authInfo r
 }
 
 /*
+GetGoogleWorkspaceIDP gets google workspace ID p
+
+Get GoogleWorkspace IDP.
+*/
+func (a *Client) GetGoogleWorkspaceIDP(params *GetGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleWorkspaceIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGoogleWorkspaceIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getGoogleWorkspaceIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/google_workspace/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGoogleWorkspaceIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetGoogleWorkspaceIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getGoogleWorkspaceIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetGoogleWorkspaceIDPClient returns google workspace ID p client
+*/
+func (a *Client) GetGoogleWorkspaceIDPClient(params *GetGoogleWorkspaceIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleWorkspaceIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGoogleWorkspaceIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getGoogleWorkspaceIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/google_workspace/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGoogleWorkspaceIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetGoogleWorkspaceIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getGoogleWorkspaceIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetIdentityPoolIDP gets identity pool ID p
 
 Get IdentityPool IDP.
@@ -1912,6 +2340,246 @@ func (a *Client) GetIntelliTrustIDPClient(params *GetIntelliTrustIDPClientParams
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getIntelliTrustIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetLinkedInIDP gets linked in ID p
+
+Get LinkedIn IDP.
+*/
+func (a *Client) GetLinkedInIDP(params *GetLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLinkedInIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLinkedInIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getLinkedInIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/linkedin/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLinkedInIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetLinkedInIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getLinkedInIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetLinkedInIDPClient returns linked in ID p client
+*/
+func (a *Client) GetLinkedInIDPClient(params *GetLinkedInIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLinkedInIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLinkedInIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getLinkedInIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/linkedin/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLinkedInIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetLinkedInIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getLinkedInIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetMetaIDP gets meta ID p
+
+Get Meta IDP.
+*/
+func (a *Client) GetMetaIDP(params *GetMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetaIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetaIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getMetaIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/meta/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetaIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetMetaIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getMetaIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetMetaIDPClient returns meta ID p client
+*/
+func (a *Client) GetMetaIDPClient(params *GetMetaIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetaIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetaIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getMetaIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/meta/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetaIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetMetaIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getMetaIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetMicrosoftIDP gets microsoft ID p
+
+Get Microsoft IDP.
+*/
+func (a *Client) GetMicrosoftIDP(params *GetMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMicrosoftIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMicrosoftIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getMicrosoftIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/microsoft/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMicrosoftIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetMicrosoftIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getMicrosoftIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetMicrosoftIDPClient returns microsoft ID p client
+*/
+func (a *Client) GetMicrosoftIDPClient(params *GetMicrosoftIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMicrosoftIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMicrosoftIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getMicrosoftIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/microsoft/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMicrosoftIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetMicrosoftIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getMicrosoftIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -2476,6 +3144,86 @@ func (a *Client) GetWorkspaceIDPClient(params *GetWorkspaceIDPClientParams, auth
 }
 
 /*
+GetXIDP gets x ID p
+
+Get X IDP.
+*/
+func (a *Client) GetXIDP(params *GetXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetXIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetXIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getXIDP",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/x/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetXIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetXIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getXIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetXIDPClient returns x ID p client
+*/
+func (a *Client) GetXIDPClient(params *GetXIDPClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetXIDPClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetXIDPClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getXIDPClient",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/idps/x/{iid}/client",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetXIDPClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetXIDPClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getXIDPClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 ListIDPs Returns a list of IDPs connected to a given authorization server (workspace)
 */
 func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error) {
@@ -2550,6 +3298,47 @@ func (a *Client) ListIDPsForIdentityPool(params *ListIDPsForIdentityPoolParams, 
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listIDPsForIdentityPool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateAppleIDP updates apple ID p
+
+Update Apple IDP.
+*/
+func (a *Client) UpdateAppleIDP(params *UpdateAppleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAppleIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateAppleIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/apple/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateAppleIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateAppleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -2964,6 +3753,47 @@ func (a *Client) UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime
 }
 
 /*
+UpdateGoogleWorkspaceIDP updates google workspace ID p
+
+Update GoogleWorkspace IDP.
+*/
+func (a *Client) UpdateGoogleWorkspaceIDP(params *UpdateGoogleWorkspaceIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleWorkspaceIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGoogleWorkspaceIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateGoogleWorkspaceIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/google_workspace/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGoogleWorkspaceIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateGoogleWorkspaceIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateGoogleWorkspaceIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 UpdateIdentityPoolIDP updates identity pool ID p
 
 Update IdentityPool IDP.
@@ -3042,6 +3872,129 @@ func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, auth
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateIntelliTrustIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateLinkedInIDP updates linked in ID p
+
+Update LinkedIn IDP.
+*/
+func (a *Client) UpdateLinkedInIDP(params *UpdateLinkedInIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateLinkedInIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLinkedInIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateLinkedInIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/linkedin/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLinkedInIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateLinkedInIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateLinkedInIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateMetaIDP updates meta ID p
+
+Update Meta IDP.
+*/
+func (a *Client) UpdateMetaIDP(params *UpdateMetaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateMetaIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMetaIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateMetaIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/meta/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMetaIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateMetaIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateMetaIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateMicrosoftIDP updates microsoft ID p
+
+Update Microsoft IDP.
+*/
+func (a *Client) UpdateMicrosoftIDP(params *UpdateMicrosoftIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateMicrosoftIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMicrosoftIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateMicrosoftIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/microsoft/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMicrosoftIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateMicrosoftIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateMicrosoftIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -3329,6 +4282,47 @@ func (a *Client) UpdateWorkspaceIDP(params *UpdateWorkspaceIDPParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateWorkspaceIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateXIDP updates x ID p
+
+Update X IDP.
+*/
+func (a *Client) UpdateXIDP(params *UpdateXIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateXIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateXIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateXIDP",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/idps/x/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateXIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateXIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateXIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

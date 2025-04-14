@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemOK) Code() int {
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
@@ -174,13 +171,11 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) Code() int {
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) Code() int {
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) Code() int {
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) Code() int 
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {

@@ -6,7 +6,6 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -133,11 +132,11 @@ func (o *DeleteDataAccessConsentV2NoContent) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2NoContent) Error() string {
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NoContent", 204)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NoContent ", 204)
 }
 
 func (o *DeleteDataAccessConsentV2NoContent) String() string {
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NoContent", 204)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NoContent ", 204)
 }
 
 func (o *DeleteDataAccessConsentV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -190,13 +189,11 @@ func (o *DeleteDataAccessConsentV2BadRequest) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2BadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2BadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2BadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -260,13 +257,11 @@ func (o *DeleteDataAccessConsentV2Unauthorized) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2Unauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2Unauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2Unauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -330,13 +325,11 @@ func (o *DeleteDataAccessConsentV2Forbidden) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2Forbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2Forbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2Forbidden) GetPayload() *models.OBBRErrorResponse {
@@ -400,13 +393,11 @@ func (o *DeleteDataAccessConsentV2MethodNotAllowed) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2MethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2MethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2MethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2MethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2MethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2MethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2MethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -470,13 +461,11 @@ func (o *DeleteDataAccessConsentV2NotAcceptable) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2NotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2NotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2NotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2NotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -540,13 +529,11 @@ func (o *DeleteDataAccessConsentV2UnsupportedMediaType) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2UnsupportedMediaType) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2UnsupportedMediaType) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2UnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -610,13 +597,11 @@ func (o *DeleteDataAccessConsentV2UnprocessableEntity) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2UnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2UnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2UnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -680,13 +665,11 @@ func (o *DeleteDataAccessConsentV2TooManyRequests) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2TooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2TooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2TooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -750,13 +733,11 @@ func (o *DeleteDataAccessConsentV2InternalServerError) Code() int {
 }
 
 func (o *DeleteDataAccessConsentV2InternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2InternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2InternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2InternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /open-banking/consents/v2/consents/{consentID}][%d] deleteDataAccessConsentV2InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentV2InternalServerError) GetPayload() *models.OBBRErrorResponse {

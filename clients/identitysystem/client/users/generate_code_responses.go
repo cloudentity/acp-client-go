@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *GenerateCodeCreated) Code() int {
 }
 
 func (o *GenerateCodeCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *GenerateCodeCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeCreated  %+v", 201, o.Payload)
 }
 
 func (o *GenerateCodeCreated) GetPayload() *models.Codes {
@@ -202,13 +199,11 @@ func (o *GenerateCodeBadRequest) Code() int {
 }
 
 func (o *GenerateCodeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GenerateCodeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GenerateCodeBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *GenerateCodeUnauthorized) Code() int {
 }
 
 func (o *GenerateCodeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GenerateCodeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GenerateCodeUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *GenerateCodeNotFound) Code() int {
 }
 
 func (o *GenerateCodeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GenerateCodeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GenerateCodeNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *GenerateCodePreconditionFailed) Code() int {
 }
 
 func (o *GenerateCodePreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GenerateCodePreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodePreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodePreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *GenerateCodePreconditionFailed) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *GenerateCodeUnprocessableEntity) Code() int {
 }
 
 func (o *GenerateCodeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GenerateCodeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GenerateCodeUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *GenerateCodeTooManyRequests) Code() int {
 }
 
 func (o *GenerateCodeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GenerateCodeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GenerateCodeTooManyRequests) GetPayload() *models.Error {

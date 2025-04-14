@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetInternationalPaymentConsentSystemOK) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemOK) GetPayload() *models.GetInternationalPaymentConsentResponse {
@@ -174,13 +171,11 @@ func (o *GetInternationalPaymentConsentSystemUnauthorized) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetInternationalPaymentConsentSystemForbidden) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetInternationalPaymentConsentSystemNotFound) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetInternationalPaymentConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *GetInternationalPaymentConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-banking/international-payment-consent/{login}][%d] getInternationalPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetInternationalPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {

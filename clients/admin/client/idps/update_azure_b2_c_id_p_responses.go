@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *UpdateAzureB2CIDPOK) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
@@ -186,13 +183,11 @@ func (o *UpdateAzureB2CIDPBadRequest) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *UpdateAzureB2CIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *UpdateAzureB2CIDPForbidden) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *UpdateAzureB2CIDPNotFound) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *UpdateAzureB2CIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *UpdateAzureB2CIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateAzureB2CIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateAzureB2CIDPTooManyRequests) GetPayload() *models.Error {

@@ -19,7 +19,7 @@ import (
 // swagger:model EmailAuth
 type EmailAuth struct {
 
-	// SMTP auth mechanism: crammd5 or plain
+	// SMTP auth mechanism: crammd5, plain or login
 	// Example: plain
 	// Required: true
 	Auth string `json:"auth" yaml:"auth"`

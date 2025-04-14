@@ -6,7 +6,6 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *PushGatewayRequestsOK) Code() int {
 }
 
 func (o *PushGatewayRequestsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsOK %s", 200, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsOK  %+v", 200, o.Payload)
 }
 
 func (o *PushGatewayRequestsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsOK %s", 200, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsOK  %+v", 200, o.Payload)
 }
 
 func (o *PushGatewayRequestsOK) GetPayload() *models.GatewayRequestsEventsResponse {
@@ -174,13 +171,11 @@ func (o *PushGatewayRequestsUnauthorized) Code() int {
 }
 
 func (o *PushGatewayRequestsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PushGatewayRequestsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PushGatewayRequestsUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *PushGatewayRequestsForbidden) Code() int {
 }
 
 func (o *PushGatewayRequestsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PushGatewayRequestsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PushGatewayRequestsForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *PushGatewayRequestsNotFound) Code() int {
 }
 
 func (o *PushGatewayRequestsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PushGatewayRequestsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PushGatewayRequestsNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *PushGatewayRequestsTooManyRequests) Code() int {
 }
 
 func (o *PushGatewayRequestsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PushGatewayRequestsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /gateways/requests][%d] pushGatewayRequestsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PushGatewayRequestsTooManyRequests) GetPayload() *models.Error {

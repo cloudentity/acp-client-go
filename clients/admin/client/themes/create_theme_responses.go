@@ -6,7 +6,6 @@ package themes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *CreateThemeCreated) Code() int {
 }
 
 func (o *CreateThemeCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateThemeCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateThemeCreated) GetPayload() *models.Theme {
@@ -196,13 +193,11 @@ func (o *CreateThemeBadRequest) Code() int {
 }
 
 func (o *CreateThemeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateThemeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateThemeBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *CreateThemeUnauthorized) Code() int {
 }
 
 func (o *CreateThemeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateThemeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateThemeUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *CreateThemeForbidden) Code() int {
 }
 
 func (o *CreateThemeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateThemeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateThemeForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *CreateThemeUnprocessableEntity) Code() int {
 }
 
 func (o *CreateThemeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateThemeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateThemeUnprocessableEntity) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *CreateThemeTooManyRequests) Code() int {
 }
 
 func (o *CreateThemeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateThemeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /theme][%d] createThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /theme][%d] createThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateThemeTooManyRequests) GetPayload() *models.Error {

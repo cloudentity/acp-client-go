@@ -6,7 +6,6 @@ package post_authn
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetPostAuthnRequestOK) Code() int {
 }
 
 func (o *GetPostAuthnRequestOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestOK %s", 200, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPostAuthnRequestOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestOK %s", 200, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPostAuthnRequestOK) GetPayload() *models.LoginSessionResponse {
@@ -174,13 +171,11 @@ func (o *GetPostAuthnRequestUnauthorized) Code() int {
 }
 
 func (o *GetPostAuthnRequestUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetPostAuthnRequestUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetPostAuthnRequestUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetPostAuthnRequestForbidden) Code() int {
 }
 
 func (o *GetPostAuthnRequestForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetPostAuthnRequestForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetPostAuthnRequestForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetPostAuthnRequestNotFound) Code() int {
 }
 
 func (o *GetPostAuthnRequestNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPostAuthnRequestNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPostAuthnRequestNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetPostAuthnRequestTooManyRequests) Code() int {
 }
 
 func (o *GetPostAuthnRequestTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetPostAuthnRequestTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /post-authn/{login}][%d] getPostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetPostAuthnRequestTooManyRequests) GetPayload() *models.Error {

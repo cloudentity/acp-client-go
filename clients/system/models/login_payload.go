@@ -18,6 +18,9 @@ import (
 // swagger:model LoginPayload
 type LoginPayload struct {
 
+	// amr
+	Amr []string `json:"amr" yaml:"amr"`
+
 	// idp
 	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 }

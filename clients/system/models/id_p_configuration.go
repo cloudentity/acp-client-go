@@ -21,6 +21,11 @@ type IDPConfiguration struct {
 	//
 	// Currently it is only available for Identity Pool IDP.
 	ReloadClaimsAtRefreshToken bool `json:"reload_claims_at_refresh_token,omitempty" yaml:"reload_claims_at_refresh_token,omitempty"`
+
+	// Indicates whether the embedded configuration, which functions out of the box, should be used
+	//
+	// This may only apply to specific IDPs, such as LinkedIn.
+	UseEmbedded bool `json:"use_embedded,omitempty" yaml:"use_embedded,omitempty"`
 }
 
 // Validate validates this ID p configuration

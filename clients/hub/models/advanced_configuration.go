@@ -18,7 +18,7 @@ import (
 // swagger:model AdvancedConfiguration
 type AdvancedConfiguration struct {
 
-	// Configurable ACR values to enforce during auth flow
+	// Deprecated ACR values to enforce during auth flow (use new ACR feature instead)
 	AcrValues []string `json:"acr_values" yaml:"acr_values"`
 
 	// This option overrides all urls advertised by the well known endpoint with their mtls alias

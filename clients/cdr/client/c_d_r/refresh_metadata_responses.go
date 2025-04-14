@@ -6,7 +6,6 @@ package c_d_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *RefreshMetadataOK) Code() int {
 }
 
 func (o *RefreshMetadataOK) Error() string {
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataOK", 200)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataOK ", 200)
 }
 
 func (o *RefreshMetadataOK) String() string {
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataOK", 200)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataOK ", 200)
 }
 
 func (o *RefreshMetadataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *RefreshMetadataBadRequest) Code() int {
 }
 
 func (o *RefreshMetadataBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RefreshMetadataBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RefreshMetadataBadRequest) GetPayload() *models.CDRErrorResponse {
@@ -230,13 +227,11 @@ func (o *RefreshMetadataUnauthorized) Code() int {
 }
 
 func (o *RefreshMetadataUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RefreshMetadataUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RefreshMetadataUnauthorized) GetPayload() *models.CDRErrorResponse {
@@ -300,13 +295,11 @@ func (o *RefreshMetadataNotAcceptable) Code() int {
 }
 
 func (o *RefreshMetadataNotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *RefreshMetadataNotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *RefreshMetadataNotAcceptable) GetPayload() *models.CDRErrorResponse {
@@ -370,13 +363,11 @@ func (o *RefreshMetadataFailedDependency) Code() int {
 }
 
 func (o *RefreshMetadataFailedDependency) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataFailedDependency %s", 424, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataFailedDependency  %+v", 424, o.Payload)
 }
 
 func (o *RefreshMetadataFailedDependency) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataFailedDependency %s", 424, payload)
+	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataFailedDependency  %+v", 424, o.Payload)
 }
 
 func (o *RefreshMetadataFailedDependency) GetPayload() *models.CDRErrorResponse {

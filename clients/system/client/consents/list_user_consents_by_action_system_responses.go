@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *ListUserConsentsByActionSystemOK) Code() int {
 }
 
 func (o *ListUserConsentsByActionSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemOK %s", 200, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemOK) GetPayload() *models.ConsentsWithGrants {
@@ -174,13 +171,11 @@ func (o *ListUserConsentsByActionSystemUnauthorized) Code() int {
 }
 
 func (o *ListUserConsentsByActionSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *ListUserConsentsByActionSystemForbidden) Code() int {
 }
 
 func (o *ListUserConsentsByActionSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *ListUserConsentsByActionSystemNotFound) Code() int {
 }
 
 func (o *ListUserConsentsByActionSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *ListUserConsentsByActionSystemTooManyRequests) Code() int {
 }
 
 func (o *ListUserConsentsByActionSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /consents/{action}][%d] listUserConsentsByActionSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUserConsentsByActionSystemTooManyRequests) GetPayload() *models.Error {

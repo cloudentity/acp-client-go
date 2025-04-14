@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,13 +109,11 @@ func (o *GetOBBRConsentOK) Code() int {
 }
 
 func (o *GetOBBRConsentOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOBBRConsentOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOBBRConsentOK) GetPayload() *models.BrazilConsent {
@@ -180,13 +177,11 @@ func (o *GetOBBRConsentBadRequest) Code() int {
 }
 
 func (o *GetOBBRConsentBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOBBRConsentBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOBBRConsentBadRequest) GetPayload() *models.Error {
@@ -250,13 +245,11 @@ func (o *GetOBBRConsentUnauthorized) Code() int {
 }
 
 func (o *GetOBBRConsentUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetOBBRConsentUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetOBBRConsentUnauthorized) GetPayload() *models.Error {
@@ -320,13 +313,11 @@ func (o *GetOBBRConsentForbidden) Code() int {
 }
 
 func (o *GetOBBRConsentForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetOBBRConsentForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetOBBRConsentForbidden) GetPayload() *models.Error {
@@ -390,13 +381,11 @@ func (o *GetOBBRConsentNotFound) Code() int {
 }
 
 func (o *GetOBBRConsentNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOBBRConsentNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOBBRConsentNotFound) GetPayload() *models.Error {
@@ -460,13 +449,11 @@ func (o *GetOBBRConsentTooManyRequests) Code() int {
 }
 
 func (o *GetOBBRConsentTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetOBBRConsentTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents/{consentID}][%d] getOBBRConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetOBBRConsentTooManyRequests) GetPayload() *models.Error {

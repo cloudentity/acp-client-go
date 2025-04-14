@@ -6,7 +6,6 @@ package limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteRateLimitNoContent) Code() int {
 }
 
 func (o *DeleteRateLimitNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNoContent", 204)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNoContent ", 204)
 }
 
 func (o *DeleteRateLimitNoContent) String() string {
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNoContent", 204)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNoContent ", 204)
 }
 
 func (o *DeleteRateLimitNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteRateLimitUnauthorized) Code() int {
 }
 
 func (o *DeleteRateLimitUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteRateLimitUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteRateLimitUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteRateLimitForbidden) Code() int {
 }
 
 func (o *DeleteRateLimitForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteRateLimitForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteRateLimitForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteRateLimitNotFound) Code() int {
 }
 
 func (o *DeleteRateLimitNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteRateLimitNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteRateLimitNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteRateLimitTooManyRequests) Code() int {
 }
 
 func (o *DeleteRateLimitTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteRateLimitTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteRateLimitTooManyRequests) GetPayload() *models.Error {

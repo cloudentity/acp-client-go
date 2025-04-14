@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *AcceptKSAConsentSystemOK) Code() int {
 }
 
 func (o *AcceptKSAConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemOK) GetPayload() *models.ConsentAccepted {
@@ -174,13 +171,11 @@ func (o *AcceptKSAConsentSystemUnauthorized) Code() int {
 }
 
 func (o *AcceptKSAConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *AcceptKSAConsentSystemForbidden) Code() int {
 }
 
 func (o *AcceptKSAConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *AcceptKSAConsentSystemNotFound) Code() int {
 }
 
 func (o *AcceptKSAConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *AcceptKSAConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *AcceptKSAConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /ksa/consent/{login}/accept][%d] acceptKSAConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *AcceptKSAConsentSystemTooManyRequests) GetPayload() *models.Error {

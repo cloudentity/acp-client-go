@@ -6,7 +6,6 @@ package apis
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *CreateAPICreated) Code() int {
 }
 
 func (o *CreateAPICreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAPICreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateAPICreated) GetPayload() *models.API {
@@ -202,13 +199,11 @@ func (o *CreateAPIBadRequest) Code() int {
 }
 
 func (o *CreateAPIBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAPIBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateAPIBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *CreateAPIUnauthorized) Code() int {
 }
 
 func (o *CreateAPIUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAPIUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateAPIUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *CreateAPIForbidden) Code() int {
 }
 
 func (o *CreateAPIForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAPIForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateAPIForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *CreateAPINotFound) Code() int {
 }
 
 func (o *CreateAPINotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAPINotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateAPINotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *CreateAPIUnprocessableEntity) Code() int {
 }
 
 func (o *CreateAPIUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAPIUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateAPIUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *CreateAPITooManyRequests) Code() int {
 }
 
 func (o *CreateAPITooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAPITooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateAPITooManyRequests) GetPayload() *models.Error {

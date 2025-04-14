@@ -6,7 +6,6 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -117,11 +116,11 @@ func (o *RevokeIdentityPoolRoleNoContent) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNoContent", 204)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNoContent ", 204)
 }
 
 func (o *RevokeIdentityPoolRoleNoContent) String() string {
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNoContent", 204)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNoContent ", 204)
 }
 
 func (o *RevokeIdentityPoolRoleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -181,13 +180,11 @@ func (o *RevokeIdentityPoolRoleUnauthorized) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleUnauthorized) GetPayload() *models.Error {
@@ -251,13 +248,11 @@ func (o *RevokeIdentityPoolRoleForbidden) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleForbidden) GetPayload() *models.Error {
@@ -321,13 +316,11 @@ func (o *RevokeIdentityPoolRoleNotFound) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleNotFound) GetPayload() *models.Error {
@@ -391,13 +384,11 @@ func (o *RevokeIdentityPoolRoleUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleUnprocessableEntity) GetPayload() *models.Error {
@@ -461,13 +452,11 @@ func (o *RevokeIdentityPoolRoleTooManyRequests) Code() int {
 }
 
 func (o *RevokeIdentityPoolRoleTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /pools/{ipID}/roles/revoke][%d] revokeIdentityPoolRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeIdentityPoolRoleTooManyRequests) GetPayload() *models.Error {

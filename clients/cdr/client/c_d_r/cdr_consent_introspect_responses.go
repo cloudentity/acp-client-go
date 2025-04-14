@@ -7,7 +7,6 @@ package c_d_r
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -101,13 +100,11 @@ func (o *CdrConsentIntrospectOK) Code() int {
 }
 
 func (o *CdrConsentIntrospectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *CdrConsentIntrospectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *CdrConsentIntrospectOK) GetPayload() *CdrConsentIntrospectOKBody {
@@ -171,13 +168,11 @@ func (o *CdrConsentIntrospectUnauthorized) Code() int {
 }
 
 func (o *CdrConsentIntrospectUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CdrConsentIntrospectUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CdrConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -241,13 +236,11 @@ func (o *CdrConsentIntrospectNotFound) Code() int {
 }
 
 func (o *CdrConsentIntrospectNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CdrConsentIntrospectNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CdrConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -311,13 +304,11 @@ func (o *CdrConsentIntrospectTooManyRequests) Code() int {
 }
 
 func (o *CdrConsentIntrospectTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CdrConsentIntrospectTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CdrConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
