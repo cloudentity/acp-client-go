@@ -12506,7 +12506,7 @@ paths:
   /api/admin/tenants/{tenantID}/license:
     get:
       description: Get tenant license.
-      operationId: getTenantLicense
+      operationId: adminGetTenantLicense
       parameters:
         - default: default
           description: Tenant id
@@ -12531,7 +12531,7 @@ paths:
       tags:
         - licenses
     put:
-      operationId: setTenantLicense
+      operationId: adminSetTenantLicense
       parameters:
         - default: default
           description: Tenant id
@@ -13202,6 +13202,32 @@ paths:
       tags:
         - tenants
   /api/system/tenants/{tenantID}/license:
+    get:
+      description: Get tenant license.
+      operationId: systemGetTenantLicense
+      parameters:
+        - default: default
+          description: Tenant id
+          in: path
+          name: tenantID
+          required: true
+          type: string
+      responses:
+        "200":
+          $ref: '#/responses/LicenseResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+        - setup: []
+      summary: Get tenant license
+      tags:
+        - licenses
     put:
       operationId: systemSetTenantLicense
       parameters:
@@ -13353,7 +13379,7 @@ responses:
     schema:
       $ref: '#/definitions/WorkforceSettings'
   LicenseResponse:
-    description: Licenses
+    description: License
     schema:
       $ref: '#/definitions/License'
   LicensesResponse:
