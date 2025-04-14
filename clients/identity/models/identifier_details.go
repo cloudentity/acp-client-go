@@ -21,7 +21,7 @@ import (
 type IdentifierDetails struct {
 
 	// type
-	// Enum: [email mobile uid external federated]
+	// Enum: ["email","mobile","uid","external","federated"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// value

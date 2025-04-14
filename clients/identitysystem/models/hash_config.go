@@ -30,7 +30,7 @@ type HashConfig struct {
 	Md5 *MD5Config `json:"md5,omitempty" yaml:"md5,omitempty"`
 
 	// method
-	// Enum: [bcrypt pbkdf2 argon2 sha md5]
+	// Enum: ["bcrypt","pbkdf2","argon2","sha","md5"]
 	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// pbkdf2

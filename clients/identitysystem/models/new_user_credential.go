@@ -39,7 +39,7 @@ type NewUserCredential struct {
 	// type
 	// Example: password
 	// Required: true
-	// Enum: [password webauthn totp]
+	// Enum: ["password","webauthn","totp"]
 	Type string `json:"type" yaml:"type"`
 
 	// webauthn credentials

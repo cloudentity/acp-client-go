@@ -6,6 +6,7 @@ package post_authn
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CompletePostAuthnRequestOK) Code() int {
 }
 
 func (o *CompletePostAuthnRequestOK) Error() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestOK %s", 200, payload)
 }
 
 func (o *CompletePostAuthnRequestOK) String() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestOK %s", 200, payload)
 }
 
 func (o *CompletePostAuthnRequestOK) GetPayload() *models.PostAuthnCompleted {
@@ -171,11 +174,13 @@ func (o *CompletePostAuthnRequestUnauthorized) Code() int {
 }
 
 func (o *CompletePostAuthnRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CompletePostAuthnRequestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CompletePostAuthnRequestUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *CompletePostAuthnRequestForbidden) Code() int {
 }
 
 func (o *CompletePostAuthnRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestForbidden %s", 403, payload)
 }
 
 func (o *CompletePostAuthnRequestForbidden) String() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestForbidden %s", 403, payload)
 }
 
 func (o *CompletePostAuthnRequestForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *CompletePostAuthnRequestNotFound) Code() int {
 }
 
 func (o *CompletePostAuthnRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestNotFound %s", 404, payload)
 }
 
 func (o *CompletePostAuthnRequestNotFound) String() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestNotFound %s", 404, payload)
 }
 
 func (o *CompletePostAuthnRequestNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *CompletePostAuthnRequestTooManyRequests) Code() int {
 }
 
 func (o *CompletePostAuthnRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CompletePostAuthnRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /post-authn/{login}/complete][%d] completePostAuthnRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CompletePostAuthnRequestTooManyRequests) GetPayload() *models.Error {

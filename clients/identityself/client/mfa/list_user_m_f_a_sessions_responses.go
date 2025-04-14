@@ -6,6 +6,7 @@ package mfa
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListUserMFASessionsOK) Code() int {
 }
 
 func (o *ListUserMFASessionsOK) Error() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsOK %s", 200, payload)
 }
 
 func (o *ListUserMFASessionsOK) String() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsOK %s", 200, payload)
 }
 
 func (o *ListUserMFASessionsOK) GetPayload() *models.ListUserMFASessions {
@@ -171,11 +174,13 @@ func (o *ListUserMFASessionsUnauthorized) Code() int {
 }
 
 func (o *ListUserMFASessionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListUserMFASessionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListUserMFASessionsUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *ListUserMFASessionsForbidden) Code() int {
 }
 
 func (o *ListUserMFASessionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsForbidden %s", 403, payload)
 }
 
 func (o *ListUserMFASessionsForbidden) String() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsForbidden %s", 403, payload)
 }
 
 func (o *ListUserMFASessionsForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *ListUserMFASessionsNotFound) Code() int {
 }
 
 func (o *ListUserMFASessionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsNotFound %s", 404, payload)
 }
 
 func (o *ListUserMFASessionsNotFound) String() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsNotFound %s", 404, payload)
 }
 
 func (o *ListUserMFASessionsNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *ListUserMFASessionsTooManyRequests) Code() int {
 }
 
 func (o *ListUserMFASessionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListUserMFASessionsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v2/self/mfa/sessions][%d] listUserMFASessionsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListUserMFASessionsTooManyRequests) GetPayload() *models.Error {

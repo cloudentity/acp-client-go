@@ -6,6 +6,7 @@ package workforce
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *SetTenantWorkforceNoContent) Code() int {
 }
 
 func (o *SetTenantWorkforceNoContent) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNoContent ", 204)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNoContent", 204)
 }
 
 func (o *SetTenantWorkforceNoContent) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNoContent ", 204)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNoContent", 204)
 }
 
 func (o *SetTenantWorkforceNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *SetTenantWorkforceBadRequest) Code() int {
 }
 
 func (o *SetTenantWorkforceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceBadRequest %s", 400, payload)
 }
 
 func (o *SetTenantWorkforceBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceBadRequest %s", 400, payload)
 }
 
 func (o *SetTenantWorkforceBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *SetTenantWorkforceUnauthorized) Code() int {
 }
 
 func (o *SetTenantWorkforceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnauthorized %s", 401, payload)
 }
 
 func (o *SetTenantWorkforceUnauthorized) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnauthorized %s", 401, payload)
 }
 
 func (o *SetTenantWorkforceUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *SetTenantWorkforceForbidden) Code() int {
 }
 
 func (o *SetTenantWorkforceForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceForbidden %s", 403, payload)
 }
 
 func (o *SetTenantWorkforceForbidden) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceForbidden %s", 403, payload)
 }
 
 func (o *SetTenantWorkforceForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *SetTenantWorkforceNotFound) Code() int {
 }
 
 func (o *SetTenantWorkforceNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNotFound %s", 404, payload)
 }
 
 func (o *SetTenantWorkforceNotFound) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceNotFound %s", 404, payload)
 }
 
 func (o *SetTenantWorkforceNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *SetTenantWorkforceUnprocessableEntity) Code() int {
 }
 
 func (o *SetTenantWorkforceUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTenantWorkforceUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTenantWorkforceUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *SetTenantWorkforceTooManyRequests) Code() int {
 }
 
 func (o *SetTenantWorkforceTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTenantWorkforceTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/workforce][%d] setTenantWorkforceTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTenantWorkforceTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package webhooks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *UpdateWebhookOK) Code() int {
 }
 
 func (o *UpdateWebhookOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookOK %s", 200, payload)
 }
 
 func (o *UpdateWebhookOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookOK %s", 200, payload)
 }
 
 func (o *UpdateWebhookOK) GetPayload() *models.WebhookResponse {
@@ -199,11 +202,13 @@ func (o *UpdateWebhookBadRequest) Code() int {
 }
 
 func (o *UpdateWebhookBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookBadRequest %s", 400, payload)
 }
 
 func (o *UpdateWebhookBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookBadRequest %s", 400, payload)
 }
 
 func (o *UpdateWebhookBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *UpdateWebhookUnauthorized) Code() int {
 }
 
 func (o *UpdateWebhookUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateWebhookUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateWebhookUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *UpdateWebhookForbidden) Code() int {
 }
 
 func (o *UpdateWebhookForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookForbidden %s", 403, payload)
 }
 
 func (o *UpdateWebhookForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookForbidden %s", 403, payload)
 }
 
 func (o *UpdateWebhookForbidden) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *UpdateWebhookNotFound) Code() int {
 }
 
 func (o *UpdateWebhookNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookNotFound %s", 404, payload)
 }
 
 func (o *UpdateWebhookNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookNotFound %s", 404, payload)
 }
 
 func (o *UpdateWebhookNotFound) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *UpdateWebhookUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateWebhookUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateWebhookUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateWebhookUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *UpdateWebhookTooManyRequests) Code() int {
 }
 
 func (o *UpdateWebhookTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateWebhookTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/webhooks/{webhookID}][%d] updateWebhookTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateWebhookTooManyRequests) GetPayload() *models.Error {

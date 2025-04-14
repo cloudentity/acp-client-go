@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetMicrosoftIDPOK) Code() int {
 }
 
 func (o *GetMicrosoftIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPOK %s", 200, payload)
 }
 
 func (o *GetMicrosoftIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPOK %s", 200, payload)
 }
 
 func (o *GetMicrosoftIDPOK) GetPayload() *models.MicrosoftIDP {
@@ -171,11 +174,13 @@ func (o *GetMicrosoftIDPUnauthorized) Code() int {
 }
 
 func (o *GetMicrosoftIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetMicrosoftIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetMicrosoftIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetMicrosoftIDPForbidden) Code() int {
 }
 
 func (o *GetMicrosoftIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *GetMicrosoftIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *GetMicrosoftIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetMicrosoftIDPNotFound) Code() int {
 }
 
 func (o *GetMicrosoftIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *GetMicrosoftIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *GetMicrosoftIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetMicrosoftIDPTooManyRequests) Code() int {
 }
 
 func (o *GetMicrosoftIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMicrosoftIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}][%d] getMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMicrosoftIDPTooManyRequests) GetPayload() *models.Error {

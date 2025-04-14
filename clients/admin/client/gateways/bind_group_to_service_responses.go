@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *BindGroupToServiceOK) Code() int {
 }
 
 func (o *BindGroupToServiceOK) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK %s", 200, payload)
 }
 
 func (o *BindGroupToServiceOK) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK %s", 200, payload)
 }
 
 func (o *BindGroupToServiceOK) GetPayload() *models.RemoveServiceConfigurationResult {
@@ -199,11 +202,13 @@ func (o *BindGroupToServiceBadRequest) Code() int {
 }
 
 func (o *BindGroupToServiceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest %s", 400, payload)
 }
 
 func (o *BindGroupToServiceBadRequest) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest %s", 400, payload)
 }
 
 func (o *BindGroupToServiceBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *BindGroupToServiceUnauthorized) Code() int {
 }
 
 func (o *BindGroupToServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized %s", 401, payload)
 }
 
 func (o *BindGroupToServiceUnauthorized) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized %s", 401, payload)
 }
 
 func (o *BindGroupToServiceUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *BindGroupToServiceForbidden) Code() int {
 }
 
 func (o *BindGroupToServiceForbidden) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden %s", 403, payload)
 }
 
 func (o *BindGroupToServiceForbidden) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden %s", 403, payload)
 }
 
 func (o *BindGroupToServiceForbidden) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *BindGroupToServiceNotFound) Code() int {
 }
 
 func (o *BindGroupToServiceNotFound) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound %s", 404, payload)
 }
 
 func (o *BindGroupToServiceNotFound) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound %s", 404, payload)
 }
 
 func (o *BindGroupToServiceNotFound) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *BindGroupToServiceUnprocessableEntity) Code() int {
 }
 
 func (o *BindGroupToServiceUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *BindGroupToServiceUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *BindGroupToServiceUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *BindGroupToServiceTooManyRequests) Code() int {
 }
 
 func (o *BindGroupToServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *BindGroupToServiceTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *BindGroupToServiceTooManyRequests) GetPayload() *models.Error {

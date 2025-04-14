@@ -22,7 +22,7 @@ type InspectOTPUserOperationalData struct {
 
 	// code type
 	// Required: true
-	// Enum: [activation reset_password reset_totp enroll_webauthn challenge verify_address authentication]
+	// Enum: ["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]
 	CodeType string `json:"code_type" yaml:"code_type"`
 
 	// password set

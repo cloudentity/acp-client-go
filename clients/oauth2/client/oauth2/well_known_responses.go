@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *WellKnownOK) Code() int {
 }
 
 func (o *WellKnownOK) Error() string {
-	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK %s", 200, payload)
 }
 
 func (o *WellKnownOK) String() string {
-	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK %s", 200, payload)
 }
 
 func (o *WellKnownOK) GetPayload() *models.WellKnown {
@@ -153,11 +156,13 @@ func (o *WellKnownNotFound) Code() int {
 }
 
 func (o *WellKnownNotFound) Error() string {
-	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound %s", 404, payload)
 }
 
 func (o *WellKnownNotFound) String() string {
-	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound %s", 404, payload)
 }
 
 func (o *WellKnownNotFound) GetPayload() *models.GenericError {

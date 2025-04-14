@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateMicrosoftIDPCreated) Code() int {
 }
 
 func (o *CreateMicrosoftIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPCreated %s", 201, payload)
 }
 
 func (o *CreateMicrosoftIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPCreated %s", 201, payload)
 }
 
 func (o *CreateMicrosoftIDPCreated) GetPayload() *models.MicrosoftIDP {
@@ -183,11 +186,13 @@ func (o *CreateMicrosoftIDPBadRequest) Code() int {
 }
 
 func (o *CreateMicrosoftIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateMicrosoftIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateMicrosoftIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateMicrosoftIDPUnauthorized) Code() int {
 }
 
 func (o *CreateMicrosoftIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateMicrosoftIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateMicrosoftIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateMicrosoftIDPForbidden) Code() int {
 }
 
 func (o *CreateMicrosoftIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateMicrosoftIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateMicrosoftIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateMicrosoftIDPNotFound) Code() int {
 }
 
 func (o *CreateMicrosoftIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateMicrosoftIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateMicrosoftIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateMicrosoftIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateMicrosoftIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateMicrosoftIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateMicrosoftIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateMicrosoftIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateMicrosoftIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateMicrosoftIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/microsoft][%d] createMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateMicrosoftIDPTooManyRequests) GetPayload() *models.Error {

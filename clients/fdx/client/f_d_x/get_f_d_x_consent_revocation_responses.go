@@ -6,6 +6,7 @@ package f_d_x
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetFDXConsentRevocationOK) Code() int {
 }
 
 func (o *GetFDXConsentRevocationOK) Error() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationOK %s", 200, payload)
 }
 
 func (o *GetFDXConsentRevocationOK) String() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationOK %s", 200, payload)
 }
 
 func (o *GetFDXConsentRevocationOK) GetPayload() *models.GetFDXConsentRevocation {
@@ -165,11 +168,13 @@ func (o *GetFDXConsentRevocationBadRequest) Code() int {
 }
 
 func (o *GetFDXConsentRevocationBadRequest) Error() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationBadRequest %s", 400, payload)
 }
 
 func (o *GetFDXConsentRevocationBadRequest) String() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationBadRequest %s", 400, payload)
 }
 
 func (o *GetFDXConsentRevocationBadRequest) GetPayload() *models.FDXErrorResponse {
@@ -233,11 +238,13 @@ func (o *GetFDXConsentRevocationUnauthorized) Code() int {
 }
 
 func (o *GetFDXConsentRevocationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationUnauthorized %s", 401, payload)
 }
 
 func (o *GetFDXConsentRevocationUnauthorized) String() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationUnauthorized %s", 401, payload)
 }
 
 func (o *GetFDXConsentRevocationUnauthorized) GetPayload() *models.FDXErrorResponse {
@@ -301,11 +308,13 @@ func (o *GetFDXConsentRevocationNotFound) Code() int {
 }
 
 func (o *GetFDXConsentRevocationNotFound) Error() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationNotFound %s", 404, payload)
 }
 
 func (o *GetFDXConsentRevocationNotFound) String() string {
-	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /consents/{consentID}/revocation][%d] getFDXConsentRevocationNotFound %s", 404, payload)
 }
 
 func (o *GetFDXConsentRevocationNotFound) GetPayload() *models.FDXErrorResponse {

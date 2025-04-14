@@ -6,6 +6,7 @@ package webhooks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListServerWebhooksOK) Code() int {
 }
 
 func (o *ListServerWebhooksOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksOK %s", 200, payload)
 }
 
 func (o *ListServerWebhooksOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksOK %s", 200, payload)
 }
 
 func (o *ListServerWebhooksOK) GetPayload() *models.WebhooksResponse {
@@ -181,11 +184,13 @@ func (o *ListServerWebhooksUnauthorized) Code() int {
 }
 
 func (o *ListServerWebhooksUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksUnauthorized %s", 401, payload)
 }
 
 func (o *ListServerWebhooksUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksUnauthorized %s", 401, payload)
 }
 
 func (o *ListServerWebhooksUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListServerWebhooksForbidden) Code() int {
 }
 
 func (o *ListServerWebhooksForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksForbidden %s", 403, payload)
 }
 
 func (o *ListServerWebhooksForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksForbidden %s", 403, payload)
 }
 
 func (o *ListServerWebhooksForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListServerWebhooksTooManyRequests) Code() int {
 }
 
 func (o *ListServerWebhooksTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksTooManyRequests %s", 429, payload)
 }
 
 func (o *ListServerWebhooksTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksTooManyRequests %s", 429, payload)
 }
 
 func (o *ListServerWebhooksTooManyRequests) GetPayload() *models.Error {

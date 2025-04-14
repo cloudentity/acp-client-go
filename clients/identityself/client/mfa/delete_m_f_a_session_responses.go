@@ -6,6 +6,7 @@ package mfa
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteMFASessionNoContent) Code() int {
 }
 
 func (o *DeleteMFASessionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNoContent", 204)
 }
 
 func (o *DeleteMFASessionNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNoContent", 204)
 }
 
 func (o *DeleteMFASessionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteMFASessionUnauthorized) Code() int {
 }
 
 func (o *DeleteMFASessionUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteMFASessionUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteMFASessionUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteMFASessionForbidden) Code() int {
 }
 
 func (o *DeleteMFASessionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionForbidden %s", 403, payload)
 }
 
 func (o *DeleteMFASessionForbidden) String() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionForbidden %s", 403, payload)
 }
 
 func (o *DeleteMFASessionForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteMFASessionNotFound) Code() int {
 }
 
 func (o *DeleteMFASessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNotFound %s", 404, payload)
 }
 
 func (o *DeleteMFASessionNotFound) String() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionNotFound %s", 404, payload)
 }
 
 func (o *DeleteMFASessionNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteMFASessionTooManyRequests) Code() int {
 }
 
 func (o *DeleteMFASessionTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteMFASessionTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v2/self/mfa/sessions/{mfaSessionID}][%d] deleteMFASessionTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteMFASessionTooManyRequests) GetPayload() *models.Error {

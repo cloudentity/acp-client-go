@@ -6,6 +6,7 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *CreateConsentActionCreated) Code() int {
 }
 
 func (o *CreateConsentActionCreated) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionCreated %s", 201, payload)
 }
 
 func (o *CreateConsentActionCreated) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionCreated %s", 201, payload)
 }
 
 func (o *CreateConsentActionCreated) GetPayload() *models.ConsentActionWithConsents {
@@ -199,11 +202,13 @@ func (o *CreateConsentActionUnauthorized) Code() int {
 }
 
 func (o *CreateConsentActionUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnauthorized %s", 401, payload)
 }
 
 func (o *CreateConsentActionUnauthorized) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnauthorized %s", 401, payload)
 }
 
 func (o *CreateConsentActionUnauthorized) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *CreateConsentActionForbidden) Code() int {
 }
 
 func (o *CreateConsentActionForbidden) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionForbidden %s", 403, payload)
 }
 
 func (o *CreateConsentActionForbidden) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionForbidden %s", 403, payload)
 }
 
 func (o *CreateConsentActionForbidden) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *CreateConsentActionNotFound) Code() int {
 }
 
 func (o *CreateConsentActionNotFound) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionNotFound %s", 404, payload)
 }
 
 func (o *CreateConsentActionNotFound) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionNotFound %s", 404, payload)
 }
 
 func (o *CreateConsentActionNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *CreateConsentActionConflict) Code() int {
 }
 
 func (o *CreateConsentActionConflict) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionConflict %s", 409, payload)
 }
 
 func (o *CreateConsentActionConflict) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionConflict %s", 409, payload)
 }
 
 func (o *CreateConsentActionConflict) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *CreateConsentActionUnprocessableEntity) Code() int {
 }
 
 func (o *CreateConsentActionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateConsentActionUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateConsentActionUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *CreateConsentActionTooManyRequests) Code() int {
 }
 
 func (o *CreateConsentActionTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateConsentActionTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /actions][%d] createConsentActionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /actions][%d] createConsentActionTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateConsentActionTooManyRequests) GetPayload() *models.Error {

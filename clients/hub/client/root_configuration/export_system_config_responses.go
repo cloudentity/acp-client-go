@@ -6,6 +6,7 @@ package root_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ExportSystemConfigOK) Code() int {
 }
 
 func (o *ExportSystemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigOK %s", 200, payload)
 }
 
 func (o *ExportSystemConfigOK) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigOK %s", 200, payload)
 }
 
 func (o *ExportSystemConfigOK) GetPayload() *models.TreeTenant {
@@ -183,11 +186,13 @@ func (o *ExportSystemConfigBadRequest) Code() int {
 }
 
 func (o *ExportSystemConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportSystemConfigBadRequest) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportSystemConfigBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ExportSystemConfigUnauthorized) Code() int {
 }
 
 func (o *ExportSystemConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportSystemConfigUnauthorized) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportSystemConfigUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ExportSystemConfigForbidden) Code() int {
 }
 
 func (o *ExportSystemConfigForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportSystemConfigForbidden) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportSystemConfigForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ExportSystemConfigNotFound) Code() int {
 }
 
 func (o *ExportSystemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportSystemConfigNotFound) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportSystemConfigNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ExportSystemConfigUnprocessableEntity) Code() int {
 }
 
 func (o *ExportSystemConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportSystemConfigUnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportSystemConfigUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ExportSystemConfigTooManyRequests) Code() int {
 }
 
 func (o *ExportSystemConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportSystemConfigTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/promote/config][%d] exportSystemConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportSystemConfigTooManyRequests) GetPayload() *models.Error {

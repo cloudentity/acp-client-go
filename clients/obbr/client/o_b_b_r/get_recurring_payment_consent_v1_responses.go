@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -133,11 +134,13 @@ func (o *GetRecurringPaymentConsentV1OK) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1OK) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1OK %s", 200, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1OK) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1OK %s", 200, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1OK) GetPayload() *models.BrazilCustomerRecurringPaymentConsentResponseV1 {
@@ -201,11 +204,13 @@ func (o *GetRecurringPaymentConsentV1BadRequest) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1BadRequest %s", 400, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1BadRequest) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1BadRequest %s", 400, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1BadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -269,11 +274,13 @@ func (o *GetRecurringPaymentConsentV1Unauthorized) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Unauthorized %s", 401, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1Unauthorized) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Unauthorized %s", 401, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1Unauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -337,11 +344,13 @@ func (o *GetRecurringPaymentConsentV1Forbidden) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Forbidden %s", 403, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1Forbidden) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1Forbidden %s", 403, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1Forbidden) GetPayload() *models.OBBRErrorResponse {
@@ -405,11 +414,13 @@ func (o *GetRecurringPaymentConsentV1MethodNotAllowed) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1MethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1MethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1MethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1MethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1MethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1MethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1MethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -473,11 +484,13 @@ func (o *GetRecurringPaymentConsentV1NotAcceptable) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1NotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1NotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1NotAcceptable %s", 406, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1NotAcceptable) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1NotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1NotAcceptable %s", 406, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1NotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -541,11 +554,13 @@ func (o *GetRecurringPaymentConsentV1UnsupportedMediaType) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1UnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1UnsupportedMediaType) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1UnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -609,11 +624,13 @@ func (o *GetRecurringPaymentConsentV1UnprocessableEntity) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnprocessableEntity %s", 422, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1UnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1UnprocessableEntity %s", 422, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1UnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -677,11 +694,13 @@ func (o *GetRecurringPaymentConsentV1TooManyRequests) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1TooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1TooManyRequests %s", 429, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1TooManyRequests) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1TooManyRequests %s", 429, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1TooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -745,11 +764,13 @@ func (o *GetRecurringPaymentConsentV1InternalServerError) Code() int {
 }
 
 func (o *GetRecurringPaymentConsentV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1InternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1InternalServerError %s", 500, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1InternalServerError) String() string {
-	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1InternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/automatic-payments/v1/recurring-consents/{consentID}][%d] getRecurringPaymentConsentV1InternalServerError %s", 500, payload)
 }
 
 func (o *GetRecurringPaymentConsentV1InternalServerError) GetPayload() *models.OBBRErrorResponse {

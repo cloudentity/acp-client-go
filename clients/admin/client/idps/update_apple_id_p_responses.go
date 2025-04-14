@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateAppleIDPOK) Code() int {
 }
 
 func (o *UpdateAppleIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPOK %s", 200, payload)
 }
 
 func (o *UpdateAppleIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPOK %s", 200, payload)
 }
 
 func (o *UpdateAppleIDPOK) GetPayload() *models.AppleIDP {
@@ -183,11 +186,13 @@ func (o *UpdateAppleIDPBadRequest) Code() int {
 }
 
 func (o *UpdateAppleIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAppleIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAppleIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateAppleIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateAppleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAppleIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAppleIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateAppleIDPForbidden) Code() int {
 }
 
 func (o *UpdateAppleIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateAppleIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateAppleIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateAppleIDPNotFound) Code() int {
 }
 
 func (o *UpdateAppleIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateAppleIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateAppleIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateAppleIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAppleIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAppleIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAppleIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateAppleIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateAppleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAppleIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/apple/{iid}][%d] updateAppleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAppleIDPTooManyRequests) GetPayload() *models.Error {

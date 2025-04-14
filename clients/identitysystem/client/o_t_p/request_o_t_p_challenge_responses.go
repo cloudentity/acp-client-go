@@ -6,6 +6,7 @@ package o_t_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,11 +111,11 @@ func (o *RequestOTPChallengeNoContent) Code() int {
 }
 
 func (o *RequestOTPChallengeNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeNoContent", 204)
 }
 
 func (o *RequestOTPChallengeNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeNoContent", 204)
 }
 
 func (o *RequestOTPChallengeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -174,11 +175,13 @@ func (o *RequestOTPChallengeUnauthorized) Code() int {
 }
 
 func (o *RequestOTPChallengeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnauthorized %s", 401, payload)
 }
 
 func (o *RequestOTPChallengeUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnauthorized %s", 401, payload)
 }
 
 func (o *RequestOTPChallengeUnauthorized) GetPayload() *models.Error {
@@ -242,11 +245,13 @@ func (o *RequestOTPChallengePreconditionFailed) Code() int {
 }
 
 func (o *RequestOTPChallengePreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengePreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestOTPChallengePreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengePreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestOTPChallengePreconditionFailed) GetPayload() *models.Error {
@@ -310,11 +315,13 @@ func (o *RequestOTPChallengeUnprocessableEntity) Code() int {
 }
 
 func (o *RequestOTPChallengeUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestOTPChallengeUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestOTPChallengeUnprocessableEntity) GetPayload() *models.Error {
@@ -378,11 +385,13 @@ func (o *RequestOTPChallengeTooManyRequests) Code() int {
 }
 
 func (o *RequestOTPChallengeTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeTooManyRequests %s", 429, payload)
 }
 
 func (o *RequestOTPChallengeTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeTooManyRequests %s", 429, payload)
 }
 
 func (o *RequestOTPChallengeTooManyRequests) GetPayload() *models.Error {

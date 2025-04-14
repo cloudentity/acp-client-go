@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *UpdateUserVerifiableAddressOK) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressOK) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressOK %s", 200, payload)
 }
 
 func (o *UpdateUserVerifiableAddressOK) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressOK %s", 200, payload)
 }
 
 func (o *UpdateUserVerifiableAddressOK) GetPayload() *models.UserVerifiableAddress {
@@ -193,11 +196,13 @@ func (o *UpdateUserVerifiableAddressUnauthorized) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserVerifiableAddressUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserVerifiableAddressUnauthorized) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *UpdateUserVerifiableAddressForbidden) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserVerifiableAddressForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserVerifiableAddressForbidden) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *UpdateUserVerifiableAddressNotFound) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserVerifiableAddressNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserVerifiableAddressNotFound) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *UpdateUserVerifiableAddressConflict) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressConflict %s", 409, payload)
 }
 
 func (o *UpdateUserVerifiableAddressConflict) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressConflict %s", 409, payload)
 }
 
 func (o *UpdateUserVerifiableAddressConflict) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *UpdateUserVerifiableAddressUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateUserVerifiableAddressUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateUserVerifiableAddressUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateUserVerifiableAddressUnprocessableEntity) GetPayload() *models.Error {

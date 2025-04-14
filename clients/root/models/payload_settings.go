@@ -21,7 +21,7 @@ import (
 type PayloadSettings struct {
 
 	// payload format
-	// Enum: [json jws]
+	// Enum: ["json","jws"]
 	Format string `json:"format,omitempty" yaml:"format,omitempty"`
 
 	// jws payload

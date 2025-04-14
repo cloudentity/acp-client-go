@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetGithubIDPOK) Code() int {
 }
 
 func (o *GetGithubIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK %s", 200, payload)
 }
 
 func (o *GetGithubIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK %s", 200, payload)
 }
 
 func (o *GetGithubIDPOK) GetPayload() *models.GithubIDP {
@@ -171,11 +174,13 @@ func (o *GetGithubIDPUnauthorized) Code() int {
 }
 
 func (o *GetGithubIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGithubIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGithubIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetGithubIDPForbidden) Code() int {
 }
 
 func (o *GetGithubIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGithubIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGithubIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetGithubIDPNotFound) Code() int {
 }
 
 func (o *GetGithubIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGithubIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGithubIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetGithubIDPTooManyRequests) Code() int {
 }
 
 func (o *GetGithubIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGithubIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGithubIDPTooManyRequests) GetPayload() *models.Error {

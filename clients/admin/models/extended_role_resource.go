@@ -24,14 +24,14 @@ type ExtendedRoleResource struct {
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// role
-	// Enum: [admin business_admin auditor manager user_manager member]
+	// Enum: ["admin","business_admin","auditor","manager","user_manager","member"]
 	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: [tenant workspace identity_pool]
+	// Enum: ["tenant","workspace","identity_pool"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// workspace id

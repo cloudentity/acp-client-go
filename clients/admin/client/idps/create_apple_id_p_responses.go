@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateAppleIDPCreated) Code() int {
 }
 
 func (o *CreateAppleIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPCreated %s", 201, payload)
 }
 
 func (o *CreateAppleIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPCreated %s", 201, payload)
 }
 
 func (o *CreateAppleIDPCreated) GetPayload() *models.AppleIDP {
@@ -183,11 +186,13 @@ func (o *CreateAppleIDPBadRequest) Code() int {
 }
 
 func (o *CreateAppleIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateAppleIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateAppleIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateAppleIDPUnauthorized) Code() int {
 }
 
 func (o *CreateAppleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAppleIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAppleIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateAppleIDPForbidden) Code() int {
 }
 
 func (o *CreateAppleIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateAppleIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateAppleIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateAppleIDPNotFound) Code() int {
 }
 
 func (o *CreateAppleIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateAppleIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateAppleIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateAppleIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateAppleIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateAppleIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateAppleIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateAppleIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateAppleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAppleIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/apple][%d] createAppleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAppleIDPTooManyRequests) GetPayload() *models.Error {

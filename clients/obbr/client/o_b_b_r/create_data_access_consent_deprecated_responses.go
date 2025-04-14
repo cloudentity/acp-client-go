@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -133,11 +134,13 @@ func (o *CreateDataAccessConsentDeprecatedCreated) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedCreated) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated %s", 201, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedCreated) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated %s", 201, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedCreated) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
@@ -201,11 +204,13 @@ func (o *CreateDataAccessConsentDeprecatedBadRequest) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedBadRequest) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest %s", 400, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedBadRequest) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest %s", 400, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -269,11 +274,13 @@ func (o *CreateDataAccessConsentDeprecatedUnauthorized) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -337,11 +344,13 @@ func (o *CreateDataAccessConsentDeprecatedForbidden) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden %s", 403, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden %s", 403, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -405,11 +414,13 @@ func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -473,11 +484,13 @@ func (o *CreateDataAccessConsentDeprecatedNotAcceptable) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -541,11 +554,13 @@ func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -609,11 +624,13 @@ func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -677,11 +694,13 @@ func (o *CreateDataAccessConsentDeprecatedTooManyRequests) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -745,11 +764,13 @@ func (o *CreateDataAccessConsentDeprecatedInternalServerError) Code() int {
 }
 
 func (o *CreateDataAccessConsentDeprecatedInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedInternalServerError) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDataAccessConsentDeprecatedInternalServerError) GetPayload() *models.OBBRErrorResponse {

@@ -6,6 +6,7 @@ package o_b_u_k
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -127,11 +128,13 @@ func (o *CreateAccountAccessConsentRequestCreated) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated %s", 201, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestCreated) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated %s", 201, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestCreated) GetPayload() *models.AccountAccessConsentResponse {
@@ -195,11 +198,13 @@ func (o *CreateAccountAccessConsentRequestBadRequest) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestBadRequest) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
@@ -263,11 +268,13 @@ func (o *CreateAccountAccessConsentRequestUnauthorized) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
@@ -331,11 +338,13 @@ func (o *CreateAccountAccessConsentRequestForbidden) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestForbidden) GetPayload() *models.ErrorResponse {
@@ -399,11 +408,13 @@ func (o *CreateAccountAccessConsentRequestMethodNotAllowed) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
@@ -467,11 +478,13 @@ func (o *CreateAccountAccessConsentRequestNotAcceptable) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
@@ -535,11 +548,13 @@ func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
@@ -603,11 +618,13 @@ func (o *CreateAccountAccessConsentRequestTooManyRequests) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
@@ -671,11 +688,13 @@ func (o *CreateAccountAccessConsentRequestInternalServerError) Code() int {
 }
 
 func (o *CreateAccountAccessConsentRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestInternalServerError) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAccountAccessConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {

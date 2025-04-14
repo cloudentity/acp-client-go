@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetOktaIDPOK) Code() int {
 }
 
 func (o *GetOktaIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK %s", 200, payload)
 }
 
 func (o *GetOktaIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK %s", 200, payload)
 }
 
 func (o *GetOktaIDPOK) GetPayload() *models.OktaIDP {
@@ -171,11 +174,13 @@ func (o *GetOktaIDPUnauthorized) Code() int {
 }
 
 func (o *GetOktaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetOktaIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetOktaIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetOktaIDPForbidden) Code() int {
 }
 
 func (o *GetOktaIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden %s", 403, payload)
 }
 
 func (o *GetOktaIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden %s", 403, payload)
 }
 
 func (o *GetOktaIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetOktaIDPNotFound) Code() int {
 }
 
 func (o *GetOktaIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound %s", 404, payload)
 }
 
 func (o *GetOktaIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound %s", 404, payload)
 }
 
 func (o *GetOktaIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetOktaIDPTooManyRequests) Code() int {
 }
 
 func (o *GetOktaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetOktaIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetOktaIDPTooManyRequests) GetPayload() *models.Error {

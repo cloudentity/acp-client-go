@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetExternalIDPClientOK) Code() int {
 }
 
 func (o *GetExternalIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientOK %s", 200, payload)
 }
 
 func (o *GetExternalIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientOK %s", 200, payload)
 }
 
 func (o *GetExternalIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetExternalIDPClientBadRequest) Code() int {
 }
 
 func (o *GetExternalIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetExternalIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetExternalIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetExternalIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetExternalIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetExternalIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetExternalIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetExternalIDPClientForbidden) Code() int {
 }
 
 func (o *GetExternalIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetExternalIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetExternalIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetExternalIDPClientNotFound) Code() int {
 }
 
 func (o *GetExternalIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetExternalIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetExternalIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetExternalIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetExternalIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetExternalIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}/client][%d] getExternalIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetExternalIDPClientTooManyRequests) GetPayload() *models.Error {

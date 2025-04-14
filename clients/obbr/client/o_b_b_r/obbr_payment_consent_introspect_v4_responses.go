@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ObbrPaymentConsentIntrospectV4OK) Code() int {
 }
 
 func (o *ObbrPaymentConsentIntrospectV4OK) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4OK %s", 200, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4OK) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4OK %s", 200, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4OK) GetPayload() *models.IntrospectOBBRPaymentConsentResponseV4 {
@@ -165,11 +168,13 @@ func (o *ObbrPaymentConsentIntrospectV4Unauthorized) Code() int {
 }
 
 func (o *ObbrPaymentConsentIntrospectV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4Unauthorized %s", 401, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4Unauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4Unauthorized %s", 401, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4Unauthorized) GetPayload() *models.GenericError {
@@ -233,11 +238,13 @@ func (o *ObbrPaymentConsentIntrospectV4NotFound) Code() int {
 }
 
 func (o *ObbrPaymentConsentIntrospectV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4NotFound %s", 404, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4NotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4NotFound %s", 404, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4NotFound) GetPayload() *models.GenericError {
@@ -301,11 +308,13 @@ func (o *ObbrPaymentConsentIntrospectV4TooManyRequests) Code() int {
 }
 
 func (o *ObbrPaymentConsentIntrospectV4TooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4TooManyRequests %s", 429, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4TooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v4/consents/introspect][%d] obbrPaymentConsentIntrospectV4TooManyRequests %s", 429, payload)
 }
 
 func (o *ObbrPaymentConsentIntrospectV4TooManyRequests) GetPayload() *models.GenericError {

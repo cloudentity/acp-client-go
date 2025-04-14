@@ -6,6 +6,7 @@ package workforce
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetTenantWorkforceOK) Code() int {
 }
 
 func (o *GetTenantWorkforceOK) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceOK %s", 200, payload)
 }
 
 func (o *GetTenantWorkforceOK) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceOK %s", 200, payload)
 }
 
 func (o *GetTenantWorkforceOK) GetPayload() *models.WorkforceSettings {
@@ -171,11 +174,13 @@ func (o *GetTenantWorkforceUnauthorized) Code() int {
 }
 
 func (o *GetTenantWorkforceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantWorkforceUnauthorized) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantWorkforceUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetTenantWorkforceForbidden) Code() int {
 }
 
 func (o *GetTenantWorkforceForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceForbidden %s", 403, payload)
 }
 
 func (o *GetTenantWorkforceForbidden) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceForbidden %s", 403, payload)
 }
 
 func (o *GetTenantWorkforceForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetTenantWorkforceNotFound) Code() int {
 }
 
 func (o *GetTenantWorkforceNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceNotFound %s", 404, payload)
 }
 
 func (o *GetTenantWorkforceNotFound) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceNotFound %s", 404, payload)
 }
 
 func (o *GetTenantWorkforceNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetTenantWorkforceTooManyRequests) Code() int {
 }
 
 func (o *GetTenantWorkforceTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantWorkforceTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/workforce][%d] getTenantWorkforceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantWorkforceTooManyRequests) GetPayload() *models.Error {

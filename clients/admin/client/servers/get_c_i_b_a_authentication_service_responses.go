@@ -6,6 +6,7 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetCIBAAuthenticationServiceOK) Code() int {
 }
 
 func (o *GetCIBAAuthenticationServiceOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceOK %s", 200, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceOK %s", 200, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceOK) GetPayload() *models.CIBAAuthenticationService {
@@ -187,11 +190,13 @@ func (o *GetCIBAAuthenticationServiceUnauthorized) Code() int {
 }
 
 func (o *GetCIBAAuthenticationServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceUnauthorized %s", 401, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceUnauthorized %s", 401, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetCIBAAuthenticationServiceForbidden) Code() int {
 }
 
 func (o *GetCIBAAuthenticationServiceForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceForbidden %s", 403, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceForbidden %s", 403, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetCIBAAuthenticationServiceNotFound) Code() int {
 }
 
 func (o *GetCIBAAuthenticationServiceNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceNotFound %s", 404, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceNotFound %s", 404, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetCIBAAuthenticationServiceTooManyRequests) Code() int {
 }
 
 func (o *GetCIBAAuthenticationServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/ciba-authentication-service][%d] getCIBAAuthenticationServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *GetCIBAAuthenticationServiceTooManyRequests) GetPayload() *models.Error {

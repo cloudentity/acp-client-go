@@ -6,6 +6,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,11 +117,11 @@ func (o *GrantIdentityPoolRoleNoContent) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleNoContent) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNoContent ", 204)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNoContent", 204)
 }
 
 func (o *GrantIdentityPoolRoleNoContent) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNoContent ", 204)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNoContent", 204)
 }
 
 func (o *GrantIdentityPoolRoleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -180,11 +181,13 @@ func (o *GrantIdentityPoolRoleUnauthorized) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnauthorized %s", 401, payload)
 }
 
 func (o *GrantIdentityPoolRoleUnauthorized) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnauthorized %s", 401, payload)
 }
 
 func (o *GrantIdentityPoolRoleUnauthorized) GetPayload() *models.Error {
@@ -248,11 +251,13 @@ func (o *GrantIdentityPoolRoleForbidden) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleForbidden) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleForbidden %s", 403, payload)
 }
 
 func (o *GrantIdentityPoolRoleForbidden) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleForbidden %s", 403, payload)
 }
 
 func (o *GrantIdentityPoolRoleForbidden) GetPayload() *models.Error {
@@ -316,11 +321,13 @@ func (o *GrantIdentityPoolRoleNotFound) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleNotFound) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNotFound %s", 404, payload)
 }
 
 func (o *GrantIdentityPoolRoleNotFound) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleNotFound %s", 404, payload)
 }
 
 func (o *GrantIdentityPoolRoleNotFound) GetPayload() *models.Error {
@@ -384,11 +391,13 @@ func (o *GrantIdentityPoolRoleUnprocessableEntity) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnprocessableEntity %s", 422, payload)
 }
 
 func (o *GrantIdentityPoolRoleUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleUnprocessableEntity %s", 422, payload)
 }
 
 func (o *GrantIdentityPoolRoleUnprocessableEntity) GetPayload() *models.Error {
@@ -452,11 +461,13 @@ func (o *GrantIdentityPoolRoleTooManyRequests) Code() int {
 }
 
 func (o *GrantIdentityPoolRoleTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleTooManyRequests %s", 429, payload)
 }
 
 func (o *GrantIdentityPoolRoleTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /pools/{ipID}/roles/grant][%d] grantIdentityPoolRoleTooManyRequests %s", 429, payload)
 }
 
 func (o *GrantIdentityPoolRoleTooManyRequests) GetPayload() *models.Error {

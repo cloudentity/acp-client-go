@@ -45,9 +45,6 @@ type IDPSettings struct {
 	// google
 	Google *GoogleSettings `json:"google,omitempty" yaml:"google,omitempty"`
 
-	// google workspace
-	GoogleWorkspace *GoogleWorkspaceSettings `json:"google_workspace,omitempty" yaml:"google_workspace,omitempty"`
-
 	// intelli trust
 	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
 
@@ -116,10 +113,6 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGoogle(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGoogleWorkspace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -332,25 +325,6 @@ func (m *IDPSettings) validateGoogle(formats strfmt.Registry) error {
 				return ve.ValidateName("google")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("google")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IDPSettings) validateGoogleWorkspace(formats strfmt.Registry) error {
-	if swag.IsZero(m.GoogleWorkspace) { // not required
-		return nil
-	}
-
-	if m.GoogleWorkspace != nil {
-		if err := m.GoogleWorkspace.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("google_workspace")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("google_workspace")
 			}
 			return err
 		}
@@ -589,10 +563,6 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateGoogleWorkspace(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateIntelliTrust(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -820,27 +790,6 @@ func (m *IDPSettings) contextValidateGoogle(ctx context.Context, formats strfmt.
 				return ve.ValidateName("google")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("google")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IDPSettings) contextValidateGoogleWorkspace(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.GoogleWorkspace != nil {
-
-		if swag.IsZero(m.GoogleWorkspace) { // not required
-			return nil
-		}
-
-		if err := m.GoogleWorkspace.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("google_workspace")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("google_workspace")
 			}
 			return err
 		}

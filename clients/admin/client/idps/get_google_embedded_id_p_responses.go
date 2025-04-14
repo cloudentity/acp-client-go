@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetGoogleEmbeddedIDPOK) Code() int {
 }
 
 func (o *GetGoogleEmbeddedIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPOK %s", 200, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPOK %s", 200, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPOK) GetPayload() *models.GoogleEmbeddedIDP {
@@ -171,11 +174,13 @@ func (o *GetGoogleEmbeddedIDPUnauthorized) Code() int {
 }
 
 func (o *GetGoogleEmbeddedIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetGoogleEmbeddedIDPForbidden) Code() int {
 }
 
 func (o *GetGoogleEmbeddedIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetGoogleEmbeddedIDPNotFound) Code() int {
 }
 
 func (o *GetGoogleEmbeddedIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetGoogleEmbeddedIDPTooManyRequests) Code() int {
 }
 
 func (o *GetGoogleEmbeddedIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGoogleEmbeddedIDPTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *BindSystemAPINoContent) Code() int {
 }
 
 func (o *BindSystemAPINoContent) Error() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent ", 204)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent", 204)
 }
 
 func (o *BindSystemAPINoContent) String() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent ", 204)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent", 204)
 }
 
 func (o *BindSystemAPINoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *BindSystemAPIUnauthorized) Code() int {
 }
 
 func (o *BindSystemAPIUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized %s", 401, payload)
 }
 
 func (o *BindSystemAPIUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized %s", 401, payload)
 }
 
 func (o *BindSystemAPIUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *BindSystemAPIForbidden) Code() int {
 }
 
 func (o *BindSystemAPIForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden %s", 403, payload)
 }
 
 func (o *BindSystemAPIForbidden) String() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden %s", 403, payload)
 }
 
 func (o *BindSystemAPIForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *BindSystemAPIConflict) Code() int {
 }
 
 func (o *BindSystemAPIConflict) Error() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict %s", 409, payload)
 }
 
 func (o *BindSystemAPIConflict) String() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict %s", 409, payload)
 }
 
 func (o *BindSystemAPIConflict) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *BindSystemAPITooManyRequests) Code() int {
 }
 
 func (o *BindSystemAPITooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests %s", 429, payload)
 }
 
 func (o *BindSystemAPITooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests %s", 429, payload)
 }
 
 func (o *BindSystemAPITooManyRequests) GetPayload() *models.Error {

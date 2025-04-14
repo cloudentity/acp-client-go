@@ -46,7 +46,7 @@ type OBReadConsentResponse1Data struct {
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
-	// Enum: [Authorised AwaitingAuthorisation Rejected Revoked]
+	// Enum: ["Authorised","AwaitingAuthorisation","Rejected","Revoked"]
 	Status string `json:"Status" yaml:"Status"`
 
 	// status update date time

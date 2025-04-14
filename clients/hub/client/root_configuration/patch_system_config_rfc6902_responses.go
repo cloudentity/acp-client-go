@@ -6,6 +6,7 @@ package root_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *PatchSystemConfigRfc6902NoContent) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902NoContent) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NoContent ", 204)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NoContent", 204)
 }
 
 func (o *PatchSystemConfigRfc6902NoContent) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NoContent ", 204)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NoContent", 204)
 }
 
 func (o *PatchSystemConfigRfc6902NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *PatchSystemConfigRfc6902BadRequest) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902BadRequest %s", 400, payload)
 }
 
 func (o *PatchSystemConfigRfc6902BadRequest) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902BadRequest %s", 400, payload)
 }
 
 func (o *PatchSystemConfigRfc6902BadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *PatchSystemConfigRfc6902Unauthorized) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Unauthorized %s", 401, payload)
 }
 
 func (o *PatchSystemConfigRfc6902Unauthorized) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Unauthorized %s", 401, payload)
 }
 
 func (o *PatchSystemConfigRfc6902Unauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *PatchSystemConfigRfc6902Forbidden) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Forbidden %s", 403, payload)
 }
 
 func (o *PatchSystemConfigRfc6902Forbidden) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902Forbidden %s", 403, payload)
 }
 
 func (o *PatchSystemConfigRfc6902Forbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *PatchSystemConfigRfc6902NotFound) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NotFound %s", 404, payload)
 }
 
 func (o *PatchSystemConfigRfc6902NotFound) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902NotFound %s", 404, payload)
 }
 
 func (o *PatchSystemConfigRfc6902NotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *PatchSystemConfigRfc6902UnprocessableEntity) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902UnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchSystemConfigRfc6902UnprocessableEntity) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902UnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchSystemConfigRfc6902UnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *PatchSystemConfigRfc6902TooManyRequests) Code() int {
 }
 
 func (o *PatchSystemConfigRfc6902TooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902TooManyRequests %s", 429, payload)
 }
 
 func (o *PatchSystemConfigRfc6902TooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /system/promote/config-rfc6902][%d] patchSystemConfigRfc6902TooManyRequests %s", 429, payload)
 }
 
 func (o *PatchSystemConfigRfc6902TooManyRequests) GetPayload() *models.Error {

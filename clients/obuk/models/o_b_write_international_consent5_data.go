@@ -28,7 +28,7 @@ type OBWriteInternationalConsent5Data struct {
 	Initiation *OBWriteInternationalConsent5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: [No Yes]
+	// Enum: ["No","Yes"]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data

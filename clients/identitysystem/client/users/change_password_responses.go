@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -128,11 +129,11 @@ func (o *ChangePasswordNoContent) Code() int {
 }
 
 func (o *ChangePasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNoContent", 204)
 }
 
 func (o *ChangePasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNoContent", 204)
 }
 
 func (o *ChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -192,11 +193,13 @@ func (o *ChangePasswordBadRequest) Code() int {
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordBadRequest %s", 400, payload)
 }
 
 func (o *ChangePasswordBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordBadRequest %s", 400, payload)
 }
 
 func (o *ChangePasswordBadRequest) GetPayload() *models.Error {
@@ -260,11 +263,13 @@ func (o *ChangePasswordUnauthorized) Code() int {
 }
 
 func (o *ChangePasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnauthorized %s", 401, payload)
 }
 
 func (o *ChangePasswordUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnauthorized %s", 401, payload)
 }
 
 func (o *ChangePasswordUnauthorized) GetPayload() *models.Error {
@@ -328,11 +333,13 @@ func (o *ChangePasswordForbidden) Code() int {
 }
 
 func (o *ChangePasswordForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordForbidden %s", 403, payload)
 }
 
 func (o *ChangePasswordForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordForbidden %s", 403, payload)
 }
 
 func (o *ChangePasswordForbidden) GetPayload() *models.Error {
@@ -396,11 +403,13 @@ func (o *ChangePasswordNotFound) Code() int {
 }
 
 func (o *ChangePasswordNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNotFound %s", 404, payload)
 }
 
 func (o *ChangePasswordNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordNotFound %s", 404, payload)
 }
 
 func (o *ChangePasswordNotFound) GetPayload() *models.Error {
@@ -464,11 +473,13 @@ func (o *ChangePasswordPreconditionFailed) Code() int {
 }
 
 func (o *ChangePasswordPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordPreconditionFailed %s", 412, payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordPreconditionFailed %s", 412, payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) GetPayload() *models.Error {
@@ -532,11 +543,13 @@ func (o *ChangePasswordUnprocessableEntity) Code() int {
 }
 
 func (o *ChangePasswordUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -600,11 +613,13 @@ func (o *ChangePasswordTooManyRequests) Code() int {
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordTooManyRequests %s", 429, payload)
 }
 
 func (o *ChangePasswordTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change-password][%d] changePasswordTooManyRequests %s", 429, payload)
 }
 
 func (o *ChangePasswordTooManyRequests) GetPayload() *models.Error {

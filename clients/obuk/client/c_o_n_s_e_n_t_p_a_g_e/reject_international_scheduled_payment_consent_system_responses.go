@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RejectInternationalScheduledPaymentConsentSystemOK) Code() int {
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemOK) GetPayload() *models.ConsentRejected {
@@ -171,11 +174,13 @@ func (o *RejectInternationalScheduledPaymentConsentSystemUnauthorized) Code() in
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *RejectInternationalScheduledPaymentConsentSystemForbidden) Code() int {
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *RejectInternationalScheduledPaymentConsentSystemNotFound) Code() int {
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *RejectInternationalScheduledPaymentConsentSystemTooManyRequests) Code()
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-scheduled-payment-consent/{login}/reject][%d] rejectInternationalScheduledPaymentConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectInternationalScheduledPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateIntelliTrustIDPCreated) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated %s", 201, payload)
 }
 
 func (o *CreateIntelliTrustIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated %s", 201, payload)
 }
 
 func (o *CreateIntelliTrustIDPCreated) GetPayload() *models.IntelliTrustIDP {
@@ -183,11 +186,13 @@ func (o *CreateIntelliTrustIDPBadRequest) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateIntelliTrustIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateIntelliTrustIDPUnauthorized) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateIntelliTrustIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateIntelliTrustIDPForbidden) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateIntelliTrustIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateIntelliTrustIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateIntelliTrustIDPNotFound) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateIntelliTrustIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateIntelliTrustIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateIntelliTrustIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateIntelliTrustIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateIntelliTrustIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateIntelliTrustIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateIntelliTrustIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {

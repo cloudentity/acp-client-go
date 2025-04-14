@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RejectFDXConsentSystemOK) Code() int {
 }
 
 func (o *RejectFDXConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectFDXConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectFDXConsentSystemOK) GetPayload() *models.ConsentRejected {
@@ -171,11 +174,13 @@ func (o *RejectFDXConsentSystemUnauthorized) Code() int {
 }
 
 func (o *RejectFDXConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectFDXConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectFDXConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *RejectFDXConsentSystemForbidden) Code() int {
 }
 
 func (o *RejectFDXConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectFDXConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectFDXConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *RejectFDXConsentSystemNotFound) Code() int {
 }
 
 func (o *RejectFDXConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectFDXConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectFDXConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *RejectFDXConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *RejectFDXConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectFDXConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/reject][%d] rejectFDXConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectFDXConsentSystemTooManyRequests) GetPayload() *models.Error {

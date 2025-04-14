@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateGoogleIDPOK) Code() int {
 }
 
 func (o *UpdateGoogleIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK %s", 200, payload)
 }
 
 func (o *UpdateGoogleIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK %s", 200, payload)
 }
 
 func (o *UpdateGoogleIDPOK) GetPayload() *models.GoogleIDP {
@@ -183,11 +186,13 @@ func (o *UpdateGoogleIDPBadRequest) Code() int {
 }
 
 func (o *UpdateGoogleIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGoogleIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGoogleIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateGoogleIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateGoogleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGoogleIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGoogleIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateGoogleIDPForbidden) Code() int {
 }
 
 func (o *UpdateGoogleIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateGoogleIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateGoogleIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateGoogleIDPNotFound) Code() int {
 }
 
 func (o *UpdateGoogleIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateGoogleIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateGoogleIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateGoogleIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateGoogleIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGoogleIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGoogleIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateGoogleIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateGoogleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGoogleIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGoogleIDPTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateGithubIDPCreated) Code() int {
 }
 
 func (o *CreateGithubIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated %s", 201, payload)
 }
 
 func (o *CreateGithubIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated %s", 201, payload)
 }
 
 func (o *CreateGithubIDPCreated) GetPayload() *models.GithubIDP {
@@ -183,11 +186,13 @@ func (o *CreateGithubIDPBadRequest) Code() int {
 }
 
 func (o *CreateGithubIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateGithubIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateGithubIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateGithubIDPUnauthorized) Code() int {
 }
 
 func (o *CreateGithubIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateGithubIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateGithubIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateGithubIDPForbidden) Code() int {
 }
 
 func (o *CreateGithubIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateGithubIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateGithubIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateGithubIDPNotFound) Code() int {
 }
 
 func (o *CreateGithubIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateGithubIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateGithubIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateGithubIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateGithubIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateGithubIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateGithubIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateGithubIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateGithubIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateGithubIDPTooManyRequests) GetPayload() *models.Error {

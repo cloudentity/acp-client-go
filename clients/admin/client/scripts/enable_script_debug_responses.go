@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *EnableScriptDebugOK) Code() int {
 }
 
 func (o *EnableScriptDebugOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugOK %s", 200, payload)
 }
 
 func (o *EnableScriptDebugOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugOK %s", 200, payload)
 }
 
 func (o *EnableScriptDebugOK) GetPayload() *models.ScriptDebug {
@@ -193,11 +196,13 @@ func (o *EnableScriptDebugBadRequest) Code() int {
 }
 
 func (o *EnableScriptDebugBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugBadRequest %s", 400, payload)
 }
 
 func (o *EnableScriptDebugBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugBadRequest %s", 400, payload)
 }
 
 func (o *EnableScriptDebugBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *EnableScriptDebugUnauthorized) Code() int {
 }
 
 func (o *EnableScriptDebugUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *EnableScriptDebugUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *EnableScriptDebugUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *EnableScriptDebugForbidden) Code() int {
 }
 
 func (o *EnableScriptDebugForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *EnableScriptDebugForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *EnableScriptDebugForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *EnableScriptDebugNotFound) Code() int {
 }
 
 func (o *EnableScriptDebugNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *EnableScriptDebugNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *EnableScriptDebugNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *EnableScriptDebugTooManyRequests) Code() int {
 }
 
 func (o *EnableScriptDebugTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *EnableScriptDebugTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}/debug][%d] enableScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *EnableScriptDebugTooManyRequests) GetPayload() *models.Error {

@@ -38,7 +38,7 @@ type TenantLicense struct {
 
 	// Type of license
 	// Example: trial
-	// Enum: [trial enterprise]
+	// Enum: ["trial","enterprise"]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 

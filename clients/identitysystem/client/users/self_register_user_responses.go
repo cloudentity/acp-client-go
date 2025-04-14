@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *SelfRegisterUserCreated) Code() int {
 }
 
 func (o *SelfRegisterUserCreated) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserCreated %s", 201, payload)
 }
 
 func (o *SelfRegisterUserCreated) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserCreated %s", 201, payload)
 }
 
 func (o *SelfRegisterUserCreated) GetPayload() *models.UserID {
@@ -199,11 +202,13 @@ func (o *SelfRegisterUserBadRequest) Code() int {
 }
 
 func (o *SelfRegisterUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserBadRequest %s", 400, payload)
 }
 
 func (o *SelfRegisterUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserBadRequest %s", 400, payload)
 }
 
 func (o *SelfRegisterUserBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *SelfRegisterUserUnauthorized) Code() int {
 }
 
 func (o *SelfRegisterUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnauthorized %s", 401, payload)
 }
 
 func (o *SelfRegisterUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnauthorized %s", 401, payload)
 }
 
 func (o *SelfRegisterUserUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *SelfRegisterUserNotFound) Code() int {
 }
 
 func (o *SelfRegisterUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserNotFound %s", 404, payload)
 }
 
 func (o *SelfRegisterUserNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserNotFound %s", 404, payload)
 }
 
 func (o *SelfRegisterUserNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *SelfRegisterUserPreconditionFailed) Code() int {
 }
 
 func (o *SelfRegisterUserPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *SelfRegisterUserPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *SelfRegisterUserPreconditionFailed) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *SelfRegisterUserUnprocessableEntity) Code() int {
 }
 
 func (o *SelfRegisterUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SelfRegisterUserUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SelfRegisterUserUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *SelfRegisterUserTooManyRequests) Code() int {
 }
 
 func (o *SelfRegisterUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserTooManyRequests %s", 429, payload)
 }
 
 func (o *SelfRegisterUserTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserTooManyRequests %s", 429, payload)
 }
 
 func (o *SelfRegisterUserTooManyRequests) GetPayload() *models.Error {

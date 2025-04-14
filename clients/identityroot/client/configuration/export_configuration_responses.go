@@ -6,6 +6,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ExportConfigurationOK) Code() int {
 }
 
 func (o *ExportConfigurationOK) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationOK %s", 200, payload)
 }
 
 func (o *ExportConfigurationOK) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationOK %s", 200, payload)
 }
 
 func (o *ExportConfigurationOK) GetPayload() *models.Dump {
@@ -183,11 +186,13 @@ func (o *ExportConfigurationBadRequest) Code() int {
 }
 
 func (o *ExportConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *ExportConfigurationBadRequest) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *ExportConfigurationBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ExportConfigurationUnauthorized) Code() int {
 }
 
 func (o *ExportConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *ExportConfigurationUnauthorized) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *ExportConfigurationUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ExportConfigurationForbidden) Code() int {
 }
 
 func (o *ExportConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationForbidden %s", 403, payload)
 }
 
 func (o *ExportConfigurationForbidden) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationForbidden %s", 403, payload)
 }
 
 func (o *ExportConfigurationForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ExportConfigurationNotFound) Code() int {
 }
 
 func (o *ExportConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationNotFound %s", 404, payload)
 }
 
 func (o *ExportConfigurationNotFound) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationNotFound %s", 404, payload)
 }
 
 func (o *ExportConfigurationNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ExportConfigurationUnprocessableEntity) Code() int {
 }
 
 func (o *ExportConfigurationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportConfigurationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportConfigurationUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ExportConfigurationTooManyRequests) Code() int {
 }
 
 func (o *ExportConfigurationTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportConfigurationTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportConfigurationTooManyRequests) GetPayload() *models.Error {

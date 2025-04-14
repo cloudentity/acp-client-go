@@ -6,6 +6,7 @@ package groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetGroupOK) Code() int {
 }
 
 func (o *GetGroupOK) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupOK %s", 200, payload)
 }
 
 func (o *GetGroupOK) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupOK %s", 200, payload)
 }
 
 func (o *GetGroupOK) GetPayload() *models.Group {
@@ -171,11 +174,13 @@ func (o *GetGroupUnauthorized) Code() int {
 }
 
 func (o *GetGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupUnauthorized %s", 401, payload)
 }
 
 func (o *GetGroupUnauthorized) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupUnauthorized %s", 401, payload)
 }
 
 func (o *GetGroupUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetGroupForbidden) Code() int {
 }
 
 func (o *GetGroupForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupForbidden %s", 403, payload)
 }
 
 func (o *GetGroupForbidden) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupForbidden %s", 403, payload)
 }
 
 func (o *GetGroupForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetGroupNotFound) Code() int {
 }
 
 func (o *GetGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupNotFound %s", 404, payload)
 }
 
 func (o *GetGroupNotFound) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupNotFound %s", 404, payload)
 }
 
 func (o *GetGroupNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetGroupTooManyRequests) Code() int {
 }
 
 func (o *GetGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGroupTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools/{ipID}/groups/{groupID}][%d] getGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGroupTooManyRequests) GetPayload() *models.Error {

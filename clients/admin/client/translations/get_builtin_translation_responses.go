@@ -6,6 +6,7 @@ package translations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetBuiltinTranslationOK) Code() int {
 }
 
 func (o *GetBuiltinTranslationOK) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationOK %s", 200, payload)
 }
 
 func (o *GetBuiltinTranslationOK) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationOK %s", 200, payload)
 }
 
 func (o *GetBuiltinTranslationOK) GetPayload() *models.Translation {
@@ -177,11 +180,13 @@ func (o *GetBuiltinTranslationBadRequest) Code() int {
 }
 
 func (o *GetBuiltinTranslationBadRequest) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationBadRequest %s", 400, payload)
 }
 
 func (o *GetBuiltinTranslationBadRequest) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationBadRequest %s", 400, payload)
 }
 
 func (o *GetBuiltinTranslationBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *GetBuiltinTranslationUnauthorized) Code() int {
 }
 
 func (o *GetBuiltinTranslationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *GetBuiltinTranslationUnauthorized) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *GetBuiltinTranslationUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *GetBuiltinTranslationForbidden) Code() int {
 }
 
 func (o *GetBuiltinTranslationForbidden) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationForbidden %s", 403, payload)
 }
 
 func (o *GetBuiltinTranslationForbidden) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationForbidden %s", 403, payload)
 }
 
 func (o *GetBuiltinTranslationForbidden) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *GetBuiltinTranslationNotFound) Code() int {
 }
 
 func (o *GetBuiltinTranslationNotFound) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationNotFound %s", 404, payload)
 }
 
 func (o *GetBuiltinTranslationNotFound) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationNotFound %s", 404, payload)
 }
 
 func (o *GetBuiltinTranslationNotFound) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *GetBuiltinTranslationTooManyRequests) Code() int {
 }
 
 func (o *GetBuiltinTranslationTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *GetBuiltinTranslationTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}/builtin][%d] getBuiltinTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *GetBuiltinTranslationTooManyRequests) GetPayload() *models.Error {

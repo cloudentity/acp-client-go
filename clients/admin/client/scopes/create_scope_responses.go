@@ -6,6 +6,7 @@ package scopes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreateScopeCreated) Code() int {
 }
 
 func (o *CreateScopeCreated) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated %s", 201, payload)
 }
 
 func (o *CreateScopeCreated) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated %s", 201, payload)
 }
 
 func (o *CreateScopeCreated) GetPayload() *models.ScopeWithServiceID {
@@ -205,11 +208,13 @@ func (o *CreateScopeBadRequest) Code() int {
 }
 
 func (o *CreateScopeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest %s", 400, payload)
 }
 
 func (o *CreateScopeBadRequest) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest %s", 400, payload)
 }
 
 func (o *CreateScopeBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreateScopeUnauthorized) Code() int {
 }
 
 func (o *CreateScopeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized %s", 401, payload)
 }
 
 func (o *CreateScopeUnauthorized) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized %s", 401, payload)
 }
 
 func (o *CreateScopeUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreateScopeForbidden) Code() int {
 }
 
 func (o *CreateScopeForbidden) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden %s", 403, payload)
 }
 
 func (o *CreateScopeForbidden) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden %s", 403, payload)
 }
 
 func (o *CreateScopeForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreateScopeNotFound) Code() int {
 }
 
 func (o *CreateScopeNotFound) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound %s", 404, payload)
 }
 
 func (o *CreateScopeNotFound) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound %s", 404, payload)
 }
 
 func (o *CreateScopeNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreateScopeConflict) Code() int {
 }
 
 func (o *CreateScopeConflict) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict %s", 409, payload)
 }
 
 func (o *CreateScopeConflict) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict %s", 409, payload)
 }
 
 func (o *CreateScopeConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreateScopeUnprocessableEntity) Code() int {
 }
 
 func (o *CreateScopeUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateScopeUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateScopeUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreateScopeTooManyRequests) Code() int {
 }
 
 func (o *CreateScopeTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateScopeTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateScopeTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *SetTotpSecretNoContent) Code() int {
 }
 
 func (o *SetTotpSecretNoContent) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNoContent ", 204)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNoContent", 204)
 }
 
 func (o *SetTotpSecretNoContent) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNoContent ", 204)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNoContent", 204)
 }
 
 func (o *SetTotpSecretNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *SetTotpSecretBadRequest) Code() int {
 }
 
 func (o *SetTotpSecretBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretBadRequest %s", 400, payload)
 }
 
 func (o *SetTotpSecretBadRequest) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretBadRequest %s", 400, payload)
 }
 
 func (o *SetTotpSecretBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *SetTotpSecretUnauthorized) Code() int {
 }
 
 func (o *SetTotpSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnauthorized %s", 401, payload)
 }
 
 func (o *SetTotpSecretUnauthorized) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnauthorized %s", 401, payload)
 }
 
 func (o *SetTotpSecretUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *SetTotpSecretForbidden) Code() int {
 }
 
 func (o *SetTotpSecretForbidden) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretForbidden %s", 403, payload)
 }
 
 func (o *SetTotpSecretForbidden) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretForbidden %s", 403, payload)
 }
 
 func (o *SetTotpSecretForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *SetTotpSecretNotFound) Code() int {
 }
 
 func (o *SetTotpSecretNotFound) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNotFound %s", 404, payload)
 }
 
 func (o *SetTotpSecretNotFound) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretNotFound %s", 404, payload)
 }
 
 func (o *SetTotpSecretNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *SetTotpSecretPreconditionFailed) Code() int {
 }
 
 func (o *SetTotpSecretPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretPreconditionFailed %s", 412, payload)
 }
 
 func (o *SetTotpSecretPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretPreconditionFailed %s", 412, payload)
 }
 
 func (o *SetTotpSecretPreconditionFailed) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *SetTotpSecretUnprocessableEntity) Code() int {
 }
 
 func (o *SetTotpSecretUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTotpSecretUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetTotpSecretUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *SetTotpSecretTooManyRequests) Code() int {
 }
 
 func (o *SetTotpSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTotpSecretTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-totp-secret][%d] setTotpSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *SetTotpSecretTooManyRequests) GetPayload() *models.Error {

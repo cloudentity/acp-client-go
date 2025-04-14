@@ -6,6 +6,7 @@ package claims
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *UpdateClaimOK) Code() int {
 }
 
 func (o *UpdateClaimOK) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK %s", 200, payload)
 }
 
 func (o *UpdateClaimOK) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK %s", 200, payload)
 }
 
 func (o *UpdateClaimOK) GetPayload() *models.Claim {
@@ -199,11 +202,13 @@ func (o *UpdateClaimBadRequest) Code() int {
 }
 
 func (o *UpdateClaimBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest %s", 400, payload)
 }
 
 func (o *UpdateClaimBadRequest) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest %s", 400, payload)
 }
 
 func (o *UpdateClaimBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *UpdateClaimUnauthorized) Code() int {
 }
 
 func (o *UpdateClaimUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateClaimUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateClaimUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *UpdateClaimForbidden) Code() int {
 }
 
 func (o *UpdateClaimForbidden) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden %s", 403, payload)
 }
 
 func (o *UpdateClaimForbidden) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden %s", 403, payload)
 }
 
 func (o *UpdateClaimForbidden) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *UpdateClaimNotFound) Code() int {
 }
 
 func (o *UpdateClaimNotFound) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound %s", 404, payload)
 }
 
 func (o *UpdateClaimNotFound) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound %s", 404, payload)
 }
 
 func (o *UpdateClaimNotFound) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *UpdateClaimUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateClaimUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateClaimUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateClaimUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *UpdateClaimTooManyRequests) Code() int {
 }
 
 func (o *UpdateClaimTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateClaimTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateClaimTooManyRequests) GetPayload() *models.Error {

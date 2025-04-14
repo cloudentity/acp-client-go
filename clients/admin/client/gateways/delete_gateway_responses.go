@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteGatewayNoContent) Code() int {
 }
 
 func (o *DeleteGatewayNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent ", 204)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent", 204)
 }
 
 func (o *DeleteGatewayNoContent) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent ", 204)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent", 204)
 }
 
 func (o *DeleteGatewayNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteGatewayUnauthorized) Code() int {
 }
 
 func (o *DeleteGatewayUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteGatewayUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteGatewayUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteGatewayForbidden) Code() int {
 }
 
 func (o *DeleteGatewayForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden %s", 403, payload)
 }
 
 func (o *DeleteGatewayForbidden) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden %s", 403, payload)
 }
 
 func (o *DeleteGatewayForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteGatewayNotFound) Code() int {
 }
 
 func (o *DeleteGatewayNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound %s", 404, payload)
 }
 
 func (o *DeleteGatewayNotFound) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound %s", 404, payload)
 }
 
 func (o *DeleteGatewayNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteGatewayTooManyRequests) Code() int {
 }
 
 func (o *DeleteGatewayTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteGatewayTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteGatewayTooManyRequests) GetPayload() *models.Error {

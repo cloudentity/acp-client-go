@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListScriptExecutionPointsOK) Code() int {
 }
 
 func (o *ListScriptExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK %s", 200, payload)
 }
 
 func (o *ListScriptExecutionPointsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK %s", 200, payload)
 }
 
 func (o *ListScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
@@ -181,11 +184,13 @@ func (o *ListScriptExecutionPointsUnauthorized) Code() int {
 }
 
 func (o *ListScriptExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *ListScriptExecutionPointsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *ListScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListScriptExecutionPointsForbidden) Code() int {
 }
 
 func (o *ListScriptExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *ListScriptExecutionPointsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *ListScriptExecutionPointsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListScriptExecutionPointsTooManyRequests) Code() int {
 }
 
 func (o *ListScriptExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListScriptExecutionPointsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {

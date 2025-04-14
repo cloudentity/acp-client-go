@@ -61,7 +61,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	//
 	// If omitted, no encryption is applied by default.
 	// Example: RSA-OAEP-256
-	// Enum: [RSA-OAEP RSA-OAEP-256]
+	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
 	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty" yaml:"authorization_encrypted_response_alg,omitempty"`
 
 	// Algorithm used for encrypting authorization responses.
@@ -70,7 +70,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
 	// MUST also be provided in a request.
 	// Example: A128CBC-HS256
-	// Enum: [A256GCM A128CBC-HS256]
+	// Enum: ["A256GCM","A128CBC-HS256"]
 	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty" yaml:"authorization_encrypted_response_enc,omitempty"`
 
 	// Algorithm used for signing authorization responses.
@@ -167,18 +167,18 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	GrantTypes []string `json:"grant_types" yaml:"grant_types"`
 
 	// JWE alg algorithm for encrypting the ID token issued to this client application.
-	// Enum: [RSA-OAEP RSA-OAEP-256]
+	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
 	IDTokenEncryptedResponseAlg string `json:"id_token_encrypted_response_alg,omitempty" yaml:"id_token_encrypted_response_alg,omitempty"`
 
 	// JWE enc algorithm for encrypting the ID token issued to this client application.
-	// Enum: [A256GCM A128CBC-HS256]
+	// Enum: ["A256GCM","A128CBC-HS256"]
 	IDTokenEncryptedResponseEnc string `json:"id_token_encrypted_response_enc,omitempty" yaml:"id_token_encrypted_response_enc,omitempty"`
 
 	// Algorithm for signing ID tokens issued for a client application.
 	//
 	// The default value depends on authorization server configuration.
 	// Example: ES256
-	// Enum: [RS256 ES256 PS256]
+	// Enum: ["RS256","ES256","PS256"]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty" yaml:"id_token_signed_response_alg,omitempty"`
 
 	// An introspection endpoint authentication method configured for the client application (read-only).
@@ -191,7 +191,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	//
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
-	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]
 	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty" yaml:"introspection_endpoint_auth_method,omitempty"`
 
 	// jwks
@@ -225,13 +225,13 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 
 	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
 	// Example: RSA-OAEP
-	// Enum: [RSA-OAEP RSA-OAEP-256]
+	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
 	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty" yaml:"request_object_encryption_alg,omitempty"`
 
 	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
 	// When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
 	// Example: A256GCM
-	// Enum: [A256GCM A128CBC-HS256]
+	// Enum: ["A256GCM","A128CBC-HS256"]
 	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty" yaml:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
@@ -239,7 +239,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
 	// to use a signing algorithm, set the value of this parameter to `none`.
 	// Example: none
-	// Enum: [any none RS256 ES256 PS256]
+	// Enum: ["any","none","RS256","ES256","PS256"]
 	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty" yaml:"request_object_signing_alg,omitempty"`
 
 	// Array of absolute URIs that points to the Request Object that holds authorization request parameters.
@@ -260,7 +260,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	//
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
-	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]
 	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty" yaml:"revocation_endpoint_auth_method,omitempty"`
 
 	// Space-separated list of scopes for compatibility with the OAuth specification.
@@ -312,7 +312,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
 	// activity without their permission.
 	// Example: public
-	// Enum: [public pairwise]
+	// Enum: ["public","pairwise"]
 	SubjectType string `json:"subject_type,omitempty" yaml:"subject_type,omitempty"`
 
 	// A string containing the value of an expected dNSName SAN entry in the certificate.
@@ -341,7 +341,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	//
 	// To learn more, go to the Authorization Basics > Client Authentication section of this guide.
 	// Example: client_secret_basic
-	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
+	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 
 	// Signing algorithm for the token endpoint
@@ -356,7 +356,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// If your token endpoint authentication is set to the `client_secret_jwt` method,
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
 	// Example: ES256
-	// Enum: [RS256 ES256 PS256 HS256 ]
+	// Enum: ["RS256","ES256","PS256","HS256",""]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty" yaml:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// token exchange
@@ -377,7 +377,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// If omitted, then by default, UserInfo Response returns the Claims
 	// as an UTF-8 encoded JSON object using the application/json content-type.
 	// Example: none
-	// Enum: [none RS256 ES256]
+	// Enum: ["none","RS256","ES256"]
 	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty" yaml:"userinfo_signed_response_alg,omitempty"`
 }
 

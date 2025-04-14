@@ -6,6 +6,7 @@ package brute_force_limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListBruteForceLimitsOK) Code() int {
 }
 
 func (o *ListBruteForceLimitsOK) Error() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsOK %s", 200, payload)
 }
 
 func (o *ListBruteForceLimitsOK) String() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsOK %s", 200, payload)
 }
 
 func (o *ListBruteForceLimitsOK) GetPayload() *models.BruteForceLimits {
@@ -171,11 +174,13 @@ func (o *ListBruteForceLimitsUnauthorized) Code() int {
 }
 
 func (o *ListBruteForceLimitsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsUnauthorized %s", 401, payload)
 }
 
 func (o *ListBruteForceLimitsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsUnauthorized %s", 401, payload)
 }
 
 func (o *ListBruteForceLimitsUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *ListBruteForceLimitsForbidden) Code() int {
 }
 
 func (o *ListBruteForceLimitsForbidden) Error() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsForbidden %s", 403, payload)
 }
 
 func (o *ListBruteForceLimitsForbidden) String() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsForbidden %s", 403, payload)
 }
 
 func (o *ListBruteForceLimitsForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *ListBruteForceLimitsNotFound) Code() int {
 }
 
 func (o *ListBruteForceLimitsNotFound) Error() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsNotFound %s", 404, payload)
 }
 
 func (o *ListBruteForceLimitsNotFound) String() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsNotFound %s", 404, payload)
 }
 
 func (o *ListBruteForceLimitsNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *ListBruteForceLimitsTooManyRequests) Code() int {
 }
 
 func (o *ListBruteForceLimitsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListBruteForceLimitsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /bruteforce][%d] listBruteForceLimitsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListBruteForceLimitsTooManyRequests) GetPayload() *models.Error {
