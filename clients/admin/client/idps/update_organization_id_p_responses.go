@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *UpdateOrganizationIDPOK) Code() int {
 }
 
 func (o *UpdateOrganizationIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPOK) GetPayload() *models.OrganizationIDP {
@@ -186,13 +183,11 @@ func (o *UpdateOrganizationIDPBadRequest) Code() int {
 }
 
 func (o *UpdateOrganizationIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *UpdateOrganizationIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateOrganizationIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *UpdateOrganizationIDPForbidden) Code() int {
 }
 
 func (o *UpdateOrganizationIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *UpdateOrganizationIDPNotFound) Code() int {
 }
 
 func (o *UpdateOrganizationIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *UpdateOrganizationIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateOrganizationIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *UpdateOrganizationIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateOrganizationIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/organization/{iid}][%d] updateOrganizationIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateOrganizationIDPTooManyRequests) GetPayload() *models.Error {

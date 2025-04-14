@@ -6,7 +6,6 @@ package webhooks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -107,13 +106,11 @@ func (o *ListWebhookEventsOK) Code() int {
 }
 
 func (o *ListWebhookEventsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListWebhookEventsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListWebhookEventsOK) GetPayload() *models.AvailableEvents {
@@ -184,13 +181,11 @@ func (o *ListWebhookEventsUnauthorized) Code() int {
 }
 
 func (o *ListWebhookEventsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListWebhookEventsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListWebhookEventsUnauthorized) GetPayload() *models.Error {
@@ -254,13 +249,11 @@ func (o *ListWebhookEventsForbidden) Code() int {
 }
 
 func (o *ListWebhookEventsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListWebhookEventsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListWebhookEventsForbidden) GetPayload() *models.Error {
@@ -324,13 +317,11 @@ func (o *ListWebhookEventsTooManyRequests) Code() int {
 }
 
 func (o *ListWebhookEventsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListWebhookEventsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /webhooks/events/{wid}][%d] listWebhookEventsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListWebhookEventsTooManyRequests) GetPayload() *models.Error {

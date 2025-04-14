@@ -634,6 +634,14 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  ListUserApplications:
+    properties:
+      applications:
+        items:
+          $ref: '#/definitions/UserApplication'
+        type: array
+        x-nullable: false
+    type: object
   ListUserSessions:
     properties:
       sessions:
@@ -695,8 +703,12 @@ definitions:
     type: object
   PublicEnvironment:
     properties:
-      self_service:
-        description: If self-service is enabled
+      application_launch_dashboard:
+        description: If application_launch_dashboard is enabled
+        type: boolean
+        x-nullable: false
+      b2b_orgs_client_side_search:
+        description: If b2b_orgs_client_side_search is enabled
         type: boolean
         x-nullable: false
     type: object
@@ -828,6 +840,22 @@ definitions:
     - mechanism
     - address
     type: object
+  UserApplication:
+    properties:
+      id:
+        format: clientID
+        type: string
+        x-nullable: false
+      logo_uri:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      url:
+        type: string
+        x-nullable: false
+    type: object
   UserSession:
     properties:
       active_time:
@@ -879,6 +907,27 @@ info:
   title: Cloudentity API
   version: latest
 paths:
+  /applications:
+    get:
+      description: User applications.
+      operationId: ListUserApplications
+      responses:
+        "200":
+          $ref: '#/responses/ListUserApplications'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - default:
+        - list_clients_with_access
+      summary: Lists user applications.
+      tags:
+      - applications
   /authn/otp/transient:
     post:
       description: Initiate a new transient OTP verification.
@@ -1332,6 +1381,10 @@ responses:
     description: Clients with access
     schema:
       $ref: '#/definitions/ListClientsWithAccess'
+  ListUserApplications:
+    description: User applications.
+    schema:
+      $ref: '#/definitions/ListUserApplications'
   ListUserSessions:
     description: User  sessions
     schema:

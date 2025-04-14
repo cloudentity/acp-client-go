@@ -9,38 +9,12 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new secrets API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new secrets API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new secrets API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -51,7 +25,7 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
@@ -113,7 +87,7 @@ func (a *Client) CreateSecret(params *CreateSecretParams, authInfo runtime.Clien
 /*
 DeleteSecret deletes secret
 
-Delete previously created secrets for a given tenant id and autorization server (workspace).
+Delete previously created secrets for a given tenant id and authorization server (workspace).
 */
 func (a *Client) DeleteSecret(params *DeleteSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSecretNoContent, error) {
 	// TODO: Validate the params before sending
@@ -154,9 +128,9 @@ func (a *Client) DeleteSecret(params *DeleteSecretParams, authInfo runtime.Clien
 /*
 	ListSecrets lists secrets
 
-	List previously created secrets for a given tenant id and autorization server (workspace).
+	List previously created secrets for a given tenant id and authorization server (workspace).
 
-The secret value is ciphered when it's created, it's not possible to retrieve it in any way.
+The secret value is ciphered when it's created, it's only possible to retrieve it using system API.
 */
 func (a *Client) ListSecrets(params *ListSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSecretsOK, error) {
 	// TODO: Validate the params before sending

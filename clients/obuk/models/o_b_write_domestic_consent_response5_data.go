@@ -69,7 +69,7 @@ type OBWriteDomesticConsentResponse5Data struct {
 	Initiation *OBWriteDomesticConsentResponse5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: ["No","Yes"]
+	// Enum: [No Yes]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
@@ -77,7 +77,7 @@ type OBWriteDomesticConsentResponse5Data struct {
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
-	// Enum: ["Authorised","AwaitingAuthorisation","Consumed","Rejected"]
+	// Enum: [Authorised AwaitingAuthorisation Consumed Rejected]
 	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.

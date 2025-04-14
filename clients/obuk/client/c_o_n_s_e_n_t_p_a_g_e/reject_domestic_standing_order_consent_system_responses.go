@@ -6,7 +6,6 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *RejectDomesticStandingOrderConsentSystemOK) Code() int {
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemOK  %+v", 200, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemOK) GetPayload() *models.ConsentRejected {
@@ -174,13 +171,11 @@ func (o *RejectDomesticStandingOrderConsentSystemUnauthorized) Code() int {
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *RejectDomesticStandingOrderConsentSystemForbidden) Code() int {
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *RejectDomesticStandingOrderConsentSystemNotFound) Code() int {
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *RejectDomesticStandingOrderConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/domestic-standing-order-consent/{login}/reject][%d] rejectDomesticStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RejectDomesticStandingOrderConsentSystemTooManyRequests) GetPayload() *models.Error {

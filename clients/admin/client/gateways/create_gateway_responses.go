@@ -6,7 +6,6 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *CreateGatewayCreated) Code() int {
 }
 
 func (o *CreateGatewayCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateGatewayCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateGatewayCreated) GetPayload() *models.GatewayWithClient {
@@ -202,13 +199,11 @@ func (o *CreateGatewayUnauthorized) Code() int {
 }
 
 func (o *CreateGatewayUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateGatewayUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateGatewayUnauthorized) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *CreateGatewayForbidden) Code() int {
 }
 
 func (o *CreateGatewayForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateGatewayForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateGatewayForbidden) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *CreateGatewayNotFound) Code() int {
 }
 
 func (o *CreateGatewayNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateGatewayNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateGatewayNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *CreateGatewayConflict) Code() int {
 }
 
 func (o *CreateGatewayConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateGatewayConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateGatewayConflict) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *CreateGatewayUnprocessableEntity) Code() int {
 }
 
 func (o *CreateGatewayUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateGatewayUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateGatewayUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *CreateGatewayTooManyRequests) Code() int {
 }
 
 func (o *CreateGatewayTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateGatewayTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /gateways][%d] createGatewayTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /gateways][%d] createGatewayTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateGatewayTooManyRequests) GetPayload() *models.Error {

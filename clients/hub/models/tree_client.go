@@ -61,7 +61,7 @@ type TreeClient struct {
 	//
 	// If omitted, no encryption is applied by default.
 	// Example: RSA-OAEP-256
-	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
+	// Enum: [RSA-OAEP RSA-OAEP-256]
 	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty" yaml:"authorization_encrypted_response_alg,omitempty"`
 
 	// Algorithm used for encrypting authorization responses.
@@ -70,7 +70,7 @@ type TreeClient struct {
 	// When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
 	// MUST also be provided in a request.
 	// Example: A128CBC-HS256
-	// Enum: ["A256GCM","A128CBC-HS256"]
+	// Enum: [A256GCM A128CBC-HS256]
 	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty" yaml:"authorization_encrypted_response_enc,omitempty"`
 
 	// Algorithm used for signing authorization responses.
@@ -112,6 +112,11 @@ type TreeClient struct {
 	// This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
 	BackchannelUserCodeParameter bool `json:"backchannel_user_code_parameter,omitempty" yaml:"backchannel_user_code_parameter,omitempty"`
 
+	// Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+	//
+	// It is used only as an input parameter for the Create / Import Client.
+	Certificate string `json:"certificate,omitempty" yaml:"certificate,omitempty"`
+
 	// The client identifier time of issue.
 	//
 	// The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
@@ -135,11 +140,11 @@ type TreeClient struct {
 	// Defines whether the client application is active or not.
 	//
 	// Only clients with the `Active` status can preform authorization, authentication, and PAR requests.
-	// Enum: ["active","inactive"]
+	// Enum: [active inactive]
 	ClientStatus string `json:"client_status,omitempty" yaml:"client_status,omitempty"`
 
 	// client type
-	// Enum: ["oauth2","saml"]
+	// Enum: [oauth2 saml]
 	ClientType string `json:"client_type,omitempty" yaml:"client_type,omitempty"`
 
 	// URI of a client application.
@@ -194,18 +199,18 @@ type TreeClient struct {
 	HashedSecret string `json:"hashed_secret,omitempty" yaml:"hashed_secret,omitempty"`
 
 	// JWE alg algorithm for encrypting the ID token issued to this client application.
-	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
+	// Enum: [RSA-OAEP RSA-OAEP-256]
 	IDTokenEncryptedResponseAlg string `json:"id_token_encrypted_response_alg,omitempty" yaml:"id_token_encrypted_response_alg,omitempty"`
 
 	// JWE enc algorithm for encrypting the ID token issued to this client application.
-	// Enum: ["A256GCM","A128CBC-HS256"]
+	// Enum: [A256GCM A128CBC-HS256]
 	IDTokenEncryptedResponseEnc string `json:"id_token_encrypted_response_enc,omitempty" yaml:"id_token_encrypted_response_enc,omitempty"`
 
 	// Algorithm for signing ID tokens issued for a client application.
 	//
 	// The default value depends on authorization server configuration.
 	// Example: ES256
-	// Enum: ["RS256","ES256","PS256"]
+	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty" yaml:"id_token_signed_response_alg,omitempty"`
 
 	// An introspection endpoint authentication method configured for the client application (read-only).
@@ -218,7 +223,7 @@ type TreeClient struct {
 	//
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
 	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty" yaml:"introspection_endpoint_auth_method,omitempty"`
 
 	// jwks
@@ -264,13 +269,13 @@ type TreeClient struct {
 
 	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
 	// Example: RSA-OAEP
-	// Enum: ["RSA-OAEP","RSA-OAEP-256"]
+	// Enum: [RSA-OAEP RSA-OAEP-256]
 	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty" yaml:"request_object_encryption_alg,omitempty"`
 
 	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
 	// When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
 	// Example: A256GCM
-	// Enum: ["A256GCM","A128CBC-HS256"]
+	// Enum: [A256GCM A128CBC-HS256]
 	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty" yaml:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
@@ -278,7 +283,7 @@ type TreeClient struct {
 	// Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
 	// to use a signing algorithm, set the value of this parameter to `none`.
 	// Example: none
-	// Enum: ["any","none","RS256","ES256","PS256"]
+	// Enum: [any none RS256 ES256 PS256]
 	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty" yaml:"request_object_signing_alg,omitempty"`
 
 	// Array of absolute URIs that points to the Request Object that holds authorization request parameters.
@@ -299,17 +304,42 @@ type TreeClient struct {
 	//
 	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
 	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty" yaml:"revocation_endpoint_auth_method,omitempty"`
 
 	// An array of rotated OAuth client secrets
 	RotatedSecrets []string `json:"rotated_secrets" yaml:"rotated_secrets"`
 
+	// Allowed SAML attributes
+	SamlAllowedAttributes []string `json:"saml_allowed_attributes" yaml:"saml_allowed_attributes"`
+
 	// saml metadata
 	SamlMetadata *EntityDescriptor `json:"saml_metadata,omitempty" yaml:"saml_metadata,omitempty"`
 
+	// saml metadata updated at
+	// Format: date-time
+	SamlMetadataUpdatedAt strfmt.DateTime `json:"saml_metadata_updated_at,omitempty" yaml:"saml_metadata_updated_at,omitempty"`
+
+	// saml metadata url
+	SamlMetadataURL string `json:"saml_metadata_url,omitempty" yaml:"saml_metadata_url,omitempty"`
+
+	// If true, then only attributes defined in saml_attributes will be used to build the SAML assertion
+	SamlOverrideAttributes bool `json:"saml_override_attributes,omitempty" yaml:"saml_override_attributes,omitempty"`
+
 	// saml service provider id
 	SamlServiceProviderID string `json:"saml_service_provider_id,omitempty" yaml:"saml_service_provider_id,omitempty"`
+
+	// SAML Assertion signing hash algorithm.
+	// Example: sha-256
+	// Enum: [sha-1 sha-256 sha-512]
+	SamlSigningHash string `json:"saml_signing_hash,omitempty" yaml:"saml_signing_hash,omitempty"`
+
+	// Allows to override the subject name id.
+	SamlSubjectNameID string `json:"saml_subject_name_id,omitempty" yaml:"saml_subject_name_id,omitempty"`
+
+	// Allows to override the subject name id format
+	// Enum: [urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified urn:oasis:names:tc:SAML:2.0:nameid-format:transient urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress urn:oasis:names:tc:SAML:2.0:nameid-format:persistent]
+	SamlSubjectNameIDFormat string `json:"saml_subject_name_id_format,omitempty" yaml:"saml_subject_name_id_format,omitempty"`
 
 	// Space-separated list of scopes for compatibility with the OAuth specification.
 	// Example: email offline_access openid
@@ -375,7 +405,7 @@ type TreeClient struct {
 	// Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
 	// activity without their permission.
 	// Example: public
-	// Enum: ["public","pairwise"]
+	// Enum: [public pairwise]
 	SubjectType string `json:"subject_type,omitempty" yaml:"subject_type,omitempty"`
 
 	// Defines whether the client application is a system tenant's application or not.
@@ -407,7 +437,7 @@ type TreeClient struct {
 	//
 	// To learn more, go to the Authorization Basics > Client Authentication section of this guide.
 	// Example: client_secret_basic
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 
 	// Signing algorithm for the token endpoint
@@ -422,7 +452,7 @@ type TreeClient struct {
 	// If your token endpoint authentication is set to the `client_secret_jwt` method,
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
 	// Example: ES256
-	// Enum: ["RS256","ES256","PS256","HS256",""]
+	// Enum: [RS256 ES256 PS256 HS256 ]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty" yaml:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// token exchange
@@ -454,7 +484,7 @@ type TreeClient struct {
 	// If omitted, then by default, UserInfo Response returns the Claims
 	// as an UTF-8 encoded JSON object using the application/json content-type.
 	// Example: none
-	// Enum: ["none","RS256","ES256"]
+	// Enum: [none RS256 ES256]
 	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty" yaml:"userinfo_signed_response_alg,omitempty"`
 }
 
@@ -575,6 +605,18 @@ func (m *TreeClient) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSamlMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlMetadataUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlSigningHash(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlSubjectNameIDFormat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1498,6 +1540,111 @@ func (m *TreeClient) validateSamlMetadata(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TreeClient) validateSamlMetadataUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlMetadataUpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("saml_metadata_updated_at", "body", "date-time", m.SamlMetadataUpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var treeClientTypeSamlSigningHashPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["sha-1","sha-256","sha-512"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		treeClientTypeSamlSigningHashPropEnum = append(treeClientTypeSamlSigningHashPropEnum, v)
+	}
+}
+
+const (
+
+	// TreeClientSamlSigningHashShaDash1 captures enum value "sha-1"
+	TreeClientSamlSigningHashShaDash1 string = "sha-1"
+
+	// TreeClientSamlSigningHashShaDash256 captures enum value "sha-256"
+	TreeClientSamlSigningHashShaDash256 string = "sha-256"
+
+	// TreeClientSamlSigningHashShaDash512 captures enum value "sha-512"
+	TreeClientSamlSigningHashShaDash512 string = "sha-512"
+)
+
+// prop value enum
+func (m *TreeClient) validateSamlSigningHashEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, treeClientTypeSamlSigningHashPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *TreeClient) validateSamlSigningHash(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlSigningHash) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSamlSigningHashEnum("saml_signing_hash", "body", m.SamlSigningHash); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var treeClientTypeSamlSubjectNameIDFormatPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:2.0:nameid-format:transient","urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		treeClientTypeSamlSubjectNameIDFormatPropEnum = append(treeClientTypeSamlSubjectNameIDFormatPropEnum, v)
+	}
+}
+
+const (
+
+	// TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+	TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified string = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+
+	// TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient string = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+
+	// TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatEmailAddress captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+	TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatEmailAddress string = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+
+	// TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+	TreeClientSamlSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent string = "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+)
+
+// prop value enum
+func (m *TreeClient) validateSamlSubjectNameIDFormatEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, treeClientTypeSamlSubjectNameIDFormatPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *TreeClient) validateSamlSubjectNameIDFormat(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlSubjectNameIDFormat) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSamlSubjectNameIDFormatEnum("saml_subject_name_id_format", "body", m.SamlSubjectNameIDFormat); err != nil {
+		return err
 	}
 
 	return nil

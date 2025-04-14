@@ -6,7 +6,6 @@ package themes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteThemeNoContent) Code() int {
 }
 
 func (o *DeleteThemeNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNoContent", 204)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNoContent ", 204)
 }
 
 func (o *DeleteThemeNoContent) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNoContent", 204)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNoContent ", 204)
 }
 
 func (o *DeleteThemeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteThemeUnauthorized) Code() int {
 }
 
 func (o *DeleteThemeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteThemeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteThemeUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteThemeForbidden) Code() int {
 }
 
 func (o *DeleteThemeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteThemeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteThemeForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteThemeNotFound) Code() int {
 }
 
 func (o *DeleteThemeNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteThemeNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteThemeNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteThemeTooManyRequests) Code() int {
 }
 
 func (o *DeleteThemeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteThemeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteThemeTooManyRequests) GetPayload() *models.Error {

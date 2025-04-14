@@ -17,6 +17,12 @@ import (
 // swagger:model DCRRejectedEventPayload
 type DCRRejectedEventPayload struct {
 
+	// The visitor's city
+	City string `json:"city,omitempty" yaml:"city,omitempty"`
+
+	// The visitor's country
+	CountryCode string `json:"country_code,omitempty" yaml:"country_code,omitempty"`
+
 	// Arculix DBFP `jwt` cookie.
 	Dbfp string `json:"dbfp,omitempty" yaml:"dbfp,omitempty"`
 
@@ -35,10 +41,10 @@ type DCRRejectedEventPayload struct {
 	// External error
 	ExternalError bool `json:"external_error,omitempty" yaml:"external_error,omitempty"`
 
-	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	// The visitor's latitude
 	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
 
-	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	// The visitor's longitude
 	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
 
 	// Requester IP address obtained from system network socket information.

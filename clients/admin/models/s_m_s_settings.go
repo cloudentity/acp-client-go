@@ -35,7 +35,7 @@ type SMSSettings struct {
 
 	// SMS provider.
 	// Example: embedded
-	// Enum: ["twilio","embedded"]
+	// Enum: [twilio embedded]
 	Provider string `json:"provider,omitempty" yaml:"provider,omitempty"`
 }
 

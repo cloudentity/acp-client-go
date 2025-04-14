@@ -33,7 +33,7 @@ type OTPPayload struct {
 	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 
 	// type
-	// Enum: ["sms","email"]
+	// Enum: [sms email]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// user id

@@ -6,7 +6,6 @@ package a_c_rs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteACRNoContent) Code() int {
 }
 
 func (o *DeleteACRNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNoContent ", 204)
 }
 
 func (o *DeleteACRNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNoContent ", 204)
 }
 
 func (o *DeleteACRNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteACRUnauthorized) Code() int {
 }
 
 func (o *DeleteACRUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteACRUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteACRUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteACRForbidden) Code() int {
 }
 
 func (o *DeleteACRForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteACRForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteACRForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteACRNotFound) Code() int {
 }
 
 func (o *DeleteACRNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteACRNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteACRNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteACRTooManyRequests) Code() int {
 }
 
 func (o *DeleteACRTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteACRTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/acrs/{acrID}][%d] deleteACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteACRTooManyRequests) GetPayload() *models.Error {

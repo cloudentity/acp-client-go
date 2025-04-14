@@ -6,7 +6,6 @@ package environment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *GetDeveloperEnvironmentOK) Code() int {
 }
 
 func (o *GetDeveloperEnvironmentOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentOK) GetPayload() *models.DeveloperEnvironment {
@@ -168,13 +165,11 @@ func (o *GetDeveloperEnvironmentUnauthorized) Code() int {
 }
 
 func (o *GetDeveloperEnvironmentUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *GetDeveloperEnvironmentForbidden) Code() int {
 }
 
 func (o *GetDeveloperEnvironmentForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentForbidden) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *GetDeveloperEnvironmentTooManyRequests) Code() int {
 }
 
 func (o *GetDeveloperEnvironmentTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDeveloperEnvironmentTooManyRequests) GetPayload() *models.Error {

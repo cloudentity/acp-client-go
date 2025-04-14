@@ -53,7 +53,7 @@ type SelfUserWithDataV2 struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// second factor authentication mechanisms
@@ -61,7 +61,7 @@ type SelfUserWithDataV2 struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: ["totp","password","otp","webauthn"]
+	// Enum: [totp password otp email_otp sms_otp webauthn]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// verifiable addresses
@@ -122,7 +122,7 @@ var selfUserWithDataV2AllowedAuthenticationMechanismsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -272,7 +272,7 @@ var selfUserWithDataV2TypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -290,6 +290,12 @@ const (
 
 	// SelfUserWithDataV2PreferredAuthenticationMechanismOtp captures enum value "otp"
 	SelfUserWithDataV2PreferredAuthenticationMechanismOtp string = "otp"
+
+	// SelfUserWithDataV2PreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	SelfUserWithDataV2PreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// SelfUserWithDataV2PreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	SelfUserWithDataV2PreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// SelfUserWithDataV2PreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	SelfUserWithDataV2PreferredAuthenticationMechanismWebauthn string = "webauthn"
@@ -337,7 +343,7 @@ var selfUserWithDataV2TypeSecondFactorPreferredAuthenticationMechanismPropEnum [
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -355,6 +361,12 @@ const (
 
 	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismOtp captures enum value "otp"
 	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismOtp string = "otp"
+
+	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismEmailOtp captures enum value "email_otp"
+	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismEmailOtp string = "email_otp"
+
+	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismSmsOtp captures enum value "sms_otp"
+	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismSmsOtp string = "sms_otp"
 
 	// SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
 	SelfUserWithDataV2SecondFactorPreferredAuthenticationMechanismWebauthn string = "webauthn"

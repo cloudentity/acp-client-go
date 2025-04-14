@@ -6,7 +6,6 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -117,11 +116,11 @@ func (o *RevokeWorkspaceRoleNoContent) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNoContent ", 204)
 }
 
 func (o *RevokeWorkspaceRoleNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNoContent ", 204)
 }
 
 func (o *RevokeWorkspaceRoleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -181,13 +180,11 @@ func (o *RevokeWorkspaceRoleUnauthorized) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleUnauthorized) GetPayload() *models.Error {
@@ -251,13 +248,11 @@ func (o *RevokeWorkspaceRoleForbidden) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleForbidden) GetPayload() *models.Error {
@@ -321,13 +316,11 @@ func (o *RevokeWorkspaceRoleNotFound) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleNotFound) GetPayload() *models.Error {
@@ -391,13 +384,11 @@ func (o *RevokeWorkspaceRoleUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleUnprocessableEntity) GetPayload() *models.Error {
@@ -461,13 +452,11 @@ func (o *RevokeWorkspaceRoleTooManyRequests) Code() int {
 }
 
 func (o *RevokeWorkspaceRoleTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/roles/revoke][%d] revokeWorkspaceRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeWorkspaceRoleTooManyRequests) GetPayload() *models.Error {

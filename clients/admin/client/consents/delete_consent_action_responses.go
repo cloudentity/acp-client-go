@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteConsentActionNoContent) Code() int {
 }
 
 func (o *DeleteConsentActionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNoContent", 204)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNoContent ", 204)
 }
 
 func (o *DeleteConsentActionNoContent) String() string {
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNoContent", 204)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNoContent ", 204)
 }
 
 func (o *DeleteConsentActionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteConsentActionUnauthorized) Code() int {
 }
 
 func (o *DeleteConsentActionUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteConsentActionUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteConsentActionUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteConsentActionForbidden) Code() int {
 }
 
 func (o *DeleteConsentActionForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteConsentActionForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteConsentActionForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteConsentActionNotFound) Code() int {
 }
 
 func (o *DeleteConsentActionNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteConsentActionNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteConsentActionNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteConsentActionTooManyRequests) Code() int {
 }
 
 func (o *DeleteConsentActionTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteConsentActionTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /actions/{action}][%d] deleteConsentActionTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteConsentActionTooManyRequests) GetPayload() *models.Error {

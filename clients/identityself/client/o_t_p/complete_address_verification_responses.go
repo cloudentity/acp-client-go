@@ -6,7 +6,6 @@ package o_t_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -123,11 +122,11 @@ func (o *CompleteAddressVerificationNoContent) Code() int {
 }
 
 func (o *CompleteAddressVerificationNoContent) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent", 204)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent ", 204)
 }
 
 func (o *CompleteAddressVerificationNoContent) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent", 204)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent ", 204)
 }
 
 func (o *CompleteAddressVerificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -187,13 +186,11 @@ func (o *CompleteAddressVerificationBadRequest) Code() int {
 }
 
 func (o *CompleteAddressVerificationBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CompleteAddressVerificationBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CompleteAddressVerificationBadRequest) GetPayload() *models.Error {
@@ -257,13 +254,11 @@ func (o *CompleteAddressVerificationUnauthorized) Code() int {
 }
 
 func (o *CompleteAddressVerificationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnauthorized) GetPayload() *models.Error {
@@ -327,13 +322,11 @@ func (o *CompleteAddressVerificationNotFound) Code() int {
 }
 
 func (o *CompleteAddressVerificationNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CompleteAddressVerificationNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CompleteAddressVerificationNotFound) GetPayload() *models.Error {
@@ -397,13 +390,11 @@ func (o *CompleteAddressVerificationConflict) Code() int {
 }
 
 func (o *CompleteAddressVerificationConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CompleteAddressVerificationConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CompleteAddressVerificationConflict) GetPayload() *models.Error {
@@ -467,13 +458,11 @@ func (o *CompleteAddressVerificationPreconditionFailed) Code() int {
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) GetPayload() *models.Error {
@@ -537,13 +526,11 @@ func (o *CompleteAddressVerificationUnprocessableEntity) Code() int {
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) GetPayload() *models.Error {

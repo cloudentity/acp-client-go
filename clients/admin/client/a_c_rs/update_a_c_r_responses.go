@@ -6,7 +6,6 @@ package a_c_rs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *UpdateACROK) Code() int {
 }
 
 func (o *UpdateACROK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACROK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACROK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateACROK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACROK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACROK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateACROK) GetPayload() *models.ACR {
@@ -208,13 +205,11 @@ func (o *UpdateACRBadRequest) Code() int {
 }
 
 func (o *UpdateACRBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateACRBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateACRBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *UpdateACRUnauthorized) Code() int {
 }
 
 func (o *UpdateACRUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateACRUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateACRUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *UpdateACRForbidden) Code() int {
 }
 
 func (o *UpdateACRForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateACRForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateACRForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *UpdateACRNotFound) Code() int {
 }
 
 func (o *UpdateACRNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateACRNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateACRNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *UpdateACRConflict) Code() int {
 }
 
 func (o *UpdateACRConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateACRConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateACRConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *UpdateACRUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateACRUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateACRUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateACRUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *UpdateACRTooManyRequests) Code() int {
 }
 
 func (o *UpdateACRTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateACRTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/acrs/{acrID}][%d] updateACRTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateACRTooManyRequests) GetPayload() *models.Error {

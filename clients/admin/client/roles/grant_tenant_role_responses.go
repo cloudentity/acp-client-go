@@ -6,7 +6,6 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -117,11 +116,11 @@ func (o *GrantTenantRoleNoContent) Code() int {
 }
 
 func (o *GrantTenantRoleNoContent) Error() string {
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNoContent", 204)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNoContent ", 204)
 }
 
 func (o *GrantTenantRoleNoContent) String() string {
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNoContent", 204)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNoContent ", 204)
 }
 
 func (o *GrantTenantRoleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -181,13 +180,11 @@ func (o *GrantTenantRoleUnauthorized) Code() int {
 }
 
 func (o *GrantTenantRoleUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GrantTenantRoleUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GrantTenantRoleUnauthorized) GetPayload() *models.Error {
@@ -251,13 +248,11 @@ func (o *GrantTenantRoleForbidden) Code() int {
 }
 
 func (o *GrantTenantRoleForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GrantTenantRoleForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GrantTenantRoleForbidden) GetPayload() *models.Error {
@@ -321,13 +316,11 @@ func (o *GrantTenantRoleNotFound) Code() int {
 }
 
 func (o *GrantTenantRoleNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GrantTenantRoleNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GrantTenantRoleNotFound) GetPayload() *models.Error {
@@ -391,13 +384,11 @@ func (o *GrantTenantRoleUnprocessableEntity) Code() int {
 }
 
 func (o *GrantTenantRoleUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GrantTenantRoleUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GrantTenantRoleUnprocessableEntity) GetPayload() *models.Error {
@@ -461,13 +452,11 @@ func (o *GrantTenantRoleTooManyRequests) Code() int {
 }
 
 func (o *GrantTenantRoleTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GrantTenantRoleTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /tenant/roles/grant][%d] grantTenantRoleTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GrantTenantRoleTooManyRequests) GetPayload() *models.Error {

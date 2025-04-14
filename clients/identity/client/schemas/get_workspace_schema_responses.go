@@ -6,7 +6,6 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetWorkspaceSchemaOK) Code() int {
 }
 
 func (o *GetWorkspaceSchemaOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaOK) GetPayload() *models.Schema {
@@ -190,13 +187,11 @@ func (o *GetWorkspaceSchemaUnauthorized) Code() int {
 }
 
 func (o *GetWorkspaceSchemaUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetWorkspaceSchemaForbidden) Code() int {
 }
 
 func (o *GetWorkspaceSchemaForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetWorkspaceSchemaNotFound) Code() int {
 }
 
 func (o *GetWorkspaceSchemaNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetWorkspaceSchemaTooManyRequests) Code() int {
 }
 
 func (o *GetWorkspaceSchemaTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/workspace/{wid}/schemas/{schID}][%d] getWorkspaceSchemaTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetWorkspaceSchemaTooManyRequests) GetPayload() *models.Error {

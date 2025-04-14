@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *RevokeFDXConsentByIDNoContent) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNoContent ", 204)
 }
 
 func (o *RevokeFDXConsentByIDNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNoContent ", 204)
 }
 
 func (o *RevokeFDXConsentByIDNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *RevokeFDXConsentByIDUnauthorized) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDUnauthorized) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *RevokeFDXConsentByIDForbidden) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDForbidden) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *RevokeFDXConsentByIDNotFound) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDNotFound) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *RevokeFDXConsentByIDUnprocessableEntity) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDUnprocessableEntity) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *RevokeFDXConsentByIDTooManyRequests) Code() int {
 }
 
 func (o *RevokeFDXConsentByIDTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/fdx/consents/{consentID}][%d] revokeFDXConsentByIdTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeFDXConsentByIDTooManyRequests) GetPayload() *models.Error {

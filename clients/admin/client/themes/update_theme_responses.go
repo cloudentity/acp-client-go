@@ -6,7 +6,6 @@ package themes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *UpdateThemeOK) Code() int {
 }
 
 func (o *UpdateThemeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateThemeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateThemeOK) GetPayload() *models.Theme {
@@ -196,13 +193,11 @@ func (o *UpdateThemeBadRequest) Code() int {
 }
 
 func (o *UpdateThemeBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateThemeBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateThemeBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *UpdateThemeUnauthorized) Code() int {
 }
 
 func (o *UpdateThemeUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateThemeUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateThemeUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *UpdateThemeForbidden) Code() int {
 }
 
 func (o *UpdateThemeForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateThemeForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateThemeForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *UpdateThemeUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateThemeUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateThemeUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateThemeUnprocessableEntity) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *UpdateThemeTooManyRequests) Code() int {
 }
 
 func (o *UpdateThemeTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateThemeTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}][%d] updateThemeTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateThemeTooManyRequests) GetPayload() *models.Error {

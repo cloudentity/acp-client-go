@@ -60,6 +60,15 @@ GetConfiguredLicensesParams contains all the parameters to send to the API endpo
 	Typically these are written to a http.Request.
 */
 type GetConfiguredLicensesParams struct {
+
+	/* TenantID.
+
+	   Tenant id
+
+	   Default: "default"
+	*/
+	TenantID string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -77,7 +86,18 @@ func (o *GetConfiguredLicensesParams) WithDefaults() *GetConfiguredLicensesParam
 //
 // All values with no default are reset to their zero value.
 func (o *GetConfiguredLicensesParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		tenantIDDefault = string("default")
+	)
+
+	val := GetConfiguredLicensesParams{
+		TenantID: tenantIDDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get configured licenses params
@@ -113,6 +133,17 @@ func (o *GetConfiguredLicensesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithTenantID adds the tenantID to the get configured licenses params
+func (o *GetConfiguredLicensesParams) WithTenantID(tenantID string) *GetConfiguredLicensesParams {
+	o.SetTenantID(tenantID)
+	return o
+}
+
+// SetTenantID adds the tenantId to the get configured licenses params
+func (o *GetConfiguredLicensesParams) SetTenantID(tenantID string) {
+	o.TenantID = tenantID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetConfiguredLicensesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +151,11 @@ func (o *GetConfiguredLicensesParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	// path param tenantID
+	if err := r.SetPathParam("tenantID", o.TenantID); err != nil {
+		return err
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

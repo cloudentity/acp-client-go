@@ -6,7 +6,6 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *DeleteClientForDeveloperNoContent) Code() int {
 }
 
 func (o *DeleteClientForDeveloperNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNoContent", 204)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNoContent ", 204)
 }
 
 func (o *DeleteClientForDeveloperNoContent) String() string {
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNoContent", 204)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNoContent ", 204)
 }
 
 func (o *DeleteClientForDeveloperNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *DeleteClientForDeveloperBadRequest) Code() int {
 }
 
 func (o *DeleteClientForDeveloperBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *DeleteClientForDeveloperUnauthorized) Code() int {
 }
 
 func (o *DeleteClientForDeveloperUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *DeleteClientForDeveloperForbidden) Code() int {
 }
 
 func (o *DeleteClientForDeveloperForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *DeleteClientForDeveloperNotFound) Code() int {
 }
 
 func (o *DeleteClientForDeveloperNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *DeleteClientForDeveloperTooManyRequests) Code() int {
 }
 
 func (o *DeleteClientForDeveloperTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteClientForDeveloperTooManyRequests) GetPayload() *models.Error {

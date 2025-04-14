@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *UpdateGithubIDPOK) Code() int {
 }
 
 func (o *UpdateGithubIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateGithubIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateGithubIDPOK) GetPayload() *models.GithubIDP {
@@ -186,13 +183,11 @@ func (o *UpdateGithubIDPBadRequest) Code() int {
 }
 
 func (o *UpdateGithubIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateGithubIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateGithubIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *UpdateGithubIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateGithubIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateGithubIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateGithubIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *UpdateGithubIDPForbidden) Code() int {
 }
 
 func (o *UpdateGithubIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateGithubIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateGithubIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *UpdateGithubIDPNotFound) Code() int {
 }
 
 func (o *UpdateGithubIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateGithubIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateGithubIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *UpdateGithubIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateGithubIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateGithubIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *UpdateGithubIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateGithubIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateGithubIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateGithubIDPTooManyRequests) GetPayload() *models.Error {

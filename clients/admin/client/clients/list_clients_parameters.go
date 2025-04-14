@@ -83,6 +83,12 @@ type ListClientsParams struct {
 	*/
 	BeforeClientID *string
 
+	/* ClientTypes.
+
+	   Optional client types (oauth2, saml)
+	*/
+	ClientTypes *string
+
 	/* IfMatch.
 
 	   A server will only return requested resources if the resource matches one of the listed ETag value
@@ -237,6 +243,17 @@ func (o *ListClientsParams) SetBeforeClientID(beforeClientID *string) {
 	o.BeforeClientID = beforeClientID
 }
 
+// WithClientTypes adds the clientTypes to the list clients params
+func (o *ListClientsParams) WithClientTypes(clientTypes *string) *ListClientsParams {
+	o.SetClientTypes(clientTypes)
+	return o
+}
+
+// SetClientTypes adds the clientTypes to the list clients params
+func (o *ListClientsParams) SetClientTypes(clientTypes *string) {
+	o.ClientTypes = clientTypes
+}
+
 // WithIfMatch adds the ifMatch to the list clients params
 func (o *ListClientsParams) WithIfMatch(ifMatch *string) *ListClientsParams {
 	o.SetIfMatch(ifMatch)
@@ -368,6 +385,23 @@ func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		if qBeforeClientID != "" {
 
 			if err := r.SetQueryParam("before_client_id", qBeforeClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ClientTypes != nil {
+
+		// query param client_types
+		var qrClientTypes string
+
+		if o.ClientTypes != nil {
+			qrClientTypes = *o.ClientTypes
+		}
+		qClientTypes := qrClientTypes
+		if qClientTypes != "" {
+
+			if err := r.SetQueryParam("client_types", qClientTypes); err != nil {
 				return err
 			}
 		}

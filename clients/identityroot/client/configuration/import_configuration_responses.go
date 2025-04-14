@@ -6,7 +6,6 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +120,11 @@ func (o *ImportConfigurationNoContent) Code() int {
 }
 
 func (o *ImportConfigurationNoContent) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNoContent", 204)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNoContent ", 204)
 }
 
 func (o *ImportConfigurationNoContent) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNoContent", 204)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNoContent ", 204)
 }
 
 func (o *ImportConfigurationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -178,13 +177,11 @@ func (o *ImportConfigurationBadRequest) Code() int {
 }
 
 func (o *ImportConfigurationBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ImportConfigurationBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ImportConfigurationBadRequest) GetPayload() *models.Error {
@@ -248,13 +245,11 @@ func (o *ImportConfigurationUnauthorized) Code() int {
 }
 
 func (o *ImportConfigurationUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ImportConfigurationUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ImportConfigurationUnauthorized) GetPayload() *models.Error {
@@ -318,13 +313,11 @@ func (o *ImportConfigurationForbidden) Code() int {
 }
 
 func (o *ImportConfigurationForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ImportConfigurationForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ImportConfigurationForbidden) GetPayload() *models.Error {
@@ -388,13 +381,11 @@ func (o *ImportConfigurationNotFound) Code() int {
 }
 
 func (o *ImportConfigurationNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ImportConfigurationNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ImportConfigurationNotFound) GetPayload() *models.Error {
@@ -458,13 +449,11 @@ func (o *ImportConfigurationConflict) Code() int {
 }
 
 func (o *ImportConfigurationConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationConflict  %+v", 409, o.Payload)
 }
 
 func (o *ImportConfigurationConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationConflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationConflict  %+v", 409, o.Payload)
 }
 
 func (o *ImportConfigurationConflict) GetPayload() *models.Error {
@@ -528,13 +517,11 @@ func (o *ImportConfigurationUnprocessableEntity) Code() int {
 }
 
 func (o *ImportConfigurationUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ImportConfigurationUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ImportConfigurationUnprocessableEntity) GetPayload() *models.Error {
@@ -598,13 +585,11 @@ func (o *ImportConfigurationTooManyRequests) Code() int {
 }
 
 func (o *ImportConfigurationTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ImportConfigurationTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ImportConfigurationTooManyRequests) GetPayload() *models.Error {

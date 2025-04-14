@@ -32,7 +32,7 @@ type SelfUserIdentifier struct {
 	// type
 	// Example: email
 	// Required: true
-	// Enum: ["email","mobile","uid","external","federated"]
+	// Enum: [email mobile uid external federated]
 	Type string `json:"type" yaml:"type"`
 }
 

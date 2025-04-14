@@ -22,6 +22,12 @@ type Dump struct {
 	// codes
 	Codes []*Code `json:"codes" yaml:"codes"`
 
+	// group members
+	GroupMembers []*GroupMember `json:"group_members" yaml:"group_members"`
+
+	// groups
+	Groups []*InternalGroup `json:"groups" yaml:"groups"`
+
 	// pools
 	Pools []*Pool `json:"pools" yaml:"pools"`
 
@@ -46,6 +52,14 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCodes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroupMembers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroups(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -95,6 +109,58 @@ func (m *Dump) validateCodes(formats strfmt.Registry) error {
 					return ve.ValidateName("codes" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("codes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateGroupMembers(formats strfmt.Registry) error {
+	if swag.IsZero(m.GroupMembers) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.GroupMembers); i++ {
+		if swag.IsZero(m.GroupMembers[i]) { // not required
+			continue
+		}
+
+		if m.GroupMembers[i] != nil {
+			if err := m.GroupMembers[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("group_members" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("group_members" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateGroups(formats strfmt.Registry) error {
+	if swag.IsZero(m.Groups) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Groups); i++ {
+		if swag.IsZero(m.Groups[i]) { // not required
+			continue
+		}
+
+		if m.Groups[i] != nil {
+			if err := m.Groups[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -269,6 +335,14 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGroupMembers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePools(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -314,6 +388,56 @@ func (m *Dump) contextValidateCodes(ctx context.Context, formats strfmt.Registry
 					return ve.ValidateName("codes" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("codes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateGroupMembers(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GroupMembers); i++ {
+
+		if m.GroupMembers[i] != nil {
+
+			if swag.IsZero(m.GroupMembers[i]) { // not required
+				return nil
+			}
+
+			if err := m.GroupMembers[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("group_members" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("group_members" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Groups); i++ {
+
+		if m.Groups[i] != nil {
+
+			if swag.IsZero(m.Groups[i]) { // not required
+				return nil
+			}
+
+			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

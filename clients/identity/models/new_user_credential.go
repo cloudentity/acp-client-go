@@ -21,8 +21,12 @@ import (
 // swagger:model NewUserCredential
 type NewUserCredential struct {
 
-	// Indicates if user is required to alter their credentials during their initial authentication. Currently, it is enforced only for password credentials.
+	// Indicates if user is required to alter their credentials during their initial authentication. Currently, it is enforced only for password credentials, but it may change any time.
 	MustBeChanged bool `json:"must_be_changed,omitempty" yaml:"must_be_changed,omitempty"`
+
+	// Indicates if user is required to reset their credentials before first authentication. Currently, it is enforced only for password credentials, but it may change any time.
+	// This flag takes precedence over MustBeChanged.
+	MustBeReset bool `json:"must_be_reset,omitempty" yaml:"must_be_reset,omitempty"`
 
 	// password
 	// Example: secret
@@ -35,7 +39,7 @@ type NewUserCredential struct {
 	// type
 	// Example: password
 	// Required: true
-	// Enum: ["password","webauthn","totp"]
+	// Enum: [password webauthn totp]
 	Type string `json:"type" yaml:"type"`
 
 	// webauthn credentials

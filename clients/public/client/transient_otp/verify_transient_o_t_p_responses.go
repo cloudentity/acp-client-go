@@ -6,7 +6,6 @@ package transient_otp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +96,11 @@ func (o *VerifyTransientOTPNoContent) Code() int {
 }
 
 func (o *VerifyTransientOTPNoContent) Error() string {
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent", 204)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent ", 204)
 }
 
 func (o *VerifyTransientOTPNoContent) String() string {
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent", 204)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent ", 204)
 }
 
 func (o *VerifyTransientOTPNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,13 +153,11 @@ func (o *VerifyTransientOTPUnauthorized) Code() int {
 }
 
 func (o *VerifyTransientOTPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyTransientOTPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *VerifyTransientOTPUnauthorized) GetPayload() *models.Error {
@@ -224,13 +221,11 @@ func (o *VerifyTransientOTPForbidden) Code() int {
 }
 
 func (o *VerifyTransientOTPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *VerifyTransientOTPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *VerifyTransientOTPForbidden) GetPayload() *models.Error {
@@ -294,13 +289,11 @@ func (o *VerifyTransientOTPNotFound) Code() int {
 }
 
 func (o *VerifyTransientOTPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *VerifyTransientOTPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *VerifyTransientOTPNotFound) GetPayload() *models.Error {

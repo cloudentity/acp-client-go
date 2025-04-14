@@ -6,7 +6,6 @@ package organizations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *UpdateOrganizationMetadataOK) Code() int {
 }
 
 func (o *UpdateOrganizationMetadataOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataOK) GetPayload() *models.OrganizationMetadata {
@@ -190,13 +187,11 @@ func (o *UpdateOrganizationMetadataUnauthorized) Code() int {
 }
 
 func (o *UpdateOrganizationMetadataUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *UpdateOrganizationMetadataForbidden) Code() int {
 }
 
 func (o *UpdateOrganizationMetadataForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *UpdateOrganizationMetadataNotFound) Code() int {
 }
 
 func (o *UpdateOrganizationMetadataNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *UpdateOrganizationMetadataTooManyRequests) Code() int {
 }
 
 func (o *UpdateOrganizationMetadataTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /organizations/{wid}/metadata][%d] updateOrganizationMetadataTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateOrganizationMetadataTooManyRequests) GetPayload() *models.Error {

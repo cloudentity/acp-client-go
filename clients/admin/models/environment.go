@@ -39,9 +39,15 @@ type Environment struct {
 	// Format: duration
 	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty" yaml:"analytics_duration,omitempty"`
 
+	// application launch dashboard
+	ApplicationLaunchDashboard bool `json:"application_launch_dashboard,omitempty" yaml:"application_launch_dashboard,omitempty"`
+
 	// audit events duration
 	// Format: duration
 	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty" yaml:"audit_events_duration,omitempty"`
+
+	// b2b orgs client-side search
+	B2bOrgsClientSideSearch bool `json:"b2b_orgs_client_side_search,omitempty" yaml:"b2b_orgs_client_side_search,omitempty"`
 
 	// block access to a tenant's resources from traffic not originating from the tenant's vanity domain
 	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty" yaml:"block_non_vanity_domain_access,omitempty"`
@@ -67,6 +73,9 @@ type Environment struct {
 	// commit
 	Commit string `json:"commit,omitempty" yaml:"commit,omitempty"`
 
+	// common idps
+	CommonIdps bool `json:"common_idps,omitempty" yaml:"common_idps,omitempty"`
+
 	// connectID profile
 	ConnectID bool `json:"connect_id,omitempty" yaml:"connect_id,omitempty"`
 
@@ -91,6 +100,15 @@ type Environment struct {
 	// disable embedded sms provider
 	DisableEmbeddedSmsProvider bool `json:"disable_embedded_sms_provider,omitempty" yaml:"disable_embedded_sms_provider,omitempty"`
 
+	// disable Identity Pool Self User APIs without scopes
+	DisableIdentityPoolSelfUserApisWithoutScopes bool `json:"disable_identity_pool_self_user_apis_without_scopes,omitempty" yaml:"disable_identity_pool_self_user_apis_without_scopes,omitempty"`
+
+	// disable public Identity API to confirm reset password
+	DisablePublicIdentityAPIConfirmResetPassword bool `json:"disable_public_identity_api_confirm_reset_password,omitempty" yaml:"disable_public_identity_api_confirm_reset_password,omitempty"`
+
+	// disable self user Identity API to complete address verification
+	DisableSelfUserIdentityAPICompleteAddressVerification bool `json:"disable_self_user_identity_api_complete_address_verification,omitempty" yaml:"disable_self_user_identity_api_complete_address_verification,omitempty"`
+
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty" yaml:"display_workspace_wizard,omitempty"`
 
@@ -103,14 +121,17 @@ type Environment struct {
 	// use fake data (such as ips) - needed for qa testing
 	FakeData bool `json:"fake_data,omitempty" yaml:"fake_data,omitempty"`
 
+	// Groups
+	Groups bool `json:"groups,omitempty" yaml:"groups,omitempty"`
+
 	// grpc url
 	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
 
-	// Handle MFA Recovery in Identity Pools
-	HandleMfaRecoveryInIdentityPools bool `json:"handle_mfa_recovery_in_identity_pools,omitempty" yaml:"handle_mfa_recovery_in_identity_pools,omitempty"`
-
 	// has google image search
 	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
+
+	// allow user tracking with hotjar, userpilot and other tracking tools
+	HotjarTracking bool `json:"hotjar_tracking,omitempty" yaml:"hotjar_tracking,omitempty"`
 
 	// identity assurance
 	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
@@ -127,11 +148,16 @@ type Environment struct {
 	// insecure token exchange public clients
 	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
+	// internationalization
+	Internationalization bool `json:"internationalization,omitempty" yaml:"internationalization,omitempty"`
+
 	// mark address as verified on any proof of possession of the address
 	MarkAddressAsVerifiedOnAnyProofOfPossession bool `json:"mark_address_as_verified_on_any_proof_of_possession,omitempty" yaml:"mark_address_as_verified_on_any_proof_of_possession,omitempty"`
 
-	// new onboarding flow
-	NewOnboarding bool `json:"new_onboarding,omitempty" yaml:"new_onboarding,omitempty"`
+	// New SAML configuration views
+	//
+	// Enable new SAML views to enhance the configuration experience.
+	NewSamlViews bool `json:"new_saml_views,omitempty" yaml:"new_saml_views,omitempty"`
 
 	// openbanking brasil
 	Obbr bool `json:"obbr,omitempty" yaml:"obbr,omitempty"`
@@ -150,16 +176,14 @@ type Environment struct {
 	// Risk engine
 	RiskEngine bool `json:"risk_engine,omitempty" yaml:"risk_engine,omitempty"`
 
+	// Enable risk_engine and risk_engine_ab for risk engine a/b testing
+	RiskEngineAb bool `json:"risk_engine_ab,omitempty" yaml:"risk_engine_ab,omitempty"`
+
 	// scope transient_otp
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
 
 	// script runtimes
 	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes" yaml:"script_runtimes"`
-
-	// Self-service
-	//
-	// Enable users to manage their accounts using the self-service view. Allow users to adjust their profile, see their sign-in methods, authorized applications, and more.
-	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 
 	// swagger ui
 	SwaggerUI bool `json:"swagger_ui,omitempty" yaml:"swagger_ui,omitempty"`
@@ -179,8 +203,14 @@ type Environment struct {
 	// hierarchical dumps tenant APIs
 	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty" yaml:"tree_dump_tenant,omitempty"`
 
+	// Use new DN format
+	UseNewDnFormat bool `json:"use_new_dn_format,omitempty" yaml:"use_new_dn_format,omitempty"`
+
 	// version
 	Version string `json:"version,omitempty" yaml:"version,omitempty"`
+
+	// require that the wildcard tenant id matches the path param tenant id
+	WildcardTenantIDMustMatchPathTenantID bool `json:"wildcard_tenant_id_must_match_path_tenant_id,omitempty" yaml:"wildcard_tenant_id_must_match_path_tenant_id,omitempty"`
 
 	// with analytics
 	WithAnalytics bool `json:"with_analytics,omitempty" yaml:"with_analytics,omitempty"`
@@ -190,6 +220,15 @@ type Environment struct {
 
 	// with roles
 	WithRoles bool `json:"with_roles,omitempty" yaml:"with_roles,omitempty"`
+
+	// workforce integration
+	Workforce bool `json:"workforce,omitempty" yaml:"workforce,omitempty"`
+
+	// workforce manifest url
+	WorkforceManifestURL string `json:"workforce_manifest_url,omitempty" yaml:"workforce_manifest_url,omitempty"`
+
+	// workforce url
+	WorkforceURL string `json:"workforce_url,omitempty" yaml:"workforce_url,omitempty"`
 }
 
 // Validate validates this environment

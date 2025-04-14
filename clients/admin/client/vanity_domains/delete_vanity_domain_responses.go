@@ -6,7 +6,6 @@ package vanity_domains
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *DeleteVanityDomainNoContent) Code() int {
 }
 
 func (o *DeleteVanityDomainNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent", 204)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent ", 204)
 }
 
 func (o *DeleteVanityDomainNoContent) String() string {
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent", 204)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent ", 204)
 }
 
 func (o *DeleteVanityDomainNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *DeleteVanityDomainUnauthorized) Code() int {
 }
 
 func (o *DeleteVanityDomainUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteVanityDomainUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteVanityDomainUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *DeleteVanityDomainForbidden) Code() int {
 }
 
 func (o *DeleteVanityDomainForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteVanityDomainForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteVanityDomainForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *DeleteVanityDomainNotFound) Code() int {
 }
 
 func (o *DeleteVanityDomainNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteVanityDomainNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteVanityDomainNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *DeleteVanityDomainTooManyRequests) Code() int {
 }
 
 func (o *DeleteVanityDomainTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteVanityDomainTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteVanityDomainTooManyRequests) GetPayload() *models.Error {

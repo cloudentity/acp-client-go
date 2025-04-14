@@ -6,7 +6,6 @@ package a_c_rs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,13 +97,11 @@ func (o *ListACRsOK) Code() int {
 }
 
 func (o *ListACRsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListACRsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListACRsOK) GetPayload() *models.ACRs {
@@ -168,13 +165,11 @@ func (o *ListACRsUnauthorized) Code() int {
 }
 
 func (o *ListACRsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListACRsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListACRsUnauthorized) GetPayload() *models.Error {
@@ -238,13 +233,11 @@ func (o *ListACRsForbidden) Code() int {
 }
 
 func (o *ListACRsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListACRsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListACRsForbidden) GetPayload() *models.Error {
@@ -308,13 +301,11 @@ func (o *ListACRsTooManyRequests) Code() int {
 }
 
 func (o *ListACRsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListACRsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/acrs][%d] listACRsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListACRsTooManyRequests) GetPayload() *models.Error {

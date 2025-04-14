@@ -34,6 +34,12 @@ definitions:
         format: verifiableAddress
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       preferred_contact_method:
         enum:
         - sms
@@ -78,6 +84,8 @@ definitions:
       - totp
       - password
       - otp
+      - email_otp
+      - sms_otp
       - webauthn
       type: string
     type: array
@@ -569,6 +577,38 @@ definitions:
     - user_pool_id
     - status
     type: object
+  Group:
+    properties:
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: groupID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      parent_id:
+        format: groupID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - user_pool_id
+    type: object
+  Groups:
+    items:
+      $ref: '#/definitions/Group'
+    type: array
   IdentifierDetails:
     properties:
       type:
@@ -599,7 +639,14 @@ definitions:
         default: false
         description: Indicates if user is required to alter their credentials during
           their initial authentication. Currently, it is enforced only for password
-          credentials.
+          credentials, but it may change any time.
+        type: boolean
+        x-nullable: false
+      must_be_reset:
+        default: false
+        description: |-
+          Indicates if user is required to reset their credentials before first authentication. Currently, it is enforced only for password credentials, but it may change any time.
+          This flag takes precedence over MustBeChanged.
         type: boolean
         x-nullable: false
       password:
@@ -717,6 +764,12 @@ definitions:
       address:
         format: verifiableAddress
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:
@@ -882,6 +935,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -889,6 +944,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -896,6 +953,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -947,6 +1006,9 @@ definitions:
       get_identity_pool:
         type: boolean
         x-nullable: false
+      manage_identity_pool_groups:
+        type: boolean
+        x-nullable: false
       manage_identity_pool_users:
         type: boolean
         x-nullable: false
@@ -963,6 +1025,9 @@ definitions:
         type: boolean
         x-nullable: false
       manage_user_passwords:
+        type: boolean
+        x-nullable: false
+      read_identity_pool_groups:
         type: boolean
         x-nullable: false
       read_identity_pool_users:
@@ -1048,6 +1113,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1055,6 +1122,8 @@ definitions:
       public_registration_allowed:
         type: boolean
         x-nullable: false
+      reset_credentials_settings:
+        $ref: '#/definitions/ResetCredentialsSettings'
       second_factor_authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
       second_factor_preferred_authentication_mechanism:
@@ -1062,6 +1131,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -1127,6 +1198,12 @@ definitions:
         x-nullable: false
     required:
     - address
+    type: object
+  ResetCredentialsSettings:
+    properties:
+      do_not_allow_users_to_self_reset_credentials:
+        type: boolean
+        x-nullable: false
     type: object
   Schema:
     properties:
@@ -1370,6 +1447,12 @@ definitions:
         format: verifiableAddress
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       preferred_contact_method:
         enum:
         - sms
@@ -1572,6 +1655,12 @@ definitions:
       id:
         format: verifiableAddressID
         type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
         x-nullable: false
       preferred_contact_method:
         enum:
@@ -2229,6 +2318,345 @@ paths:
       summary: Update Identity Pool
       tags:
       - Pools
+  /admin/pools/{ipID}/groups:
+    get:
+      description: |-
+        Retrieve the top level list of groups from the specified identity pool.
+
+        If query param parent_id is set, the response will contain top level list of groups that are children of the specified group.
+
+        If query param with_nested_groups is set to true, the response will contain a list of groups with all nested groups (also nested groups of nested groups etc.)
+
+        Results are sorted by group `name`. No other sorting is supported.
+      operationId: listGroups
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: query
+        name: parent_id
+        type: string
+      - description: |-
+          optional list groups after given id
+          AfterGroupID
+        in: query
+        name: after_group_id
+        type: string
+      - description: |-
+          optional list groups before given id
+          BeforeGroupID
+        in: query
+        name: before_group_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format - parameter must be url-encoded
+          supported parameters:
+          `name` - limits group set to groups that have name starting or ending with provided value (case insensitive)
+        in: query
+        name: query
+        type: string
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/GroupsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List groups
+      tags:
+      - Groups
+    post:
+      operationId: createGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewGroup
+        schema:
+          $ref: '#/definitions/Group'
+      responses:
+        "201":
+          $ref: '#/responses/GroupResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Create group
+      tags:
+      - Groups
+  /admin/pools/{ipID}/groups/{groupID}:
+    delete:
+      description: Delete a group.
+      operationId: deleteGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Group has been deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Delete group
+      tags:
+      - Groups
+    get:
+      description: Retrieve a group details.
+      operationId: getGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GroupResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get group details
+      tags:
+      - Groups
+    put:
+      operationId: updateGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: body
+        name: UpdateGroup
+        schema:
+          $ref: '#/definitions/Group'
+      responses:
+        "200":
+          $ref: '#/responses/GroupResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Update group
+      tags:
+      - Groups
+  /admin/pools/{ipID}/groups/{groupID}/users:
+    get:
+      description: |-
+        Retrieve the list of users under specific group.
+
+        If query param with_nested_groups is set to true, the response will contain a list of users in that group and all nested groups
+
+        Results are sorted by user ID. No other sorting is supported.
+
+        This endpoint follows eventual consistency and may temporarily omit newly created users under high load.
+      operationId: listUsersInGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - description: |-
+          optional list users after given id
+          AfterUserID
+        in: query
+        name: after_user_id
+        type: string
+      - description: |-
+          optional list users before given id
+          BeforeUserID
+        in: query
+        name: before_user_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/UsersResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List users in group
+      tags:
+      - Groups
+  /admin/pools/{ipID}/groups/{groupID}/users/{userID}:
+    delete:
+      operationId: removeUserFromGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' OK'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Removes user from group
+      tags:
+      - Groups
+    put:
+      operationId: addUserToGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' OK'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Add user to a specific group
+      tags:
+      - Groups
   /admin/pools/{ipID}/permissions:
     get:
       description: |-
@@ -2797,6 +3225,115 @@ paths:
       summary: Update Verifiable Address
       tags:
       - Users
+  /admin/pools/{ipID}/users/{userID}/groups:
+    get:
+      description: |-
+        Retrieve the list of groups that user belongs to.
+        If query param with_parent_groups is set to true, the response will contain a list of groups and all parent groups
+
+        Results are sorted by group `name`. No other sorting is supported.
+      operationId: listUserGroups
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - description: |-
+          optional list groups after given id
+          AfterUserID
+        in: query
+        name: after_group_id
+        type: string
+      - description: |-
+          optional list groups before given id
+          BeforeUserID
+        in: query
+        name: before_group_id
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format like {"name":"admin"} - parameter must be url-encoded
+          supported parameters:
+          `name` - limits group set to groups that have name starting or ending with provided value (case insensitive)
+        in: query
+        name: query
+        type: string
+      - in: query
+        name: with_parent_groups
+        type: boolean
+      responses:
+        "200":
+          $ref: '#/responses/GroupsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List user groups
+      tags:
+      - Groups
+  /admin/pools/{ipID}/users/{userID}/groups/{groupID}:
+    get:
+      description: |-
+        Checks if user is in the group.
+        Fails with 404 if user is not in the group.
+        If query param with_nested_groups is set to true, it will check if user is in requested group or any nested group.
+      operationId: isUserInGroup
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: groupID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: query
+        name: with_nested_groups
+        type: boolean
+      responses:
+        "204":
+          description: ' User is in group'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Check if user is in group
+      tags:
+      - Groups
   /admin/pools/{ipID}/users/{userID}/identifiers/add:
     post:
       description: Add a new identifier to a user's profile in the specified identity
@@ -3676,6 +4213,16 @@ responses:
     description: Identity B2B Users
     schema:
       $ref: '#/definitions/B2BUsers'
+  GroupIDResponse:
+    description: Group ID
+  GroupResponse:
+    description: Group
+    schema:
+      $ref: '#/definitions/Group'
+  GroupsResponse:
+    description: Groups
+    schema:
+      $ref: '#/definitions/Groups'
   PoolPermissionsResponse:
     description: PoolPermissions
     headers:

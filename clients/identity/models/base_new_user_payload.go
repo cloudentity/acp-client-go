@@ -38,7 +38,7 @@ type BaseNewUserPayload struct {
 
 	// status
 	// Required: true
-	// Enum: ["active","inactive","deleted","new"]
+	// Enum: [active inactive deleted new]
 	Status string `json:"status" yaml:"status"`
 
 	// verifiable addresses

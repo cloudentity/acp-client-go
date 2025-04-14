@@ -6,7 +6,6 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *ListFDXConsentsOK) Code() int {
 }
 
 func (o *ListFDXConsentsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListFDXConsentsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsOK %s", 200, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListFDXConsentsOK) GetPayload() *models.FDXConsents {
@@ -186,13 +183,11 @@ func (o *ListFDXConsentsBadRequest) Code() int {
 }
 
 func (o *ListFDXConsentsBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListFDXConsentsBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListFDXConsentsBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *ListFDXConsentsUnauthorized) Code() int {
 }
 
 func (o *ListFDXConsentsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListFDXConsentsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListFDXConsentsUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *ListFDXConsentsForbidden) Code() int {
 }
 
 func (o *ListFDXConsentsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListFDXConsentsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListFDXConsentsForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *ListFDXConsentsNotFound) Code() int {
 }
 
 func (o *ListFDXConsentsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListFDXConsentsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListFDXConsentsNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *ListFDXConsentsUnprocessableEntity) Code() int {
 }
 
 func (o *ListFDXConsentsUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ListFDXConsentsUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ListFDXConsentsUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *ListFDXConsentsTooManyRequests) Code() int {
 }
 
 func (o *ListFDXConsentsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListFDXConsentsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/fdx/consents][%d] listFDXConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListFDXConsentsTooManyRequests) GetPayload() *models.Error {

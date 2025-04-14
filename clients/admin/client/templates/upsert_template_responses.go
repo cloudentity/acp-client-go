@@ -6,7 +6,6 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpsertTemplateOK) Code() int {
 }
 
 func (o *UpsertTemplateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateOK  %+v", 200, o.Payload)
 }
 
 func (o *UpsertTemplateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateOK  %+v", 200, o.Payload)
 }
 
 func (o *UpsertTemplateOK) GetPayload() *models.Template {
@@ -202,13 +199,11 @@ func (o *UpsertTemplateBadRequest) Code() int {
 }
 
 func (o *UpsertTemplateBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpsertTemplateBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpsertTemplateBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpsertTemplateUnauthorized) Code() int {
 }
 
 func (o *UpsertTemplateUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpsertTemplateUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpsertTemplateUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpsertTemplateForbidden) Code() int {
 }
 
 func (o *UpsertTemplateForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpsertTemplateForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpsertTemplateForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpsertTemplateNotFound) Code() int {
 }
 
 func (o *UpsertTemplateNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpsertTemplateNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpsertTemplateNotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpsertTemplateUnprocessableEntity) Code() int {
 }
 
 func (o *UpsertTemplateUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpsertTemplateUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpsertTemplateUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpsertTemplateTooManyRequests) Code() int {
 }
 
 func (o *UpsertTemplateTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpsertTemplateTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpsertTemplateTooManyRequests) GetPayload() *models.Error {

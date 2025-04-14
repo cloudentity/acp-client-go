@@ -6,7 +6,6 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -134,13 +133,11 @@ func (o *DeleteDataAccessConsentDeprecatedNoContent) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNoContent) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNoContent %s", 204, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNoContent  %+v", 204, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNoContent) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNoContent %s", 204, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNoContent  %+v", 204, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNoContent) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
@@ -204,13 +201,11 @@ func (o *DeleteDataAccessConsentDeprecatedBadRequest) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -274,13 +269,11 @@ func (o *DeleteDataAccessConsentDeprecatedUnauthorized) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -344,13 +337,11 @@ func (o *DeleteDataAccessConsentDeprecatedForbidden) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -414,13 +405,11 @@ func (o *DeleteDataAccessConsentDeprecatedMethodNotAllowed) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedMethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedMethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -484,13 +473,11 @@ func (o *DeleteDataAccessConsentDeprecatedNotAcceptable) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -554,13 +541,11 @@ func (o *DeleteDataAccessConsentDeprecatedUnsupportedMediaType) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnsupportedMediaType) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnsupportedMediaType) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -624,13 +609,11 @@ func (o *DeleteDataAccessConsentDeprecatedUnprocessableEntity) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -694,13 +677,11 @@ func (o *DeleteDataAccessConsentDeprecatedTooManyRequests) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -764,13 +745,11 @@ func (o *DeleteDataAccessConsentDeprecatedInternalServerError) Code() int {
 }
 
 func (o *DeleteDataAccessConsentDeprecatedInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *DeleteDataAccessConsentDeprecatedInternalServerError) GetPayload() *models.OBBRErrorResponse {

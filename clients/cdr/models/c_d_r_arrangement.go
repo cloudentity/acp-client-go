@@ -62,13 +62,13 @@ type CDRArrangement struct {
 
 	// The rule on how a user shares their data: reuse with a token or without it, or the user allows one-time access.
 	// Example: one_time
-	// Enum: ["one_time","one_time_with_refresh_token","reusable"]
+	// Enum: [one_time one_time_with_refresh_token reusable]
 	SharingType string `json:"sharing_type,omitempty" yaml:"sharing_type,omitempty"`
 
 	// Arrangement version.
 	// Currently, the version parameter is not used.
 	// Example: v1
-	// Enum: ["v1"]
+	// Enum: [v1]
 	SpecVersion string `json:"spec_version,omitempty" yaml:"spec_version,omitempty"`
 
 	// status

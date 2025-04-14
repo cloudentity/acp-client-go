@@ -641,6 +641,13 @@ definitions:
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
+        x-nullable: false
       client_id_issued_at:
         description: |-
           The client identifier time of issue.
@@ -1246,6 +1253,13 @@ definitions:
 
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
+        x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
         x-nullable: false
       client_description:
         description: Human-readable string name of the software product description
@@ -1960,6 +1974,13 @@ definitions:
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
+        x-nullable: false
       client_id:
         description: |-
           OAuth client application identifier
@@ -2270,9 +2291,50 @@ definitions:
         minLength: 32
         type: array
         x-nullable: false
+      saml_allowed_attributes:
+        description: Allowed SAML attributes
+        items:
+          type: string
+        type: array
+        x-nullable: false
       saml_metadata:
         $ref: '#/definitions/EntityDescriptor'
+      saml_metadata_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      saml_metadata_url:
+        type: string
+        x-nullable: false
+      saml_override_attributes:
+        description: If true, then only attributes defined in saml_attributes will
+          be used to build the SAML assertion
+        type: boolean
+        x-nullable: false
       saml_service_provider_id:
+        type: string
+        x-nullable: false
+      saml_signing_hash:
+        default: sha-256
+        description: SAML Assertion signing hash algorithm.
+        enum:
+        - sha-1
+        - sha-256
+        - sha-512
+        example: sha-256
+        type: string
+        x-nullable: false
+      saml_subject_name_id:
+        description: Allows to override the subject name id.
+        type: string
+        x-nullable: false
+      saml_subject_name_id_format:
+        description: Allows to override the subject name id format
+        enum:
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         type: string
         x-nullable: false
       scope:

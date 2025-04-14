@@ -6,7 +6,6 @@ package limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *ListRateLimitsOK) Code() int {
 }
 
 func (o *ListRateLimitsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListRateLimitsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListRateLimitsOK) GetPayload() *models.ListRateLimitsResponse {
@@ -174,13 +171,11 @@ func (o *ListRateLimitsUnauthorized) Code() int {
 }
 
 func (o *ListRateLimitsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListRateLimitsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListRateLimitsUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *ListRateLimitsForbidden) Code() int {
 }
 
 func (o *ListRateLimitsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListRateLimitsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListRateLimitsForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *ListRateLimitsNotFound) Code() int {
 }
 
 func (o *ListRateLimitsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListRateLimitsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListRateLimitsNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *ListRateLimitsTooManyRequests) Code() int {
 }
 
 func (o *ListRateLimitsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListRateLimitsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListRateLimitsTooManyRequests) GetPayload() *models.Error {

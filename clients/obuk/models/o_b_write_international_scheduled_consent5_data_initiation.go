@@ -72,7 +72,7 @@ type OBWriteInternationalScheduledConsent5DataInitiation struct {
 	InstructionIdentification string `json:"InstructionIdentification" yaml:"InstructionIdentification"`
 
 	// Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
-	// Enum: ["Normal","Urgent"]
+	// Enum: [Normal Urgent]
 	InstructionPriority string `json:"InstructionPriority,omitempty" yaml:"InstructionPriority,omitempty"`
 
 	// local instrument

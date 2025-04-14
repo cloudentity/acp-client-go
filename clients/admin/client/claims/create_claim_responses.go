@@ -6,7 +6,6 @@ package claims
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *CreateClaimCreated) Code() int {
 }
 
 func (o *CreateClaimCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateClaimCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateClaimCreated) GetPayload() *models.Claim {
@@ -202,13 +199,11 @@ func (o *CreateClaimUnauthorized) Code() int {
 }
 
 func (o *CreateClaimUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateClaimUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateClaimUnauthorized) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *CreateClaimForbidden) Code() int {
 }
 
 func (o *CreateClaimForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateClaimForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateClaimForbidden) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *CreateClaimNotFound) Code() int {
 }
 
 func (o *CreateClaimNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateClaimNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateClaimNotFound) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *CreateClaimConflict) Code() int {
 }
 
 func (o *CreateClaimConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateClaimConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateClaimConflict) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *CreateClaimUnprocessableEntity) Code() int {
 }
 
 func (o *CreateClaimUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateClaimUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateClaimUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *CreateClaimTooManyRequests) Code() int {
 }
 
 func (o *CreateClaimTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateClaimTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateClaimTooManyRequests) GetPayload() *models.Error {

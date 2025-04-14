@@ -18,6 +18,9 @@ import (
 // swagger:model JITFailedPayload
 type JITFailedPayload struct {
 
+	// authentication flow control
+	AuthenticationFlowControl PreProvisioningAuthenticationFlowControl `json:"authentication_flow_control,omitempty" yaml:"authentication_flow_control,omitempty"`
+
 	// error
 	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
@@ -26,6 +29,9 @@ type JITFailedPayload struct {
 
 	// idp sub
 	IdpSub string `json:"idp_sub,omitempty" yaml:"idp_sub,omitempty"`
+
+	// mode
+	Mode ProvisioningMode `json:"mode,omitempty" yaml:"mode,omitempty"`
 
 	// pool id
 	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
@@ -41,7 +47,15 @@ type JITFailedPayload struct {
 func (m *JITFailedPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthenticationFlowControl(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIdp(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,6 +66,23 @@ func (m *JITFailedPayload) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *JITFailedPayload) validateAuthenticationFlowControl(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationFlowControl) { // not required
+		return nil
+	}
+
+	if err := m.AuthenticationFlowControl.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_flow_control")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("authentication_flow_control")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -69,6 +100,23 @@ func (m *JITFailedPayload) validateIdp(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *JITFailedPayload) validateMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if err := m.Mode.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
+		return err
 	}
 
 	return nil
@@ -97,7 +145,15 @@ func (m *JITFailedPayload) validateUserMapping(formats strfmt.Registry) error {
 func (m *JITFailedPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthenticationFlowControl(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMode(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -108,6 +164,24 @@ func (m *JITFailedPayload) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *JITFailedPayload) contextValidateAuthenticationFlowControl(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AuthenticationFlowControl) { // not required
+		return nil
+	}
+
+	if err := m.AuthenticationFlowControl.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_flow_control")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("authentication_flow_control")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -127,6 +201,24 @@ func (m *JITFailedPayload) contextValidateIdp(ctx context.Context, formats strfm
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *JITFailedPayload) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if err := m.Mode.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
+		return err
 	}
 
 	return nil

@@ -33,11 +33,17 @@ type AccessRequestData struct {
 	// The authentication mechanisms a user used to login.
 	AuthenticationMechanisms []string `json:"authentication_mechanisms" yaml:"authentication_mechanisms"`
 
+	// The visitor's city
+	City string `json:"city,omitempty" yaml:"city,omitempty"`
+
 	// OAuth client application identifier.
 	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Human readable name of a client application
 	ClientName string `json:"client_name,omitempty" yaml:"client_name,omitempty"`
+
+	// The visitor's country
+	CountryCode string `json:"country_code,omitempty" yaml:"country_code,omitempty"`
 
 	// Stores information if the owner of the client application is a developer.
 	CreatedByDeveloper bool `json:"created_by_developer,omitempty" yaml:"created_by_developer,omitempty"`
@@ -48,6 +54,9 @@ type AccessRequestData struct {
 	// Stores the information which grant type was selected to perfom a given action.
 	// Matches one of allowed OAuth client grant types for a given client.
 	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
+
+	// ID of the Group in Identity Pool
+	GroupID string `json:"group_id,omitempty" yaml:"group_id,omitempty"`
 
 	// ID of the Identity Pool
 	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
@@ -61,10 +70,10 @@ type AccessRequestData struct {
 	// Subject within the Identity Provider
 	IdpSubject string `json:"idp_subject,omitempty" yaml:"idp_subject,omitempty"`
 
-	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	// The visitor's latitude
 	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
 
-	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	// The visitor's longitude
 	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
 
 	// May act claims
@@ -101,7 +110,7 @@ type AccessRequestData struct {
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Token endpoint authentication method configured for a client application.
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthnMethod string `json:"token_endpoint_authn_method,omitempty" yaml:"token_endpoint_authn_method,omitempty"`
 
 	// Token signature
@@ -155,7 +164,7 @@ var accessRequestDataAuthenticationMechanismsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["totp","password","otp","webauthn"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["totp","password","otp","email_otp","sms_otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

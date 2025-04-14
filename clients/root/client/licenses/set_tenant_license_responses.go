@@ -6,7 +6,6 @@ package licenses
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +114,11 @@ func (o *SetTenantLicenseNoContent) Code() int {
 }
 
 func (o *SetTenantLicenseNoContent) Error() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNoContent", 204)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNoContent ", 204)
 }
 
 func (o *SetTenantLicenseNoContent) String() string {
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNoContent", 204)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNoContent ", 204)
 }
 
 func (o *SetTenantLicenseNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,13 +171,11 @@ func (o *SetTenantLicenseBadRequest) Code() int {
 }
 
 func (o *SetTenantLicenseBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetTenantLicenseBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SetTenantLicenseBadRequest) GetPayload() *models.Error {
@@ -242,13 +239,11 @@ func (o *SetTenantLicenseUnauthorized) Code() int {
 }
 
 func (o *SetTenantLicenseUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetTenantLicenseUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SetTenantLicenseUnauthorized) GetPayload() *models.Error {
@@ -312,13 +307,11 @@ func (o *SetTenantLicenseForbidden) Code() int {
 }
 
 func (o *SetTenantLicenseForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetTenantLicenseForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SetTenantLicenseForbidden) GetPayload() *models.Error {
@@ -382,13 +375,11 @@ func (o *SetTenantLicenseNotFound) Code() int {
 }
 
 func (o *SetTenantLicenseNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetTenantLicenseNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SetTenantLicenseNotFound) GetPayload() *models.Error {
@@ -452,13 +443,11 @@ func (o *SetTenantLicenseUnprocessableEntity) Code() int {
 }
 
 func (o *SetTenantLicenseUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetTenantLicenseUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *SetTenantLicenseUnprocessableEntity) GetPayload() *models.Error {
@@ -522,13 +511,11 @@ func (o *SetTenantLicenseTooManyRequests) Code() int {
 }
 
 func (o *SetTenantLicenseTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetTenantLicenseTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tenantID}/license][%d] setTenantLicenseTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *SetTenantLicenseTooManyRequests) GetPayload() *models.Error {

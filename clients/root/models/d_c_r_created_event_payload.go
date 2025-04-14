@@ -18,16 +18,22 @@ import (
 // swagger:model DCRCreatedEventPayload
 type DCRCreatedEventPayload struct {
 
+	// The visitor's city
+	City string `json:"city,omitempty" yaml:"city,omitempty"`
+
 	// client details
 	ClientDetails *DCRDetails `json:"client_details,omitempty" yaml:"client_details,omitempty"`
+
+	// The visitor's country
+	CountryCode string `json:"country_code,omitempty" yaml:"country_code,omitempty"`
 
 	// Arculix DBFP `jwt` cookie.
 	Dbfp string `json:"dbfp,omitempty" yaml:"dbfp,omitempty"`
 
-	// The visitor's latitude obtained from cf-iplatitude cloudflare header
+	// The visitor's latitude
 	Latitude string `json:"latitude,omitempty" yaml:"latitude,omitempty"`
 
-	// The visitor's longitude obtained from cf-iplongitude cloudflare header
+	// The visitor's longitude
 	Longitude string `json:"longitude,omitempty" yaml:"longitude,omitempty"`
 
 	// Requester IP address obtained from system network socket information.

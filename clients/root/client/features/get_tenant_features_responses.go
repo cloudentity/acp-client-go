@@ -6,7 +6,6 @@ package features
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetTenantFeaturesOK) Code() int {
 }
 
 func (o *GetTenantFeaturesOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetTenantFeaturesOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesOK %s", 200, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetTenantFeaturesOK) GetPayload() *models.FeaturesResponse {
@@ -174,13 +171,11 @@ func (o *GetTenantFeaturesUnauthorized) Code() int {
 }
 
 func (o *GetTenantFeaturesUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetTenantFeaturesUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetTenantFeaturesUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetTenantFeaturesForbidden) Code() int {
 }
 
 func (o *GetTenantFeaturesForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetTenantFeaturesForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetTenantFeaturesForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetTenantFeaturesNotFound) Code() int {
 }
 
 func (o *GetTenantFeaturesNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetTenantFeaturesNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetTenantFeaturesNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetTenantFeaturesTooManyRequests) Code() int {
 }
 
 func (o *GetTenantFeaturesTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetTenantFeaturesTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetTenantFeaturesTooManyRequests) GetPayload() *models.Error {

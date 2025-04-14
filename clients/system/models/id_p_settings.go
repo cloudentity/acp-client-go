@@ -18,6 +18,9 @@ import (
 // swagger:model IDPSettings
 type IDPSettings struct {
 
+	// apple
+	Apple *AppleSettings `json:"apple,omitempty" yaml:"apple,omitempty"`
+
 	// auth0
 	Auth0 *Auth0Settings `json:"auth0,omitempty" yaml:"auth0,omitempty"`
 
@@ -42,8 +45,20 @@ type IDPSettings struct {
 	// google
 	Google *GoogleSettings `json:"google,omitempty" yaml:"google,omitempty"`
 
+	// google workspace
+	GoogleWorkspace *GoogleWorkspaceSettings `json:"google_workspace,omitempty" yaml:"google_workspace,omitempty"`
+
 	// intelli trust
 	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
+
+	// linkedin
+	Linkedin *LinkedInSettings `json:"linkedin,omitempty" yaml:"linkedin,omitempty"`
+
+	// meta
+	Meta *MetaSettings `json:"meta,omitempty" yaml:"meta,omitempty"`
+
+	// microsoft
+	Microsoft *MicrosoftSettings `json:"microsoft,omitempty" yaml:"microsoft,omitempty"`
 
 	// oidc
 	Oidc *OIDCSettings `json:"oidc,omitempty" yaml:"oidc,omitempty"`
@@ -59,11 +74,18 @@ type IDPSettings struct {
 
 	// static
 	Static *StaticSettings `json:"static,omitempty" yaml:"static,omitempty"`
+
+	// x
+	X *XSettings `json:"x,omitempty" yaml:"x,omitempty"`
 }
 
 // Validate validates this ID p settings
 func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateApple(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAuth0(formats); err != nil {
 		res = append(res, err)
@@ -97,7 +119,23 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGoogleWorkspace(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIntelliTrust(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLinkedin(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMeta(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMicrosoft(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -121,9 +159,32 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateX(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IDPSettings) validateApple(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apple) { // not required
+		return nil
+	}
+
+	if m.Apple != nil {
+		if err := m.Apple.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apple")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("apple")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -279,6 +340,25 @@ func (m *IDPSettings) validateGoogle(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IDPSettings) validateGoogleWorkspace(formats strfmt.Registry) error {
+	if swag.IsZero(m.GoogleWorkspace) { // not required
+		return nil
+	}
+
+	if m.GoogleWorkspace != nil {
+		if err := m.GoogleWorkspace.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("google_workspace")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("google_workspace")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDPSettings) validateIntelliTrust(formats strfmt.Registry) error {
 	if swag.IsZero(m.IntelliTrust) { // not required
 		return nil
@@ -290,6 +370,63 @@ func (m *IDPSettings) validateIntelliTrust(formats strfmt.Registry) error {
 				return ve.ValidateName("intelli_trust")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("intelli_trust")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) validateLinkedin(formats strfmt.Registry) error {
+	if swag.IsZero(m.Linkedin) { // not required
+		return nil
+	}
+
+	if m.Linkedin != nil {
+		if err := m.Linkedin.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("linkedin")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("linkedin")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) validateMeta(formats strfmt.Registry) error {
+	if swag.IsZero(m.Meta) { // not required
+		return nil
+	}
+
+	if m.Meta != nil {
+		if err := m.Meta.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("meta")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("meta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) validateMicrosoft(formats strfmt.Registry) error {
+	if swag.IsZero(m.Microsoft) { // not required
+		return nil
+	}
+
+	if m.Microsoft != nil {
+		if err := m.Microsoft.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("microsoft")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("microsoft")
 			}
 			return err
 		}
@@ -393,9 +530,32 @@ func (m *IDPSettings) validateStatic(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IDPSettings) validateX(formats strfmt.Registry) error {
+	if swag.IsZero(m.X) { // not required
+		return nil
+	}
+
+	if m.X != nil {
+		if err := m.X.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("x")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("x")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this ID p settings based on the context it is used
 func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateApple(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateAuth0(ctx, formats); err != nil {
 		res = append(res, err)
@@ -429,7 +589,23 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGoogleWorkspace(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIntelliTrust(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinkedin(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMeta(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMicrosoft(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -453,9 +629,34 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateX(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IDPSettings) contextValidateApple(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Apple != nil {
+
+		if swag.IsZero(m.Apple) { // not required
+			return nil
+		}
+
+		if err := m.Apple.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apple")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("apple")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -627,6 +828,27 @@ func (m *IDPSettings) contextValidateGoogle(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *IDPSettings) contextValidateGoogleWorkspace(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GoogleWorkspace != nil {
+
+		if swag.IsZero(m.GoogleWorkspace) { // not required
+			return nil
+		}
+
+		if err := m.GoogleWorkspace.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("google_workspace")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("google_workspace")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDPSettings) contextValidateIntelliTrust(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IntelliTrust != nil {
@@ -640,6 +862,69 @@ func (m *IDPSettings) contextValidateIntelliTrust(ctx context.Context, formats s
 				return ve.ValidateName("intelli_trust")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("intelli_trust")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateLinkedin(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Linkedin != nil {
+
+		if swag.IsZero(m.Linkedin) { // not required
+			return nil
+		}
+
+		if err := m.Linkedin.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("linkedin")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("linkedin")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
+		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("meta")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("meta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateMicrosoft(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Microsoft != nil {
+
+		if swag.IsZero(m.Microsoft) { // not required
+			return nil
+		}
+
+		if err := m.Microsoft.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("microsoft")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("microsoft")
 			}
 			return err
 		}
@@ -745,6 +1030,27 @@ func (m *IDPSettings) contextValidateStatic(ctx context.Context, formats strfmt.
 				return ve.ValidateName("static")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("static")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateX(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.X != nil {
+
+		if swag.IsZero(m.X) { // not required
+			return nil
+		}
+
+		if err := m.X.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("x")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("x")
 			}
 			return err
 		}

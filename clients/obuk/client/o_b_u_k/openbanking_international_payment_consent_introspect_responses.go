@@ -7,7 +7,6 @@ package o_b_u_k
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -101,13 +100,11 @@ func (o *OpenbankingInternationalPaymentConsentIntrospectOK) Code() int {
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK %s", 200, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectOK) GetPayload() *OpenbankingInternationalPaymentConsentIntrospectOKBody {
@@ -171,13 +168,11 @@ func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) Code() in
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -241,13 +236,11 @@ func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) Code() int {
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -311,13 +304,11 @@ func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) Code()
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

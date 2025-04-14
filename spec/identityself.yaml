@@ -20,6 +20,8 @@ definitions:
       - totp
       - password
       - otp
+      - email_otp
+      - sms_otp
       - webauthn
       type: string
     type: array
@@ -573,6 +575,8 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -620,6 +624,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -631,6 +637,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         example: password
         type: string
@@ -890,6 +898,9 @@ paths:
         Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
         After a successful password reset, OTP gets invalidated, so it cannot be reused.
         Endpoint is protected by Brute Force mechanism.
+        Endpoint returns `403` if reset credentials is disabled in pool settings.
+
+        This endpoint requires special privileges and is disabled by default.
       operationId: resetPasswordConfirm
       parameters:
       - description: A server will only return requested resources if the resource
@@ -911,6 +922,8 @@ paths:
           $ref: '#/responses/ResetPasswordConfirmedResponse'
         "401":
           $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
         "412":
           $ref: '#/responses/payloadTooLargeHTTPError'
         "422":
@@ -926,6 +939,8 @@ paths:
         Fails if address is not user's address or is user's verified or is someone's verified address.
         If the OTP is valid it is removed and a successful response is returned.
         Endpoint is protected by Brute Force mechanism.
+
+        This endpoint requires special privileges and is disabled by default.
       operationId: completeAddressVerification
       parameters:
       - description: A server will only return requested resources if the resource
@@ -958,6 +973,7 @@ paths:
       - OTP
   /self/change-password:
     post:
+      deprecated: true
       description: Changes user password if provided password matches current user
         password.
       operationId: changePassword

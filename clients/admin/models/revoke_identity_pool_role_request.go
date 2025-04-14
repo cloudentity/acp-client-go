@@ -31,14 +31,14 @@ type RevokeIdentityPoolRoleRequest struct {
 
 	// role
 	// Example: user_manager
-	// Enum: ["user_manager"]
+	// Enum: [user_manager]
 	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	// Enum: ["identity_pool_user","idp"]
+	// Enum: [identity_pool_user idp]
 	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// idp user workspace id

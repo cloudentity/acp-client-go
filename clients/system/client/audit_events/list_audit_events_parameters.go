@@ -117,6 +117,13 @@ type ListAuditEventsParams struct {
 	*/
 	EventSubject []string
 
+	/* GroupID.
+
+	     optional list audit events with a given group id
+	GroupID
+	*/
+	GroupID *string
+
 	/* IdpID.
 
 	     optional list audit events with a given IDP id
@@ -392,6 +399,17 @@ func (o *ListAuditEventsParams) WithEventSubject(eventSubject []string) *ListAud
 // SetEventSubject adds the eventSubject to the list audit events params
 func (o *ListAuditEventsParams) SetEventSubject(eventSubject []string) {
 	o.EventSubject = eventSubject
+}
+
+// WithGroupID adds the groupID to the list audit events params
+func (o *ListAuditEventsParams) WithGroupID(groupID *string) *ListAuditEventsParams {
+	o.SetGroupID(groupID)
+	return o
+}
+
+// SetGroupID adds the groupId to the list audit events params
+func (o *ListAuditEventsParams) SetGroupID(groupID *string) {
+	o.GroupID = groupID
 }
 
 // WithIdpID adds the idpID to the list audit events params
@@ -699,6 +717,23 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		// query array param event_subject
 		if err := r.SetQueryParam("event_subject", joinedEventSubject...); err != nil {
 			return err
+		}
+	}
+
+	if o.GroupID != nil {
+
+		// query param group_id
+		var qrGroupID string
+
+		if o.GroupID != nil {
+			qrGroupID = *o.GroupID
+		}
+		qGroupID := qrGroupID
+		if qGroupID != "" {
+
+			if err := r.SetQueryParam("group_id", qGroupID); err != nil {
+				return err
+			}
 		}
 	}
 

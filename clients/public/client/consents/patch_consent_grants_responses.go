@@ -6,7 +6,6 @@ package consents
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *PatchConsentGrantsCreated) Code() int {
 }
 
 func (o *PatchConsentGrantsCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated %s", 201, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
 }
 
 func (o *PatchConsentGrantsCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated %s", 201, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
 }
 
 func (o *PatchConsentGrantsCreated) GetPayload() *models.ConsentGrantPatchResponse {
@@ -186,13 +183,11 @@ func (o *PatchConsentGrantsUnauthorized) Code() int {
 }
 
 func (o *PatchConsentGrantsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PatchConsentGrantsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PatchConsentGrantsUnauthorized) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *PatchConsentGrantsForbidden) Code() int {
 }
 
 func (o *PatchConsentGrantsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden %s", 403, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PatchConsentGrantsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden %s", 403, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PatchConsentGrantsForbidden) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *PatchConsentGrantsNotFound) Code() int {
 }
 
 func (o *PatchConsentGrantsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound %s", 404, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PatchConsentGrantsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound %s", 404, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PatchConsentGrantsNotFound) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *PatchConsentGrantsConflict) Code() int {
 }
 
 func (o *PatchConsentGrantsConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict %s", 409, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict  %+v", 409, o.Payload)
 }
 
 func (o *PatchConsentGrantsConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict %s", 409, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict  %+v", 409, o.Payload)
 }
 
 func (o *PatchConsentGrantsConflict) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *PatchConsentGrantsUnprocessableEntity) Code() int {
 }
 
 func (o *PatchConsentGrantsUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PatchConsentGrantsUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PatchConsentGrantsUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *PatchConsentGrantsTooManyRequests) Code() int {
 }
 
 func (o *PatchConsentGrantsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PatchConsentGrantsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PatchConsentGrantsTooManyRequests) GetPayload() *models.Error {

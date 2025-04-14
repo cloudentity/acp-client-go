@@ -6,7 +6,6 @@ package tenant_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +114,11 @@ func (o *PatchTenantConfigRfc6902NoContent) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902NoContent) Error() string {
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NoContent", 204)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NoContent ", 204)
 }
 
 func (o *PatchTenantConfigRfc6902NoContent) String() string {
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NoContent", 204)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NoContent ", 204)
 }
 
 func (o *PatchTenantConfigRfc6902NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,13 +171,11 @@ func (o *PatchTenantConfigRfc6902BadRequest) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902BadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902BadRequest %s", 400, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902BadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902BadRequest %s", 400, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902BadRequest) GetPayload() *models.Error {
@@ -242,13 +239,11 @@ func (o *PatchTenantConfigRfc6902Unauthorized) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902Unauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902Unauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902Unauthorized) GetPayload() *models.Error {
@@ -312,13 +307,11 @@ func (o *PatchTenantConfigRfc6902Forbidden) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902Forbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Forbidden %s", 403, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902Forbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Forbidden %s", 403, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902Forbidden) GetPayload() *models.Error {
@@ -382,13 +375,11 @@ func (o *PatchTenantConfigRfc6902NotFound) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902NotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NotFound %s", 404, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NotFound  %+v", 404, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902NotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NotFound %s", 404, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902NotFound  %+v", 404, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902NotFound) GetPayload() *models.Error {
@@ -452,13 +443,11 @@ func (o *PatchTenantConfigRfc6902UnprocessableEntity) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902UnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902UnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902UnprocessableEntity) GetPayload() *models.Error {
@@ -522,13 +511,11 @@ func (o *PatchTenantConfigRfc6902TooManyRequests) Code() int {
 }
 
 func (o *PatchTenantConfigRfc6902TooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902TooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PATCH /{tid}/promote/config-rfc6902][%d] patchTenantConfigRfc6902TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *PatchTenantConfigRfc6902TooManyRequests) GetPayload() *models.Error {

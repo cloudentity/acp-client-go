@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *UpdateIntelliTrustIDPOK) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPOK) GetPayload() *models.IntelliTrustIDP {
@@ -186,13 +183,11 @@ func (o *UpdateIntelliTrustIDPBadRequest) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *UpdateIntelliTrustIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *UpdateIntelliTrustIDPForbidden) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *UpdateIntelliTrustIDPNotFound) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *UpdateIntelliTrustIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *UpdateIntelliTrustIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateIntelliTrustIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {

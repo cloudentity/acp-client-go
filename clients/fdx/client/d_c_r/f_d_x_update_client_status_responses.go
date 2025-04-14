@@ -6,7 +6,6 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +114,11 @@ func (o *FDXUpdateClientStatusOK) Code() int {
 }
 
 func (o *FDXUpdateClientStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusOK", 200)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusOK ", 200)
 }
 
 func (o *FDXUpdateClientStatusOK) String() string {
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusOK", 200)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusOK ", 200)
 }
 
 func (o *FDXUpdateClientStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,13 +171,11 @@ func (o *FDXUpdateClientStatusBadRequest) Code() int {
 }
 
 func (o *FDXUpdateClientStatusBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusBadRequest) GetPayload() *models.Error {
@@ -242,13 +239,11 @@ func (o *FDXUpdateClientStatusUnauthorized) Code() int {
 }
 
 func (o *FDXUpdateClientStatusUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusUnauthorized) GetPayload() *models.Error {
@@ -312,13 +307,11 @@ func (o *FDXUpdateClientStatusForbidden) Code() int {
 }
 
 func (o *FDXUpdateClientStatusForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusForbidden  %+v", 403, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusForbidden  %+v", 403, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusForbidden) GetPayload() *models.Error {
@@ -382,13 +375,11 @@ func (o *FDXUpdateClientStatusNotFound) Code() int {
 }
 
 func (o *FDXUpdateClientStatusNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusNotFound) GetPayload() *models.Error {
@@ -452,13 +443,11 @@ func (o *FDXUpdateClientStatusUnprocessableEntity) Code() int {
 }
 
 func (o *FDXUpdateClientStatusUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusUnprocessableEntity) GetPayload() *models.Error {
@@ -522,13 +511,11 @@ func (o *FDXUpdateClientStatusTooManyRequests) Code() int {
 }
 
 func (o *FDXUpdateClientStatusTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /fdx/clients/{cid}][%d] fDXUpdateClientStatusTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *FDXUpdateClientStatusTooManyRequests) GetPayload() *models.Error {

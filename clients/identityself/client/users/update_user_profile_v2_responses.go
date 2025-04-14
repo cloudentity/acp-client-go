@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -137,13 +136,11 @@ func (o *UpdateUserProfileV2OK) Code() int {
 }
 
 func (o *UpdateUserProfileV2OK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2OK %s", 200, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2OK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserProfileV2OK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2OK %s", 200, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2OK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserProfileV2OK) GetPayload() *models.SelfUserWithDataV2 {
@@ -214,13 +211,11 @@ func (o *UpdateUserProfileV2BadRequest) Code() int {
 }
 
 func (o *UpdateUserProfileV2BadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateUserProfileV2BadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2BadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateUserProfileV2BadRequest) GetPayload() *models.Error {
@@ -284,13 +279,11 @@ func (o *UpdateUserProfileV2Unauthorized) Code() int {
 }
 
 func (o *UpdateUserProfileV2Unauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Unauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Unauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Unauthorized) GetPayload() *models.Error {
@@ -354,13 +347,11 @@ func (o *UpdateUserProfileV2Forbidden) Code() int {
 }
 
 func (o *UpdateUserProfileV2Forbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Forbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Forbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Forbidden) GetPayload() *models.Error {
@@ -424,13 +415,11 @@ func (o *UpdateUserProfileV2NotFound) Code() int {
 }
 
 func (o *UpdateUserProfileV2NotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2NotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2NotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserProfileV2NotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2NotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2NotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserProfileV2NotFound) GetPayload() *models.Error {
@@ -494,13 +483,11 @@ func (o *UpdateUserProfileV2Conflict) Code() int {
 }
 
 func (o *UpdateUserProfileV2Conflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Conflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Conflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Conflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Conflict %s", 409, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2Conflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateUserProfileV2Conflict) GetPayload() *models.Error {
@@ -564,13 +551,11 @@ func (o *UpdateUserProfileV2PreconditionFailed) Code() int {
 }
 
 func (o *UpdateUserProfileV2PreconditionFailed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2PreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *UpdateUserProfileV2PreconditionFailed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2PreconditionFailed %s", 412, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *UpdateUserProfileV2PreconditionFailed) GetPayload() *models.Error {
@@ -634,13 +619,11 @@ func (o *UpdateUserProfileV2UnprocessableEntity) Code() int {
 }
 
 func (o *UpdateUserProfileV2UnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateUserProfileV2UnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2UnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateUserProfileV2UnprocessableEntity) GetPayload() *models.Error {
@@ -704,13 +687,11 @@ func (o *UpdateUserProfileV2TooManyRequests) Code() int {
 }
 
 func (o *UpdateUserProfileV2TooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateUserProfileV2TooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2TooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /v2/self/me][%d] updateUserProfileV2TooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateUserProfileV2TooManyRequests) GetPayload() *models.Error {

@@ -21,7 +21,7 @@ import (
 type OIDCSettings struct {
 
 	// Client authentication method
-	// Enum: ["client_secret","private_key_jwt"]
+	// Enum: [client_secret private_key_jwt none]
 	AuthenticationMethod string `json:"authentication_method,omitempty" yaml:"authentication_method,omitempty"`
 
 	// OAuth client application identifier
@@ -40,6 +40,9 @@ type OIDCSettings struct {
 
 	// Whether to send the identifier as a `login_hint` parameter to the IDP
 	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
+
+	// Use PKCE
+	UsePkce bool `json:"use_pkce,omitempty" yaml:"use_pkce,omitempty"`
 }
 
 // Validate validates this o ID c settings
@@ -60,7 +63,7 @@ var oIdCSettingsTypeAuthenticationMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["client_secret","private_key_jwt"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["client_secret","private_key_jwt","none"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -75,6 +78,9 @@ const (
 
 	// OIDCSettingsAuthenticationMethodPrivateKeyJwt captures enum value "private_key_jwt"
 	OIDCSettingsAuthenticationMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// OIDCSettingsAuthenticationMethodNone captures enum value "none"
+	OIDCSettingsAuthenticationMethodNone string = "none"
 )
 
 // prop value enum

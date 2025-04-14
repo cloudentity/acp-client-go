@@ -6,7 +6,6 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +102,11 @@ func (o *RevokeRotatedClientSecretsNoContent) Code() int {
 }
 
 func (o *RevokeRotatedClientSecretsNoContent) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent", 204)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent ", 204)
 }
 
 func (o *RevokeRotatedClientSecretsNoContent) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent", 204)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent ", 204)
 }
 
 func (o *RevokeRotatedClientSecretsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -160,13 +159,11 @@ func (o *RevokeRotatedClientSecretsUnauthorized) Code() int {
 }
 
 func (o *RevokeRotatedClientSecretsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsUnauthorized) GetPayload() *models.Error {
@@ -230,13 +227,11 @@ func (o *RevokeRotatedClientSecretsForbidden) Code() int {
 }
 
 func (o *RevokeRotatedClientSecretsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsForbidden) GetPayload() *models.Error {
@@ -300,13 +295,11 @@ func (o *RevokeRotatedClientSecretsNotFound) Code() int {
 }
 
 func (o *RevokeRotatedClientSecretsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsNotFound) GetPayload() *models.Error {
@@ -370,13 +363,11 @@ func (o *RevokeRotatedClientSecretsTooManyRequests) Code() int {
 }
 
 func (o *RevokeRotatedClientSecretsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *RevokeRotatedClientSecretsTooManyRequests) GetPayload() *models.Error {

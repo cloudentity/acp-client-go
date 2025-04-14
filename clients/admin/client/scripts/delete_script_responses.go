@@ -6,7 +6,6 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +108,11 @@ func (o *DeleteScriptNoContent) Code() int {
 }
 
 func (o *DeleteScriptNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent ", 204)
 }
 
 func (o *DeleteScriptNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent ", 204)
 }
 
 func (o *DeleteScriptNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,13 +165,11 @@ func (o *DeleteScriptBadRequest) Code() int {
 }
 
 func (o *DeleteScriptBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteScriptBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptBadRequest %s", 400, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteScriptBadRequest) GetPayload() *models.Error {
@@ -236,13 +233,11 @@ func (o *DeleteScriptUnauthorized) Code() int {
 }
 
 func (o *DeleteScriptUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteScriptUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteScriptUnauthorized) GetPayload() *models.Error {
@@ -306,13 +301,11 @@ func (o *DeleteScriptForbidden) Code() int {
 }
 
 func (o *DeleteScriptForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteScriptForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteScriptForbidden) GetPayload() *models.Error {
@@ -376,13 +369,11 @@ func (o *DeleteScriptNotFound) Code() int {
 }
 
 func (o *DeleteScriptNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteScriptNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNotFound %s", 404, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteScriptNotFound) GetPayload() *models.Error {
@@ -446,13 +437,11 @@ func (o *DeleteScriptTooManyRequests) Code() int {
 }
 
 func (o *DeleteScriptTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteScriptTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *DeleteScriptTooManyRequests) GetPayload() *models.Error {

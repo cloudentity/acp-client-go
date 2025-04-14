@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -119,13 +118,11 @@ func (o *ListIDPsOK) Code() int {
 }
 
 func (o *ListIDPsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListIDPsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListIDPsOK) GetPayload() *models.IDPsResponse {
@@ -196,13 +193,11 @@ func (o *ListIDPsBadRequest) Code() int {
 }
 
 func (o *ListIDPsBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListIDPsBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListIDPsBadRequest) GetPayload() *models.Error {
@@ -266,13 +261,11 @@ func (o *ListIDPsUnauthorized) Code() int {
 }
 
 func (o *ListIDPsUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListIDPsUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListIDPsUnauthorized) GetPayload() *models.Error {
@@ -336,13 +329,11 @@ func (o *ListIDPsForbidden) Code() int {
 }
 
 func (o *ListIDPsForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListIDPsForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListIDPsForbidden) GetPayload() *models.Error {
@@ -406,13 +397,11 @@ func (o *ListIDPsNotFound) Code() int {
 }
 
 func (o *ListIDPsNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListIDPsNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListIDPsNotFound) GetPayload() *models.Error {
@@ -476,13 +465,11 @@ func (o *ListIDPsTooManyRequests) Code() int {
 }
 
 func (o *ListIDPsTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListIDPsTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListIDPsTooManyRequests) GetPayload() *models.Error {

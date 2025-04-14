@@ -52,6 +52,9 @@ type TreeTenant struct {
 	// themes
 	Themes TreeThemes `json:"themes,omitempty" yaml:"themes,omitempty"`
 
+	// translations
+	Translations TreeTranslations `json:"translations,omitempty" yaml:"translations,omitempty"`
+
 	// optional custom tenant url. If not provided the server url is used instead
 	// Example: https://example.com/default
 	URL string `json:"url,omitempty" yaml:"url,omitempty"`
@@ -98,6 +101,10 @@ func (m *TreeTenant) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateThemes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTranslations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -297,6 +304,25 @@ func (m *TreeTenant) validateThemes(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TreeTenant) validateTranslations(formats strfmt.Registry) error {
+	if swag.IsZero(m.Translations) { // not required
+		return nil
+	}
+
+	if m.Translations != nil {
+		if err := m.Translations.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("translations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("translations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this tree tenant based on the context it is used
 func (m *TreeTenant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -338,6 +364,10 @@ func (m *TreeTenant) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateThemes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTranslations(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -529,6 +559,24 @@ func (m *TreeTenant) contextValidateThemes(ctx context.Context, formats strfmt.R
 			return ve.ValidateName("themes")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("themes")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *TreeTenant) contextValidateTranslations(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Translations) { // not required
+		return nil
+	}
+
+	if err := m.Translations.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("translations")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("translations")
 		}
 		return err
 	}

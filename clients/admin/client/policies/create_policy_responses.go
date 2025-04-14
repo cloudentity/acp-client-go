@@ -6,7 +6,6 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -131,13 +130,11 @@ func (o *CreatePolicyCreated) Code() int {
 }
 
 func (o *CreatePolicyCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePolicyCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePolicyCreated) GetPayload() *models.Policy {
@@ -208,13 +205,11 @@ func (o *CreatePolicyBadRequest) Code() int {
 }
 
 func (o *CreatePolicyBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePolicyBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePolicyBadRequest) GetPayload() *models.Error {
@@ -278,13 +273,11 @@ func (o *CreatePolicyUnauthorized) Code() int {
 }
 
 func (o *CreatePolicyUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreatePolicyUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreatePolicyUnauthorized) GetPayload() *models.Error {
@@ -348,13 +341,11 @@ func (o *CreatePolicyForbidden) Code() int {
 }
 
 func (o *CreatePolicyForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreatePolicyForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreatePolicyForbidden) GetPayload() *models.Error {
@@ -418,13 +409,11 @@ func (o *CreatePolicyNotFound) Code() int {
 }
 
 func (o *CreatePolicyNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreatePolicyNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreatePolicyNotFound) GetPayload() *models.Error {
@@ -488,13 +477,11 @@ func (o *CreatePolicyConflict) Code() int {
 }
 
 func (o *CreatePolicyConflict) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePolicyConflict) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict %s", 409, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePolicyConflict) GetPayload() *models.Error {
@@ -558,13 +545,11 @@ func (o *CreatePolicyUnprocessableEntity) Code() int {
 }
 
 func (o *CreatePolicyUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePolicyUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePolicyUnprocessableEntity) GetPayload() *models.Error {
@@ -628,13 +613,11 @@ func (o *CreatePolicyTooManyRequests) Code() int {
 }
 
 func (o *CreatePolicyTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreatePolicyTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreatePolicyTooManyRequests) GetPayload() *models.Error {

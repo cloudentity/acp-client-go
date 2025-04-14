@@ -24,6 +24,9 @@ type License struct {
 	// Format: date-time
 	EndDate strfmt.DateTime `json:"end_date,omitempty" yaml:"end_date,omitempty"`
 
+	// Is enforcement enabled
+	EnforcementEnabled bool `json:"enforcement_enabled,omitempty" yaml:"enforcement_enabled,omitempty"`
+
 	// Is enterprise IDPs capability enabled
 	HasEnterpriseIdpsCapability bool `json:"has_enterprise_idps_capability,omitempty" yaml:"has_enterprise_idps_capability,omitempty"`
 

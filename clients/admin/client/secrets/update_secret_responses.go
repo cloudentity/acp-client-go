@@ -6,7 +6,6 @@ package secrets
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *UpdateSecretCreated) Code() int {
 }
 
 func (o *UpdateSecretCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated %s", 201, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated  %+v", 201, o.Payload)
 }
 
 func (o *UpdateSecretCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated %s", 201, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated  %+v", 201, o.Payload)
 }
 
 func (o *UpdateSecretCreated) GetPayload() *models.Secret {
@@ -202,13 +199,11 @@ func (o *UpdateSecretBadRequest) Code() int {
 }
 
 func (o *UpdateSecretBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSecretBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretBadRequest %s", 400, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSecretBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *UpdateSecretUnauthorized) Code() int {
 }
 
 func (o *UpdateSecretUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateSecretUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateSecretUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *UpdateSecretForbidden) Code() int {
 }
 
 func (o *UpdateSecretForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateSecretForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretForbidden %s", 403, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateSecretForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *UpdateSecretNotFound) Code() int {
 }
 
 func (o *UpdateSecretNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSecretNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretNotFound %s", 404, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSecretNotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *UpdateSecretUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateSecretUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateSecretUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateSecretUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *UpdateSecretTooManyRequests) Code() int {
 }
 
 func (o *UpdateSecretTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateSecretTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *UpdateSecretTooManyRequests) GetPayload() *models.Error {

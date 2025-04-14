@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *GetStaticIDPOK) Code() int {
 }
 
 func (o *GetStaticIDPOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStaticIDPOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStaticIDPOK) GetPayload() *models.StaticIDP {
@@ -174,13 +171,11 @@ func (o *GetStaticIDPUnauthorized) Code() int {
 }
 
 func (o *GetStaticIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetStaticIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetStaticIDPUnauthorized) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *GetStaticIDPForbidden) Code() int {
 }
 
 func (o *GetStaticIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetStaticIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetStaticIDPForbidden) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *GetStaticIDPNotFound) Code() int {
 }
 
 func (o *GetStaticIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetStaticIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetStaticIDPNotFound) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *GetStaticIDPTooManyRequests) Code() int {
 }
 
 func (o *GetStaticIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetStaticIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/static/{iid}][%d] getStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetStaticIDPTooManyRequests) GetPayload() *models.Error {

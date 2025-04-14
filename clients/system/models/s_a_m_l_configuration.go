@@ -7,9 +7,13 @@ package models
 
 import (
 	"context"
+	"encoding/json"
+	"strconv"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SAMLConfiguration s a m l configuration
@@ -17,13 +21,128 @@ import (
 // swagger:model SAMLConfiguration
 type SAMLConfiguration struct {
 
+	// Organization display name
+	OrganizationDisplayName string `json:"organization_display_name,omitempty" yaml:"organization_display_name,omitempty"`
+
+	// Organization name
+	OrganizationName string `json:"organization_name,omitempty" yaml:"organization_name,omitempty"`
+
+	// Organization URL
+	OrganizationURL string `json:"organization_url,omitempty" yaml:"organization_url,omitempty"`
+
+	// Allowed SAML Assertion signing hash algorithms.
+	// Example: ["sha-256"]
+	SigningHashAlgorithms []string `json:"signing_hash_algorithms" yaml:"signing_hash_algorithms"`
+
 	// Allows to change default subject name id.
-	// The default one will be 'uid', even if the value is empty.
+	//
+	// The default one will be idp's subject, even if the value is empty.
 	SubjectNameID string `json:"subject_name_id,omitempty" yaml:"subject_name_id,omitempty"`
+
+	// Allows to set the subject name id format
+	// Enum: [urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified urn:oasis:names:tc:SAML:2.0:nameid-format:transient urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress urn:oasis:names:tc:SAML:2.0:nameid-format:persistent]
+	SubjectNameIDFormat string `json:"subject_name_id_format,omitempty" yaml:"subject_name_id_format,omitempty"`
 }
 
 // Validate validates this s a m l configuration
 func (m *SAMLConfiguration) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateSigningHashAlgorithms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubjectNameIDFormat(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var sAMLConfigurationSigningHashAlgorithmsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["sha-1","sha-256","sha-512"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		sAMLConfigurationSigningHashAlgorithmsItemsEnum = append(sAMLConfigurationSigningHashAlgorithmsItemsEnum, v)
+	}
+}
+
+func (m *SAMLConfiguration) validateSigningHashAlgorithmsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, sAMLConfigurationSigningHashAlgorithmsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *SAMLConfiguration) validateSigningHashAlgorithms(formats strfmt.Registry) error {
+	if swag.IsZero(m.SigningHashAlgorithms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SigningHashAlgorithms); i++ {
+
+		// value enum
+		if err := m.validateSigningHashAlgorithmsItemsEnum("signing_hash_algorithms"+"."+strconv.Itoa(i), "body", m.SigningHashAlgorithms[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var sAMLConfigurationTypeSubjectNameIDFormatPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:2.0:nameid-format:transient","urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		sAMLConfigurationTypeSubjectNameIDFormatPropEnum = append(sAMLConfigurationTypeSubjectNameIDFormatPropEnum, v)
+	}
+}
+
+const (
+
+	// SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+	SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatUnspecified string = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+
+	// SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatTransient string = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+
+	// SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatEmailAddress captures enum value "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+	SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML1Dot1NameidDashFormatEmailAddress string = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+
+	// SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent captures enum value "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+	SAMLConfigurationSubjectNameIDFormatUrnOasisNamesTcSAML2Dot0NameidDashFormatPersistent string = "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+)
+
+// prop value enum
+func (m *SAMLConfiguration) validateSubjectNameIDFormatEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, sAMLConfigurationTypeSubjectNameIDFormatPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *SAMLConfiguration) validateSubjectNameIDFormat(formats strfmt.Registry) error {
+	if swag.IsZero(m.SubjectNameIDFormat) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSubjectNameIDFormatEnum("subject_name_id_format", "body", m.SubjectNameIDFormat); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -6,7 +6,6 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -125,13 +124,11 @@ func (o *ListUsersOK) Code() int {
 }
 
 func (o *ListUsersOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUsersOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersOK %s", 200, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUsersOK) GetPayload() *models.Users {
@@ -202,13 +199,11 @@ func (o *ListUsersBadRequest) Code() int {
 }
 
 func (o *ListUsersBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListUsersBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListUsersBadRequest) GetPayload() *models.Error {
@@ -272,13 +267,11 @@ func (o *ListUsersUnauthorized) Code() int {
 }
 
 func (o *ListUsersUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUsersUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListUsersUnauthorized) GetPayload() *models.Error {
@@ -342,13 +335,11 @@ func (o *ListUsersForbidden) Code() int {
 }
 
 func (o *ListUsersForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUsersForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListUsersForbidden) GetPayload() *models.Error {
@@ -412,13 +403,11 @@ func (o *ListUsersNotFound) Code() int {
 }
 
 func (o *ListUsersNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUsersNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUsersNotFound) GetPayload() *models.Error {
@@ -482,13 +471,11 @@ func (o *ListUsersUnprocessableEntity) Code() int {
 }
 
 func (o *ListUsersUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ListUsersUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ListUsersUnprocessableEntity) GetPayload() *models.Error {
@@ -552,13 +539,11 @@ func (o *ListUsersTooManyRequests) Code() int {
 }
 
 func (o *ListUsersTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUsersTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ListUsersTooManyRequests) GetPayload() *models.Error {

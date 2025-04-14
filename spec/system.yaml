@@ -279,9 +279,15 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
+        x-nullable: false
+      city:
+        description: The visitor's city
+        type: string
         x-nullable: false
       client_id:
         description: OAuth client application identifier.
@@ -290,6 +296,10 @@ definitions:
         x-nullable: false
       client_name:
         description: Human readable name of a client application
+        type: string
+        x-nullable: false
+      country_code:
+        description: The visitor's country
         type: string
         x-nullable: false
       created_by_developer:
@@ -305,6 +315,11 @@ definitions:
         description: |-
           Stores the information which grant type was selected to perfom a given action.
           Matches one of allowed OAuth client grant types for a given client.
+        type: string
+        x-nullable: false
+      group_id:
+        description: ID of the Group in Identity Pool
+        format: groupID
         type: string
         x-nullable: false
       identity_pool_id:
@@ -327,13 +342,11 @@ definitions:
         type: string
         x-nullable: false
       latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
+        description: The visitor's latitude
         type: string
         x-nullable: false
       longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
+        description: The visitor's longitude
         type: string
         x-nullable: false
       may_act_claims:
@@ -465,9 +478,15 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
+        x-nullable: false
+      city:
+        description: The visitor's city
+        type: string
         x-nullable: false
       client_id:
         description: OAuth client application identifier.
@@ -476,6 +495,10 @@ definitions:
         x-nullable: false
       client_name:
         description: Human readable name of a client application
+        type: string
+        x-nullable: false
+      country_code:
+        description: The visitor's country
         type: string
         x-nullable: false
       created_by_developer:
@@ -513,6 +536,11 @@ definitions:
           Matches one of allowed OAuth client grant types for a given client.
         type: string
         x-nullable: false
+      group_id:
+        description: ID of the Group in Identity Pool
+        format: groupID
+        type: string
+        x-nullable: false
       identity_pool_id:
         description: ID of the Identity Pool
         format: poolID
@@ -533,13 +561,11 @@ definitions:
         type: string
         x-nullable: false
       latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
+        description: The visitor's latitude
         type: string
         x-nullable: false
       longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
+        description: The visitor's longitude
         type: string
         x-nullable: false
       may_act_claims:
@@ -649,7 +675,8 @@ definitions:
   AdvancedConfiguration:
     properties:
       acr_values:
-        description: Configurable ACR values to enforce during auth flow
+        description: Deprecated ACR values to enforce during auth flow (use new ACR
+          feature instead)
         items:
           type: string
         type: array
@@ -782,6 +809,37 @@ definitions:
     - organization_name
     - proxy_name
     - environment_name
+    type: object
+  AppleCredentials:
+    description: Apple IDP specific credentials
+    properties:
+      private_key:
+        description: base64 encoded private key in .p8 format
+        type: string
+        x-nullable: false
+    type: object
+  AppleSettings:
+    description: Apple IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      team_id:
+        description: team id
+        type: string
+        x-nullable: false
     type: object
   ArculixAuth:
     properties:
@@ -965,10 +1023,13 @@ definitions:
         - sent
         - not_sent
         - executed
+        - calculated
         - reset_requested
         - reset_completed
         - add_requested
         - add_completed
+        - added_to_group
+        - removed_from_group
         example: created
         type: string
         x-nullable: false
@@ -993,6 +1054,7 @@ definitions:
         - client
         - credential
         - login
+        - risk
         - post_authn
         - recovery
         - consent
@@ -1022,6 +1084,7 @@ definitions:
         - otp_inspect
         - totp
         - webauthn
+        - group
         example: client
         type: string
         x-nullable: false
@@ -1074,6 +1137,10 @@ definitions:
         format: authorizationCorrelationID
         type: string
         x-nullable: false
+      city:
+        description: City
+        type: string
+        x-nullable: false
       client_id:
         description: |-
           Access request client ID related to an audit event.
@@ -1082,8 +1149,22 @@ definitions:
         format: clientID
         type: string
         x-nullable: false
+      country_code:
+        description: Country code
+        type: string
+        x-nullable: false
       dbfp_fingerprint:
         description: DBFP jwt fingerprint
+        type: string
+        x-nullable: false
+      device_type:
+        description: Device type based on the user agent (computer, tablet, phone,
+          console, wearable, tv)
+        type: string
+        x-nullable: false
+      group_id:
+        description: ID of the Group in Identity Pool
+        format: groupID
         type: string
         x-nullable: false
       identity_pool_id:
@@ -1110,10 +1191,20 @@ definitions:
         x-nullable: false
       ip:
         description: |-
-          Audit event IP address.
+          IP address.
 
           It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
         type: string
+        x-nullable: false
+      latitude:
+        description: Latitude
+        format: double
+        type: number
+        x-nullable: false
+      longitude:
+        description: Longitude
+        format: double
+        type: number
         x-nullable: false
       may_act_claims:
         additionalProperties:
@@ -1239,12 +1330,20 @@ definitions:
         $ref: '#/definitions/RequestValidatedPayload'
       gateway_request_unauthorized:
         $ref: '#/definitions/RequestValidatedPayload'
+      group_created:
+        $ref: '#/definitions/Group'
+      group_deleted:
+        $ref: '#/definitions/Group'
+      group_updated:
+        $ref: '#/definitions/Group'
       import_created:
         $ref: '#/definitions/ConfigImportEventPayload'
       import_failed:
         $ref: '#/definitions/ConfigImportEventPayload'
       jit_created:
         $ref: '#/definitions/JITCreatedPayload'
+      jit_denied:
+        $ref: '#/definitions/JITDeniedPayload'
       jit_failed:
         $ref: '#/definitions/JITFailedPayload'
       jit_updated:
@@ -1299,6 +1398,8 @@ definitions:
         $ref: '#/definitions/PoolAuditPayload'
       recovery_confirmed:
         $ref: '#/definitions/RecoveryPayload'
+      risk_calculated:
+        $ref: '#/definitions/RiskPayload'
       role_granted:
         $ref: '#/definitions/RoleGrantAuditPayload'
       role_revoked:
@@ -1339,6 +1440,8 @@ definitions:
         $ref: '#/definitions/UserIDAndIdentifierPayload'
       totp_reset_requested:
         $ref: '#/definitions/UserIDAndIdentifierPayload'
+      user_added_to_group:
+        $ref: '#/definitions/UserInGroupPayload'
       user_authenticated:
         $ref: '#/definitions/UserAuthenticatedPayload'
       user_challenged:
@@ -1347,6 +1450,8 @@ definitions:
         $ref: '#/definitions/UserPayload'
       user_deleted:
         $ref: '#/definitions/UserPayload'
+      user_removed_from_group:
+        $ref: '#/definitions/UserInGroupPayload'
       user_updated:
         $ref: '#/definitions/UserPayload'
       webauthn_add_completed:
@@ -2303,6 +2408,13 @@ definitions:
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
+        x-nullable: false
       client_id:
         description: |-
           OAuth client application identifier
@@ -2613,9 +2725,50 @@ definitions:
         minLength: 32
         type: array
         x-nullable: false
+      saml_allowed_attributes:
+        description: Allowed SAML attributes
+        items:
+          type: string
+        type: array
+        x-nullable: false
       saml_metadata:
         $ref: '#/definitions/EntityDescriptor'
+      saml_metadata_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      saml_metadata_url:
+        type: string
+        x-nullable: false
+      saml_override_attributes:
+        description: If true, then only attributes defined in saml_attributes will
+          be used to build the SAML assertion
+        type: boolean
+        x-nullable: false
       saml_service_provider_id:
+        type: string
+        x-nullable: false
+      saml_signing_hash:
+        default: sha-256
+        description: SAML Assertion signing hash algorithm.
+        enum:
+        - sha-1
+        - sha-256
+        - sha-512
+        example: sha-256
+        type: string
+        x-nullable: false
+      saml_subject_name_id:
+        description: Allows to override the subject name id.
+        type: string
+        x-nullable: false
+      saml_subject_name_id_format:
+        description: Allows to override the subject name id format
+        enum:
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         type: string
         x-nullable: false
       scope:
@@ -2995,6 +3148,13 @@ definitions:
 
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
+        x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
         x-nullable: false
       client_id:
         description: |-
@@ -4434,6 +4594,8 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -4640,20 +4802,26 @@ definitions:
     type: object
   DCRCreatedEventPayload:
     properties:
+      city:
+        description: The visitor's city
+        type: string
+        x-nullable: false
       client_details:
         $ref: '#/definitions/DCRDetails'
+      country_code:
+        description: The visitor's country
+        type: string
+        x-nullable: false
       dbfp:
         description: Arculix DBFP `jwt` cookie.
         type: string
         x-nullable: false
       latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
+        description: The visitor's latitude
         type: string
         x-nullable: false
       longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
+        description: The visitor's longitude
         type: string
         x-nullable: false
       remote_addr:
@@ -4729,6 +4897,14 @@ definitions:
     type: object
   DCRRejectedEventPayload:
     properties:
+      city:
+        description: The visitor's city
+        type: string
+        x-nullable: false
+      country_code:
+        description: The visitor's country
+        type: string
+        x-nullable: false
       dbfp:
         description: Arculix DBFP `jwt` cookie.
         type: string
@@ -4754,13 +4930,11 @@ definitions:
         type: boolean
         x-nullable: false
       latitude:
-        description: The visitor's latitude obtained from cf-iplatitude cloudflare
-          header
+        description: The visitor's latitude
         type: string
         x-nullable: false
       longitude:
-        description: The visitor's longitude obtained from cf-iplongitude cloudflare
-          header
+        description: The visitor's longitude
         type: string
         x-nullable: false
       remote_addr:
@@ -4887,7 +5061,7 @@ definitions:
   EmailAuth:
     properties:
       auth:
-        description: 'SMTP auth mechanism: crammd5 or plain'
+        description: 'SMTP auth mechanism: crammd5, plain or login'
         example: plain
         type: string
         x-nullable: false
@@ -5808,6 +5982,44 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  GoogleWorkspaceCredentials:
+    description: GoogleWorkspace IDP specific credentials
+    properties:
+      client_secret:
+        description: Application secret from your GoogleWorkspace application settings
+        type: string
+        x-nullable: false
+    type: object
+  GoogleWorkspaceSettings:
+    description: GoogleWorkspace IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      hosted_domains:
+        description: List of domains permitted for user authentication
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
+    type: object
   GrantedClaims:
     items:
       format: claimName
@@ -5872,6 +6084,37 @@ definitions:
     items:
       $ref: '#/definitions/GraphQLType'
     type: array
+  Group:
+    description: Group group
+    properties:
+      description:
+        description: description
+        type: string
+        x-nullable: false
+      id:
+        description: id
+        type: string
+        x-nullable: false
+      name:
+        description: name
+        type: string
+        x-nullable: false
+      parent_id:
+        description: parent id
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        type: string
+        x-nullable: false
+      user_pool_id:
+        description: user pool id
+        example: default
+        type: string
+        x-nullable: false
+    required:
+    - user_pool_id
+    type: object
   IDP:
     properties:
       attributes:
@@ -6008,9 +6251,18 @@ definitions:
           Currently it is only available for Identity Pool IDP.
         type: boolean
         x-nullable: false
+      use_embedded:
+        description: |-
+          Indicates whether the embedded configuration, which functions out of the box, should be used
+
+          This may only apply to specific IDPs, such as LinkedIn.
+        type: boolean
+        x-nullable: false
     type: object
   IDPCredentials:
     properties:
+      apple:
+        $ref: '#/definitions/AppleCredentials'
       auth0:
         $ref: '#/definitions/Auth0Credentials'
       azure:
@@ -6027,8 +6279,16 @@ definitions:
         $ref: '#/definitions/GithubCredentials'
       google:
         $ref: '#/definitions/GoogleCredentials'
+      google_workspace:
+        $ref: '#/definitions/GoogleWorkspaceCredentials'
       intelli_trust:
         $ref: '#/definitions/IntelliTrustCredentials'
+      linkedin:
+        $ref: '#/definitions/LinkedInCredentials'
+      meta:
+        $ref: '#/definitions/MetaCredentials'
+      microsoft:
+        $ref: '#/definitions/MicrosoftCredentials'
       oidc:
         $ref: '#/definitions/OIDCCredentials'
       okta:
@@ -6039,6 +6299,8 @@ definitions:
         $ref: '#/definitions/SAMLV2Credentials'
       static:
         $ref: '#/definitions/StaticCredentials'
+      x:
+        $ref: '#/definitions/XCredentials'
     type: object
   IDPDiscovery:
     properties:
@@ -6207,6 +6469,8 @@ definitions:
     type: object
   IDPSettings:
     properties:
+      apple:
+        $ref: '#/definitions/AppleSettings'
       auth0:
         $ref: '#/definitions/Auth0Settings'
       azure:
@@ -6223,8 +6487,16 @@ definitions:
         $ref: '#/definitions/GithubSettings'
       google:
         $ref: '#/definitions/GoogleSettings'
+      google_workspace:
+        $ref: '#/definitions/GoogleWorkspaceSettings'
       intelli_trust:
         $ref: '#/definitions/IntelliTrustSettings'
+      linkedin:
+        $ref: '#/definitions/LinkedInSettings'
+      meta:
+        $ref: '#/definitions/MetaSettings'
+      microsoft:
+        $ref: '#/definitions/MicrosoftSettings'
       oidc:
         $ref: '#/definitions/OIDCSettings'
       okta:
@@ -6235,6 +6507,8 @@ definitions:
         $ref: '#/definitions/SAMLV2Settings'
       static:
         $ref: '#/definitions/StaticSettings'
+      x:
+        $ref: '#/definitions/XSettings'
     type: object
   IDPTokenExchangeSettings:
     properties:
@@ -6465,10 +6739,13 @@ definitions:
         - sent
         - not_sent
         - executed
+        - calculated
         - reset_requested
         - reset_completed
         - add_requested
         - add_completed
+        - added_to_group
+        - removed_from_group
         type: string
         x-nullable: false
       event_id:
@@ -6487,6 +6764,7 @@ definitions:
         - client
         - credential
         - login
+        - risk
         - post_authn
         - recovery
         - consent
@@ -6516,6 +6794,7 @@ definitions:
         - otp_inspect
         - totp
         - webauthn
+        - group
         type: string
         x-nullable: false
       event_type:
@@ -6673,8 +6952,12 @@ definitions:
       admin_role_type:
         type: string
         x-nullable: false
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
       idp:
         $ref: '#/definitions/IDPPayload'
+      mode:
+        $ref: '#/definitions/ProvisioningMode'
       pool_id:
         format: poolID
         type: string
@@ -6684,8 +6967,23 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  JITDeniedPayload:
+    properties:
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
+      idp:
+        $ref: '#/definitions/IDPPayload'
+      mode:
+        $ref: '#/definitions/ProvisioningMode'
+      pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+    type: object
   JITFailedPayload:
     properties:
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
       error:
         type: string
         x-nullable: false
@@ -6695,6 +6993,8 @@ definitions:
         format: subject
         type: string
         x-nullable: false
+      mode:
+        $ref: '#/definitions/ProvisioningMode'
       pool_id:
         format: poolID
         type: string
@@ -6728,6 +7028,8 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      pre_provisioning:
+        $ref: '#/definitions/PreProvisioningConfiguration'
       user:
         $ref: '#/definitions/JITUser'
     type: object
@@ -6741,8 +7043,12 @@ definitions:
     type: object
   JITUpdatedPayload:
     properties:
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
       idp:
         $ref: '#/definitions/IDPPayload'
+      mode:
+        $ref: '#/definitions/ProvisioningMode'
       new_account_linked:
         type: boolean
         x-nullable: false
@@ -6878,6 +7184,43 @@ definitions:
       party:
         $ref: '#/definitions/FDXParty'
     type: object
+  LinkedInCredentials:
+    description: LinkedIn IDP specific credentials
+    properties:
+      client_secret:
+        description: OAuth client application secret
+        type: string
+        x-nullable: false
+    type: object
+  LinkedInSettings:
+    description: LinkedIn IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      get_user_info:
+        description: If enabled, users' data is collected by calling the `userinfo`
+          endpoint.
+        type: boolean
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
+    type: object
   LocalizedName:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.2.4
@@ -6938,6 +7281,12 @@ definitions:
     type: object
   LoginPayload:
     properties:
+      amr:
+        items:
+          format: amr
+          type: string
+        type: array
+        x-nullable: false
       idp:
         $ref: '#/definitions/IDPPayload'
     type: object
@@ -7253,9 +7602,82 @@ definitions:
       $ref: '#/definitions/Mapping'
     title: An array of mappings
     type: array
+  MetaCredentials:
+    description: Meta IDP specific credentials
+    properties:
+      client_secret:
+        description: OAuth client application secret
+        type: string
+        x-nullable: false
+    type: object
+  MetaSettings:
+    description: Meta IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   Metadata:
     additionalProperties:
       type: object
+    type: object
+  MicrosoftCredentials:
+    description: Microsoft IDP specific credentials
+    properties:
+      client_secret:
+        description: Application secret from your Microsoft application settings
+        type: string
+        x-nullable: false
+    type: object
+  MicrosoftSettings:
+    description: Microsoft IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      get_user:
+        description: |-
+          If enabled, users' data is collected from the Microsoft Graph API
+
+          You can only get user's data if you are entitled to call the Microsoft Graph API.
+        type: boolean
+        x-nullable: false
+      graph_user_attributes:
+        description: An array of user attributes fetched from the Microsoft Graph
+          API
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   Name:
     description: |-
@@ -7381,6 +7803,7 @@ definitions:
         enum:
         - client_secret
         - private_key_jwt
+        - none
         type: string
         x-nullable: false
       client_id:
@@ -7411,6 +7834,10 @@ definitions:
       send_login_hint:
         description: Whether to send the identifier as a `login_hint` parameter to
           the IDP
+        type: boolean
+        x-nullable: false
+      use_pkce:
+        description: Use PKCE
         type: boolean
         x-nullable: false
     type: object
@@ -7537,6 +7964,8 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -7634,6 +8063,8 @@ definitions:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -8034,6 +8465,13 @@ definitions:
         description: url where user should be redirected
         type: string
         x-nullable: false
+    type: object
+  PreProvisioningAuthenticationFlowControl:
+    type: string
+  PreProvisioningConfiguration:
+    properties:
+      authentication_flow_control:
+        $ref: '#/definitions/PreProvisioningAuthenticationFlowControl'
     type: object
   PrivacyLedgerEvent:
     properties:
@@ -8565,6 +9003,16 @@ definitions:
     description: Risk engine level of assurance
     format: double
     type: number
+  RiskPayload:
+    properties:
+      dbfp:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      risk_engine_context:
+        $ref: '#/definitions/RiskContext'
+    type: object
   Role:
     properties:
       resource:
@@ -8689,12 +9137,54 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  RotateClientSecretResponse:
+    properties:
+      secret:
+        type: string
+        x-nullable: false
+    type: object
   SAMLConfiguration:
     properties:
+      organization_display_name:
+        description: Organization display name
+        type: string
+        x-nullable: false
+      organization_name:
+        description: Organization name
+        type: string
+        x-nullable: false
+      organization_url:
+        description: Organization URL
+        type: string
+        x-nullable: false
+      signing_hash_algorithms:
+        default:
+        - sha-256
+        description: Allowed SAML Assertion signing hash algorithms.
+        example:
+        - sha-256
+        items:
+          enum:
+          - sha-1
+          - sha-256
+          - sha-512
+          type: string
+        type: array
+        x-nullable: false
       subject_name_id:
         description: |-
           Allows to change default subject name id.
-          The default one will be 'uid', even if the value is empty.
+
+          The default one will be idp's subject, even if the value is empty.
+        type: string
+        x-nullable: false
+      subject_name_id_format:
+        description: Allows to set the subject name id format
+        enum:
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         type: string
         x-nullable: false
     type: object
@@ -8820,8 +9310,8 @@ definitions:
         enum:
         - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
-        - urn:oasis:names:tc:SAML:1.1:nameid-format:transient
-        - urn:oasis:names:tc:SAML:1.1:nameid-format:persistent
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
         example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         type: string
         x-nullable: false
@@ -9578,6 +10068,14 @@ definitions:
     - tenant_id
     - secret
     type: object
+  SecretsResponse:
+    properties:
+      secrets:
+        items:
+          $ref: '#/definitions/Secret'
+        type: array
+        x-nullable: false
+    type: object
   SecureOptions:
     description: nolint
     properties:
@@ -9777,11 +10275,15 @@ definitions:
         - totp
         - otp
         - webauthn
+        - sms_otp
+        - email_otp
         items:
           enum:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -10304,11 +10806,15 @@ definitions:
         - totp
         - otp
         - webauthn
+        - sms_otp
+        - email_otp
         items:
           enum:
           - totp
           - password
           - otp
+          - email_otp
+          - sms_otp
           - webauthn
           type: string
         type: array
@@ -11872,6 +12378,11 @@ definitions:
           $ref: '#/definitions/Theme'
         type: array
         x-nullable: false
+      translations:
+        items:
+          $ref: '#/definitions/Translation'
+        type: array
+        x-nullable: false
       vanity_domains:
         items:
           $ref: '#/definitions/VanityDomain'
@@ -11899,10 +12410,37 @@ definitions:
         x-nullable: false
       security:
         $ref: '#/definitions/SecureOptions'
+      translations:
+        $ref: '#/definitions/TenantTranslationsSettings'
       well_known:
         additionalProperties:
           type: object
         type: object
+        x-nullable: false
+      workforce:
+        $ref: '#/definitions/WorkforceSettings'
+    type: object
+  TenantTranslationsSettings:
+    properties:
+      default_locale:
+        description: Default locale
+        format: locale
+        type: string
+        x-nullable: false
+      disabled_translations:
+        description: Disabled built-in translations
+        items:
+          format: locale
+          type: string
+        type: array
+        x-nullable: false
+      enabled:
+        description: Are translations enabled
+        type: boolean
+        x-nullable: false
+      selector_enabled:
+        description: Is locale selector enabled in templates
+        type: boolean
         x-nullable: false
     type: object
   Theme:
@@ -12001,6 +12539,51 @@ definitions:
         example: consent
         type: string
         x-nullable: false
+    type: object
+  Translation:
+    description: Translation
+    properties:
+      built_in_exists:
+        description: built-in exists
+        type: boolean
+        x-nullable: false
+      content:
+        additionalProperties:
+          type: object
+        description: content of the translation
+        type: object
+        x-nullable: false
+      created_at:
+        description: timestamp when the translation was created
+        format: date-time
+        type: string
+        x-nullable: false
+      enabled:
+        type: boolean
+        x-nullable: false
+      is_built_in:
+        description: Is built-in translation
+        type: boolean
+        x-nullable: false
+      locale:
+        description: translation locale
+        format: locale
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        description: timestamp when the translation was last updated
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - locale
+    - tenant_id
     type: object
   TrustAnchorConfiguration:
     properties:
@@ -12146,6 +12729,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         type: string
         x-nullable: false
@@ -12163,6 +12748,8 @@ definitions:
         - totp
         - password
         - otp
+        - email_otp
+        - sms_otp
         - webauthn
         type: string
         x-nullable: false
@@ -12200,6 +12787,18 @@ definitions:
         x-nullable: false
       operation_type:
         description: operation type
+        type: string
+        x-nullable: false
+      user_id:
+        description: user id
+        type: string
+        x-nullable: false
+    type: object
+  UserInGroupPayload:
+    description: UserInGroupPayload user in group payload
+    properties:
+      group_id:
+        description: group id
         type: string
         x-nullable: false
       user_id:
@@ -12421,6 +13020,15 @@ definitions:
     - tenant_id
     - server_id
     type: object
+  WorkforceSettings:
+    properties:
+      manifest_url:
+        type: string
+        x-nullable: false
+      url:
+        type: string
+        x-nullable: false
+    type: object
   WorkspaceMetadata:
     properties:
       payload:
@@ -12431,6 +13039,26 @@ definitions:
     type: object
   WorkspaceResponse:
     properties:
+      authentication_context_settings:
+        $ref: '#/definitions/AuthenticationContextSettings'
+      authentication_mechanisms:
+        description: allowed authentication mechanisms for users in the identity pools
+        example:
+        - password
+        - totp
+        - otp
+        - webauthn
+        items:
+          enum:
+          - totp
+          - password
+          - otp
+          - email_otp
+          - sms_otp
+          - webauthn
+          type: string
+        type: array
+        x-nullable: false
       color:
         default: '#007FFF'
         description: Your server's label color in a HEX format.
@@ -12448,6 +13076,8 @@ definitions:
         format: serverID
         type: string
         x-nullable: false
+      idp_discovery:
+        $ref: '#/definitions/IDPDiscovery'
       issuer_url:
         type: string
         x-nullable: false
@@ -12501,6 +13131,10 @@ definitions:
         example: default
         type: string
         x-nullable: false
+      settings:
+        $ref: '#/definitions/ServerSettings'
+      sso:
+        $ref: '#/definitions/SSOConfiguration'
       subject_format:
         description: Subject format
         enum:
@@ -12565,6 +13199,28 @@ definitions:
       XMLName:
         $ref: '#/definitions/Name'
     type: object
+  XCredentials:
+    description: X IDP specific credentials
+    type: object
+  XSettings:
+    description: X IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
 host: localhost:8443
 info:
   description: |-
@@ -12609,6 +13265,89 @@ paths:
       - system:
         - view_clients
       summary: Get client.
+      tags:
+      - clients
+  /client/{cid}/revokeRotatedSecrets:
+    post:
+      description: Revoke all rotated client's secrets.
+      operationId: revokeRotatedClientSecrets
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' all client''s rotated secrets has been revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_clients
+      summary: Revoke rotated secrets.
+      tags:
+      - clients
+  /client/{cid}/rotateSecret:
+    post:
+      description: |-
+        Generate a new client secret, move old secret to rotated secrets list and return
+        new client secret as a response. The max number of client rotated secrets is 2.
+        The rotated secrets over the limit are dropped.
+
+        It is possible to set expiration time for rotated secrets. When the `AutoRevokeAfter` parameter
+        is set to a value greater than zero, rotated secrets that reach their expiry time are revoked.
+        The `AutoRevokeAfter` parameter accepts values in the go-openapi duration format, for example,
+        `1s`, `5m`, `2h`.
+      operationId: rotateClientSecret
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      - default: "0"
+        description: Auto revoke after
+        in: query
+        name: auto_revoke_after
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/RotateClientSecretResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_clients
+      summary: Rotate client's secret.
       tags:
       - clients
   /clients/{wid}:
@@ -13741,6 +14480,12 @@ paths:
         name: affected_user_id
         type: string
       - description: |-
+          optional list audit events with a given group id
+          GroupID
+        in: query
+        name: group_id
+        type: string
+      - description: |-
           Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit tokens service server
           EventSubject
         in: query
@@ -13823,6 +14568,176 @@ paths:
       summary: List audit events
       tags:
       - auditEvents
+  /servers/{wid}/secrets:
+    get:
+      description: |-
+        List previously created secrets for a given tenant id and authorization server (workspace).
+        The secret value is ciphered when it's created.
+      operationId: listSecrets
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/SecretsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - read_secrets
+      summary: List secrets
+      tags:
+      - secrets
+    post:
+      description: |-
+        Creates a secret for a given tenant id and authorization server (workspace).
+        Secrets API is storage for keeping encrypted sensitive variables that may be used within rego policies or scripts.
+      operationId: createSecret
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: Secret
+        schema:
+          $ref: '#/definitions/Secret'
+      responses:
+        "201":
+          $ref: '#/responses/Secret'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_secrets
+      summary: Create secret
+      tags:
+      - secrets
+  /servers/{wid}/secrets/{sid}:
+    delete:
+      description: Delete previously created secrets for a given tenant id and authorization
+        server (workspace).
+      operationId: deleteSecret
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: default
+        in: path
+        name: sid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Secret has been deleted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_secrets
+      summary: Delete secret
+      tags:
+      - secrets
+    put:
+      description: Updates a secret for a given tenant id and authorization server
+        (workspace).
+      operationId: updateSecret
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: default
+        in: path
+        name: sid
+        required: true
+        type: string
+      - in: body
+        name: Secret
+        schema:
+          $ref: '#/definitions/Secret'
+      responses:
+        "201":
+          $ref: '#/responses/Secret'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_secrets
+      summary: Update secret
+      tags:
+      - secrets
   /servers/{wid}/tokens:
     delete:
       description: |-
@@ -13978,6 +14893,18 @@ responses:
     description: PostAuthn completeed
     schema:
       $ref: '#/definitions/PostAuthnCompleted'
+  RotateClientSecretResponse:
+    description: Rotate client secret response
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/RotateClientSecretResponse'
   ScopeGrantAccepted:
     description: Scope grant accepted
     schema:
@@ -13994,6 +14921,30 @@ responses:
     description: Scopes
     schema:
       $ref: '#/definitions/ScopesWithServices'
+  Secret:
+    description: Secret
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/Secret'
+  SecretsResponse:
+    description: Secrets
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/SecretsResponse'
   SetGatewayConfigurationResponse:
     description: Set gateway configuration response
     schema:
@@ -14114,6 +15065,7 @@ securityDefinitions:
     flow: accessCode
     scopes:
       introspect_tokens: introspect_tokens
+      manage_clients: manage_clients
       manage_configuration: manage_configuration
       manage_consents: manage_consents
       manage_logins: manage_logins

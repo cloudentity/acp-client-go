@@ -6,7 +6,6 @@ package keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -113,13 +112,11 @@ func (o *GetKeysOK) Code() int {
 }
 
 func (o *GetKeysOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKeysOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK %s", 200, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKeysOK) GetPayload() *models.KeysResponse {
@@ -190,13 +187,11 @@ func (o *GetKeysUnauthorized) Code() int {
 }
 
 func (o *GetKeysUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetKeysUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetKeysUnauthorized) GetPayload() *models.Error {
@@ -260,13 +255,11 @@ func (o *GetKeysForbidden) Code() int {
 }
 
 func (o *GetKeysForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetKeysForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetKeysForbidden) GetPayload() *models.Error {
@@ -330,13 +323,11 @@ func (o *GetKeysNotFound) Code() int {
 }
 
 func (o *GetKeysNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKeysNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKeysNotFound) GetPayload() *models.Error {
@@ -400,13 +391,11 @@ func (o *GetKeysTooManyRequests) Code() int {
 }
 
 func (o *GetKeysTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetKeysTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetKeysTooManyRequests) GetPayload() *models.Error {

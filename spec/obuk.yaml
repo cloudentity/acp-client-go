@@ -6232,6 +6232,13 @@ definitions:
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
+        x-nullable: false
       client_id_issued_at:
         description: |-
           The client identifier time of issue.
@@ -6837,6 +6844,13 @@ definitions:
 
           This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
+        x-nullable: false
+      certificate:
+        description: |-
+          Base64 encoded certicate in PEM format that will be automatically converted and stored in jwks
+
+          It is used only as an input parameter for the Create / Import Client.
+        type: string
         x-nullable: false
       client_id:
         description: |-

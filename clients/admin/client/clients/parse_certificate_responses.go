@@ -6,7 +6,6 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -104,13 +103,11 @@ func (o *ParseCertificateOK) Code() int {
 }
 
 func (o *ParseCertificateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateOK %s", 200, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateOK  %+v", 200, o.Payload)
 }
 
 func (o *ParseCertificateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateOK %s", 200, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateOK  %+v", 200, o.Payload)
 }
 
 func (o *ParseCertificateOK) GetPayload() *models.CertificateInfo {
@@ -174,13 +171,11 @@ func (o *ParseCertificateBadRequest) Code() int {
 }
 
 func (o *ParseCertificateBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ParseCertificateBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ParseCertificateBadRequest) GetPayload() *models.Error {
@@ -244,13 +239,11 @@ func (o *ParseCertificateUnauthorized) Code() int {
 }
 
 func (o *ParseCertificateUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ParseCertificateUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ParseCertificateUnauthorized) GetPayload() *models.Error {
@@ -314,13 +307,11 @@ func (o *ParseCertificateForbidden) Code() int {
 }
 
 func (o *ParseCertificateForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ParseCertificateForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ParseCertificateForbidden) GetPayload() *models.Error {
@@ -384,13 +375,11 @@ func (o *ParseCertificateTooManyRequests) Code() int {
 }
 
 func (o *ParseCertificateTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ParseCertificateTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /clients/parse-certificate][%d] parseCertificateTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ParseCertificateTooManyRequests) GetPayload() *models.Error {

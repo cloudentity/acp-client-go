@@ -6,7 +6,6 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -116,13 +115,11 @@ func (o *CreateGoogleIDPCreated) Code() int {
 }
 
 func (o *CreateGoogleIDPCreated) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateGoogleIDPCreated) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated %s", 201, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateGoogleIDPCreated) GetPayload() *models.GoogleIDP {
@@ -186,13 +183,11 @@ func (o *CreateGoogleIDPBadRequest) Code() int {
 }
 
 func (o *CreateGoogleIDPBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateGoogleIDPBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateGoogleIDPBadRequest) GetPayload() *models.Error {
@@ -256,13 +251,11 @@ func (o *CreateGoogleIDPUnauthorized) Code() int {
 }
 
 func (o *CreateGoogleIDPUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateGoogleIDPUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateGoogleIDPUnauthorized) GetPayload() *models.Error {
@@ -326,13 +319,11 @@ func (o *CreateGoogleIDPForbidden) Code() int {
 }
 
 func (o *CreateGoogleIDPForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateGoogleIDPForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPForbidden %s", 403, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateGoogleIDPForbidden) GetPayload() *models.Error {
@@ -396,13 +387,11 @@ func (o *CreateGoogleIDPNotFound) Code() int {
 }
 
 func (o *CreateGoogleIDPNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateGoogleIDPNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateGoogleIDPNotFound) GetPayload() *models.Error {
@@ -466,13 +455,11 @@ func (o *CreateGoogleIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateGoogleIDPUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateGoogleIDPUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateGoogleIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -536,13 +523,11 @@ func (o *CreateGoogleIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateGoogleIDPTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateGoogleIDPTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *CreateGoogleIDPTooManyRequests) GetPayload() *models.Error {

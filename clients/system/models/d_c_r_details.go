@@ -40,7 +40,7 @@ type DCRDetails struct {
 	SoftwareStatementProvided bool `json:"software_statement_provided,omitempty" yaml:"software_statement_provided,omitempty"`
 
 	// token endpoint auth method
-	// Enum: ["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none","unspecified"]
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none unspecified]
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 }
 

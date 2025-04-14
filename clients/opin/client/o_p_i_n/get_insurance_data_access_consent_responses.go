@@ -6,7 +6,6 @@ package o_p_i_n
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -134,13 +133,11 @@ func (o *GetInsuranceDataAccessConsentOK) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentOK %s", 200, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentOK  %+v", 200, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentOK) GetPayload() *models.BrazilInsuranceCustomerDataAccessConsentResponse {
@@ -204,13 +201,11 @@ func (o *GetInsuranceDataAccessConsentBadRequest) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -274,13 +269,11 @@ func (o *GetInsuranceDataAccessConsentUnauthorized) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentUnauthorized) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnauthorized) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -344,13 +337,11 @@ func (o *GetInsuranceDataAccessConsentForbidden) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentForbidden) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentForbidden) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -414,13 +405,11 @@ func (o *GetInsuranceDataAccessConsentMethodNotAllowed) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentMethodNotAllowed) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentMethodNotAllowed) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentMethodNotAllowed %s", 405, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -484,13 +473,11 @@ func (o *GetInsuranceDataAccessConsentNotAcceptable) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentNotAcceptable) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentNotAcceptable) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentNotAcceptable %s", 406, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -554,13 +541,11 @@ func (o *GetInsuranceDataAccessConsentUnsupportedMediaType) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentUnsupportedMediaType) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnsupportedMediaType) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnsupportedMediaType %s", 415, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -624,13 +609,11 @@ func (o *GetInsuranceDataAccessConsentUnprocessableEntity) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentUnprocessableEntity) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnprocessableEntity) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnprocessableEntity %s", 422, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -694,13 +677,11 @@ func (o *GetInsuranceDataAccessConsentTooManyRequests) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentTooManyRequests) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentTooManyRequests) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentTooManyRequests %s", 429, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -764,13 +745,11 @@ func (o *GetInsuranceDataAccessConsentInternalServerError) Code() int {
 }
 
 func (o *GetInsuranceDataAccessConsentInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /open-insurance/consents/v1/{consentID}][%d] getInsuranceDataAccessConsentInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetInsuranceDataAccessConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {

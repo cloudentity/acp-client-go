@@ -42,7 +42,7 @@ type ScriptExecutionPoint struct {
 	// String representation of the script execution point type
 	// Example: post_authn_ctx
 	// Required: true
-	// Enum: ["post_authn_ctx","allowed_idp_ids","token_minting","client_token_minting"]
+	// Enum: [post_authn_ctx allowed_idp_ids token_minting client_token_minting]
 	Type string `json:"type" yaml:"type"`
 }
 
