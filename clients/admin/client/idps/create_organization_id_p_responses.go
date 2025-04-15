@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateOrganizationIDPCreated) Code() int {
 }
 
 func (o *CreateOrganizationIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPCreated %s", 201, payload)
 }
 
 func (o *CreateOrganizationIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPCreated %s", 201, payload)
 }
 
 func (o *CreateOrganizationIDPCreated) GetPayload() *models.OrganizationIDP {
@@ -183,11 +186,13 @@ func (o *CreateOrganizationIDPBadRequest) Code() int {
 }
 
 func (o *CreateOrganizationIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateOrganizationIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateOrganizationIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateOrganizationIDPUnauthorized) Code() int {
 }
 
 func (o *CreateOrganizationIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOrganizationIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOrganizationIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateOrganizationIDPForbidden) Code() int {
 }
 
 func (o *CreateOrganizationIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateOrganizationIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateOrganizationIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateOrganizationIDPNotFound) Code() int {
 }
 
 func (o *CreateOrganizationIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateOrganizationIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateOrganizationIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateOrganizationIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateOrganizationIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateOrganizationIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateOrganizationIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateOrganizationIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateOrganizationIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateOrganizationIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/organization][%d] createOrganizationIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateOrganizationIDPTooManyRequests) GetPayload() *models.Error {

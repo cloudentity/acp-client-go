@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *DeleteWebAuthnKeyNoContent) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNoContent", 204)
 }
 
 func (o *DeleteWebAuthnKeyNoContent) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNoContent", 204)
 }
 
 func (o *DeleteWebAuthnKeyNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *DeleteWebAuthnKeyBadRequest) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyBadRequest %s", 400, payload)
 }
 
 func (o *DeleteWebAuthnKeyBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyBadRequest %s", 400, payload)
 }
 
 func (o *DeleteWebAuthnKeyBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *DeleteWebAuthnKeyUnauthorized) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteWebAuthnKeyUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteWebAuthnKeyUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *DeleteWebAuthnKeyForbidden) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyForbidden %s", 403, payload)
 }
 
 func (o *DeleteWebAuthnKeyForbidden) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyForbidden %s", 403, payload)
 }
 
 func (o *DeleteWebAuthnKeyForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *DeleteWebAuthnKeyNotFound) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNotFound %s", 404, payload)
 }
 
 func (o *DeleteWebAuthnKeyNotFound) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyNotFound %s", 404, payload)
 }
 
 func (o *DeleteWebAuthnKeyNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *DeleteWebAuthnKeyPreconditionFailed) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyPreconditionFailed) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyPreconditionFailed %s", 412, payload)
 }
 
 func (o *DeleteWebAuthnKeyPreconditionFailed) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyPreconditionFailed %s", 412, payload)
 }
 
 func (o *DeleteWebAuthnKeyPreconditionFailed) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *DeleteWebAuthnKeyUnprocessableEntity) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteWebAuthnKeyUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteWebAuthnKeyUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *DeleteWebAuthnKeyTooManyRequests) Code() int {
 }
 
 func (o *DeleteWebAuthnKeyTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteWebAuthnKeyTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}][%d] deleteWebAuthnKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteWebAuthnKeyTooManyRequests) GetPayload() *models.Error {

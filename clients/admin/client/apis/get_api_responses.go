@@ -6,6 +6,7 @@ package apis
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetAPIOK) Code() int {
 }
 
 func (o *GetAPIOK) Error() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiOK %s", 200, payload)
 }
 
 func (o *GetAPIOK) String() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiOK %s", 200, payload)
 }
 
 func (o *GetAPIOK) GetPayload() *models.API {
@@ -187,11 +190,13 @@ func (o *GetAPIUnauthorized) Code() int {
 }
 
 func (o *GetAPIUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiUnauthorized %s", 401, payload)
 }
 
 func (o *GetAPIUnauthorized) String() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiUnauthorized %s", 401, payload)
 }
 
 func (o *GetAPIUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetAPIForbidden) Code() int {
 }
 
 func (o *GetAPIForbidden) Error() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiForbidden %s", 403, payload)
 }
 
 func (o *GetAPIForbidden) String() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiForbidden %s", 403, payload)
 }
 
 func (o *GetAPIForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetAPINotFound) Code() int {
 }
 
 func (o *GetAPINotFound) Error() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiNotFound %s", 404, payload)
 }
 
 func (o *GetAPINotFound) String() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiNotFound %s", 404, payload)
 }
 
 func (o *GetAPINotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetAPITooManyRequests) Code() int {
 }
 
 func (o *GetAPITooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAPITooManyRequests) String() string {
-	return fmt.Sprintf("[GET /apis/{api}][%d] getApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apis/{api}][%d] getApiTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAPITooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package license
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetAdminLicenseOK) Code() int {
 }
 
 func (o *GetAdminLicenseOK) Error() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseOK %s", 200, payload)
 }
 
 func (o *GetAdminLicenseOK) String() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseOK %s", 200, payload)
 }
 
 func (o *GetAdminLicenseOK) GetPayload() *models.License {
@@ -171,11 +174,13 @@ func (o *GetAdminLicenseUnauthorized) Code() int {
 }
 
 func (o *GetAdminLicenseUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseUnauthorized %s", 401, payload)
 }
 
 func (o *GetAdminLicenseUnauthorized) String() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseUnauthorized %s", 401, payload)
 }
 
 func (o *GetAdminLicenseUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetAdminLicenseForbidden) Code() int {
 }
 
 func (o *GetAdminLicenseForbidden) Error() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseForbidden %s", 403, payload)
 }
 
 func (o *GetAdminLicenseForbidden) String() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseForbidden %s", 403, payload)
 }
 
 func (o *GetAdminLicenseForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetAdminLicenseNotFound) Code() int {
 }
 
 func (o *GetAdminLicenseNotFound) Error() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseNotFound %s", 404, payload)
 }
 
 func (o *GetAdminLicenseNotFound) String() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseNotFound %s", 404, payload)
 }
 
 func (o *GetAdminLicenseNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetAdminLicenseTooManyRequests) Code() int {
 }
 
 func (o *GetAdminLicenseTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAdminLicenseTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /license][%d] getAdminLicenseTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /license][%d] getAdminLicenseTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAdminLicenseTooManyRequests) GetPayload() *models.Error {

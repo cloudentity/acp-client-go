@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetIdentityPoolIDPOK) Code() int {
 }
 
 func (o *GetIdentityPoolIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPOK %s", 200, payload)
 }
 
 func (o *GetIdentityPoolIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPOK %s", 200, payload)
 }
 
 func (o *GetIdentityPoolIDPOK) GetPayload() *models.IdentityPoolIDP {
@@ -171,11 +174,13 @@ func (o *GetIdentityPoolIDPUnauthorized) Code() int {
 }
 
 func (o *GetIdentityPoolIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetIdentityPoolIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetIdentityPoolIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetIdentityPoolIDPForbidden) Code() int {
 }
 
 func (o *GetIdentityPoolIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPForbidden %s", 403, payload)
 }
 
 func (o *GetIdentityPoolIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPForbidden %s", 403, payload)
 }
 
 func (o *GetIdentityPoolIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetIdentityPoolIDPNotFound) Code() int {
 }
 
 func (o *GetIdentityPoolIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPNotFound %s", 404, payload)
 }
 
 func (o *GetIdentityPoolIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPNotFound %s", 404, payload)
 }
 
 func (o *GetIdentityPoolIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetIdentityPoolIDPTooManyRequests) Code() int {
 }
 
 func (o *GetIdentityPoolIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetIdentityPoolIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/identity_pool/{iid}][%d] getIdentityPoolIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetIdentityPoolIDPTooManyRequests) GetPayload() *models.Error {

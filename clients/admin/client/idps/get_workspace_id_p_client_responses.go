@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetWorkspaceIDPClientOK) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientOK %s", 200, payload)
 }
 
 func (o *GetWorkspaceIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientOK %s", 200, payload)
 }
 
 func (o *GetWorkspaceIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetWorkspaceIDPClientBadRequest) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetWorkspaceIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetWorkspaceIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetWorkspaceIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetWorkspaceIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetWorkspaceIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetWorkspaceIDPClientForbidden) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetWorkspaceIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetWorkspaceIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetWorkspaceIDPClientNotFound) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetWorkspaceIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetWorkspaceIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetWorkspaceIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetWorkspaceIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetWorkspaceIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/workspace/{iid}/client][%d] getWorkspaceIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetWorkspaceIDPClientTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *PatchTenantConfigurationNoContent) Code() int {
 }
 
 func (o *PatchTenantConfigurationNoContent) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNoContent ", 204)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNoContent", 204)
 }
 
 func (o *PatchTenantConfigurationNoContent) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNoContent ", 204)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNoContent", 204)
 }
 
 func (o *PatchTenantConfigurationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *PatchTenantConfigurationBadRequest) Code() int {
 }
 
 func (o *PatchTenantConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *PatchTenantConfigurationBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *PatchTenantConfigurationBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *PatchTenantConfigurationUnauthorized) Code() int {
 }
 
 func (o *PatchTenantConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *PatchTenantConfigurationUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *PatchTenantConfigurationUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *PatchTenantConfigurationForbidden) Code() int {
 }
 
 func (o *PatchTenantConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationForbidden %s", 403, payload)
 }
 
 func (o *PatchTenantConfigurationForbidden) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationForbidden %s", 403, payload)
 }
 
 func (o *PatchTenantConfigurationForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *PatchTenantConfigurationNotFound) Code() int {
 }
 
 func (o *PatchTenantConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNotFound %s", 404, payload)
 }
 
 func (o *PatchTenantConfigurationNotFound) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationNotFound %s", 404, payload)
 }
 
 func (o *PatchTenantConfigurationNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *PatchTenantConfigurationUnprocessableEntity) Code() int {
 }
 
 func (o *PatchTenantConfigurationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchTenantConfigurationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *PatchTenantConfigurationUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *PatchTenantConfigurationTooManyRequests) Code() int {
 }
 
 func (o *PatchTenantConfigurationTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchTenantConfigurationTooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /configuration][%d] patchTenantConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *PatchTenantConfigurationTooManyRequests) GetPayload() *models.Error {

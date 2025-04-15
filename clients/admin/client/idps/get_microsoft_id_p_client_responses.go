@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetMicrosoftIDPClientOK) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientOK %s", 200, payload)
 }
 
 func (o *GetMicrosoftIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientOK %s", 200, payload)
 }
 
 func (o *GetMicrosoftIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetMicrosoftIDPClientBadRequest) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetMicrosoftIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetMicrosoftIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetMicrosoftIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetMicrosoftIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetMicrosoftIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetMicrosoftIDPClientForbidden) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetMicrosoftIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetMicrosoftIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetMicrosoftIDPClientNotFound) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetMicrosoftIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetMicrosoftIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetMicrosoftIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetMicrosoftIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMicrosoftIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/microsoft/{iid}/client][%d] getMicrosoftIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMicrosoftIDPClientTooManyRequests) GetPayload() *models.Error {

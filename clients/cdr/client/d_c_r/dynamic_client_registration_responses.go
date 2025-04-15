@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DynamicClientRegistrationCreated) Code() int {
 }
 
 func (o *DynamicClientRegistrationCreated) Error() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationCreated %s", 201, payload)
 }
 
 func (o *DynamicClientRegistrationCreated) String() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationCreated %s", 201, payload)
 }
 
 func (o *DynamicClientRegistrationCreated) GetPayload() *models.CDRDynamicClientRegistrationResponse {
@@ -171,11 +174,13 @@ func (o *DynamicClientRegistrationBadRequest) Code() int {
 }
 
 func (o *DynamicClientRegistrationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationBadRequest) String() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationBadRequest %s", 400, payload)
 }
 
 func (o *DynamicClientRegistrationBadRequest) GetPayload() *models.RFC6749Error {
@@ -239,11 +244,13 @@ func (o *DynamicClientRegistrationUnauthorized) Code() int {
 }
 
 func (o *DynamicClientRegistrationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationUnauthorized %s", 401, payload)
 }
 
 func (o *DynamicClientRegistrationUnauthorized) GetPayload() *models.RFC6749Error {
@@ -307,11 +314,13 @@ func (o *DynamicClientRegistrationForbidden) Code() int {
 }
 
 func (o *DynamicClientRegistrationForbidden) Error() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationForbidden) String() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationForbidden %s", 403, payload)
 }
 
 func (o *DynamicClientRegistrationForbidden) GetPayload() *models.RFC6749Error {
@@ -375,11 +384,13 @@ func (o *DynamicClientRegistrationNotFound) Code() int {
 }
 
 func (o *DynamicClientRegistrationNotFound) Error() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationNotFound) String() string {
-	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/register][%d] dynamicClientRegistrationNotFound %s", 404, payload)
 }
 
 func (o *DynamicClientRegistrationNotFound) GetPayload() *models.GenericError {

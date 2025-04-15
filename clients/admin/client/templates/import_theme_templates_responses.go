@@ -6,6 +6,7 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *ImportThemeTemplatesNoContent) Code() int {
 }
 
 func (o *ImportThemeTemplatesNoContent) Error() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNoContent ", 204)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNoContent", 204)
 }
 
 func (o *ImportThemeTemplatesNoContent) String() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNoContent ", 204)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNoContent", 204)
 }
 
 func (o *ImportThemeTemplatesNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *ImportThemeTemplatesUnauthorized) Code() int {
 }
 
 func (o *ImportThemeTemplatesUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesUnauthorized %s", 401, payload)
 }
 
 func (o *ImportThemeTemplatesUnauthorized) String() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesUnauthorized %s", 401, payload)
 }
 
 func (o *ImportThemeTemplatesUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *ImportThemeTemplatesForbidden) Code() int {
 }
 
 func (o *ImportThemeTemplatesForbidden) Error() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesForbidden %s", 403, payload)
 }
 
 func (o *ImportThemeTemplatesForbidden) String() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesForbidden %s", 403, payload)
 }
 
 func (o *ImportThemeTemplatesForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *ImportThemeTemplatesNotFound) Code() int {
 }
 
 func (o *ImportThemeTemplatesNotFound) Error() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNotFound %s", 404, payload)
 }
 
 func (o *ImportThemeTemplatesNotFound) String() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNotFound %s", 404, payload)
 }
 
 func (o *ImportThemeTemplatesNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *ImportThemeTemplatesTooManyRequests) Code() int {
 }
 
 func (o *ImportThemeTemplatesTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportThemeTemplatesTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportThemeTemplatesTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetPolicyOK) Code() int {
 }
 
 func (o *GetPolicyOK) Error() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyOK %s", 200, payload)
 }
 
 func (o *GetPolicyOK) String() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyOK %s", 200, payload)
 }
 
 func (o *GetPolicyOK) GetPayload() *models.Policy {
@@ -187,11 +190,13 @@ func (o *GetPolicyUnauthorized) Code() int {
 }
 
 func (o *GetPolicyUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyUnauthorized %s", 401, payload)
 }
 
 func (o *GetPolicyUnauthorized) String() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyUnauthorized %s", 401, payload)
 }
 
 func (o *GetPolicyUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetPolicyForbidden) Code() int {
 }
 
 func (o *GetPolicyForbidden) Error() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyForbidden %s", 403, payload)
 }
 
 func (o *GetPolicyForbidden) String() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyForbidden %s", 403, payload)
 }
 
 func (o *GetPolicyForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetPolicyNotFound) Code() int {
 }
 
 func (o *GetPolicyNotFound) Error() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyNotFound %s", 404, payload)
 }
 
 func (o *GetPolicyNotFound) String() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyNotFound %s", 404, payload)
 }
 
 func (o *GetPolicyNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetPolicyTooManyRequests) Code() int {
 }
 
 func (o *GetPolicyTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *GetPolicyTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{pid}][%d] getPolicyTooManyRequests %s", 429, payload)
 }
 
 func (o *GetPolicyTooManyRequests) GetPayload() *models.Error {

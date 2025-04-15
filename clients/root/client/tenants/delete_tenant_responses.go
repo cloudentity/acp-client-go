@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteTenantNoContent) Code() int {
 }
 
 func (o *DeleteTenantNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent ", 204)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent", 204)
 }
 
 func (o *DeleteTenantNoContent) String() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent ", 204)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent", 204)
 }
 
 func (o *DeleteTenantNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteTenantUnauthorized) Code() int {
 }
 
 func (o *DeleteTenantUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTenantUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTenantUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteTenantForbidden) Code() int {
 }
 
 func (o *DeleteTenantForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden %s", 403, payload)
 }
 
 func (o *DeleteTenantForbidden) String() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden %s", 403, payload)
 }
 
 func (o *DeleteTenantForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteTenantNotFound) Code() int {
 }
 
 func (o *DeleteTenantNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound %s", 404, payload)
 }
 
 func (o *DeleteTenantNotFound) String() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound %s", 404, payload)
 }
 
 func (o *DeleteTenantNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteTenantTooManyRequests) Code() int {
 }
 
 func (o *DeleteTenantTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTenantTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTenantTooManyRequests) GetPayload() *models.Error {

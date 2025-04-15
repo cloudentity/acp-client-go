@@ -6,6 +6,7 @@ package translations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpsertTranslationOK) Code() int {
 }
 
 func (o *UpsertTranslationOK) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationOK %s", 200, payload)
 }
 
 func (o *UpsertTranslationOK) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationOK %s", 200, payload)
 }
 
 func (o *UpsertTranslationOK) GetPayload() *models.Translation {
@@ -183,11 +186,13 @@ func (o *UpsertTranslationBadRequest) Code() int {
 }
 
 func (o *UpsertTranslationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationBadRequest %s", 400, payload)
 }
 
 func (o *UpsertTranslationBadRequest) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationBadRequest %s", 400, payload)
 }
 
 func (o *UpsertTranslationBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpsertTranslationUnauthorized) Code() int {
 }
 
 func (o *UpsertTranslationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *UpsertTranslationUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *UpsertTranslationUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpsertTranslationForbidden) Code() int {
 }
 
 func (o *UpsertTranslationForbidden) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationForbidden %s", 403, payload)
 }
 
 func (o *UpsertTranslationForbidden) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationForbidden %s", 403, payload)
 }
 
 func (o *UpsertTranslationForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpsertTranslationNotFound) Code() int {
 }
 
 func (o *UpsertTranslationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationNotFound %s", 404, payload)
 }
 
 func (o *UpsertTranslationNotFound) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationNotFound %s", 404, payload)
 }
 
 func (o *UpsertTranslationNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpsertTranslationUnprocessableEntity) Code() int {
 }
 
 func (o *UpsertTranslationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpsertTranslationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpsertTranslationUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpsertTranslationTooManyRequests) Code() int {
 }
 
 func (o *UpsertTranslationTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *UpsertTranslationTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /translation/{locale}][%d] upsertTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *UpsertTranslationTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListGatewaysOK) Code() int {
 }
 
 func (o *ListGatewaysOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK %s", 200, payload)
 }
 
 func (o *ListGatewaysOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK %s", 200, payload)
 }
 
 func (o *ListGatewaysOK) GetPayload() *models.Gateways {
@@ -181,11 +184,13 @@ func (o *ListGatewaysUnauthorized) Code() int {
 }
 
 func (o *ListGatewaysUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized %s", 401, payload)
 }
 
 func (o *ListGatewaysUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized %s", 401, payload)
 }
 
 func (o *ListGatewaysUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListGatewaysForbidden) Code() int {
 }
 
 func (o *ListGatewaysForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden %s", 403, payload)
 }
 
 func (o *ListGatewaysForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden %s", 403, payload)
 }
 
 func (o *ListGatewaysForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListGatewaysTooManyRequests) Code() int {
 }
 
 func (o *ListGatewaysTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests %s", 429, payload)
 }
 
 func (o *ListGatewaysTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests %s", 429, payload)
 }
 
 func (o *ListGatewaysTooManyRequests) GetPayload() *models.Error {

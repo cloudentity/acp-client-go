@@ -6,6 +6,7 @@ package secrets
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreateSecretCreated) Code() int {
 }
 
 func (o *CreateSecretCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated %s", 201, payload)
 }
 
 func (o *CreateSecretCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated %s", 201, payload)
 }
 
 func (o *CreateSecretCreated) GetPayload() *models.Secret {
@@ -205,11 +208,13 @@ func (o *CreateSecretBadRequest) Code() int {
 }
 
 func (o *CreateSecretBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretBadRequest %s", 400, payload)
 }
 
 func (o *CreateSecretBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretBadRequest %s", 400, payload)
 }
 
 func (o *CreateSecretBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreateSecretUnauthorized) Code() int {
 }
 
 func (o *CreateSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnauthorized %s", 401, payload)
 }
 
 func (o *CreateSecretUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnauthorized %s", 401, payload)
 }
 
 func (o *CreateSecretUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreateSecretForbidden) Code() int {
 }
 
 func (o *CreateSecretForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretForbidden %s", 403, payload)
 }
 
 func (o *CreateSecretForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretForbidden %s", 403, payload)
 }
 
 func (o *CreateSecretForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreateSecretNotFound) Code() int {
 }
 
 func (o *CreateSecretNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretNotFound %s", 404, payload)
 }
 
 func (o *CreateSecretNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretNotFound %s", 404, payload)
 }
 
 func (o *CreateSecretNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreateSecretConflict) Code() int {
 }
 
 func (o *CreateSecretConflict) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretConflict %s", 409, payload)
 }
 
 func (o *CreateSecretConflict) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretConflict %s", 409, payload)
 }
 
 func (o *CreateSecretConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreateSecretUnprocessableEntity) Code() int {
 }
 
 func (o *CreateSecretUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateSecretUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateSecretUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreateSecretTooManyRequests) Code() int {
 }
 
 func (o *CreateSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateSecretTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateSecretTooManyRequests) GetPayload() *models.Error {

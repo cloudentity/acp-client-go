@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateXIDPOK) Code() int {
 }
 
 func (o *UpdateXIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPOK %s", 200, payload)
 }
 
 func (o *UpdateXIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPOK %s", 200, payload)
 }
 
 func (o *UpdateXIDPOK) GetPayload() *models.XIDP {
@@ -183,11 +186,13 @@ func (o *UpdateXIDPBadRequest) Code() int {
 }
 
 func (o *UpdateXIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateXIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateXIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateXIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateXIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateXIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateXIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateXIDPForbidden) Code() int {
 }
 
 func (o *UpdateXIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateXIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateXIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateXIDPNotFound) Code() int {
 }
 
 func (o *UpdateXIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateXIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateXIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateXIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateXIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateXIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateXIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateXIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateXIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateXIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/x/{iid}][%d] updateXIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateXIDPTooManyRequests) GetPayload() *models.Error {

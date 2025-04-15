@@ -1,7 +1,7 @@
 swagger = docker run --rm -it -e GOPATH=/go \
 			-u $(shell id -u ${USER}):$(shell id -g ${USER}) \
 			-v $(shell pwd):/go/src \
-			-w $(shell pwd)/src quay.io/goswagger/swagger
+			-w $(shell pwd)/src quay.io/goswagger/swagger:0.31
 
 .PHONY: generate
 generate: generate-acp generate-openbanking-uk generate-openbanking-brasil

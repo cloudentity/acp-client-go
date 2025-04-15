@@ -6,6 +6,7 @@ package claims
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteClaimNoContent) Code() int {
 }
 
 func (o *DeleteClaimNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent ", 204)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent", 204)
 }
 
 func (o *DeleteClaimNoContent) String() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent ", 204)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent", 204)
 }
 
 func (o *DeleteClaimNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteClaimUnauthorized) Code() int {
 }
 
 func (o *DeleteClaimUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteClaimUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteClaimUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteClaimForbidden) Code() int {
 }
 
 func (o *DeleteClaimForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden %s", 403, payload)
 }
 
 func (o *DeleteClaimForbidden) String() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden %s", 403, payload)
 }
 
 func (o *DeleteClaimForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteClaimNotFound) Code() int {
 }
 
 func (o *DeleteClaimNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound %s", 404, payload)
 }
 
 func (o *DeleteClaimNotFound) String() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound %s", 404, payload)
 }
 
 func (o *DeleteClaimNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteClaimTooManyRequests) Code() int {
 }
 
 func (o *DeleteClaimTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteClaimTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteClaimTooManyRequests) GetPayload() *models.Error {

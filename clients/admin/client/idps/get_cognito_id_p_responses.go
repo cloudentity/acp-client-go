@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetCognitoIDPOK) Code() int {
 }
 
 func (o *GetCognitoIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK %s", 200, payload)
 }
 
 func (o *GetCognitoIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK %s", 200, payload)
 }
 
 func (o *GetCognitoIDPOK) GetPayload() *models.CognitoIDP {
@@ -171,11 +174,13 @@ func (o *GetCognitoIDPUnauthorized) Code() int {
 }
 
 func (o *GetCognitoIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetCognitoIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetCognitoIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetCognitoIDPForbidden) Code() int {
 }
 
 func (o *GetCognitoIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden %s", 403, payload)
 }
 
 func (o *GetCognitoIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden %s", 403, payload)
 }
 
 func (o *GetCognitoIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetCognitoIDPNotFound) Code() int {
 }
 
 func (o *GetCognitoIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound %s", 404, payload)
 }
 
 func (o *GetCognitoIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound %s", 404, payload)
 }
 
 func (o *GetCognitoIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetCognitoIDPTooManyRequests) Code() int {
 }
 
 func (o *GetCognitoIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetCognitoIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetCognitoIDPTooManyRequests) GetPayload() *models.Error {

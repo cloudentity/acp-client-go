@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -128,11 +129,11 @@ func (o *DeprecatedChangePasswordNoContent) Code() int {
 }
 
 func (o *DeprecatedChangePasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNoContent", 204)
 }
 
 func (o *DeprecatedChangePasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNoContent", 204)
 }
 
 func (o *DeprecatedChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -192,11 +193,13 @@ func (o *DeprecatedChangePasswordBadRequest) Code() int {
 }
 
 func (o *DeprecatedChangePasswordBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordBadRequest %s", 400, payload)
 }
 
 func (o *DeprecatedChangePasswordBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordBadRequest %s", 400, payload)
 }
 
 func (o *DeprecatedChangePasswordBadRequest) GetPayload() *models.Error {
@@ -260,11 +263,13 @@ func (o *DeprecatedChangePasswordUnauthorized) Code() int {
 }
 
 func (o *DeprecatedChangePasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnauthorized %s", 401, payload)
 }
 
 func (o *DeprecatedChangePasswordUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnauthorized %s", 401, payload)
 }
 
 func (o *DeprecatedChangePasswordUnauthorized) GetPayload() *models.Error {
@@ -328,11 +333,13 @@ func (o *DeprecatedChangePasswordForbidden) Code() int {
 }
 
 func (o *DeprecatedChangePasswordForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordForbidden %s", 403, payload)
 }
 
 func (o *DeprecatedChangePasswordForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordForbidden %s", 403, payload)
 }
 
 func (o *DeprecatedChangePasswordForbidden) GetPayload() *models.Error {
@@ -396,11 +403,13 @@ func (o *DeprecatedChangePasswordNotFound) Code() int {
 }
 
 func (o *DeprecatedChangePasswordNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNotFound %s", 404, payload)
 }
 
 func (o *DeprecatedChangePasswordNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordNotFound %s", 404, payload)
 }
 
 func (o *DeprecatedChangePasswordNotFound) GetPayload() *models.Error {
@@ -464,11 +473,13 @@ func (o *DeprecatedChangePasswordPreconditionFailed) Code() int {
 }
 
 func (o *DeprecatedChangePasswordPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordPreconditionFailed %s", 412, payload)
 }
 
 func (o *DeprecatedChangePasswordPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordPreconditionFailed %s", 412, payload)
 }
 
 func (o *DeprecatedChangePasswordPreconditionFailed) GetPayload() *models.Error {
@@ -532,11 +543,13 @@ func (o *DeprecatedChangePasswordUnprocessableEntity) Code() int {
 }
 
 func (o *DeprecatedChangePasswordUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeprecatedChangePasswordUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeprecatedChangePasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -600,11 +613,13 @@ func (o *DeprecatedChangePasswordTooManyRequests) Code() int {
 }
 
 func (o *DeprecatedChangePasswordTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordTooManyRequests %s", 429, payload)
 }
 
 func (o *DeprecatedChangePasswordTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] deprecatedChangePasswordTooManyRequests %s", 429, payload)
 }
 
 func (o *DeprecatedChangePasswordTooManyRequests) GetPayload() *models.Error {

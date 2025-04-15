@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -108,11 +109,11 @@ func (o *SendActivationMessageNoContent) Code() int {
 }
 
 func (o *SendActivationMessageNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent ", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent", 204)
 }
 
 func (o *SendActivationMessageNoContent) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent ", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent", 204)
 }
 
 func (o *SendActivationMessageNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,11 +166,13 @@ func (o *SendActivationMessageBadRequest) Code() int {
 }
 
 func (o *SendActivationMessageBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest %s", 400, payload)
 }
 
 func (o *SendActivationMessageBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest %s", 400, payload)
 }
 
 func (o *SendActivationMessageBadRequest) GetPayload() *models.Error {
@@ -233,11 +236,13 @@ func (o *SendActivationMessageUnauthorized) Code() int {
 }
 
 func (o *SendActivationMessageUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized %s", 401, payload)
 }
 
 func (o *SendActivationMessageUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized %s", 401, payload)
 }
 
 func (o *SendActivationMessageUnauthorized) GetPayload() *models.Error {
@@ -301,11 +306,13 @@ func (o *SendActivationMessageNotFound) Code() int {
 }
 
 func (o *SendActivationMessageNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound %s", 404, payload)
 }
 
 func (o *SendActivationMessageNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound %s", 404, payload)
 }
 
 func (o *SendActivationMessageNotFound) GetPayload() *models.Error {
@@ -369,11 +376,13 @@ func (o *SendActivationMessageUnprocessableEntity) Code() int {
 }
 
 func (o *SendActivationMessageUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SendActivationMessageUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SendActivationMessageUnprocessableEntity) GetPayload() *models.Error {
@@ -437,11 +446,13 @@ func (o *SendActivationMessageTooManyRequests) Code() int {
 }
 
 func (o *SendActivationMessageTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests %s", 429, payload)
 }
 
 func (o *SendActivationMessageTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests %s", 429, payload)
 }
 
 func (o *SendActivationMessageTooManyRequests) GetPayload() *models.Error {

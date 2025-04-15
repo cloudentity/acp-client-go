@@ -6,6 +6,7 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListSystemAPIBindingsOK) Code() int {
 }
 
 func (o *ListSystemAPIBindingsOK) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK %s", 200, payload)
 }
 
 func (o *ListSystemAPIBindingsOK) String() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK %s", 200, payload)
 }
 
 func (o *ListSystemAPIBindingsOK) GetPayload() *models.SystemAPIBindings {
@@ -181,11 +184,13 @@ func (o *ListSystemAPIBindingsUnauthorized) Code() int {
 }
 
 func (o *ListSystemAPIBindingsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized %s", 401, payload)
 }
 
 func (o *ListSystemAPIBindingsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized %s", 401, payload)
 }
 
 func (o *ListSystemAPIBindingsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListSystemAPIBindingsForbidden) Code() int {
 }
 
 func (o *ListSystemAPIBindingsForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden %s", 403, payload)
 }
 
 func (o *ListSystemAPIBindingsForbidden) String() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden %s", 403, payload)
 }
 
 func (o *ListSystemAPIBindingsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListSystemAPIBindingsTooManyRequests) Code() int {
 }
 
 func (o *ListSystemAPIBindingsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListSystemAPIBindingsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListSystemAPIBindingsTooManyRequests) GetPayload() *models.Error {

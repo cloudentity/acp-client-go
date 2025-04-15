@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreateUserCreated) Code() int {
 }
 
 func (o *CreateUserCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserCreated %s", 201, payload)
 }
 
 func (o *CreateUserCreated) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserCreated %s", 201, payload)
 }
 
 func (o *CreateUserCreated) GetPayload() *models.UserWithData {
@@ -205,11 +208,13 @@ func (o *CreateUserBadRequest) Code() int {
 }
 
 func (o *CreateUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserBadRequest %s", 400, payload)
 }
 
 func (o *CreateUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserBadRequest %s", 400, payload)
 }
 
 func (o *CreateUserBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreateUserUnauthorized) Code() int {
 }
 
 func (o *CreateUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnauthorized %s", 401, payload)
 }
 
 func (o *CreateUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnauthorized %s", 401, payload)
 }
 
 func (o *CreateUserUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreateUserForbidden) Code() int {
 }
 
 func (o *CreateUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserForbidden %s", 403, payload)
 }
 
 func (o *CreateUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserForbidden %s", 403, payload)
 }
 
 func (o *CreateUserForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreateUserNotFound) Code() int {
 }
 
 func (o *CreateUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserNotFound %s", 404, payload)
 }
 
 func (o *CreateUserNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserNotFound %s", 404, payload)
 }
 
 func (o *CreateUserNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreateUserConflict) Code() int {
 }
 
 func (o *CreateUserConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserConflict %s", 409, payload)
 }
 
 func (o *CreateUserConflict) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserConflict %s", 409, payload)
 }
 
 func (o *CreateUserConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreateUserUnprocessableEntity) Code() int {
 }
 
 func (o *CreateUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateUserUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateUserUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreateUserTooManyRequests) Code() int {
 }
 
 func (o *CreateUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateUserTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateUserTooManyRequests) GetPayload() *models.Error {

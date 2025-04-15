@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetIntelliTrustIDPClientOK) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientOK %s", 200, payload)
 }
 
 func (o *GetIntelliTrustIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientOK %s", 200, payload)
 }
 
 func (o *GetIntelliTrustIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetIntelliTrustIDPClientBadRequest) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetIntelliTrustIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetIntelliTrustIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetIntelliTrustIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetIntelliTrustIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetIntelliTrustIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetIntelliTrustIDPClientForbidden) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetIntelliTrustIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetIntelliTrustIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetIntelliTrustIDPClientNotFound) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetIntelliTrustIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetIntelliTrustIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetIntelliTrustIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetIntelliTrustIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetIntelliTrustIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}/client][%d] getIntelliTrustIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetIntelliTrustIDPClientTooManyRequests) GetPayload() *models.Error {

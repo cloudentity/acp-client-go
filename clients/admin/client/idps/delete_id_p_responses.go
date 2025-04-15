@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *DeleteIDPNoContent) Code() int {
 }
 
 func (o *DeleteIDPNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent", 204)
 }
 
 func (o *DeleteIDPNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent", 204)
 }
 
 func (o *DeleteIDPNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *DeleteIDPBadRequest) Code() int {
 }
 
 func (o *DeleteIDPBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest %s", 400, payload)
 }
 
 func (o *DeleteIDPBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest %s", 400, payload)
 }
 
 func (o *DeleteIDPBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *DeleteIDPUnauthorized) Code() int {
 }
 
 func (o *DeleteIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteIDPUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteIDPUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *DeleteIDPForbidden) Code() int {
 }
 
 func (o *DeleteIDPForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden %s", 403, payload)
 }
 
 func (o *DeleteIDPForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden %s", 403, payload)
 }
 
 func (o *DeleteIDPForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *DeleteIDPNotFound) Code() int {
 }
 
 func (o *DeleteIDPNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound %s", 404, payload)
 }
 
 func (o *DeleteIDPNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound %s", 404, payload)
 }
 
 func (o *DeleteIDPNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *DeleteIDPUnprocessableEntity) Code() int {
 }
 
 func (o *DeleteIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *DeleteIDPTooManyRequests) Code() int {
 }
 
 func (o *DeleteIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteIDPTooManyRequests) GetPayload() *models.Error {

@@ -27,7 +27,7 @@ type BaseUpdateUser struct {
 	PayloadSchemaID string `json:"payload_schema_id,omitempty" yaml:"payload_schema_id,omitempty"`
 
 	// status
-	// Enum: [active inactive deleted new]
+	// Enum: ["active","inactive","deleted","new"]
 	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 }
 

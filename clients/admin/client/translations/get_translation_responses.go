@@ -6,6 +6,7 @@ package translations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetTranslationOK) Code() int {
 }
 
 func (o *GetTranslationOK) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationOK %s", 200, payload)
 }
 
 func (o *GetTranslationOK) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationOK %s", 200, payload)
 }
 
 func (o *GetTranslationOK) GetPayload() *models.Translation {
@@ -171,11 +174,13 @@ func (o *GetTranslationUnauthorized) Code() int {
 }
 
 func (o *GetTranslationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *GetTranslationUnauthorized) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *GetTranslationUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetTranslationForbidden) Code() int {
 }
 
 func (o *GetTranslationForbidden) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationForbidden %s", 403, payload)
 }
 
 func (o *GetTranslationForbidden) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationForbidden %s", 403, payload)
 }
 
 func (o *GetTranslationForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetTranslationNotFound) Code() int {
 }
 
 func (o *GetTranslationNotFound) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationNotFound %s", 404, payload)
 }
 
 func (o *GetTranslationNotFound) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationNotFound %s", 404, payload)
 }
 
 func (o *GetTranslationNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetTranslationTooManyRequests) Code() int {
 }
 
 func (o *GetTranslationTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTranslationTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /translation/{locale}][%d] getTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTranslationTooManyRequests) GetPayload() *models.Error {

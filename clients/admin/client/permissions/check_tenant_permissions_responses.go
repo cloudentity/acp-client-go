@@ -6,6 +6,7 @@ package permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *CheckTenantPermissionsOK) Code() int {
 }
 
 func (o *CheckTenantPermissionsOK) Error() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsOK %s", 200, payload)
 }
 
 func (o *CheckTenantPermissionsOK) String() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsOK %s", 200, payload)
 }
 
 func (o *CheckTenantPermissionsOK) GetPayload() *models.TenantPermissionsResponse {
@@ -187,11 +190,13 @@ func (o *CheckTenantPermissionsUnauthorized) Code() int {
 }
 
 func (o *CheckTenantPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *CheckTenantPermissionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *CheckTenantPermissionsUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *CheckTenantPermissionsForbidden) Code() int {
 }
 
 func (o *CheckTenantPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsForbidden %s", 403, payload)
 }
 
 func (o *CheckTenantPermissionsForbidden) String() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsForbidden %s", 403, payload)
 }
 
 func (o *CheckTenantPermissionsForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *CheckTenantPermissionsNotFound) Code() int {
 }
 
 func (o *CheckTenantPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsNotFound %s", 404, payload)
 }
 
 func (o *CheckTenantPermissionsNotFound) String() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsNotFound %s", 404, payload)
 }
 
 func (o *CheckTenantPermissionsNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *CheckTenantPermissionsTooManyRequests) Code() int {
 }
 
 func (o *CheckTenantPermissionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsTooManyRequests %s", 429, payload)
 }
 
 func (o *CheckTenantPermissionsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/permissions][%d] checkTenantPermissionsTooManyRequests %s", 429, payload)
 }
 
 func (o *CheckTenantPermissionsTooManyRequests) GetPayload() *models.Error {

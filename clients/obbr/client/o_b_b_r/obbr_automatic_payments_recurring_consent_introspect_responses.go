@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectOK) Code() int {
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectOK) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectOK) GetPayload() *models.IntrospectOBBRAutomaticPaymentsRecurringConsentResponse {
@@ -165,11 +168,13 @@ func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized) Code() int
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -233,11 +238,13 @@ func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectNotFound) Code() int {
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -301,11 +308,13 @@ func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests) Code() 
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/automatic-payments/v1/recurring-consents/introspect][%d] obbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *ObbrAutomaticPaymentsRecurringConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

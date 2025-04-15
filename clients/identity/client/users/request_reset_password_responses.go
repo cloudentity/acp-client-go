@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *RequestResetPasswordNoContent) Code() int {
 }
 
 func (o *RequestResetPasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNoContent", 204)
 }
 
 func (o *RequestResetPasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNoContent", 204)
 }
 
 func (o *RequestResetPasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *RequestResetPasswordBadRequest) Code() int {
 }
 
 func (o *RequestResetPasswordBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordBadRequest %s", 400, payload)
 }
 
 func (o *RequestResetPasswordBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordBadRequest %s", 400, payload)
 }
 
 func (o *RequestResetPasswordBadRequest) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *RequestResetPasswordUnauthorized) Code() int {
 }
 
 func (o *RequestResetPasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnauthorized %s", 401, payload)
 }
 
 func (o *RequestResetPasswordUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnauthorized %s", 401, payload)
 }
 
 func (o *RequestResetPasswordUnauthorized) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *RequestResetPasswordNotFound) Code() int {
 }
 
 func (o *RequestResetPasswordNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNotFound %s", 404, payload)
 }
 
 func (o *RequestResetPasswordNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordNotFound %s", 404, payload)
 }
 
 func (o *RequestResetPasswordNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *RequestResetPasswordUnprocessableEntity) Code() int {
 }
 
 func (o *RequestResetPasswordUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestResetPasswordUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/password/reset/request][%d] requestResetPasswordUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestResetPasswordUnprocessableEntity) GetPayload() *models.Error {

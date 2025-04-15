@@ -21,7 +21,7 @@ import (
 type UserAuthenticatedPayload struct {
 
 	// authn method
-	// Enum: [totp password otp email_otp sms_otp webauthn]
+	// Enum: ["totp","password","otp","email_otp","sms_otp","webauthn"]
 	AuthnMethod string `json:"authn_method,omitempty" yaml:"authn_method,omitempty"`
 
 	// failure reason
@@ -31,7 +31,7 @@ type UserAuthenticatedPayload struct {
 	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// mfa
-	// Enum: [totp password otp email_otp sms_otp webauthn]
+	// Enum: ["totp","password","otp","email_otp","sms_otp","webauthn"]
 	Mfa string `json:"mfa,omitempty" yaml:"mfa,omitempty"`
 
 	// mfa skipped

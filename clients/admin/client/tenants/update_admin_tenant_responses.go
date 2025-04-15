@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateAdminTenantOK) Code() int {
 }
 
 func (o *UpdateAdminTenantOK) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK %s", 200, payload)
 }
 
 func (o *UpdateAdminTenantOK) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK %s", 200, payload)
 }
 
 func (o *UpdateAdminTenantOK) GetPayload() *models.Tenant {
@@ -183,11 +186,13 @@ func (o *UpdateAdminTenantBadRequest) Code() int {
 }
 
 func (o *UpdateAdminTenantBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAdminTenantBadRequest) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAdminTenantBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateAdminTenantUnauthorized) Code() int {
 }
 
 func (o *UpdateAdminTenantUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAdminTenantUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAdminTenantUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateAdminTenantForbidden) Code() int {
 }
 
 func (o *UpdateAdminTenantForbidden) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden %s", 403, payload)
 }
 
 func (o *UpdateAdminTenantForbidden) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden %s", 403, payload)
 }
 
 func (o *UpdateAdminTenantForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateAdminTenantNotFound) Code() int {
 }
 
 func (o *UpdateAdminTenantNotFound) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound %s", 404, payload)
 }
 
 func (o *UpdateAdminTenantNotFound) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound %s", 404, payload)
 }
 
 func (o *UpdateAdminTenantNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateAdminTenantUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateAdminTenantUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAdminTenantUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateAdminTenantUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateAdminTenantTooManyRequests) Code() int {
 }
 
 func (o *UpdateAdminTenantTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAdminTenantTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateAdminTenantTooManyRequests) GetPayload() *models.Error {

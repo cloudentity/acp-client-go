@@ -29,11 +29,11 @@ type OBWriteInternationalScheduledConsent5Data struct {
 
 	// Specifies the Open Banking service request types.
 	// Required: true
-	// Enum: [Create]
+	// Enum: ["Create"]
 	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
-	// Enum: [No Yes]
+	// Enum: ["No","Yes"]
 	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data

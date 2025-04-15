@@ -6,6 +6,7 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +122,13 @@ func (o *SystemUpdateSchemaOK) Code() int {
 }
 
 func (o *SystemUpdateSchemaOK) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaOK %s", 200, payload)
 }
 
 func (o *SystemUpdateSchemaOK) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaOK %s", 200, payload)
 }
 
 func (o *SystemUpdateSchemaOK) GetPayload() *models.Schema {
@@ -189,11 +192,13 @@ func (o *SystemUpdateSchemaBadRequest) Code() int {
 }
 
 func (o *SystemUpdateSchemaBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaBadRequest %s", 400, payload)
 }
 
 func (o *SystemUpdateSchemaBadRequest) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaBadRequest %s", 400, payload)
 }
 
 func (o *SystemUpdateSchemaBadRequest) GetPayload() *models.Error {
@@ -257,11 +262,13 @@ func (o *SystemUpdateSchemaUnauthorized) Code() int {
 }
 
 func (o *SystemUpdateSchemaUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnauthorized %s", 401, payload)
 }
 
 func (o *SystemUpdateSchemaUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnauthorized %s", 401, payload)
 }
 
 func (o *SystemUpdateSchemaUnauthorized) GetPayload() *models.Error {
@@ -325,11 +332,13 @@ func (o *SystemUpdateSchemaForbidden) Code() int {
 }
 
 func (o *SystemUpdateSchemaForbidden) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaForbidden %s", 403, payload)
 }
 
 func (o *SystemUpdateSchemaForbidden) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaForbidden %s", 403, payload)
 }
 
 func (o *SystemUpdateSchemaForbidden) GetPayload() *models.Error {
@@ -393,11 +402,13 @@ func (o *SystemUpdateSchemaNotFound) Code() int {
 }
 
 func (o *SystemUpdateSchemaNotFound) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaNotFound %s", 404, payload)
 }
 
 func (o *SystemUpdateSchemaNotFound) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaNotFound %s", 404, payload)
 }
 
 func (o *SystemUpdateSchemaNotFound) GetPayload() *models.Error {
@@ -461,11 +472,13 @@ func (o *SystemUpdateSchemaConflict) Code() int {
 }
 
 func (o *SystemUpdateSchemaConflict) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaConflict %s", 409, payload)
 }
 
 func (o *SystemUpdateSchemaConflict) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaConflict %s", 409, payload)
 }
 
 func (o *SystemUpdateSchemaConflict) GetPayload() *models.Error {
@@ -529,11 +542,13 @@ func (o *SystemUpdateSchemaUnprocessableEntity) Code() int {
 }
 
 func (o *SystemUpdateSchemaUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemUpdateSchemaUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemUpdateSchemaUnprocessableEntity) GetPayload() *models.Error {
@@ -597,11 +612,13 @@ func (o *SystemUpdateSchemaTooManyRequests) Code() int {
 }
 
 func (o *SystemUpdateSchemaTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemUpdateSchemaTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/schemas/{schID}][%d] systemUpdateSchemaTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemUpdateSchemaTooManyRequests) GetPayload() *models.Error {

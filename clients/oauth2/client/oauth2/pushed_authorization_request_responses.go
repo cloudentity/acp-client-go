@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *PushedAuthorizationRequestCreated) Code() int {
 }
 
 func (o *PushedAuthorizationRequestCreated) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated %s", 201, payload)
 }
 
 func (o *PushedAuthorizationRequestCreated) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated %s", 201, payload)
 }
 
 func (o *PushedAuthorizationRequestCreated) GetPayload() *models.PARResponse {
@@ -177,11 +180,13 @@ func (o *PushedAuthorizationRequestBadRequest) Code() int {
 }
 
 func (o *PushedAuthorizationRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest %s", 400, payload)
 }
 
 func (o *PushedAuthorizationRequestBadRequest) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest %s", 400, payload)
 }
 
 func (o *PushedAuthorizationRequestBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *PushedAuthorizationRequestUnauthorized) Code() int {
 }
 
 func (o *PushedAuthorizationRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized %s", 401, payload)
 }
 
 func (o *PushedAuthorizationRequestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized %s", 401, payload)
 }
 
 func (o *PushedAuthorizationRequestUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *PushedAuthorizationRequestMethodNotAllowed) Code() int {
 }
 
 func (o *PushedAuthorizationRequestMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *PushedAuthorizationRequestMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *PushedAuthorizationRequestMethodNotAllowed) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *PushedAuthorizationRequestRequestEntityTooLarge) Code() int {
 }
 
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge  %+v", 413, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge %s", 413, payload)
 }
 
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge  %+v", 413, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge %s", 413, payload)
 }
 
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *PushedAuthorizationRequestTooManyRequests) Code() int {
 }
 
 func (o *PushedAuthorizationRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *PushedAuthorizationRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *PushedAuthorizationRequestTooManyRequests) GetPayload() *models.Error {

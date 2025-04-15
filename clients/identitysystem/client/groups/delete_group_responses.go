@@ -6,6 +6,7 @@ package groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteGroupNoContent) Code() int {
 }
 
 func (o *DeleteGroupNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNoContent", 204)
 }
 
 func (o *DeleteGroupNoContent) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNoContent", 204)
 }
 
 func (o *DeleteGroupNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteGroupUnauthorized) Code() int {
 }
 
 func (o *DeleteGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteGroupUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteGroupUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteGroupForbidden) Code() int {
 }
 
 func (o *DeleteGroupForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupForbidden %s", 403, payload)
 }
 
 func (o *DeleteGroupForbidden) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupForbidden %s", 403, payload)
 }
 
 func (o *DeleteGroupForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteGroupNotFound) Code() int {
 }
 
 func (o *DeleteGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNotFound %s", 404, payload)
 }
 
 func (o *DeleteGroupNotFound) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupNotFound %s", 404, payload)
 }
 
 func (o *DeleteGroupNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteGroupTooManyRequests) Code() int {
 }
 
 func (o *DeleteGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteGroupTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/pools/{ipID}/groups/{groupID}][%d] deleteGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteGroupTooManyRequests) GetPayload() *models.Error {

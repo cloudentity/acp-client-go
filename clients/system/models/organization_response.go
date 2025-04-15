@@ -58,7 +58,7 @@ type OrganizationResponse struct {
 	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
 
 	// subject format
-	// Enum: [hash legacy]
+	// Enum: ["hash","legacy"]
 	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// subject identifier algorithm salt

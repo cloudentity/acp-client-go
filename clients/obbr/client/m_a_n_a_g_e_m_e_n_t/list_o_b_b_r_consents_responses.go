@@ -6,6 +6,7 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ListOBBRConsentsOK) Code() int {
 }
 
 func (o *ListOBBRConsentsOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsOK %s", 200, payload)
 }
 
 func (o *ListOBBRConsentsOK) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsOK %s", 200, payload)
 }
 
 func (o *ListOBBRConsentsOK) GetPayload() *models.OBBRConsents {
@@ -183,11 +186,13 @@ func (o *ListOBBRConsentsBadRequest) Code() int {
 }
 
 func (o *ListOBBRConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest %s", 400, payload)
 }
 
 func (o *ListOBBRConsentsBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest %s", 400, payload)
 }
 
 func (o *ListOBBRConsentsBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ListOBBRConsentsUnauthorized) Code() int {
 }
 
 func (o *ListOBBRConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *ListOBBRConsentsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized %s", 401, payload)
 }
 
 func (o *ListOBBRConsentsUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ListOBBRConsentsForbidden) Code() int {
 }
 
 func (o *ListOBBRConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden %s", 403, payload)
 }
 
 func (o *ListOBBRConsentsForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden %s", 403, payload)
 }
 
 func (o *ListOBBRConsentsForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ListOBBRConsentsNotFound) Code() int {
 }
 
 func (o *ListOBBRConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound %s", 404, payload)
 }
 
 func (o *ListOBBRConsentsNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound %s", 404, payload)
 }
 
 func (o *ListOBBRConsentsNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ListOBBRConsentsUnprocessableEntity) Code() int {
 }
 
 func (o *ListOBBRConsentsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ListOBBRConsentsUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ListOBBRConsentsUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ListOBBRConsentsTooManyRequests) Code() int {
 }
 
 func (o *ListOBBRConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListOBBRConsentsTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListOBBRConsentsTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *CreateClientCreated) Code() int {
 }
 
 func (o *CreateClientCreated) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientCreated %s", 201, payload)
 }
 
 func (o *CreateClientCreated) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientCreated %s", 201, payload)
 }
 
 func (o *CreateClientCreated) GetPayload() *models.ClientAdminResponse {
@@ -199,11 +202,13 @@ func (o *CreateClientUnauthorized) Code() int {
 }
 
 func (o *CreateClientUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientUnauthorized %s", 401, payload)
 }
 
 func (o *CreateClientUnauthorized) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientUnauthorized %s", 401, payload)
 }
 
 func (o *CreateClientUnauthorized) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *CreateClientForbidden) Code() int {
 }
 
 func (o *CreateClientForbidden) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForbidden %s", 403, payload)
 }
 
 func (o *CreateClientForbidden) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForbidden %s", 403, payload)
 }
 
 func (o *CreateClientForbidden) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *CreateClientNotFound) Code() int {
 }
 
 func (o *CreateClientNotFound) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientNotFound %s", 404, payload)
 }
 
 func (o *CreateClientNotFound) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientNotFound %s", 404, payload)
 }
 
 func (o *CreateClientNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *CreateClientConflict) Code() int {
 }
 
 func (o *CreateClientConflict) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientConflict %s", 409, payload)
 }
 
 func (o *CreateClientConflict) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientConflict %s", 409, payload)
 }
 
 func (o *CreateClientConflict) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *CreateClientUnprocessableEntity) Code() int {
 }
 
 func (o *CreateClientUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateClientUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateClientUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *CreateClientTooManyRequests) Code() int {
 }
 
 func (o *CreateClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateClientTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateClientTooManyRequests) GetPayload() *models.Error {

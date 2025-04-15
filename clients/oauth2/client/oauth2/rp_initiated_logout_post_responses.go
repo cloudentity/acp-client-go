@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -96,11 +97,11 @@ func (o *RpInitiatedLogoutPostOK) Code() int {
 }
 
 func (o *RpInitiatedLogoutPostOK) Error() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostOK ", 200)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostOK", 200)
 }
 
 func (o *RpInitiatedLogoutPostOK) String() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostOK ", 200)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostOK", 200)
 }
 
 func (o *RpInitiatedLogoutPostOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -153,11 +154,13 @@ func (o *RpInitiatedLogoutPostUnauthorized) Code() int {
 }
 
 func (o *RpInitiatedLogoutPostUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostUnauthorized %s", 401, payload)
 }
 
 func (o *RpInitiatedLogoutPostUnauthorized) String() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostUnauthorized %s", 401, payload)
 }
 
 func (o *RpInitiatedLogoutPostUnauthorized) GetPayload() *models.GenericError {
@@ -221,11 +224,13 @@ func (o *RpInitiatedLogoutPostNotFound) Code() int {
 }
 
 func (o *RpInitiatedLogoutPostNotFound) Error() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostNotFound %s", 404, payload)
 }
 
 func (o *RpInitiatedLogoutPostNotFound) String() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostNotFound %s", 404, payload)
 }
 
 func (o *RpInitiatedLogoutPostNotFound) GetPayload() *models.GenericError {
@@ -289,11 +294,13 @@ func (o *RpInitiatedLogoutPostTooManyRequests) Code() int {
 }
 
 func (o *RpInitiatedLogoutPostTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostTooManyRequests %s", 429, payload)
 }
 
 func (o *RpInitiatedLogoutPostTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oidc/logout][%d] rpInitiatedLogoutPostTooManyRequests %s", 429, payload)
 }
 
 func (o *RpInitiatedLogoutPostTooManyRequests) GetPayload() *models.GenericError {

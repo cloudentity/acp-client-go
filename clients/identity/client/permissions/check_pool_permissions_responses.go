@@ -6,6 +6,7 @@ package permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *CheckPoolPermissionsOK) Code() int {
 }
 
 func (o *CheckPoolPermissionsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsOK %s", 200, payload)
 }
 
 func (o *CheckPoolPermissionsOK) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsOK %s", 200, payload)
 }
 
 func (o *CheckPoolPermissionsOK) GetPayload() *models.PoolPermissionsResponse {
@@ -187,11 +190,13 @@ func (o *CheckPoolPermissionsUnauthorized) Code() int {
 }
 
 func (o *CheckPoolPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *CheckPoolPermissionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *CheckPoolPermissionsUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *CheckPoolPermissionsForbidden) Code() int {
 }
 
 func (o *CheckPoolPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsForbidden %s", 403, payload)
 }
 
 func (o *CheckPoolPermissionsForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsForbidden %s", 403, payload)
 }
 
 func (o *CheckPoolPermissionsForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *CheckPoolPermissionsNotFound) Code() int {
 }
 
 func (o *CheckPoolPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsNotFound %s", 404, payload)
 }
 
 func (o *CheckPoolPermissionsNotFound) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsNotFound %s", 404, payload)
 }
 
 func (o *CheckPoolPermissionsNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *CheckPoolPermissionsTooManyRequests) Code() int {
 }
 
 func (o *CheckPoolPermissionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsTooManyRequests %s", 429, payload)
 }
 
 func (o *CheckPoolPermissionsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/permissions][%d] checkPoolPermissionsTooManyRequests %s", 429, payload)
 }
 
 func (o *CheckPoolPermissionsTooManyRequests) GetPayload() *models.Error {

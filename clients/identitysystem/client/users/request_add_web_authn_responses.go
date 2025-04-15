@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *RequestAddWebAuthnNoContent) Code() int {
 }
 
 func (o *RequestAddWebAuthnNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnNoContent", 204)
 }
 
 func (o *RequestAddWebAuthnNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnNoContent", 204)
 }
 
 func (o *RequestAddWebAuthnNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *RequestAddWebAuthnBadRequest) Code() int {
 }
 
 func (o *RequestAddWebAuthnBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnBadRequest %s", 400, payload)
 }
 
 func (o *RequestAddWebAuthnBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnBadRequest %s", 400, payload)
 }
 
 func (o *RequestAddWebAuthnBadRequest) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *RequestAddWebAuthnUnauthorized) Code() int {
 }
 
 func (o *RequestAddWebAuthnUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnauthorized %s", 401, payload)
 }
 
 func (o *RequestAddWebAuthnUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnauthorized %s", 401, payload)
 }
 
 func (o *RequestAddWebAuthnUnauthorized) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *RequestAddWebAuthnPreconditionFailed) Code() int {
 }
 
 func (o *RequestAddWebAuthnPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnPreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestAddWebAuthnPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnPreconditionFailed %s", 412, payload)
 }
 
 func (o *RequestAddWebAuthnPreconditionFailed) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *RequestAddWebAuthnUnprocessableEntity) Code() int {
 }
 
 func (o *RequestAddWebAuthnUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestAddWebAuthnUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/webauthn/add/request][%d] requestAddWebAuthnUnprocessableEntity %s", 422, payload)
 }
 
 func (o *RequestAddWebAuthnUnprocessableEntity) GetPayload() *models.Error {

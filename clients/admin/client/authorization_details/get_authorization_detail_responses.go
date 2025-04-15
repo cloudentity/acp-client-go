@@ -6,6 +6,7 @@ package authorization_details
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetAuthorizationDetailOK) Code() int {
 }
 
 func (o *GetAuthorizationDetailOK) Error() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailOK %s", 200, payload)
 }
 
 func (o *GetAuthorizationDetailOK) String() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailOK %s", 200, payload)
 }
 
 func (o *GetAuthorizationDetailOK) GetPayload() *models.AuthorizationDetailWithService {
@@ -187,11 +190,13 @@ func (o *GetAuthorizationDetailUnauthorized) Code() int {
 }
 
 func (o *GetAuthorizationDetailUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *GetAuthorizationDetailUnauthorized) String() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *GetAuthorizationDetailUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetAuthorizationDetailForbidden) Code() int {
 }
 
 func (o *GetAuthorizationDetailForbidden) Error() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *GetAuthorizationDetailForbidden) String() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *GetAuthorizationDetailForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetAuthorizationDetailNotFound) Code() int {
 }
 
 func (o *GetAuthorizationDetailNotFound) Error() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *GetAuthorizationDetailNotFound) String() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *GetAuthorizationDetailNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetAuthorizationDetailTooManyRequests) Code() int {
 }
 
 func (o *GetAuthorizationDetailTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAuthorizationDetailTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /authorization-details/{authorizationDetailID}][%d] getAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAuthorizationDetailTooManyRequests) GetPayload() *models.Error {

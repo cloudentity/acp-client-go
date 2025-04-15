@@ -24,7 +24,7 @@ type CredentialPayload struct {
 	CredentialID string `json:"credential_id,omitempty" yaml:"credential_id,omitempty"`
 
 	// credential type
-	// Enum: [password webauthn totp]
+	// Enum: ["password","webauthn","totp"]
 	CredentialType string `json:"credential_type,omitempty" yaml:"credential_type,omitempty"`
 
 	// operation type

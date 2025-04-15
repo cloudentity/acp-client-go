@@ -6,6 +6,7 @@ package licenses
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetConfiguredLicensesOK) Code() int {
 }
 
 func (o *GetConfiguredLicensesOK) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesOK %s", 200, payload)
 }
 
 func (o *GetConfiguredLicensesOK) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesOK %s", 200, payload)
 }
 
 func (o *GetConfiguredLicensesOK) GetPayload() *models.Licenses {
@@ -171,11 +174,13 @@ func (o *GetConfiguredLicensesUnauthorized) Code() int {
 }
 
 func (o *GetConfiguredLicensesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesUnauthorized %s", 401, payload)
 }
 
 func (o *GetConfiguredLicensesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesUnauthorized %s", 401, payload)
 }
 
 func (o *GetConfiguredLicensesUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetConfiguredLicensesForbidden) Code() int {
 }
 
 func (o *GetConfiguredLicensesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesForbidden %s", 403, payload)
 }
 
 func (o *GetConfiguredLicensesForbidden) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesForbidden %s", 403, payload)
 }
 
 func (o *GetConfiguredLicensesForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetConfiguredLicensesNotFound) Code() int {
 }
 
 func (o *GetConfiguredLicensesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesNotFound %s", 404, payload)
 }
 
 func (o *GetConfiguredLicensesNotFound) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesNotFound %s", 404, payload)
 }
 
 func (o *GetConfiguredLicensesNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetConfiguredLicensesTooManyRequests) Code() int {
 }
 
 func (o *GetConfiguredLicensesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesTooManyRequests %s", 429, payload)
 }
 
 func (o *GetConfiguredLicensesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/licenses][%d] getConfiguredLicensesTooManyRequests %s", 429, payload)
 }
 
 func (o *GetConfiguredLicensesTooManyRequests) GetPayload() *models.Error {

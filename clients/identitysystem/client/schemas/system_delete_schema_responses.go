@@ -6,6 +6,7 @@ package schemas
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -114,11 +115,11 @@ func (o *SystemDeleteSchemaNoContent) Code() int {
 }
 
 func (o *SystemDeleteSchemaNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNoContent", 204)
 }
 
 func (o *SystemDeleteSchemaNoContent) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNoContent", 204)
 }
 
 func (o *SystemDeleteSchemaNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,11 +172,13 @@ func (o *SystemDeleteSchemaBadRequest) Code() int {
 }
 
 func (o *SystemDeleteSchemaBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaBadRequest %s", 400, payload)
 }
 
 func (o *SystemDeleteSchemaBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaBadRequest %s", 400, payload)
 }
 
 func (o *SystemDeleteSchemaBadRequest) GetPayload() *models.Error {
@@ -239,11 +242,13 @@ func (o *SystemDeleteSchemaUnauthorized) Code() int {
 }
 
 func (o *SystemDeleteSchemaUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaUnauthorized %s", 401, payload)
 }
 
 func (o *SystemDeleteSchemaUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaUnauthorized %s", 401, payload)
 }
 
 func (o *SystemDeleteSchemaUnauthorized) GetPayload() *models.Error {
@@ -307,11 +312,13 @@ func (o *SystemDeleteSchemaForbidden) Code() int {
 }
 
 func (o *SystemDeleteSchemaForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaForbidden %s", 403, payload)
 }
 
 func (o *SystemDeleteSchemaForbidden) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaForbidden %s", 403, payload)
 }
 
 func (o *SystemDeleteSchemaForbidden) GetPayload() *models.Error {
@@ -375,11 +382,13 @@ func (o *SystemDeleteSchemaNotFound) Code() int {
 }
 
 func (o *SystemDeleteSchemaNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNotFound %s", 404, payload)
 }
 
 func (o *SystemDeleteSchemaNotFound) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaNotFound %s", 404, payload)
 }
 
 func (o *SystemDeleteSchemaNotFound) GetPayload() *models.Error {
@@ -443,11 +452,13 @@ func (o *SystemDeleteSchemaConflict) Code() int {
 }
 
 func (o *SystemDeleteSchemaConflict) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaConflict %s", 409, payload)
 }
 
 func (o *SystemDeleteSchemaConflict) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaConflict %s", 409, payload)
 }
 
 func (o *SystemDeleteSchemaConflict) GetPayload() *models.Error {
@@ -511,11 +522,13 @@ func (o *SystemDeleteSchemaTooManyRequests) Code() int {
 }
 
 func (o *SystemDeleteSchemaTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemDeleteSchemaTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/schemas/{schID}][%d] systemDeleteSchemaTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemDeleteSchemaTooManyRequests) GetPayload() *models.Error {

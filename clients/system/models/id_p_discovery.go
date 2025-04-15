@@ -21,7 +21,7 @@ import (
 type IDPDiscovery struct {
 
 	// discovery mode
-	// Enum: [domain_matching script_execution]
+	// Enum: ["domain_matching","script_execution"]
 	DiscoveryMode string `json:"discovery_mode,omitempty" yaml:"discovery_mode,omitempty"`
 
 	// If enabled, IDP discovery automatically redirects the user to their own IDP and does not

@@ -6,6 +6,7 @@ package logins
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetScopeGrantRequestOK) Code() int {
 }
 
 func (o *GetScopeGrantRequestOK) Error() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestOK %s", 200, payload)
 }
 
 func (o *GetScopeGrantRequestOK) String() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestOK %s", 200, payload)
 }
 
 func (o *GetScopeGrantRequestOK) GetPayload() *models.ScopeGrantSessionResponse {
@@ -171,11 +174,13 @@ func (o *GetScopeGrantRequestUnauthorized) Code() int {
 }
 
 func (o *GetScopeGrantRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetScopeGrantRequestUnauthorized) String() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetScopeGrantRequestUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetScopeGrantRequestForbidden) Code() int {
 }
 
 func (o *GetScopeGrantRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestForbidden %s", 403, payload)
 }
 
 func (o *GetScopeGrantRequestForbidden) String() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestForbidden %s", 403, payload)
 }
 
 func (o *GetScopeGrantRequestForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetScopeGrantRequestNotFound) Code() int {
 }
 
 func (o *GetScopeGrantRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestNotFound %s", 404, payload)
 }
 
 func (o *GetScopeGrantRequestNotFound) String() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestNotFound %s", 404, payload)
 }
 
 func (o *GetScopeGrantRequestNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetScopeGrantRequestTooManyRequests) Code() int {
 }
 
 func (o *GetScopeGrantRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetScopeGrantRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /scope-grants/{login}][%d] getScopeGrantRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetScopeGrantRequestTooManyRequests) GetPayload() *models.Error {

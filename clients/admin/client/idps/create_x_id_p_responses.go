@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateXIDPCreated) Code() int {
 }
 
 func (o *CreateXIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPCreated %s", 201, payload)
 }
 
 func (o *CreateXIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPCreated %s", 201, payload)
 }
 
 func (o *CreateXIDPCreated) GetPayload() *models.XIDP {
@@ -183,11 +186,13 @@ func (o *CreateXIDPBadRequest) Code() int {
 }
 
 func (o *CreateXIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateXIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateXIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateXIDPUnauthorized) Code() int {
 }
 
 func (o *CreateXIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateXIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateXIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateXIDPForbidden) Code() int {
 }
 
 func (o *CreateXIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateXIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateXIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateXIDPNotFound) Code() int {
 }
 
 func (o *CreateXIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateXIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateXIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateXIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateXIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateXIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateXIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateXIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateXIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateXIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/x][%d] createXIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateXIDPTooManyRequests) GetPayload() *models.Error {

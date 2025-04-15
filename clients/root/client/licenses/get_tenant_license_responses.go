@@ -6,6 +6,7 @@ package licenses
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetTenantLicenseOK) Code() int {
 }
 
 func (o *GetTenantLicenseOK) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseOK %s", 200, payload)
 }
 
 func (o *GetTenantLicenseOK) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseOK %s", 200, payload)
 }
 
 func (o *GetTenantLicenseOK) GetPayload() *models.License {
@@ -171,11 +174,13 @@ func (o *GetTenantLicenseUnauthorized) Code() int {
 }
 
 func (o *GetTenantLicenseUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantLicenseUnauthorized) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseUnauthorized %s", 401, payload)
 }
 
 func (o *GetTenantLicenseUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetTenantLicenseForbidden) Code() int {
 }
 
 func (o *GetTenantLicenseForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseForbidden %s", 403, payload)
 }
 
 func (o *GetTenantLicenseForbidden) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseForbidden %s", 403, payload)
 }
 
 func (o *GetTenantLicenseForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetTenantLicenseNotFound) Code() int {
 }
 
 func (o *GetTenantLicenseNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseNotFound %s", 404, payload)
 }
 
 func (o *GetTenantLicenseNotFound) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseNotFound %s", 404, payload)
 }
 
 func (o *GetTenantLicenseNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetTenantLicenseTooManyRequests) Code() int {
 }
 
 func (o *GetTenantLicenseTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantLicenseTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/license][%d] getTenantLicenseTooManyRequests %s", 429, payload)
 }
 
 func (o *GetTenantLicenseTooManyRequests) GetPayload() *models.Error {

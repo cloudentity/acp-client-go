@@ -6,6 +6,7 @@ package tenant_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ExportTenantConfigOK) Code() int {
 }
 
 func (o *ExportTenantConfigOK) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigOK %s", 200, payload)
 }
 
 func (o *ExportTenantConfigOK) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigOK %s", 200, payload)
 }
 
 func (o *ExportTenantConfigOK) GetPayload() *models.TreeTenant {
@@ -183,11 +186,13 @@ func (o *ExportTenantConfigBadRequest) Code() int {
 }
 
 func (o *ExportTenantConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportTenantConfigBadRequest) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportTenantConfigBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ExportTenantConfigUnauthorized) Code() int {
 }
 
 func (o *ExportTenantConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportTenantConfigUnauthorized) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportTenantConfigUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ExportTenantConfigForbidden) Code() int {
 }
 
 func (o *ExportTenantConfigForbidden) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportTenantConfigForbidden) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportTenantConfigForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ExportTenantConfigNotFound) Code() int {
 }
 
 func (o *ExportTenantConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportTenantConfigNotFound) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportTenantConfigNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ExportTenantConfigUnprocessableEntity) Code() int {
 }
 
 func (o *ExportTenantConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportTenantConfigUnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportTenantConfigUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ExportTenantConfigTooManyRequests) Code() int {
 }
 
 func (o *ExportTenantConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportTenantConfigTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/promote/config][%d] exportTenantConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportTenantConfigTooManyRequests) GetPayload() *models.Error {

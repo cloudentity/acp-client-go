@@ -53,7 +53,7 @@ type SelfUserWithDataV2 struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp email_otp sms_otp webauthn]
+	// Enum: ["totp","password","otp","email_otp","sms_otp","webauthn"]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// second factor authentication mechanisms
@@ -61,7 +61,7 @@ type SelfUserWithDataV2 struct {
 
 	// second factor preferred authentication mechanism
 	// Example: password
-	// Enum: [totp password otp email_otp sms_otp webauthn]
+	// Enum: ["totp","password","otp","email_otp","sms_otp","webauthn"]
 	SecondFactorPreferredAuthenticationMechanism string `json:"second_factor_preferred_authentication_mechanism,omitempty" yaml:"second_factor_preferred_authentication_mechanism,omitempty"`
 
 	// verifiable addresses

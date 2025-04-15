@@ -6,6 +6,7 @@ package authorization_details
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreateAuthorizationDetailCreated) Code() int {
 }
 
 func (o *CreateAuthorizationDetailCreated) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailCreated %s", 201, payload)
 }
 
 func (o *CreateAuthorizationDetailCreated) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailCreated %s", 201, payload)
 }
 
 func (o *CreateAuthorizationDetailCreated) GetPayload() *models.AuthorizationDetailWithServiceID {
@@ -205,11 +208,13 @@ func (o *CreateAuthorizationDetailBadRequest) Code() int {
 }
 
 func (o *CreateAuthorizationDetailBadRequest) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailBadRequest %s", 400, payload)
 }
 
 func (o *CreateAuthorizationDetailBadRequest) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailBadRequest %s", 400, payload)
 }
 
 func (o *CreateAuthorizationDetailBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreateAuthorizationDetailUnauthorized) Code() int {
 }
 
 func (o *CreateAuthorizationDetailUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAuthorizationDetailUnauthorized) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAuthorizationDetailUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreateAuthorizationDetailForbidden) Code() int {
 }
 
 func (o *CreateAuthorizationDetailForbidden) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *CreateAuthorizationDetailForbidden) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailForbidden %s", 403, payload)
 }
 
 func (o *CreateAuthorizationDetailForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreateAuthorizationDetailNotFound) Code() int {
 }
 
 func (o *CreateAuthorizationDetailNotFound) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *CreateAuthorizationDetailNotFound) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailNotFound %s", 404, payload)
 }
 
 func (o *CreateAuthorizationDetailNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreateAuthorizationDetailConflict) Code() int {
 }
 
 func (o *CreateAuthorizationDetailConflict) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailConflict %s", 409, payload)
 }
 
 func (o *CreateAuthorizationDetailConflict) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailConflict %s", 409, payload)
 }
 
 func (o *CreateAuthorizationDetailConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreateAuthorizationDetailUnprocessableEntity) Code() int {
 }
 
 func (o *CreateAuthorizationDetailUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateAuthorizationDetailUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateAuthorizationDetailUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreateAuthorizationDetailTooManyRequests) Code() int {
 }
 
 func (o *CreateAuthorizationDetailTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAuthorizationDetailTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /authorization-details][%d] createAuthorizationDetailTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateAuthorizationDetailTooManyRequests) GetPayload() *models.Error {

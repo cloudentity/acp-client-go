@@ -6,6 +6,7 @@ package o_b_b_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -133,11 +134,13 @@ func (o *GetPaymentConsentV4OK) Code() int {
 }
 
 func (o *GetPaymentConsentV4OK) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4OK %s", 200, payload)
 }
 
 func (o *GetPaymentConsentV4OK) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4OK %s", 200, payload)
 }
 
 func (o *GetPaymentConsentV4OK) GetPayload() *models.BrazilCustomerPaymentConsentResponseV4 {
@@ -201,11 +204,13 @@ func (o *GetPaymentConsentV4BadRequest) Code() int {
 }
 
 func (o *GetPaymentConsentV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4BadRequest %s", 400, payload)
 }
 
 func (o *GetPaymentConsentV4BadRequest) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4BadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4BadRequest %s", 400, payload)
 }
 
 func (o *GetPaymentConsentV4BadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -269,11 +274,13 @@ func (o *GetPaymentConsentV4Unauthorized) Code() int {
 }
 
 func (o *GetPaymentConsentV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Unauthorized %s", 401, payload)
 }
 
 func (o *GetPaymentConsentV4Unauthorized) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Unauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Unauthorized %s", 401, payload)
 }
 
 func (o *GetPaymentConsentV4Unauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -337,11 +344,13 @@ func (o *GetPaymentConsentV4Forbidden) Code() int {
 }
 
 func (o *GetPaymentConsentV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Forbidden %s", 403, payload)
 }
 
 func (o *GetPaymentConsentV4Forbidden) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Forbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4Forbidden %s", 403, payload)
 }
 
 func (o *GetPaymentConsentV4Forbidden) GetPayload() *models.OBBRErrorResponse {
@@ -405,11 +414,13 @@ func (o *GetPaymentConsentV4MethodNotAllowed) Code() int {
 }
 
 func (o *GetPaymentConsentV4MethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4MethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4MethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetPaymentConsentV4MethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4MethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4MethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetPaymentConsentV4MethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -473,11 +484,13 @@ func (o *GetPaymentConsentV4NotAcceptable) Code() int {
 }
 
 func (o *GetPaymentConsentV4NotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4NotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4NotAcceptable %s", 406, payload)
 }
 
 func (o *GetPaymentConsentV4NotAcceptable) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4NotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4NotAcceptable %s", 406, payload)
 }
 
 func (o *GetPaymentConsentV4NotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -541,11 +554,13 @@ func (o *GetPaymentConsentV4UnsupportedMediaType) Code() int {
 }
 
 func (o *GetPaymentConsentV4UnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetPaymentConsentV4UnsupportedMediaType) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetPaymentConsentV4UnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -609,11 +624,13 @@ func (o *GetPaymentConsentV4UnprocessableEntity) Code() int {
 }
 
 func (o *GetPaymentConsentV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnprocessableEntity %s", 422, payload)
 }
 
 func (o *GetPaymentConsentV4UnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4UnprocessableEntity %s", 422, payload)
 }
 
 func (o *GetPaymentConsentV4UnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -677,11 +694,13 @@ func (o *GetPaymentConsentV4TooManyRequests) Code() int {
 }
 
 func (o *GetPaymentConsentV4TooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4TooManyRequests %s", 429, payload)
 }
 
 func (o *GetPaymentConsentV4TooManyRequests) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4TooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4TooManyRequests %s", 429, payload)
 }
 
 func (o *GetPaymentConsentV4TooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -745,11 +764,13 @@ func (o *GetPaymentConsentV4InternalServerError) Code() int {
 }
 
 func (o *GetPaymentConsentV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4InternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4InternalServerError %s", 500, payload)
 }
 
 func (o *GetPaymentConsentV4InternalServerError) String() string {
-	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4InternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/payments/v4/consents/{consentID}][%d] getPaymentConsentV4InternalServerError %s", 500, payload)
 }
 
 func (o *GetPaymentConsentV4InternalServerError) GetPayload() *models.OBBRErrorResponse {

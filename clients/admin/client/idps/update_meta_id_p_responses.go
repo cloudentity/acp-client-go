@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateMetaIDPOK) Code() int {
 }
 
 func (o *UpdateMetaIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPOK %s", 200, payload)
 }
 
 func (o *UpdateMetaIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPOK %s", 200, payload)
 }
 
 func (o *UpdateMetaIDPOK) GetPayload() *models.MetaIDP {
@@ -183,11 +186,13 @@ func (o *UpdateMetaIDPBadRequest) Code() int {
 }
 
 func (o *UpdateMetaIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateMetaIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateMetaIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateMetaIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateMetaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateMetaIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateMetaIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateMetaIDPForbidden) Code() int {
 }
 
 func (o *UpdateMetaIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateMetaIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateMetaIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateMetaIDPNotFound) Code() int {
 }
 
 func (o *UpdateMetaIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateMetaIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateMetaIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateMetaIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateMetaIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateMetaIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateMetaIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateMetaIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateMetaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateMetaIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/meta/{iid}][%d] updateMetaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateMetaIDPTooManyRequests) GetPayload() *models.Error {

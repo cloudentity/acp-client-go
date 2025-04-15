@@ -6,6 +6,7 @@ package brute_force_limits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteBruteForceLimitNoContent) Code() int {
 }
 
 func (o *DeleteBruteForceLimitNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNoContent ", 204)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNoContent", 204)
 }
 
 func (o *DeleteBruteForceLimitNoContent) String() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNoContent ", 204)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNoContent", 204)
 }
 
 func (o *DeleteBruteForceLimitNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteBruteForceLimitUnauthorized) Code() int {
 }
 
 func (o *DeleteBruteForceLimitUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteBruteForceLimitUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteBruteForceLimitUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteBruteForceLimitForbidden) Code() int {
 }
 
 func (o *DeleteBruteForceLimitForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitForbidden %s", 403, payload)
 }
 
 func (o *DeleteBruteForceLimitForbidden) String() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitForbidden %s", 403, payload)
 }
 
 func (o *DeleteBruteForceLimitForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteBruteForceLimitNotFound) Code() int {
 }
 
 func (o *DeleteBruteForceLimitNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNotFound %s", 404, payload)
 }
 
 func (o *DeleteBruteForceLimitNotFound) String() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitNotFound %s", 404, payload)
 }
 
 func (o *DeleteBruteForceLimitNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteBruteForceLimitTooManyRequests) Code() int {
 }
 
 func (o *DeleteBruteForceLimitTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteBruteForceLimitTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /bruteforce/{protectedType}][%d] deleteBruteForceLimitTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteBruteForceLimitTooManyRequests) GetPayload() *models.Error {

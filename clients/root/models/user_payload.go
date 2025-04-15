@@ -34,7 +34,7 @@ type UserPayload struct {
 	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// status
-	// Enum: [active inactive deleted new]
+	// Enum: ["active","inactive","deleted","new"]
 	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// update details

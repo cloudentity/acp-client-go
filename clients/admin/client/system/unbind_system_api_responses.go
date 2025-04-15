@@ -6,6 +6,7 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -96,11 +97,11 @@ func (o *UnbindSystemAPINoContent) Code() int {
 }
 
 func (o *UnbindSystemAPINoContent) Error() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent", 204)
 }
 
 func (o *UnbindSystemAPINoContent) String() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent ", 204)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent", 204)
 }
 
 func (o *UnbindSystemAPINoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -153,11 +154,13 @@ func (o *UnbindSystemAPIUnauthorized) Code() int {
 }
 
 func (o *UnbindSystemAPIUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindSystemAPIUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindSystemAPIUnauthorized) GetPayload() *models.Error {
@@ -221,11 +224,13 @@ func (o *UnbindSystemAPIForbidden) Code() int {
 }
 
 func (o *UnbindSystemAPIForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden %s", 403, payload)
 }
 
 func (o *UnbindSystemAPIForbidden) String() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden %s", 403, payload)
 }
 
 func (o *UnbindSystemAPIForbidden) GetPayload() *models.Error {
@@ -289,11 +294,13 @@ func (o *UnbindSystemAPITooManyRequests) Code() int {
 }
 
 func (o *UnbindSystemAPITooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindSystemAPITooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindSystemAPITooManyRequests) GetPayload() *models.Error {

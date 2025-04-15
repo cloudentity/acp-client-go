@@ -6,6 +6,7 @@ package d_c_r
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *FDXDynamicClientRegistrationDeleteNoContent) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNoContent ", 204)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNoContent", 204)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNoContent) String() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNoContent ", 204)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNoContent", 204)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *FDXDynamicClientRegistrationDeleteBadRequest) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationDeleteBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteBadRequest %s", 400, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteBadRequest) GetPayload() *models.RFC6749Error {
@@ -227,11 +230,13 @@ func (o *FDXDynamicClientRegistrationDeleteUnauthorized) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationDeleteUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteUnauthorized %s", 401, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteUnauthorized) GetPayload() *models.RFC6749Error {
@@ -295,11 +300,13 @@ func (o *FDXDynamicClientRegistrationDeleteForbidden) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationDeleteForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteForbidden) String() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteForbidden %s", 403, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteForbidden) GetPayload() *models.RFC6749Error {
@@ -363,11 +370,13 @@ func (o *FDXDynamicClientRegistrationDeleteNotFound) Code() int {
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNotFound) String() string {
-	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /fdx/dcr/register/{cid}][%d] fDXDynamicClientRegistrationDeleteNotFound %s", 404, payload)
 }
 
 func (o *FDXDynamicClientRegistrationDeleteNotFound) GetPayload() *models.GenericError {

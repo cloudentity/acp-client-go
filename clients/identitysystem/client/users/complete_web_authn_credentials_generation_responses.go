@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +122,13 @@ func (o *CompleteWebAuthnCredentialsGenerationOK) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationOK) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationOK %s", 200, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationOK) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationOK %s", 200, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationOK) GetPayload() *models.WebAuthnCredentials {
@@ -189,11 +192,13 @@ func (o *CompleteWebAuthnCredentialsGenerationBadRequest) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationBadRequest %s", 400, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationBadRequest %s", 400, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationBadRequest) GetPayload() *models.Error {
@@ -257,11 +262,13 @@ func (o *CompleteWebAuthnCredentialsGenerationUnauthorized) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnauthorized %s", 401, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnauthorized %s", 401, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnauthorized) GetPayload() *models.Error {
@@ -325,11 +332,13 @@ func (o *CompleteWebAuthnCredentialsGenerationForbidden) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationForbidden %s", 403, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationForbidden %s", 403, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationForbidden) GetPayload() *models.Error {
@@ -393,11 +402,13 @@ func (o *CompleteWebAuthnCredentialsGenerationNotFound) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationNotFound %s", 404, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationNotFound %s", 404, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationNotFound) GetPayload() *models.Error {
@@ -461,11 +472,13 @@ func (o *CompleteWebAuthnCredentialsGenerationPreconditionFailed) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationPreconditionFailed %s", 412, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationPreconditionFailed %s", 412, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationPreconditionFailed) GetPayload() *models.Error {
@@ -529,11 +542,13 @@ func (o *CompleteWebAuthnCredentialsGenerationUnprocessableEntity) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationUnprocessableEntity) GetPayload() *models.Error {
@@ -597,11 +612,13 @@ func (o *CompleteWebAuthnCredentialsGenerationTooManyRequests) Code() int {
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationTooManyRequests %s", 429, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/webauthn/create/complete][%d] completeWebAuthnCredentialsGenerationTooManyRequests %s", 429, payload)
 }
 
 func (o *CompleteWebAuthnCredentialsGenerationTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *UpdateGatewayOK) Code() int {
 }
 
 func (o *UpdateGatewayOK) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK %s", 200, payload)
 }
 
 func (o *UpdateGatewayOK) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK %s", 200, payload)
 }
 
 func (o *UpdateGatewayOK) GetPayload() *models.Gateway {
@@ -199,11 +202,13 @@ func (o *UpdateGatewayBadRequest) Code() int {
 }
 
 func (o *UpdateGatewayBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGatewayBadRequest) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGatewayBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *UpdateGatewayUnauthorized) Code() int {
 }
 
 func (o *UpdateGatewayUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGatewayUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGatewayUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *UpdateGatewayForbidden) Code() int {
 }
 
 func (o *UpdateGatewayForbidden) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden %s", 403, payload)
 }
 
 func (o *UpdateGatewayForbidden) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden %s", 403, payload)
 }
 
 func (o *UpdateGatewayForbidden) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *UpdateGatewayNotFound) Code() int {
 }
 
 func (o *UpdateGatewayNotFound) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound %s", 404, payload)
 }
 
 func (o *UpdateGatewayNotFound) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound %s", 404, payload)
 }
 
 func (o *UpdateGatewayNotFound) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *UpdateGatewayUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateGatewayUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGatewayUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGatewayUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *UpdateGatewayTooManyRequests) Code() int {
 }
 
 func (o *UpdateGatewayTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGatewayTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGatewayTooManyRequests) GetPayload() *models.Error {

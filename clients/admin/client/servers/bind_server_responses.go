@@ -6,6 +6,7 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *BindServerOK) Code() int {
 }
 
 func (o *BindServerOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK %s", 200, payload)
 }
 
 func (o *BindServerOK) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK %s", 200, payload)
 }
 
 func (o *BindServerOK) GetPayload() *models.ServerToServer {
@@ -187,11 +190,13 @@ func (o *BindServerUnauthorized) Code() int {
 }
 
 func (o *BindServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized %s", 401, payload)
 }
 
 func (o *BindServerUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized %s", 401, payload)
 }
 
 func (o *BindServerUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *BindServerForbidden) Code() int {
 }
 
 func (o *BindServerForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden %s", 403, payload)
 }
 
 func (o *BindServerForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden %s", 403, payload)
 }
 
 func (o *BindServerForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *BindServerNotFound) Code() int {
 }
 
 func (o *BindServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound %s", 404, payload)
 }
 
 func (o *BindServerNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound %s", 404, payload)
 }
 
 func (o *BindServerNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *BindServerTooManyRequests) Code() int {
 }
 
 func (o *BindServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests %s", 429, payload)
 }
 
 func (o *BindServerTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests %s", 429, payload)
 }
 
 func (o *BindServerTooManyRequests) GetPayload() *models.Error {

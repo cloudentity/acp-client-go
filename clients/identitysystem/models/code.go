@@ -50,7 +50,7 @@ type Code struct {
 	// type
 	// Example: active
 	// Required: true
-	// Enum: [activation reset_password reset_totp enroll_webauthn challenge verify_address authentication]
+	// Enum: ["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]
 	Type string `json:"type" yaml:"type"`
 
 	// user id

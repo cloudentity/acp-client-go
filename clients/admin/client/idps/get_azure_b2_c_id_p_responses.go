@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetAzureB2CIDPOK) Code() int {
 }
 
 func (o *GetAzureB2CIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK %s", 200, payload)
 }
 
 func (o *GetAzureB2CIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK %s", 200, payload)
 }
 
 func (o *GetAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
@@ -171,11 +174,13 @@ func (o *GetAzureB2CIDPUnauthorized) Code() int {
 }
 
 func (o *GetAzureB2CIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetAzureB2CIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetAzureB2CIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetAzureB2CIDPForbidden) Code() int {
 }
 
 func (o *GetAzureB2CIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden %s", 403, payload)
 }
 
 func (o *GetAzureB2CIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden %s", 403, payload)
 }
 
 func (o *GetAzureB2CIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetAzureB2CIDPNotFound) Code() int {
 }
 
 func (o *GetAzureB2CIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound %s", 404, payload)
 }
 
 func (o *GetAzureB2CIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound %s", 404, payload)
 }
 
 func (o *GetAzureB2CIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetAzureB2CIDPTooManyRequests) Code() int {
 }
 
 func (o *GetAzureB2CIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAzureB2CIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAzureB2CIDPTooManyRequests) GetPayload() *models.Error {

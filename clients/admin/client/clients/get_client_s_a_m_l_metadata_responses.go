@@ -6,6 +6,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *GetClientSAMLMetadataOK) Code() int {
 }
 
 func (o *GetClientSAMLMetadataOK) Error() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataOK %s", 200, payload)
 }
 
 func (o *GetClientSAMLMetadataOK) String() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataOK %s", 200, payload)
 }
 
 func (o *GetClientSAMLMetadataOK) GetPayload() *models.SAMLClientMetadataResponse {
@@ -187,11 +190,13 @@ func (o *GetClientSAMLMetadataUnauthorized) Code() int {
 }
 
 func (o *GetClientSAMLMetadataUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataUnauthorized %s", 401, payload)
 }
 
 func (o *GetClientSAMLMetadataUnauthorized) String() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataUnauthorized %s", 401, payload)
 }
 
 func (o *GetClientSAMLMetadataUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *GetClientSAMLMetadataForbidden) Code() int {
 }
 
 func (o *GetClientSAMLMetadataForbidden) Error() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataForbidden %s", 403, payload)
 }
 
 func (o *GetClientSAMLMetadataForbidden) String() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataForbidden %s", 403, payload)
 }
 
 func (o *GetClientSAMLMetadataForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *GetClientSAMLMetadataNotFound) Code() int {
 }
 
 func (o *GetClientSAMLMetadataNotFound) Error() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataNotFound %s", 404, payload)
 }
 
 func (o *GetClientSAMLMetadataNotFound) String() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataNotFound %s", 404, payload)
 }
 
 func (o *GetClientSAMLMetadataNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *GetClientSAMLMetadataTooManyRequests) Code() int {
 }
 
 func (o *GetClientSAMLMetadataTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataTooManyRequests %s", 429, payload)
 }
 
 func (o *GetClientSAMLMetadataTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataTooManyRequests %s", 429, payload)
 }
 
 func (o *GetClientSAMLMetadataTooManyRequests) GetPayload() *models.Error {
