@@ -6,6 +6,7 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -130,11 +131,13 @@ func (o *CreatePoolCreated) Code() int {
 }
 
 func (o *CreatePoolCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated %s", 201, payload)
 }
 
 func (o *CreatePoolCreated) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated %s", 201, payload)
 }
 
 func (o *CreatePoolCreated) GetPayload() *models.PoolResponse {
@@ -205,11 +208,13 @@ func (o *CreatePoolBadRequest) Code() int {
 }
 
 func (o *CreatePoolBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest %s", 400, payload)
 }
 
 func (o *CreatePoolBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest %s", 400, payload)
 }
 
 func (o *CreatePoolBadRequest) GetPayload() *models.Error {
@@ -273,11 +278,13 @@ func (o *CreatePoolUnauthorized) Code() int {
 }
 
 func (o *CreatePoolUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePoolUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePoolUnauthorized) GetPayload() *models.Error {
@@ -341,11 +348,13 @@ func (o *CreatePoolForbidden) Code() int {
 }
 
 func (o *CreatePoolForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden %s", 403, payload)
 }
 
 func (o *CreatePoolForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden %s", 403, payload)
 }
 
 func (o *CreatePoolForbidden) GetPayload() *models.Error {
@@ -409,11 +418,13 @@ func (o *CreatePoolNotFound) Code() int {
 }
 
 func (o *CreatePoolNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound %s", 404, payload)
 }
 
 func (o *CreatePoolNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound %s", 404, payload)
 }
 
 func (o *CreatePoolNotFound) GetPayload() *models.Error {
@@ -477,11 +488,13 @@ func (o *CreatePoolConflict) Code() int {
 }
 
 func (o *CreatePoolConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict %s", 409, payload)
 }
 
 func (o *CreatePoolConflict) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict %s", 409, payload)
 }
 
 func (o *CreatePoolConflict) GetPayload() *models.Error {
@@ -545,11 +558,13 @@ func (o *CreatePoolUnprocessableEntity) Code() int {
 }
 
 func (o *CreatePoolUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreatePoolUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreatePoolUnprocessableEntity) GetPayload() *models.Error {
@@ -613,11 +628,13 @@ func (o *CreatePoolTooManyRequests) Code() int {
 }
 
 func (o *CreatePoolTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *CreatePoolTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests %s", 429, payload)
 }
 
 func (o *CreatePoolTooManyRequests) GetPayload() *models.Error {

@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateExternalIDPCreated) Code() int {
 }
 
 func (o *CreateExternalIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated %s", 201, payload)
 }
 
 func (o *CreateExternalIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated %s", 201, payload)
 }
 
 func (o *CreateExternalIDPCreated) GetPayload() *models.ExternalIDP {
@@ -183,11 +186,13 @@ func (o *CreateExternalIDPBadRequest) Code() int {
 }
 
 func (o *CreateExternalIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateExternalIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateExternalIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateExternalIDPUnauthorized) Code() int {
 }
 
 func (o *CreateExternalIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateExternalIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateExternalIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateExternalIDPForbidden) Code() int {
 }
 
 func (o *CreateExternalIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateExternalIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateExternalIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateExternalIDPNotFound) Code() int {
 }
 
 func (o *CreateExternalIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateExternalIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateExternalIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateExternalIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateExternalIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateExternalIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateExternalIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateExternalIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateExternalIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateExternalIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateExternalIDPTooManyRequests) GetPayload() *models.Error {

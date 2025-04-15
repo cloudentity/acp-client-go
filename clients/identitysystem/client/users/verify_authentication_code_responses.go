@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *VerifyAuthenticationCodeOK) Code() int {
 }
 
 func (o *VerifyAuthenticationCodeOK) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeOK %s", 200, payload)
 }
 
 func (o *VerifyAuthenticationCodeOK) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeOK %s", 200, payload)
 }
 
 func (o *VerifyAuthenticationCodeOK) GetPayload() *models.UserID {
@@ -181,11 +184,13 @@ func (o *VerifyAuthenticationCodeUnauthorized) Code() int {
 }
 
 func (o *VerifyAuthenticationCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnauthorized %s", 401, payload)
 }
 
 func (o *VerifyAuthenticationCodeUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnauthorized %s", 401, payload)
 }
 
 func (o *VerifyAuthenticationCodeUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *VerifyAuthenticationCodePreconditionFailed) Code() int {
 }
 
 func (o *VerifyAuthenticationCodePreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodePreconditionFailed %s", 412, payload)
 }
 
 func (o *VerifyAuthenticationCodePreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodePreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodePreconditionFailed %s", 412, payload)
 }
 
 func (o *VerifyAuthenticationCodePreconditionFailed) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *VerifyAuthenticationCodeUnprocessableEntity) Code() int {
 }
 
 func (o *VerifyAuthenticationCodeUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *VerifyAuthenticationCodeUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/user/authentication-code/verify][%d] verifyAuthenticationCodeUnprocessableEntity %s", 422, payload)
 }
 
 func (o *VerifyAuthenticationCodeUnprocessableEntity) GetPayload() *models.Error {

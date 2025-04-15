@@ -6,6 +6,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *ImportSAMLMetadataFromFileNoContent) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileNoContent) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNoContent ", 204)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNoContent", 204)
 }
 
 func (o *ImportSAMLMetadataFromFileNoContent) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNoContent ", 204)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNoContent", 204)
 }
 
 func (o *ImportSAMLMetadataFromFileNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *ImportSAMLMetadataFromFileBadRequest) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileBadRequest %s", 400, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileBadRequest) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileBadRequest %s", 400, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *ImportSAMLMetadataFromFileUnauthorized) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileUnauthorized) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnauthorized %s", 401, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *ImportSAMLMetadataFromFileForbidden) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileForbidden) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileForbidden %s", 403, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileForbidden) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileForbidden %s", 403, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *ImportSAMLMetadataFromFileNotFound) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileNotFound) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNotFound %s", 404, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileNotFound) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileNotFound %s", 404, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *ImportSAMLMetadataFromFileConflict) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileConflict) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileConflict %s", 409, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileConflict) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileConflict %s", 409, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileConflict) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *ImportSAMLMetadataFromFileUnprocessableEntity) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *ImportSAMLMetadataFromFileTooManyRequests) Code() int {
 }
 
 func (o *ImportSAMLMetadataFromFileTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/file][%d] importSAMLMetadataFromFileTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportSAMLMetadataFromFileTooManyRequests) GetPayload() *models.Error {

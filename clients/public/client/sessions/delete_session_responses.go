@@ -6,6 +6,7 @@ package sessions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteSessionNoContent) Code() int {
 }
 
 func (o *DeleteSessionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent", 204)
 }
 
 func (o *DeleteSessionNoContent) String() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNoContent", 204)
 }
 
 func (o *DeleteSessionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteSessionUnauthorized) Code() int {
 }
 
 func (o *DeleteSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteSessionUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteSessionUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteSessionForbidden) Code() int {
 }
 
 func (o *DeleteSessionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden %s", 403, payload)
 }
 
 func (o *DeleteSessionForbidden) String() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionForbidden %s", 403, payload)
 }
 
 func (o *DeleteSessionForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteSessionNotFound) Code() int {
 }
 
 func (o *DeleteSessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound %s", 404, payload)
 }
 
 func (o *DeleteSessionNotFound) String() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionNotFound %s", 404, payload)
 }
 
 func (o *DeleteSessionNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteSessionTooManyRequests) Code() int {
 }
 
 func (o *DeleteSessionTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteSessionTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sso/sessions/{sessionID}][%d] deleteSessionTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteSessionTooManyRequests) GetPayload() *models.Error {

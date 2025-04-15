@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetLinkedInIDPOK) Code() int {
 }
 
 func (o *GetLinkedInIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPOK %s", 200, payload)
 }
 
 func (o *GetLinkedInIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPOK %s", 200, payload)
 }
 
 func (o *GetLinkedInIDPOK) GetPayload() *models.LinkedInIDP {
@@ -171,11 +174,13 @@ func (o *GetLinkedInIDPUnauthorized) Code() int {
 }
 
 func (o *GetLinkedInIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetLinkedInIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetLinkedInIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetLinkedInIDPForbidden) Code() int {
 }
 
 func (o *GetLinkedInIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPForbidden %s", 403, payload)
 }
 
 func (o *GetLinkedInIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPForbidden %s", 403, payload)
 }
 
 func (o *GetLinkedInIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetLinkedInIDPNotFound) Code() int {
 }
 
 func (o *GetLinkedInIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPNotFound %s", 404, payload)
 }
 
 func (o *GetLinkedInIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPNotFound %s", 404, payload)
 }
 
 func (o *GetLinkedInIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetLinkedInIDPTooManyRequests) Code() int {
 }
 
 func (o *GetLinkedInIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetLinkedInIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/linkedin/{iid}][%d] getLinkedInIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetLinkedInIDPTooManyRequests) GetPayload() *models.Error {

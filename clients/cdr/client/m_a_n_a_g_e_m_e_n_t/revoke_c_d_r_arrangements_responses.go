@@ -6,6 +6,7 @@ package m_a_n_a_g_e_m_e_n_t
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *RevokeCDRArrangementsOK) Code() int {
 }
 
 func (o *RevokeCDRArrangementsOK) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK %s", 200, payload)
 }
 
 func (o *RevokeCDRArrangementsOK) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK %s", 200, payload)
 }
 
 func (o *RevokeCDRArrangementsOK) GetPayload() *models.ConsentsRemovedResponse {
@@ -177,11 +180,13 @@ func (o *RevokeCDRArrangementsBadRequest) Code() int {
 }
 
 func (o *RevokeCDRArrangementsBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest %s", 400, payload)
 }
 
 func (o *RevokeCDRArrangementsBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest %s", 400, payload)
 }
 
 func (o *RevokeCDRArrangementsBadRequest) GetPayload() *models.Error {
@@ -245,11 +250,13 @@ func (o *RevokeCDRArrangementsUnauthorized) Code() int {
 }
 
 func (o *RevokeCDRArrangementsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeCDRArrangementsUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeCDRArrangementsUnauthorized) GetPayload() *models.Error {
@@ -313,11 +320,13 @@ func (o *RevokeCDRArrangementsForbidden) Code() int {
 }
 
 func (o *RevokeCDRArrangementsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden %s", 403, payload)
 }
 
 func (o *RevokeCDRArrangementsForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden %s", 403, payload)
 }
 
 func (o *RevokeCDRArrangementsForbidden) GetPayload() *models.Error {
@@ -381,11 +390,13 @@ func (o *RevokeCDRArrangementsNotFound) Code() int {
 }
 
 func (o *RevokeCDRArrangementsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound %s", 404, payload)
 }
 
 func (o *RevokeCDRArrangementsNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound %s", 404, payload)
 }
 
 func (o *RevokeCDRArrangementsNotFound) GetPayload() *models.Error {
@@ -449,11 +460,13 @@ func (o *RevokeCDRArrangementsTooManyRequests) Code() int {
 }
 
 func (o *RevokeCDRArrangementsTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeCDRArrangementsTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests %s", 429, payload)
 }
 
 func (o *RevokeCDRArrangementsTooManyRequests) GetPayload() *models.Error {

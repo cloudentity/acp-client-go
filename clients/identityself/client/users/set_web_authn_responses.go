@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *SetWebAuthnNoContent) Code() int {
 }
 
 func (o *SetWebAuthnNoContent) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNoContent ", 204)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNoContent", 204)
 }
 
 func (o *SetWebAuthnNoContent) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNoContent ", 204)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNoContent", 204)
 }
 
 func (o *SetWebAuthnNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *SetWebAuthnBadRequest) Code() int {
 }
 
 func (o *SetWebAuthnBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnBadRequest %s", 400, payload)
 }
 
 func (o *SetWebAuthnBadRequest) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnBadRequest %s", 400, payload)
 }
 
 func (o *SetWebAuthnBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *SetWebAuthnUnauthorized) Code() int {
 }
 
 func (o *SetWebAuthnUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnauthorized %s", 401, payload)
 }
 
 func (o *SetWebAuthnUnauthorized) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnauthorized %s", 401, payload)
 }
 
 func (o *SetWebAuthnUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *SetWebAuthnForbidden) Code() int {
 }
 
 func (o *SetWebAuthnForbidden) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnForbidden %s", 403, payload)
 }
 
 func (o *SetWebAuthnForbidden) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnForbidden %s", 403, payload)
 }
 
 func (o *SetWebAuthnForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *SetWebAuthnNotFound) Code() int {
 }
 
 func (o *SetWebAuthnNotFound) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNotFound %s", 404, payload)
 }
 
 func (o *SetWebAuthnNotFound) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnNotFound %s", 404, payload)
 }
 
 func (o *SetWebAuthnNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *SetWebAuthnPreconditionFailed) Code() int {
 }
 
 func (o *SetWebAuthnPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnPreconditionFailed %s", 412, payload)
 }
 
 func (o *SetWebAuthnPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnPreconditionFailed %s", 412, payload)
 }
 
 func (o *SetWebAuthnPreconditionFailed) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *SetWebAuthnUnprocessableEntity) Code() int {
 }
 
 func (o *SetWebAuthnUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetWebAuthnUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SetWebAuthnUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *SetWebAuthnTooManyRequests) Code() int {
 }
 
 func (o *SetWebAuthnTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnTooManyRequests %s", 429, payload)
 }
 
 func (o *SetWebAuthnTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v2/self/set-webauthn][%d] setWebAuthnTooManyRequests %s", 429, payload)
 }
 
 func (o *SetWebAuthnTooManyRequests) GetPayload() *models.Error {

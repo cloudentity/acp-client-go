@@ -6,6 +6,7 @@ package oauth2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *IntrospectOK) Code() int {
 }
 
 func (o *IntrospectOK) Error() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK %s", 200, payload)
 }
 
 func (o *IntrospectOK) String() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK %s", 200, payload)
 }
 
 func (o *IntrospectOK) GetPayload() *models.IntrospectResponse {
@@ -165,11 +168,13 @@ func (o *IntrospectUnauthorized) Code() int {
 }
 
 func (o *IntrospectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized %s", 401, payload)
 }
 
 func (o *IntrospectUnauthorized) String() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized %s", 401, payload)
 }
 
 func (o *IntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -233,11 +238,13 @@ func (o *IntrospectNotFound) Code() int {
 }
 
 func (o *IntrospectNotFound) Error() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound %s", 404, payload)
 }
 
 func (o *IntrospectNotFound) String() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound %s", 404, payload)
 }
 
 func (o *IntrospectNotFound) GetPayload() *models.GenericError {
@@ -301,11 +308,13 @@ func (o *IntrospectTooManyRequests) Code() int {
 }
 
 func (o *IntrospectTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests %s", 429, payload)
 }
 
 func (o *IntrospectTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests %s", 429, payload)
 }
 
 func (o *IntrospectTooManyRequests) GetPayload() *models.GenericError {

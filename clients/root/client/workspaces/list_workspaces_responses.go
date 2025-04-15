@@ -6,6 +6,7 @@ package workspaces
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *ListWorkspacesOK) Code() int {
 }
 
 func (o *ListWorkspacesOK) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesOK %s", 200, payload)
 }
 
 func (o *ListWorkspacesOK) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesOK %s", 200, payload)
 }
 
 func (o *ListWorkspacesOK) GetPayload() *models.WorkspacesResponse {
@@ -187,11 +190,13 @@ func (o *ListWorkspacesUnauthorized) Code() int {
 }
 
 func (o *ListWorkspacesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesUnauthorized %s", 401, payload)
 }
 
 func (o *ListWorkspacesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesUnauthorized %s", 401, payload)
 }
 
 func (o *ListWorkspacesUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *ListWorkspacesForbidden) Code() int {
 }
 
 func (o *ListWorkspacesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesForbidden %s", 403, payload)
 }
 
 func (o *ListWorkspacesForbidden) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesForbidden %s", 403, payload)
 }
 
 func (o *ListWorkspacesForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *ListWorkspacesNotFound) Code() int {
 }
 
 func (o *ListWorkspacesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesNotFound %s", 404, payload)
 }
 
 func (o *ListWorkspacesNotFound) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesNotFound %s", 404, payload)
 }
 
 func (o *ListWorkspacesNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *ListWorkspacesTooManyRequests) Code() int {
 }
 
 func (o *ListWorkspacesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListWorkspacesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /api/admin/tenants/{tenantID}/workspaces][%d] listWorkspacesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListWorkspacesTooManyRequests) GetPayload() *models.Error {

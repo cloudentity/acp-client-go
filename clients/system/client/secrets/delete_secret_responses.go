@@ -6,6 +6,7 @@ package secrets
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -108,11 +109,11 @@ func (o *DeleteSecretNoContent) Code() int {
 }
 
 func (o *DeleteSecretNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNoContent", 204)
 }
 
 func (o *DeleteSecretNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNoContent", 204)
 }
 
 func (o *DeleteSecretNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,11 +166,13 @@ func (o *DeleteSecretBadRequest) Code() int {
 }
 
 func (o *DeleteSecretBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretBadRequest %s", 400, payload)
 }
 
 func (o *DeleteSecretBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretBadRequest %s", 400, payload)
 }
 
 func (o *DeleteSecretBadRequest) GetPayload() *models.Error {
@@ -233,11 +236,13 @@ func (o *DeleteSecretUnauthorized) Code() int {
 }
 
 func (o *DeleteSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteSecretUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteSecretUnauthorized) GetPayload() *models.Error {
@@ -301,11 +306,13 @@ func (o *DeleteSecretForbidden) Code() int {
 }
 
 func (o *DeleteSecretForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretForbidden %s", 403, payload)
 }
 
 func (o *DeleteSecretForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretForbidden %s", 403, payload)
 }
 
 func (o *DeleteSecretForbidden) GetPayload() *models.Error {
@@ -369,11 +376,13 @@ func (o *DeleteSecretNotFound) Code() int {
 }
 
 func (o *DeleteSecretNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNotFound %s", 404, payload)
 }
 
 func (o *DeleteSecretNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNotFound %s", 404, payload)
 }
 
 func (o *DeleteSecretNotFound) GetPayload() *models.Error {
@@ -437,11 +446,13 @@ func (o *DeleteSecretTooManyRequests) Code() int {
 }
 
 func (o *DeleteSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteSecretTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteSecretTooManyRequests) GetPayload() *models.Error {

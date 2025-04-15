@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateMicrosoftIDPOK) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPOK %s", 200, payload)
 }
 
 func (o *UpdateMicrosoftIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPOK %s", 200, payload)
 }
 
 func (o *UpdateMicrosoftIDPOK) GetPayload() *models.MicrosoftIDP {
@@ -183,11 +186,13 @@ func (o *UpdateMicrosoftIDPBadRequest) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateMicrosoftIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateMicrosoftIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateMicrosoftIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateMicrosoftIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateMicrosoftIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateMicrosoftIDPForbidden) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateMicrosoftIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateMicrosoftIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateMicrosoftIDPNotFound) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateMicrosoftIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateMicrosoftIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateMicrosoftIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateMicrosoftIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateMicrosoftIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateMicrosoftIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateMicrosoftIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateMicrosoftIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/microsoft/{iid}][%d] updateMicrosoftIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateMicrosoftIDPTooManyRequests) GetPayload() *models.Error {

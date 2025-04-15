@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RejectInternationalStandingOrderConsentSystemOK) Code() int {
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemOK) GetPayload() *models.ConsentRejected {
@@ -171,11 +174,13 @@ func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) Code() int {
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *RejectInternationalStandingOrderConsentSystemForbidden) Code() int {
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *RejectInternationalStandingOrderConsentSystemNotFound) Code() int {
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) Code() in
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) GetPayload() *models.Error {

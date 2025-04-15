@@ -6,6 +6,7 @@ package o_p_i_n
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -132,11 +133,11 @@ func (o *DeleteInsuranceDataAccessConsentNoContent) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNoContent ", 204)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNoContent", 204)
 }
 
 func (o *DeleteInsuranceDataAccessConsentNoContent) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNoContent ", 204)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNoContent", 204)
 }
 
 func (o *DeleteInsuranceDataAccessConsentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -189,11 +190,13 @@ func (o *DeleteInsuranceDataAccessConsentBadRequest) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentBadRequest %s", 400, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentBadRequest %s", 400, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
@@ -257,11 +260,13 @@ func (o *DeleteInsuranceDataAccessConsentUnauthorized) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
@@ -325,11 +330,13 @@ func (o *DeleteInsuranceDataAccessConsentForbidden) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentForbidden %s", 403, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentForbidden) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentForbidden %s", 403, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentForbidden) GetPayload() *models.OBBRErrorResponse {
@@ -393,11 +400,13 @@ func (o *DeleteInsuranceDataAccessConsentMethodNotAllowed) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentMethodNotAllowed) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentMethodNotAllowed %s", 405, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
@@ -461,11 +470,13 @@ func (o *DeleteInsuranceDataAccessConsentNotAcceptable) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentNotAcceptable) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentNotAcceptable) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentNotAcceptable %s", 406, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
@@ -529,11 +540,13 @@ func (o *DeleteInsuranceDataAccessConsentUnsupportedMediaType) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
@@ -597,11 +610,13 @@ func (o *DeleteInsuranceDataAccessConsentUnprocessableEntity) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
@@ -665,11 +680,13 @@ func (o *DeleteInsuranceDataAccessConsentTooManyRequests) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
@@ -733,11 +750,13 @@ func (o *DeleteInsuranceDataAccessConsentInternalServerError) Code() int {
 }
 
 func (o *DeleteInsuranceDataAccessConsentInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /open-insurance/consents/v1/{consentID}][%d] deleteInsuranceDataAccessConsentInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteInsuranceDataAccessConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {

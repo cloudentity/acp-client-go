@@ -6,6 +6,7 @@ package o_b_u_k
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -127,11 +128,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestCreated) Code() int {
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestCreated) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestCreated %s", 201, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestCreated) GetPayload() *models.DomesticScheduledPaymentConsentResponse {
@@ -195,11 +198,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestBadRequest) Code() int {
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestBadRequest) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
@@ -263,11 +268,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestUnauthorized) Code() int {
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
@@ -331,11 +338,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestForbidden) Code() int {
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestForbidden) GetPayload() *models.ErrorResponse {
@@ -399,11 +408,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestMethodNotAllowed) Code() in
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestMethodNotAllowed) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
@@ -467,11 +478,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestNotAcceptable) Code() int {
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestNotAcceptable) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestNotAcceptable) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
@@ -535,11 +548,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestUnsupportedMediaType) Code(
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
@@ -603,11 +618,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestTooManyRequests) Code() int
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
@@ -671,11 +688,13 @@ func (o *CreateDomesticScheduledPaymentConsentRequestInternalServerError) Code()
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestInternalServerError) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDomesticScheduledPaymentConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {

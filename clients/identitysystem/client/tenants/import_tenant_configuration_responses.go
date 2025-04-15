@@ -6,6 +6,7 @@ package tenants
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *ImportTenantConfigurationNoContent) Code() int {
 }
 
 func (o *ImportTenantConfigurationNoContent) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent ", 204)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent", 204)
 }
 
 func (o *ImportTenantConfigurationNoContent) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent ", 204)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent", 204)
 }
 
 func (o *ImportTenantConfigurationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *ImportTenantConfigurationBadRequest) Code() int {
 }
 
 func (o *ImportTenantConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *ImportTenantConfigurationBadRequest) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest %s", 400, payload)
 }
 
 func (o *ImportTenantConfigurationBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *ImportTenantConfigurationUnauthorized) Code() int {
 }
 
 func (o *ImportTenantConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *ImportTenantConfigurationUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized %s", 401, payload)
 }
 
 func (o *ImportTenantConfigurationUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *ImportTenantConfigurationForbidden) Code() int {
 }
 
 func (o *ImportTenantConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden %s", 403, payload)
 }
 
 func (o *ImportTenantConfigurationForbidden) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden %s", 403, payload)
 }
 
 func (o *ImportTenantConfigurationForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *ImportTenantConfigurationNotFound) Code() int {
 }
 
 func (o *ImportTenantConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound %s", 404, payload)
 }
 
 func (o *ImportTenantConfigurationNotFound) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound %s", 404, payload)
 }
 
 func (o *ImportTenantConfigurationNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *ImportTenantConfigurationConflict) Code() int {
 }
 
 func (o *ImportTenantConfigurationConflict) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict %s", 409, payload)
 }
 
 func (o *ImportTenantConfigurationConflict) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict %s", 409, payload)
 }
 
 func (o *ImportTenantConfigurationConflict) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *ImportTenantConfigurationUnprocessableEntity) Code() int {
 }
 
 func (o *ImportTenantConfigurationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportTenantConfigurationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportTenantConfigurationUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *ImportTenantConfigurationTooManyRequests) Code() int {
 }
 
 func (o *ImportTenantConfigurationTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportTenantConfigurationTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests %s", 429, payload)
 }
 
 func (o *ImportTenantConfigurationTooManyRequests) GetPayload() *models.Error {

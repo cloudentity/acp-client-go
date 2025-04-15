@@ -6,6 +6,7 @@ package servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *UnbindServerOK) Code() int {
 }
 
 func (o *UnbindServerOK) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK %s", 200, payload)
 }
 
 func (o *UnbindServerOK) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK %s", 200, payload)
 }
 
 func (o *UnbindServerOK) GetPayload() *models.ServerToServer {
@@ -187,11 +190,13 @@ func (o *UnbindServerUnauthorized) Code() int {
 }
 
 func (o *UnbindServerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindServerUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindServerUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *UnbindServerForbidden) Code() int {
 }
 
 func (o *UnbindServerForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden %s", 403, payload)
 }
 
 func (o *UnbindServerForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden %s", 403, payload)
 }
 
 func (o *UnbindServerForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *UnbindServerNotFound) Code() int {
 }
 
 func (o *UnbindServerNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound %s", 404, payload)
 }
 
 func (o *UnbindServerNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound %s", 404, payload)
 }
 
 func (o *UnbindServerNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *UnbindServerTooManyRequests) Code() int {
 }
 
 func (o *UnbindServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindServerTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindServerTooManyRequests) GetPayload() *models.Error {

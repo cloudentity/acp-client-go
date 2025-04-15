@@ -6,6 +6,7 @@ package groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +122,13 @@ func (o *CreateGroupCreated) Code() int {
 }
 
 func (o *CreateGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupCreated %s", 201, payload)
 }
 
 func (o *CreateGroupCreated) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupCreated %s", 201, payload)
 }
 
 func (o *CreateGroupCreated) GetPayload() *models.Group {
@@ -189,11 +192,13 @@ func (o *CreateGroupBadRequest) Code() int {
 }
 
 func (o *CreateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupBadRequest %s", 400, payload)
 }
 
 func (o *CreateGroupBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupBadRequest %s", 400, payload)
 }
 
 func (o *CreateGroupBadRequest) GetPayload() *models.Error {
@@ -257,11 +262,13 @@ func (o *CreateGroupUnauthorized) Code() int {
 }
 
 func (o *CreateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnauthorized %s", 401, payload)
 }
 
 func (o *CreateGroupUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnauthorized %s", 401, payload)
 }
 
 func (o *CreateGroupUnauthorized) GetPayload() *models.Error {
@@ -325,11 +332,13 @@ func (o *CreateGroupForbidden) Code() int {
 }
 
 func (o *CreateGroupForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupForbidden %s", 403, payload)
 }
 
 func (o *CreateGroupForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupForbidden %s", 403, payload)
 }
 
 func (o *CreateGroupForbidden) GetPayload() *models.Error {
@@ -393,11 +402,13 @@ func (o *CreateGroupNotFound) Code() int {
 }
 
 func (o *CreateGroupNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupNotFound %s", 404, payload)
 }
 
 func (o *CreateGroupNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupNotFound %s", 404, payload)
 }
 
 func (o *CreateGroupNotFound) GetPayload() *models.Error {
@@ -461,11 +472,13 @@ func (o *CreateGroupConflict) Code() int {
 }
 
 func (o *CreateGroupConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupConflict %s", 409, payload)
 }
 
 func (o *CreateGroupConflict) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupConflict %s", 409, payload)
 }
 
 func (o *CreateGroupConflict) GetPayload() *models.Error {
@@ -529,11 +542,13 @@ func (o *CreateGroupUnprocessableEntity) Code() int {
 }
 
 func (o *CreateGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateGroupUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateGroupUnprocessableEntity) GetPayload() *models.Error {
@@ -597,11 +612,13 @@ func (o *CreateGroupTooManyRequests) Code() int {
 }
 
 func (o *CreateGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateGroupTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/groups][%d] createGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateGroupTooManyRequests) GetPayload() *models.Error {

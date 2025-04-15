@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AcceptAccountAccessConsentSystemOK) Code() int {
 }
 
 func (o *AcceptAccountAccessConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemOK %s", 200, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemOK %s", 200, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemOK) GetPayload() *models.ConsentAccepted {
@@ -171,11 +174,13 @@ func (o *AcceptAccountAccessConsentSystemUnauthorized) Code() int {
 }
 
 func (o *AcceptAccountAccessConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *AcceptAccountAccessConsentSystemForbidden) Code() int {
 }
 
 func (o *AcceptAccountAccessConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *AcceptAccountAccessConsentSystemNotFound) Code() int {
 }
 
 func (o *AcceptAccountAccessConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *AcceptAccountAccessConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *AcceptAccountAccessConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *AcceptAccountAccessConsentSystemTooManyRequests) GetPayload() *models.Error {

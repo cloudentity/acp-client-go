@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateOIDCIDPCreated) Code() int {
 }
 
 func (o *CreateOIDCIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated %s", 201, payload)
 }
 
 func (o *CreateOIDCIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated %s", 201, payload)
 }
 
 func (o *CreateOIDCIDPCreated) GetPayload() *models.OIDCIDP {
@@ -183,11 +186,13 @@ func (o *CreateOIDCIDPBadRequest) Code() int {
 }
 
 func (o *CreateOIDCIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateOIDCIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateOIDCIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateOIDCIDPUnauthorized) Code() int {
 }
 
 func (o *CreateOIDCIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOIDCIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOIDCIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateOIDCIDPForbidden) Code() int {
 }
 
 func (o *CreateOIDCIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateOIDCIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateOIDCIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateOIDCIDPNotFound) Code() int {
 }
 
 func (o *CreateOIDCIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateOIDCIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateOIDCIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateOIDCIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateOIDCIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateOIDCIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateOIDCIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateOIDCIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateOIDCIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateOIDCIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateOIDCIDPTooManyRequests) GetPayload() *models.Error {

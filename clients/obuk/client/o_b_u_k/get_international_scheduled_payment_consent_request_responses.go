@@ -6,6 +6,7 @@ package o_b_u_k
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -127,11 +128,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestOK) Code() int {
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestOK) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestOK %s", 200, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestOK) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestOK %s", 200, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestOK) GetPayload() *models.InternationalScheduledPaymentConsentResponse {
@@ -195,11 +198,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestBadRequest) Code() int {
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestBadRequest) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestBadRequest %s", 400, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
@@ -263,11 +268,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestUnauthorized) Code() int 
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnauthorized) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnauthorized %s", 401, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
@@ -331,11 +338,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestForbidden) Code() int {
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestForbidden) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestForbidden %s", 403, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestForbidden) GetPayload() *models.ErrorResponse {
@@ -399,11 +408,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestMethodNotAllowed) Code() 
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestMethodNotAllowed) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestMethodNotAllowed %s", 405, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
@@ -467,11 +478,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestNotAcceptable) Code() int
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestNotAcceptable) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestNotAcceptable %s", 406, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
@@ -535,11 +548,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestUnsupportedMediaType) Cod
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnsupportedMediaType) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestUnsupportedMediaType %s", 415, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
@@ -603,11 +618,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestTooManyRequests) Code() i
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestTooManyRequests %s", 429, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
@@ -671,11 +688,13 @@ func (o *GetInternationalScheduledPaymentConsentRequestInternalServerError) Code
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestInternalServerError) String() string {
-	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/international-scheduled-payment-consents/{consentID}][%d] getInternationalScheduledPaymentConsentRequestInternalServerError %s", 500, payload)
 }
 
 func (o *GetInternationalScheduledPaymentConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -112,11 +113,13 @@ func (o *ListWorkspaceRolesOK) Code() int {
 }
 
 func (o *ListWorkspaceRolesOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesOK %s", 200, payload)
 }
 
 func (o *ListWorkspaceRolesOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesOK %s", 200, payload)
 }
 
 func (o *ListWorkspaceRolesOK) GetPayload() *models.WorkspaceRolesResponse {
@@ -187,11 +190,13 @@ func (o *ListWorkspaceRolesUnauthorized) Code() int {
 }
 
 func (o *ListWorkspaceRolesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesUnauthorized %s", 401, payload)
 }
 
 func (o *ListWorkspaceRolesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesUnauthorized %s", 401, payload)
 }
 
 func (o *ListWorkspaceRolesUnauthorized) GetPayload() *models.Error {
@@ -255,11 +260,13 @@ func (o *ListWorkspaceRolesForbidden) Code() int {
 }
 
 func (o *ListWorkspaceRolesForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesForbidden %s", 403, payload)
 }
 
 func (o *ListWorkspaceRolesForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesForbidden %s", 403, payload)
 }
 
 func (o *ListWorkspaceRolesForbidden) GetPayload() *models.Error {
@@ -323,11 +330,13 @@ func (o *ListWorkspaceRolesNotFound) Code() int {
 }
 
 func (o *ListWorkspaceRolesNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesNotFound %s", 404, payload)
 }
 
 func (o *ListWorkspaceRolesNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesNotFound %s", 404, payload)
 }
 
 func (o *ListWorkspaceRolesNotFound) GetPayload() *models.Error {
@@ -391,11 +400,13 @@ func (o *ListWorkspaceRolesTooManyRequests) Code() int {
 }
 
 func (o *ListWorkspaceRolesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListWorkspaceRolesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/roles][%d] listWorkspaceRolesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListWorkspaceRolesTooManyRequests) GetPayload() *models.Error {

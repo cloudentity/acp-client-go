@@ -6,6 +6,7 @@ package pools
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SystemListPoolsOK) Code() int {
 }
 
 func (o *SystemListPoolsOK) Error() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsOK %s", 200, payload)
 }
 
 func (o *SystemListPoolsOK) String() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsOK %s", 200, payload)
 }
 
 func (o *SystemListPoolsOK) GetPayload() *models.Pools {
@@ -165,11 +168,13 @@ func (o *SystemListPoolsUnauthorized) Code() int {
 }
 
 func (o *SystemListPoolsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsUnauthorized %s", 401, payload)
 }
 
 func (o *SystemListPoolsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsUnauthorized %s", 401, payload)
 }
 
 func (o *SystemListPoolsUnauthorized) GetPayload() *models.Error {
@@ -233,11 +238,13 @@ func (o *SystemListPoolsForbidden) Code() int {
 }
 
 func (o *SystemListPoolsForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsForbidden %s", 403, payload)
 }
 
 func (o *SystemListPoolsForbidden) String() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsForbidden %s", 403, payload)
 }
 
 func (o *SystemListPoolsForbidden) GetPayload() *models.Error {
@@ -301,11 +308,13 @@ func (o *SystemListPoolsTooManyRequests) Code() int {
 }
 
 func (o *SystemListPoolsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemListPoolsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/pools][%d] systemListPoolsTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemListPoolsTooManyRequests) GetPayload() *models.Error {

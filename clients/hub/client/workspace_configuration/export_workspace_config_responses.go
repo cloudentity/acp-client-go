@@ -6,6 +6,7 @@ package workspace_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *ExportWorkspaceConfigOK) Code() int {
 }
 
 func (o *ExportWorkspaceConfigOK) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigOK %s", 200, payload)
 }
 
 func (o *ExportWorkspaceConfigOK) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigOK %s", 200, payload)
 }
 
 func (o *ExportWorkspaceConfigOK) GetPayload() *models.TreeServer {
@@ -183,11 +186,13 @@ func (o *ExportWorkspaceConfigBadRequest) Code() int {
 }
 
 func (o *ExportWorkspaceConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportWorkspaceConfigBadRequest) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigBadRequest %s", 400, payload)
 }
 
 func (o *ExportWorkspaceConfigBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *ExportWorkspaceConfigUnauthorized) Code() int {
 }
 
 func (o *ExportWorkspaceConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportWorkspaceConfigUnauthorized) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnauthorized %s", 401, payload)
 }
 
 func (o *ExportWorkspaceConfigUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *ExportWorkspaceConfigForbidden) Code() int {
 }
 
 func (o *ExportWorkspaceConfigForbidden) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportWorkspaceConfigForbidden) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigForbidden %s", 403, payload)
 }
 
 func (o *ExportWorkspaceConfigForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *ExportWorkspaceConfigNotFound) Code() int {
 }
 
 func (o *ExportWorkspaceConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportWorkspaceConfigNotFound) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigNotFound %s", 404, payload)
 }
 
 func (o *ExportWorkspaceConfigNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *ExportWorkspaceConfigUnprocessableEntity) Code() int {
 }
 
 func (o *ExportWorkspaceConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportWorkspaceConfigUnprocessableEntity) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ExportWorkspaceConfigUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *ExportWorkspaceConfigTooManyRequests) Code() int {
 }
 
 func (o *ExportWorkspaceConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportWorkspaceConfigTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /{tid}/workspaces/{wid}/promote/config][%d] exportWorkspaceConfigTooManyRequests %s", 429, payload)
 }
 
 func (o *ExportWorkspaceConfigTooManyRequests) GetPayload() *models.Error {

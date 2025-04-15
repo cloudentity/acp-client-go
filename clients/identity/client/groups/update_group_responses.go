@@ -6,6 +6,7 @@ package groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +122,13 @@ func (o *UpdateGroupOK) Code() int {
 }
 
 func (o *UpdateGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupOK %s", 200, payload)
 }
 
 func (o *UpdateGroupOK) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupOK %s", 200, payload)
 }
 
 func (o *UpdateGroupOK) GetPayload() *models.Group {
@@ -189,11 +192,13 @@ func (o *UpdateGroupBadRequest) Code() int {
 }
 
 func (o *UpdateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGroupBadRequest) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupBadRequest %s", 400, payload)
 }
 
 func (o *UpdateGroupBadRequest) GetPayload() *models.Error {
@@ -257,11 +262,13 @@ func (o *UpdateGroupUnauthorized) Code() int {
 }
 
 func (o *UpdateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGroupUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateGroupUnauthorized) GetPayload() *models.Error {
@@ -325,11 +332,13 @@ func (o *UpdateGroupForbidden) Code() int {
 }
 
 func (o *UpdateGroupForbidden) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupForbidden %s", 403, payload)
 }
 
 func (o *UpdateGroupForbidden) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupForbidden %s", 403, payload)
 }
 
 func (o *UpdateGroupForbidden) GetPayload() *models.Error {
@@ -393,11 +402,13 @@ func (o *UpdateGroupNotFound) Code() int {
 }
 
 func (o *UpdateGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupNotFound %s", 404, payload)
 }
 
 func (o *UpdateGroupNotFound) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupNotFound %s", 404, payload)
 }
 
 func (o *UpdateGroupNotFound) GetPayload() *models.Error {
@@ -461,11 +472,13 @@ func (o *UpdateGroupConflict) Code() int {
 }
 
 func (o *UpdateGroupConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupConflict %s", 409, payload)
 }
 
 func (o *UpdateGroupConflict) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupConflict %s", 409, payload)
 }
 
 func (o *UpdateGroupConflict) GetPayload() *models.Error {
@@ -529,11 +542,13 @@ func (o *UpdateGroupUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGroupUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateGroupUnprocessableEntity) GetPayload() *models.Error {
@@ -597,11 +612,13 @@ func (o *UpdateGroupTooManyRequests) Code() int {
 }
 
 func (o *UpdateGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGroupTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}/groups/{groupID}][%d] updateGroupTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateGroupTooManyRequests) GetPayload() *models.Error {

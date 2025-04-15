@@ -6,6 +6,7 @@ package translations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteTranslationNoContent) Code() int {
 }
 
 func (o *DeleteTranslationNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNoContent ", 204)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNoContent", 204)
 }
 
 func (o *DeleteTranslationNoContent) String() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNoContent ", 204)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNoContent", 204)
 }
 
 func (o *DeleteTranslationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteTranslationUnauthorized) Code() int {
 }
 
 func (o *DeleteTranslationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTranslationUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTranslationUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteTranslationForbidden) Code() int {
 }
 
 func (o *DeleteTranslationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationForbidden %s", 403, payload)
 }
 
 func (o *DeleteTranslationForbidden) String() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationForbidden %s", 403, payload)
 }
 
 func (o *DeleteTranslationForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteTranslationNotFound) Code() int {
 }
 
 func (o *DeleteTranslationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNotFound %s", 404, payload)
 }
 
 func (o *DeleteTranslationNotFound) String() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationNotFound %s", 404, payload)
 }
 
 func (o *DeleteTranslationNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteTranslationTooManyRequests) Code() int {
 }
 
 func (o *DeleteTranslationTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTranslationTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /translation/{locale}][%d] deleteTranslationTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTranslationTooManyRequests) GetPayload() *models.Error {

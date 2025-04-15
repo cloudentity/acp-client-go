@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListPolicyExecutionPointsOK) Code() int {
 }
 
 func (o *ListPolicyExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK %s", 200, payload)
 }
 
 func (o *ListPolicyExecutionPointsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK %s", 200, payload)
 }
 
 func (o *ListPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints {
@@ -181,11 +184,13 @@ func (o *ListPolicyExecutionPointsUnauthorized) Code() int {
 }
 
 func (o *ListPolicyExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *ListPolicyExecutionPointsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized %s", 401, payload)
 }
 
 func (o *ListPolicyExecutionPointsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListPolicyExecutionPointsForbidden) Code() int {
 }
 
 func (o *ListPolicyExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *ListPolicyExecutionPointsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden %s", 403, payload)
 }
 
 func (o *ListPolicyExecutionPointsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListPolicyExecutionPointsTooManyRequests) Code() int {
 }
 
 func (o *ListPolicyExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListPolicyExecutionPointsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListPolicyExecutionPointsTooManyRequests) GetPayload() *models.Error {

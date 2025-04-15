@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -110,11 +111,11 @@ func (o *ResetPasswordConfirmNoContent) Code() int {
 }
 
 func (o *ResetPasswordConfirmNoContent) Error() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent ", 204)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent", 204)
 }
 
 func (o *ResetPasswordConfirmNoContent) String() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent ", 204)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent", 204)
 }
 
 func (o *ResetPasswordConfirmNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -174,11 +175,13 @@ func (o *ResetPasswordConfirmUnauthorized) Code() int {
 }
 
 func (o *ResetPasswordConfirmUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized %s", 401, payload)
 }
 
 func (o *ResetPasswordConfirmUnauthorized) String() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized %s", 401, payload)
 }
 
 func (o *ResetPasswordConfirmUnauthorized) GetPayload() *models.Error {
@@ -242,11 +245,13 @@ func (o *ResetPasswordConfirmForbidden) Code() int {
 }
 
 func (o *ResetPasswordConfirmForbidden) Error() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmForbidden %s", 403, payload)
 }
 
 func (o *ResetPasswordConfirmForbidden) String() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmForbidden %s", 403, payload)
 }
 
 func (o *ResetPasswordConfirmForbidden) GetPayload() *models.Error {
@@ -310,11 +315,13 @@ func (o *ResetPasswordConfirmPreconditionFailed) Code() int {
 }
 
 func (o *ResetPasswordConfirmPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmPreconditionFailed %s", 412, payload)
 }
 
 func (o *ResetPasswordConfirmPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmPreconditionFailed %s", 412, payload)
 }
 
 func (o *ResetPasswordConfirmPreconditionFailed) GetPayload() *models.Error {
@@ -378,11 +385,13 @@ func (o *ResetPasswordConfirmUnprocessableEntity) Code() int {
 }
 
 func (o *ResetPasswordConfirmUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ResetPasswordConfirmUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ResetPasswordConfirmUnprocessableEntity) GetPayload() *models.Error {

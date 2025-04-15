@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetAppleIDPClientOK) Code() int {
 }
 
 func (o *GetAppleIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientOK %s", 200, payload)
 }
 
 func (o *GetAppleIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientOK %s", 200, payload)
 }
 
 func (o *GetAppleIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetAppleIDPClientBadRequest) Code() int {
 }
 
 func (o *GetAppleIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetAppleIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetAppleIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetAppleIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetAppleIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetAppleIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetAppleIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetAppleIDPClientForbidden) Code() int {
 }
 
 func (o *GetAppleIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetAppleIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetAppleIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetAppleIDPClientNotFound) Code() int {
 }
 
 func (o *GetAppleIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetAppleIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetAppleIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetAppleIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetAppleIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAppleIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/apple/{iid}/client][%d] getAppleIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetAppleIDPClientTooManyRequests) GetPayload() *models.Error {

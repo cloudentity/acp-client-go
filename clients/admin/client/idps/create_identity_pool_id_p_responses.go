@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateIdentityPoolIDPCreated) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPCreated %s", 201, payload)
 }
 
 func (o *CreateIdentityPoolIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPCreated %s", 201, payload)
 }
 
 func (o *CreateIdentityPoolIDPCreated) GetPayload() *models.IdentityPoolIDP {
@@ -183,11 +186,13 @@ func (o *CreateIdentityPoolIDPBadRequest) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateIdentityPoolIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateIdentityPoolIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateIdentityPoolIDPUnauthorized) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateIdentityPoolIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateIdentityPoolIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateIdentityPoolIDPForbidden) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateIdentityPoolIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateIdentityPoolIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateIdentityPoolIDPNotFound) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateIdentityPoolIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateIdentityPoolIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateIdentityPoolIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateIdentityPoolIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateIdentityPoolIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateIdentityPoolIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateIdentityPoolIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateIdentityPoolIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/identity_pool][%d] createIdentityPoolIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateIdentityPoolIDPTooManyRequests) GetPayload() *models.Error {

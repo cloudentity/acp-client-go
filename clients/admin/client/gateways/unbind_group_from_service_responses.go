@@ -6,6 +6,7 @@ package gateways
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *UnbindGroupFromServiceOK) Code() int {
 }
 
 func (o *UnbindGroupFromServiceOK) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK %s", 200, payload)
 }
 
 func (o *UnbindGroupFromServiceOK) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK %s", 200, payload)
 }
 
 func (o *UnbindGroupFromServiceOK) GetPayload() *models.RemoveServiceConfigurationResult {
@@ -199,11 +202,13 @@ func (o *UnbindGroupFromServiceBadRequest) Code() int {
 }
 
 func (o *UnbindGroupFromServiceBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest %s", 400, payload)
 }
 
 func (o *UnbindGroupFromServiceBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest %s", 400, payload)
 }
 
 func (o *UnbindGroupFromServiceBadRequest) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *UnbindGroupFromServiceUnauthorized) Code() int {
 }
 
 func (o *UnbindGroupFromServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindGroupFromServiceUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized %s", 401, payload)
 }
 
 func (o *UnbindGroupFromServiceUnauthorized) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *UnbindGroupFromServiceForbidden) Code() int {
 }
 
 func (o *UnbindGroupFromServiceForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden %s", 403, payload)
 }
 
 func (o *UnbindGroupFromServiceForbidden) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden %s", 403, payload)
 }
 
 func (o *UnbindGroupFromServiceForbidden) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *UnbindGroupFromServiceNotFound) Code() int {
 }
 
 func (o *UnbindGroupFromServiceNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound %s", 404, payload)
 }
 
 func (o *UnbindGroupFromServiceNotFound) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound %s", 404, payload)
 }
 
 func (o *UnbindGroupFromServiceNotFound) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *UnbindGroupFromServiceUnprocessableEntity) Code() int {
 }
 
 func (o *UnbindGroupFromServiceUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UnbindGroupFromServiceUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UnbindGroupFromServiceUnprocessableEntity) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *UnbindGroupFromServiceTooManyRequests) Code() int {
 }
 
 func (o *UnbindGroupFromServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindGroupFromServiceTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests %s", 429, payload)
 }
 
 func (o *UnbindGroupFromServiceTooManyRequests) GetPayload() *models.Error {

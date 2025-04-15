@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -136,11 +137,13 @@ func (o *SystemUpdateUserOK) Code() int {
 }
 
 func (o *SystemUpdateUserOK) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserOK %s", 200, payload)
 }
 
 func (o *SystemUpdateUserOK) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserOK %s", 200, payload)
 }
 
 func (o *SystemUpdateUserOK) GetPayload() *models.UserWithData {
@@ -211,11 +214,13 @@ func (o *SystemUpdateUserBadRequest) Code() int {
 }
 
 func (o *SystemUpdateUserBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserBadRequest %s", 400, payload)
 }
 
 func (o *SystemUpdateUserBadRequest) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserBadRequest %s", 400, payload)
 }
 
 func (o *SystemUpdateUserBadRequest) GetPayload() *models.Error {
@@ -279,11 +284,13 @@ func (o *SystemUpdateUserUnauthorized) Code() int {
 }
 
 func (o *SystemUpdateUserUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnauthorized %s", 401, payload)
 }
 
 func (o *SystemUpdateUserUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnauthorized %s", 401, payload)
 }
 
 func (o *SystemUpdateUserUnauthorized) GetPayload() *models.Error {
@@ -347,11 +354,13 @@ func (o *SystemUpdateUserForbidden) Code() int {
 }
 
 func (o *SystemUpdateUserForbidden) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserForbidden %s", 403, payload)
 }
 
 func (o *SystemUpdateUserForbidden) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserForbidden %s", 403, payload)
 }
 
 func (o *SystemUpdateUserForbidden) GetPayload() *models.Error {
@@ -415,11 +424,13 @@ func (o *SystemUpdateUserNotFound) Code() int {
 }
 
 func (o *SystemUpdateUserNotFound) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserNotFound %s", 404, payload)
 }
 
 func (o *SystemUpdateUserNotFound) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserNotFound %s", 404, payload)
 }
 
 func (o *SystemUpdateUserNotFound) GetPayload() *models.Error {
@@ -483,11 +494,13 @@ func (o *SystemUpdateUserConflict) Code() int {
 }
 
 func (o *SystemUpdateUserConflict) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserConflict %s", 409, payload)
 }
 
 func (o *SystemUpdateUserConflict) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserConflict %s", 409, payload)
 }
 
 func (o *SystemUpdateUserConflict) GetPayload() *models.Error {
@@ -551,11 +564,13 @@ func (o *SystemUpdateUserPreconditionFailed) Code() int {
 }
 
 func (o *SystemUpdateUserPreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *SystemUpdateUserPreconditionFailed) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *SystemUpdateUserPreconditionFailed) GetPayload() *models.Error {
@@ -619,11 +634,13 @@ func (o *SystemUpdateUserUnprocessableEntity) Code() int {
 }
 
 func (o *SystemUpdateUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemUpdateUserUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemUpdateUserUnprocessableEntity) GetPayload() *models.Error {
@@ -687,11 +704,13 @@ func (o *SystemUpdateUserTooManyRequests) Code() int {
 }
 
 func (o *SystemUpdateUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemUpdateUserTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserTooManyRequests %s", 429, payload)
 }
 
 func (o *SystemUpdateUserTooManyRequests) GetPayload() *models.Error {

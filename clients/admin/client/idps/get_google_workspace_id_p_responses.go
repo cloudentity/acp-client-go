@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetGoogleWorkspaceIDPOK) Code() int {
 }
 
 func (o *GetGoogleWorkspaceIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPOK %s", 200, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPOK %s", 200, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPOK) GetPayload() *models.GoogleWorkspaceIDP {
@@ -171,11 +174,13 @@ func (o *GetGoogleWorkspaceIDPUnauthorized) Code() int {
 }
 
 func (o *GetGoogleWorkspaceIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPUnauthorized %s", 401, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *GetGoogleWorkspaceIDPForbidden) Code() int {
 }
 
 func (o *GetGoogleWorkspaceIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPForbidden %s", 403, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *GetGoogleWorkspaceIDPNotFound) Code() int {
 }
 
 func (o *GetGoogleWorkspaceIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPNotFound %s", 404, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *GetGoogleWorkspaceIDPTooManyRequests) Code() int {
 }
 
 func (o *GetGoogleWorkspaceIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google_workspace/{iid}][%d] getGoogleWorkspaceIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *GetGoogleWorkspaceIDPTooManyRequests) GetPayload() *models.Error {

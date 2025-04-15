@@ -6,6 +6,7 @@ package b2_b_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -121,11 +122,13 @@ func (o *CreateB2BUserCreated) Code() int {
 }
 
 func (o *CreateB2BUserCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserCreated %s", 201, payload)
 }
 
 func (o *CreateB2BUserCreated) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserCreated %s", 201, payload)
 }
 
 func (o *CreateB2BUserCreated) GetPayload() *models.BaseUserWithData {
@@ -189,11 +192,13 @@ func (o *CreateB2BUserBadRequest) Code() int {
 }
 
 func (o *CreateB2BUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserBadRequest %s", 400, payload)
 }
 
 func (o *CreateB2BUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserBadRequest %s", 400, payload)
 }
 
 func (o *CreateB2BUserBadRequest) GetPayload() *models.Error {
@@ -257,11 +262,13 @@ func (o *CreateB2BUserUnauthorized) Code() int {
 }
 
 func (o *CreateB2BUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnauthorized %s", 401, payload)
 }
 
 func (o *CreateB2BUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnauthorized %s", 401, payload)
 }
 
 func (o *CreateB2BUserUnauthorized) GetPayload() *models.Error {
@@ -325,11 +332,13 @@ func (o *CreateB2BUserForbidden) Code() int {
 }
 
 func (o *CreateB2BUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserForbidden %s", 403, payload)
 }
 
 func (o *CreateB2BUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserForbidden %s", 403, payload)
 }
 
 func (o *CreateB2BUserForbidden) GetPayload() *models.Error {
@@ -393,11 +402,13 @@ func (o *CreateB2BUserNotFound) Code() int {
 }
 
 func (o *CreateB2BUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserNotFound %s", 404, payload)
 }
 
 func (o *CreateB2BUserNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserNotFound %s", 404, payload)
 }
 
 func (o *CreateB2BUserNotFound) GetPayload() *models.Error {
@@ -461,11 +472,13 @@ func (o *CreateB2BUserConflict) Code() int {
 }
 
 func (o *CreateB2BUserConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserConflict %s", 409, payload)
 }
 
 func (o *CreateB2BUserConflict) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserConflict %s", 409, payload)
 }
 
 func (o *CreateB2BUserConflict) GetPayload() *models.Error {
@@ -529,11 +542,13 @@ func (o *CreateB2BUserUnprocessableEntity) Code() int {
 }
 
 func (o *CreateB2BUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateB2BUserUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateB2BUserUnprocessableEntity) GetPayload() *models.Error {
@@ -597,11 +612,13 @@ func (o *CreateB2BUserTooManyRequests) Code() int {
 }
 
 func (o *CreateB2BUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateB2BUserTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/b2b/pools/{ipID}/users][%d] createB2BUserTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateB2BUserTooManyRequests) GetPayload() *models.Error {

@@ -21,7 +21,7 @@ import (
 type OIDCSettings struct {
 
 	// Client authentication method
-	// Enum: [client_secret private_key_jwt none]
+	// Enum: ["client_secret","private_key_jwt","none"]
 	AuthenticationMethod string `json:"authentication_method,omitempty" yaml:"authentication_method,omitempty"`
 
 	// OAuth client application identifier

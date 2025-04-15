@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DisableScriptDebugNoContent) Code() int {
 }
 
 func (o *DisableScriptDebugNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNoContent", 204)
 }
 
 func (o *DisableScriptDebugNoContent) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNoContent", 204)
 }
 
 func (o *DisableScriptDebugNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DisableScriptDebugUnauthorized) Code() int {
 }
 
 func (o *DisableScriptDebugUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *DisableScriptDebugUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugUnauthorized %s", 401, payload)
 }
 
 func (o *DisableScriptDebugUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DisableScriptDebugForbidden) Code() int {
 }
 
 func (o *DisableScriptDebugForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *DisableScriptDebugForbidden) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugForbidden %s", 403, payload)
 }
 
 func (o *DisableScriptDebugForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DisableScriptDebugNotFound) Code() int {
 }
 
 func (o *DisableScriptDebugNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *DisableScriptDebugNotFound) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugNotFound %s", 404, payload)
 }
 
 func (o *DisableScriptDebugNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DisableScriptDebugTooManyRequests) Code() int {
 }
 
 func (o *DisableScriptDebugTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *DisableScriptDebugTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}/debug][%d] disableScriptDebugTooManyRequests %s", 429, payload)
 }
 
 func (o *DisableScriptDebugTooManyRequests) GetPayload() *models.Error {

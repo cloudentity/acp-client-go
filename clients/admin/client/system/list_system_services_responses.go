@@ -6,6 +6,7 @@ package system
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListSystemServicesOK) Code() int {
 }
 
 func (o *ListSystemServicesOK) Error() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK %s", 200, payload)
 }
 
 func (o *ListSystemServicesOK) String() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK %s", 200, payload)
 }
 
 func (o *ListSystemServicesOK) GetPayload() *models.SystemServicesResponse {
@@ -181,11 +184,13 @@ func (o *ListSystemServicesUnauthorized) Code() int {
 }
 
 func (o *ListSystemServicesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized %s", 401, payload)
 }
 
 func (o *ListSystemServicesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized %s", 401, payload)
 }
 
 func (o *ListSystemServicesUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListSystemServicesForbidden) Code() int {
 }
 
 func (o *ListSystemServicesForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden %s", 403, payload)
 }
 
 func (o *ListSystemServicesForbidden) String() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden %s", 403, payload)
 }
 
 func (o *ListSystemServicesForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListSystemServicesTooManyRequests) Code() int {
 }
 
 func (o *ListSystemServicesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListSystemServicesTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests %s", 429, payload)
 }
 
 func (o *ListSystemServicesTooManyRequests) GetPayload() *models.Error {

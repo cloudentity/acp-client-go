@@ -6,6 +6,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateClientForDeveloperCreated) Code() int {
 }
 
 func (o *CreateClientForDeveloperCreated) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated %s", 201, payload)
 }
 
 func (o *CreateClientForDeveloperCreated) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated %s", 201, payload)
 }
 
 func (o *CreateClientForDeveloperCreated) GetPayload() *models.ClientDeveloperResponse {
@@ -183,11 +186,13 @@ func (o *CreateClientForDeveloperUnauthorized) Code() int {
 }
 
 func (o *CreateClientForDeveloperUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized %s", 401, payload)
 }
 
 func (o *CreateClientForDeveloperUnauthorized) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized %s", 401, payload)
 }
 
 func (o *CreateClientForDeveloperUnauthorized) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateClientForDeveloperForbidden) Code() int {
 }
 
 func (o *CreateClientForDeveloperForbidden) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden %s", 403, payload)
 }
 
 func (o *CreateClientForDeveloperForbidden) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden %s", 403, payload)
 }
 
 func (o *CreateClientForDeveloperForbidden) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateClientForDeveloperNotFound) Code() int {
 }
 
 func (o *CreateClientForDeveloperNotFound) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound %s", 404, payload)
 }
 
 func (o *CreateClientForDeveloperNotFound) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound %s", 404, payload)
 }
 
 func (o *CreateClientForDeveloperNotFound) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateClientForDeveloperConflict) Code() int {
 }
 
 func (o *CreateClientForDeveloperConflict) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict %s", 409, payload)
 }
 
 func (o *CreateClientForDeveloperConflict) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict %s", 409, payload)
 }
 
 func (o *CreateClientForDeveloperConflict) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateClientForDeveloperUnprocessableEntity) Code() int {
 }
 
 func (o *CreateClientForDeveloperUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateClientForDeveloperUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateClientForDeveloperUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateClientForDeveloperTooManyRequests) Code() int {
 }
 
 func (o *CreateClientForDeveloperTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateClientForDeveloperTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateClientForDeveloperTooManyRequests) GetPayload() *models.Error {

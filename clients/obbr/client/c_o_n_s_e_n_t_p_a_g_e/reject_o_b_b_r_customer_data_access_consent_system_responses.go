@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RejectOBBRCustomerDataAccessConsentSystemOK) Code() int {
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemOK %s", 200, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemOK) GetPayload() *models.ConsentRejected {
@@ -171,11 +174,13 @@ func (o *RejectOBBRCustomerDataAccessConsentSystemUnauthorized) Code() int {
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *RejectOBBRCustomerDataAccessConsentSystemForbidden) Code() int {
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *RejectOBBRCustomerDataAccessConsentSystemNotFound) Code() int {
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *RejectOBBRCustomerDataAccessConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/reject][%d] rejectOBBRCustomerDataAccessConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *RejectOBBRCustomerDataAccessConsentSystemTooManyRequests) GetPayload() *models.Error {

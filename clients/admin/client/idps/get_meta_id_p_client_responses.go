@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *GetMetaIDPClientOK) Code() int {
 }
 
 func (o *GetMetaIDPClientOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientOK %s", 200, payload)
 }
 
 func (o *GetMetaIDPClientOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientOK %s", 200, payload)
 }
 
 func (o *GetMetaIDPClientOK) GetPayload() *models.ClientAdminResponse {
@@ -193,11 +196,13 @@ func (o *GetMetaIDPClientBadRequest) Code() int {
 }
 
 func (o *GetMetaIDPClientBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetMetaIDPClientBadRequest) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientBadRequest %s", 400, payload)
 }
 
 func (o *GetMetaIDPClientBadRequest) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *GetMetaIDPClientUnauthorized) Code() int {
 }
 
 func (o *GetMetaIDPClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetMetaIDPClientUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientUnauthorized %s", 401, payload)
 }
 
 func (o *GetMetaIDPClientUnauthorized) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *GetMetaIDPClientForbidden) Code() int {
 }
 
 func (o *GetMetaIDPClientForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetMetaIDPClientForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientForbidden %s", 403, payload)
 }
 
 func (o *GetMetaIDPClientForbidden) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *GetMetaIDPClientNotFound) Code() int {
 }
 
 func (o *GetMetaIDPClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetMetaIDPClientNotFound) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientNotFound %s", 404, payload)
 }
 
 func (o *GetMetaIDPClientNotFound) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *GetMetaIDPClientTooManyRequests) Code() int {
 }
 
 func (o *GetMetaIDPClientTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMetaIDPClientTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/meta/{iid}/client][%d] getMetaIdPClientTooManyRequests %s", 429, payload)
 }
 
 func (o *GetMetaIDPClientTooManyRequests) GetPayload() *models.Error {

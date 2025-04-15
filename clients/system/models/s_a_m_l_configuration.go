@@ -40,7 +40,7 @@ type SAMLConfiguration struct {
 	SubjectNameID string `json:"subject_name_id,omitempty" yaml:"subject_name_id,omitempty"`
 
 	// Allows to set the subject name id format
-	// Enum: [urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified urn:oasis:names:tc:SAML:2.0:nameid-format:transient urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress urn:oasis:names:tc:SAML:2.0:nameid-format:persistent]
+	// Enum: ["urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified","urn:oasis:names:tc:SAML:2.0:nameid-format:transient","urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress","urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"]
 	SubjectNameIDFormat string `json:"subject_name_id_format,omitempty" yaml:"subject_name_id_format,omitempty"`
 }
 

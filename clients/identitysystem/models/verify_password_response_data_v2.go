@@ -26,12 +26,12 @@ type VerifyPasswordResponseDataV2 struct {
 
 	// result
 	// Required: true
-	// Enum: [password_correct password_incorrect password_expired no_password user_not_found]
+	// Enum: ["password_correct","password_incorrect","password_expired","no_password","user_not_found"]
 	Result string `json:"result" yaml:"result"`
 
 	// state
 	// Required: true
-	// Enum: [valid must_be_reset must_be_changed]
+	// Enum: ["valid","must_be_reset","must_be_changed"]
 	State string `json:"state" yaml:"state"`
 }
 

@@ -31,7 +31,7 @@ type RequestCode struct {
 
 	// type
 	// Required: true
-	// Enum: [activation reset_password reset_totp enroll_webauthn challenge verify_address authentication]
+	// Enum: ["activation","reset_password","reset_totp","enroll_webauthn","challenge","verify_address","authentication"]
 	Type string `json:"type" yaml:"type"`
 }
 

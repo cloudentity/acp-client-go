@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteUserNoContent) Code() int {
 }
 
 func (o *DeleteUserNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNoContent ", 204)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNoContent", 204)
 }
 
 func (o *DeleteUserNoContent) String() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNoContent ", 204)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNoContent", 204)
 }
 
 func (o *DeleteUserNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteUserUnauthorized) Code() int {
 }
 
 func (o *DeleteUserUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteUserUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteUserUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteUserForbidden) Code() int {
 }
 
 func (o *DeleteUserForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserForbidden %s", 403, payload)
 }
 
 func (o *DeleteUserForbidden) String() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserForbidden %s", 403, payload)
 }
 
 func (o *DeleteUserForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteUserNotFound) Code() int {
 }
 
 func (o *DeleteUserNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNotFound %s", 404, payload)
 }
 
 func (o *DeleteUserNotFound) String() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserNotFound %s", 404, payload)
 }
 
 func (o *DeleteUserNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteUserTooManyRequests) Code() int {
 }
 
 func (o *DeleteUserTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteUserTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}/users/{userID}][%d] deleteUserTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteUserTooManyRequests) GetPayload() *models.Error {

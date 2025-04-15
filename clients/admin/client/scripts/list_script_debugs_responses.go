@@ -6,6 +6,7 @@ package scripts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListScriptDebugsOK) Code() int {
 }
 
 func (o *ListScriptDebugsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsOK %s", 200, payload)
 }
 
 func (o *ListScriptDebugsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsOK %s", 200, payload)
 }
 
 func (o *ListScriptDebugsOK) GetPayload() *models.ScriptDebugs {
@@ -181,11 +184,13 @@ func (o *ListScriptDebugsUnauthorized) Code() int {
 }
 
 func (o *ListScriptDebugsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsUnauthorized %s", 401, payload)
 }
 
 func (o *ListScriptDebugsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsUnauthorized %s", 401, payload)
 }
 
 func (o *ListScriptDebugsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListScriptDebugsForbidden) Code() int {
 }
 
 func (o *ListScriptDebugsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsForbidden %s", 403, payload)
 }
 
 func (o *ListScriptDebugsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsForbidden %s", 403, payload)
 }
 
 func (o *ListScriptDebugsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListScriptDebugsTooManyRequests) Code() int {
 }
 
 func (o *ListScriptDebugsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListScriptDebugsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-debugs][%d] listScriptDebugsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListScriptDebugsTooManyRequests) GetPayload() *models.Error {

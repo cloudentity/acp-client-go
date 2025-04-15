@@ -6,6 +6,7 @@ package claims
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListClaimsOK) Code() int {
 }
 
 func (o *ListClaimsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK %s", 200, payload)
 }
 
 func (o *ListClaimsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK %s", 200, payload)
 }
 
 func (o *ListClaimsOK) GetPayload() *models.Claims {
@@ -181,11 +184,13 @@ func (o *ListClaimsUnauthorized) Code() int {
 }
 
 func (o *ListClaimsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsUnauthorized %s", 401, payload)
 }
 
 func (o *ListClaimsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsUnauthorized %s", 401, payload)
 }
 
 func (o *ListClaimsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListClaimsForbidden) Code() int {
 }
 
 func (o *ListClaimsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsForbidden %s", 403, payload)
 }
 
 func (o *ListClaimsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsForbidden %s", 403, payload)
 }
 
 func (o *ListClaimsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListClaimsTooManyRequests) Code() int {
 }
 
 func (o *ListClaimsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListClaimsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListClaimsTooManyRequests) GetPayload() *models.Error {

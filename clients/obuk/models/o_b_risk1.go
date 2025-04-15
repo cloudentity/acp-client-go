@@ -34,7 +34,7 @@ type OBRisk1 struct {
 	MerchantCustomerIdentification string `json:"MerchantCustomerIdentification,omitempty" yaml:"MerchantCustomerIdentification,omitempty"`
 
 	// Specifies the payment context
-	// Enum: [BillPayment EcommerceGoods EcommerceServices Other PartyToParty]
+	// Enum: ["BillPayment","EcommerceGoods","EcommerceServices","Other","PartyToParty"]
 	PaymentContextCode string `json:"PaymentContextCode,omitempty" yaml:"PaymentContextCode,omitempty"`
 }
 

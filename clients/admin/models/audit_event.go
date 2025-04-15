@@ -22,7 +22,7 @@ type AuditEvent struct {
 
 	// Name of an action that was performed for a given event subject.
 	// Example: created
-	// Enum: [authenticated challenged authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed calculated reset_requested reset_completed add_requested add_completed added_to_group removed_from_group]
+	// Enum: ["authenticated","challenged","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed","calculated","reset_requested","reset_completed","add_requested","add_completed","added_to_group","removed_from_group"]
 	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// Additional audit event context.
@@ -33,7 +33,7 @@ type AuditEvent struct {
 
 	// Resource or entity that is a subject of a given audit event.
 	// Example: client
-	// Enum: [request gateway_request gateway_policy policy client credential login risk post_authn recovery consent client_consents customer_consents authorization_code access_token saml_assertion scopes claims otp user schema pool password bruteforce dcr script role task jit tokens service server import organization otp_inspect totp webauthn group]
+	// Enum: ["request","gateway_request","gateway_policy","policy","client","credential","login","risk","post_authn","recovery","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","claims","otp","user","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server","import","organization","otp_inspect","totp","webauthn","group"]
 	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// metadata

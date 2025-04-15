@@ -7,6 +7,7 @@ package o_b_u_k
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -100,11 +101,13 @@ func (o *OpenbankingInternationalStandingOrderConsentIntrospectOK) Code() int {
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectOK) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectOK %s", 200, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectOK) GetPayload() *OpenbankingInternationalStandingOrderConsentIntrospectOKBody {
@@ -168,11 +171,13 @@ func (o *OpenbankingInternationalStandingOrderConsentIntrospectUnauthorized) Cod
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectUnauthorized %s", 401, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
@@ -236,11 +241,13 @@ func (o *OpenbankingInternationalStandingOrderConsentIntrospectNotFound) Code() 
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectNotFound %s", 404, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectNotFound) GetPayload() *models.GenericError {
@@ -304,11 +311,13 @@ func (o *OpenbankingInternationalStandingOrderConsentIntrospectTooManyRequests) 
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents/introspect][%d] openbankingInternationalStandingOrderConsentIntrospectTooManyRequests %s", 429, payload)
 }
 
 func (o *OpenbankingInternationalStandingOrderConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {

@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateCognitoIDPOK) Code() int {
 }
 
 func (o *UpdateCognitoIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK %s", 200, payload)
 }
 
 func (o *UpdateCognitoIDPOK) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK %s", 200, payload)
 }
 
 func (o *UpdateCognitoIDPOK) GetPayload() *models.CognitoIDP {
@@ -183,11 +186,13 @@ func (o *UpdateCognitoIDPBadRequest) Code() int {
 }
 
 func (o *UpdateCognitoIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateCognitoIDPBadRequest) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest %s", 400, payload)
 }
 
 func (o *UpdateCognitoIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *UpdateCognitoIDPUnauthorized) Code() int {
 }
 
 func (o *UpdateCognitoIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateCognitoIDPUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateCognitoIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *UpdateCognitoIDPForbidden) Code() int {
 }
 
 func (o *UpdateCognitoIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateCognitoIDPForbidden) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden %s", 403, payload)
 }
 
 func (o *UpdateCognitoIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *UpdateCognitoIDPNotFound) Code() int {
 }
 
 func (o *UpdateCognitoIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateCognitoIDPNotFound) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound %s", 404, payload)
 }
 
 func (o *UpdateCognitoIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *UpdateCognitoIDPUnprocessableEntity) Code() int {
 }
 
 func (o *UpdateCognitoIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateCognitoIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *UpdateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *UpdateCognitoIDPTooManyRequests) Code() int {
 }
 
 func (o *UpdateCognitoIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateCognitoIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *UpdateCognitoIDPTooManyRequests) GetPayload() *models.Error {

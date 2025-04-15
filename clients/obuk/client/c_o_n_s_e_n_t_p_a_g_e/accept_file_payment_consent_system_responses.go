@@ -6,6 +6,7 @@ package c_o_n_s_e_n_t_p_a_g_e
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AcceptFilePaymentConsentSystemOK) Code() int {
 }
 
 func (o *AcceptFilePaymentConsentSystemOK) Error() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK %s", 200, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemOK) String() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK %s", 200, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
@@ -171,11 +174,13 @@ func (o *AcceptFilePaymentConsentSystemUnauthorized) Code() int {
 }
 
 func (o *AcceptFilePaymentConsentSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemUnauthorized) String() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized %s", 401, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemUnauthorized) GetPayload() *models.Error {
@@ -239,11 +244,13 @@ func (o *AcceptFilePaymentConsentSystemForbidden) Code() int {
 }
 
 func (o *AcceptFilePaymentConsentSystemForbidden) Error() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemForbidden) String() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden %s", 403, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemForbidden) GetPayload() *models.Error {
@@ -307,11 +314,13 @@ func (o *AcceptFilePaymentConsentSystemNotFound) Code() int {
 }
 
 func (o *AcceptFilePaymentConsentSystemNotFound) Error() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemNotFound) String() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound %s", 404, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemNotFound) GetPayload() *models.Error {
@@ -375,11 +384,13 @@ func (o *AcceptFilePaymentConsentSystemTooManyRequests) Code() int {
 }
 
 func (o *AcceptFilePaymentConsentSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests %s", 429, payload)
 }
 
 func (o *AcceptFilePaymentConsentSystemTooManyRequests) GetPayload() *models.Error {

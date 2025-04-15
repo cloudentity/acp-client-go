@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -118,11 +119,13 @@ func (o *AddUserIdentifierOK) Code() int {
 }
 
 func (o *AddUserIdentifierOK) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierOK %s", 200, payload)
 }
 
 func (o *AddUserIdentifierOK) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierOK %s", 200, payload)
 }
 
 func (o *AddUserIdentifierOK) GetPayload() *models.UserIdentifier {
@@ -193,11 +196,13 @@ func (o *AddUserIdentifierUnauthorized) Code() int {
 }
 
 func (o *AddUserIdentifierUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnauthorized %s", 401, payload)
 }
 
 func (o *AddUserIdentifierUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnauthorized %s", 401, payload)
 }
 
 func (o *AddUserIdentifierUnauthorized) GetPayload() *models.Error {
@@ -261,11 +266,13 @@ func (o *AddUserIdentifierForbidden) Code() int {
 }
 
 func (o *AddUserIdentifierForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierForbidden %s", 403, payload)
 }
 
 func (o *AddUserIdentifierForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierForbidden %s", 403, payload)
 }
 
 func (o *AddUserIdentifierForbidden) GetPayload() *models.Error {
@@ -329,11 +336,13 @@ func (o *AddUserIdentifierNotFound) Code() int {
 }
 
 func (o *AddUserIdentifierNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierNotFound %s", 404, payload)
 }
 
 func (o *AddUserIdentifierNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierNotFound %s", 404, payload)
 }
 
 func (o *AddUserIdentifierNotFound) GetPayload() *models.Error {
@@ -397,11 +406,13 @@ func (o *AddUserIdentifierConflict) Code() int {
 }
 
 func (o *AddUserIdentifierConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierConflict %s", 409, payload)
 }
 
 func (o *AddUserIdentifierConflict) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierConflict %s", 409, payload)
 }
 
 func (o *AddUserIdentifierConflict) GetPayload() *models.Error {
@@ -465,11 +476,13 @@ func (o *AddUserIdentifierUnprocessableEntity) Code() int {
 }
 
 func (o *AddUserIdentifierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnprocessableEntity %s", 422, payload)
 }
 
 func (o *AddUserIdentifierUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierUnprocessableEntity %s", 422, payload)
 }
 
 func (o *AddUserIdentifierUnprocessableEntity) GetPayload() *models.Error {

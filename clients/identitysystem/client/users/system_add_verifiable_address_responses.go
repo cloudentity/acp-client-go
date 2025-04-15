@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -124,11 +125,13 @@ func (o *SystemAddVerifiableAddressOK) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressOK) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressOK %s", 200, payload)
 }
 
 func (o *SystemAddVerifiableAddressOK) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressOK %s", 200, payload)
 }
 
 func (o *SystemAddVerifiableAddressOK) GetPayload() *models.UserVerifiableAddress {
@@ -199,11 +202,13 @@ func (o *SystemAddVerifiableAddressUnauthorized) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnauthorized %s", 401, payload)
 }
 
 func (o *SystemAddVerifiableAddressUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnauthorized %s", 401, payload)
 }
 
 func (o *SystemAddVerifiableAddressUnauthorized) GetPayload() *models.Error {
@@ -267,11 +272,13 @@ func (o *SystemAddVerifiableAddressForbidden) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressForbidden %s", 403, payload)
 }
 
 func (o *SystemAddVerifiableAddressForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressForbidden %s", 403, payload)
 }
 
 func (o *SystemAddVerifiableAddressForbidden) GetPayload() *models.Error {
@@ -335,11 +342,13 @@ func (o *SystemAddVerifiableAddressNotFound) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressNotFound %s", 404, payload)
 }
 
 func (o *SystemAddVerifiableAddressNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressNotFound %s", 404, payload)
 }
 
 func (o *SystemAddVerifiableAddressNotFound) GetPayload() *models.Error {
@@ -403,11 +412,13 @@ func (o *SystemAddVerifiableAddressConflict) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressConflict) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressConflict %s", 409, payload)
 }
 
 func (o *SystemAddVerifiableAddressConflict) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressConflict %s", 409, payload)
 }
 
 func (o *SystemAddVerifiableAddressConflict) GetPayload() *models.Error {
@@ -471,11 +482,13 @@ func (o *SystemAddVerifiableAddressPreconditionFailed) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressPreconditionFailed %s", 412, payload)
 }
 
 func (o *SystemAddVerifiableAddressPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressPreconditionFailed %s", 412, payload)
 }
 
 func (o *SystemAddVerifiableAddressPreconditionFailed) GetPayload() *models.Error {
@@ -539,11 +552,13 @@ func (o *SystemAddVerifiableAddressUnprocessableEntity) Code() int {
 }
 
 func (o *SystemAddVerifiableAddressUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemAddVerifiableAddressUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnprocessableEntity %s", 422, payload)
 }
 
 func (o *SystemAddVerifiableAddressUnprocessableEntity) GetPayload() *models.Error {

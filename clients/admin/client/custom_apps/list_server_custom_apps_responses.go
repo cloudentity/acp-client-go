@@ -6,6 +6,7 @@ package custom_apps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -106,11 +107,13 @@ func (o *ListServerCustomAppsOK) Code() int {
 }
 
 func (o *ListServerCustomAppsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsOK %s", 200, payload)
 }
 
 func (o *ListServerCustomAppsOK) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsOK %s", 200, payload)
 }
 
 func (o *ListServerCustomAppsOK) GetPayload() *models.CustomAppsResponse {
@@ -181,11 +184,13 @@ func (o *ListServerCustomAppsUnauthorized) Code() int {
 }
 
 func (o *ListServerCustomAppsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsUnauthorized %s", 401, payload)
 }
 
 func (o *ListServerCustomAppsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsUnauthorized %s", 401, payload)
 }
 
 func (o *ListServerCustomAppsUnauthorized) GetPayload() *models.Error {
@@ -249,11 +254,13 @@ func (o *ListServerCustomAppsForbidden) Code() int {
 }
 
 func (o *ListServerCustomAppsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsForbidden %s", 403, payload)
 }
 
 func (o *ListServerCustomAppsForbidden) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsForbidden %s", 403, payload)
 }
 
 func (o *ListServerCustomAppsForbidden) GetPayload() *models.Error {
@@ -317,11 +324,13 @@ func (o *ListServerCustomAppsTooManyRequests) Code() int {
 }
 
 func (o *ListServerCustomAppsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListServerCustomAppsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/custom-apps][%d] listServerCustomAppsTooManyRequests %s", 429, payload)
 }
 
 func (o *ListServerCustomAppsTooManyRequests) GetPayload() *models.Error {

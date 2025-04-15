@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -120,11 +121,11 @@ func (o *NameWebAuthnKeyNoContent) Code() int {
 }
 
 func (o *NameWebAuthnKeyNoContent) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNoContent ", 204)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNoContent", 204)
 }
 
 func (o *NameWebAuthnKeyNoContent) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNoContent ", 204)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNoContent", 204)
 }
 
 func (o *NameWebAuthnKeyNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,11 +178,13 @@ func (o *NameWebAuthnKeyBadRequest) Code() int {
 }
 
 func (o *NameWebAuthnKeyBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyBadRequest %s", 400, payload)
 }
 
 func (o *NameWebAuthnKeyBadRequest) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyBadRequest %s", 400, payload)
 }
 
 func (o *NameWebAuthnKeyBadRequest) GetPayload() *models.Error {
@@ -245,11 +248,13 @@ func (o *NameWebAuthnKeyUnauthorized) Code() int {
 }
 
 func (o *NameWebAuthnKeyUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnauthorized %s", 401, payload)
 }
 
 func (o *NameWebAuthnKeyUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnauthorized %s", 401, payload)
 }
 
 func (o *NameWebAuthnKeyUnauthorized) GetPayload() *models.Error {
@@ -313,11 +318,13 @@ func (o *NameWebAuthnKeyForbidden) Code() int {
 }
 
 func (o *NameWebAuthnKeyForbidden) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyForbidden %s", 403, payload)
 }
 
 func (o *NameWebAuthnKeyForbidden) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyForbidden %s", 403, payload)
 }
 
 func (o *NameWebAuthnKeyForbidden) GetPayload() *models.Error {
@@ -381,11 +388,13 @@ func (o *NameWebAuthnKeyNotFound) Code() int {
 }
 
 func (o *NameWebAuthnKeyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNotFound %s", 404, payload)
 }
 
 func (o *NameWebAuthnKeyNotFound) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyNotFound %s", 404, payload)
 }
 
 func (o *NameWebAuthnKeyNotFound) GetPayload() *models.Error {
@@ -449,11 +458,13 @@ func (o *NameWebAuthnKeyPreconditionFailed) Code() int {
 }
 
 func (o *NameWebAuthnKeyPreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyPreconditionFailed %s", 412, payload)
 }
 
 func (o *NameWebAuthnKeyPreconditionFailed) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyPreconditionFailed %s", 412, payload)
 }
 
 func (o *NameWebAuthnKeyPreconditionFailed) GetPayload() *models.Error {
@@ -517,11 +528,13 @@ func (o *NameWebAuthnKeyUnprocessableEntity) Code() int {
 }
 
 func (o *NameWebAuthnKeyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *NameWebAuthnKeyUnprocessableEntity) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyUnprocessableEntity %s", 422, payload)
 }
 
 func (o *NameWebAuthnKeyUnprocessableEntity) GetPayload() *models.Error {
@@ -585,11 +598,13 @@ func (o *NameWebAuthnKeyTooManyRequests) Code() int {
 }
 
 func (o *NameWebAuthnKeyTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *NameWebAuthnKeyTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}/webauthn/{webAuthnCredentialID}/name][%d] nameWebAuthnKeyTooManyRequests %s", 429, payload)
 }
 
 func (o *NameWebAuthnKeyTooManyRequests) GetPayload() *models.Error {

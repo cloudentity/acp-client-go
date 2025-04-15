@@ -6,6 +6,7 @@ package idps
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateMetaIDPCreated) Code() int {
 }
 
 func (o *CreateMetaIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPCreated %s", 201, payload)
 }
 
 func (o *CreateMetaIDPCreated) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPCreated %s", 201, payload)
 }
 
 func (o *CreateMetaIDPCreated) GetPayload() *models.MetaIDP {
@@ -183,11 +186,13 @@ func (o *CreateMetaIDPBadRequest) Code() int {
 }
 
 func (o *CreateMetaIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateMetaIDPBadRequest) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPBadRequest %s", 400, payload)
 }
 
 func (o *CreateMetaIDPBadRequest) GetPayload() *models.Error {
@@ -251,11 +256,13 @@ func (o *CreateMetaIDPUnauthorized) Code() int {
 }
 
 func (o *CreateMetaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateMetaIDPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnauthorized %s", 401, payload)
 }
 
 func (o *CreateMetaIDPUnauthorized) GetPayload() *models.Error {
@@ -319,11 +326,13 @@ func (o *CreateMetaIDPForbidden) Code() int {
 }
 
 func (o *CreateMetaIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateMetaIDPForbidden) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPForbidden %s", 403, payload)
 }
 
 func (o *CreateMetaIDPForbidden) GetPayload() *models.Error {
@@ -387,11 +396,13 @@ func (o *CreateMetaIDPNotFound) Code() int {
 }
 
 func (o *CreateMetaIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateMetaIDPNotFound) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPNotFound %s", 404, payload)
 }
 
 func (o *CreateMetaIDPNotFound) GetPayload() *models.Error {
@@ -455,11 +466,13 @@ func (o *CreateMetaIDPUnprocessableEntity) Code() int {
 }
 
 func (o *CreateMetaIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateMetaIDPUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPUnprocessableEntity %s", 422, payload)
 }
 
 func (o *CreateMetaIDPUnprocessableEntity) GetPayload() *models.Error {
@@ -523,11 +536,13 @@ func (o *CreateMetaIDPTooManyRequests) Code() int {
 }
 
 func (o *CreateMetaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateMetaIDPTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/meta][%d] createMetaIdPTooManyRequests %s", 429, payload)
 }
 
 func (o *CreateMetaIDPTooManyRequests) GetPayload() *models.Error {

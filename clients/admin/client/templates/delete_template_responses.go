@@ -6,6 +6,7 @@ package templates
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -102,11 +103,11 @@ func (o *DeleteTemplateNoContent) Code() int {
 }
 
 func (o *DeleteTemplateNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNoContent ", 204)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNoContent", 204)
 }
 
 func (o *DeleteTemplateNoContent) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNoContent ", 204)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNoContent", 204)
 }
 
 func (o *DeleteTemplateNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,11 +160,13 @@ func (o *DeleteTemplateUnauthorized) Code() int {
 }
 
 func (o *DeleteTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTemplateUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTemplateUnauthorized) GetPayload() *models.Error {
@@ -227,11 +230,13 @@ func (o *DeleteTemplateForbidden) Code() int {
 }
 
 func (o *DeleteTemplateForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateForbidden %s", 403, payload)
 }
 
 func (o *DeleteTemplateForbidden) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateForbidden %s", 403, payload)
 }
 
 func (o *DeleteTemplateForbidden) GetPayload() *models.Error {
@@ -295,11 +300,13 @@ func (o *DeleteTemplateNotFound) Code() int {
 }
 
 func (o *DeleteTemplateNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNotFound %s", 404, payload)
 }
 
 func (o *DeleteTemplateNotFound) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNotFound %s", 404, payload)
 }
 
 func (o *DeleteTemplateNotFound) GetPayload() *models.Error {
@@ -363,11 +370,13 @@ func (o *DeleteTemplateTooManyRequests) Code() int {
 }
 
 func (o *DeleteTemplateTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTemplateTooManyRequests) String() string {
-	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateTooManyRequests  %+v", 429, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateTooManyRequests %s", 429, payload)
 }
 
 func (o *DeleteTemplateTooManyRequests) GetPayload() *models.Error {
