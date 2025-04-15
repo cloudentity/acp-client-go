@@ -56,13 +56,97 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminGetTenantLicense(params *AdminGetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetTenantLicenseOK, error)
+
+	AdminSetTenantLicense(params *AdminSetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminSetTenantLicenseNoContent, error)
+
 	GetConfiguredLicenses(params *GetConfiguredLicensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConfiguredLicensesOK, error)
 
-	GetTenantLicense(params *GetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantLicenseOK, error)
+	SystemGetTenantLicense(params *SystemGetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetTenantLicenseOK, error)
 
-	SetTenantLicense(params *SetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTenantLicenseNoContent, error)
+	SystemSetTenantLicense(params *SystemSetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemSetTenantLicenseNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+AdminGetTenantLicense gets tenant license
+
+Get tenant license.
+*/
+func (a *Client) AdminGetTenantLicense(params *AdminGetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetTenantLicenseOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetTenantLicenseParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "adminGetTenantLicense",
+		Method:             "GET",
+		PathPattern:        "/api/admin/tenants/{tenantID}/license",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetTenantLicenseReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AdminGetTenantLicenseOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for adminGetTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+AdminSetTenantLicense sets tenant license
+*/
+func (a *Client) AdminSetTenantLicense(params *AdminSetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminSetTenantLicenseNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSetTenantLicenseParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "adminSetTenantLicense",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/tenants/{tenantID}/license",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSetTenantLicenseReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AdminSetTenantLicenseNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for adminSetTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -107,24 +191,24 @@ func (a *Client) GetConfiguredLicenses(params *GetConfiguredLicensesParams, auth
 }
 
 /*
-GetTenantLicense gets tenant license
+SystemGetTenantLicense gets tenant license
 
 Get tenant license.
 */
-func (a *Client) GetTenantLicense(params *GetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantLicenseOK, error) {
+func (a *Client) SystemGetTenantLicense(params *SystemGetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetTenantLicenseOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetTenantLicenseParams()
+		params = NewSystemGetTenantLicenseParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "getTenantLicense",
+		ID:                 "systemGetTenantLicense",
 		Method:             "GET",
-		PathPattern:        "/api/admin/tenants/{tenantID}/license",
+		PathPattern:        "/api/system/tenants/{tenantID}/license",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetTenantLicenseReader{formats: a.formats},
+		Reader:             &SystemGetTenantLicenseReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -137,33 +221,33 @@ func (a *Client) GetTenantLicense(params *GetTenantLicenseParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetTenantLicenseOK)
+	success, ok := result.(*SystemGetTenantLicenseOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for systemGetTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-SetTenantLicense sets tenant license
+SystemSetTenantLicense sets tenant license
 */
-func (a *Client) SetTenantLicense(params *SetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTenantLicenseNoContent, error) {
+func (a *Client) SystemSetTenantLicense(params *SystemSetTenantLicenseParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemSetTenantLicenseNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetTenantLicenseParams()
+		params = NewSystemSetTenantLicenseParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "setTenantLicense",
+		ID:                 "systemSetTenantLicense",
 		Method:             "PUT",
-		PathPattern:        "/api/admin/tenants/{tenantID}/license",
+		PathPattern:        "/api/system/tenants/{tenantID}/license",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetTenantLicenseReader{formats: a.formats},
+		Reader:             &SystemSetTenantLicenseReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -176,13 +260,13 @@ func (a *Client) SetTenantLicense(params *SetTenantLicenseParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SetTenantLicenseNoContent)
+	success, ok := result.(*SystemSetTenantLicenseNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for setTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for systemSetTenantLicense: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

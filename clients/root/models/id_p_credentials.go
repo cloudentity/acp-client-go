@@ -45,9 +45,6 @@ type IDPCredentials struct {
 	// google
 	Google *GoogleCredentials `json:"google,omitempty" yaml:"google,omitempty"`
 
-	// google workspace
-	GoogleWorkspace *GoogleWorkspaceCredentials `json:"google_workspace,omitempty" yaml:"google_workspace,omitempty"`
-
 	// intelli trust
 	IntelliTrust *IntelliTrustCredentials `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
 
@@ -112,10 +109,6 @@ func (m *IDPCredentials) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGoogle(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGoogleWorkspace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -305,25 +298,6 @@ func (m *IDPCredentials) validateGoogle(formats strfmt.Registry) error {
 				return ve.ValidateName("google")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("google")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IDPCredentials) validateGoogleWorkspace(formats strfmt.Registry) error {
-	if swag.IsZero(m.GoogleWorkspace) { // not required
-		return nil
-	}
-
-	if m.GoogleWorkspace != nil {
-		if err := m.GoogleWorkspace.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("google_workspace")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("google_workspace")
 			}
 			return err
 		}
@@ -539,10 +513,6 @@ func (m *IDPCredentials) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateGoogleWorkspace(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateIntelliTrust(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -745,27 +715,6 @@ func (m *IDPCredentials) contextValidateGoogle(ctx context.Context, formats strf
 				return ve.ValidateName("google")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("google")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IDPCredentials) contextValidateGoogleWorkspace(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.GoogleWorkspace != nil {
-
-		if swag.IsZero(m.GoogleWorkspace) { // not required
-			return nil
-		}
-
-		if err := m.GoogleWorkspace.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("google_workspace")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("google_workspace")
 			}
 			return err
 		}
