@@ -77,10 +77,10 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 
+	"github.com/go-jose/go-jose/v4"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
-	"gopkg.in/square/go-jose.v2"
 )
 
 const (
